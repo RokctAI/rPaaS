@@ -162,6 +162,9 @@ def create_gin_index(table, column):
 
 def create_fts_index(table, column):
     try:
+        clean_table = table.lower().replace('tab', '').replace(' ', '_')
+        index_name = f"{clean_table}_{column}_fts_idx"
+        
         # Check if table exists
         table_exists = frappe.db.sql(
             f"SELECT 1 FROM information_schema.tables WHERE table_name = '{table}'",
