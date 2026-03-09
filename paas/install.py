@@ -136,12 +136,14 @@ def create_gin_index(table, column):
         clean_table = table.lower().replace('tab', '').replace(' ', '_')
         index_name = f"{clean_table}_{column}_gin_idx"
 
-        # Check if table exists in information_schema to prevent "relation does not exist" errors
+        # Check if table exists in information_schema to prevent "relation does
+        # not exist" errors
         table_exists = frappe.db.sql(
             f"SELECT 1 FROM information_schema.tables WHERE table_name = '{table}'",
             pluck=True)
         if not table_exists:
-            print(f"ℹ️ Table {table} does not exist yet. Skipping index {index_name}.")
+            print(
+                f"ℹ️ Table {table} does not exist yet. Skipping index {index_name}.")
             return
 
         chk = frappe.db.sql(
@@ -165,7 +167,8 @@ def create_fts_index(table, column):
             f"SELECT 1 FROM information_schema.tables WHERE table_name = '{table}'",
             pluck=True)
         if not table_exists:
-            print(f"ℹ️ Table {table} does not exist yet. Skipping FTS index {index_name}.")
+            print(
+                f"ℹ️ Table {table} does not exist yet. Skipping FTS index {index_name}.")
             return
 
         chk = frappe.db.sql(
