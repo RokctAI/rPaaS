@@ -191,6 +191,13 @@
             "fieldtype": "Data",
             "label": "Offline UUID",
             "unique": 1
+        },
+        {
+            "fieldname": "quoted_total",
+            "fieldtype": "Currency",
+            "label": "Quoted Total",
+            "default": "0",
+            "description": "The total amount quoted/authorized at checkout, including substitution buffers."
         }
     ]
 }

@@ -76,20 +76,55 @@ def create_order(order_data):
     })
 
     for item in order_data.get("order_items", []):
+        product_id = item.get("product")
+        quantity = item.get("quantity")
+        alt_product_id = item.get("alternative_product")
+        
+        # Real-time Stock Check & Auto-Substitution
+        is_substituted = 0
+        original_product = None
+        
+        # Check stock for primary product
+        stock_qty = frappe.db.get_value("Stock", {"shop": order_data.get("shop"), "product": product_id}, "quantity") or 0
+        
+        if stock_qty <= 0 and alt_product_id:
+            # Check stock for alternative product
+            alt_stock_qty = frappe.db.get_value("Stock", {"shop": order_data.get("shop"), "product": alt_product_id}, "quantity") or 0
+            if alt_stock_qty > 0:
+                original_product = product_id
+                product_id = alt_product_id
+                is_substituted = 1
+        
+        # Fetch current price for the chosen product (primary or substituted)
+        current_price = frappe.db.get_value("Product", product_id, "price") or 0
+        cost_price = frappe.db.get_value("Product", product_id, "cost_price") or 0
+
         order.append("order_items", {
-            "product": item.get("product"),
-            "quantity": item.get("quantity"),
-            "price": item.get("price"),
-            "cost_price": item.get("cost_price"),
-            "alternative_product": item.get("alternative_product"),
+            "product": product_id,
+            "quantity": quantity,
+            "price": current_price,
+            "cost_price": cost_price,
+            "alternative_product": alt_product_id,
+            "is_substituted": is_substituted,
+            "original_product": original_product
         })
 
+    # Store the quoted total from frontend for refund calculation
+    order.quoted_total = order_data.get("quoted_total") or 0
+    
     order.insert(ignore_permissions=True)
 
+    # Surplus Refund Logic (Pay-Max Strategy)
+    # If the user authorized/paid more than the final actual total, refund to wallet.
+    if order.quoted_total > order.total_price:
+        refund_amount = order.quoted_total - order.total_price
+        deposit_to_wallet(
+            user=order.user,
+            amount=refund_amount,
+            note=f"Substitution refund for Order {order.name}"
+        )
+
     # Calculate cashback
-    # We do this after insert so we might have access to db-generated fields if needed,
-    # though grand_total might still need to be calculated explicitly if not done by controller.
-    # Assuming the controller calculates total_price on save/insert.
     if order.total_price:
         cashback_amount = frappe.call(
             "paas.api.shop.shop.check_cashback",
@@ -110,6 +145,41 @@ def create_order(order_data):
     return api_response(
         data=order.as_dict(),
         message="Order created successfully.")
+
+def deposit_to_wallet(user, amount, note):
+    """
+    Helper to add balance to user's wallet and log the transaction.
+    """
+    if not amount or amount <= 0:
+        return
+
+    # 1. Fetch or Create Wallet
+    wallet_name = frappe.db.get_value("Wallet", {"user": user}, "name")
+    if not wallet_name:
+        wallet = frappe.get_doc({
+            "doctype": "Wallet",
+            "user": user,
+            "balance": 0
+        }).insert(ignore_permissions=True)
+    else:
+        wallet = frappe.get_doc("Wallet", wallet_name)
+
+    # 2. Update Balance
+    wallet.balance += amount
+    wallet.save(ignore_permissions=True)
+
+    # 3. Create Transaction Audit Record
+    frappe.get_doc({
+        "doctype": "Transaction",
+        "user": user,
+        "amount": amount,
+        "status": "Paid",
+        "type": "Refund",
+        "note": note,
+        "performed_at": frappe.utils.now_datetime()
+    }).insert(ignore_permissions=True)
+    
+    frappe.db.commit()
 
 
 @frappe.whitelist()
@@ -354,6 +424,7 @@ def get_calculate(cart_id, address=None, coupon_code=None, tips=0, delivery_type
     # 1. Calculate Product Totals
     product_tax = 0
     product_total = 0
+    subtotal_buffer = 0  # To track price protection for alternatives
     discount = 0
     calculated_products = []
 
@@ -362,26 +433,38 @@ def get_calculate(cart_id, address=None, coupon_code=None, tips=0, delivery_type
         product_doc = frappe.get_doc("Product", item.item)
 
         item_price = product_doc.price or 0
+
+        # Pay-Max Logic: Use alternative price if higher
+        effective_price = item_price
+        if item.alternative_product:
+            alt_price = frappe.db.get_value(
+                "Product", item.alternative_product, "price") or 0
+            if alt_price > item_price:
+                effective_price = alt_price
+                subtotal_buffer += (alt_price - item_price) * (item.quantity or 0)
+
         item_qty = item.quantity or 0
-        item_tax = (item_price * (product_doc.tax or 0) / 100) * item_qty
+        item_tax = (effective_price * (product_doc.tax or 0) / 100) * item_qty
         item_discount = (
-            item_price * (item.discount_percentage or 0) / 100) * item_qty
+            effective_price * (item.discount_percentage or 0) / 100) * item_qty
 
-        item_total = (item_price * item_qty) - item_discount + item_tax
+        item_total = (effective_price * item_qty) - item_discount + item_tax
 
-        product_total += (item_price * item_qty)
+        product_total += (effective_price * item_qty)
         product_tax += item_tax
         discount += item_discount
 
         calculated_products.append({
             "id": product_doc.name,
-            "price": item_price,
+            "price": effective_price,
+            "original_price": item_price,
             "qty": item_qty,
             "tax": item_tax,
             "shop_tax": 0,  # Placeholder or specific shop tax per item
             "discount": item_discount,
-            "price_without_tax": item_price,
-            "total_price": item_total
+            "price_without_tax": effective_price,
+            "total_price": item_total,
+            "is_buffered": effective_price > item_price
         })
 
     # 2. Calculate Delivery Fee
@@ -449,4 +532,5 @@ def get_calculate(cart_id, address=None, coupon_code=None, tips=0, delivery_type
         "service_fee": service_fee,
         "tips": float(tips),
         "coupon_price": coupon_price,
+        "subtotal_buffer": subtotal_buffer,
     })
