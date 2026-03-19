@@ -19,7 +19,7 @@ def get_cart(shop_id: str):
 
 
 @frappe.whitelist()
-def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = None, addons: str = None):  # noqa: C901
+def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = None, addons: str = None, alternative_product: str = None):  # noqa: C901
     """
     Adds an item to the user's cart. Support multi-cart by shop_id.
     accepts item_code (ProductId) or stock_id (Variant).
@@ -116,7 +116,8 @@ def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = N
             "price": price,
             "stock_id": stock_id,
             "addons": json.dumps(addons_data) if addons_data else None,
-            "bonus": 0
+            "bonus": 0,
+            "alternative_product": alternative_product
         })
 
     cart.save(ignore_permissions=True)
@@ -189,6 +190,7 @@ def create_cart(cart: dict, lang: str = "en"):
         cart_doc.append("items", {
             "item": item.get("item_code"),
             "quantity": item.get("quantity"),
+            "alternative_product": item.get("alternative_product"),
         })
     cart_doc.insert(ignore_permissions=True)
     return cart_doc.as_dict()
@@ -204,6 +206,7 @@ def insert_cart(cart: dict, lang: str = "en"):
         cart_doc.append("items", {
             "item": item.get("item_code"),
             "quantity": item.get("quantity"),
+            "alternative_product": item.get("alternative_product"),
         })
     cart_doc.save(ignore_permissions=True)
     return cart_doc.as_dict()
@@ -219,6 +222,7 @@ def insert_cart_with_group(cart: dict, lang: str = "en"):
         cart_doc.append("items", {
             "item": item.get("item_code"),
             "quantity": item.get("quantity"),
+            "alternative_product": item.get("alternative_product"),
         })
     cart_doc.save(ignore_permissions=True)
     return cart_doc.as_dict()

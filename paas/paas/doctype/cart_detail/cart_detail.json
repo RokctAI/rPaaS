@@ -43,6 +43,12 @@
             "fieldname": "bonus",
             "fieldtype": "Check",
             "label": "Is Bonus"
+        },
+        {
+            "fieldname": "alternative_product",
+            "fieldtype": "Link",
+            "label": "Alternative Product",
+            "options": "Product"
         }
     ],
     "index_web_pages_for_search": 0,

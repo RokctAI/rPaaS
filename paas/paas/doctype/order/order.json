@@ -185,6 +185,12 @@
             "fieldtype": "Currency",
             "label": "Cashback Amount",
             "default": "0"
+        },
+        {
+            "fieldname": "offline_uuid",
+            "fieldtype": "Data",
+            "label": "Offline UUID",
+            "unique": 1
         }
     ]
 }

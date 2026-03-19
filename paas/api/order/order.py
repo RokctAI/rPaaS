@@ -12,6 +12,15 @@ def create_order(order_data):
     if isinstance(order_data, str):
         order_data = json.loads(order_data)
 
+    # 1. Idempotency Check (Offline UUID)
+    offline_uuid = order_data.get("offline_uuid")
+    if offline_uuid:
+        existing_order = frappe.db.exists("Order", {"offline_uuid": offline_uuid})
+        if existing_order:
+            return api_response(
+                data=frappe.get_doc("Order", existing_order).as_dict(),
+                message="Duplicate order detected. Returning existing order.")
+
     # Check for hierarchical auto-approval
     paas_settings = frappe.get_single("Permission Settings")
 
@@ -26,6 +35,20 @@ def create_order(order_data):
     initial_status = "New"
     if paas_settings.auto_approve_orders and shop.auto_approve_orders:
         initial_status = "Accepted"
+
+    # If cart_id is provided and order_items is missing, load items from cart
+    if order_data.get("cart_id") and not order_data.get("order_items"):
+        cart = frappe.get_doc("Cart", order_data.get("cart_id"))
+        order_items = []
+        for item in cart.items:
+            product_doc = frappe.get_doc("Product", item.item)
+            order_items.append({
+                "product": item.item,
+                "quantity": item.quantity,
+                "price": item.price or product_doc.price,
+                "alternative_product": item.alternative_product
+            })
+        order_data["order_items"] = order_items
 
     order = frappe.get_doc({
         "doctype": "Order",
@@ -49,6 +72,7 @@ def create_order(order_data):
         "delivery_date": order_data.get("delivery_date"),
         "delivery_time": order_data.get("delivery_time"),
         "note": order_data.get("note"),
+        "offline_uuid": offline_uuid,
     })
 
     for item in order_data.get("order_items", []):
@@ -56,6 +80,8 @@ def create_order(order_data):
             "product": item.get("product"),
             "quantity": item.get("quantity"),
             "price": item.get("price"),
+            "cost_price": item.get("cost_price"),
+            "alternative_product": item.get("alternative_product"),
         })
 
     order.insert(ignore_permissions=True)

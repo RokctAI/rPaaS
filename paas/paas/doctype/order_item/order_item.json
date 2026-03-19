@@ -31,9 +31,32 @@
             "reqd": 1
         },
         {
+            "fieldname": "cost_price",
+            "fieldtype": "Currency",
+            "label": "Cost Price"
+        },
+        {
             "fieldname": "discount",
             "fieldtype": "Currency",
             "label": "Discount"
+        },
+        {
+            "fieldname": "alternative_product",
+            "fieldtype": "Link",
+            "label": "Alternative Product",
+            "options": "Product"
+        },
+        {
+            "fieldname": "is_substituted",
+            "fieldtype": "Check",
+            "label": "Is Substituted",
+            "default": "0"
+        },
+        {
+            "fieldname": "original_product",
+            "fieldtype": "Link",
+            "label": "Original Product",
+            "options": "Product"
         }
     ]
 }
