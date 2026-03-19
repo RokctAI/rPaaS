@@ -15,7 +15,8 @@ def create_order(order_data):
     # 1. Idempotency Check (Offline UUID)
     offline_uuid = order_data.get("offline_uuid")
     if offline_uuid:
-        existing_order = frappe.db.exists("Order", {"offline_uuid": offline_uuid})
+        existing_order = frappe.db.exists(
+            "Order", {"offline_uuid": offline_uuid})
         if existing_order:
             return api_response(
                 data=frappe.get_doc("Order", existing_order).as_dict(),
