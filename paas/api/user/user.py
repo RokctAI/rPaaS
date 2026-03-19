@@ -572,9 +572,35 @@ def send_wallet_balance(
     if recipient == sender:
         frappe.throw("You cannot send money to yourself.")
 
-    # Logic to transfer funds (Mock implementation if Wallet logic is complex/hidden)
-    # Ideally calls a Wallet service
-    # wallet_service.transfer(sender, recipient, amount, message)
+    sender_wallet = frappe.get_doc("Wallet", {"user": sender})
+    recipient_wallet = frappe.get_doc("Wallet", {"user": recipient})
+
+    if sender_wallet.balance < amount:
+        frappe.throw("Insufficient balance.")
+
+    sender_wallet.balance -= amount
+    sender_wallet.save(ignore_permissions=True)
+
+    recipient_wallet.balance += amount
+    recipient_wallet.save(ignore_permissions=True)
+
+    frappe.get_doc({
+        "doctype": "Wallet History",
+        "wallet": sender_wallet.name,
+        "transaction_type": "Payment",
+        "amount": -amount,
+        "status": "Processed",
+        "description": message or "Transfer sent"
+    }).insert(ignore_permissions=True)
+
+    frappe.get_doc({
+        "doctype": "Wallet History",
+        "wallet": recipient_wallet.name,
+        "transaction_type": "Payment",
+        "amount": amount,
+        "status": "Processed",
+        "description": message or "Transfer received"
+    }).insert(ignore_permissions=True)
 
     return {"status": "success", "message": "Funds transferred successfully."}
 

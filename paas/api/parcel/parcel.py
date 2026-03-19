@@ -258,8 +258,17 @@ def calculate_price(type_id, address_from, address_to):
     Calculates the delivery price based on distance and parcel type.
     address_from/to: JSON strings or dicts with latitude/longitude.
     """
+    price = 50.0
+    if type_id:
+        try:
+            parcel_type = frappe.get_doc("Parcel Type", type_id)
+            if parcel_type.min_price:
+                price = parcel_type.min_price
+        except frappe.DoesNotExistError:
+            pass
+
     return api_response(data={
-        "price": 50.0,  # Mock price
+        "price": price,
         "delivery_fee": 10.0,
         "km": 5.2,
         "time": "15-20 min"

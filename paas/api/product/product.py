@@ -686,10 +686,8 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
         "comment": comment,
         "image": images[0] if images and len(images) > 0 else None
     }
-    # check doc exists
-    # frappe.get_doc(doc).insert(ignore_permissions=True)
-    # For now just mock success if doctype missing or logic complex
-    return api_response(data=None)
+    frappe.get_doc(_doc).insert(ignore_permissions=True)
+    return api_response(data=None, message="Review added successfully")
 
 
 @frappe.whitelist()

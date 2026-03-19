@@ -152,7 +152,7 @@ def get_notification_settings():
             "active": is_active,
             "created_at": None,
             "updated_at": None,
-            "payload": []  # Mock payload list
+            "payload": t.get("payload") or []
         })
 
     # Wrap in data.data as per Flutter model

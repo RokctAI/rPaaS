@@ -146,7 +146,7 @@ def get_global_settings():
             settings_data.append(
                 {"key": "google_maps_key", "value": global_settings.google_maps_api_key})
 
-        # Add default language (mock or fetch)
+        # Add default language
         settings_data.append({"key": "default_language", "value": "en"})
 
         # Add default currency
@@ -155,7 +155,7 @@ def get_global_settings():
             settings_data.append(
                 {"key": "default_currency", "value": currency})
 
-        # Add distance unit (mock)
+        # Add distance unit
         settings_data.append({"key": "distance_unit", "value": "km"})
 
     except Exception as e:

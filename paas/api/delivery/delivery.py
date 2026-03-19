@@ -86,5 +86,9 @@ def get_driver_location(driver_id: str):
     """
     Retrieves the current location of a driver.
     """
-    # Mock response or fetch from Redis/Driver Doc
+    order = frappe.db.get_value("Order", {"deliveryman": driver_id, "status": ["in", ["Accepted", "Shipped"]]}, "name")
+    if order:
+        loc = frappe.db.get_value("Driver Location", {"order": order}, ["latitude", "longitude"], as_dict=True)
+        if loc:
+            return {"latitude": loc.latitude, "longitude": loc.longitude}
     return {"latitude": 0.0, "longitude": 0.0}
