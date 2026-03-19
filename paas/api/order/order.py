@@ -15,7 +15,8 @@ def create_order(order_data):
     # 1. Idempotency Check (Offline UUID)
     offline_uuid = order_data.get("offline_uuid")
     if offline_uuid:
-        existing_order = frappe.db.exists("Order", {"offline_uuid": offline_uuid})
+        existing_order = frappe.db.exists(
+            "Order", {"offline_uuid": offline_uuid})
         if existing_order:
             return api_response(
                 data=frappe.get_doc("Order", existing_order).as_dict(),
@@ -79,25 +80,29 @@ def create_order(order_data):
         product_id = item.get("product")
         quantity = item.get("quantity")
         alt_product_id = item.get("alternative_product")
-        
+
         # Real-time Stock Check & Auto-Substitution
         is_substituted = 0
         original_product = None
-        
+
         # Check stock for primary product
-        stock_qty = frappe.db.get_value("Stock", {"shop": order_data.get("shop"), "product": product_id}, "quantity") or 0
-        
+        stock_qty = frappe.db.get_value("Stock", {"shop": order_data.get(
+            "shop"), "product": product_id}, "quantity") or 0
+
         if stock_qty <= 0 and alt_product_id:
             # Check stock for alternative product
-            alt_stock_qty = frappe.db.get_value("Stock", {"shop": order_data.get("shop"), "product": alt_product_id}, "quantity") or 0
+            alt_stock_qty = frappe.db.get_value("Stock", {"shop": order_data.get(
+                "shop"), "product": alt_product_id}, "quantity") or 0
             if alt_stock_qty > 0:
                 original_product = product_id
                 product_id = alt_product_id
                 is_substituted = 1
-        
+
         # Fetch current price for the chosen product (primary or substituted)
-        current_price = frappe.db.get_value("Product", product_id, "price") or 0
-        cost_price = frappe.db.get_value("Product", product_id, "cost_price") or 0
+        current_price = frappe.db.get_value(
+            "Product", product_id, "price") or 0
+        cost_price = frappe.db.get_value(
+            "Product", product_id, "cost_price") or 0
 
         order.append("order_items", {
             "product": product_id,
@@ -111,11 +116,12 @@ def create_order(order_data):
 
     # Store the quoted total from frontend for refund calculation
     order.quoted_total = order_data.get("quoted_total") or 0
-    
+
     order.insert(ignore_permissions=True)
 
     # Surplus Refund Logic (Pay-Max Strategy)
-    # If the user authorized/paid more than the final actual total, refund to wallet.
+    # If the user authorized/paid more than the final actual total, refund to
+    # wallet.
     if order.quoted_total > order.total_price:
         refund_amount = order.quoted_total - order.total_price
         deposit_to_wallet(
@@ -145,6 +151,7 @@ def create_order(order_data):
     return api_response(
         data=order.as_dict(),
         message="Order created successfully.")
+
 
 def deposit_to_wallet(user, amount, note):
     """
@@ -178,7 +185,7 @@ def deposit_to_wallet(user, amount, note):
         "note": note,
         "performed_at": frappe.utils.now_datetime()
     }).insert(ignore_permissions=True)
-    
+
     frappe.db.commit()
 
 
@@ -441,7 +448,8 @@ def get_calculate(cart_id, address=None, coupon_code=None, tips=0, delivery_type
                 "Product", item.alternative_product, "price") or 0
             if alt_price > item_price:
                 effective_price = alt_price
-                subtotal_buffer += (alt_price - item_price) * (item.quantity or 0)
+                subtotal_buffer += (alt_price - item_price) * \
+                    (item.quantity or 0)
 
         item_qty = item.quantity or 0
         item_tax = (effective_price * (product_doc.tax or 0) / 100) * item_qty

@@ -25,7 +25,8 @@ def sync_brain_events(events):
     for event_data in events:
         try:
             # Check for required fields
-            if not event_data.get("source") or not event_data.get("event_type"):
+            if not event_data.get(
+                    "source") or not event_data.get("event_type"):
                 continue
 
             doc = frappe.get_doc({
@@ -38,15 +39,17 @@ def sync_brain_events(events):
                 "user": frappe.session.user,
                 "timestamp": event_data.get("timestamp") or frappe.utils.now()
             })
-            
+
             # If shop is provided, use it
             if event_data.get("shop"):
                 doc.shop = event_data.get("shop")
-            
+
             doc.insert(ignore_permissions=True)
             ingested_count += 1
         except Exception as e:
-            frappe.log_error(f"Brain Event Ingestion Failed: {str(e)}", "sync_brain_events")
+            frappe.log_error(
+                f"Brain Event Ingestion Failed: {
+                    str(e)}", "sync_brain_events")
             continue
 
     frappe.db.commit()
