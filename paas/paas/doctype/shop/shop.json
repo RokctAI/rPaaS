@@ -226,6 +226,15 @@
             "label": "Warehouse",
             "options": "Warehouse",
             "description": "The warehouse associated with this shop for stock management."
+        },
+        {
+            "fieldname": "shared_secret",
+            "fieldtype": "Data",
+            "label": "Shared Secret (OTP)",
+            "hidden": 1,
+            "no_copy": 1,
+            "read_only": 1,
+            "description": "Used for offline payment verification. DO NOT share."
         }
     ]
 }
