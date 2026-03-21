@@ -147,7 +147,8 @@ def get_global_settings():
                 {"key": "google_maps_key", "value": global_settings.google_maps_api_key})
 
         # Add default language
-        lang = frappe.db.get_single_value("System Settings", "language") or "en"
+        lang = frappe.db.get_single_value(
+            "System Settings", "language") or "en"
         settings_data.append({"key": "default_language", "value": lang})
 
         # Add default currency
@@ -158,7 +159,8 @@ def get_global_settings():
 
         # Add distance unit
         # Check if defined in any relevant settings, otherwise default to km
-        distance_unit = frappe.db.get_single_value("System Settings", "distance_unit") or "km"
+        distance_unit = frappe.db.get_single_value(
+            "System Settings", "distance_unit") or "km"
         settings_data.append({"key": "distance_unit", "value": distance_unit})
 
     except Exception as e:

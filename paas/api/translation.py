@@ -399,32 +399,33 @@ def export_translations():
 def get_ai_translations():
     _require_admin()
     data = frappe.form_dict
-    
+
     model_type = data.get("model_type")
     model_id = data.get("model_id")
     content = data.get("content")
     target_lang = data.get("lang")
-    
+
     if not content:
         return _api_error("Content is required", 400)
-        
+
     if not target_lang:
         return _api_error("Target language is required", 400)
-        
+
     try:
         import requests
 
         groq_api_key = data.get("api_key")
         if not groq_api_key:
-            return _api_error("API key is not configured in the application.", 401)
+            return _api_error(
+                "API key is not configured in the application.", 401)
 
         headers = {
             "Authorization": f"Bearer {groq_api_key}",
             "Content-Type": "application/json"
         }
-        
+
         prompt = f"Translate the following text to {target_lang}. Reply exactly with the translated text only, without quotes or additional explanation:\n\n{content}"
-        
+
         payload = {
             "model": "llama3-8b-8192",
             "messages": [
@@ -432,13 +433,18 @@ def get_ai_translations():
             ],
             "temperature": 0.3
         }
-        
-        response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload, timeout=15)
-        
+
+        response = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers=headers,
+            json=payload,
+            timeout=15)
+
         if response.status_code == 200:
             res_json = response.json()
-            translated_content = res_json["choices"][0]["message"]["content"].strip()
-            
+            translated_content = res_json["choices"][0]["message"]["content"].strip(
+            )
+
             # Log the translation transaction
             log_doc = frappe.get_doc({
                 "doctype": "PAAS AI Log",
@@ -450,13 +456,13 @@ def get_ai_translations():
             })
             # Insert if the doctype exists, otherwise gracefully skip
             if frappe.db.exists("DocType", "PAAS AI Log"):
-                 log_doc.insert(ignore_permissions=True)
-            
+                log_doc.insert(ignore_permissions=True)
+
             return _api_success({
                 "title": translated_content
             }, message="Successfully translated via Groq AI")
         else:
             return _api_error(f"AI Translation failed: {response.text}", 500)
-            
+
     except Exception as e:
         return _api_error(f"Translation Error: {str(e)}", 500)

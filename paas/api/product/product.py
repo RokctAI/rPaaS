@@ -678,7 +678,8 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
     if not product_name:
         frappe.throw("Product not found.")
 
-    # Check if user has purchased this item (Highly recommended for high-quality data)
+    # Check if user has purchased this item (Highly recommended for
+    # high-quality data)
     has_purchased = frappe.db.exists(
         "Sales Invoice Item", {
             "item_code": product_name, "parent": (

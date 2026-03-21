@@ -116,7 +116,11 @@ def get_shops(
     else:
         # Standard sorting
         rev = True if order.lower() == "desc" else False
-        shops.sort(key=lambda x: str(x.get(order_by or "name")).lower(), reverse=rev)
+        shops.sort(
+            key=lambda x: str(
+                x.get(
+                    order_by or "name")).lower(),
+            reverse=rev)
 
     # Paginate
     shops_slice = shops[limit_start: limit_start + limit_page_length]
@@ -134,43 +138,57 @@ def get_shops(
         is_cod = is_global_cod_enabled and (
             shop.enable_cod if shop.get('enable_cod') is not None else 1)
 
-        formatted_shops.append({
-            'id': shop.name,
-            'uuid': shop.uuid,
-            'slug': shop.slug,
-            'user_id': shop.user,
-            'tax': shop.tax,
-            'service_fee': shop.service_fee,
-            'percentage': shop.percentage,
-            'phone': shop.phone,
-            'open': bool(shop.open),
-            'visibility': bool(shop.visibility),
-            'verify': bool(shop.verify),
-            'logo_img': shop.logo,
-            'background_img': shop.cover_photo,
-            'min_amount': shop.min_amount,
-            'status': shop.status,
-            'enable_cod': bool(is_cod),
-            'type': shop.shop_type or shop.get('type'),
-            'shop_type': shop.shop_type,
-            'is_ecommerce': bool(shop.is_ecommerce),
-            'distance': shop.get("distance"),
-            'delivery_time': {
-                'type': shop.delivery_time_type,
-                'from': shop.delivery_time_from,
-                'to': shop.delivery_time_to
-            },
-            'location': shop.location,
-            'working_hours': frappe.get_all("Shop Booking Working Day", filters={"parent": shop.name}, fields=["day", "opening_time", "closing_time"]),
-            'closed_dates': frappe.get_all("Shop Booking Closed Date", filters={"parent": shop.name}, fields=["date", "reason"]),
-            'translation': {
-                'title': shop.name,
-                'address': shop.address
-            }
-        })
+        formatted_shops.append(
+            {
+                'id': shop.name,
+                'uuid': shop.uuid,
+                'slug': shop.slug,
+                'user_id': shop.user,
+                'tax': shop.tax,
+                'service_fee': shop.service_fee,
+                'percentage': shop.percentage,
+                'phone': shop.phone,
+                'open': bool(
+                    shop.open),
+                'visibility': bool(
+                    shop.visibility),
+                'verify': bool(
+                    shop.verify),
+                'logo_img': shop.logo,
+                'background_img': shop.cover_photo,
+                'min_amount': shop.min_amount,
+                'status': shop.status,
+                'enable_cod': bool(is_cod),
+                'type': shop.shop_type or shop.get('type'),
+                'shop_type': shop.shop_type,
+                'is_ecommerce': bool(
+                    shop.is_ecommerce),
+                'distance': shop.get("distance"),
+                'delivery_time': {
+                    'type': shop.delivery_time_type,
+                    'from': shop.delivery_time_from,
+                    'to': shop.delivery_time_to},
+                'location': shop.location,
+                'working_hours': frappe.get_all(
+                    "Shop Booking Working Day",
+                    filters={
+                        "parent": shop.name},
+                    fields=[
+                        "day",
+                        "opening_time",
+                        "closing_time"]),
+                'closed_dates': frappe.get_all(
+                    "Shop Booking Closed Date",
+                    filters={
+                        "parent": shop.name},
+                    fields=[
+                        "date",
+                        "reason"]),
+                'translation': {
+                    'title': shop.name,
+                    'address': shop.address}})
 
     return api_response(data=formatted_shops)
-
 
 
 @frappe.whitelist(allow_guest=True)
