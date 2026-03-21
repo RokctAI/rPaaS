@@ -613,6 +613,7 @@ whitelisted_methods = {
     "paas.api.user.update_user_profile": "paas.api.user.user.update_user_profile",
     "paas.api.user.update_user_shop": "paas.api.user.user.update_user_shop",
     "paas.api.user.verify_phone_code": "paas.api.user.user.verify_phone_code",
+    "paas.api.user.verify_email_code": "paas.api.user.user.verify_email_code",
     "paas.api.waiter.get_waiter_order_report": "paas.api.waiter.waiter.get_waiter_order_report",
     "paas.api.waiter.get_waiter_orders": "paas.api.waiter.waiter.get_waiter_orders", }
 

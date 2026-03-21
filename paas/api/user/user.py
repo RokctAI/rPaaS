@@ -21,8 +21,15 @@ def logout():
 def login(usr, pwd):
     """
     Login endpoint compatible with legacy Flutter app.
+    Supports both email and phone number as the username.
     Returns API Key/Secret as Bearer token.
     """
+    # If the username looks like a phone number, resolve it to an email
+    if usr and (usr.startswith('+') or usr.isdigit()):
+        phone_user = frappe.db.get_value("User", {"phone": usr}, "name")
+        if phone_user:
+            usr = phone_user
+
     try:
         login_manager = frappe.auth.LoginManager()
         login_manager.authenticate(user=usr, pwd=pwd)
@@ -314,14 +321,104 @@ def verify_phone_code(phone: str, otp: str):
     # Clear the OTP from cache
     frappe.cache.delete_value(cache_key)
 
-    return api_response(message="Phone number verified successfully.")
+    # Generate fresh API keys for the new session
+    api_secret = frappe.generate_hash(length=15)
+    user.api_key = frappe.generate_hash(length=15)
+    user.api_secret = api_secret
+    user.save(ignore_permissions=True)
+    frappe.db.commit()
+
+    # Get full profile data matching VerifyData/ProfileData structure
+    user_info = {
+        "id": user.name,
+        "email": user.email,
+        "firstname": user.first_name,
+        "lastname": user.last_name,
+        "phone": user.phone,
+        "img": user.user_image
+    }
+
+    return api_response(
+        message="Phone number verified successfully.",
+        data={
+            "token": f"{user.api_key}:{api_secret}",
+            "user": user_info
+        }
+    )
 
 
 @frappe.whitelist(allow_guest=True)
-def register_user(email, password, first_name, last_name, phone=None):
+def verify_email_code(email: str, otp: str):
     """
-    Register a new user and send a verification email.
+    Verify a user's email address using a 6-digit OTP.
     """
+    if not email or not otp:
+        return api_response(message="Email and OTP are required.", status_code=400)
+
+    # Retrieve the OTP from cache
+    cache_key = f"email_otp:{email}"
+    stored_otp = frappe.cache.get_value(cache_key)
+
+    if not stored_otp or str(stored_otp) != str(otp):
+        return api_response(message="Invalid or expired verification code.", status_code=401)
+
+    # Mark the user as verified
+    try:
+        user = frappe.get_doc("User", email)
+        user.email_verified_at = frappe.utils.now_datetime()
+        user.save(ignore_permissions=True)
+        frappe.db.commit()
+
+        # Generate fresh API keys for the new session
+        api_secret = frappe.generate_hash(length=15)
+        user.api_key = frappe.generate_hash(length=15)
+        user.api_secret = api_secret
+        user.save(ignore_permissions=True)
+        frappe.db.commit()
+
+        # Clear the OTP from cache
+        frappe.cache.delete_value(cache_key)
+
+        # Get full profile data matching VerifyData/ProfileData structure
+        user_info = {
+            "id": user.name,
+            "email": user.email,
+            "firstname": user.first_name,
+            "lastname": user.last_name,
+            "phone": user.phone,
+            "img": user.user_image
+        }
+
+        return api_response(
+            message="Email verified successfully.",
+            data={
+                "token": f"{user.api_key}:{api_secret}",
+                "user": user_info
+            }
+        )
+    except frappe.DoesNotExistError:
+        return api_response(message="User not found.", status_code=404)
+    except Exception as e:
+        frappe.db.rollback()
+        frappe.log_error(frappe.get_traceback(), "Email Verification Error")
+        return api_response(message=f"An error occurred: {str(e)}", status_code=500)
+
+
+@frappe.whitelist(allow_guest=True)
+def register_user(password, first_name, last_name, email=None, phone=None):
+    """
+    Register a new user and send a verification code (OTP).
+    Handles both email and phone registration.
+    """
+    # If email is missing but phone exists, use phone as the primary identifier
+    if not email and phone:
+        # Get the current site name prefix (e.g., 'spazafy' from 'spazafy.tenant.rokct.ai')
+        site_prefix = frappe.local.site.split('.')[0]
+        email = f"{phone.strip('+')}@{site_prefix}.app"
+
+    if not email:
+        return api_response(message="Email or Phone is required.", status_code=400)
+
     if frappe.db.exists("User", email):
         return api_response(
             message="Email address already registered.",
@@ -342,34 +439,53 @@ def register_user(email, password, first_name, last_name, phone=None):
     })
     user.set("new_password", password)
 
-    # Generate and store verification token
-    token = frappe.generate_hash(length=48)
-    user.email_verification_token = token
+    # Generate a 6-digit OTP
+    otp = "".join([str(random.randint(0, 9)) for _ in range(6)])
+
+    # Store the OTP in cache for 10 minutes (600 seconds)
+    # We use both email and phone in the key for redundancy
+    cache_key = f"email_otp:{email}"
+    frappe.cache.set_value(cache_key, otp, expires_in_sec=600)
+    if phone:
+        frappe.cache.set_value(f"phone_otp:{phone}", otp, expires_in_sec=600)
+
     user.insert(ignore_permissions=True)
 
-    # Send the verification email
-    site_url = frappe.utils.get_url()
-    verification_url = f"{site_url}/api/method/rcore.tenant.api.verify_my_email?token={token}"
-    email_context = {
-        "first_name": user.first_name,
-        "verification_url": verification_url
-    }
-    frappe.sendmail(
-        recipients=[user.email],
-        template="New User Welcome",
-        args=email_context,
-        now=True
-    )
+    # Deliver OTP based on registration type
+    is_phone_reg = "@spazafy.app" in email
+    if is_phone_reg and phone:
+        try:
+            frappe.send_sms(
+                receivers=[phone],
+                message=f"Your verification code is: {otp}"
+            )
+        except Exception as e:
+            frappe.log_error(f"SMS Send Error: {e}")
+    else:
+        # Send the verification email with the OTP
+        email_context = {
+            "first_name": user.first_name,
+            "otp_code": otp
+        }
+        frappe.sendmail(
+            recipients=[user.email],
+            subject="Your Verification Code",
+            template="New User Welcome",
+            args=email_context,
+            now=True
+        )
+
     return api_response(
-        message="User registered successfully. Please check your email to verify your account.",
+        message="User registered successfully. Please check your " + ("phone" if is_phone_reg else "email") + " for the 6-digit verification code.",
         data={
             "user": {
-                "email": user.email,
+                "email": user.email if not is_phone_reg else None,
                 "firstname": user.first_name,
                 "lastname": user.last_name,
                 "phone": user.phone,
-                "role": "user",
-                "active": 1}})
+            }
+        }
+    )
 
 
 @frappe.whitelist(allow_guest=True)
@@ -380,32 +496,36 @@ def forgot_password(user: str):
     """
     try:
         is_phone = user.startswith('+') or user.isdigit()
+        # Generate and store 6-digit OTP
+        otp = "".join([str(random.randint(0, 9)) for _ in range(6)])
+        frappe.cache.set_value(f"password_reset_otp:{user}", otp, expires_in_sec=600)
+
         if is_phone:
-            user_doc_name = frappe.db.get_value(
-                "User", {"phone": user}, "name")
-            if user_doc_name:
-                # Generate and send 6-digit OTP
-                otp = "".join([str(random.randint(0, 9)) for _ in range(6)])
-                frappe.cache.set_value(
-                    f"password_reset_otp:{user}", otp, expires_in_sec=600)
-                try:
-                    frappe.send_sms(
-                        receivers=[user],
-                        message=f"Your password reset code is: {otp}")
-                except Exception as sms_error:
-                    frappe.log_error(
-                        f"Failed to send password reset SMS to {user}: {sms_error}",
-                        "SMS Reset Error")
+            try:
+                frappe.send_sms(
+                    receivers=[user],
+                    message=f"Your password reset code is: {otp}")
+            except Exception as sms_error:
+                frappe.log_error(
+                    f"Failed to send password reset SMS to {user}: {sms_error}",
+                    "SMS Reset Error")
         else:
-            # Frappe's standard email flow
-            frappe.core.doctype.user.user.reset_password(user=user)
+            # Send the OTP via email
+            user_doc_name = frappe.db.get_value("User", {"email": user}, "name")
+            if user_doc_name:
+                user_doc = frappe.get_doc("User", user_doc_name)
+                frappe.sendmail(
+                    recipients=[user],
+                    subject="Password Reset Code",
+                    message=f"Hello {user_doc.first_name}, your password reset code is: {otp}",
+                    now=True)
 
         return api_response(
-            message="If a user with this email/phone exists, a password reset code/link has been sent.")
+            message="If a user with this email/phone exists, a password reset code has been sent.")
     except Exception:
         # For security, always return success
         return api_response(
-            message="If a user with this email/phone exists, a password reset code/link has been sent.")
+            message="If a user with this email/phone exists, a password reset code has been sent.")
 
 
 @frappe.whitelist(allow_guest=True)
@@ -416,24 +536,16 @@ def forgot_password_confirm(email, verify_code, password=None):
     """
     try:
         is_phone = email.startswith('+') or email.isdigit()
-        user_name = None
+        cached_otp = frappe.cache.get_value(f"password_reset_otp:{email}")
+        if not cached_otp or cached_otp != verify_code:
+            return api_response(
+                message="Invalid or expired verification code",
+                status_code=400)
 
         if is_phone:
             user_name = frappe.db.get_value("User", {"phone": email}, "name")
-            cached_otp = frappe.cache.get_value(f"password_reset_otp:{email}")
-            if not cached_otp or cached_otp != verify_code:
-                return api_response(
-                    message="Invalid or expired verification code",
-                    status_code=400)
         else:
             user_name = frappe.db.get_value("User", {"email": email}, "name")
-            if user_name:
-                user_doc = frappe.get_doc("User", user_name)
-                # Verify standard Frappe reset token
-                if user_doc.reset_password_key != verify_code:
-                    return api_response(
-                        message="Invalid or expired reset token",
-                        status_code=400)
 
         if not user_name:
             return api_response(message="User not found", status_code=404)
