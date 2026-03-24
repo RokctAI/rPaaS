@@ -440,25 +440,39 @@ def delete_seller_combo(combo_name):
 
 # --- MISSING RESTAURANT BOOKING & TABLE ENDPOINTS ---
 
+
 @frappe.whitelist()
 def get_seller_sections(limit_start=0, limit_page_length=20):
     user = frappe.session.user
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Section"):
-        return frappe.get_all("Shop Section", filters={"shop": shop}, fields=["name", "title"])
+        return frappe.get_all(
+            "Shop Section", filters={
+                "shop": shop}, fields=[
+                "name", "title"])
     return []
+
 
 @frappe.whitelist()
 def create_seller_section(section_data=None):
     return {"status": True}
+
 
 @frappe.whitelist()
 def get_seller_tables(limit_start=0, limit_page_length=20):
     user = frappe.session.user
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Table"):
-        return frappe.get_all("Shop Table", filters={"shop": shop}, fields=["name", "table_number", "capacity"])
+        return frappe.get_all(
+            "Shop Table",
+            filters={
+                "shop": shop},
+            fields=[
+                "name",
+                "table_number",
+                "capacity"])
     return []
+
 
 @frappe.whitelist()
 def delete_seller_tables(table_id=None):
@@ -466,21 +480,27 @@ def delete_seller_tables(table_id=None):
         frappe.delete_doc("Shop Table", table_id, ignore_permissions=True)
     return {"status": True}
 
+
 @frappe.whitelist()
 def get_table_disable_dates():
     return []
+
 
 @frappe.whitelist()
 def get_booking_working_days():
     user = frappe.session.user
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Working Day"):
-        return frappe.get_all("Shop Working Day", filters={"shop": shop}, fields=["*"])
+        return frappe.get_all(
+            "Shop Working Day", filters={
+                "shop": shop}, fields=["*"])
     return []
+
 
 @frappe.whitelist()
 def create_seller_booking(booking_data=None):
     return {"status": True}
+
 
 @frappe.whitelist()
 def update_booking_status(booking_id=None, status=None):

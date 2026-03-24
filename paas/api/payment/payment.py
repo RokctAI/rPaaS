@@ -85,7 +85,8 @@ def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
 
     try:
         doc = frappe.get_doc(doctype, docname)
-        # Check authorization - for Order it's 'user', for Parcel Order it's 'user'
+        # Check authorization - for Order it's 'user', for Parcel Order it's
+        # 'user'
         if doc.user != user:
             frappe.throw(
                 "You are not authorized to pay for this document.",
@@ -112,23 +113,25 @@ def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
         payload = {
             "tx_ref": tx_ref,
             "amount": amount,
-            "currency": doc.get("currency") or frappe.db.get_single_value("System Settings", "currency"),
-            "redirect_url": f"{frappe.utils.get_url()}/api/method/paas.api.flutterwave_callback",
+            "currency": doc.get("currency") or frappe.db.get_single_value(
+                "System Settings",
+                "currency"),
+            "redirect_url": f"{
+                frappe.utils.get_url()}/api/method/paas.api.flutterwave_callback",
             "customer": {
                 "email": customer_email,
                 "phonenumber": customer_phone,
                 "name": customer_full_name,
             },
             "customizations": {
-                "title": f"Payment for {doctype} {doc.name}",
-                "logo": frappe.get_website_settings("website_logo")
-            }
-        }
+                "title": f"Payment for {doctype} {
+                    doc.name}",
+                "logo": frappe.get_website_settings("website_logo")}}
 
         headers = {
-            "Authorization": f"Bearer {flutterwave_settings.get_password('secret_key')}",
-            "Content-Type": "application/json"
-        }
+            "Authorization": f"Bearer {
+                flutterwave_settings.get_password('secret_key')}",
+            "Content-Type": "application/json"}
 
         # Make the request to Flutterwave
         response = requests.post(
@@ -146,7 +149,8 @@ def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
             return {"payment_url": response_data["data"]["link"]}
         else:
             frappe.log_error(
-                f"Flutterwave initiation failed: {response_data.get('message')}",
+                f"Flutterwave initiation failed: {
+                    response_data.get('message')}",
                 "Flutterwave Error")
             frappe.throw("Failed to initiate payment with Flutterwave.")
 
@@ -449,8 +453,10 @@ def _initiate_paypal_logic(doctype: str, docname: str):
 
     paypal_settings_doc = frappe.get_doc("PaaS Payment Gateway", "PayPal")
     settings = {s.key: s.value for s in paypal_settings_doc.settings}
-    success_url = paypal_settings_doc.success_redirect_url or f"{frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
-    failure_url = paypal_settings_doc.failure_redirect_url or f"{frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
+    success_url = paypal_settings_doc.success_redirect_url or f"{
+        frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
+    failure_url = paypal_settings_doc.failure_redirect_url or f"{
+        frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
 
     auth_url = "https://api-m.sandbox.paypal.com/v1/oauth2/token" if settings.get(
         "paypal_mode") == "sandbox" else "https://api-m.paypal.com/v1/oauth2/token"
@@ -547,10 +553,11 @@ def _initiate_paystack_logic(doctype: str, docname: str):
 
     body = {
         "email": frappe.session.user,
-        "amount": int(amount * 100),
+        "amount": int(
+            amount * 100),
         "currency": doc.get("currency") or "ZAR",
-        "callback_url": f"{frappe.utils.get_url()}/api/method/paas.api.handle_paystack_callback"
-    }
+        "callback_url": f"{
+            frappe.utils.get_url()}/api/method/paas.api.handle_paystack_callback"}
 
     response = requests.post(
         "https://api.paystack.co/transaction/initialize",

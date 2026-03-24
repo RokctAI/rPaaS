@@ -286,7 +286,12 @@ def calculate_price(type_id, address_from, address_to):
         lon2 = float(address_to.get("longitude") or address_to.get("long"))
     except (ValueError, TypeError, AttributeError):
         # Fallback if coordinates missing or invalid
-        return api_response(data={"price": 0, "km": 0, "status": "error", "message": "Invalid coordinates"})
+        return api_response(
+            data={
+                "price": 0,
+                "km": 0,
+                "status": "error",
+                "message": "Invalid coordinates"})
 
     km = haversine(lat1, lon1, lat2, lon2)
 

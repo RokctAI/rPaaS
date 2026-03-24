@@ -101,7 +101,11 @@ def get_driver_location(driver_id: str):
 
 
 @frappe.whitelist()
-def update_driver_location(latitude, longitude, order_id=None, parcel_order_id=None):
+def update_driver_location(
+        latitude,
+        longitude,
+        order_id=None,
+        parcel_order_id=None):
     """
     Endpoint for the Driver App to send real-time coordinates.
     """

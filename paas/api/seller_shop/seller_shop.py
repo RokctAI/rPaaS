@@ -103,6 +103,7 @@ def set_working_status(status):
 
 # --- ALIASES FOR FLUTTER ENDPOINTS ---
 
+
 @frappe.whitelist()
 def set_shop_working_status(status=None):
     return set_working_status(status)

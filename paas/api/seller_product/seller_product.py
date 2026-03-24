@@ -653,33 +653,41 @@ def delete_seller_tag(tag_name):
 
 # --- ALIASES FOR FLUTTER ENDPOINTS ---
 
+
 @frappe.whitelist()
 def create_product(product_data=None):
     return create_seller_product(product_data)
+
 
 @frappe.whitelist()
 def get_seller_products_paginate(limit_start=0, limit_page_length=20):
     return get_seller_products(limit_start, limit_page_length)
 
+
 @frappe.whitelist()
 def get_extras_groups(limit_start=0, limit_page_length=20):
     return get_seller_extra_groups(limit_start, limit_page_length)
+
 
 @frappe.whitelist()
 def create_extras_group(group_data=None):
     return create_seller_extra_group(group_data)
 
+
 @frappe.whitelist()
 def delete_extras_group(group_name=None):
     return delete_seller_extra_group(group_name)
+
 
 @frappe.whitelist()
 def create_extras_value(value_data=None):
     return create_seller_extra_value(value_data)
 
+
 @frappe.whitelist()
 def delete_extras_value(value_name=None):
     return delete_seller_extra_value(value_name)
+
 
 @frappe.whitelist()
 def get_product_details(product_name=None):
@@ -687,9 +695,11 @@ def get_product_details(product_name=None):
         return {"data": frappe.get_doc("Product", product_name).as_dict()}
     return {"data": {}}
 
+
 @frappe.whitelist()
 def update_product_extras(product_name=None, extras_data=None):
     return {"status": True}
+
 
 @frappe.whitelist()
 def update_product_stocks(product_name=None, stocks_data=None):

@@ -353,14 +353,18 @@ def verify_email_code(email: str, otp: str):
     Verify a user's email address using a 6-digit OTP.
     """
     if not email or not otp:
-        return api_response(message="Email and OTP are required.", status_code=400)
+        return api_response(
+            message="Email and OTP are required.",
+            status_code=400)
 
     # Retrieve the OTP from cache
     cache_key = f"email_otp:{email}"
     stored_otp = frappe.cache.get_value(cache_key)
 
     if not stored_otp or str(stored_otp) != str(otp):
-        return api_response(message="Invalid or expired verification code.", status_code=401)
+        return api_response(
+            message="Invalid or expired verification code.",
+            status_code=401)
 
     # Mark the user as verified
     try:
@@ -401,7 +405,9 @@ def verify_email_code(email: str, otp: str):
     except Exception as e:
         frappe.db.rollback()
         frappe.log_error(frappe.get_traceback(), "Email Verification Error")
-        return api_response(message=f"An error occurred: {str(e)}", status_code=500)
+        return api_response(
+            message=f"An error occurred: {
+                str(e)}", status_code=500)
 
 
 @frappe.whitelist(allow_guest=True)
@@ -412,12 +418,15 @@ def register_user(password, first_name, last_name, email=None, phone=None):
     """
     # If email is missing but phone exists, use phone as the primary identifier
     if not email and phone:
-        # Get the current site name prefix (e.g., 'spazafy' from 'spazafy.tenant.rokct.ai')
+        # Get the current site name prefix (e.g., 'spazafy' from
+        # 'spazafy.tenant.rokct.ai')
         site_prefix = frappe.local.site.split('.')[0]
         email = f"{phone.strip('+')}@{site_prefix}.app"
 
     if not email:
-        return api_response(message="Email or Phone is required.", status_code=400)
+        return api_response(
+            message="Email or Phone is required.",
+            status_code=400)
 
     if frappe.db.exists("User", email):
         return api_response(
@@ -476,16 +485,17 @@ def register_user(password, first_name, last_name, email=None, phone=None):
         )
 
     return api_response(
-        message="User registered successfully. Please check your " + ("phone" if is_phone_reg else "email") + " for the 6-digit verification code.",
+        message="User registered successfully. Please check your " +
+        (
+            "phone" if is_phone_reg else "email") +
+        " for the 6-digit verification code.",
         data={
             "user": {
                 "email": user.email if not is_phone_reg else None,
                 "firstname": user.first_name,
                 "lastname": user.last_name,
                 "phone": user.phone,
-            }
-        }
-    )
+            }})
 
 
 @frappe.whitelist(allow_guest=True)
@@ -498,7 +508,10 @@ def forgot_password(user: str):
         is_phone = user.startswith('+') or user.isdigit()
         # Generate and store 6-digit OTP
         otp = "".join([str(random.randint(0, 9)) for _ in range(6)])
-        frappe.cache.set_value(f"password_reset_otp:{user}", otp, expires_in_sec=600)
+        frappe.cache.set_value(
+            f"password_reset_otp:{user}",
+            otp,
+            expires_in_sec=600)
 
         if is_phone:
             try:
@@ -511,13 +524,15 @@ def forgot_password(user: str):
                     "SMS Reset Error")
         else:
             # Send the OTP via email
-            user_doc_name = frappe.db.get_value("User", {"email": user}, "name")
+            user_doc_name = frappe.db.get_value(
+                "User", {"email": user}, "name")
             if user_doc_name:
                 user_doc = frappe.get_doc("User", user_doc_name)
                 frappe.sendmail(
                     recipients=[user],
                     subject="Password Reset Code",
-                    message=f"Hello {user_doc.first_name}, your password reset code is: {otp}",
+                    message=f"Hello {
+                        user_doc.first_name}, your password reset code is: {otp}",
                     now=True)
 
         return api_response(
@@ -685,7 +700,8 @@ def send_wallet_balance(
         frappe.throw("You cannot send money to yourself.")
 
     # Ensure sender has a wallet
-    sender_wallet_name = frappe.db.get_value("Wallet", {"user": sender}, "name")
+    sender_wallet_name = frappe.db.get_value(
+        "Wallet", {"user": sender}, "name")
     if not sender_wallet_name:
         frappe.throw("You do not have a wallet.")
 

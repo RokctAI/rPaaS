@@ -62,7 +62,8 @@ def handle_interactive(reply, session):
 
         if item_id.startswith("shop_"):
             shop_uuid = item_id.split("_")[1]
-            shop_name = frappe.db.get_value("Shop", {"uuid": shop_uuid}, "name")
+            shop_name = frappe.db.get_value(
+                "Shop", {"uuid": shop_uuid}, "name")
             session.current_shop = shop_name
             session.save(ignore_permissions=True)
 
