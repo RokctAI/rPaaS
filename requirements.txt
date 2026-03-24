@@ -3,3 +3,4 @@ staticmap
 pillow
 cryptography
 sentence-transformers
+requests

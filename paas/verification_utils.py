@@ -1,4 +1,5 @@
 import hashlib
+import frappe
 
 
 def generate_verification_code(order_id, amount, shop_id):
