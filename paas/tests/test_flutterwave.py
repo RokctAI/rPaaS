@@ -22,6 +22,7 @@ class TestFlutterwave(FrappeTestCase):
         # Create a mock order
         self.order = MagicMock()
         self.order.name = "TEST-ORDER-001"
+        self.order.user = self.user.name
         self.order.owner = self.user.name
         self.order.payment_status = "Pending"
         self.order.grand_total = 100.00
