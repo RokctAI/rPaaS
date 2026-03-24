@@ -1,5 +1,7 @@
 import frappe
-from paas.api.delivery_man.delivery_man import get_deliveryman_order_report as _get_report
+from paas.api.delivery_man.delivery_man import (
+    get_deliveryman_order_report as _get_report,
+)
 
 
 @frappe.whitelist()

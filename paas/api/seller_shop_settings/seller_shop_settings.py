@@ -14,7 +14,7 @@ def get_seller_shop_working_days():
     working_days = frappe.get_all(
         "Shop Working Day",
         filters={"shop": shop},
-        fields=["day_of_week", "opening_time", "closing_time", "is_closed"]
+        fields=["day_of_week", "opening_time", "closing_time", "is_closed"],
     )
     return working_days
 
@@ -34,11 +34,9 @@ def update_seller_shop_working_days(working_days_data):
     frappe.db.delete("Shop Working Day", {"shop": shop})
 
     for day_data in working_days_data:
-        frappe.get_doc({
-            "doctype": "Shop Working Day",
-            "shop": shop,
-            **day_data
-        }).insert(ignore_permissions=True)
+        frappe.get_doc(
+            {"doctype": "Shop Working Day", "shop": shop, **day_data}
+        ).insert(ignore_permissions=True)
 
     return {
         "status": "success",
@@ -54,9 +52,7 @@ def get_seller_shop_closed_days():
     shop = _get_seller_shop(user)
 
     closed_days = frappe.get_all(
-        "Shop Closed Day",
-        filters={"shop": shop},
-        fields=["date"]
+        "Shop Closed Day", filters={"shop": shop}, fields=["date"]
     )
     return [d.date for d in closed_days]
 
@@ -69,11 +65,8 @@ def add_seller_shop_closed_day(date):
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
-    frappe.get_doc({
-        "doctype": "Shop Closed Day",
-        "shop": shop,
-        "date": date
-    }).insert(ignore_permissions=True)
+    frappe.get_doc({"doctype": "Shop Closed Day", "shop": shop,
+                   "date": date}).insert(ignore_permissions=True)
 
     return {"status": "success", "message": "Closed day added successfully."}
 
@@ -104,7 +97,7 @@ def get_shop_users(limit_start: int = 0, limit_page_length: int = 20):
         filters={"shop": shop},
         fields=["user", "role"],
         limit_start=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
     return shop_users
 
@@ -124,12 +117,9 @@ def add_shop_user(user_email: str, role: str):
     if frappe.db.exists("User Shop", {"user": user_to_add, "shop": shop}):
         frappe.throw("User is already a member of this shop.")
 
-    frappe.get_doc({
-        "doctype": "User Shop",
-        "user": user_to_add,
-        "shop": shop,
-        "role": role
-    }).insert(ignore_permissions=True)
+    frappe.get_doc(
+        {"doctype": "User Shop", "user": user_to_add, "shop": shop, "role": role}
+    ).insert(ignore_permissions=True)
 
     return {"status": "success", "message": "User added to shop successfully."}
 
@@ -163,7 +153,7 @@ def get_seller_branches(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "branch_name", "address", "latitude", "longitude"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return branches
 
@@ -182,10 +172,7 @@ def create_seller_branch(branch_data):
     branch_data["shop"] = shop
     branch_data["owner"] = user
 
-    new_branch = frappe.get_doc({
-        "doctype": "Branch",
-        **branch_data
-    })
+    new_branch = frappe.get_doc({"doctype": "Branch", **branch_data})
     new_branch.insert(ignore_permissions=True)
     return new_branch.as_dict()
 
@@ -268,6 +255,7 @@ def update_seller_deliveryman_settings(settings_data):
     settings.update(settings_data)
     settings.save(ignore_permissions=True)
     return settings.as_dict()
+
 
 # --- ALIASES FOR FLUTTER ENDPOINTS ---
 

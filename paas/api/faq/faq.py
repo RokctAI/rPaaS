@@ -10,10 +10,7 @@ def create_faq(data):
     if isinstance(data, str):
         data = json.loads(data)
 
-    doc = frappe.get_doc({
-        "doctype": "FAQ",
-        **data
-    })
+    doc = frappe.get_doc({"doctype": "FAQ", **data})
     doc.insert()
     return doc.as_dict()
 
@@ -28,13 +25,8 @@ def get_faqs(type=None):
         filters["type"] = type
 
     return frappe.get_list(
-        "FAQ",
-        filters=filters,
-        fields=[
-            "name",
-            "question",
-            "answer",
-            "type"])
+        "FAQ", filters=filters, fields=["name", "question", "answer", "type"]
+    )
 
 
 @frappe.whitelist()

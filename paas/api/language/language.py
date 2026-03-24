@@ -21,7 +21,9 @@ def get_languages(active=True):
             "backward",
             "default",
             "active",
-            "img"])
+            "img",
+        ],
+    )
 
 
 @frappe.whitelist(allow_guest=True)
@@ -43,8 +45,8 @@ def get_translations(locale, group=None):
         filters["group"] = group
 
     translations = frappe.get_list(
-        "PaaS Translation", filters=filters, fields=[
-            "key", "value", "group"])
+        "PaaS Translation", filters=filters, fields=["key", "value", "group"]
+    )
 
     # Transform into nested dict if needed, or flat key-value pairs
     result = {}

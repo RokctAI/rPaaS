@@ -18,12 +18,13 @@ def send_push_notification(
         if not settings.server_key:
             frappe.log_error(
                 "FCM Server Key is missing in Push Notification Settings",
-                "Push Notification Error")
+                "Push Notification Error",
+            )
             return {"status": "failed", "message": "Server key missing."}
 
         tokens = frappe.get_all(
-            "Device Token", filters={
-                "user": user}, pluck="device_token")
+            "Device Token", filters={"user": user}, pluck="device_token"
+        )
         if not tokens:
             return {
                 "status": "failed",
@@ -31,7 +32,7 @@ def send_push_notification(
 
         headers = {
             "Authorization": f"key={settings.server_key}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
 
         success_count = 0
@@ -40,11 +41,8 @@ def send_push_notification(
         for token in tokens:
             payload = {
                 "to": token,
-                "notification": {
-                    "title": title,
-                    "body": body
-                },
-                "data": data or {}
+                "notification": {"title": title, "body": body},
+                "data": data or {},
             }
 
             try:
@@ -52,25 +50,23 @@ def send_push_notification(
                     "https://fcm.googleapis.com/fcm/send",
                     headers=headers,
                     json=payload,
-                    timeout=5)
+                    timeout=5,
+                )
                 if response.status_code == 200:
                     success_count += 1
                 else:
                     failure_count += 1
-                    frappe.log_error(
-                        f"FCM Error for {token}: {
-                            response.text}",
-                        "Push Notification Error")
+                    frappe.log_error(f"FCM Error for {token}: {
+                        response.text}", "Push Notification Error")
             except Exception as e:
                 failure_count += 1
-                frappe.log_error(
-                    f"Request Error for {token}: {
-                        str(e)}", "Push Notification Error")
+                frappe.log_error(f"Request Error for {token}: {
+                    str(e)}", "Push Notification Error")
 
         return {
             "status": "success",
             "message": f"Sent: {success_count}, Failed: {failure_count}",
-            "details": {"sent": success_count, "failed": failure_count}
+            "details": {"sent": success_count, "failed": failure_count},
         }
 
     except Exception as e:
@@ -97,7 +93,7 @@ def get_default_sms_payload():
         "storage_bucket": settings.storage_bucket,
         "message_sender_id": settings.messaging_sender_id,
         "app_id": settings.app_id,
-        "measurement_id": settings.measurement_id
+        "measurement_id": settings.measurement_id,
     }
 
     return json.dumps(payload)
@@ -113,7 +109,8 @@ def get_notification_settings():
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view notification settings.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     # Get all notification types
     # Assuming 'Notification Type' doctype exists from confirmed check
@@ -129,7 +126,7 @@ def get_notification_settings():
     prefs = frappe.get_all(
         "User Notification Preference",
         filters={"user": user},
-        fields=["name", "notification_type", "active"]
+        fields=["name", "notification_type", "active"],
     )
 
     prefs_map = {p.notification_type: p for p in prefs}
@@ -144,16 +141,22 @@ def get_notification_settings():
             is_active = bool(prefs_map[t.name].active)
             _pref_id = prefs_map[t.name].name  # noqa: F841
 
-        result.append({
-            # Flutter expects int, send 0 or valid int if available (Doctype
-            # doesn't have int id by default)
-            "id": 0,
-            "type": t.type or t.name,  # Use 'type' field or fallback to name
-            "active": is_active,
-            "created_at": None,
-            "updated_at": None,
-            "payload": json.loads(t.payload) if t.payload and isinstance(t.payload, str) else (t.payload or [])
-        })
+        result.append(
+            {
+                # Flutter expects int, send 0 or valid int if available (Doctype
+                # doesn't have int id by default)
+                "id": 0,
+                "type": t.type or t.name,  # Use 'type' field or fallback to name
+                "active": is_active,
+                "created_at": None,
+                "updated_at": None,
+                "payload": (
+                    json.loads(t.payload)
+                    if t.payload and isinstance(t.payload, str)
+                    else (t.payload or [])
+                ),
+            }
+        )
 
     # Wrap in data.data as per Flutter model
     return api_response(data={"data": result})
@@ -168,7 +171,8 @@ def update_notification_settings(type: str, active: int):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to update notification settings.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     # Check if preference exists
     # We match by 'notification_type' which is the Link to Notification Type
@@ -185,20 +189,24 @@ def update_notification_settings(type: str, active: int):
 
     # Find existing preference
     pref_name = frappe.db.get_value(
-        "User Notification Preference", {
-            "user": user, "notification_type": nt_name}, "name")
+        "User Notification Preference",
+        {"user": user, "notification_type": nt_name},
+        "name",
+    )
 
     if pref_name:
         doc = frappe.get_doc("User Notification Preference", pref_name)
         doc.active = 1 if active else 0
         doc.save(ignore_permissions=True)
     else:
-        doc = frappe.get_doc({
-            "doctype": "User Notification Preference",
-            "user": user,
-            "notification_type": nt_name,
-            "active": 1 if active else 0
-        }).insert(ignore_permissions=True)
+        doc = frappe.get_doc(
+            {
+                "doctype": "User Notification Preference",
+                "user": user,
+                "notification_type": nt_name,
+                "active": 1 if active else 0,
+            }
+        ).insert(ignore_permissions=True)
 
     return api_response(message="Notification settings updated successfully.")
 
@@ -212,22 +220,24 @@ def get_user_notifications(start=0, limit=20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your notifications.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     return frappe.get_all(
         "Notification Log",
-        filters={
-            "user": user},
+        filters={"user": user},
         fields=[
             "name",
             "subject",
             "document_type",
             "document_name",
             "creation",
-            "read"],
+            "read",
+        ],
         order_by="creation desc",
         offset=start,
-        limit=limit)
+        limit=limit,
+    )
 
 
 @frappe.whitelist()
@@ -262,7 +272,7 @@ def mark_notification_logs_as_read(ids=None):
         if frappe.db.exists("Notification Log", name):
             doc = frappe.get_doc("Notification Log", name)
             # Check ownership/for_user
-            if (hasattr(doc, 'for_user') and doc.for_user ==
+            if (hasattr(doc, "for_user") and doc.for_user ==
                     user) or doc.owner == user:
                 doc.read = 1
                 doc.save(ignore_permissions=True)
@@ -300,7 +310,7 @@ def read_one_notification(name):
 
     if frappe.db.exists("Notification Log", name):
         doc = frappe.get_doc("Notification Log", name)
-        if (hasattr(doc, 'for_user') and doc.for_user ==
+        if (hasattr(doc, "for_user") and doc.for_user ==
                 user) or doc.owner == user:
             doc.read = 1
             doc.save(ignore_permissions=True)

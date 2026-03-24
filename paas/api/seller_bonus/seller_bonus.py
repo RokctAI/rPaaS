@@ -16,6 +16,6 @@ def get_seller_bonuses(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "amount", "bonus_date", "reason"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="bonus_date desc"
+        order_by="bonus_date desc",
     )
     return bonuses

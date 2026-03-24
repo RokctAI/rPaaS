@@ -41,12 +41,8 @@ def get_safe_scheduler_events():
     if app_role == "tenant":
         # PaaS tasks only run on tenant sites
         events = {
-            "hourly": [
-                "paas.tasks.process_repeating_orders"
-            ],
-            "daily": [
-                "paas.tasks.remove_expired_stories"
-            ]
+            "hourly": ["paas.tasks.process_repeating_orders"],
+            "daily": ["paas.tasks.remove_expired_stories"],
         }
 
     return events
@@ -615,7 +611,8 @@ whitelisted_methods = {
     "paas.api.user.verify_phone_code": "paas.api.user.user.verify_phone_code",
     "paas.api.user.verify_email_code": "paas.api.user.user.verify_email_code",
     "paas.api.waiter.get_waiter_order_report": "paas.api.waiter.waiter.get_waiter_order_report",
-    "paas.api.waiter.get_waiter_orders": "paas.api.waiter.waiter.get_waiter_orders", }
+    "paas.api.waiter.get_waiter_orders": "paas.api.waiter.waiter.get_waiter_orders",
+}
 
 # Fixtures
 # ---------
@@ -735,11 +732,16 @@ fixtures = [
 ]
 
 # Website Route Rules
-website_route_rules = [{"from_route": "/.well-known/assetlinks.json",
-                        "to_route": "paas.api.app_links.get_assetlinks"},
-                       {"from_route": "/.well-known/apple-app-site-association",
-                        "to_route": "paas.api.app_links.get_apple_app_site_association"},
-                       ]
+website_route_rules = [
+    {
+        "from_route": "/.well-known/assetlinks.json",
+        "to_route": "paas.api.app_links.get_assetlinks",
+    },
+    {
+        "from_route": "/.well-known/apple-app-site-association",
+        "to_route": "paas.api.app_links.get_apple_app_site_association",
+    },
+]
 
 # Document Events
 # ---------------

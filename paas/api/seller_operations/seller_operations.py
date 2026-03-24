@@ -18,7 +18,7 @@ def get_seller_kitchens(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "active"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return kitchens
 
@@ -36,10 +36,7 @@ def create_seller_kitchen(kitchen_data):
 
     kitchen_data["shop"] = shop
 
-    new_kitchen = frappe.get_doc({
-        "doctype": "Kitchen",
-        **kitchen_data
-    })
+    new_kitchen = frappe.get_doc({"doctype": "Kitchen", **kitchen_data})
     new_kitchen.insert(ignore_permissions=True)
     return new_kitchen.as_dict()
 
@@ -88,9 +85,8 @@ def delete_seller_kitchen(kitchen_name):
 
 @frappe.whitelist()
 def get_seller_inventory_items(
-        limit_start: int = 0,
-        limit_page_length: int = 20,
-        item_code: str = None):
+    limit_start: int = 0, limit_page_length: int = 20, item_code: str = None
+):
     """
     Retrieves inventory items (Bin entries) for the current seller's shop.
     Can be filtered by a specific item.
@@ -112,7 +108,7 @@ def get_seller_inventory_items(
         filters={"item_code": ["in", items]},
         fields=["item_code", "warehouse", "actual_qty"],
         limit_start=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
     return inventory_items
 
@@ -129,32 +125,42 @@ def adjust_seller_inventory(item_code: str, warehouse: str, new_qty: int):
     if item.shop != shop:
         frappe.throw(
             "You are not authorized to adjust inventory for this item.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     # Get current quantity
-    current_qty = frappe.db.get_value(
-        "Bin", {"item_code": item_code, "warehouse": warehouse}, "actual_qty") or 0
+    current_qty = (
+        frappe.db.get_value(
+            "Bin", {"item_code": item_code, "warehouse": warehouse}, "actual_qty"
+        )
+        or 0
+    )
 
     # Create a stock reconciliation entry
-    stock_entry = frappe.get_doc({
-        "doctype": "Stock Entry",
-        "purpose": "Stock Reconciliation",
-        "company": shop,
-        "items": [{
-            "item_code": item_code,
-            "warehouse": warehouse,
-            "qty": new_qty,
-            "basic_rate": item.standard_rate,
-            "t_warehouse": warehouse,
-            "s_warehouse": warehouse,
-            "diff_qty": new_qty - current_qty
-        }]
-    })
+    stock_entry = frappe.get_doc(
+        {
+            "doctype": "Stock Entry",
+            "purpose": "Stock Reconciliation",
+            "company": shop,
+            "items": [
+                {
+                    "item_code": item_code,
+                    "warehouse": warehouse,
+                    "qty": new_qty,
+                    "basic_rate": item.standard_rate,
+                    "t_warehouse": warehouse,
+                    "s_warehouse": warehouse,
+                    "diff_qty": new_qty - current_qty,
+                }
+            ],
+        }
+    )
     stock_entry.submit()
 
     return {
         "status": "success",
-        "message": f"Inventory for {item_code} adjusted to {new_qty}."}
+        "message": f"Inventory for {item_code} adjusted to {new_qty}.",
+    }
 
 
 @frappe.whitelist()
@@ -171,7 +177,7 @@ def get_seller_menus(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return menus
 
@@ -188,8 +194,8 @@ def get_seller_menu(menu_name):
 
     if menu.shop != shop:
         frappe.throw(
-            "You are not authorized to view this menu.",
-            frappe.PermissionError)
+            "You are not authorized to view this menu.", frappe.PermissionError
+        )
 
     return menu.as_dict()
 
@@ -207,10 +213,7 @@ def create_seller_menu(menu_data):
 
     menu_data["shop"] = shop
 
-    new_menu = frappe.get_doc({
-        "doctype": "Menu",
-        **menu_data
-    })
+    new_menu = frappe.get_doc({"doctype": "Menu", **menu_data})
     new_menu.insert(ignore_permissions=True)
     return new_menu.as_dict()
 
@@ -271,7 +274,7 @@ def get_seller_receipts(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "title"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return receipts
 
@@ -289,10 +292,7 @@ def create_seller_receipt(receipt_data):
 
     receipt_data["shop"] = shop
 
-    new_receipt = frappe.get_doc({
-        "doctype": "Receipt",
-        **receipt_data
-    })
+    new_receipt = frappe.get_doc({"doctype": "Receipt", **receipt_data})
     new_receipt.insert(ignore_permissions=True)
     return new_receipt.as_dict()
 
@@ -353,7 +353,7 @@ def get_seller_combos(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "price"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return combos
 
@@ -389,10 +389,7 @@ def create_seller_combo(combo_data):
 
     combo_data["shop"] = shop
 
-    new_combo = frappe.get_doc({
-        "doctype": "Combo",
-        **combo_data
-    })
+    new_combo = frappe.get_doc({"doctype": "Combo", **combo_data})
     new_combo.insert(ignore_permissions=True)
     return new_combo.as_dict()
 
@@ -438,6 +435,7 @@ def delete_seller_combo(combo_name):
     frappe.delete_doc("Combo", combo_name, ignore_permissions=True)
     return {"status": "success", "message": "Combo deleted successfully."}
 
+
 # --- MISSING RESTAURANT BOOKING & TABLE ENDPOINTS ---
 
 
@@ -447,9 +445,8 @@ def get_seller_sections(limit_start=0, limit_page_length=20):
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Section"):
         return frappe.get_all(
-            "Shop Section", filters={
-                "shop": shop}, fields=[
-                "name", "title"])
+            "Shop Section", filters={"shop": shop}, fields=["name", "title"]
+        )
     return []
 
 
@@ -465,12 +462,9 @@ def get_seller_tables(limit_start=0, limit_page_length=20):
     if frappe.db.exists("DocType", "Shop Table"):
         return frappe.get_all(
             "Shop Table",
-            filters={
-                "shop": shop},
-            fields=[
-                "name",
-                "table_number",
-                "capacity"])
+            filters={"shop": shop},
+            fields=["name", "table_number", "capacity"],
+        )
     return []
 
 

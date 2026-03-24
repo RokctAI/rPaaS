@@ -5,11 +5,12 @@ from ..utils import _require_admin
 
 @frappe.whitelist()
 def get_all_orders(
-        limit_start: int = 0,
-        limit_page_length: int = 20,
-        status: str = None,
-        from_date: str = None,
-        to_date: str = None):
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+    status: str = None,
+    from_date: str = None,
+    to_date: str = None,
+):
     """
     Retrieves a list of all orders on the platform (for admins).
     """
@@ -27,18 +28,19 @@ def get_all_orders(
         fields=["name", "user", "shop", "grand_total", "status", "creation"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return orders
 
 
 @frappe.whitelist()
 def get_all_parcel_orders(
-        limit_start: int = 0,
-        limit_page_length: int = 20,
-        status: str = None,
-        from_date: str = None,
-        to_date: str = None):
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+    status: str = None,
+    from_date: str = None,
+    to_date: str = None,
+):
     """
     Retrieves a list of all parcel orders on the platform (for admins).
     """
@@ -59,10 +61,12 @@ def get_all_parcel_orders(
             "total_price",
             "status",
             "delivery_date",
-            "deliveryman"],
+            "deliveryman",
+        ],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc")
+        order_by="creation desc",
+    )
     return parcel_orders
 
 
@@ -75,7 +79,8 @@ def delete_admin_parcel_order(parcel_order_id):
     frappe.delete_doc("Parcel Order", parcel_order_id, ignore_permissions=True)
     return {
         "status": "success",
-        "message": "Parcel Order deleted successfully."}
+        "message": "Parcel Order deleted successfully.",
+    }
 
 
 @frappe.whitelist()
@@ -116,10 +121,12 @@ def get_all_reviews(limit_start: int = 0, limit_page_length: int = 20):
             "creation",
             "reviewable_type",
             "reviewable_id",
-            "published"],
+            "published",
+        ],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc")
+        order_by="creation desc",
+    )
 
 
 @frappe.whitelist()
@@ -158,7 +165,7 @@ def get_all_tickets(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "subject", "status", "creation", "user"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
 
 
@@ -188,7 +195,7 @@ def get_all_order_refunds(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "order", "status", "cause", "answer"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
 
 
@@ -226,10 +233,12 @@ def get_all_notifications(limit_start: int = 0, limit_page_length: int = 20):
             "document_type",
             "document_name",
             "for_user",
-            "creation"],
+            "creation",
+        ],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc")
+        order_by="creation desc",
+    )
 
 
 @frappe.whitelist()
@@ -246,10 +255,12 @@ def get_all_bookings(limit_start: int = 0, limit_page_length: int = 20):
             "shop",
             "booking_date",
             "number_of_guests",
-            "status"],
+            "status",
+        ],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="booking_date desc")
+        order_by="booking_date desc",
+    )
 
 
 @frappe.whitelist()
@@ -261,10 +272,7 @@ def create_booking(booking_data):
     if isinstance(booking_data, str):
         booking_data = json.loads(booking_data)
 
-    new_booking = frappe.get_doc({
-        "doctype": "Booking",
-        **booking_data
-    })
+    new_booking = frappe.get_doc({"doctype": "Booking", **booking_data})
     new_booking.insert(ignore_permissions=True)
     return new_booking.as_dict()
 
@@ -305,7 +313,7 @@ def get_all_order_statuses(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "status_name", "is_active", "sort_order"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="sort_order"
+        order_by="sort_order",
     )
 
 
@@ -323,7 +331,9 @@ def get_all_request_models(limit_start: int = 0, limit_page_length: int = 20):
             "model",
             "status",
             "created_by_user",
-            "created_at"],
+            "created_at",
+        ],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc")
+        order_by="creation desc",
+    )

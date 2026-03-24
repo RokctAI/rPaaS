@@ -17,6 +17,7 @@ def get_order_report_paginate(limit_start=0, limit_page_length=20):
     # or paginated sales report
     user = frappe.session.user
     from paas.api.utils import _get_seller_shop
+
     shop = _get_seller_shop(user)
 
     orders = frappe.get_list(
@@ -25,6 +26,6 @@ def get_order_report_paginate(limit_start=0, limit_page_length=20):
         fields=["name", "user", "grand_total", "status", "creation"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return orders

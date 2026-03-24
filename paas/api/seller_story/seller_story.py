@@ -17,7 +17,7 @@ def get_seller_stories(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "title", "image", "expires_at"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return stories
 
@@ -35,10 +35,7 @@ def create_seller_story(story_data):
 
     story_data["shop"] = shop
 
-    new_story = frappe.get_doc({
-        "doctype": "Story",
-        **story_data
-    })
+    new_story = frappe.get_doc({"doctype": "Story", **story_data})
     new_story.insert(ignore_permissions=True)
     return new_story.as_dict()
 

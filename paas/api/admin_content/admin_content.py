@@ -13,7 +13,7 @@ def get_admin_stories(limit_start: int = 0, limit_page_length: int = 20):
         "Story",
         fields=["name", "title", "shop", "expires_at"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -28,7 +28,7 @@ def get_admin_banners(limit_start: int = 0, limit_page_length: int = 20):
         filters={"shop": None},
         fields=["name", "title", "image", "link", "is_active"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -43,10 +43,7 @@ def create_admin_banner(banner_data):
 
     banner_data["shop"] = None
 
-    new_banner = frappe.get_doc({
-        "doctype": "Banner",
-        **banner_data
-    })
+    new_banner = frappe.get_doc({"doctype": "Banner", **banner_data})
     new_banner.insert(ignore_permissions=True)
     return new_banner.as_dict()
 
@@ -86,7 +83,7 @@ def get_admin_faqs(limit_start: int = 0, limit_page_length: int = 20):
         "FAQ",
         fields=["name", "question", "faq_category", "is_active"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -99,10 +96,7 @@ def create_admin_faq(faq_data):
     if isinstance(faq_data, str):
         faq_data = json.loads(faq_data)
 
-    new_faq = frappe.get_doc({
-        "doctype": "FAQ",
-        **faq_data
-    })
+    new_faq = frappe.get_doc({"doctype": "FAQ", **faq_data})
     new_faq.insert(ignore_permissions=True)
     return new_faq.as_dict()
 
@@ -134,8 +128,8 @@ def delete_admin_faq(faq_name):
 
 @frappe.whitelist()
 def get_admin_faq_categories(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of all FAQ categories (for admins).
     """
@@ -144,7 +138,7 @@ def get_admin_faq_categories(
         "FAQ Category",
         fields=["name", "category_name"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -157,10 +151,7 @@ def create_admin_faq_category(category_data):
     if isinstance(category_data, str):
         category_data = json.loads(category_data)
 
-    new_category = frappe.get_doc({
-        "doctype": "FAQ Category",
-        **category_data
-    })
+    new_category = frappe.get_doc({"doctype": "FAQ Category", **category_data})
     new_category.insert(ignore_permissions=True)
     return new_category.as_dict()
 
@@ -189,4 +180,5 @@ def delete_admin_faq_category(category_name):
     frappe.delete_doc("FAQ Category", category_name, ignore_permissions=True)
     return {
         "status": "success",
-        "message": "FAQ category deleted successfully."}
+        "message": "FAQ category deleted successfully.",
+    }

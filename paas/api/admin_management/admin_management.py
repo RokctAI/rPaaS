@@ -13,7 +13,7 @@ def get_all_shops(limit_start: int = 0, limit_page_length: int = 20):
         "Shop",
         fields=["name", "shop_name", "user", "shop_type", "is_ecommerce"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -27,7 +27,7 @@ def get_all_roles(limit_start: int = 0, limit_page_length: int = 20):
         "Role",
         fields=["name", "role_name"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -40,10 +40,7 @@ def create_shop(shop_data):
     if isinstance(shop_data, str):
         shop_data = json.loads(shop_data)
 
-    new_shop = frappe.get_doc({
-        "doctype": "Shop",
-        **shop_data
-    })
+    new_shop = frappe.get_doc({"doctype": "Shop", **shop_data})
     new_shop.insert(ignore_permissions=True)
     return new_shop.as_dict()
 
@@ -83,5 +80,5 @@ def get_all_users(limit_start: int = 0, limit_page_length: int = 20):
         "User",
         fields=["name", "full_name", "email", "enabled"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )

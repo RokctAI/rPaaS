@@ -9,12 +9,14 @@ def check_loan_eligibility(id_number: str, amount: float, lang: str = "en"):
     """
     # This is a placeholder for the actual scorecard logic.
     is_eligible = True
-    loan_eligibility_check = frappe.get_doc({
-        "doctype": "Loan Eligibility Check",
-        "id_number": id_number,
-        "amount": amount,
-        "is_eligible": is_eligible,
-    })
+    loan_eligibility_check = frappe.get_doc(
+        {
+            "doctype": "Loan Eligibility Check",
+            "id_number": id_number,
+            "amount": amount,
+            "is_eligible": is_eligible,
+        }
+    )
     loan_eligibility_check.insert(ignore_permissions=True)
     return {"is_eligible": is_eligible}
 
@@ -39,11 +41,12 @@ def mark_application_as_rejected(financial_details: dict, lang: str = "en"):
 
 @frappe.whitelist()
 def check_financial_eligibility(
-        monthly_income: float,
-        grocery_expenses: float,
-        other_expenses: float,
-        existing_credits: float,
-        lang: str = "en"):
+    monthly_income: float,
+    grocery_expenses: float,
+    other_expenses: float,
+    existing_credits: float,
+    lang: str = "en",
+):
     """
     Checks if a user is financially eligible for a loan.
     """
@@ -58,11 +61,13 @@ def save_incomplete_loan_application(
     """
     Saves an incomplete loan application as a draft.
     """
-    loan_application = frappe.get_doc({
-        "doctype": "Loan Application",
-        "status": "Draft",
-        # ... save other details from financial_details ...
-    })
+    loan_application = frappe.get_doc(
+        {
+            "doctype": "Loan Application",
+            "status": "Draft",
+            # ... save other details from financial_details ...
+        }
+    )
     loan_application.insert(ignore_permissions=True)
     return {"name": loan_application.name}
 
@@ -101,11 +106,13 @@ def create_loan_application(financial_details: dict, lang: str = "en"):
     """
     Creates a new loan application.
     """
-    loan_application = frappe.get_doc({
-        "doctype": "Loan Application",
-        "status": "Submitted",
-        # Map fields
-    })
+    loan_application = frappe.get_doc(
+        {
+            "doctype": "Loan Application",
+            "status": "Submitted",
+            # Map fields
+        }
+    )
     loan_application.insert(ignore_permissions=True)
     return {"name": loan_application.name}
 

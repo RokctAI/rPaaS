@@ -18,7 +18,7 @@ def get_seller_coupons(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "code", "quantity", "expired_at"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return coupons
 
@@ -36,10 +36,7 @@ def create_seller_coupon(coupon_data):
 
     coupon_data["shop"] = shop
 
-    new_coupon = frappe.get_doc({
-        "doctype": "Coupon",
-        **coupon_data
-    })
+    new_coupon = frappe.get_doc({"doctype": "Coupon", **coupon_data})
     new_coupon.insert(ignore_permissions=True)
     return new_coupon.as_dict()
 
@@ -96,18 +93,19 @@ def get_seller_discounts(limit_start: int = 0, limit_page_length: int = 20):
 
     discounts = frappe.get_list(
         "Pricing Rule",
-        filters={
-            "shop": shop},
+        filters={"shop": shop},
         fields=[
             "name",
             "title",
             "apply_on",
             "valid_from",
             "valid_upto",
-            "discount_percentage"],
+            "discount_percentage",
+        ],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name")
+        order_by="name",
+    )
     return discounts
 
 
@@ -124,10 +122,7 @@ def create_seller_discount(discount_data):
 
     discount_data["shop"] = shop
 
-    new_discount = frappe.get_doc({
-        "doctype": "Pricing Rule",
-        **discount_data
-    })
+    new_discount = frappe.get_doc({"doctype": "Pricing Rule", **discount_data})
     new_discount.insert(ignore_permissions=True)
     return new_discount.as_dict()
 
@@ -188,7 +183,7 @@ def get_seller_banners(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "title", "image", "link", "is_active"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return banners
 
@@ -206,10 +201,7 @@ def create_seller_banner(banner_data):
 
     banner_data["shop"] = shop
 
-    new_banner = frappe.get_doc({
-        "doctype": "Banner",
-        **banner_data
-    })
+    new_banner = frappe.get_doc({"doctype": "Banner", **banner_data})
     new_banner.insert(ignore_permissions=True)
     return new_banner.as_dict()
 
@@ -262,9 +254,8 @@ def get_ads_packages():
     Retrieves a list of available ads packages.
     """
     return frappe.get_list(
-        "Ads Package",
-        fields=["name", "price", "duration_days"]
-    )
+        "Ads Package", fields=[
+            "name", "price", "duration_days"])
 
 
 @frappe.whitelist()
@@ -283,7 +274,7 @@ def get_seller_shop_ads_packages(
         fields=["name", "ads_package", "start_date", "end_date"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="end_date desc"
+        order_by="end_date desc",
     )
     return shop_ads_packages
 
@@ -310,15 +301,17 @@ def purchase_shop_ads_package(package_name):
         # Fetch the active Shop Subscription for the current seller's shop
         # "Shop Subscription" links 'shop' to 'subscription' (PaaS Subscription)
         active_shop_subscription = frappe.db.get_value(
-            "Shop Subscription",
-            {"shop": shop, "active": 1},
-            "subscription"
+            "Shop Subscription", {"shop": shop, "active": 1}, "subscription"
         )
 
-        if not active_shop_subscription or active_shop_subscription not in eligible_plans:
+        if (
+            not active_shop_subscription
+            or active_shop_subscription not in eligible_plans
+        ):
             frappe.throw(
                 "Your shop's current subscription plan is not eligible to purchase this add-on.",
-                title="Upgrade Required")
+                title="Upgrade Required",
+            )
 
     # 2. Initiate payment via the control panel
     control_plane_url = frappe.conf.get("control_plane_url")
@@ -327,33 +320,32 @@ def purchase_shop_ads_package(package_name):
     if not control_plane_url or not api_secret:
         frappe.log_error(
             "Tenant site is not configured to communicate with the control panel.",
-            "Add-on Purchase Error")
+            "Add-on Purchase Error",
+        )
         frappe.throw(
             "Platform communication is not configured. Cannot process payment.",
-            title="Configuration Error")
+            title="Configuration Error",
+        )
 
     customer_email = frappe.get_value("User", user, "email")
 
     scheme = frappe.conf.get("control_plane_scheme", "https")
     api_url = f"{scheme}://{control_plane_url}/api/method/control.control.billing.charge_customer_for_addon"
 
-    headers = {
-        "X-Rokct-Secret": api_secret,
-        "Content-Type": "application/json"
-    }
+    headers = {"X-Rokct-Secret": api_secret,
+               "Content-Type": "application/json"}
 
     payment_data = {
         "customer_email": customer_email,
         "amount": ads_package.price,
         "currency": "USD",
-        "addon_name": ads_package.name
+        "addon_name": ads_package.name,
     }
 
     try:
         response = requests.post(
-            api_url,
-            headers=headers,
-            data=json.dumps(payment_data))
+            api_url, headers=headers, data=json.dumps(payment_data)
+        )
         response.raise_for_status()
         response_json = response.json()
         if response_json.get("status") != "success":
@@ -373,13 +365,15 @@ def purchase_shop_ads_package(package_name):
     start_date = nowdate()
     end_date = add_days(start_date, ads_package.duration_days)
 
-    new_shop_ads_package = frappe.get_doc({
-        "doctype": "Shop Ads Package",
-        "shop": shop,
-        "ads_package": package_name,
-        "start_date": start_date,
-        "end_date": end_date
-    })
+    new_shop_ads_package = frappe.get_doc(
+        {
+            "doctype": "Shop Ads Package",
+            "shop": shop,
+            "ads_package": package_name,
+            "start_date": start_date,
+            "end_date": end_date,
+        }
+    )
     new_shop_ads_package.insert(ignore_permissions=True)
     frappe.db.commit()
 

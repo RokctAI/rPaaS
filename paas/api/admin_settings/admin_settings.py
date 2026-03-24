@@ -13,7 +13,7 @@ def get_all_languages(limit_start: int = 0, limit_page_length: int = 20):
         "Language",
         fields=["name", "language_name", "enabled"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -42,7 +42,7 @@ def get_all_currencies(limit_start: int = 0, limit_page_length: int = 20):
         "Currency",
         fields=["name", "currency_name", "symbol", "enabled"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -95,7 +95,7 @@ def get_all_email_templates(limit_start: int = 0, limit_page_length: int = 20):
         "Email Template",
         fields=["name", "subject", "response"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -124,7 +124,7 @@ def get_email_subscriptions(limit_start: int = 0, limit_page_length: int = 20):
         "Email Subscription",
         fields=["name", "email"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -137,10 +137,9 @@ def create_email_subscription(subscription_data):
     if isinstance(subscription_data, str):
         subscription_data = json.loads(subscription_data)
 
-    new_subscription = frappe.get_doc({
-        "doctype": "Email Subscription",
-        **subscription_data
-    })
+    new_subscription = frappe.get_doc(
+        {"doctype": "Email Subscription", **subscription_data}
+    )
     new_subscription.insert(ignore_permissions=True)
     return new_subscription.as_dict()
 
@@ -152,12 +151,12 @@ def delete_email_subscription(subscription_name):
     """
     _require_admin()
     frappe.delete_doc(
-        "Email Subscription",
-        subscription_name,
-        ignore_permissions=True)
+        "Email Subscription", subscription_name, ignore_permissions=True
+    )
     return {
         "status": "success",
-        "message": "Email subscription deleted successfully."}
+        "message": "Email subscription deleted successfully.",
+    }
 
 
 @frappe.whitelist()

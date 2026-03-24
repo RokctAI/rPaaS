@@ -29,7 +29,7 @@ def get_page(route: str):
         "translation": {
             "title": page.title,
             "description": page.main_section,
-        }
+        },
     }
 
 
@@ -43,7 +43,7 @@ def get_admin_pages(limit_start: int = 0, limit_page_length: int = 20):
         "Web Page",
         fields=["name", "title", "route", "published"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 

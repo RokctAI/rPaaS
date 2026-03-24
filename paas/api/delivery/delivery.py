@@ -7,13 +7,13 @@ def is_point_in_polygon(point, polygon):
     `point` should be a dict with 'latitude' and 'longitude'.
     `polygon` should be a list of dicts, each with 'latitude' and 'longitude'.
     """
-    x, y = point['latitude'], point['longitude']
+    x, y = point["latitude"], point["longitude"]
     n = len(polygon)
     inside = False
 
-    p1x, p1y = polygon[0]['latitude'], polygon[0]['longitude']
+    p1x, p1y = polygon[0]["latitude"], polygon[0]["longitude"]
     for i in range(n + 1):
-        p2x, p2y = polygon[i % n]['latitude'], polygon[i % n]['longitude']
+        p2x, p2y = polygon[i % n]["latitude"], polygon[i % n]["longitude"]
         if y > min(p1y, p2y):
             if y <= max(p1y, p2y):
                 if x <= max(p1x, p2x):
@@ -53,11 +53,13 @@ def check_delivery_zone(shop_id: str, latitude: float, longitude: float):
     if is_point_in_polygon(point, polygon):
         return {
             "status": "success",
-            "message": "Address is within the delivery zone."}
+            "message": "Address is within the delivery zone.",
+        }
     else:
         return {
             "status": "error",
-            "message": "Address is outside the delivery zone."}
+            "message": "Address is outside the delivery zone.",
+        }
 
 
 @frappe.whitelist(allow_guest=True)
@@ -68,7 +70,7 @@ def get_delivery_points():
     delivery_points = frappe.get_list(
         "Delivery Point",
         filters={"active": 1},
-        fields=["name", "price", "address", "location", "img"]
+        fields=["name", "price", "address", "location", "img"],
     )
     return delivery_points
 
@@ -91,7 +93,7 @@ def get_driver_location(driver_id: str):
         {"driver": driver_id},
         ["latitude", "longitude"],
         order_by="creation desc",
-        as_dict=True
+        as_dict=True,
     )
 
     if not location:
@@ -102,10 +104,8 @@ def get_driver_location(driver_id: str):
 
 @frappe.whitelist()
 def update_driver_location(
-        latitude,
-        longitude,
-        order_id=None,
-        parcel_order_id=None):
+    latitude, longitude, order_id=None, parcel_order_id=None
+):
     """
     Endpoint for the Driver App to send real-time coordinates.
     """
@@ -113,14 +113,16 @@ def update_driver_location(
     if user == "Guest":
         frappe.throw("Authentication required to update location.")
 
-    frappe.get_doc({
-        "doctype": "Driver Location",
-        "driver": user,
-        "latitude": float(latitude),
-        "longitude": float(longitude),
-        "order": order_id,
-        "parcel_order": parcel_order_id
-    }).insert(ignore_permissions=True)
+    frappe.get_doc(
+        {
+            "doctype": "Driver Location",
+            "driver": user,
+            "latitude": float(latitude),
+            "longitude": float(longitude),
+            "order": order_id,
+            "parcel_order": parcel_order_id,
+        }
+    ).insert(ignore_permissions=True)
 
     # Optional: Log to database commit
     frappe.db.commit()

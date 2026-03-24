@@ -11,14 +11,13 @@ def get_parcel_options():
             "Parcel Option",
             filters={"active": 1},
             fields=["name", "title", "description", "price"],
-            order_by="price asc"
+            order_by="price asc",
         )
         return options
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "get_parcel_options Error")
-        frappe.throw(
-            f"An error occurred while fetching parcel options: {
-                str(e)}")
+        frappe.throw(f"An error occurred while fetching parcel options: {
+            str(e)}")
 
 
 @frappe.whitelist()
@@ -30,17 +29,13 @@ def create_parcel_option(option_data):
         if isinstance(option_data, str):
             option_data = frappe.parse_json(option_data)
 
-        doc = frappe.get_doc({
-            "doctype": "Parcel Option",
-            **option_data
-        })
+        doc = frappe.get_doc({"doctype": "Parcel Option", **option_data})
         doc.insert()
         return doc.as_dict()
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "create_parcel_option Error")
-        frappe.throw(
-            f"An error occurred while creating parcel option: {
-                str(e)}")
+        frappe.throw(f"An error occurred while creating parcel option: {
+            str(e)}")
 
 
 @frappe.whitelist()
@@ -60,9 +55,8 @@ def update_parcel_option(name, option_data):
         frappe.throw("Parcel Option not found", frappe.DoesNotExistError)
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "update_parcel_option Error")
-        frappe.throw(
-            f"An error occurred while updating parcel option: {
-                str(e)}")
+        frappe.throw(f"An error occurred while updating parcel option: {
+            str(e)}")
 
 
 @frappe.whitelist()
@@ -79,6 +73,5 @@ def delete_parcel_option(name):
         frappe.throw("Parcel Option not found", frappe.DoesNotExistError)
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "delete_parcel_option Error")
-        frappe.throw(
-            f"An error occurred while deleting parcel option: {
-                str(e)}")
+        frappe.throw(f"An error occurred while deleting parcel option: {
+            str(e)}")

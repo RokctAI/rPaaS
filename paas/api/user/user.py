@@ -25,7 +25,7 @@ def login(usr, pwd):
     Returns API Key/Secret as Bearer token.
     """
     # If the username looks like a phone number, resolve it to an email
-    if usr and (usr.startswith('+') or usr.isdigit()):
+    if usr and (usr.startswith("+") or usr.isdigit()):
         phone_user = frappe.db.get_value("User", {"phone": usr}, "name")
         if phone_user:
             usr = phone_user
@@ -71,7 +71,7 @@ def login(usr, pwd):
                 "logo": shop_doc.logo,
                 "cover_photo": shop_doc.cover_photo,
                 "active": shop_doc.open,
-                "status": shop_doc.status
+                "status": shop_doc.status,
             }
     except Exception:
         pass
@@ -91,9 +91,9 @@ def login(usr, pwd):
                 "active": 1,
                 "img": user.user_image,
                 "shop": shop,
-                "home_page": user.get_home_page()
-            }
-        }
+                "home_page": user.get_home_page(),
+            },
+        },
     )
 
 
@@ -123,23 +123,26 @@ def get_profile():
                 "logo": shop_doc.logo,
                 "cover_photo": shop_doc.cover_photo,
                 "active": shop_doc.open,
-                "status": shop_doc.status
+                "status": shop_doc.status,
             }
         except Exception:
             pass
 
-    return api_response(data={
-        "id": user_doc.name,
-        "email": user_doc.email,
-        "firstname": user_doc.first_name,
-        "lastname": user_doc.last_name,
-        "phone": user_doc.phone,
-        "role": "user",
-        "active": 1,
-        "img": user_doc.user_image,
-        "shop": shop,
-        "wallet": frappe.db.get_value("Wallet", {"user": user_doc.name}, "balance") or 0.0
-    })
+    return api_response(
+        data={
+            "id": user_doc.name,
+            "email": user_doc.email,
+            "firstname": user_doc.first_name,
+            "lastname": user_doc.last_name,
+            "phone": user_doc.phone,
+            "role": "user",
+            "active": 1,
+            "img": user_doc.user_image,
+            "shop": shop,
+            "wallet": frappe.db.get_value("Wallet", {"user": user_doc.name}, "balance")
+            or 0.0,
+        }
+    )
 
 
 @frappe.whitelist()
@@ -237,12 +240,12 @@ def check_phone(phone: str):
 
     if frappe.db.exists("User", {"phone": phone}):
         return api_response(
-            message="Phone number already exists.", data={
-                "status": "error"})
+            message="Phone number already exists.", data={"status": "error"}
+        )
     else:
         return api_response(
-            message="Phone number is available.", data={
-                "status": "success"})
+            message="Phone number is available.", data={"status": "success"}
+        )
 
 
 @frappe.whitelist()
@@ -266,8 +269,7 @@ def send_phone_verification_code(phone: str):
     try:
         frappe.send_sms(
             receivers=[phone],
-            message=f"Your verification code is: {otp}"
-        )
+            message=f"Your verification code is: {otp}")
     except Exception as e:
         frappe.log_error(
             f"Failed to send OTP SMS to {phone}: {e}",
@@ -295,7 +297,8 @@ def verify_phone_code(phone: str, otp: str):
     if not cached_otp:
         return api_response(
             message="OTP expired or was not sent. Please request a new one.",
-            status_code=400)
+            status_code=400,
+        )
 
     if otp != cached_otp:
         return api_response(
@@ -309,14 +312,16 @@ def verify_phone_code(phone: str, otp: str):
         user.save(ignore_permissions=True)
     except frappe.DoesNotExistError:
         return api_response(
-            message="User with this phone number not found.",
-            status_code=404)
+            message="User with this phone number not found.", status_code=404
+        )
     except Exception as e:
         frappe.log_error(
             f"Failed to update phone_verified_at for user with phone {phone}: {e}",
-            "Phone Verification Error")
+            "Phone Verification Error",
+        )
         frappe.throw(
-            "An error occurred while verifying your phone number. Please try again.")
+            "An error occurred while verifying your phone number. Please try again."
+        )
 
     # Clear the OTP from cache
     frappe.cache.delete_value(cache_key)
@@ -335,15 +340,12 @@ def verify_phone_code(phone: str, otp: str):
         "firstname": user.first_name,
         "lastname": user.last_name,
         "phone": user.phone,
-        "img": user.user_image
+        "img": user.user_image,
     }
 
     return api_response(
         message="Phone number verified successfully.",
-        data={
-            "token": f"{user.api_key}:{api_secret}",
-            "user": user_info
-        }
+        data={"token": f"{user.api_key}:{api_secret}", "user": user_info},
     )
 
 
@@ -363,8 +365,8 @@ def verify_email_code(email: str, otp: str):
 
     if not stored_otp or str(stored_otp) != str(otp):
         return api_response(
-            message="Invalid or expired verification code.",
-            status_code=401)
+            message="Invalid or expired verification code.", status_code=401
+        )
 
     # Mark the user as verified
     try:
@@ -390,24 +392,20 @@ def verify_email_code(email: str, otp: str):
             "firstname": user.first_name,
             "lastname": user.last_name,
             "phone": user.phone,
-            "img": user.user_image
+            "img": user.user_image,
         }
 
         return api_response(
             message="Email verified successfully.",
-            data={
-                "token": f"{user.api_key}:{api_secret}",
-                "user": user_info
-            }
+            data={"token": f"{user.api_key}:{api_secret}", "user": user_info},
         )
     except frappe.DoesNotExistError:
         return api_response(message="User not found.", status_code=404)
     except Exception as e:
         frappe.db.rollback()
         frappe.log_error(frappe.get_traceback(), "Email Verification Error")
-        return api_response(
-            message=f"An error occurred: {
-                str(e)}", status_code=500)
+        return api_response(message=f"An error occurred: {
+            str(e)}", status_code=500)
 
 
 @frappe.whitelist(allow_guest=True)
@@ -420,7 +418,7 @@ def register_user(password, first_name, last_name, email=None, phone=None):
     if not email and phone:
         # Get the current site name prefix (e.g., 'spazafy' from
         # 'spazafy.tenant.rokct.ai')
-        site_prefix = frappe.local.site.split('.')[0]
+        site_prefix = frappe.local.site.split(".")[0]
         email = f"{phone.strip('+')}@{site_prefix}.app"
 
     if not email:
@@ -430,22 +428,21 @@ def register_user(password, first_name, last_name, email=None, phone=None):
 
     if frappe.db.exists("User", email):
         return api_response(
-            message="Email address already registered.",
-            status_code=409)
+            message="Email address already registered.", status_code=409
+        )
 
     # Create the new user
-    user = frappe.get_doc({
-        "doctype": "User",
-        "email": email,
-        "first_name": first_name,
-        "last_name": last_name,
-        "phone": phone,
-        "send_welcome_email": 0,
-        "roles": [
-            {"role": "PaaS User"},
-            {"role": "user"}
-        ]
-    })
+    user = frappe.get_doc(
+        {
+            "doctype": "User",
+            "email": email,
+            "first_name": first_name,
+            "last_name": last_name,
+            "phone": phone,
+            "send_welcome_email": 0,
+            "roles": [{"role": "PaaS User"}, {"role": "user"}],
+        }
+    )
     user.set("new_password", password)
 
     # Generate a 6-digit OTP
@@ -467,37 +464,34 @@ def register_user(password, first_name, last_name, email=None, phone=None):
     if is_phone_reg and phone:
         try:
             frappe.send_sms(
-                receivers=[phone],
-                message=f"Your verification code is: {otp}"
+                receivers=[phone], message=f"Your verification code is: {otp}"
             )
         except Exception as e:
             frappe.log_error(f"SMS Send Error: {e}")
     else:
         # Send the verification email with the OTP
-        email_context = {
-            "first_name": user.first_name,
-            "otp_code": otp
-        }
+        email_context = {"first_name": user.first_name, "otp_code": otp}
         frappe.sendmail(
             recipients=[user.email],
             subject="Your Verification Code",
             template="New User Welcome",
             args=email_context,
-            now=True
+            now=True,
         )
 
     return api_response(
-        message="User registered successfully. Please check your " +
-        (
-            "phone" if is_phone_reg else "email") +
-        " for the 6-digit verification code.",
+        message="User registered successfully. Please check your "
+        + ("phone" if is_phone_reg else "email")
+        + " for the 6-digit verification code.",
         data={
             "user": {
                 "email": user.email if not is_phone_reg else None,
                 "firstname": user.first_name,
                 "lastname": user.last_name,
                 "phone": user.phone,
-            }})
+            }
+        },
+    )
 
 
 @frappe.whitelist(allow_guest=True)
@@ -507,7 +501,7 @@ def forgot_password(user: str):
     Handles both email and phone number inputs.
     """
     try:
-        is_phone = user.startswith('+') or user.isdigit()
+        is_phone = user.startswith("+") or user.isdigit()
         # Generate and store 6-digit OTP
         otp = "".join([str(random.randint(0, 9)) for _ in range(6)])
         frappe.cache.set_value(
@@ -523,7 +517,8 @@ def forgot_password(user: str):
             except Exception as sms_error:
                 frappe.log_error(
                     f"Failed to send password reset SMS to {user}: {sms_error}",
-                    "SMS Reset Error")
+                    "SMS Reset Error",
+                )
         else:
             # Send the OTP via email
             user_doc_name = frappe.db.get_value(
@@ -535,7 +530,8 @@ def forgot_password(user: str):
                     subject="Password Reset Code",
                     message=f"Hello {
                         user_doc.first_name}, your password reset code is: {otp}",
-                    now=True)
+                    now=True,
+                )
 
         return api_response(
             message="If a user with this email/phone exists, a password reset code has been sent.")
@@ -552,12 +548,12 @@ def forgot_password_confirm(email, verify_code, password=None):
     'email' can be the email address OR the phone number used for reset.
     """
     try:
-        is_phone = email.startswith('+') or email.isdigit()
+        is_phone = email.startswith("+") or email.isdigit()
         cached_otp = frappe.cache.get_value(f"password_reset_otp:{email}")
         if not cached_otp or cached_otp != verify_code:
             return api_response(
-                message="Invalid or expired verification code",
-                status_code=400)
+                message="Invalid or expired verification code", status_code=400
+            )
 
         if is_phone:
             user_name = frappe.db.get_value("User", {"phone": email}, "name")
@@ -597,16 +593,18 @@ def login_with_google(email, display_name, id, avatar=None):
         first_name = names[0]
         last_name = names[1] if len(names) > 1 else ""
 
-        user = frappe.get_doc({
-            "doctype": "User",
-            "email": email,
-            "first_name": first_name,
-            "last_name": last_name,
-            "user_image": avatar,
-            "enabled": 1,
-            "send_welcome_email": 0,
-            "roles": [{"role": "PaaS User"}, {"role": "user"}]
-        })
+        user = frappe.get_doc(
+            {
+                "doctype": "User",
+                "email": email,
+                "first_name": first_name,
+                "last_name": last_name,
+                "user_image": avatar,
+                "enabled": 1,
+                "send_welcome_email": 0,
+                "roles": [{"role": "PaaS User"}, {"role": "user"}],
+            }
+        )
         # Generate a random password for social users
         user.set("new_password", frappe.generate_hash(length=12))
         user.insert(ignore_permissions=True)
@@ -640,9 +638,9 @@ def login_with_google(email, display_name, id, avatar=None):
                 "phone": user.phone,
                 "role": "user",
                 "active": 1,
-                "img": user.user_image
-            }
-        }
+                "img": user.user_image,
+            },
+        },
     )
 
 
@@ -661,6 +659,7 @@ def search_user(name: str, page: int = 1, limit: int = 20, lang: str = "en"):
     )
 
     from frappe.query_builder.functions import Function
+
     to_tsvector = Function("to_tsvector")
     plainto_tsquery = Function("plainto_tsquery")
     tsq = plainto_tsquery("english", name)
@@ -678,10 +677,8 @@ def search_user(name: str, page: int = 1, limit: int = 20, lang: str = "en"):
 
 @frappe.whitelist()
 def send_wallet_balance(
-        amount: float,
-        name_or_number: str,
-        message: str = None,
-        lang: str = "en"):
+    amount: float, name_or_number: str, message: str = None, lang: str = "en"
+):
     """
     Transfers wallet balance from current user to another user.
     """
@@ -718,11 +715,9 @@ def send_wallet_balance(
     recipient_wallet_name = frappe.db.get_value(
         "Wallet", {"user": recipient}, "name")
     if not recipient_wallet_name:
-        recipient_wallet = frappe.get_doc({
-            "doctype": "Wallet",
-            "user": recipient,
-            "balance": 0
-        }).insert(ignore_permissions=True)
+        recipient_wallet = frappe.get_doc(
+            {"doctype": "Wallet", "user": recipient, "balance": 0}
+        ).insert(ignore_permissions=True)
         recipient_wallet_name = recipient_wallet.name
     else:
         recipient_wallet = frappe.get_doc("Wallet", recipient_wallet_name)
@@ -735,24 +730,28 @@ def send_wallet_balance(
     recipient_wallet.save(ignore_permissions=True)
 
     # Log History – Sender
-    frappe.get_doc({
-        "doctype": "Wallet History",
-        "wallet": sender_wallet_name,
-        "transaction_type": "Withdraw",
-        "amount": amount_val,
-        "status": "Processed",
-        "description": f"Transfer to {recipient}"
-    }).insert(ignore_permissions=True)
+    frappe.get_doc(
+        {
+            "doctype": "Wallet History",
+            "wallet": sender_wallet_name,
+            "transaction_type": "Withdraw",
+            "amount": amount_val,
+            "status": "Processed",
+            "description": f"Transfer to {recipient}",
+        }
+    ).insert(ignore_permissions=True)
 
     # Log History – Recipient
-    frappe.get_doc({
-        "doctype": "Wallet History",
-        "wallet": recipient_wallet_name,
-        "transaction_type": "Topup",
-        "amount": amount_val,
-        "status": "Processed",
-        "description": f"Transfer from {sender}"
-    }).insert(ignore_permissions=True)
+    frappe.get_doc(
+        {
+            "doctype": "Wallet History",
+            "wallet": recipient_wallet_name,
+            "transaction_type": "Topup",
+            "amount": amount_val,
+            "status": "Processed",
+            "description": f"Transfer from {sender}",
+        }
+    ).insert(ignore_permissions=True)
 
     return {"status": "success", "message": "Funds transferred successfully."}
 
@@ -781,7 +780,7 @@ def get_user_order_refunds(page: int = 1, lang: str = "en"):
         offset=(page - 1) * 10,
         limit=10,
         order_by="creation desc",
-        ignore_permissions=True
+        ignore_permissions=True,
     )
     return refunds
 
@@ -802,7 +801,7 @@ def get_user_membership():
         filters={"user": user, "is_active": 1},
         fields=["name", "membership", "start_date", "end_date"],
         order_by="end_date desc",
-        limit=1
+        limit=1,
     )
 
     if not user_membership:
@@ -820,13 +819,14 @@ def get_user_membership_history():
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your membership history.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     return frappe.get_all(
         "User Membership",
         filters={"user": user},
         fields=["name", "membership", "start_date", "end_date", "is_active"],
-        order_by="end_date desc"
+        order_by="end_date desc",
     )
 
 
@@ -839,14 +839,15 @@ def get_user_parcel_orders():
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your parcel orders.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     return frappe.get_all(
         "Parcel Order",
         filters={"user": user},
         fields=["name", "status", "total_price", "delivery_date"],
         order_by="creation desc",
-        ignore_permissions=True
+        ignore_permissions=True,
     )
 
 
@@ -859,7 +860,8 @@ def get_user_parcel_order(name):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your parcel orders.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     parcel_order = frappe.get_doc("Parcel Order", name)
     if parcel_order.user != user:
@@ -884,7 +886,7 @@ def get_user_addresses():
     return frappe.get_all(
         "User Address",
         filters={"user": user},
-        fields=["name", "title", "address", "location", "active"]
+        fields=["name", "title", "address", "location", "active"],
     )
 
 
@@ -922,14 +924,16 @@ def add_user_address(address_data):
             "You must be logged in to add an address.",
             frappe.AuthenticationError)
 
-    address = frappe.get_doc({
-        "doctype": "User Address",
-        "user": user,
-        "title": address_data.get("title"),
-        "address": json.dumps(address_data.get("address")),
-        "location": json.dumps(address_data.get("location")),
-        "active": address_data.get("active", 1)
-    })
+    address = frappe.get_doc(
+        {
+            "doctype": "User Address",
+            "user": user,
+            "title": address_data.get("title"),
+            "address": json.dumps(address_data.get("address")),
+            "location": json.dumps(address_data.get("location")),
+            "active": address_data.get("active", 1),
+        }
+    )
     address.insert(ignore_permissions=True)
     return address.as_dict()
 
@@ -999,9 +1003,13 @@ def get_user_invites():
 
     return frappe.get_all(
         "Invitation",
-        filters={"user": user},
-        fields=["name", "shop", "role", "status"]
-    )
+        filters={
+            "user": user},
+        fields=[
+            "name",
+            "shop",
+            "role",
+            "status"])
 
 
 @frappe.whitelist()
@@ -1013,13 +1021,15 @@ def create_invite(shop, user, role):
     # For example, only a shop owner or manager should be able to invite users.
     # For now, we will assume the user has the necessary permissions.
 
-    invite = frappe.get_doc({
-        "doctype": "Invitation",
-        "shop": shop,
-        "user": user,
-        "role": role,
-        "status": "New"
-    })
+    invite = frappe.get_doc(
+        {
+            "doctype": "Invitation",
+            "shop": shop,
+            "user": user,
+            "role": role,
+            "status": "New",
+        }
+    )
     invite.insert(ignore_permissions=True)
     return invite.as_dict()
 
@@ -1073,7 +1083,8 @@ def get_wallet_history(start=0, limit=20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your wallet history.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     wallet = frappe.get_doc("Wallet", {"user": user})
     history = frappe.get_all(
@@ -1082,7 +1093,7 @@ def get_wallet_history(start=0, limit=20):
         fields=["name", "transaction_type", "amount", "status", "creation"],
         order_by="creation desc",
         offset=start,
-        limit=limit
+        limit=limit,
     )
     return api_response(data=history)
 
@@ -1102,7 +1113,7 @@ def export_orders():
         "Order",
         filters={"user": user},
         fields=["name", "shop", "total_price", "status", "creation"],
-        order_by="creation desc"
+        order_by="creation desc",
     )
 
     if not orders:
@@ -1138,7 +1149,8 @@ def register_device_token(device_token: str, provider: str):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to register a device token.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     if not device_token or not provider:
         frappe.throw("Device token and provider are required.")
@@ -1146,12 +1158,14 @@ def register_device_token(device_token: str, provider: str):
     if frappe.db.exists("Device Token", {"device_token": device_token}):
         return api_response(message="Device token already registered.")
 
-    frappe.get_doc({
-        "doctype": "Device Token",
-        "user": user,
-        "device_token": device_token,
-        "provider": provider
-    }).insert(ignore_permissions=True)
+    frappe.get_doc(
+        {
+            "doctype": "Device Token",
+            "user": user,
+            "device_token": device_token,
+            "provider": provider,
+        }
+    ).insert(ignore_permissions=True)
     return api_response(message="Device token registered successfully.")
 
 
@@ -1164,12 +1178,12 @@ def get_user_transactions(start=0, limit=20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your transactions.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     transactions = frappe.get_all(
         "Transaction",
-        filters={
-            "user": user},
+        filters={"user": user},
         fields=[
             "name",
             "user",
@@ -1177,11 +1191,13 @@ def get_user_transactions(start=0, limit=20):
             "status",
             "payable_type",
             "payable_id",
-            "creation"],
+            "creation",
+        ],
         order_by="creation desc, name desc",
         offset=start,
         limit=limit,
-        ignore_permissions=True)
+        ignore_permissions=True,
+    )
     return api_response(data=transactions)
 
 
@@ -1269,7 +1285,8 @@ def get_user_request_models(start=0, limit=20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your request models.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     models = frappe.get_all(
         "Request Model",
@@ -1277,7 +1294,7 @@ def get_user_request_models(start=0, limit=20):
         fields=["name", "model_type", "model", "status", "created_at"],
         order_by="creation desc",
         offset=start,
-        limit=limit
+        limit=limit,
     )
     return api_response(data=models)
 
@@ -1291,16 +1308,19 @@ def create_request_model(model_type, model_id, data):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to create a request model.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
-    request_model = frappe.get_doc({
-        "doctype": "Request Model",
-        "model_type": model_type,
-        "model": model_id,
-        "data": data,
-        "created_by_user": user,
-        "status": "Pending"
-    })
+    request_model = frappe.get_doc(
+        {
+            "doctype": "Request Model",
+            "model_type": model_type,
+            "model": model_id,
+            "data": data,
+            "created_by_user": user,
+            "status": "Pending",
+        }
+    )
     request_model.insert(ignore_permissions=True)
     return request_model.as_dict()
 
@@ -1318,14 +1338,12 @@ def get_user_tickets(limit_start=0, limit_page_length=20):
 
     return frappe.get_all(
         "Ticket",
-        filters={
-            "created_by_user": user,
-            "parent_ticket": None},
+        filters={"created_by_user": user, "parent_ticket": None},
         # Only get parent tickets
         fields=["name", "subject", "status", "creation"],
         order_by="creation desc",
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -1349,7 +1367,7 @@ def get_user_ticket(name):
     replies = frappe.get_all(
         "Ticket",
         filters={"parent_ticket": name},
-        fields=["name", "content", "created_by_user", "creation"]
+        fields=["name", "content", "created_by_user", "creation"],
     )
 
     ticket_dict = ticket.as_dict()
@@ -1368,17 +1386,19 @@ def create_ticket(subject, content, order_id=None):
             "You must be logged in to create a ticket.",
             frappe.AuthenticationError)
 
-    ticket = frappe.get_doc({
-        "doctype": "Ticket",
-        "uuid": str(uuid.uuid4()),
-        "subject": subject,
-        "content": content,
-        "order": order_id,
-        "created_by_user": user,
-        "user": user,
-        "status": "Open",
-        "type": "order" if order_id else "general"
-    })
+    ticket = frappe.get_doc(
+        {
+            "doctype": "Ticket",
+            "uuid": str(uuid.uuid4()),
+            "subject": subject,
+            "content": content,
+            "order": order_id,
+            "created_by_user": user,
+            "user": user,
+            "status": "Open",
+            "type": "order" if order_id else "general",
+        }
+    )
     ticket.insert(ignore_permissions=True)
     return ticket.as_dict()
 
@@ -1395,22 +1415,26 @@ def reply_to_ticket(name, content):
             frappe.AuthenticationError)
 
     parent_ticket = frappe.get_doc("Ticket", name)
-    if parent_ticket.created_by_user != user and "System Manager" not in frappe.get_roles(
-            user):
+    if (
+        parent_ticket.created_by_user != user
+        and "System Manager" not in frappe.get_roles(user)
+    ):
         frappe.throw(
             "You are not authorized to reply to this ticket.",
             frappe.PermissionError)
 
-    reply = frappe.get_doc({
-        "doctype": "Ticket",
-        "uuid": str(uuid.uuid4()),
-        "parent_ticket": name,
-        "subject": f"Re: {parent_ticket.subject}",
-        "content": content,
-        "created_by_user": user,
-        "user": user,
-        "status": "Answered"
-    })
+    reply = frappe.get_doc(
+        {
+            "doctype": "Ticket",
+            "uuid": str(uuid.uuid4()),
+            "parent_ticket": name,
+            "subject": f"Re: {parent_ticket.subject}",
+            "content": content,
+            "created_by_user": user,
+            "user": user,
+            "status": "Answered",
+        }
+    )
     reply.insert(ignore_permissions=True)
 
     # Update parent ticket status
@@ -1468,7 +1492,8 @@ def update_user_profile(profile_data):
         "phone",
         "birth_date",
         "location",
-        "gender"]
+        "gender",
+    ]
 
     for key, value in profile_data.items():
         if key in updatable_fields:
@@ -1491,7 +1516,7 @@ def get_user_order_refunds(page=1):  # noqa: F811
         fields=["name", "order", "cause", "status"],
         offset=(int(page) - 1) * 10,
         limit=10,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return refunds
 
@@ -1512,15 +1537,18 @@ def create_order_refund(order, cause):
     if order_doc.user != user:
         frappe.throw(
             "You are not authorized to request a refund for this order.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
-    refund = frappe.get_doc({
-        "doctype": "Order Refund",
-        "user": user,
-        "order": order,
-        "cause": cause,
-        "status": "Pending"
-    })
+    refund = frappe.get_doc(
+        {
+            "doctype": "Order Refund",
+            "user": user,
+            "order": order,
+            "cause": cause,
+            "status": "Pending",
+        }
+    )
     refund.insert(ignore_permissions=True)
     return refund.as_dict()
 
@@ -1534,7 +1562,8 @@ def get_user_notifications(start=0, limit=20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your notifications.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     # The Notification doctype in Frappe is complex.
     # It is used for email alerts and other system notifications.
@@ -1543,18 +1572,19 @@ def get_user_notifications(start=0, limit=20):
 
     return frappe.get_all(
         "Notification Log",
-        filters={
-            "user": user},
+        filters={"user": user},
         fields=[
             "name",
             "subject",
             "document_type",
             "document_name",
             "creation",
-            "read"],
+            "read",
+        ],
         order_by="creation desc",
         offset=start,
-        limit=limit)
+        limit=limit,
+    )
 
 
 @frappe.whitelist()
@@ -1626,7 +1656,7 @@ def read_one_notification(name):
         doc = frappe.get_doc("Notification Log", name)
         # Verify it belongs to user ( Notification Log uses 'for_user' usually,
         # but sometimes owner)
-        if hasattr(doc, 'for_user') and doc.for_user == user:
+        if hasattr(doc, "for_user") and doc.for_user == user:
             doc.read = 1
             doc.save(ignore_permissions=True)
         elif doc.owner == user:

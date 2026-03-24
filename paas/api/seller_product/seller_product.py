@@ -14,8 +14,7 @@ def get_seller_products(limit_start: int = 0, limit_page_length: int = 20):
 
     products = frappe.get_list(
         "Product",
-        filters={
-            "shop": shop},
+        filters={"shop": shop},
         fields=[
             "name",
             "title",
@@ -25,10 +24,12 @@ def get_seller_products(limit_start: int = 0, limit_page_length: int = 20):
             "active",
             "status",
             "category",
-            "unit"],
+            "unit",
+        ],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc")
+        order_by="creation desc",
+    )
     return products
 
 
@@ -49,14 +50,13 @@ def create_seller_product(product_data):
     # Assuming Permission Settings exists, otherwise default to Approved
     try:
         paas_settings = frappe.get_single("Permission Settings")
-        initial_status = "published" if paas_settings.auto_approve_products else "pending"
+        initial_status = (
+            "published" if paas_settings.auto_approve_products else "pending"
+        )
     except Exception:
         initial_status = "published"
 
-    new_product = frappe.get_doc({
-        "doctype": "Product",
-        **product_data
-    })
+    new_product = frappe.get_doc({"doctype": "Product", **product_data})
     new_product.status = initial_status
     new_product.insert(ignore_permissions=True)
     return new_product.as_dict()
@@ -118,7 +118,7 @@ def get_seller_categories(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "uuid", "type", "image", "active", "status"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name desc"
+        order_by="name desc",
     )
     return categories
 
@@ -143,10 +143,7 @@ def create_seller_category(category_data):
     if frappe.db.exists("Category", {"uuid": category_uuid}):
         frappe.throw("Category with this UUID already exists.")
 
-    category = frappe.get_doc({
-        "doctype": "Category",
-        **category_data
-    })
+    category = frappe.get_doc({"doctype": "Category", **category_data})
     category.insert(ignore_permissions=True)
     return category.as_dict()
 
@@ -180,7 +177,8 @@ def update_seller_category(uuid, category_data):
         "image",
         "active",
         "status",
-        "input"]
+        "input",
+    ]
     for key, value in category_data.items():
         if key in updatable_fields:
             category.set(key, value)
@@ -225,7 +223,7 @@ def get_seller_brands(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "uuid", "title", "slug", "active", "image"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name desc"
+        order_by="name desc",
     )
     return brands
 
@@ -250,10 +248,7 @@ def create_seller_brand(brand_data):
     if frappe.db.exists("Brand", {"uuid": brand_uuid}):
         frappe.throw("Brand with this UUID already exists.")
 
-    brand = frappe.get_doc({
-        "doctype": "Brand",
-        **brand_data
-    })
+    brand = frappe.get_doc({"doctype": "Brand", **brand_data})
     brand.insert(ignore_permissions=True)
     return brand.as_dict()
 
@@ -324,7 +319,7 @@ def get_seller_extra_groups(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return extra_groups
 
@@ -342,10 +337,8 @@ def create_seller_extra_group(group_data):
 
     group_data["shop"] = shop
 
-    new_group = frappe.get_doc({
-        "doctype": "Product Extra Group",
-        **group_data
-    })
+    new_group = frappe.get_doc(
+        {"doctype": "Product Extra Group", **group_data})
     new_group.insert(ignore_permissions=True)
     return new_group.as_dict()
 
@@ -397,9 +390,8 @@ def delete_seller_extra_group(group_name):
 
 @frappe.whitelist()
 def get_seller_extra_values(
-        group_name,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    group_name, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of product extra values for a given group.
     """
@@ -409,7 +401,7 @@ def get_seller_extra_values(
         fields=["name", "value", "price"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return extra_values
 
@@ -431,12 +423,11 @@ def create_seller_extra_value(value_data):
     if group.shop != shop:
         frappe.throw(
             "You are not authorized to add a value to this group.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
-    new_value = frappe.get_doc({
-        "doctype": "Product Extra Value",
-        **value_data
-    })
+    new_value = frappe.get_doc(
+        {"doctype": "Product Extra Value", **value_data})
     new_value.insert(ignore_permissions=True)
     return new_value.as_dict()
 
@@ -502,7 +493,7 @@ def get_seller_units(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "active"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return units
 
@@ -520,10 +511,7 @@ def create_seller_unit(unit_data):
 
     unit_data["shop"] = shop
 
-    new_unit = frappe.get_doc({
-        "doctype": "Shop Unit",
-        **unit_data
-    })
+    new_unit = frappe.get_doc({"doctype": "Shop Unit", **unit_data})
     new_unit.insert(ignore_permissions=True)
     return new_unit.as_dict()
 
@@ -584,7 +572,7 @@ def get_seller_tags(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return tags
 
@@ -602,10 +590,7 @@ def create_seller_tag(tag_data):
 
     tag_data["shop"] = shop
 
-    new_tag = frappe.get_doc({
-        "doctype": "Shop Tag",
-        **tag_data
-    })
+    new_tag = frappe.get_doc({"doctype": "Shop Tag", **tag_data})
     new_tag.insert(ignore_permissions=True)
     return new_tag.as_dict()
 
@@ -650,6 +635,7 @@ def delete_seller_tag(tag_name):
 
     frappe.delete_doc("Shop Tag", tag_name, ignore_permissions=True)
     return {"status": "success", "message": "Tag deleted successfully."}
+
 
 # --- ALIASES FOR FLUTTER ENDPOINTS ---
 

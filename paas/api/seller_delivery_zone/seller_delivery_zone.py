@@ -19,7 +19,7 @@ def get_seller_delivery_zones(
         fields=["name"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return delivery_zones
 
@@ -55,10 +55,7 @@ def create_seller_delivery_zone(zone_data):
 
     zone_data["shop"] = shop
 
-    new_zone = frappe.get_doc({
-        "doctype": "Delivery Zone",
-        **zone_data
-    })
+    new_zone = frappe.get_doc({"doctype": "Delivery Zone", **zone_data})
     new_zone.insert(ignore_permissions=True)
     return new_zone.as_dict()
 
@@ -79,7 +76,8 @@ def update_seller_delivery_zone(zone_name, zone_data):
     if zone.shop != shop:
         frappe.throw(
             "You are not authorized to update this delivery zone.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     zone.update(zone_data)
     zone.save(ignore_permissions=True)
@@ -99,7 +97,8 @@ def delete_seller_delivery_zone(zone_name):
     if zone.shop != shop:
         frappe.throw(
             "You are not authorized to delete this delivery zone.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     frappe.delete_doc("Delivery Zone", zone_name, ignore_permissions=True)
     return {
@@ -118,12 +117,9 @@ def check_delivery_fee(lat, lng):
     # Get all zones for the shop
     zones = frappe.get_list(
         "Delivery Zone",
-        filters={
-            "shop": shop},
-        fields=[
-            "name",
-            "delivery_fee",
-            "coordinates"])
+        filters={"shop": shop},
+        fields=["name", "delivery_fee", "coordinates"],
+    )
 
     point = {"lat": float(lat), "lng": float(lng)}
 
@@ -132,10 +128,11 @@ def check_delivery_fee(lat, lng):
             continue
 
         try:
-            polygon = json.loads(
-                zone.coordinates) if isinstance(
-                zone.coordinates,
-                str) else zone.coordinates
+            polygon = (
+                json.loads(zone.coordinates)
+                if isinstance(zone.coordinates, str)
+                else zone.coordinates
+            )
             if is_point_in_polygon(point, polygon):
                 return {"fee": zone.delivery_fee, "zone": zone.name}
         except Exception as e:

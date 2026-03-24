@@ -11,9 +11,8 @@ def check_site_role():
     - Control sites: For Swagger documentation (no seeders)
     """
     app_role = frappe.conf.get("app_role", "tenant")
-    print(
-        f"PaaS installation on site: {
-            frappe.local.site} (app_role: {app_role})")
+    print(f"PaaS installation on site: {
+        frappe.local.site} (app_role: {app_role})")
 
 
 def after_install():
@@ -77,7 +76,7 @@ def setup_product_vector_column():
             # frappe.qb is primarily for Data Manipulation (SELECT, INSERT,
             # UPDATE).
             frappe.db.sql(
-                "ALTER TABLE \"tabItem\" ADD COLUMN embedding vector(384)")
+                'ALTER TABLE "tabItem" ADD COLUMN embedding vector(384)')
 
             # Add an HNSW index for fast approximate nearest neighbor search
             print("🛍️ Creating HNSW index for Product embeddings...")
@@ -133,14 +132,15 @@ def create_gin_index(table, column):
     try:
         # Sanitize table name for index (remove 'tab', replace spaces with
         # underscores)
-        clean_table = table.lower().replace('tab', '').replace(' ', '_')
+        clean_table = table.lower().replace("tab", "").replace(" ", "_")
         index_name = f"{clean_table}_{column}_gin_idx"
 
         # Check if table exists in information_schema to prevent "relation does
         # not exist" errors
         table_exists = frappe.db.sql(
             f"SELECT 1 FROM information_schema.tables WHERE table_name = '{table}'",
-            pluck=True)
+            pluck=True,
+        )
         if not table_exists:
             print(
                 f"ℹ️ Table {table} does not exist yet. Skipping index {index_name}.")
@@ -153,7 +153,7 @@ def create_gin_index(table, column):
             # Try catch GIN index creation
             # If column is json (text), cast to jsonb for indexing support
             frappe.db.sql(
-                f"CREATE INDEX {index_name} ON \"{table}\" USING GIN (({column}::jsonb))")
+                f'CREATE INDEX {index_name} ON "{table}" USING GIN (({column}::jsonb))')
     except Exception as e:
         frappe.db.rollback()
         # Log purely as warning, don't crash install
@@ -162,13 +162,14 @@ def create_gin_index(table, column):
 
 def create_fts_index(table, column):
     try:
-        clean_table = table.lower().replace('tab', '').replace(' ', '_')
+        clean_table = table.lower().replace("tab", "").replace(" ", "_")
         index_name = f"{clean_table}_{column}_fts_idx"
 
         # Check if table exists
         table_exists = frappe.db.sql(
             f"SELECT 1 FROM information_schema.tables WHERE table_name = '{table}'",
-            pluck=True)
+            pluck=True,
+        )
         if not table_exists:
             print(
                 f"ℹ️ Table {table} does not exist yet. Skipping FTS index {index_name}.")
@@ -210,7 +211,8 @@ def run_seeders():
                     "control",
                     "seeds",
                     "scripts",
-                    f"{script_name}.py")
+                    f"{script_name}.py",
+                )
 
                 if not os.path.exists(script_path):
                     print(f"Seeder script not found: {script_path}")
@@ -218,6 +220,7 @@ def run_seeders():
 
                 print(f"Running {script_name} from {script_path}...")
                 import importlib.util
+
                 spec = importlib.util.spec_from_file_location(
                     script_name, script_path)
                 module = importlib.util.module_from_spec(spec)
@@ -233,6 +236,7 @@ def run_seeders():
         # Run main PaaS seeder (handles global data + conditional Juvo data)
         print("Running main PaaS seeder...")
         from paas import seed
+
         seed.execute()
 
         print("PaaS seeders completed successfully.")
@@ -274,12 +278,14 @@ def check_and_fetch_sources():
                 # must exist in Control
                 try:
                     fetch_sources = frappe.get_attr(
-                        "control.control.api.fetch_paas_sources")
+                        "control.control.api.fetch_paas_sources"
+                    )
                     fetch_sources()
                     print("✅ Successfully requested Control to fetch sources.")
                 except AttributeError:
                     print(
-                        "❌ Error: 'control.control.api.fetch_paas_sources' method not found.")
+                        "❌ Error: 'control.control.api.fetch_paas_sources' method not found."
+                    )
                     print("Please ensure Control app is updated.")
                 except Exception as ex:
                     print(f"❌ Error during fetch request: {ex}")

@@ -5,11 +5,12 @@ from paas.api.utils import _get_seller_shop
 
 @frappe.whitelist()
 def get_seller_orders(
-        limit_start: int = 0,
-        limit_page_length: int = 20,
-        status: str = None,
-        from_date: str = None,
-        to_date: str = None):
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+    status: str = None,
+    from_date: str = None,
+    to_date: str = None,
+):
     """
     Retrieves a list of orders for the current seller's shop, with optional filters.
     """
@@ -28,7 +29,7 @@ def get_seller_orders(
         fields=["name", "user", "grand_total", "status", "creation"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return orders
 
@@ -73,11 +74,11 @@ def update_seller_order_status(order_id, status):
         "Delivered",
         "Cancelled",
         "Paid",
-        "Failed"]
+        "Failed",
+    ]
     if status not in valid_statuses:
-        frappe.throw(
-            f"Invalid status. Must be one of: {
-                ', '.join(valid_statuses)}")
+        frappe.throw(f"Invalid status. Must be one of: {
+            ', '.join(valid_statuses)}")
 
     order.status = status
     order.save(ignore_permissions=True)
@@ -105,7 +106,7 @@ def get_seller_order_refunds(
         fields=["name", "order", "status", "cause", "answer"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return refunds
 
@@ -124,7 +125,8 @@ def update_seller_order_refund(refund_name, status, answer=None):
     if order.shop != shop:
         frappe.throw(
             "You are not authorized to update this refund request.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     if status not in ["Accepted", "Canceled"]:
         frappe.throw("Invalid status. Must be 'Accepted' or 'Canceled'.")
@@ -166,5 +168,6 @@ def get_seller_reviews(limit_start: int = 0, limit_page_length: int = 20):
             "reviewable_id"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc")
+        order_by="creation desc",
+    )
     return reviews

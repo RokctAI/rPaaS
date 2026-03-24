@@ -26,8 +26,10 @@ def get_parcel_order_settings():
                 "price_per_km",
                 "special",
                 "special_price",
-                "special_price_per_km"],
-            order_by="price asc")
+                "special_price_per_km",
+            ],
+            order_by="price asc",
+        )
         return settings
     except Exception as e:
         frappe.log_error(
@@ -47,19 +49,16 @@ def create_parcel_order_setting(setting_data):
         if isinstance(setting_data, str):
             setting_data = frappe.parse_json(setting_data)
 
-        doc = frappe.get_doc({
-            "doctype": "Parcel Order Setting",
-            **setting_data
-        })
+        doc = frappe.get_doc(
+            {"doctype": "Parcel Order Setting", **setting_data})
         doc.insert()
         return doc.as_dict()
     except Exception as e:
         frappe.log_error(
             frappe.get_traceback(),
             "create_parcel_order_setting Error")
-        frappe.throw(
-            f"An error occurred while creating parcel order setting: {
-                str(e)}")
+        frappe.throw(f"An error occurred while creating parcel order setting: {
+            str(e)}")
 
 
 @frappe.whitelist()
@@ -83,9 +82,8 @@ def update_parcel_order_setting(name, setting_data):
         frappe.log_error(
             frappe.get_traceback(),
             "update_parcel_order_setting Error")
-        frappe.throw(
-            f"An error occurred while updating parcel order setting: {
-                str(e)}")
+        frappe.throw(f"An error occurred while updating parcel order setting: {
+            str(e)}")
 
 
 @frappe.whitelist()
@@ -97,7 +95,8 @@ def delete_parcel_order_setting(name):
         frappe.delete_doc("Parcel Order Setting", name)
         return {
             "status": "success",
-            "message": "Parcel Order Setting deleted successfully"}
+            "message": "Parcel Order Setting deleted successfully",
+        }
     except frappe.DoesNotExistError:
         frappe.throw(
             "Parcel Order Setting not found",
@@ -106,6 +105,5 @@ def delete_parcel_order_setting(name):
         frappe.log_error(
             frappe.get_traceback(),
             "delete_parcel_order_setting Error")
-        frappe.throw(
-            f"An error occurred while deleting parcel order setting: {
-                str(e)}")
+        frappe.throw(f"An error occurred while deleting parcel order setting: {
+            str(e)}")

@@ -16,9 +16,11 @@ def get_seller_statistics():
                 "in", [
                     "New", "Accepted", "Shipped"]]})
     cancel_orders_count = frappe.db.count(
-        "Order", {"shop": shop, "status": "Cancelled"})
+        "Order", {"shop": shop, "status": "Cancelled"}
+    )
     delivered_orders_count = frappe.db.count(
-        "Order", {"shop": shop, "status": "Delivered"})
+        "Order", {"shop": shop, "status": "Delivered"}
+    )
 
     # Products out of stock: Count Stock items with quantity <= 0 for this
     # shop's products
@@ -27,7 +29,8 @@ def get_seller_statistics():
 
     products_out_of_count = (
         frappe.qb.from_(t_stock)
-        .join(t_product).on(t_stock.product == t_product.name)
+        .join(t_product)
+        .on(t_stock.product == t_product.name)
         .select(frappe.qb.fn.Count(t_stock.name))
         .where(t_product.shop == shop)
         .where(t_stock.quantity <= 0)
@@ -51,10 +54,10 @@ def get_seller_statistics():
             frappe.qb.fn.Sum(t_order.grand_total).as_("total_earned"),
             frappe.qb.fn.Sum(t_order.delivery_fee).as_("delivery_earned"),
             frappe.qb.fn.Sum(t_order.tax).as_("tax_earned"),
-            frappe.qb.fn.Sum(t_order.commission_fee).as_("commission_earned")
+            frappe.qb.fn.Sum(t_order.commission_fee).as_("commission_earned"),
         )
         .where(t_order.shop == shop)
-        .where(t_order.status == 'Delivered')
+        .where(t_order.status == "Delivered")
     )
     financials = financials_query.run(as_dict=True)[0]
 
@@ -63,12 +66,14 @@ def get_seller_statistics():
 
     top_selling_products = (
         frappe.qb.from_(t_order_item)
-        .join(t_order).on(t_order.name == t_order_item.parent)
-        .join(t_item).on(t_item.name == t_order_item.product)
+        .join(t_order)
+        .on(t_order.name == t_order_item.parent)
+        .join(t_item)
+        .on(t_item.name == t_order_item.product)
         .select(
             t_order_item.product,
             t_item.item_name,
-            frappe.qb.fn.Sum(t_order_item.quantity).as_("total_quantity")
+            frappe.qb.fn.Sum(t_order_item.quantity).as_("total_quantity"),
         )
         .where(t_order.shop == shop)
         .groupby(t_order_item.product)
@@ -88,7 +93,7 @@ def get_seller_statistics():
         "delivery_earned": financials.get("delivery_earned") or 0,
         "tax_earned": financials.get("tax_earned") or 0,
         "commission_earned": financials.get("commission_earned") or 0,
-        "top_selling_products": top_selling_products
+        "top_selling_products": top_selling_products,
     }
 
 
@@ -102,11 +107,8 @@ def get_seller_sales_report(from_date: str, to_date: str):
 
     sales_report = frappe.get_all(
         "Order",
-        filters={
-            "shop": shop,
-            "creation": ["between", [from_date, to_date]]
-        },
+        filters={"shop": shop, "creation": ["between", [from_date, to_date]]},
         fields=["name", "user", "grand_total", "status", "creation"],
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return sales_report

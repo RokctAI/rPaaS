@@ -17,6 +17,7 @@ def get_brain_embedding(text):
 
     try:
         from brain.services.llm_service import embed_text
+
         return embed_text(text)
     except ImportError:
         return None
@@ -45,7 +46,8 @@ def semantic_search(query, shop_id, top_k=3):
         # Determine if we need to format the vector as string
         vector_str = str(query_vector)
 
-        results = frappe.db.sql("""
+        results = frappe.db.sql(
+            """
             SELECT
                 name, uuid, item_name as title, description,
                 (embedding <=> %s) as distance
@@ -56,29 +58,35 @@ def semantic_search(query, shop_id, top_k=3):
                 AND embedding IS NOT NULL
             ORDER BY distance ASC
             LIMIT %s
-        """, (vector_str, shop_id, top_k), as_dict=True)
+        """,
+            (vector_str, shop_id, top_k),
+            as_dict=True,
+        )
 
         final_results = []
         for r in results:
             # Convert distance to similarity score
             # Cosine Distance = 1 - Cosine Similarity
-            similarity = 1 - float(r['distance'])
+            similarity = 1 - float(r["distance"])
 
             if similarity < 0.3:  # Threshold
                 continue
 
-            final_results.append({
-                'name': r['name'],
-                'uuid': r['uuid'],
-                'title': r['title'],
-                'score': similarity
-            })
+            final_results.append(
+                {
+                    "name": r["name"],
+                    "uuid": r["uuid"],
+                    "title": r["title"],
+                    "score": similarity,
+                }
+            )
 
         return final_results
 
     except Exception as e:
         frappe.log_error(f"PaaS Vector Search Failed: {e}")
         return []
+
 
 # --- NLP & Intent Logic ---
 
@@ -109,7 +117,8 @@ def load_intents_from_config():
         # Robust way: Get path relative to the 'brain' app module (where config
         # lives)
         path = frappe.get_app_path(
-            "brain", "ai_config", "customer_intents.json")
+            "brain", "ai_config", "customer_intents.json"
+        )
     except Exception:
         return get_fallback_intents()
 
@@ -117,9 +126,9 @@ def load_intents_from_config():
         return get_fallback_intents()
 
     try:
-        with open(path, 'r') as f:
+        with open(path, "r") as f:
             data = json.load(f)
-            anchors = data.get('anchors', {})
+            anchors = data.get("anchors", {})
 
             # Convert "key": "word1 word2" -> "key": ["word1", "word2"]
             prototypes = {}
@@ -137,7 +146,7 @@ def get_fallback_intents():
         "action_buy": ["buy", "order", "purchase", "get", "add"],
         "action_find": ["find", "search", "show", "list", "view"],
         "action_track": ["track", "where", "status"],
-        "misc_greeting": ["hi", "hello", "menu"]
+        "misc_greeting": ["hi", "hello", "menu"],
     }
 
 
@@ -225,7 +234,8 @@ def extract_entity(text, intent):
         "some",
         "a",
         "an",
-        "the"]
+        "the",
+    ]
 
     clean_text = text.lower().strip()
 
@@ -259,20 +269,22 @@ def search_global_shops(query):
     )
 
     shops = (
-        frappe.qb.from_(t_shop) .select(
+        frappe.qb.from_(t_shop)
+        .select(
             t_shop.name,
             t_shop.uuid,
             t_shop.description,
             t_shop.logo_img,
-            t_shop.back_img) .where(
-            t_shop.status == 'Approved') .where(
-                (t_shop.shop_type != 'Ecommerce') & (
-                    t_shop.is_ecommerce == 0)) .where(
-                        (t_shop.name.like(
-                            f"%{query}%")) | (
-                                t_shop.description.like(
-                                    f"%{query}%")) | (
-                                        t_shop.uuid.isin(subquery))) .limit(5)).run(
-                                            as_dict=True)
+            t_shop.back_img,
+        )
+        .where(t_shop.status == "Approved")
+        .where((t_shop.shop_type != "Ecommerce") & (t_shop.is_ecommerce == 0))
+        .where(
+            (t_shop.name.like(f"%{query}%"))
+            | (t_shop.description.like(f"%{query}%"))
+            | (t_shop.uuid.isin(subquery))
+        )
+        .limit(5)
+    ).run(as_dict=True)
 
     return shops

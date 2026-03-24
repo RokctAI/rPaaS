@@ -15,13 +15,13 @@ def upload_file(file, filename=None, is_private=0):
             content=file.read(),
             dt=None,  # Not attached to any doctype
             dn=None,
-            is_private=is_private
+            is_private=is_private,
         )
 
         return {
             "file_url": file_doc.file_url,
             "file_name": file_doc.file_name,
-            "name": file_doc.name
+            "name": file_doc.name,
         }
     except Exception as e:
         frappe.log_error(f"File upload failed: {str(e)}")
@@ -29,7 +29,9 @@ def upload_file(file, filename=None, is_private=0):
 
 
 @frappe.whitelist()
-def upload_multi_image(files: list = None, upload_type: str = None, doc_name: str = None, lang: str = "en"):  # noqa: C901
+def upload_multi_image(
+    files: list = None, upload_type: str = None, doc_name: str = None, lang: str = "en"
+):  # noqa: C901
     """
     Uploads multiple images and attaches them to a specific document.
     """
@@ -40,6 +42,7 @@ def upload_multi_image(files: list = None, upload_type: str = None, doc_name: st
     # attempt to parse list if passed as string (common in some frappe calls)
     if isinstance(files, str):
         import json
+
         try:
             files = json.loads(files)
         except Exception:
@@ -75,7 +78,7 @@ def upload_multi_image(files: list = None, upload_type: str = None, doc_name: st
         "shopsBack": "Shop",
         "products": "Product",
         "reviews": "Review",
-        "users": "User"
+        "users": "User",
     }
 
     doctype = valid_doctypes.get(upload_type)
@@ -106,7 +109,7 @@ def upload_multi_image(files: list = None, upload_type: str = None, doc_name: st
 
         # Reset stream just in case
         try:
-            if hasattr(file_obj, 'seek'):
+            if hasattr(file_obj, "seek"):
                 file_obj.seek(0)
                 content = file_obj.read()
         except Exception:
@@ -117,14 +120,16 @@ def upload_multi_image(files: list = None, upload_type: str = None, doc_name: st
 
         try:
             # Create File Doc
-            file_doc = frappe.get_doc({
-                "doctype": "File",
-                "file_name": filename,
-                "attached_to_doctype": doctype,
-                "attached_to_name": doc.name,
-                "content": content,
-                "is_private": 0
-            })
+            file_doc = frappe.get_doc(
+                {
+                    "doctype": "File",
+                    "file_name": filename,
+                    "attached_to_doctype": doctype,
+                    "attached_to_name": doc.name,
+                    "content": content,
+                    "is_private": 0,
+                }
+            )
             file_doc.insert(ignore_permissions=True)
             file_urls.append(file_doc.file_url)
         except Exception as e:
@@ -133,8 +138,8 @@ def upload_multi_image(files: list = None, upload_type: str = None, doc_name: st
 
     if not file_urls:
         return api_response(
-            message="No files were successfully uploaded",
-            status_code=500)
+            message="No files were successfully uploaded", status_code=500
+        )
 
     # 5. Update Record Fields if specific types
     # This logic assumes we replace the image field with the FIRST uploaded image
