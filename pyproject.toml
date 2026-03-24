@@ -11,7 +11,8 @@ dependencies = [
     "staticmap",
     "pillow",
     "cryptography",
-    "sentence-transformers"
+    "sentence-transformers",
+    "requests"
 ]
 
 [build-system]
