@@ -257,8 +257,10 @@ def confirm_order_summary(session):
             "body": {"text": msg},
             "action": {
                 "buttons": [
-                    {"type": "reply", "reply": {"id": "cmd_place_order", "title": "Place Order"}},
-                    {"type": "reply", "reply": {"id": "cart_clear", "title": "Cancel Order"}}
+                    {"type": "reply", "reply": {
+                        "id": "cmd_place_order", "title": "Place Order"}},
+                    {"type": "reply", "reply": {
+                        "id": "cart_clear", "title": "Cancel Order"}}
                 ]
             }
         }

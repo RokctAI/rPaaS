@@ -10,7 +10,8 @@ def get_paas_branding():
     try:
         # Check if tenant has PaaS plan
         subscription = frappe.db.get_value('Company Subscription',
-                                           {'company': frappe.defaults.get_user_default('Company')},
+                                           {'company': frappe.defaults.get_user_default(
+                                               'Company')},
                                            ['subscription_plan'], as_dict=True)
 
         if not subscription:

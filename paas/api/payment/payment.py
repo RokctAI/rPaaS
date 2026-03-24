@@ -517,7 +517,8 @@ def _initiate_paypal_logic(doctype: str, docname: str):
     }).insert(ignore_permissions=True)
 
     approval_link = next(
-        (link["href"] for link in paypal_order["links"] if link["rel"] == "approve"),
+        (link["href"]
+         for link in paypal_order["links"] if link["rel"] == "approve"),
         None)
 
     if not approval_link:
