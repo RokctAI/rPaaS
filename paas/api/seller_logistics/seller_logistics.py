@@ -51,7 +51,9 @@ def adjust_seller_inventory(item_code: str, warehouse: str, new_qty: int):
     # Get current quantity
     current_qty = (
         frappe.db.get_value(
-            "Bin", {"item_code": item_code, "warehouse": warehouse}, "actual_qty"
+            "Bin",
+            {"item_code": item_code, "warehouse": warehouse},
+            "actual_qty",
         )
         or 0
     )

@@ -16,7 +16,8 @@ def create_order(order_data):
     offline_uuid = order_data.get("offline_uuid")
     if offline_uuid:
         existing_order = frappe.db.exists(
-            "Order", {"offline_uuid": offline_uuid})
+            "Order", {"offline_uuid": offline_uuid}
+        )
         if existing_order:
             return api_response(
                 data=frappe.get_doc("Order", existing_order).as_dict(),
@@ -30,7 +31,8 @@ def create_order(order_data):
     if paas_settings.require_phone_for_order and not order_data.get("phone"):
         frappe.throw(
             "A phone number is required to create this order.",
-            frappe.ValidationError)
+            frappe.ValidationError,
+        )
 
     shop = frappe.get_doc("Shop", order_data.get("shop"))
 
@@ -105,7 +107,10 @@ def create_order(order_data):
             alt_stock_qty = (
                 frappe.db.get_value(
                     "Stock",
-                    {"shop": order_data.get("shop"), "product": alt_product_id},
+                    {
+                        "shop": order_data.get("shop"),
+                        "product": alt_product_id,
+                    },
                     "quantity",
                 )
                 or 0
@@ -116,8 +121,9 @@ def create_order(order_data):
                 is_substituted = 1
 
         # Fetch current price for the chosen product (primary or substituted)
-        current_price = frappe.db.get_value(
-            "Product", product_id, "price") or 0
+        current_price = (
+            frappe.db.get_value("Product", product_id, "price") or 0
+        )
         cost_price = frappe.db.get_value("Product", product_id, "cost") or 0
 
         order.append(
@@ -159,8 +165,9 @@ def create_order(order_data):
         order.db_set("cashback_amount", cashback_amount.get("cashback_amount"))
 
     if order_data.get("coupon_code"):
-        coupon = frappe.get_doc("Coupon",
-                                {"code": order_data.get("coupon_code")})
+        coupon = frappe.get_doc(
+            "Coupon", {"code": order_data.get("coupon_code")}
+        )
         frappe.get_doc(
             {
                 "doctype": "Coupon Usage",
@@ -171,8 +178,8 @@ def create_order(order_data):
         ).insert(ignore_permissions=True)
 
     return api_response(
-        data=order.as_dict(),
-        message="Order created successfully.")
+        data=order.as_dict(), message="Order created successfully."
+    )
 
 
 def deposit_to_wallet(user, amount, note):
@@ -251,7 +258,8 @@ def get_order_details(order_id: str):
     if order.user != user:
         frappe.throw(
             "You are not authorized to view this order.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
     return api_response(data=order.as_dict())
 
 
@@ -275,10 +283,12 @@ def update_order_status(order_id: str, status: str):  # noqa: C901
     if order.user != user and "System Manager" not in frappe.get_roles(user):
         frappe.throw(
             "You are not authorized to update this order.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
-    valid_statuses = frappe.get_meta(
-        "Order").get_field("status").options.split("\n")
+    valid_statuses = (
+        frappe.get_meta("Order").get_field("status").options.split("\n")
+    )
     if status not in valid_statuses:
         frappe.throw(f"Invalid status. Must be one of {
             ', '.join(valid_statuses)}")
@@ -295,7 +305,9 @@ def update_order_status(order_id: str, status: str):  # noqa: C901
             if product_doc.track_stock:
                 # Find the Stock record for this shop and product
                 stock_name = frappe.db.get_value(
-                    "Stock", {"shop": order.shop, "product": item.product}, "name"
+                    "Stock",
+                    {"shop": order.shop, "product": item.product},
+                    "name",
                 )
                 if stock_name:
                     stock_doc = frappe.get_doc("Stock", stock_name)
@@ -325,7 +337,9 @@ def update_order_status(order_id: str, status: str):  # noqa: C901
             product_doc = frappe.get_doc("Product", item.product)
             if product_doc.track_stock:
                 stock_name = frappe.db.get_value(
-                    "Stock", {"shop": order.shop, "product": item.product}, "name"
+                    "Stock",
+                    {"shop": order.shop, "product": item.product},
+                    "name",
                 )
                 if stock_name:
                     stock_doc = frappe.get_doc("Stock", stock_name)
@@ -356,16 +370,16 @@ def add_order_review(order_id: str, rating: float, comment: str = None):
 
     if order.user != user:
         frappe.throw(
-            "You can only review your own orders.",
-            frappe.PermissionError)
+            "You can only review your own orders.", frappe.PermissionError
+        )
 
     if order.status != "Delivered":
         frappe.throw("You can only review delivered orders.")
 
-    if frappe.db.exists("Review",
-                        {"reviewable_type": "Order",
-                         "reviewable_id": order_id,
-                         "user": user}):
+    if frappe.db.exists(
+        "Review",
+        {"reviewable_type": "Order", "reviewable_id": order_id, "user": user},
+    ):
         frappe.throw("You have already reviewed this order.")
 
     review = frappe.get_doc(
@@ -381,8 +395,8 @@ def add_order_review(order_id: str, rating: float, comment: str = None):
     )
     review.insert(ignore_permissions=True)
     return api_response(
-        data=review.as_dict(),
-        message="Review added successfully.")
+        data=review.as_dict(), message="Review added successfully."
+    )
 
 
 @frappe.whitelist()
@@ -405,19 +419,22 @@ def cancel_order(order_id: str):
     if order.user != user and "System Manager" not in frappe.get_roles(user):
         frappe.throw(
             "You are not authorized to cancel this order.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     if order.status != "New":
         frappe.throw(
-            "You can only cancel orders that have not been accepted yet.")
+            "You can only cancel orders that have not been accepted yet."
+        )
 
     order.status = "Cancelled"
     # No stock restoration needed for "New" orders as stock wasn't deducted
     # yet.
 
     order.save(ignore_permissions=True)
-    return api_response(data=order.as_dict(),
-                        message="Order cancelled successfully.")
+    return api_response(
+        data=order.as_dict(), message="Order cancelled successfully."
+    )
 
 
 @frappe.whitelist(allow_guest=True)
@@ -477,13 +494,15 @@ def get_calculate(
         if item.alternative_product:
             alt_price = (
                 frappe.db.get_value(
-                    "Product",
-                    item.alternative_product,
-                    "price") or 0)
+                    "Product", item.alternative_product, "price"
+                )
+                or 0
+            )
             if alt_price > item_price:
                 effective_price = alt_price
-                subtotal_buffer += (alt_price - item_price) * \
-                    (item.quantity or 0)
+                subtotal_buffer += (alt_price - item_price) * (
+                    item.quantity or 0
+                )
 
         item_qty = item.quantity or 0
         item_tax = (effective_price * (product_doc.tax or 0) / 100) * item_qty
@@ -537,8 +556,11 @@ def get_calculate(
                 shop.latitude,
                 shop.longitude,
                 address["latitude"],
-                address["longitude"])
-            delivery_fee = distance * shop.price_per_km if shop.price_per_km else 0
+                address["longitude"],
+            )
+            delivery_fee = (
+                distance * shop.price_per_km if shop.price_per_km else 0
+            )
 
     # 3. Calculate Shop Tax
     # Total tax on the whole order from the shop's tax setting
@@ -556,7 +578,12 @@ def get_calculate(
             coupon_doc = frappe.db.get_value(
                 "Coupon",
                 {"coupon_code": coupon_code, "shop": cart.shop},
-                ["name", "coupon_type", "discount_percentage", "discount_amount"],
+                [
+                    "name",
+                    "coupon_type",
+                    "discount_percentage",
+                    "discount_amount",
+                ],
                 as_dict=True,
             )
             if coupon_doc:

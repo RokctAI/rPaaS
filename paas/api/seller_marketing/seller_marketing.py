@@ -57,7 +57,8 @@ def update_seller_coupon(coupon_name, coupon_data):
     if coupon.shop != shop:
         frappe.throw(
             "You are not authorized to update this coupon.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     coupon.update(coupon_data)
     coupon.save(ignore_permissions=True)
@@ -77,7 +78,8 @@ def delete_seller_coupon(coupon_name):
     if coupon.shop != shop:
         frappe.throw(
             "You are not authorized to delete this coupon.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     frappe.delete_doc("Coupon", coupon_name, ignore_permissions=True)
     return {"status": "success", "message": "Coupon deleted successfully."}
@@ -143,7 +145,8 @@ def update_seller_discount(discount_name, discount_data):
     if discount.shop != shop:
         frappe.throw(
             "You are not authorized to update this discount.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     discount.update(discount_data)
     discount.save(ignore_permissions=True)
@@ -163,7 +166,8 @@ def delete_seller_discount(discount_name):
     if discount.shop != shop:
         frappe.throw(
             "You are not authorized to delete this discount.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     frappe.delete_doc("Pricing Rule", discount_name, ignore_permissions=True)
     return {"status": "success", "message": "Discount deleted successfully."}
@@ -222,7 +226,8 @@ def update_seller_banner(banner_name, banner_data):
     if banner.shop != shop:
         frappe.throw(
             "You are not authorized to update this banner.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     banner.update(banner_data)
     banner.save(ignore_permissions=True)
@@ -242,7 +247,8 @@ def delete_seller_banner(banner_name):
     if banner.shop != shop:
         frappe.throw(
             "You are not authorized to delete this banner.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     frappe.delete_doc("Banner", banner_name, ignore_permissions=True)
     return {"status": "success", "message": "Banner deleted successfully."}
@@ -254,14 +260,14 @@ def get_ads_packages():
     Retrieves a list of available ads packages.
     """
     return frappe.get_list(
-        "Ads Package", fields=[
-            "name", "price", "duration_days"])
+        "Ads Package", fields=["name", "price", "duration_days"]
+    )
 
 
 @frappe.whitelist()
 def get_seller_shop_ads_packages(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of purchased ads packages for the current seller's shop.
     """
@@ -294,8 +300,9 @@ def purchase_shop_ads_package(package_name):
 
     # 1. Check subscription eligibility
     eligible_plans = [
-        plan.subscription_plan for plan in ads_package.get(
-            "eligible_plans", [])]
+        plan.subscription_plan
+        for plan in ads_package.get("eligible_plans", [])
+    ]
 
     if eligible_plans:
         # Fetch the active Shop Subscription for the current seller's shop
@@ -332,8 +339,10 @@ def purchase_shop_ads_package(package_name):
     scheme = frappe.conf.get("control_plane_scheme", "https")
     api_url = f"{scheme}://{control_plane_url}/api/method/control.control.billing.charge_customer_for_addon"
 
-    headers = {"X-Rokct-Secret": api_secret,
-               "Content-Type": "application/json"}
+    headers = {
+        "X-Rokct-Secret": api_secret,
+        "Content-Type": "application/json",
+    }
 
     payment_data = {
         "customer_email": customer_email,
@@ -350,10 +359,9 @@ def purchase_shop_ads_package(package_name):
         response_json = response.json()
         if response_json.get("status") != "success":
             frappe.throw(
-                response_json.get(
-                    "message",
-                    "Payment failed."),
-                title="Payment Error")
+                response_json.get("message", "Payment failed."),
+                title="Payment Error",
+            )
 
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Add-on Payment Failed")

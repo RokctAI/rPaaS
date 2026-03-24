@@ -30,7 +30,10 @@ def upload_file(file, filename=None, is_private=0):
 
 @frappe.whitelist()
 def upload_multi_image(
-    files: list = None, upload_type: str = None, doc_name: str = None, lang: str = "en"
+    files: list = None,
+    upload_type: str = None,
+    doc_name: str = None,
+    lang: str = "en",
 ):  # noqa: C901
     """
     Uploads multiple images and attaches them to a specific document.

@@ -6,10 +6,8 @@ from paas.api.utils import api_response
 
 @frappe.whitelist()
 def send_push_notification(
-        user: str,
-        title: str,
-        body: str,
-        data: dict = None):
+    user: str, title: str, body: str, data: dict = None
+):
     """
     Sends a push notification to a specific user via FCM.
     """
@@ -28,7 +26,8 @@ def send_push_notification(
         if not tokens:
             return {
                 "status": "failed",
-                "message": "No device tokens found for user."}
+                "message": "No device tokens found for user.",
+            }
 
         headers = {
             "Authorization": f"key={settings.server_key}",
@@ -117,8 +116,8 @@ def get_notification_settings():
     # If it doesn't exist in some envs, we handle gracefully
     try:
         types = frappe.get_all(
-            "Notification Type", fields=[
-                "name", "type", "payload"])
+            "Notification Type", fields=["name", "type", "payload"]
+        )
     except Exception:
         return api_response(data=[])
 
@@ -146,7 +145,8 @@ def get_notification_settings():
                 # Flutter expects int, send 0 or valid int if available (Doctype
                 # doesn't have int id by default)
                 "id": 0,
-                "type": t.type or t.name,  # Use 'type' field or fallback to name
+                "type": t.type
+                or t.name,  # Use 'type' field or fallback to name
                 "active": is_active,
                 "created_at": None,
                 "updated_at": None,
@@ -272,8 +272,9 @@ def mark_notification_logs_as_read(ids=None):
         if frappe.db.exists("Notification Log", name):
             doc = frappe.get_doc("Notification Log", name)
             # Check ownership/for_user
-            if (hasattr(doc, "for_user") and doc.for_user ==
-                    user) or doc.owner == user:
+            if (
+                hasattr(doc, "for_user") and doc.for_user == user
+            ) or doc.owner == user:
                 doc.read = 1
                 doc.save(ignore_permissions=True)
 
@@ -290,8 +291,8 @@ def read_all_notifications():
         frappe.throw("You must be logged in.", frappe.AuthenticationError)
 
     logs = frappe.get_all(
-        "Notification Log", filters={
-            "for_user": user, "read": 0})
+        "Notification Log", filters={"for_user": user, "read": 0}
+    )
     # Also check owner if for_user is not used? Standard Frappe uses for_user
     for log in logs:
         frappe.db.set_value("Notification Log", log.name, "read", 1)
@@ -310,8 +311,9 @@ def read_one_notification(name):
 
     if frappe.db.exists("Notification Log", name):
         doc = frappe.get_doc("Notification Log", name)
-        if (hasattr(doc, "for_user") and doc.for_user ==
-                user) or doc.owner == user:
+        if (
+            hasattr(doc, "for_user") and doc.for_user == user
+        ) or doc.owner == user:
             doc.read = 1
             doc.save(ignore_permissions=True)
 

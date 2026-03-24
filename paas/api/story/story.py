@@ -15,9 +15,9 @@ def get_story(page: int = 1, lang: str = "en"):
             "title",
             "product",
             "creation",
-            "modified"],
-        limit_start=(
-            page - 1) * 10,
+            "modified",
+        ],
+        limit_start=(page - 1) * 10,
         limit=10,
     )
 

@@ -40,7 +40,8 @@ def update_seller_shop_working_days(working_days_data):
 
     return {
         "status": "success",
-        "message": "Working days updated successfully."}
+        "message": "Working days updated successfully.",
+    }
 
 
 @frappe.whitelist()
@@ -65,8 +66,9 @@ def add_seller_shop_closed_day(date):
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
-    frappe.get_doc({"doctype": "Shop Closed Day", "shop": shop,
-                   "date": date}).insert(ignore_permissions=True)
+    frappe.get_doc(
+        {"doctype": "Shop Closed Day", "shop": shop, "date": date}
+    ).insert(ignore_permissions=True)
 
     return {"status": "success", "message": "Closed day added successfully."}
 
@@ -118,7 +120,12 @@ def add_shop_user(user_email: str, role: str):
         frappe.throw("User is already a member of this shop.")
 
     frappe.get_doc(
-        {"doctype": "User Shop", "user": user_to_add, "shop": shop, "role": role}
+        {
+            "doctype": "User Shop",
+            "user": user_to_add,
+            "shop": shop,
+            "role": role,
+        }
     ).insert(ignore_permissions=True)
 
     return {"status": "success", "message": "User added to shop successfully."}
@@ -136,7 +143,8 @@ def remove_shop_user(user_to_remove: str):
 
     return {
         "status": "success",
-        "message": "User removed from shop successfully."}
+        "message": "User removed from shop successfully.",
+    }
 
 
 @frappe.whitelist()
@@ -193,7 +201,8 @@ def update_seller_branch(branch_name, branch_data):
     if branch.shop != shop:
         frappe.throw(
             "You are not authorized to update this branch.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     branch.update(branch_data)
     branch.save(ignore_permissions=True)
@@ -213,7 +222,8 @@ def delete_seller_branch(branch_name):
     if branch.shop != shop:
         frappe.throw(
             "You are not authorized to delete this branch.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     frappe.delete_doc("Branch", branch_name, ignore_permissions=True)
     return {"status": "success", "message": "Branch deleted successfully."}
@@ -231,8 +241,8 @@ def get_seller_deliveryman_settings():
         return {}
 
     return frappe.get_doc(
-        "Shop Deliveryman Settings", {
-            "shop": shop}).as_dict()
+        "Shop Deliveryman Settings", {"shop": shop}
+    ).as_dict()
 
 
 @frappe.whitelist()

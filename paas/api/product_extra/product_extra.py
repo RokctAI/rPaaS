@@ -27,9 +27,8 @@ def get_extra_groups(shop_id=None):
         filters["shop"] = shop_id
 
     return frappe.get_list(
-        "Product Extra Group",
-        filters=filters,
-        fields=["*"])
+        "Product Extra Group", filters=filters, fields=["*"]
+    )
 
 
 @frappe.whitelist()

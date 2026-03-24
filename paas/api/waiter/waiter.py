@@ -10,7 +10,8 @@ def get_waiter_orders(limit_start: int = 0, limit_page_length: int = 20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your orders.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     orders = frappe.get_list(
         "Order",
@@ -37,7 +38,10 @@ def get_waiter_order_report(from_date: str, to_date: str):
 
     orders = frappe.get_all(
         "Order",
-        filters={"waiter": user, "creation": ["between", [from_date, to_date]]},
+        filters={
+            "waiter": user,
+            "creation": ["between", [from_date, to_date]],
+        },
         fields=["name", "shop", "total_price", "status", "creation"],
         order_by="creation desc",
     )

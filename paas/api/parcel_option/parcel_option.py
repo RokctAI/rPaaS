@@ -68,7 +68,8 @@ def delete_parcel_option(name):
         frappe.delete_doc("Parcel Option", name)
         return {
             "status": "success",
-            "message": "Parcel Option deleted successfully"}
+            "message": "Parcel Option deleted successfully",
+        }
     except frappe.DoesNotExistError:
         frappe.throw("Parcel Option not found", frappe.DoesNotExistError)
     except Exception as e:

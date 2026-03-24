@@ -29,7 +29,8 @@ def get_weather(location: str):
         )
         frappe.throw(
             "Platform communication is not configured.",
-            title="Configuration Error")
+            title="Configuration Error",
+        )
 
     # Construct the secure API call
     scheme = frappe.conf.get("control_plane_scheme", "https")
@@ -86,12 +87,9 @@ def get_currencies():
     """
     currencies = frappe.get_all(
         "Currency",
-        filters={
-            "enabled": 1},
-        fields=[
-            "name",
-            "currency_name",
-            "symbol"])
+        filters={"enabled": 1},
+        fields=["name", "currency_name", "symbol"],
+    )
     return api_response(data=currencies)
 
 
@@ -131,7 +129,8 @@ def get_global_settings():
 
         if settings.project_title:
             settings_data.append(
-                {"key": "app_name", "value": settings.project_title})
+                {"key": "app_name", "value": settings.project_title}
+            )
 
         if settings.service_fee:
             settings_data.append(
@@ -150,26 +149,31 @@ def get_global_settings():
         global_settings = frappe.get_single("Global Settings")
         if global_settings.google_maps_api_key:
             settings_data.append(
-                {"key": "google_maps_key", "value": global_settings.google_maps_api_key}
+                {
+                    "key": "google_maps_key",
+                    "value": global_settings.google_maps_api_key,
+                }
             )
 
         # Add default language
-        lang = frappe.db.get_single_value(
-            "System Settings", "language") or "en"
+        lang = (
+            frappe.db.get_single_value("System Settings", "language") or "en"
+        )
         settings_data.append({"key": "default_language", "value": lang})
 
         # Add default currency
         currency = frappe.db.get_value("Currency", {"enabled": 1}, "name")
         if currency:
             settings_data.append(
-                {"key": "default_currency", "value": currency})
+                {"key": "default_currency", "value": currency}
+            )
 
         # Add distance unit
         # Check if defined in any relevant settings, otherwise default to km
         distance_unit = (
-            frappe.db.get_single_value(
-                "System Settings",
-                "distance_unit") or "km")
+            frappe.db.get_single_value("System Settings", "distance_unit")
+            or "km"
+        )
         settings_data.append({"key": "distance_unit", "value": distance_unit})
 
     except Exception as e:

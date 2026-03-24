@@ -56,8 +56,8 @@ def check_financial_eligibility(
 
 @frappe.whitelist()
 def save_incomplete_loan_application(
-        financial_details: dict,
-        lang: str = "en"):
+    financial_details: dict, lang: str = "en"
+):
     """
     Saves an incomplete loan application as a draft.
     """

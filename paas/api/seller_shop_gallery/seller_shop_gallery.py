@@ -5,8 +5,8 @@ from ..utils import _get_seller_shop
 
 @frappe.whitelist()
 def get_seller_shop_galleries(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of shop gallery images for the current seller's shop.
     """
@@ -61,4 +61,5 @@ def delete_seller_shop_gallery(gallery_name):
     frappe.delete_doc("Shop Gallery", gallery_name, ignore_permissions=True)
     return {
         "status": "success",
-        "message": "Gallery image deleted successfully."}
+        "message": "Gallery image deleted successfully.",
+    }

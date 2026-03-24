@@ -11,10 +11,9 @@ def get_seller_statistics():
     shop = _get_seller_shop(user)
 
     progress_orders_count = frappe.db.count(
-        "Order", {
-            "shop": shop, "status": [
-                "in", [
-                    "New", "Accepted", "Shipped"]]})
+        "Order",
+        {"shop": shop, "status": ["in", ["New", "Accepted", "Shipped"]]},
+    )
     cancel_orders_count = frappe.db.count(
         "Order", {"shop": shop, "status": "Cancelled"}
     )

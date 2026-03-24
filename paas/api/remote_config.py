@@ -44,9 +44,10 @@ def get_remote_config(app_type="Customer", site_name=None):
         "Remote Config", {"app_type": app_type}, "name"
     )
     app_config = (
-        frappe.get_doc(
-            "Remote Config",
-            app_config_name) if app_config_name else None)
+        frappe.get_doc("Remote Config", app_config_name)
+        if app_config_name
+        else None
+    )
 
     if not common_config and not app_config:
         # Fallback: Check if config exists for "project_title" as site_name (legacy behavior?)
@@ -108,7 +109,9 @@ def get_remote_config(app_type="Customer", site_name=None):
         "chatGpt": get_val("chat_gpt"),
         "autoTrn": get_val("auto_trn"),
         # --- POS Specific ---
-        "playMusicOnOrderStatusChange": get_val("play_music_on_order_status_change"),
+        "playMusicOnOrderStatusChange": get_val(
+            "play_music_on_order_status_change"
+        ),
         "keepPlayingOnNewOrder": get_val("keep_playing_on_new_order"),
         "refreshTime": get_val("refresh_time"),
         "animationDuration": get_val("animation_duration"),
@@ -139,8 +142,12 @@ def get_remote_config(app_type="Customer", site_name=None):
         "roFilterReplaceDays": get_val("ro_filter_replace_days"),
         "vesselReplaceDays": get_val("vessel_replace_days"),
         "roMembraneReplaceDays": get_val("ro_membrane_replace_days"),
-        "megaCharMaintenanceDurations": get_val("mega_char_maintenance_durations"),
-        "softenerMaintenanceDurations": get_val("softener_maintenance_durations"),
+        "megaCharMaintenanceDurations": get_val(
+            "mega_char_maintenance_durations"
+        ),
+        "softenerMaintenanceDurations": get_val(
+            "softener_maintenance_durations"
+        ),
         "maintenanceTypes": get_val("maintenance_types"),
         "filterTypes": get_val("filter_types"),
         # --- Manager Specific ---
@@ -150,5 +157,7 @@ def get_remote_config(app_type="Customer", site_name=None):
         "enableMarketplace": frappe.db.get_single_value(
             "Settings", "enable_marketplace"
         ),
-        "defaultShopId": frappe.db.get_single_value("Settings", "default_shop"),
+        "defaultShopId": frappe.db.get_single_value(
+            "Settings", "default_shop"
+        ),
     }

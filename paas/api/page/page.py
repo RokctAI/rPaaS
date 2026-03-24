@@ -7,7 +7,8 @@ def _require_admin():
     if "System Manager" not in frappe.get_roles():
         frappe.throw(
             "You are not authorized to perform this action.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
 
 @frappe.whitelist(allow_guest=True)

@@ -13,7 +13,12 @@ def request_payout(amount: float, lang: str = "en"):
 
     # Placeholder logic
     payout = frappe.get_doc(
-        {"doctype": "Payout", "user": user, "amount": amount, "status": "Pending"}
+        {
+            "doctype": "Payout",
+            "user": user,
+            "amount": amount,
+            "status": "Pending",
+        }
     )
     payout.insert(ignore_permissions=True)
 

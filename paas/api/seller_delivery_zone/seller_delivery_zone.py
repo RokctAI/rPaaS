@@ -5,8 +5,8 @@ from ..utils import _get_seller_shop
 
 @frappe.whitelist()
 def get_seller_delivery_zones(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of delivery zones for the current seller's shop.
     """
@@ -37,7 +37,8 @@ def get_seller_delivery_zone(zone_name):
     if zone.shop != shop:
         frappe.throw(
             "You are not authorized to view this delivery zone.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     return zone.as_dict()
 
@@ -103,7 +104,8 @@ def delete_seller_delivery_zone(zone_name):
     frappe.delete_doc("Delivery Zone", zone_name, ignore_permissions=True)
     return {
         "status": "success",
-        "message": "Delivery zone deleted successfully."}
+        "message": "Delivery zone deleted successfully.",
+    }
 
 
 @frappe.whitelist()
@@ -139,7 +141,10 @@ def check_delivery_fee(lat, lng):
             frappe.log_error(f"Error checking zone {zone.name}: {str(e)}")
             continue
 
-    return {"fee": None, "message": "Location not covered by any delivery zone."}
+    return {
+        "fee": None,
+        "message": "Location not covered by any delivery zone.",
+    }
 
 
 def is_point_in_polygon(point, polygon):

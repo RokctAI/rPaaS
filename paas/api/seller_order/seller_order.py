@@ -47,7 +47,8 @@ def get_seller_order_details(order_id):
     if order.shop != shop:
         frappe.throw(
             "You are not authorized to view this order.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     return order.as_dict()
 
@@ -65,7 +66,8 @@ def update_seller_order_status(order_id, status):
     if order.shop != shop:
         frappe.throw(
             "You are not authorized to update this order.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     valid_statuses = [
         "New",
@@ -87,8 +89,8 @@ def update_seller_order_status(order_id, status):
 
 @frappe.whitelist()
 def get_seller_order_refunds(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of order refunds for the current seller's shop.
     """
@@ -154,18 +156,15 @@ def get_seller_reviews(limit_start: int = 0, limit_page_length: int = 20):
 
     reviews = frappe.get_list(
         "Review",
-        filters={
-            "reviewable_id": [
-                "in",
-                products],
-            "reviewable_type": "Item"},
+        filters={"reviewable_id": ["in", products], "reviewable_type": "Item"},
         fields=[
             "name",
             "user",
             "rating",
             "comment",
             "creation",
-            "reviewable_id"],
+            "reviewable_id",
+        ],
         offset=limit_start,
         limit=limit_page_length,
         order_by="creation desc",

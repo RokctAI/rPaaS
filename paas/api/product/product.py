@@ -105,14 +105,17 @@ def get_products(  # noqa: C901
 
         # Subquery for average rating
         subquery = (
-            frappe.qb.from_(t_review) .select(
-                t_review.reviewable_id, Avg(
-                    t_review.rating).as_("avg_rating")) .where(
-                t_review.reviewable_type == "Item") .groupby(
-                    t_review.reviewable_id)).as_("t_reviews")
+            frappe.qb.from_(t_review)
+            .select(
+                t_review.reviewable_id, Avg(t_review.rating).as_("avg_rating")
+            )
+            .where(t_review.reviewable_type == "Item")
+            .groupby(t_review.reviewable_id)
+        ).as_("t_reviews")
 
         query = query.left_join(subquery).on(
-            subquery.reviewable_id == t_item.name)
+            subquery.reviewable_id == t_item.name
+        )
 
         if rating:
             try:
@@ -125,14 +128,12 @@ def get_products(  # noqa: C901
 
         if order_by == "high_rating":
             query = query.orderby(
-                subquery.avg_rating,
-                order=frappe.qb.desc).orderby(
-                subquery.avg_rating.isnull())
+                subquery.avg_rating, order=frappe.qb.desc
+            ).orderby(subquery.avg_rating.isnull())
         elif order_by == "low_rating":
             query = query.orderby(
-                subquery.avg_rating,
-                order=frappe.qb.asc).orderby(
-                subquery.avg_rating.isnull())
+                subquery.avg_rating, order=frappe.qb.asc
+            ).orderby(subquery.avg_rating.isnull())
 
     # Sales-based sorting
     elif order_by in ["best_sale", "low_sale"]:
@@ -141,23 +142,23 @@ def get_products(  # noqa: C901
 
         # Subquery for sales quantity
         subquery = (
-            frappe.qb.from_(t_sales_item) .select(
-                t_sales_item.item_code, Sum(
-                    t_sales_item.qty).as_("total_qty")) .groupby(
-                t_sales_item.item_code)).as_("t_sales")
+            frappe.qb.from_(t_sales_item)
+            .select(
+                t_sales_item.item_code, Sum(t_sales_item.qty).as_("total_qty")
+            )
+            .groupby(t_sales_item.item_code)
+        ).as_("t_sales")
 
         query = query.left_join(subquery).on(subquery.item_code == t_item.name)
 
         if order_by == "best_sale":
             query = query.orderby(
-                subquery.total_qty,
-                order=frappe.qb.desc).orderby(
-                subquery.total_qty.isnull())
+                subquery.total_qty, order=frappe.qb.desc
+            ).orderby(subquery.total_qty.isnull())
         elif order_by == "low_sale":
             query = query.orderby(
-                subquery.total_qty,
-                order=frappe.qb.asc).orderby(
-                subquery.total_qty.isnull())
+                subquery.total_qty, order=frappe.qb.asc
+            ).orderby(subquery.total_qty.isnull())
 
     elif order_by == "new":
         query = query.orderby(t_item.creation, order=frappe.qb.desc)
@@ -205,7 +206,11 @@ def get_products(  # noqa: C901
                     "apply_on": "Item Code",
                     "item_code": ["in", product_names],
                 },
-                fields=["item_code", "rate_or_discount", "discount_percentage"],
+                fields=[
+                    "item_code",
+                    "rate_or_discount",
+                    "discount_percentage",
+                ],
             )
             discounts_map = {rule["item_code"]: rule for rule in pricing_rules}
         except Exception:
@@ -237,7 +242,8 @@ def get_products(  # noqa: C901
         p["stock_quantity"] = stocks_map.get(p.name, 0)
         p["discount"] = discounts_map.get(p.name)
         p["reviews"] = reviews_map.get(
-            p.name, {"avg_rating": 0, "reviews_count": 0})
+            p.name, {"avg_rating": 0, "reviews_count": 0}
+        )
 
     return api_response(data=products)
 
@@ -301,7 +307,11 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
     for rule in active_rules:
         if rule.apply_on == "Item Code" and has_item_code and rule.item_code:
             item_codes.add(rule.item_code)
-        elif rule.apply_on == "Item Group" and has_item_group and rule.item_group:
+        elif (
+            rule.apply_on == "Item Group"
+            and has_item_group
+            and rule.item_group
+        ):
             items_in_group = frappe.get_all(
                 "Item", filters={"item_group": rule.item_group}, pluck="name"
             )
@@ -402,9 +412,8 @@ def read_product_file(uuid: str):
 
 @frappe.whitelist(allow_guest=True)
 def get_product_reviews(
-        uuid: str,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    uuid: str, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves reviews for a specific product by its UUID.
     """
@@ -459,9 +468,8 @@ def get_products_by_brand(
 
 @frappe.whitelist(allow_guest=True)
 def products_search(
-        search: str,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    search: str, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Searches for products by a search term.
     """
@@ -567,7 +575,11 @@ def add_product_review(uuid: str, rating: float, comment: str = None):
     # Check if user has already reviewed this item
     if frappe.db.exists(
         "Review",
-        {"reviewable_type": "Item", "reviewable_id": product_name, "user": user},
+        {
+            "reviewable_type": "Item",
+            "reviewable_id": product_name,
+            "user": user,
+        },
     ):
         frappe.throw("You have already reviewed this product.")
 
@@ -584,8 +596,8 @@ def add_product_review(uuid: str, rating: float, comment: str = None):
     )
     review.insert(ignore_permissions=True)
     return api_response(
-        data=review.as_dict(),
-        message="Review added successfully")
+        data=review.as_dict(), message="Review added successfully"
+    )
 
 
 @frappe.whitelist()
@@ -672,8 +684,9 @@ def calculate_product_price(products):
     for item in products:
         # Resolve item ID to price
         # item['id'] usually maps to stock_id/variant
-        rate = frappe.db.get_value(
-            "Item", item.get("id"), "standard_rate") or 0
+        rate = (
+            frappe.db.get_value("Item", item.get("id"), "standard_rate") or 0
+        )
         qty = float(item.get("quantity", 0))
         total_price += rate * qty
 
@@ -681,11 +694,15 @@ def calculate_product_price(products):
         data={
             "total_price": total_price,
             "total_tax": total_tax,
-            "total_shop_tax": 0})
+            "total_shop_tax": 0,
+        }
+    )
 
 
 @frappe.whitelist()
-def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa: C901
+def add_product_review(
+    product_uuid, rating, comment=None, images=None
+):  # noqa: C901
     """
     Adds a review for a product by its UUID, verifying ownership if enabled.
     """
@@ -720,7 +737,11 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
     # Check if user has already reviewed this item
     if frappe.db.exists(
         "Review",
-        {"reviewable_type": "Item", "reviewable_id": product_name, "user": user},
+        {
+            "reviewable_type": "Item",
+            "reviewable_id": product_name,
+            "user": user,
+        },
     ):
         frappe.throw("You have already reviewed this product.")
 
@@ -745,15 +766,14 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
     review.insert(ignore_permissions=True)
 
     return api_response(
-        data=review.as_dict(),
-        message="Review added successfully")
+        data=review.as_dict(), message="Review added successfully"
+    )
 
 
 @frappe.whitelist()
 def get_suggest_price(
-        item_code: str = None,
-        lang: str = "en",
-        currency: str = "ZAR"):
+    item_code: str = None, lang: str = "en", currency: str = "ZAR"
+):
     """
     Retrieves a suggested price range based on similar items in the same category.
     """

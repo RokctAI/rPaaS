@@ -59,13 +59,17 @@ def setup_product_vector_column():
     Adds a vector(384) column to the Product table for semantic search.
     """
     if not setup_vector_extension():
-        print("⚠️ Skipping Product vector column creation due to missing extension.")
+        print(
+            "⚠️ Skipping Product vector column creation due to missing extension."
+        )
         return
 
     try:
         # Check if table exists
         if not frappe.db.table_exists("Item"):
-            print("🛍️ Item table does not exist. Skipping vector column setup.")
+            print(
+                "🛍️ Item table does not exist. Skipping vector column setup."
+            )
             return
 
         # Check if column exists using standard API
@@ -76,7 +80,8 @@ def setup_product_vector_column():
             # frappe.qb is primarily for Data Manipulation (SELECT, INSERT,
             # UPDATE).
             frappe.db.sql(
-                'ALTER TABLE "tabItem" ADD COLUMN embedding vector(384)')
+                'ALTER TABLE "tabItem" ADD COLUMN embedding vector(384)'
+            )
 
             # Add an HNSW index for fast approximate nearest neighbor search
             print("🛍️ Creating HNSW index for Product embeddings...")
@@ -148,7 +153,8 @@ def create_gin_index(table, column):
 
         chk = frappe.db.sql(
             f"SELECT 1 FROM pg_indexes WHERE indexname = '{index_name}'",
-            pluck=True)
+            pluck=True,
+        )
         if not chk:
             # Try catch GIN index creation
             # If column is json (text), cast to jsonb for indexing support
@@ -177,7 +183,8 @@ def create_fts_index(table, column):
 
         chk = frappe.db.sql(
             f"SELECT 1 FROM pg_indexes WHERE indexname = '{index_name}'",
-            pluck=True)
+            pluck=True,
+        )
         if not chk:
             frappe.db.sql(
                 f"CREATE INDEX {index_name} ON \"{table}\" USING GIN (to_tsvector('english', {column}))")
@@ -194,7 +201,9 @@ def run_seeders():
     app_role = frappe.conf.get("app_role", "tenant")
 
     if app_role == "control":
-        print("Skipping PaaS seeders on control site (Swagger documentation only).")
+        print(
+            "Skipping PaaS seeders on control site (Swagger documentation only)."
+        )
         return
 
     # Only seed on tenant sites
@@ -222,7 +231,8 @@ def run_seeders():
                 import importlib.util
 
                 spec = importlib.util.spec_from_file_location(
-                    script_name, script_path)
+                    script_name, script_path
+                )
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
                 module.execute()
@@ -247,8 +257,8 @@ def run_seeders():
     except Exception as e:
         print(f"Error running PaaS seeders: {e}")
         frappe.log_error(
-            f"Error running PaaS seeders: {e}",
-            "PaaS Seeder Error")
+            f"Error running PaaS seeders: {e}", "PaaS Seeder Error"
+        )
 
 
 def check_and_fetch_sources():
@@ -281,7 +291,9 @@ def check_and_fetch_sources():
                         "control.control.api.fetch_paas_sources"
                     )
                     fetch_sources()
-                    print("✅ Successfully requested Control to fetch sources.")
+                    print(
+                        "✅ Successfully requested Control to fetch sources."
+                    )
                 except AttributeError:
                     print(
                         "❌ Error: 'control.control.api.fetch_paas_sources' method not found."
@@ -290,9 +302,11 @@ def check_and_fetch_sources():
                 except Exception as ex:
                     print(f"❌ Error during fetch request: {ex}")
             else:
-                print("ℹ️ Control app is not installed. Cannot auto-fetch sources.")
                 print(
-                    "Please manually clone sources into: " +
-                    source_code_path)
+                    "ℹ️ Control app is not installed. Cannot auto-fetch sources."
+                )
+                print(
+                    "Please manually clone sources into: " + source_code_path
+                )
         except Exception as e:
             print(f"❌ Error initiating source check: {e}")
