@@ -175,8 +175,8 @@ def get_shops(
                         "parent": shop.name},
                     fields=[
                         "day",
-                        "opening_time",
-                        "closing_time"]),
+                        "from_time",
+                        "to_time"]),
                 'closed_dates': frappe.get_all(
                     "Shop Booking Closed Date",
                     filters={
