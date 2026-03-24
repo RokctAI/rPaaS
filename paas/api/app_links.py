@@ -7,8 +7,11 @@ def get_assetlinks():
     try:
         config = frappe.get_single("Flutter App Configuration")
         package_name = config.package_name
-        fingerprints = config.sha256_fingerprint.splitlines(
-        ) if config.sha256_fingerprint else []
+        fingerprints = (
+            config.sha256_fingerprint.splitlines()
+            if config.sha256_fingerprint
+            else []
+        )
 
         # Clean up fingerprints (remove empty lines or whitespace)
         fingerprints = [f.strip() for f in fingerprints if f.strip()]
@@ -16,14 +19,16 @@ def get_assetlinks():
         if not package_name:
             return []
 
-        return [{
-            "relation": ["delegate_permission/common.handle_all_urls"],
-            "target": {
-                "namespace": "android_app",
-                "package_name": package_name,
-                "sha256_cert_fingerprints": fingerprints
+        return [
+            {
+                "relation": ["delegate_permission/common.handle_all_urls"],
+                "target": {
+                    "namespace": "android_app",
+                    "package_name": package_name,
+                    "sha256_cert_fingerprints": fingerprints,
+                },
             }
-        }]
+        ]
     except Exception:
         frappe.log_error("Error generating assetlinks.json")
         return []
@@ -45,12 +50,7 @@ def get_apple_app_site_association():
         return {
             "applinks": {
                 "apps": [],
-                "details": [
-                    {
-                        "appID": app_id,
-                        "paths": ["*"]
-                    }
-                ]
+                "details": [{"appID": app_id, "paths": ["*"]}],
             }
         }
     except Exception:

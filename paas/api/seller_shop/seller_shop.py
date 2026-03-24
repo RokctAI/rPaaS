@@ -14,30 +14,30 @@ def get_shop():
     shop = frappe.get_doc("Shop", shop_id)
 
     return {
-        'id': shop.name,
-        'uuid': shop.uuid,
-        'slug': shop.slug,
-        'user_id': shop.user,
-        'tax': shop.tax,
-        'service_fee': shop.service_fee,
-        'percentage': shop.percentage,
-        'phone': shop.phone,
-        'open': bool(shop.open),
-        'visibility': bool(shop.visibility),
-        'verify': bool(shop.verify),
-        'logo_img': shop.logo,
-        'background_img': shop.cover_photo,
-        'min_amount': shop.min_amount,
-        'status': shop.status,
-        'delivery_time': {
-            'type': shop.delivery_time_type,
-            'from': shop.delivery_time_from,
-            'to': shop.delivery_time_to
+        "id": shop.name,
+        "uuid": shop.uuid,
+        "slug": shop.slug,
+        "user_id": shop.user,
+        "tax": shop.tax,
+        "service_fee": shop.service_fee,
+        "percentage": shop.percentage,
+        "phone": shop.phone,
+        "open": bool(shop.open),
+        "visibility": bool(shop.visibility),
+        "verify": bool(shop.verify),
+        "logo_img": shop.logo,
+        "background_img": shop.cover_photo,
+        "min_amount": shop.min_amount,
+        "status": shop.status,
+        "delivery_time": {
+            "type": shop.delivery_time_type,
+            "from": shop.delivery_time_from,
+            "to": shop.delivery_time_to,
         },
-        'location': shop.location,
-        'title': shop.name,
-        'address': shop.address,
-        'description': shop.description
+        "location": shop.location,
+        "title": shop.name,
+        "address": shop.address,
+        "description": shop.description,
     }
 
 
@@ -56,9 +56,18 @@ def update_shop(shop_data):
 
     # Update allowed fields
     allowed_fields = [
-        "phone", "address", "location", "min_amount", "tax",
-        "delivery_time_type", "delivery_time_from", "delivery_time_to",
-        "open", "logo", "cover_photo", "description"
+        "phone",
+        "address",
+        "location",
+        "min_amount",
+        "tax",
+        "delivery_time_type",
+        "delivery_time_from",
+        "delivery_time_to",
+        "open",
+        "logo",
+        "cover_photo",
+        "description",
     ]
 
     for field in allowed_fields:
@@ -100,6 +109,7 @@ def set_working_status(status):
     shop.save(ignore_permissions=True)
 
     return shop.open
+
 
 # --- ALIASES FOR FLUTTER ENDPOINTS ---
 

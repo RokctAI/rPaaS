@@ -24,12 +24,14 @@ class SystemInformation(Document):
         try:
             if "rcore" in frappe.get_installed_apps():
                 rcore_versions_file = frappe.get_app_path(
-                    "rcore", "versions.json")
+                    "rcore", "versions.json"
+                )
                 if os.path.exists(rcore_versions_file):
                     with open(rcore_versions_file, "r") as f:
                         rcore_versions = json.load(f)
                     self.flutter_sdk_version = rcore_versions.get(
-                        "flutter_sdk_version", "Unknown")
+                        "flutter_sdk_version", "Unknown"
+                    )
         except Exception:
             pass  # Fail silently if r core issues
 
@@ -43,9 +45,11 @@ class SystemInformation(Document):
 
         try:
             import requests
+
             # Get the control platform URL from site config
             control_url = frappe.conf.get(
-                "control_url", "https://platform.rokct.ai")
+                "control_url", "https://platform.rokct.ai"
+            )
 
             # Only try fetching if it looks like a real URL
             if control_url and "http" in control_url:
@@ -57,6 +61,7 @@ class SystemInformation(Document):
                     api_versions = data.get("message", {})
 
                     if isinstance(api_versions, dict):
+
                         def get_ver(app_name):
                             app_data = api_versions.get(app_name, {})
                             if isinstance(app_data, dict):
@@ -73,8 +78,11 @@ class SystemInformation(Document):
         # Latest Error
         try:
             latest_log = frappe.get_all(
-                "Error Log", limit=1, order_by="creation desc", fields=[
-                    "error", "method", "creation"])
+                "Error Log",
+                limit=1,
+                order_by="creation desc",
+                fields=["error", "method", "creation"],
+            )
             if latest_log:
                 log = latest_log[0]
                 self.latest_error = f"{

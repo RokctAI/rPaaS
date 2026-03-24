@@ -7,7 +7,8 @@ def _require_admin():
     if "System Manager" not in frappe.get_roles():
         frappe.throw(
             "You are not authorized to perform this action.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
 
 @frappe.whitelist(allow_guest=True)
@@ -29,7 +30,7 @@ def get_page(route: str):
         "translation": {
             "title": page.title,
             "description": page.main_section,
-        }
+        },
     }
 
 
@@ -43,7 +44,7 @@ def get_admin_pages(limit_start: int = 0, limit_page_length: int = 20):
         "Web Page",
         fields=["name", "title", "route", "published"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 

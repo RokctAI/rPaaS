@@ -11,7 +11,8 @@ def get_cart(shop_id: str):
         frappe.throw("You must be logged in to view your cart.")
 
     cart_name = frappe.db.get_value(
-        "Cart", {"owner": user, "shop": shop_id, "status": "Active"}, "name")
+        "Cart", {"owner": user, "shop": shop_id, "status": "Active"}, "name"
+    )
     if not cart_name:
         return None  # No active cart
 
@@ -19,13 +20,21 @@ def get_cart(shop_id: str):
 
 
 @frappe.whitelist()
-def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = None, addons: str = None, alternative_product: str = None):  # noqa: C901
+def add_to_cart(
+    qty: int,
+    shop_id: str,
+    item_code: str = None,
+    stock_id: int = None,
+    addons: str = None,
+    alternative_product: str = None,
+):  # noqa: C901
     """
     Adds an item to the user's cart. Support multi-cart by shop_id.
     accepts item_code (ProductId) or stock_id (Variant).
     addons: JSON string of addons list.
     """
     import json
+
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to add items to your cart.")
@@ -38,14 +47,17 @@ def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = N
 
     # Find or create the Cart document
     cart_name = frappe.db.get_value(
-        "Cart", {"owner": user, "shop": shop_id, "status": "Active"}, "name")
+        "Cart", {"owner": user, "shop": shop_id, "status": "Active"}, "name"
+    )
     if not cart_name:
-        cart = frappe.get_doc({
-            "doctype": "Cart",
-            "owner": user,
-            "shop": shop_id,
-            "status": "Active"
-        }).insert(ignore_permissions=True)
+        cart = frappe.get_doc(
+            {
+                "doctype": "Cart",
+                "owner": user,
+                "shop": shop_id,
+                "status": "Active",
+            }
+        ).insert(ignore_permissions=True)
     else:
         cart = frappe.get_doc("Cart", cart_name)
 
@@ -53,8 +65,9 @@ def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = N
     addons_data = []
     if addons:
         try:
-            addons_data = json.loads(addons) if isinstance(
-                addons, str) else addons
+            addons_data = (
+                json.loads(addons) if isinstance(addons, str) else addons
+            )
         except Exception:
             addons_data = []
 
@@ -77,7 +90,7 @@ def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = N
         return False
 
     # If no addons, we can try to merge
-    should_merge = (len(addons_data) == 0)
+    should_merge = len(addons_data) == 0
 
     if should_merge:
         for detail in cart.items:
@@ -94,8 +107,9 @@ def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = N
             if match:
                 # Check if existing item has addons. If yes, don't merge (since
                 # we have no addons)
-                existing_addons = json.loads(
-                    detail.addons) if detail.addons else []
+                existing_addons = (
+                    json.loads(detail.addons) if detail.addons else []
+                )
                 if not existing_addons:
                     existing_item = detail
                     break
@@ -106,19 +120,23 @@ def add_to_cart(qty: int, shop_id: str, item_code: str = None, stock_id: int = N
         # Get Price
         price = 0
         if item_code:
-            price = frappe.db.get_value(
-                "Product", item_code, "price") or 0  # field name might be diff
+            price = (
+                frappe.db.get_value("Product", item_code, "price") or 0
+            )  # field name might be diff
         # If stock_id, might want to fetch specific price
 
-        cart.append("items", {
-            "item": item_code,  # Ensure item_code is provided by Caller
-            "quantity": qty,
-            "price": price,
-            "stock_id": stock_id,
-            "addons": json.dumps(addons_data) if addons_data else None,
-            "bonus": 0,
-            "alternative_product": alternative_product
-        })
+        cart.append(
+            "items",
+            {
+                "item": item_code,  # Ensure item_code is provided by Caller
+                "quantity": qty,
+                "price": price,
+                "stock_id": stock_id,
+                "addons": json.dumps(addons_data) if addons_data else None,
+                "bonus": 0,
+                "alternative_product": alternative_product,
+            },
+        )
 
     cart.save(ignore_permissions=True)
 
@@ -144,7 +162,8 @@ def remove_from_cart(cart_detail_name: str):
     if cart.owner != user:
         frappe.throw(
             "You are not authorized to remove this item.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     # Remove the item
     cart.remove(cart_detail)
@@ -181,17 +200,22 @@ def create_cart(cart: dict, lang: str = "en"):
     """
     Creates a new cart.
     """
-    cart_doc = frappe.get_doc({
-        "doctype": "Cart",
-        "user": frappe.session.user,
-        "shop": cart.get("shop_id"),
-    })
+    cart_doc = frappe.get_doc(
+        {
+            "doctype": "Cart",
+            "user": frappe.session.user,
+            "shop": cart.get("shop_id"),
+        }
+    )
     for item in cart.get("items", []):
-        cart_doc.append("items", {
-            "item": item.get("item_code"),
-            "quantity": item.get("quantity"),
-            "alternative_product": item.get("alternative_product"),
-        })
+        cart_doc.append(
+            "items",
+            {
+                "item": item.get("item_code"),
+                "quantity": item.get("quantity"),
+                "alternative_product": item.get("alternative_product"),
+            },
+        )
     cart_doc.insert(ignore_permissions=True)
     return cart_doc.as_dict()
 
@@ -203,11 +227,14 @@ def insert_cart(cart: dict, lang: str = "en"):
     """
     cart_doc = frappe.get_doc("Cart", cart.get("cart_id"))
     for item in cart.get("items", []):
-        cart_doc.append("items", {
-            "item": item.get("item_code"),
-            "quantity": item.get("quantity"),
-            "alternative_product": item.get("alternative_product"),
-        })
+        cart_doc.append(
+            "items",
+            {
+                "item": item.get("item_code"),
+                "quantity": item.get("quantity"),
+                "alternative_product": item.get("alternative_product"),
+            },
+        )
     cart_doc.save(ignore_permissions=True)
     return cart_doc.as_dict()
 
@@ -219,11 +246,14 @@ def insert_cart_with_group(cart: dict, lang: str = "en"):
     """
     cart_doc = frappe.get_doc("Cart", cart.get("cart_id"))
     for item in cart.get("items", []):
-        cart_doc.append("items", {
-            "item": item.get("item_code"),
-            "quantity": item.get("quantity"),
-            "alternative_product": item.get("alternative_product"),
-        })
+        cart_doc.append(
+            "items",
+            {
+                "item": item.get("item_code"),
+                "quantity": item.get("quantity"),
+                "alternative_product": item.get("alternative_product"),
+            },
+        )
     cart_doc.save(ignore_permissions=True)
     return cart_doc.as_dict()
 
@@ -238,10 +268,8 @@ def create_and_cart(cart: dict, lang: str = "en"):
 
 @frappe.whitelist()
 def get_cart_in_group(
-        cart_id: str,
-        shop_id: str,
-        cart_uuid: str,
-        lang: str = "en"):
+    cart_id: str, shop_id: str, cart_uuid: str, lang: str = "en"
+):
     """
     Retrieves a group cart.
     """

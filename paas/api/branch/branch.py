@@ -13,7 +13,7 @@ def get_branches(shop_id: str):
     branches = frappe.get_list(
         "Branch",
         filters={"shop": shop_id},
-        fields=["name", "address", "latitude", "longitude"]
+        fields=["name", "address", "latitude", "longitude"],
     )
     return branches
 
@@ -34,15 +34,17 @@ def create_branch(branch_data):
     if isinstance(branch_data, str):
         branch_data = json.loads(branch_data)
 
-    branch = frappe.get_doc({
-        "doctype": "Branch",
-        "branch_name": branch_data.get("name"),
-        "address": branch_data.get("address"),
-        "latitude": branch_data.get("latitude"),
-        "longitude": branch_data.get("longitude"),
-        "shop": branch_data.get("shop"),
-        "owner": frappe.session.user
-    })
+    branch = frappe.get_doc(
+        {
+            "doctype": "Branch",
+            "branch_name": branch_data.get("name"),
+            "address": branch_data.get("address"),
+            "latitude": branch_data.get("latitude"),
+            "longitude": branch_data.get("longitude"),
+            "shop": branch_data.get("shop"),
+            "owner": frappe.session.user,
+        }
+    )
     branch.insert(ignore_permissions=True)
     return branch.as_dict()
 
@@ -56,11 +58,14 @@ def update_branch(branch_id, branch_data):
         branch_data = json.loads(branch_data)
 
     branch = frappe.get_doc("Branch", branch_id)
-    if branch.owner != frappe.session.user and "System Manager" not in frappe.get_roles(
-            frappe.session.user):
+    if (
+        branch.owner != frappe.session.user
+        and "System Manager" not in frappe.get_roles(frappe.session.user)
+    ):
         frappe.throw(
             "You are not authorized to update this branch.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     branch.branch_name = branch_data.get("name", branch.branch_name)
     branch.address = branch_data.get("address", branch.address)
@@ -77,11 +82,14 @@ def delete_branch(branch_id):
     Deletes a branch.
     """
     branch = frappe.get_doc("Branch", branch_id)
-    if branch.owner != frappe.session.user and "System Manager" not in frappe.get_roles(
-            frappe.session.user):
+    if (
+        branch.owner != frappe.session.user
+        and "System Manager" not in frappe.get_roles(frappe.session.user)
+    ):
         frappe.throw(
             "You are not authorized to delete this branch.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     frappe.delete_doc("Branch", branch_id, ignore_permissions=True)
     return {"status": "success", "message": "Branch deleted successfully."}

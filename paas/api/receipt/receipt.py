@@ -8,10 +8,7 @@ def get_receipts(limit_start: int = 0, limit_page_length: int = 20):
     Retrieves a list of receipts, formatted for frontend compatibility.
     """
     receipts = frappe.get_list(
-        "Receipt",
-        fields=["*"],
-        offset=limit_start,
-        limit=limit_page_length
+        "Receipt", fields=["*"], offset=limit_start, limit=limit_page_length
     )
 
     # This is a simplified representation. A full implementation would

@@ -1,6 +1,8 @@
 import frappe
 import json
-from paas.api.delivery_man.delivery_man import get_deliveryman_statistics as _get_deliveryman_statistics
+from paas.api.delivery_man.delivery_man import (
+    get_deliveryman_statistics as _get_deliveryman_statistics,
+)
 
 
 @frappe.whitelist()
@@ -21,7 +23,7 @@ def update_location(lat=None, lng=None):
     else:
         doc = frappe.get_doc("Deliveryman Settings", {"user": user})
 
-    if hasattr(doc, 'latitude') and hasattr(doc, 'longitude'):
+    if hasattr(doc, "latitude") and hasattr(doc, "longitude"):
         doc.latitude = lat
         doc.longitude = lng
         doc.save(ignore_permissions=True)
@@ -52,7 +54,7 @@ def update_car_info(car_model=None, car_number=None, color=None):
     user = frappe.session.user
     if frappe.db.exists("Deliveryman Settings", {"user": user}):
         doc = frappe.get_doc("Deliveryman Settings", {"user": user})
-        if hasattr(doc, 'car_model'):
+        if hasattr(doc, "car_model"):
             doc.car_model = car_model
             doc.car_number = car_number
             doc.color = color

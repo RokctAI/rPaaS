@@ -13,7 +13,7 @@ def get_brands(limit_start: int = 0, limit_page_length: int = 10):
         fields=["name", "uuid", "title", "slug", "active", "image", "shop"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name desc"
+        order_by="name desc",
     )
     return brands
 
@@ -43,15 +43,17 @@ def create_brand(brand_data):
     if frappe.db.exists("Brand", {"uuid": brand_uuid}):
         frappe.throw("Brand with this UUID already exists.")
 
-    brand = frappe.get_doc({
-        "doctype": "Brand",
-        "uuid": brand_uuid,
-        "title": brand_data.get("title"),
-        "slug": brand_data.get("slug"),
-        "active": brand_data.get("active", 1),
-        "image": brand_data.get("image"),
-        "shop": brand_data.get("shop"),
-    })
+    brand = frappe.get_doc(
+        {
+            "doctype": "Brand",
+            "uuid": brand_uuid,
+            "title": brand_data.get("title"),
+            "slug": brand_data.get("slug"),
+            "active": brand_data.get("active", 1),
+            "image": brand_data.get("image"),
+            "shop": brand_data.get("shop"),
+        }
+    )
     brand.insert(ignore_permissions=True)
     return brand.as_dict()
 

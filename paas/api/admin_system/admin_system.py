@@ -1,4 +1,3 @@
-
 import frappe
 from frappe.utils import get_site_path, get_url
 import os
@@ -38,11 +37,13 @@ def get_backups():
     backups = []
     for fname in os.listdir(backups_path):
         if fname.endswith(".sql.gz"):
-            backups.append({
-                "filename": fname,
-                "size": os.path.getsize(os.path.join(backups_path, fname)),
-                "path": f"/private/backups/{fname}"
-            })
+            backups.append(
+                {
+                    "filename": fname,
+                    "size": os.path.getsize(os.path.join(backups_path, fname)),
+                    "path": f"/private/backups/{fname}",
+                }
+            )
 
     # Sort by filename (date prefix) desc
     backups.sort(key=lambda x: x["filename"], reverse=True)
@@ -62,6 +63,7 @@ def create_backup():
     # Frappe's backup capability is usually CLI driven or scheduled.
     # We can try to trigger it via enqueue.
     from frappe.integrations.utils import make_backup
+
     frappe.enqueue(make_backup, queue="long")
     return {"status": "success", "message": "Backup started in background."}
 

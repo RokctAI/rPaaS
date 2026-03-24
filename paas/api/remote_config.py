@@ -19,8 +19,8 @@ def get_remote_config(app_type="Customer", site_name=None):
         #    frappe.throw("This feature requires a PaaS subscription.")
     except Exception:
         frappe.log_error(
-            frappe.get_traceback(),
-            "Remote Config Subscription Check Failed")
+            frappe.get_traceback(), "Remote Config Subscription Check Failed"
+        )
         frappe.throw("Could not verify subscription status.")
 
     # 2. Fetch Configuration Sources
@@ -31,16 +31,23 @@ def get_remote_config(app_type="Customer", site_name=None):
 
     # B. Common Config
     common_config_name = frappe.db.get_value(
-        "Remote Config", {"app_type": "Common"}, "name")
-    common_config = frappe.get_doc(
-        "Remote Config",
-        common_config_name) if common_config_name else None
+        "Remote Config", {"app_type": "Common"}, "name"
+    )
+    common_config = (
+        frappe.get_doc("Remote Config", common_config_name)
+        if common_config_name
+        else None
+    )
 
     # C. App Specific Config
     app_config_name = frappe.db.get_value(
-        "Remote Config", {"app_type": app_type}, "name")
-    app_config = frappe.get_doc("Remote Config",
-                                app_config_name) if app_config_name else None
+        "Remote Config", {"app_type": app_type}, "name"
+    )
+    app_config = (
+        frappe.get_doc("Remote Config", app_config_name)
+        if app_config_name
+        else None
+    )
 
     if not common_config and not app_config:
         # Fallback: Check if config exists for "project_title" as site_name (legacy behavior?)
@@ -53,27 +60,24 @@ def get_remote_config(app_type="Customer", site_name=None):
         val = None
         # Check app specific config first
         if app_config and getattr(app_config, field, None) is not None:
-            if isinstance(
-                    getattr(
-                        app_config,
-                        field),
-                    str) and getattr(
-                    app_config,
-                    field) == "":
+            if (
+                isinstance(getattr(app_config, field), str)
+                and getattr(app_config, field) == ""
+            ):
                 pass
             else:
                 val = getattr(app_config, field)
 
         # Fallback to common config
-        if val is None and common_config and getattr(
-                common_config, field, None) is not None:
-            if isinstance(
-                    getattr(
-                        common_config,
-                        field),
-                    str) and getattr(
-                    common_config,
-                    field) == "":
+        if (
+            val is None
+            and common_config
+            and getattr(common_config, field, None) is not None
+        ):
+            if (
+                isinstance(getattr(common_config, field), str)
+                and getattr(common_config, field) == ""
+            ):
                 pass
             else:
                 val = getattr(common_config, field)
@@ -84,7 +88,6 @@ def get_remote_config(app_type="Customer", site_name=None):
         # --- Global Configuration (All Apps) ---
         "pinLoadingMin": get_val("pin_loading_min"),
         "pinLoadingMax": get_val("pin_loading_max"),
-
         # --- Auth & Localization (Customer, Driver, Manager) ---
         "isSpecificNumberEnabled": get_val("is_specific_number_enabled"),
         "isNumberLengthAlwaysSame": get_val("is_number_length_always_same"),
@@ -92,25 +95,23 @@ def get_remote_config(app_type="Customer", site_name=None):
         "showFlag": get_val("show_flag"),
         "showArrowIcon": get_val("show_arrow_icon"),
         "localeCodeEn": get_val("locale_code_en"),
-
         # --- Map & Navigation (Customer, Driver) ---
         "drawingBaseUrl": get_val("drawing_base_url"),
         "routingKey": get_val("routing_key"),
         "showGooglePOILayer": get_val("show_google_poi_layer"),
         "poiData": get_val("poi_data"),
-
         # --- Customer Specific ---
         "cardDirect": get_val("card_direct"),
         "newShopDays": get_val("new_shop_days"),
         "isOpen": get_val("is_open"),
         "isClosed": get_val("is_closed"),
-
         # --- POS & Manager Shared ---
         "chatGpt": get_val("chat_gpt"),
         "autoTrn": get_val("auto_trn"),
-
         # --- POS Specific ---
-        "playMusicOnOrderStatusChange": get_val("play_music_on_order_status_change"),
+        "playMusicOnOrderStatusChange": get_val(
+            "play_music_on_order_status_change"
+        ),
         "keepPlayingOnNewOrder": get_val("keep_playing_on_new_order"),
         "refreshTime": get_val("refresh_time"),
         "animationDuration": get_val("animation_duration"),
@@ -141,16 +142,22 @@ def get_remote_config(app_type="Customer", site_name=None):
         "roFilterReplaceDays": get_val("ro_filter_replace_days"),
         "vesselReplaceDays": get_val("vessel_replace_days"),
         "roMembraneReplaceDays": get_val("ro_membrane_replace_days"),
-        "megaCharMaintenanceDurations": get_val("mega_char_maintenance_durations"),
-        "softenerMaintenanceDurations": get_val("softener_maintenance_durations"),
+        "megaCharMaintenanceDurations": get_val(
+            "mega_char_maintenance_durations"
+        ),
+        "softenerMaintenanceDurations": get_val(
+            "softener_maintenance_durations"
+        ),
         "maintenanceTypes": get_val("maintenance_types"),
         "filterTypes": get_val("filter_types"),
-
         # --- Manager Specific ---
         "imageBaseUrl": get_val("image_base_url"),
-
         # Extras
         "projectTitle": project_title,
-        "enableMarketplace": frappe.db.get_single_value("Settings", "enable_marketplace"),
-        "defaultShopId": frappe.db.get_single_value("Settings", "default_shop")
+        "enableMarketplace": frappe.db.get_single_value(
+            "Settings", "enable_marketplace"
+        ),
+        "defaultShopId": frappe.db.get_single_value(
+            "Settings", "default_shop"
+        ),
     }

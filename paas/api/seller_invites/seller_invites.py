@@ -11,8 +11,6 @@ def get_seller_invites():
     shop = _get_seller_shop(user)
 
     invitations = frappe.get_all(
-        "Invitation",
-        filters={"shop": shop},
-        fields=["user", "role", "status"]
+        "Invitation", filters={"shop": shop}, fields=["user", "role", "status"]
     )
     return invitations

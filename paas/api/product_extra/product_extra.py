@@ -12,10 +12,7 @@ def create_extra_group(data):
     if isinstance(data, str):
         data = json.loads(data)
 
-    doc = frappe.get_doc({
-        "doctype": "Product Extra Group",
-        **data
-    })
+    doc = frappe.get_doc({"doctype": "Product Extra Group", **data})
     doc.insert()
     return doc.as_dict()
 
@@ -30,9 +27,8 @@ def get_extra_groups(shop_id=None):
         filters["shop"] = shop_id
 
     return frappe.get_list(
-        "Product Extra Group",
-        filters=filters,
-        fields=["*"])
+        "Product Extra Group", filters=filters, fields=["*"]
+    )
 
 
 @frappe.whitelist()
@@ -57,6 +53,7 @@ def delete_extra_group(name):
     frappe.delete_doc("Product Extra Group", name)
     return {"status": "success"}
 
+
 # --- Product Extra Value APIs ---
 
 
@@ -68,10 +65,7 @@ def create_extra_value(data):
     if isinstance(data, str):
         data = json.loads(data)
 
-    doc = frappe.get_doc({
-        "doctype": "Product Extra Value",
-        **data
-    })
+    doc = frappe.get_doc({"doctype": "Product Extra Value", **data})
     doc.insert()
     return doc.as_dict()
 
@@ -82,10 +76,8 @@ def get_extra_values(group_id):
     Retrieves Extra Values for a specific group.
     """
     return frappe.get_list(
-        "Product Extra Value",
-        filters={
-            "extra_group": group_id},
-        fields=["*"])
+        "Product Extra Value", filters={"extra_group": group_id}, fields=["*"]
+    )
 
 
 @frappe.whitelist()

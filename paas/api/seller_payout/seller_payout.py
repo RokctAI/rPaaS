@@ -16,6 +16,6 @@ def get_seller_payouts(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "amount", "payout_date", "status"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="payout_date desc"
+        order_by="payout_date desc",
     )
     return payouts

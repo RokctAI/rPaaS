@@ -10,10 +10,7 @@ def create_ads_package(data):
     if isinstance(data, str):
         data = json.loads(data)
 
-    doc = frappe.get_doc({
-        "doctype": "Ads Package",
-        **data
-    })
+    doc = frappe.get_doc({"doctype": "Ads Package", **data})
     doc.insert()
     return doc.as_dict()
 

@@ -4,8 +4,8 @@ from paas.api.utils import _get_seller_shop
 
 @frappe.whitelist()
 def get_seller_request_models(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of request models for the current seller.
     """
@@ -13,7 +13,8 @@ def get_seller_request_models(
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your request models.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     request_models = frappe.get_list(
         "Request Model",
@@ -21,15 +22,15 @@ def get_seller_request_models(
         fields=["name", "model_type", "model", "status", "created_at"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return request_models
 
 
 @frappe.whitelist()
 def get_seller_customer_addresses(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of customer addresses for the current seller's shop.
     """
@@ -51,6 +52,6 @@ def get_seller_customer_addresses(
         filters={"user": ["in", customer_ids]},
         fields=["name", "user", "title", "address", "location", "active"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
     return addresses

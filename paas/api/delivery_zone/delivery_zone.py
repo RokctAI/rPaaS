@@ -11,10 +11,7 @@ def create_delivery_zone(data):
     if isinstance(data, str):
         data = json.loads(data)
 
-    doc = frappe.get_doc({
-        "doctype": "Delivery Zone",
-        **data
-    })
+    doc = frappe.get_doc({"doctype": "Delivery Zone", **data})
     doc.insert()
     return doc.as_dict()
 
@@ -25,8 +22,8 @@ def get_shop_delivery_zones(shop_id):
     Retrieves all Delivery Zones for a shop.
     """
     return frappe.get_list(
-        "Delivery Zone", filters={
-            "shop": shop_id}, fields=["*"])
+        "Delivery Zone", filters={"shop": shop_id}, fields=["*"]
+    )
 
 
 @frappe.whitelist()
@@ -69,11 +66,8 @@ def check_delivery_availability(lat, lng, shop_id=None):
     zones = frappe.get_list(
         "Delivery Zone",
         filters=filters,
-        fields=[
-            "name",
-            "shop",
-            "address",
-            "coordinates"])
+        fields=["name", "shop", "address", "coordinates"],
+    )
 
     available_shops = []
 
@@ -86,11 +80,13 @@ def check_delivery_availability(lat, lng, shop_id=None):
             if is_point_in_polygon(lat, lng, polygon):
                 shop = frappe.get_doc("Shop", zone.shop)
                 price_info = calculate_delivery_price(lat, lng, shop)
-                available_shops.append({
-                    "shop": shop.name,
-                    "shop_title": shop.shop_name,
-                    "delivery_price": price_info
-                })
+                available_shops.append(
+                    {
+                        "shop": shop.name,
+                        "shop_title": shop.shop_name,
+                        "delivery_price": price_info,
+                    }
+                )
         except Exception:
             continue
 
@@ -111,8 +107,9 @@ def is_point_in_polygon(lat, lng, polygon):
 
         # Check intersection with ray along X-axis (Lng)
         # We compare Y (Lat) coords
-        intersect = ((yi > lat) != (yj > lat)) and \
-            (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi)
+        intersect = ((yi > lat) != (yj > lat)) and (
+            lng < (xj - xi) * (lat - yi) / (yj - yi) + xi
+        )
         if intersect:
             inside = not inside
         j = i
@@ -139,12 +136,13 @@ def calculate_delivery_price(lat, lng, shop):
 
     # Placeholder distance (in km) - implementing Haversine
     import math
+
     R = 6371  # Earth radius in km
     dLat = math.radians(lat - shop_lat)
     dLon = math.radians(lng - shop_lng)
-    a = math.sin(dLat / 2) * math.sin(dLat / 2) + \
-        math.cos(math.radians(shop_lat)) * math.cos(math.radians(lat)) * \
-        math.sin(dLon / 2) * math.sin(dLon / 2)
+    a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(
+        math.radians(shop_lat)
+    ) * math.cos(math.radians(lat)) * math.sin(dLon / 2) * math.sin(dLon / 2)
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     distance = R * c
 

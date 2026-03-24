@@ -13,7 +13,7 @@ def get_all_units(limit_start: int = 0, limit_page_length: int = 20):
         "Shop Unit",
         fields=["name", "shop", "active"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -27,7 +27,7 @@ def get_all_tags(limit_start: int = 0, limit_page_length: int = 20):
         "Shop Tag",
         fields=["name", "shop"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -41,7 +41,7 @@ def get_all_points(limit_start: int = 0, limit_page_length: int = 20):
         "Point",
         fields=["name", "user", "points", "reason"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -54,10 +54,7 @@ def create_point(point_data):
     if isinstance(point_data, str):
         point_data = json.loads(point_data)
 
-    new_point = frappe.get_doc({
-        "doctype": "Point",
-        **point_data
-    })
+    new_point = frappe.get_doc({"doctype": "Point", **point_data})
     new_point.insert(ignore_permissions=True)
     return new_point.as_dict()
 
@@ -86,7 +83,8 @@ def delete_point(point_name):
     frappe.delete_doc("Point", point_name, ignore_permissions=True)
     return {
         "status": "success",
-        "message": "Point record deleted successfully."}
+        "message": "Point record deleted successfully.",
+    }
 
 
 @frappe.whitelist()
@@ -99,7 +97,7 @@ def get_all_translations(limit_start: int = 0, limit_page_length: int = 20):
         "Translation",
         fields=["name", "language", "source_text", "translated_text"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -113,7 +111,7 @@ def get_all_referrals(limit_start: int = 0, limit_page_length: int = 20):
         "Referral",
         fields=["name", "referrer", "referred_user", "referral_code"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
@@ -126,10 +124,7 @@ def create_referral(referral_data):
     if isinstance(referral_data, str):
         referral_data = json.loads(referral_data)
 
-    new_referral = frappe.get_doc({
-        "doctype": "Referral",
-        **referral_data
-    })
+    new_referral = frappe.get_doc({"doctype": "Referral", **referral_data})
     new_referral.insert(ignore_permissions=True)
     return new_referral.as_dict()
 
@@ -154,14 +149,14 @@ def get_all_shop_tags(limit_start: int = 0, limit_page_length: int = 20):
         "Shop Tag",
         fields=["name", "shop"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
 @frappe.whitelist()
 def get_all_product_extra_groups(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of all product extra groups on the platform (for admins).
     """
@@ -170,14 +165,14 @@ def get_all_product_extra_groups(
         "Product Extra Group",
         fields=["name", "shop"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )
 
 
 @frappe.whitelist()
 def get_all_product_extra_values(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of all product extra values on the platform (for admins).
     """
@@ -186,5 +181,5 @@ def get_all_product_extra_values(
         "Product Extra Value",
         fields=["name", "product_extra_group", "value", "price"],
         offset=limit_start,
-        limit=limit_page_length
+        limit=limit_page_length,
     )

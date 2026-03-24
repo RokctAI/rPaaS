@@ -11,7 +11,8 @@ def get_deliveryman_orders(limit_start: int = 0, limit_page_length: int = 20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your orders.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     orders = frappe.get_list(
         "Order",
@@ -19,15 +20,15 @@ def get_deliveryman_orders(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "shop", "total_price", "status", "creation"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return orders
 
 
 @frappe.whitelist()
 def get_deliveryman_parcel_orders(
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of parcel orders assigned to the current deliveryman.
     """
@@ -35,7 +36,8 @@ def get_deliveryman_parcel_orders(
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your parcel orders.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     orders = frappe.get_list(
         "Parcel Order",
@@ -43,7 +45,7 @@ def get_deliveryman_parcel_orders(
         fields=["name", "status", "total_price", "delivery_date"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return orders
 
@@ -57,7 +59,8 @@ def get_deliveryman_settings():
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your settings.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     if not frappe.db.exists("Deliveryman Settings", {"user": user}):
         return {}
@@ -74,7 +77,8 @@ def update_deliveryman_settings(settings_data):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to update your settings.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     if isinstance(settings_data, str):
         settings_data = json.loads(settings_data)
@@ -99,24 +103,17 @@ def get_deliveryman_statistics():
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your statistics.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     # Total completed orders
     completed_orders_count = frappe.db.count(
-        "Order",
-        filters={
-            "deliveryman": user,
-            "status": "Delivered"
-        }
+        "Order", filters={"deliveryman": user, "status": "Delivered"}
     )
 
     # Total completed parcel orders
     completed_parcel_orders_count = frappe.db.count(
-        "Parcel Order",
-        filters={
-            "deliveryman": user,
-            "status": "Delivered"
-        }
+        "Parcel Order", filters={"deliveryman": user, "status": "Delivered"}
     )
 
     # Total earnings from regular orders
@@ -125,7 +122,7 @@ def get_deliveryman_statistics():
         frappe.qb.from_(t_order)
         .select(frappe.qb.fn.Sum(t_order.delivery_fee))
         .where(t_order.deliveryman == user)
-        .where(t_order.status == 'Delivered')
+        .where(t_order.status == "Delivered")
     ).run()[0][0] or 0
 
     # Total earnings from parcel orders
@@ -134,7 +131,7 @@ def get_deliveryman_statistics():
         frappe.qb.from_(t_parcel_order)
         .select(frappe.qb.fn.Sum(t_parcel_order.delivery_fee))
         .where(t_parcel_order.deliveryman == user)
-        .where(t_parcel_order.status == 'Delivered')
+        .where(t_parcel_order.status == "Delivered")
     ).run()[0][0] or 0
 
     total_earnings = total_order_earnings + total_parcel_earnings
@@ -143,7 +140,7 @@ def get_deliveryman_statistics():
         "completed_orders": completed_orders_count,
         "completed_parcel_orders": completed_parcel_orders_count,
         "total_orders": completed_orders_count + completed_parcel_orders_count,
-        "total_earnings": total_earnings
+        "total_earnings": total_earnings,
     }
 
 
@@ -156,12 +153,11 @@ def get_banned_shops():
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your banned shops.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     banned_shops = frappe.get_all(
-        "Shop Ban",
-        filters={"deliveryman": user},
-        fields=["shop"]
+        "Shop Ban", filters={"deliveryman": user}, fields=["shop"]
     )
     return [d.shop for d in banned_shops]
 
@@ -175,7 +171,8 @@ def get_payment_to_partners(limit_start: int = 0, limit_page_length: int = 20):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your payments.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     payouts = frappe.get_list(
         "Payout",
@@ -183,7 +180,7 @@ def get_payment_to_partners(limit_start: int = 0, limit_page_length: int = 20):
         fields=["name", "amount", "payment_date", "status"],
         offset=limit_start,
         limit=limit_page_length,
-        order_by="payment_date desc"
+        order_by="payment_date desc",
     )
     return payouts
 
@@ -197,17 +194,18 @@ def get_deliveryman_order_report(from_date: str, to_date: str):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your order report.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     orders = frappe.get_all(
         "Order",
         filters={
             "deliveryman": user,
             "status": "Delivered",
-            "creation": ["between", [from_date, to_date]]
+            "creation": ["between", [from_date, to_date]],
         },
         fields=["name", "shop", "total_price", "status", "creation"],
-        order_by="creation desc"
+        order_by="creation desc",
     )
 
     parcel_orders = frappe.get_all(
@@ -215,16 +213,13 @@ def get_deliveryman_order_report(from_date: str, to_date: str):
         filters={
             "deliveryman": user,
             "status": "Delivered",
-            "creation": ["between", [from_date, to_date]]
+            "creation": ["between", [from_date, to_date]],
         },
         fields=["name", "status", "total_price", "delivery_date"],
-        order_by="creation desc"
+        order_by="creation desc",
     )
 
-    return {
-        "orders": orders,
-        "parcel_orders": parcel_orders
-    }
+    return {"orders": orders, "parcel_orders": parcel_orders}
 
 
 @frappe.whitelist()
@@ -236,11 +231,12 @@ def get_deliveryman_delivery_zones():
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view your delivery zones.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     delivery_zones = frappe.get_all(
         "Deliveryman Delivery Zone",
         filters={"deliveryman": user},
-        fields=["delivery_zone"]
+        fields=["delivery_zone"],
     )
     return [d.delivery_zone for d in delivery_zones]

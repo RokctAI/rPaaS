@@ -5,13 +5,14 @@ import uuid
 
 @frappe.whitelist()
 def get_categories(
-        limit_start: int = 0,
-        limit_page_length: int = 10,
-        order_by: str = "name",
-        order: str = "desc",
-        parent: bool = False,
-        select: bool = False,
-        **kwargs):
+    limit_start: int = 0,
+    limit_page_length: int = 10,
+    order_by: str = "name",
+    order: str = "desc",
+    parent: bool = False,
+    select: bool = False,
+    **kwargs,
+):
     """
     Retrieves a list of categories with pagination and filters.
     """
@@ -38,7 +39,7 @@ def get_categories(
         filters=filters,
         offset=limit_start,
         limit=limit_page_length,
-        order_by=f"{order_by} {order}"
+        order_by=f"{order_by} {order}",
     )
 
     return categories
@@ -56,9 +57,8 @@ def get_category_types():
 
 @frappe.whitelist()
 def get_children_categories(
-        id: str,
-        limit_start: int = 0,
-        limit_page_length: int = 10):
+    id: str, limit_start: int = 0, limit_page_length: int = 10
+):
     """
     Retrieves the children of a given category.
     """
@@ -68,7 +68,7 @@ def get_children_categories(
         filters={"parent_category": id},
         limit_start=limit_start,
         limit_page_length=limit_page_length,
-        order_by="name desc"
+        order_by="name desc",
     )
 
     return categories
@@ -76,36 +76,38 @@ def get_children_categories(
 
 @frappe.whitelist()
 def search_categories(
-        search: str,
-        limit_start: int = 0,
-        limit_page_length: int = 10):
+    search: str, limit_start: int = 0, limit_page_length: int = 10
+):
     """
     Searches for categories by a search term.
     """
     t_category = frappe.qb.DocType("Category")
-    query = (
-        frappe.qb.from_(t_category) .select(
-            t_category.name,
-            t_category.uuid,
-            t_category.type,
-            t_category.image,
-            t_category.active,
-            t_category.status,
-            t_category.shop))
+    query = frappe.qb.from_(t_category).select(
+        t_category.name,
+        t_category.uuid,
+        t_category.type,
+        t_category.image,
+        t_category.active,
+        t_category.status,
+        t_category.shop,
+    )
 
     from frappe.query_builder.functions import Function
+
     to_tsvector = Function("to_tsvector")
     plainto_tsquery = Function("plainto_tsquery")
     query = query.where(
-        to_tsvector(
-            "english",
-            t_category.keywords).matches(
-            plainto_tsquery(
-                "english",
-                search)))
+        to_tsvector("english", t_category.keywords).matches(
+            plainto_tsquery("english", search)
+        )
+    )
 
-    categories = query.limit(limit_page_length).offset(limit_start).orderby(
-        t_category.name, order=frappe.qb.desc).run(as_dict=True)
+    categories = (
+        query.limit(limit_page_length)
+        .offset(limit_start)
+        .orderby(t_category.name, order=frappe.qb.desc)
+        .run(as_dict=True)
+    )
 
     return categories
 
@@ -136,21 +138,25 @@ def create_category(category_data):
         frappe.throw("Category with this UUID already exists.")
 
     paas_settings = frappe.get_single("Permission Settings")
-    initial_status = "Approved" if paas_settings.auto_approve_categories else "Pending"
+    initial_status = (
+        "Approved" if paas_settings.auto_approve_categories else "Pending"
+    )
 
-    category = frappe.get_doc({
-        "doctype": "Category",
-        "uuid": category_uuid,
-        "slug": category_data.get("slug"),
-        "keywords": category_data.get("keywords"),
-        "parent_category": category_data.get("parent_category"),
-        "type": category_data.get("type"),
-        "image": category_data.get("image"),
-        "active": category_data.get("active", 1),
-        "status": initial_status,
-        "shop": category_data.get("shop"),
-        "input": category_data.get("input"),
-    })
+    category = frappe.get_doc(
+        {
+            "doctype": "Category",
+            "uuid": category_uuid,
+            "slug": category_data.get("slug"),
+            "keywords": category_data.get("keywords"),
+            "parent_category": category_data.get("parent_category"),
+            "type": category_data.get("type"),
+            "image": category_data.get("image"),
+            "active": category_data.get("active", 1),
+            "status": initial_status,
+            "shop": category_data.get("shop"),
+            "input": category_data.get("input"),
+        }
+    )
     category.insert(ignore_permissions=True)
     return category.as_dict()
 
@@ -181,7 +187,8 @@ def update_category(uuid, category_data):
         "active",
         "status",
         "shop",
-        "input"]
+        "input",
+    ]
 
     for key, value in category_data.items():
         if key in updatable_fields:

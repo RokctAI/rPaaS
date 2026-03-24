@@ -16,21 +16,26 @@ def create_parcel_order(order_data):  # noqa: C901
     if user == "Guest":
         frappe.throw(
             "You must be logged in to create a parcel order.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     # 1. Idempotency Check (Offline UUID)
     offline_uuid = order_data.get("offline_uuid")
     if offline_uuid:
         existing_order = frappe.db.exists(
-            "Parcel Order", {"offline_uuid": offline_uuid})
+            "Parcel Order", {"offline_uuid": offline_uuid}
+        )
         if existing_order:
             return api_response(
                 data=frappe.get_doc("Parcel Order", existing_order).as_dict(),
-                message="Duplicate order detected. Returning existing order.")
+                message="Duplicate order detected. Returning existing order.",
+            )
 
     # Get Permission Settings for auto-approval
     paas_settings = frappe.get_single("Permission Settings")
-    initial_status = "Accepted" if paas_settings.auto_approve_parcel_orders else "New"
+    initial_status = (
+        "Accepted" if paas_settings.auto_approve_parcel_orders else "New"
+    )
 
     # Start building the new parcel document
     new_parcel_doc = {
@@ -65,14 +70,19 @@ def create_parcel_order(order_data):  # noqa: C901
         new_parcel_doc["phone_to"] = customer.get("phone")
         new_parcel_doc["address_to"] = f"Customer: {customer.get('full_name')}"
 
-    elif destination_type == "delivery_point" and order_data.get("delivery_point_id"):
+    elif destination_type == "delivery_point" and order_data.get(
+        "delivery_point_id"
+    ):
         delivery_point = frappe.get_doc(
-            "Delivery Point", order_data.get("delivery_point_id"))
+            "Delivery Point", order_data.get("delivery_point_id")
+        )
         new_parcel_doc["delivery_point"] = delivery_point.name
         new_parcel_doc["address_to"] = delivery_point.address
         new_parcel_doc["username_to"] = f"Pickup Point: {delivery_point.name}"
 
-    elif destination_type == "custom_location" and order_data.get("address_to"):
+    elif destination_type == "custom_location" and order_data.get(
+        "address_to"
+    ):
         new_parcel_doc["address_to"] = json.dumps(order_data.get("address_to"))
 
     # Link Order if provided
@@ -92,17 +102,20 @@ def create_parcel_order(order_data):  # noqa: C901
     items = order_data.get("items")
     if items and isinstance(items, list):
         for item in items:
-            parcel_order.append("items", {
-                "item": item.get("item_code") or item.get("item"),
-                "quantity": item.get("quantity", 1),
-                "item_name": item.get("item_name")
-            })
+            parcel_order.append(
+                "items",
+                {
+                    "item": item.get("item_code") or item.get("item"),
+                    "quantity": item.get("quantity", 1),
+                    "item_name": item.get("item_name"),
+                },
+            )
 
     # Insert the document and return it
     parcel_order.insert(ignore_permissions=True)
     return api_response(
-        data=parcel_order.as_dict(),
-        message="Parcel Order Created")
+        data=parcel_order.as_dict(), message="Parcel Order Created"
+    )
 
 
 @frappe.whitelist()
@@ -114,12 +127,14 @@ def get_parcel_orders(limit=20, offset=0, status=None):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view parcel orders.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     filters = {"user": user}
     if status:
         if isinstance(status, str) and "[" in status:
             import json
+
             try:
                 filters["status"] = ["in", json.loads(status)]
             except Exception:
@@ -139,10 +154,12 @@ def get_parcel_orders(limit=20, offset=0, status=None):
             "total_price",
             "address_to",
             "delivery_point",
-            "order"],
+            "order",
+        ],
         limit=limit,
         offset=offset,
-        order_by="modified desc")
+        order_by="modified desc",
+    )
 
     return api_response(data=parcel_orders)
 
@@ -156,19 +173,21 @@ def get_user_parcel_order(name):
     if user == "Guest":
         frappe.throw(
             "You must be logged in to view a parcel order.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     try:
         parcel_order = frappe.get_doc("Parcel Order", name)
         if parcel_order.user != user:
             frappe.throw(
                 "You are not authorized to view this parcel order.",
-                frappe.PermissionError)
+                frappe.PermissionError,
+            )
         return api_response(data=parcel_order.as_dict())
     except frappe.DoesNotExistError:
         frappe.throw(
-            f"Parcel Order {name} not found.",
-            frappe.DoesNotExistError)
+            f"Parcel Order {name} not found.", frappe.DoesNotExistError
+        )
 
 
 @frappe.whitelist()
@@ -180,7 +199,8 @@ def update_parcel_status(parcel_order_id, status):  # noqa: C901
     if user == "Guest":
         frappe.throw(
             "You must be logged in to update a parcel order.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     try:
         parcel_order = frappe.get_doc("Parcel Order", parcel_order_id)
@@ -193,19 +213,24 @@ def update_parcel_status(parcel_order_id, status):  # noqa: C901
             "Ready": ["On a way"],
             "On a way": ["Delivered"],
             "Delivered": [],
-            "Canceled": []
+            "Canceled": [],
         }
 
         # Check if transition is valid (skip check for Admins to allow manual
         # overrides)
-        if "System Manager" not in frappe.get_roles(
-        ) and "Administrator" not in frappe.get_roles():
+        if (
+            "System Manager" not in frappe.get_roles()
+            and "Administrator" not in frappe.get_roles()
+        ):
             if status not in allowed_transitions.get(current_status, []):
                 frappe.throw(
                     f"Invalid status transition from {current_status} to {status}.")
 
         # Role-Based Authorization
-        if "System Manager" in frappe.get_roles() or "Administrator" in frappe.get_roles():
+        if (
+            "System Manager" in frappe.get_roles()
+            or "Administrator" in frappe.get_roles()
+        ):
             pass  # Admins can do anything
 
         elif "Deliveryman" in frappe.get_roles():
@@ -216,31 +241,34 @@ def update_parcel_status(parcel_order_id, status):  # noqa: C901
             else:
                 frappe.throw(
                     "Deliveryman is not authorized for this status change.",
-                    frappe.PermissionError)
+                    frappe.PermissionError,
+                )
 
         elif parcel_order.user == user:
             if current_status == "New" and status == "Canceled":
                 pass
             else:
                 frappe.throw(
-                    "Users can only cancel New orders.",
-                    frappe.PermissionError)
+                    "Users can only cancel New orders.", frappe.PermissionError
+                )
 
         else:
             frappe.throw(
                 "You are not authorized to update this parcel order.",
-                frappe.PermissionError)
+                frappe.PermissionError,
+            )
 
         parcel_order.status = status
         parcel_order.save(ignore_permissions=True)
 
         return api_response(
-            data=parcel_order.as_dict(),
-            message="Status Updated")
+            data=parcel_order.as_dict(), message="Status Updated"
+        )
     except frappe.DoesNotExistError:
         frappe.throw(
             f"Parcel Order {parcel_order_id} not found.",
-            frappe.DoesNotExistError)
+            frappe.DoesNotExistError,
+        )
     except Exception as e:
         frappe.throw(f"An error occurred: {str(e)}")
 
@@ -252,19 +280,15 @@ def get_types():
     """
     types = frappe.get_all(
         "Parcel Order Setting",
-        fields=[
-            "name",
-            "type",
-            "img",
-            "price",
-            "price_per_km"
-        ],
-        order_by="name asc")
+        fields=["name", "type", "img", "price", "price_per_km"],
+        order_by="name asc",
+    )
     return api_response(data=types)
 
 
 def haversine(lat1, lon1, lat2, lon2):
     from paas.api.utils import haversine as _haversine
+
     return _haversine(lat1, lon1, lat2, lon2)
 
 
@@ -291,7 +315,9 @@ def calculate_price(type_id, address_from, address_to):
                 "price": 0,
                 "km": 0,
                 "status": "error",
-                "message": "Invalid coordinates"})
+                "message": "Invalid coordinates",
+            }
+        )
 
     km = haversine(lat1, lon1, lat2, lon2)
 
@@ -302,12 +328,14 @@ def calculate_price(type_id, address_from, address_to):
 
     total_price = base_price + (km * per_km)
 
-    return api_response(data={
-        "price": round(total_price, 2),
-        "delivery_fee": round(km * per_km, 2),
-        "km": round(km, 2),
-        "time": f"{max(15, int(km * 3))}-{max(20, int(km * 4))} min"
-    })
+    return api_response(
+        data={
+            "price": round(total_price, 2),
+            "delivery_fee": round(km * per_km, 2),
+            "km": round(km, 2),
+            "time": f"{max(15, int(km * 3))}-{max(20, int(km * 4))} min",
+        }
+    )
 
 
 @frappe.whitelist()

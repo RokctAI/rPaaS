@@ -8,18 +8,20 @@ def verify_flow():
     frappe.set_user("Administrator")
 
     # 1. Create a Test Order
-    order = frappe.get_doc({
-        "doctype": "Order",
-        "user": "Administrator",
-        "grand_total": 100,
-        "items": []  # Simplified
-    })
+    order = frappe.get_doc(
+        {
+            "doctype": "Order",
+            "user": "Administrator",
+            "grand_total": 100,
+            "items": [],  # Simplified
+        }
+    )
     order.flags.ignore_permissions = True
     order.insert()
 
     # 2. Create Saved Card
     card = tokenize_card("4242424242424242", "Test User", "12/25", "123")
-    token = card['token']
+    token = card["token"]
     print(f"Card Tokenized: {token}")
 
     # 3. Ensure Wallet is Empty
@@ -37,7 +39,7 @@ def verify_flow():
             start_date=nowdate(),
             end_date=add_days(nowdate(), 7),
             payment_method="Wallet",
-            saved_card=None
+            saved_card=None,
         )
         print("ERROR: Should have failed due to insufficient balance!")
     except Exception as e:
@@ -62,7 +64,7 @@ def verify_flow():
             start_date=nowdate(),
             end_date=add_days(nowdate(), 7),
             payment_method="Wallet",
-            saved_card=None
+            saved_card=None,
         )
         print(f"SUCCESS: Auto Order Created: {data}")
     except Exception as e:

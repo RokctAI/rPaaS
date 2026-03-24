@@ -54,15 +54,15 @@ def get_products(  # noqa: C901
             t_item.description,
             t_item.image,
             t_item.standard_rate,
-            t_item.creation
+            t_item.creation,
         )
         .where(t_item.disabled == 0)
         .where(t_item.has_variants == 0)
         # Assuming is_visible_in_website is the correct field for frontend
         # visibility
         .where(t_item.is_visible_in_website == 1)
-        .where(t_item.status == 'Published')
-        .where(t_item.approval_status == 'Approved')
+        .where(t_item.status == "Published")
+        .where(t_item.approval_status == "Approved")
     )
 
     if category_id:
@@ -102,60 +102,63 @@ def get_products(  # noqa: C901
     if rating or order_by in ["high_rating", "low_rating"]:
         t_review = frappe.qb.DocType("Review")
         from frappe.query_builder.functions import Avg, Count, Sum
+
         # Subquery for average rating
         subquery = (
-            frappe.qb.from_(t_review) .select(
-                t_review.reviewable_id, Avg(
-                    t_review.rating).as_("avg_rating")) .where(
-                t_review.reviewable_type == 'Item') .groupby(
-                    t_review.reviewable_id)).as_("t_reviews")
+            frappe.qb.from_(t_review)
+            .select(
+                t_review.reviewable_id, Avg(t_review.rating).as_("avg_rating")
+            )
+            .where(t_review.reviewable_type == "Item")
+            .groupby(t_review.reviewable_id)
+        ).as_("t_reviews")
 
         query = query.left_join(subquery).on(
-            subquery.reviewable_id == t_item.name)
+            subquery.reviewable_id == t_item.name
+        )
 
         if rating:
             try:
-                min_rating, max_rating = map(float, rating.split(','))
-                query = query.where(
-                    subquery.avg_rating >= min_rating).where(
-                    subquery.avg_rating <= max_rating)
+                min_rating, max_rating = map(float, rating.split(","))
+                query = query.where(subquery.avg_rating >= min_rating).where(
+                    subquery.avg_rating <= max_rating
+                )
             except (ValueError, IndexError):
                 pass  # Ignore invalid rating format
 
         if order_by == "high_rating":
             query = query.orderby(
-                subquery.avg_rating,
-                order=frappe.qb.desc).orderby(
-                subquery.avg_rating.isnull())
+                subquery.avg_rating, order=frappe.qb.desc
+            ).orderby(subquery.avg_rating.isnull())
         elif order_by == "low_rating":
             query = query.orderby(
-                subquery.avg_rating,
-                order=frappe.qb.asc).orderby(
-                subquery.avg_rating.isnull())
+                subquery.avg_rating, order=frappe.qb.asc
+            ).orderby(subquery.avg_rating.isnull())
 
     # Sales-based sorting
     elif order_by in ["best_sale", "low_sale"]:
         t_sales_item = frappe.qb.DocType("Sales Invoice Item")
         from frappe.query_builder.functions import Sum
+
         # Subquery for sales quantity
         subquery = (
-            frappe.qb.from_(t_sales_item) .select(
-                t_sales_item.item_code, Sum(
-                    t_sales_item.qty).as_("total_qty")) .groupby(
-                t_sales_item.item_code)).as_("t_sales")
+            frappe.qb.from_(t_sales_item)
+            .select(
+                t_sales_item.item_code, Sum(t_sales_item.qty).as_("total_qty")
+            )
+            .groupby(t_sales_item.item_code)
+        ).as_("t_sales")
 
         query = query.left_join(subquery).on(subquery.item_code == t_item.name)
 
         if order_by == "best_sale":
             query = query.orderby(
-                subquery.total_qty,
-                order=frappe.qb.desc).orderby(
-                subquery.total_qty.isnull())
+                subquery.total_qty, order=frappe.qb.desc
+            ).orderby(subquery.total_qty.isnull())
         elif order_by == "low_sale":
             query = query.orderby(
-                subquery.total_qty,
-                order=frappe.qb.asc).orderby(
-                subquery.total_qty.isnull())
+                subquery.total_qty, order=frappe.qb.asc
+            ).orderby(subquery.total_qty.isnull())
 
     elif order_by == "new":
         query = query.orderby(t_item.creation, order=frappe.qb.desc)
@@ -174,14 +177,15 @@ def get_products(  # noqa: C901
         return []
 
     # --- Eager Loading for Performance ---
-    product_names = [p['name'] for p in products]
+    product_names = [p["name"] for p in products]
 
     # Get stock levels
     stocks = frappe.get_all(
-        "Bin", fields=["item_code", "actual_qty"],
-        filters={"item_code": ["in", product_names], "actual_qty": [">", 0]}
+        "Bin",
+        fields=["item_code", "actual_qty"],
+        filters={"item_code": ["in", product_names], "actual_qty": [">", 0]},
     )
-    stocks_map = {s['item_code']: s['actual_qty'] for s in stocks}
+    stocks_map = {s["item_code"]: s["actual_qty"] for s in stocks}
 
     # Get active discounts
     today = frappe.utils.nowdate()
@@ -189,20 +193,26 @@ def get_products(  # noqa: C901
 
     # Check if Pricing Rule exists and has item_code (to avoid issues in test
     # envs or limited installs)
-    if frappe.db.exists(
-        "DocType",
-        "Pricing Rule") and frappe.db.has_column(
-        "Pricing Rule",
-            "item_code"):
+    if frappe.db.exists("DocType", "Pricing Rule") and frappe.db.has_column(
+        "Pricing Rule", "item_code"
+    ):
         try:
             pricing_rules = frappe.get_all(
-                "Pricing Rule", filters={
-                    "disable": 0, "valid_from": [
-                        "<=", today], "valid_upto": [
-                        ">=", today], "apply_on": "Item Code", "item_code": [
-                        "in", product_names]}, fields=[
-                    "item_code", "rate_or_discount", "discount_percentage"])
-            discounts_map = {rule['item_code']: rule for rule in pricing_rules}
+                "Pricing Rule",
+                filters={
+                    "disable": 0,
+                    "valid_from": ["<=", today],
+                    "valid_upto": [">=", today],
+                    "apply_on": "Item Code",
+                    "item_code": ["in", product_names],
+                },
+                fields=[
+                    "item_code",
+                    "rate_or_discount",
+                    "discount_percentage",
+                ],
+            )
+            discounts_map = {rule["item_code"]: rule for rule in pricing_rules}
         except Exception:
             # Fallback if something is wrong with Pricing Rule schema
             pass
@@ -210,24 +220,30 @@ def get_products(  # noqa: C901
     # Get review averages and counts
     # Using frappe.qb for reviews aggregation as well
     from frappe.query_builder.functions import Avg, Count, Sum  # noqa: F811
+
     t_review = frappe.qb.DocType("Review")
     reviews_query = (
-        frappe.qb.from_(t_review) .select(
-            t_review.reviewable_id, Avg(
-                t_review.rating).as_("avg_rating"), Count('*').as_("reviews_count")) .where(
-            t_review.reviewable_type == 'Item') .where(
-                    t_review.reviewable_id.isin(product_names)) .groupby(
-                        t_review.reviewable_id))
+        frappe.qb.from_(t_review)
+        .select(
+            t_review.reviewable_id,
+            Avg(t_review.rating).as_("avg_rating"),
+            Count("*").as_("reviews_count"),
+        )
+        .where(t_review.reviewable_type == "Item")
+        .where(t_review.reviewable_id.isin(product_names))
+        .groupby(t_review.reviewable_id)
+    )
     reviews_data = reviews_query.run(as_dict=True)
 
-    reviews_map = {r['reviewable_id']: r for r in reviews_data}
+    reviews_map = {r["reviewable_id"]: r for r in reviews_data}
 
     # --- Assemble Final Response ---
     for p in products:
-        p['stock_quantity'] = stocks_map.get(p.name, 0)
-        p['discount'] = discounts_map.get(p.name)
-        p['reviews'] = reviews_map.get(
-            p.name, {"avg_rating": 0, "reviews_count": 0})
+        p["stock_quantity"] = stocks_map.get(p.name, 0)
+        p["discount"] = discounts_map.get(p.name)
+        p["reviews"] = reviews_map.get(
+            p.name, {"avg_rating": 0, "reviews_count": 0}
+        )
 
     return api_response(data=products)
 
@@ -238,6 +254,7 @@ def most_sold_products(limit_start: int = 0, limit_page_length: int = 20):
     Retrieves a list of most sold products.
     """
     from frappe.query_builder.functions import Sum
+
     t_sales_item = frappe.qb.DocType("Sales Invoice Item")
     most_sold_items = (
         frappe.qb.from_(t_sales_item)
@@ -257,7 +274,7 @@ def most_sold_products(limit_start: int = 0, limit_page_length: int = 20):
         "Item",
         fields=["name", "item_name", "description", "image", "standard_rate"],
         filters={"name": ("in", item_codes)},
-        order_by="name"
+        order_by="name",
     )
     return api_response(data=items)
 
@@ -277,7 +294,7 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
             "valid_from": ("<=", today),
             "valid_upto": (">=", today),
         },
-        fields=["name", "apply_on", "item_code", "item_group", "brand"]
+        fields=["name", "apply_on", "item_code", "item_group", "brand"],
     )
 
     item_codes = set()
@@ -288,17 +305,21 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
     has_brand = frappe.db.has_column("Pricing Rule", "brand")
 
     for rule in active_rules:
-        if rule.apply_on == 'Item Code' and has_item_code and rule.item_code:
+        if rule.apply_on == "Item Code" and has_item_code and rule.item_code:
             item_codes.add(rule.item_code)
-        elif rule.apply_on == 'Item Group' and has_item_group and rule.item_group:
+        elif (
+            rule.apply_on == "Item Group"
+            and has_item_group
+            and rule.item_group
+        ):
             items_in_group = frappe.get_all(
-                "Item", filters={
-                    "item_group": rule.item_group}, pluck="name")
+                "Item", filters={"item_group": rule.item_group}, pluck="name"
+            )
             item_codes.update(items_in_group)
-        elif rule.apply_on == 'Brand' and has_brand and rule.brand:
+        elif rule.apply_on == "Brand" and has_brand and rule.brand:
             items_in_brand = frappe.get_all(
-                "Item", filters={
-                    "brand": rule.brand}, pluck="name")
+                "Item", filters={"brand": rule.brand}, pluck="name"
+            )
             item_codes.update(items_in_brand)
 
     if not item_codes:
@@ -306,7 +327,8 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
 
     # Paginate on the final list of item codes
     paginated_item_codes = list(item_codes)[
-        limit_start: limit_start + limit_page_length]
+        limit_start: limit_start + limit_page_length
+    ]
 
     if not paginated_item_codes:
         return api_response(data=[])
@@ -315,7 +337,7 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
         "Item",
         fields=["name", "item_name", "description", "image", "standard_rate"],
         filters={"name": ("in", paginated_item_codes)},
-        order_by="name"
+        order_by="name",
     )
     return api_response(data=items)
 
@@ -332,6 +354,7 @@ def get_products_by_ids(ids: list, **kwargs):
         p_ids = kwargs.get("product_ids")
         if isinstance(p_ids, str):
             import json  # noqa: F811
+
             try:
                 p_ids = json.loads(p_ids)
             except json.JSONDecodeError:
@@ -348,7 +371,7 @@ def get_products_by_ids(ids: list, **kwargs):
         "Item",
         fields=["name", "item_name", "description", "image", "standard_rate"],
         filters=filters,
-        order_by="name"
+        order_by="name",
     )
     return api_response(data=items)
 
@@ -389,9 +412,8 @@ def read_product_file(uuid: str):
 
 @frappe.whitelist(allow_guest=True)
 def get_product_reviews(
-        uuid: str,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    uuid: str, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves reviews for a specific product by its UUID.
     """
@@ -405,11 +427,11 @@ def get_product_reviews(
         filters={
             "reviewable_type": "Item",
             "reviewable_id": product_name,
-            "published": 1
+            "published": 1,
         },
         offset=limit_start,
         limit=limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
     return api_response(data=reviews)
 
@@ -428,9 +450,8 @@ def order_products_calculate(products: list):
 
 @frappe.whitelist(allow_guest=True)
 def get_products_by_brand(
-        brand_id: str,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    brand_id: str, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of products for a given brand.
     """
@@ -440,49 +461,50 @@ def get_products_by_brand(
         filters={"brand": brand_id},
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return api_response(data=products)
 
 
 @frappe.whitelist(allow_guest=True)
 def products_search(
-        search: str,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    search: str, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Searches for products by a search term.
     """
     t_item = frappe.qb.DocType("Item")
-    query = (
-        frappe.qb.from_(t_item) .select(
-            t_item.name,
-            t_item.item_name,
-            t_item.description,
-            t_item.image,
-            t_item.standard_rate))
+    query = frappe.qb.from_(t_item).select(
+        t_item.name,
+        t_item.item_name,
+        t_item.description,
+        t_item.image,
+        t_item.standard_rate,
+    )
 
     from frappe.query_builder.functions import Function
+
     to_tsvector = Function("to_tsvector")
     plainto_tsquery = Function("plainto_tsquery")
     query = query.where(
-        to_tsvector(
-            "english",
-            t_item.item_name).matches(
-            plainto_tsquery(
-                "english",
-                search)))
+        to_tsvector("english", t_item.item_name).matches(
+            plainto_tsquery("english", search)
+        )
+    )
 
-    products = query.limit(limit_page_length).offset(
-        limit_start).orderby(t_item.name).run(as_dict=True)
+    products = (
+        query.limit(limit_page_length)
+        .offset(limit_start)
+        .orderby(t_item.name)
+        .run(as_dict=True)
+    )
     return api_response(data=products)
 
 
 @frappe.whitelist(allow_guest=True)
 def get_products_by_category(
-        uuid: str,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    uuid: str, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of products for a given category.
     """
@@ -496,16 +518,15 @@ def get_products_by_category(
         filters={"item_group": category_name},
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return api_response(data=products)
 
 
 @frappe.whitelist(allow_guest=True)
 def get_products_by_shop(
-        shop_id: str,
-        limit_start: int = 0,
-        limit_page_length: int = 20):
+    shop_id: str, limit_start: int = 0, limit_page_length: int = 20
+):
     """
     Retrieves a list of products for a given shop.
     """
@@ -515,7 +536,7 @@ def get_products_by_shop(
         filters={"shop": shop_id},
         offset=limit_start,
         limit=limit_page_length,
-        order_by="name"
+        order_by="name",
     )
     return api_response(data=products)
 
@@ -536,35 +557,47 @@ def add_product_review(uuid: str, rating: float, comment: str = None):
 
     # Check if user has purchased this item
     has_purchased = frappe.db.exists(
-        "Sales Invoice Item", {
-            "item_code": product_name, "parent": (
-                "in", frappe.get_all(
-                    "Sales Invoice", filters={
-                        "customer": user}, pluck="name"))})
+        "Sales Invoice Item",
+        {
+            "item_code": product_name,
+            "parent": (
+                "in",
+                frappe.get_all(
+                    "Sales Invoice", filters={"customer": user}, pluck="name"
+                ),
+            ),
+        },
+    )
 
     if not has_purchased:
         frappe.throw("You can only review products you have purchased.")
 
     # Check if user has already reviewed this item
-    if frappe.db.exists("Review",
-                        {"reviewable_type": "Item",
-                         "reviewable_id": product_name,
-                         "user": user}):
+    if frappe.db.exists(
+        "Review",
+        {
+            "reviewable_type": "Item",
+            "reviewable_id": product_name,
+            "user": user,
+        },
+    ):
         frappe.throw("You have already reviewed this product.")
 
-    review = frappe.get_doc({
-        "doctype": "Review",
-        "reviewable_type": "Item",
-        "reviewable_id": product_name,
-        "user": user,
-        "rating": rating,
-        "comment": comment,
-        "published": 1
-    })
+    review = frappe.get_doc(
+        {
+            "doctype": "Review",
+            "reviewable_type": "Item",
+            "reviewable_id": product_name,
+            "user": user,
+            "rating": rating,
+            "comment": comment,
+            "published": 1,
+        }
+    )
     review.insert(ignore_permissions=True)
     return api_response(
-        data=review.as_dict(),
-        message="Review added successfully")
+        data=review.as_dict(), message="Review added successfully"
+    )
 
 
 @frappe.whitelist()
@@ -579,15 +612,12 @@ def get_product_history(limit_start: int = 0, limit_page_length: int = 20):
     # Get the names of the items the user has viewed
     viewed_item_names = frappe.get_all(
         "View Log",
-        filters={
-            "user": user,
-            "doctype": "Item"
-        },
+        filters={"user": user, "doctype": "Item"},
         fields=["docname"],
         order_by="creation desc",
         offset=limit_start,
         limit=limit_page_length,
-        distinct=True
+        distinct=True,
     )
 
     item_names = [d.docname for d in viewed_item_names]
@@ -645,6 +675,7 @@ def calculate_product_price(products):
     """
     if isinstance(products, str):
         import json  # noqa: F811
+
         products = json.loads(products)
 
     total_price = 0
@@ -653,20 +684,25 @@ def calculate_product_price(products):
     for item in products:
         # Resolve item ID to price
         # item['id'] usually maps to stock_id/variant
-        rate = frappe.db.get_value(
-            "Item", item.get('id'), "standard_rate") or 0
-        qty = float(item.get('quantity', 0))
+        rate = (
+            frappe.db.get_value("Item", item.get("id"), "standard_rate") or 0
+        )
+        qty = float(item.get("quantity", 0))
         total_price += rate * qty
 
-    return api_response(data={
-        "total_price": total_price,
-        "total_tax": total_tax,
-        "total_shop_tax": 0
-    })
+    return api_response(
+        data={
+            "total_price": total_price,
+            "total_tax": total_tax,
+            "total_shop_tax": 0,
+        }
+    )
 
 
 @frappe.whitelist()
-def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa: C901
+def add_product_review(
+    product_uuid, rating, comment=None, images=None
+):  # noqa: C901
     """
     Adds a review for a product by its UUID, verifying ownership if enabled.
     """
@@ -681,11 +717,17 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
     # Check if user has purchased this item (Highly recommended for
     # high-quality data)
     has_purchased = frappe.db.exists(
-        "Sales Invoice Item", {
-            "item_code": product_name, "parent": (
-                "in", frappe.get_all(
-                    "Sales Invoice", filters={
-                        "customer": user}, pluck="name"))})
+        "Sales Invoice Item",
+        {
+            "item_code": product_name,
+            "parent": (
+                "in",
+                frappe.get_all(
+                    "Sales Invoice", filters={"customer": user}, pluck="name"
+                ),
+            ),
+        },
+    )
 
     if not has_purchased:
         # We might want to allow reviews even without purchase in some cases,
@@ -693,10 +735,14 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
         frappe.throw("You can only review products you have purchased.")
 
     # Check if user has already reviewed this item
-    if frappe.db.exists("Review",
-                        {"reviewable_type": "Item",
-                         "reviewable_id": product_name,
-                         "user": user}):
+    if frappe.db.exists(
+        "Review",
+        {
+            "reviewable_type": "Item",
+            "reviewable_id": product_name,
+            "user": user,
+        },
+    ):
         frappe.throw("You have already reviewed this product.")
 
     review_data = {
@@ -706,7 +752,7 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
         "user": user,
         "rating": rating,
         "comment": comment,
-        "published": 1
+        "published": 1,
     }
 
     # Handle images if provided
@@ -720,19 +766,19 @@ def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa
     review.insert(ignore_permissions=True)
 
     return api_response(
-        data=review.as_dict(),
-        message="Review added successfully")
+        data=review.as_dict(), message="Review added successfully"
+    )
 
 
 @frappe.whitelist()
 def get_suggest_price(
-        item_code: str = None,
-        lang: str = "en",
-        currency: str = "ZAR"):
+    item_code: str = None, lang: str = "en", currency: str = "ZAR"
+):
     """
     Retrieves a suggested price range based on similar items in the same category.
     """
     import datetime
+
     min_price = 1.0
     max_price = 1000.0
 
@@ -742,7 +788,7 @@ def get_suggest_price(
             prices = frappe.get_all(
                 "Item",
                 filters={"item_group": category, "standard_rate": [">", 0]},
-                pluck="standard_rate"
+                pluck="standard_rate",
             )
             if prices:
                 min_price = min(prices)
@@ -755,8 +801,8 @@ def get_suggest_price(
         "data": {
             "min": float(min_price),
             "max": float(max_price),
-            "currency": currency
-        }
+            "currency": currency,
+        },
     }
 
 

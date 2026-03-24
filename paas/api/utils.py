@@ -8,7 +8,8 @@ def _require_admin():
     if "System Manager" not in frappe.get_roles():
         frappe.throw(
             "You are not authorized to perform this action.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
 
 def _get_seller_shop(user_id):
@@ -16,7 +17,8 @@ def _get_seller_shop(user_id):
     if not user_id or user_id == "Guest":
         frappe.throw(
             "You must be logged in to perform this action.",
-            frappe.AuthenticationError)
+            frappe.AuthenticationError,
+        )
 
     # Assuming 'user' is the field on the Shop doctype linking to the User
     shop = frappe.db.get_value("Shop", {"user": user_id}, "name")
@@ -48,8 +50,8 @@ def haversine(lat1, lon1, lat2, lon2):
     R = 6371  # Earth radius in kilometers
     dLat = math.radians(lat2 - lat1)
     dLon = math.radians(lon2 - lon1)
-    a = math.sin(dLat / 2) * math.sin(dLat / 2) + \
-        math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * \
-        math.sin(dLon / 2) * math.sin(dLon / 2)
+    a = math.sin(dLat / 2) * math.sin(dLat / 2) + math.cos(
+        math.radians(lat1)
+    ) * math.cos(math.radians(lat2)) * math.sin(dLon / 2) * math.sin(dLon / 2)
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return R * c
