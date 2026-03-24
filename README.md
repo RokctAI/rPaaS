@@ -1,4 +1,4 @@
-# PaaS – Platform‑as‑a‑Service
+# rPaaS – Platform‑as‑a‑Service
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)  
 [![Frappe Framework](https://img.shields.io/badge/Frappe‑v15-orange)](https://frappeframework.com)  
