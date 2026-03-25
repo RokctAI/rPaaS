@@ -40,6 +40,10 @@
 Developers should use this version of bench: [https://github.com/Frappinize/bench](https://github.com/Frappinize/bench) branch `rokct`.
 
 ```bash
+pip3 install git+https://github.com/Frappinize/bench.git@rokct
+```
+
+```bash
 # From your bench directory
 bench get-app https://github.com/RokctAI/rPaaS.git --app-name paas
 bench --site <your-site> install-app paas
