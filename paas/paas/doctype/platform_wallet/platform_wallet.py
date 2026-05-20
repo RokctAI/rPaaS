@@ -28,7 +28,7 @@ class PlatformWallet(Document):
         scheme = frappe.conf.get("control_plane_scheme", "https")
         api_url = f"{scheme}://{control_plane_url}/api/method/control.control.api.billing.get_tenant_wallet_balance"
 
-        headers = {"X-Rokct-Secret": api_secret}
+        headers = {"X-Rokct-Secret": api_secret, "X-Rokct-Tenant": frappe.local.site}
         try:
             response = requests.post(api_url, headers=headers)
             if response.status_code == 200:
@@ -56,7 +56,7 @@ class PlatformWallet(Document):
         scheme = frappe.conf.get("control_plane_scheme", "https")
         api_url = f"{scheme}://{control_plane_url}/api/method/control.control.api.billing.request_tenant_payout"
 
-        headers = {"X-Rokct-Secret": api_secret}
+        headers = {"X-Rokct-Secret": api_secret, "X-Rokct-Tenant": frappe.local.site}
         data = {"amount": amount}
 
         response = requests.post(api_url, headers=headers, json=data)
