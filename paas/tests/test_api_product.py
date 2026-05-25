@@ -140,7 +140,7 @@ class TestProductAPI(FrappeTestCase):
                 "item_group": "All Item Groups",
                 "shop": self.shop.name,
                 "standard_rate": 200,
-                "stock_uom": "Nos",  # Fixed: Mandatory field
+                "stock_uom": "Unit",  # Fixed: Mandatory field
                 "is_stock_item": 0,
                 "description": "A very specific searchable description.",
                 "status": "Published",
