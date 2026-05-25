@@ -19,11 +19,19 @@ class TestRcoreIntegration(FrappeTestCase):
 
         # Create a test customer linked to user
         if not frappe.db.exists("Customer", "Test Rcore Customer"):
+            if not frappe.db.exists("Customer Group", "Individual"):
+                frappe.get_doc({
+                    "doctype": "Customer Group",
+                    "customer_group_name": "Individual",
+                    "is_group": 0,
+                    "parent_customer_group": "All Customer Groups"
+                }).insert(ignore_permissions=True)
+
             self.customer = frappe.get_doc({
                 "doctype": "Customer",
                 "customer_name": "Test Rcore Customer",
                 "customer_type": "Individual",
-                "customer_group": "All Customer Groups",
+                "customer_group": "Individual",
                 "territory": "All Territories"
             }).insert(ignore_permissions=True)
 
