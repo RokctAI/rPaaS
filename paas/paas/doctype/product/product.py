@@ -27,7 +27,7 @@ def auto_vectorize_product(doc, method=None):
         text = f"{doc.item_name} ({doc.item_group})"
         if doc.description:
             text += f"\n{doc.description}"
-        if hasattr(doc, 'shop') and doc.shop:
+        if hasattr(doc, "shop") and doc.shop:
             text += f"\nShop: {doc.shop}"
 
         vector = embed_text(text)
@@ -35,11 +35,14 @@ def auto_vectorize_product(doc, method=None):
         if vector:
             # Direct SQL update to avoid recursive triggers or permission
             # issues
-            frappe.db.sql(f"""
+            frappe.db.sql(
+                f"""
                 UPDATE "tabItem"
                 SET embedding = '{vector}'
                 WHERE name = %s
-            """, (doc.name,))
+            """,
+                (doc.name,),
+            )
             # We don't commit here, we let the transaction handler do it
 
     except ImportError:
@@ -47,5 +50,4 @@ def auto_vectorize_product(doc, method=None):
         pass
     except Exception as e:
         # Log but don't break the save
-        frappe.log_error(
-            f"PaaS: Auto-vectorization failed for {doc.name}: {e}")
+        frappe.log_error(f"PaaS: Auto-vectorization failed for {doc.name}: {e}")

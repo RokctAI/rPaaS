@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from ..utils import _require_admin
@@ -150,9 +154,7 @@ def delete_email_subscription(subscription_name):
     Deletes an email subscription (for admins).
     """
     _require_admin()
-    frappe.delete_doc(
-        "Email Subscription", subscription_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Email Subscription", subscription_name, ignore_permissions=True)
     return {
         "status": "success",
         "message": "Email subscription deleted successfully.",

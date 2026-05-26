@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 
 
@@ -8,9 +12,7 @@ def get_assetlinks():
         config = frappe.get_single("Flutter App Configuration")
         package_name = config.package_name
         fingerprints = (
-            config.sha256_fingerprint.splitlines()
-            if config.sha256_fingerprint
-            else []
+            config.sha256_fingerprint.splitlines() if config.sha256_fingerprint else []
         )
 
         # Clean up fingerprints (remove empty lines or whitespace)

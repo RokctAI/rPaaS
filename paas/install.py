@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import os
 from frappe.utils import get_bench_path
@@ -11,8 +15,7 @@ def check_site_role():
     - Control sites: For Swagger documentation (no seeders)
     """
     app_role = frappe.conf.get("app_role", "tenant")
-    print(f"PaaS installation on site: {
-        frappe.local.site} (app_role: {app_role})")
+    print(f"PaaS installation on site: {frappe.local.site} (app_role: {app_role})")
 
 
 def after_install():
@@ -59,17 +62,13 @@ def setup_product_vector_column():
     Adds a vector(384) column to the Product table for semantic search.
     """
     if not setup_vector_extension():
-        print(
-            "⚠️ Skipping Product vector column creation due to missing extension."
-        )
+        print("⚠️ Skipping Product vector column creation due to missing extension.")
         return
 
     try:
         # Check if table exists
         if not frappe.db.table_exists("Item"):
-            print(
-                "🛍️ Item table does not exist. Skipping vector column setup."
-            )
+            print("🛍️ Item table does not exist. Skipping vector column setup.")
             return
 
         # Check if column exists using standard API
@@ -79,9 +78,7 @@ def setup_product_vector_column():
             # Note: DDL statements (ALTER TABLE, CREATE INDEX) require raw SQL.
             # frappe.qb is primarily for Data Manipulation (SELECT, INSERT,
             # UPDATE).
-            frappe.db.sql(
-                'ALTER TABLE "tabItem" ADD COLUMN embedding vector(384)'
-            )
+            frappe.db.sql('ALTER TABLE "tabItem" ADD COLUMN embedding vector(384)')
 
             # Add an HNSW index for fast approximate nearest neighbor search
             print("🛍️ Creating HNSW index for Product embeddings...")
@@ -147,8 +144,7 @@ def create_gin_index(table, column):
             pluck=True,
         )
         if not table_exists:
-            print(
-                f"ℹ️ Table {table} does not exist yet. Skipping index {index_name}.")
+            print(f"ℹ️ Table {table} does not exist yet. Skipping index {index_name}.")
             return
 
         chk = frappe.db.sql(
@@ -159,7 +155,8 @@ def create_gin_index(table, column):
             # Try catch GIN index creation
             # If column is json (text), cast to jsonb for indexing support
             frappe.db.sql(
-                f'CREATE INDEX {index_name} ON "{table}" USING GIN (({column}::jsonb))')
+                f'CREATE INDEX {index_name} ON "{table}" USING GIN (({column}::jsonb))'
+            )
     except Exception as e:
         frappe.db.rollback()
         # Log purely as warning, don't crash install
@@ -178,7 +175,8 @@ def create_fts_index(table, column):
         )
         if not table_exists:
             print(
-                f"ℹ️ Table {table} does not exist yet. Skipping FTS index {index_name}.")
+                f"ℹ️ Table {table} does not exist yet. Skipping FTS index {index_name}."
+            )
             return
 
         chk = frappe.db.sql(
@@ -187,7 +185,8 @@ def create_fts_index(table, column):
         )
         if not chk:
             frappe.db.sql(
-                f"CREATE INDEX {index_name} ON \"{table}\" USING GIN (to_tsvector('english', {column}))")
+                f"CREATE INDEX {index_name} ON \"{table}\" USING GIN (to_tsvector('english', {column}))"
+            )
     except Exception as e:
         frappe.db.rollback()
         print(f"⚠️ Failed to create FTS index {index_name}: {str(e)}")
@@ -201,9 +200,7 @@ def run_seeders():
     app_role = frappe.conf.get("app_role", "tenant")
 
     if app_role == "control":
-        print(
-            "Skipping PaaS seeders on control site (Swagger documentation only)."
-        )
+        print("Skipping PaaS seeders on control site (Swagger documentation only).")
         return
 
     # Only seed on tenant sites
@@ -230,9 +227,7 @@ def run_seeders():
                 print(f"Running {script_name} from {script_path}...")
                 import importlib.util
 
-                spec = importlib.util.spec_from_file_location(
-                    script_name, script_path
-                )
+                spec = importlib.util.spec_from_file_location(script_name, script_path)
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
                 module.execute()
@@ -256,9 +251,7 @@ def run_seeders():
         print("Control seeders not found. Skipping sensitive data seeding.")
     except Exception as e:
         print(f"Error running PaaS seeders: {e}")
-        frappe.log_error(
-            f"Error running PaaS seeders: {e}", "PaaS Seeder Error"
-        )
+        frappe.log_error(f"Error running PaaS seeders: {e}", "PaaS Seeder Error")
 
 
 def check_and_fetch_sources():
@@ -291,9 +284,7 @@ def check_and_fetch_sources():
                         "control.control.api.fetch_paas_sources"
                     )
                     fetch_sources()
-                    print(
-                        "✅ Successfully requested Control to fetch sources."
-                    )
+                    print("✅ Successfully requested Control to fetch sources.")
                 except AttributeError:
                     print(
                         "❌ Error: 'control.control.api.fetch_paas_sources' method not found."
@@ -302,11 +293,7 @@ def check_and_fetch_sources():
                 except Exception as ex:
                     print(f"❌ Error during fetch request: {ex}")
             else:
-                print(
-                    "ℹ️ Control app is not installed. Cannot auto-fetch sources."
-                )
-                print(
-                    "Please manually clone sources into: " + source_code_path
-                )
+                print("ℹ️ Control app is not installed. Cannot auto-fetch sources.")
+                print("Please manually clone sources into: " + source_code_path)
         except Exception as e:
             print(f"❌ Error initiating source check: {e}")
