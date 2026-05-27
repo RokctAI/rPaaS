@@ -10,30 +10,32 @@ import json
 class TestRequestModelAPI(FrappeTestCase):
     def setUp(self):
         # Create a test user
-        self.test_user = frappe.get_doc({
-            "doctype": "User",
-            "email": "test_request_model@example.com",
-            "first_name": "Test",
-            "last_name": "Request",
-            "send_welcome_email": 0
-        }).insert(ignore_permissions=True)
+        self.test_user = frappe.get_doc(
+            {
+                "doctype": "User",
+                "email": "test_request_model@example.com",
+                "first_name": "Test",
+                "last_name": "Request",
+                "send_welcome_email": 0,
+            }
+        ).insert(ignore_permissions=True)
         self.test_user.add_roles("System Manager")
 
         # Create a test shop
-        self.shop = frappe.get_doc({
-            "doctype": "Shop",
-            "shop_name": "Test Request Shop",
-            "user": self.test_user.name,
-            "phone": "+14155552671",
-            "uuid": frappe.generate_hash()
-        }).insert(ignore_permissions=True)
+        self.shop = frappe.get_doc(
+            {
+                "doctype": "Shop",
+                "shop_name": "Test Request Shop",
+                "user": self.test_user.name,
+                "phone": "+14155552671",
+                "uuid": frappe.generate_hash(),
+            }
+        ).insert(ignore_permissions=True)
 
         # Create a test product to request changes for
-        self.product = frappe.get_doc({
-            "doctype": "Product",
-            "title": "Test Product",
-            "shop": self.shop.name
-        }).insert(ignore_permissions=True)
+        self.product = frappe.get_doc(
+            {"doctype": "Product", "title": "Test Product", "shop": self.shop.name}
+        ).insert(ignore_permissions=True)
 
         frappe.db.commit()
 
@@ -43,9 +45,7 @@ class TestRequestModelAPI(FrappeTestCase):
     def tearDown(self):
         # Log out
         frappe.set_user("Administrator")
-        frappe.db.delete(
-            "Request Model", {
-                "created_by_user": self.test_user.name})
+        frappe.db.delete("Request Model", {"created_by_user": self.test_user.name})
         try:
             self.product.delete(ignore_permissions=True)
         except Exception:
@@ -64,13 +64,9 @@ class TestRequestModelAPI(FrappeTestCase):
         frappe.db.commit()
 
     def test_create_and_get_request_models(self):
-        request_data = {
-            "new_field": "new_value"
-        }
+        request_data = {"new_field": "new_value"}
         request = create_request_model(
-            model_type="Product",
-            model_id=self.product.name,
-            data=request_data
+            model_type="Product", model_id=self.product.name, data=request_data
         )
         self.assertEqual(request.get("model_type"), "Product")
         self.assertEqual(request.get("model"), self.product.name)

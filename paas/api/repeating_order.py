@@ -1,12 +1,14 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Repeating Order API
 import frappe
 from croniter import croniter
 from datetime import datetime
 
 
-def calculate_ringfence_amount(
-    cron_pattern, start_date_str, end_date_str, unit_price
-):
+def calculate_ringfence_amount(cron_pattern, start_date_str, end_date_str, unit_price):
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     if end_date_str:
         end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
@@ -58,7 +60,8 @@ def create_repeating_order(
         if balance < ringfenced_amount:
             # Specific error message for frontend interception
             frappe.throw(
-                f"Insufficient Wallet Balance. Required: {ringfenced_amount}, Available: {balance}. Suggest Topup")
+                f"Insufficient Wallet Balance. Required: {ringfenced_amount}, Available: {balance}. Suggest Topup"
+            )
 
         # Ringfence
         user_doc.set("wallet_balance", balance - ringfenced_amount)
@@ -106,11 +109,7 @@ def pause_repeating_order(repeating_order_id: str, lang: str = "en"):
     Pauses a repeating order and releases ringfenced funds.
     """
     ro = frappe.get_doc("Repeating Order", repeating_order_id)
-    if (
-        ro.is_active
-        and ro.payment_method == "Wallet"
-        and ro.ringfenced_amount > 0
-    ):
+    if ro.is_active and ro.payment_method == "Wallet" and ro.ringfenced_amount > 0:
         user_doc = frappe.get_doc("User", ro.user)
         user_doc.set(
             "wallet_balance",
@@ -168,9 +167,7 @@ def resume_repeating_order(repeating_order_id: str, lang: str = "en"):
         balance = user_doc.get("wallet_balance") or 0.0
 
         if balance < new_ringfence:
-            frappe.throw(
-                "Insufficient Wallet Balance to resume this schedule."
-            )
+            frappe.throw("Insufficient Wallet Balance to resume this schedule.")
 
         user_doc.set("wallet_balance", balance - new_ringfence)
         user_doc.set(
@@ -204,7 +201,5 @@ def delete_repeating_order(repeating_order_id: str, lang: str = "en"):
         )
         user_doc.save(ignore_permissions=True)
 
-    frappe.delete_doc(
-        "Repeating Order", repeating_order_id, ignore_permissions=True
-    )
+    frappe.delete_doc("Repeating Order", repeating_order_id, ignore_permissions=True)
     return {"status": "success"}

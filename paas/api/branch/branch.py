@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 
@@ -58,9 +62,8 @@ def update_branch(branch_id, branch_data):
         branch_data = json.loads(branch_data)
 
     branch = frappe.get_doc("Branch", branch_id)
-    if (
-        branch.owner != frappe.session.user
-        and "System Manager" not in frappe.get_roles(frappe.session.user)
+    if branch.owner != frappe.session.user and "System Manager" not in frappe.get_roles(
+        frappe.session.user
     ):
         frappe.throw(
             "You are not authorized to update this branch.",
@@ -82,9 +85,8 @@ def delete_branch(branch_id):
     Deletes a branch.
     """
     branch = frappe.get_doc("Branch", branch_id)
-    if (
-        branch.owner != frappe.session.user
-        and "System Manager" not in frappe.get_roles(frappe.session.user)
+    if branch.owner != frappe.session.user and "System Manager" not in frappe.get_roles(
+        frappe.session.user
     ):
         frappe.throw(
             "You are not authorized to delete this branch.",
