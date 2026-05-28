@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from paas.api.utils import _get_seller_shop
@@ -66,9 +70,9 @@ def add_seller_shop_closed_day(date):
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
-    frappe.get_doc(
-        {"doctype": "Shop Closed Day", "shop": shop, "date": date}
-    ).insert(ignore_permissions=True)
+    frappe.get_doc({"doctype": "Shop Closed Day", "shop": shop, "date": date}).insert(
+        ignore_permissions=True
+    )
 
     return {"status": "success", "message": "Closed day added successfully."}
 
@@ -240,9 +244,7 @@ def get_seller_deliveryman_settings():
     if not frappe.db.exists("Shop Deliveryman Settings", {"shop": shop}):
         return {}
 
-    return frappe.get_doc(
-        "Shop Deliveryman Settings", {"shop": shop}
-    ).as_dict()
+    return frappe.get_doc("Shop Deliveryman Settings", {"shop": shop}).as_dict()
 
 
 @frappe.whitelist()

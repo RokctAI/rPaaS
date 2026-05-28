@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 import requests
@@ -117,26 +121,26 @@ def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
         payload = {
             "tx_ref": tx_ref,
             "amount": amount,
-            "currency": doc.get("currency") or frappe.db.get_single_value(
-                "System Settings",
-                "currency"),
+            "currency": doc.get("currency")
+            or frappe.db.get_single_value("System Settings", "currency"),
             "redirect_url": f"{
-                frappe.utils.get_url()}/api/method/paas.api.flutterwave_callback",
+                frappe.utils.get_url()
+            }/api/method/paas.api.flutterwave_callback",
             "customer": {
                 "email": customer_email,
                 "phonenumber": customer_phone,
                 "name": customer_full_name,
             },
             "customizations": {
-                "title": f"Payment for {doctype} {
-                    doc.name}",
+                "title": f"Payment for {doctype} {doc.name}",
                 "logo": frappe.get_website_settings("website_logo"),
             },
         }
 
         headers = {
             "Authorization": f"Bearer {
-                flutterwave_settings.get_password('secret_key')}",
+                flutterwave_settings.get_password('secret_key')
+            }",
             "Content-Type": "application/json",
         }
 
@@ -157,8 +161,10 @@ def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
 
             return {"payment_url": response_data["data"]["link"]}
         else:
-            frappe.log_error(f"Flutterwave initiation failed: {
-                response_data.get('message')}", "Flutterwave Error")
+            frappe.log_error(
+                f"Flutterwave initiation failed: {response_data.get('message')}",
+                "Flutterwave Error",
+            )
             frappe.throw("Failed to initiate payment with Flutterwave.")
 
     except Exception as e:
@@ -180,18 +186,12 @@ def flutterwave_callback():
     transaction_id = args.get("transaction_id")
 
     flutterwave_settings = frappe.get_doc("Flutterwave Settings")
-    success_url = (
-        flutterwave_settings.success_redirect_url or "/payment-success"
-    )
-    failure_url = (
-        flutterwave_settings.failure_redirect_url or "/payment-failed"
-    )
+    success_url = flutterwave_settings.success_redirect_url or "/payment-success"
+    failure_url = flutterwave_settings.failure_redirect_url or "/payment-failed"
 
     if not tx_ref:
         frappe.local.response["type"] = "redirect"
-        frappe.local.response["location"] = (
-            failure_url + "?reason=tx_ref_missing"
-        )
+        frappe.local.response["location"] = failure_url + "?reason=tx_ref_missing"
         return
 
     try:
@@ -199,9 +199,14 @@ def flutterwave_callback():
         order = frappe.get_doc("Order", order_id)
 
         if status == "successful":
-            headers = {"Authorization": f"Bearer {
-                flutterwave_settings.get_password('secret_key')}"}
-            verify_url = f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"
+            headers = {
+                "Authorization": f"Bearer {
+                    flutterwave_settings.get_password('secret_key')
+                }"
+            }
+            verify_url = (
+                f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"
+            )
             response = requests.get(verify_url, headers=headers)
             response.raise_for_status()
             verification_data = response.json()
@@ -211,7 +216,6 @@ def flutterwave_callback():
                 and verification_data["data"]["tx_ref"] == tx_ref
                 and verification_data["data"]["amount"] >= order.grand_total
             ):
-
                 order.payment_status = "Paid"
                 order.custom_payment_transaction_id = transaction_id
                 order.save(ignore_permissions=True)
@@ -240,18 +244,14 @@ def flutterwave_callback():
             order.save(ignore_permissions=True)
             frappe.db.commit()
             frappe.local.response["type"] = "redirect"
-            frappe.local.response["location"] = (
-                failure_url + f"?reason={status}"
-            )
+            frappe.local.response["location"] = failure_url + f"?reason={status}"
             return
 
     except Exception:
         frappe.db.rollback()
         frappe.log_error(frappe.get_traceback(), "Flutterwave Callback Failed")
         frappe.local.response["type"] = "redirect"
-        frappe.local.response["location"] = (
-            failure_url + "?reason=internal_error"
-        )
+        frappe.local.response["location"] = failure_url + "?reason=internal_error"
 
 
 @frappe.whitelist()
@@ -282,14 +282,10 @@ def handle_payfast_callback():
 
     transaction_id = data.get("m_payment_id")
     if not transaction_id:
-        frappe.log_error(
-            "PayFast callback received without m_payment_id", data
-        )
+        frappe.log_error("PayFast callback received without m_payment_id", data)
         return
 
-    transaction = frappe.get_doc(
-        "Transaction", {"payment_reference": transaction_id}
-    )
+    transaction = frappe.get_doc("Transaction", {"payment_reference": transaction_id})
 
     payfast_settings = frappe.get_doc("PaaS Payment Gateway", "PayFast")
     settings = {s.key: s.value for s in payfast_settings.settings}
@@ -413,9 +409,7 @@ def handle_paypal_callback():
 
     paypal_settings_doc = frappe.get_doc("PaaS Payment Gateway", "PayPal")
     settings = {s.key: s.value for s in paypal_settings_doc.settings}
-    success_url = (
-        paypal_settings_doc.success_redirect_url or "/payment-success"
-    )
+    success_url = paypal_settings_doc.success_redirect_url or "/payment-success"
     failure_url = paypal_settings_doc.failure_redirect_url or "/payment-failed"
 
     auth_url = (
@@ -491,10 +485,14 @@ def _initiate_paypal_logic(doctype: str, docname: str):
 
     paypal_settings_doc = frappe.get_doc("PaaS Payment Gateway", "PayPal")
     settings = {s.key: s.value for s in paypal_settings_doc.settings}
-    success_url = paypal_settings_doc.success_redirect_url or f"{
-        frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
-    failure_url = paypal_settings_doc.failure_redirect_url or f"{
-        frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
+    success_url = (
+        paypal_settings_doc.success_redirect_url
+        or f"{frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
+    )
+    failure_url = (
+        paypal_settings_doc.failure_redirect_url
+        or f"{frappe.utils.get_url()}/api/method/paas.api.handle_paypal_callback"
+    )
 
     auth_url = (
         "https://api-m.sandbox.paypal.com/v1/oauth2/token"
@@ -563,11 +561,7 @@ def _initiate_paypal_logic(doctype: str, docname: str):
     ).insert(ignore_permissions=True)
 
     approval_link = next(
-        (
-            link["href"]
-            for link in paypal_order["links"]
-            if link["rel"] == "approve"
-        ),
+        (link["href"] for link in paypal_order["links"] if link["rel"] == "approve"),
         None,
     )
 
@@ -605,11 +599,11 @@ def _initiate_paystack_logic(doctype: str, docname: str):
 
     body = {
         "email": frappe.session.user,
-        "amount": int(
-            amount * 100),
+        "amount": int(amount * 100),
         "currency": doc.get("currency") or "ZAR",
         "callback_url": f"{
-            frappe.utils.get_url()}/api/method/paas.api.handle_paystack_callback",
+            frappe.utils.get_url()
+        }/api/method/paas.api.handle_paystack_callback",
     }
 
     response = requests.post(
@@ -662,9 +656,7 @@ def handle_paystack_callback():
     paystack_data = response.json()
 
     if paystack_data["data"]["status"] == "success":
-        transaction = frappe.get_doc(
-            "Transaction", {"payment_reference": reference}
-        )
+        transaction = frappe.get_doc("Transaction", {"payment_reference": reference})
         transaction.status = "Paid"
         transaction.save(ignore_permissions=True)
 
@@ -672,9 +664,7 @@ def handle_paystack_callback():
         order.status = "Paid"
         order.save(ignore_permissions=True)
     else:
-        transaction = frappe.get_doc(
-            "Transaction", {"payment_reference": reference}
-        )
+        transaction = frappe.get_doc("Transaction", {"payment_reference": reference})
         transaction.status = "Failed"
         transaction.save(ignore_permissions=True)
 
@@ -793,9 +783,7 @@ def process_direct_card_payment(
 
     order = frappe.get_doc("Order", order_id)
     if order.user != user:
-        frappe.throw(
-            "You can only pay for your own orders.", frappe.PermissionError
-        )
+        frappe.throw("You can only pay for your own orders.", frappe.PermissionError)
 
     transaction = frappe.get_doc(
         {
@@ -822,21 +810,15 @@ def _charge_card_token(token, amount, currency, description, user):
     """
     Internal helper to charge a saved card token via the appropriate gateway.
     """
-    saved_card_name = frappe.db.get_value(
-        "Saved Card", {"token": token, "user": user}
-    )
+    saved_card_name = frappe.db.get_value("Saved Card", {"token": token, "user": user})
     if not saved_card_name:
         frappe.throw("Invalid or unauthorized token.", frappe.PermissionError)
 
     saved_card = frappe.get_doc("Saved Card", saved_card_name)
-    gateway_name = (
-        saved_card.gateway or "PayFast"
-    )  # Default to PayFast for legacy
+    gateway_name = saved_card.gateway or "PayFast"  # Default to PayFast for legacy
 
     if gateway_name == "Flutterwave":
-        return _charge_flutterwave_token(
-            token, amount, currency, description, user
-        )
+        return _charge_flutterwave_token(token, amount, currency, description, user)
     elif gateway_name == "PayFast":
         return _charge_payfast_token(token, amount, currency, description)
     else:
@@ -878,9 +860,7 @@ def _charge_flutterwave_token(token, amount, currency, description, user):
     }
 
     try:
-        response = requests.post(
-            url, json=payload, headers=headers, timeout=30
-        )
+        response = requests.post(url, json=payload, headers=headers, timeout=30)
         response.raise_for_status()
         res_data = response.json()
         if res_data.get("status") == "success":
@@ -888,9 +868,7 @@ def _charge_flutterwave_token(token, amount, currency, description, user):
         else:
             frappe.throw(f"Flutterwave Error: {res_data.get('message')}")
     except Exception:
-        frappe.log_error(
-            frappe.get_traceback(), "Flutterwave Token Charge Failed"
-        )
+        frappe.log_error(frappe.get_traceback(), "Flutterwave Token Charge Failed")
         frappe.throw(
             "Card payment failed. Please check your card balance or try another card."
         )
@@ -903,9 +881,7 @@ def _charge_payfast_token(token, amount, currency, description):
     """
     settings = get_payfast_settings()
     is_sandbox = settings.get("is_sandbox", True)
-    base_url = (
-        "api.payfast.co.za" if not is_sandbox else "sandbox.payfast.co.za"
-    )
+    base_url = "api.payfast.co.za" if not is_sandbox else "sandbox.payfast.co.za"
 
     merchant_id = settings.get("merchant_id")
     _merchant_key = settings.get("merchant_key")  # noqa: F841
@@ -913,9 +889,7 @@ def _charge_payfast_token(token, amount, currency, description):
 
     # Ad-hoc charge endpoint
     url = f"https://{base_url}/subscriptions/{token}/adhoc"
-    if is_sandbox and not url.endswith(
-        "/api"
-    ):  # Sandbox API is usually under /api
+    if is_sandbox and not url.endswith("/api"):  # Sandbox API is usually under /api
         url = f"https://sandbox.payfast.co.za/api/subscriptions/{token}/adhoc"
 
     # PayFast API requires amount in cents for adhoc charges
@@ -954,10 +928,7 @@ def _charge_payfast_token(token, amount, currency, description):
 
     # PayFast expects standard urlencoding for the signature string
     signature_string = "&".join(
-        [
-            f"{k}={urlencode(str(signature_params[k]))}"
-            for k in final_sorted_keys
-        ]
+        [f"{k}={urlencode(str(signature_params[k]))}" for k in final_sorted_keys]
     )
 
     import hashlib
@@ -979,24 +950,20 @@ def _charge_payfast_token(token, amount, currency, description):
         response = requests.post(url, json=body, headers=headers, timeout=30)
         res_data = response.json() if response.text else {}
 
-        if (
-            response.status_code in [200, 202]
-            and res_data.get("status") == "success"
-        ):
+        if response.status_code in [200, 202] and res_data.get("status") == "success":
             return res_data
         else:
             error_msg = res_data.get("data", {}).get(
                 "response", "Unknown PayFast Error"
             )
-            frappe.log_error(f"PayFast API Error ({
-                response.status_code}): {
-                response.text}", "PayFast Token Charge Failed")
+            frappe.log_error(
+                f"PayFast API Error ({response.status_code}): {response.text}",
+                "PayFast Token Charge Failed",
+            )
             frappe.throw(f"Payment failed: {error_msg}")
 
     except Exception:
-        frappe.log_error(
-            frappe.get_traceback(), "PayFast Token Charge Exception"
-        )
+        frappe.log_error(frappe.get_traceback(), "PayFast Token Charge Exception")
         frappe.throw("Error connecting to payment gateway.")
 
 
@@ -1008,13 +975,9 @@ def process_token_payment(order_id, token):
 
     order = frappe.get_doc("Order", order_id)
     if order.user != user:
-        frappe.throw(
-            "You can only pay for your own orders.", frappe.PermissionError
-        )
+        frappe.throw("You can only pay for your own orders.", frappe.PermissionError)
 
-    currency = (
-        frappe.db.get_single_value("System Settings", "currency") or "ZAR"
-    )
+    currency = frappe.db.get_single_value("System Settings", "currency") or "ZAR"
     description = f"Payment for Order {order_id}"
 
     # Call the internal helper to process the charge
@@ -1051,9 +1014,7 @@ def tip_process(order_id: str, tip_amount: float):
             frappe.PermissionError,
         )
 
-    if (
-        order.status == "Delivered"
-    ):  # Tipping usually AFTER delivery or during rating
+    if order.status == "Delivered":  # Tipping usually AFTER delivery or during rating
         # Logic to add tip to order or create a separate transaction
         # For now, we update the order's tip field
         order.tip_amount = tip_amount
@@ -1067,9 +1028,7 @@ def tip_process(order_id: str, tip_amount: float):
 
         return {"status": "success", "message": "Tip added successfully."}
     else:
-        frappe.throw(
-            "Tips can only be added to delivered orders (conceptually)."
-        )
+        frappe.throw("Tips can only be added to delivered orders (conceptually).")
 
     transaction = frappe.get_doc(
         {
@@ -1102,8 +1061,7 @@ def process_wallet_top_up(amount, token=None):
     _charge_card_token(
         token=token,
         amount=amount,
-        currency=frappe.db.get_single_value("System Settings", "currency")
-        or "ZAR",
+        currency=frappe.db.get_single_value("System Settings", "currency") or "ZAR",
         description=f"Wallet Top-up for {user}",
         user=user,
     )
