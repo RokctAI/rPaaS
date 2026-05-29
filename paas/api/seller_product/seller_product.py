@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 import uuid
@@ -343,9 +347,7 @@ def create_seller_extra_group(group_data):
 
     group_data["shop"] = shop
 
-    new_group = frappe.get_doc(
-        {"doctype": "Product Extra Group", **group_data}
-    )
+    new_group = frappe.get_doc({"doctype": "Product Extra Group", **group_data})
     new_group.insert(ignore_permissions=True)
     return new_group.as_dict()
 
@@ -390,9 +392,7 @@ def delete_seller_extra_group(group_name):
             frappe.PermissionError,
         )
 
-    frappe.delete_doc(
-        "Product Extra Group", group_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Product Extra Group", group_name, ignore_permissions=True)
     return {"status": "success", "message": "Group deleted successfully."}
 
 
@@ -425,18 +425,14 @@ def create_seller_extra_value(value_data):
     if isinstance(value_data, str):
         value_data = json.loads(value_data)
 
-    group = frappe.get_doc(
-        "Product Extra Group", value_data["product_extra_group"]
-    )
+    group = frappe.get_doc("Product Extra Group", value_data["product_extra_group"])
     if group.shop != shop:
         frappe.throw(
             "You are not authorized to add a value to this group.",
             frappe.PermissionError,
         )
 
-    new_value = frappe.get_doc(
-        {"doctype": "Product Extra Value", **value_data}
-    )
+    new_value = frappe.get_doc({"doctype": "Product Extra Value", **value_data})
     new_value.insert(ignore_permissions=True)
     return new_value.as_dict()
 
@@ -483,9 +479,7 @@ def delete_seller_extra_value(value_name):
             frappe.PermissionError,
         )
 
-    frappe.delete_doc(
-        "Product Extra Value", value_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Product Extra Value", value_name, ignore_permissions=True)
     return {"status": "success", "message": "Value deleted successfully."}
 
 

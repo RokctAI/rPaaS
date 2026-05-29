@@ -1,12 +1,14 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from ..utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_delivery_zones(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_delivery_zones(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of delivery zones for the current seller's shop.
     """
