@@ -16,12 +16,9 @@ def remove_expired_stories():
 
     print("Running Daily Expired Stories Cleanup Job...")
 
-    expired_stories = frappe.get_all("Story",
-                                     filters={
-                                         "expires_at": ["<", now_datetime()]
-                                     },
-                                     pluck="name"
-                                     )
+    expired_stories = frappe.get_all(
+        "Story", filters={"expires_at": ["<", now_datetime()]}, pluck="name"
+    )
 
     if not expired_stories:
         print("No expired stories to delete.")
@@ -31,15 +28,12 @@ def remove_expired_stories():
 
     for story_name in expired_stories:
         try:
-            frappe.delete_doc(
-                "Story",
-                story_name,
-                ignore_permissions=True,
-                force=True)
+            frappe.delete_doc("Story", story_name, ignore_permissions=True, force=True)
             print(f"  - Deleted expired story: {story_name}")
         except Exception:
-            frappe.log_error(frappe.get_traceback(),
-                             f"Failed to delete expired story {story_name}")
+            frappe.log_error(
+                frappe.get_traceback(), f"Failed to delete expired story {story_name}"
+            )
 
     frappe.db.commit()
     print("Expired Stories Cleanup Job Complete.")
@@ -65,12 +59,9 @@ def process_repeating_orders():  # noqa: C901
         "Repeating Order",
         filters={
             "is_active": 1,
-            "start_date": [
-                "<=",
-                now.date()],
-            "next_execution": [
-                "<=",
-                now]},
+            "start_date": ["<=", now.date()],
+            "next_execution": ["<=", now],
+        },
         fields=[
             "name",
             "user",
@@ -80,7 +71,9 @@ def process_repeating_orders():  # noqa: C901
             "end_date",
             "payment_method",
             "saved_card",
-            "ringfenced_amount"])
+            "ringfenced_amount",
+        ],
+    )
 
     count = 0
     for ro in repeating_orders:
@@ -115,8 +108,9 @@ def process_repeating_orders():  # noqa: C901
                     user_doc = frappe.get_doc("User", ro.user)
                     user_doc.set(
                         "ringfenced_balance",
-                        (user_doc.get("ringfenced_balance") or 0.0) -
-                        new_order.grand_total)
+                        (user_doc.get("ringfenced_balance") or 0.0)
+                        - new_order.grand_total,
+                    )
                     user_doc.save(ignore_permissions=True)
 
                     # Update RO
@@ -124,23 +118,25 @@ def process_repeating_orders():  # noqa: C901
                         "Repeating Order",
                         ro.name,
                         "ringfenced_amount",
-                        ro.ringfenced_amount -
-                        new_order.grand_total)
+                        ro.ringfenced_amount - new_order.grand_total,
+                    )
 
                     new_order.payment_status = "Paid"
                     new_order.status = "New"
                     payment_success = True
 
                     # Log Capture Transaction
-                    transaction = frappe.get_doc({
-                        "doctype": "Transaction",
-                        "user": ro.user,
-                        "amount": -new_order.grand_total,
-                        "status": "Success",
-                        "type": "Wallet Capture",
-                        "reference_doctype": "Repeating Order",
-                        "reference_docname": ro.name
-                    })
+                    transaction = frappe.get_doc(
+                        {
+                            "doctype": "Transaction",
+                            "user": ro.user,
+                            "amount": -new_order.grand_total,
+                            "status": "Success",
+                            "type": "Wallet Capture",
+                            "reference_doctype": "Repeating Order",
+                            "reference_docname": ro.name,
+                        }
+                    )
                     transaction.insert(ignore_permissions=True)
                 else:
                     print(f"Insufficient ringfenced funds for {ro.name}")
@@ -148,6 +144,7 @@ def process_repeating_orders():  # noqa: C901
             elif ro.payment_method == "Saved Card" and ro.saved_card:
                 try:
                     from paas.api.payment.payment import process_token_payment
+
                     card = frappe.get_doc("Saved Card", ro.saved_card)
                     # This method inserts the order if it hasn't been already, or we can insert first.
                     # Here we insert first to provide the ID to the payment
@@ -165,21 +162,25 @@ def process_repeating_orders():  # noqa: C901
                     new_order.insert(ignore_permissions=True)
 
                 print(
-                    f"Payment failed for order {
-                        new_order.name}. Order status set to {
-                        new_order.status}")
+                    f"Payment failed for order {new_order.name}. Order status set to {
+                        new_order.status
+                    }"
+                )
 
                 # Notify User
                 try:
-                    from paas.api.notification.notification import send_push_notification
+                    from paas.api.notification.notification import (
+                        send_push_notification,
+                    )
+
                     send_push_notification(
                         user=ro.user,
                         title="Auto-Order Payment Failed",
                         body=f"Your repeating order for {
-                            new_order.shop} could not be paid. Please pay manually or check your wallet.",
-                        data={
-                            "order_id": new_order.name,
-                            "type": "payment_failed"})
+                            new_order.shop
+                        } could not be paid. Please pay manually or check your wallet.",
+                        data={"order_id": new_order.name, "type": "payment_failed"},
+                    )
                 except Exception:
                     pass
             else:
@@ -194,16 +195,16 @@ def process_repeating_orders():  # noqa: C901
             iter = croniter(ro.cron_pattern, now)
             next_exec = iter.get_next(datetime)
 
-            frappe.db.set_value("Repeating Order", ro.name, {
-                "last_execution": now,
-                "next_execution": next_exec
-            })
+            frappe.db.set_value(
+                "Repeating Order",
+                ro.name,
+                {"last_execution": now, "next_execution": next_exec},
+            )
 
         except Exception:
             frappe.log_error(
-                frappe.get_traceback(),
-                f"Failed to process Repeating Order {
-                    ro.name}")
+                frappe.get_traceback(), f"Failed to process Repeating Order {ro.name}"
+            )
         finally:
             # Reset user context to Administrator/System
             frappe.set_user("Administrator")
@@ -214,13 +215,11 @@ def process_repeating_orders():  # noqa: C901
 
     # Cleanup: Find paused or active orders that have expired and ensure they
     # are inactive
-    expired_ro = frappe.get_all("Repeating Order",
-                                filters={
-                                    "is_active": 1,
-                                    "end_date": ["<", now.date()]
-                                },
-                                pluck="name"
-                                )
+    expired_ro = frappe.get_all(
+        "Repeating Order",
+        filters={"is_active": 1, "end_date": ["<", now.date()]},
+        pluck="name",
+    )
     for ro_name in expired_ro:
         frappe.db.set_value("Repeating Order", ro_name, "is_active", 0)
 

@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 from paas.api.repeating_order import create_repeating_order
 from paas.api.payment.payment import tokenize_card, process_wallet_top_up

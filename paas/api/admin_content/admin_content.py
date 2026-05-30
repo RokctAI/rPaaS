@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from ..utils import _require_admin
@@ -127,9 +131,7 @@ def delete_admin_faq(faq_name):
 
 
 @frappe.whitelist()
-def get_admin_faq_categories(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_admin_faq_categories(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of all FAQ categories (for admins).
     """
