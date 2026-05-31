@@ -14,7 +14,7 @@ def get_banners(page: int = 1, limit_page_length: int = 10):
         fields=["name", "title", "image", "url"],
         limit=limit_page_length,
         offset=(page - 1) * limit_page_length,
-        order_by="creation desc"
+        order_by="creation desc",
     )
 
 

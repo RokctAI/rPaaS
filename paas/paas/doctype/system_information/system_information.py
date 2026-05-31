@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 from frappe.model.document import Document
 import json
@@ -23,9 +27,7 @@ class SystemInformation(Document):
         self.flutter_sdk_version = "N/A"
         try:
             if "rcore" in frappe.get_installed_apps():
-                rcore_versions_file = frappe.get_app_path(
-                    "rcore", "versions.json"
-                )
+                rcore_versions_file = frappe.get_app_path("rcore", "versions.json")
                 if os.path.exists(rcore_versions_file):
                     with open(rcore_versions_file, "r") as f:
                         rcore_versions = json.load(f)
@@ -47,9 +49,7 @@ class SystemInformation(Document):
             import requests
 
             # Get the control platform URL from site config
-            control_url = frappe.conf.get(
-                "control_url", "https://platform.rokct.ai"
-            )
+            control_url = frappe.conf.get("control_url", "https://platform.rokct.ai")
 
             # Only try fetching if it looks like a real URL
             if control_url and "http" in control_url:
@@ -85,10 +85,7 @@ class SystemInformation(Document):
             )
             if latest_log:
                 log = latest_log[0]
-                self.latest_error = f"{
-                    log.creation}: {
-                    log.method}\n{
-                    log.error}"
+                self.latest_error = f"{log.creation}: {log.method}\n{log.error}"
             else:
                 self.latest_error = "No errors found."
         except Exception:

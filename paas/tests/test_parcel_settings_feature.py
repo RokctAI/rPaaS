@@ -7,7 +7,7 @@ from paas.api.parcel_order_setting.parcel_order_setting import (
     create_parcel_order_setting,
     get_parcel_order_settings,
     update_parcel_order_setting,
-    delete_parcel_order_setting
+    delete_parcel_order_setting,
 )
 
 
@@ -15,11 +15,9 @@ class TestParcelSettingsFeature(FrappeTestCase):
     def setUp(self):
         frappe.set_user("Administrator")
         # Create a Parcel Option
-        self.option = frappe.get_doc({
-            "doctype": "Parcel Option",
-            "title": "Insurance",
-            "price": 50
-        }).insert(ignore_permissions=True)
+        self.option = frappe.get_doc(
+            {"doctype": "Parcel Option", "title": "Insurance", "price": 50}
+        ).insert(ignore_permissions=True)
 
     def tearDown(self):
         frappe.db.rollback()
@@ -30,15 +28,14 @@ class TestParcelSettingsFeature(FrappeTestCase):
             "type": "Express Box",
             "price": 100,
             "price_per_km": 10,
-            "parcel_options": [
-                {"parcel_option": self.option.name}
-            ]
+            "parcel_options": [{"parcel_option": self.option.name}],
         }
         setting = create_parcel_order_setting(data)
         self.assertEqual(setting.get("type"), "Express Box")
         self.assertEqual(len(setting.get("parcel_options")), 1)
-        self.assertEqual(setting.get("parcel_options")[
-                         0].get("parcel_option"), self.option.name)
+        self.assertEqual(
+            setting.get("parcel_options")[0].get("parcel_option"), self.option.name
+        )
 
         # 2. Retrieve Settings
         settings_list = get_parcel_order_settings()
@@ -51,11 +48,8 @@ class TestParcelSettingsFeature(FrappeTestCase):
         self.assertTrue(found)
 
         # 3. Update Setting
-        update_data = {
-            "price": 150
-        }
-        updated_setting = update_parcel_order_setting(
-            setting.get("name"), update_data)
+        update_data = {"price": 150}
+        updated_setting = update_parcel_order_setting(setting.get("name"), update_data)
         self.assertEqual(updated_setting.get("price"), 150)
 
         # 4. Delete Setting

@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from ..utils import _require_admin
@@ -154,9 +158,7 @@ def get_all_shop_tags(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_product_extra_groups(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_product_extra_groups(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of all product extra groups on the platform (for admins).
     """
@@ -170,9 +172,7 @@ def get_all_product_extra_groups(
 
 
 @frappe.whitelist()
-def get_all_product_extra_values(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_product_extra_values(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of all product extra values on the platform (for admins).
     """
