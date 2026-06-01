@@ -907,7 +907,7 @@ def _generate_flutter_app(app_config_name):  # noqa: C901
                 'source_code',
                 source_project))
 
-        if not os.path.isdir(source_dir):
+        if not os.path.isdir(source_dir) or not os.listdir(source_dir):
             log_message("Source directory not found on host. Offloading compilation to GitHub Actions GitOps runner...", app_config.name)
             run_gitops_compilation(app_config, source_project)
             frappe.publish_realtime(
