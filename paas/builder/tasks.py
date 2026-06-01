@@ -898,8 +898,19 @@ def _generate_flutter_app(app_config_name):  # noqa: C901
         if not source_project:
             raise Exception("Source Project not selected in configuration.")
 
-        # Assumes this script is in `paas/paas/builder/tasks.py`
-        # and the source is in `paas/paas/builder/source_code/`
+        # 1. Explicit remote tenant check - offload instantly without resolving paths
+        app_role = frappe.conf.get("app_role") or os.environ.get("ROK_APP_ROLE", "tenant")
+        if app_role == "tenant":
+            log_message("Running on remote Tenant VPS. Offloading compilation to GitHub Actions GitOps runner...", app_config.name)
+            run_gitops_compilation(app_config, source_project)
+            frappe.publish_realtime(
+                "flutter_build_complete",
+                message={"status": "Success", "app_config_name": app_config.name},
+                user=app_config.owner
+            )
+            return
+
+        # 2. Local Fallback (Development / Master Hub)
         this_dir = os.path.dirname(__file__)
         source_dir = os.path.abspath(
             os.path.join(
