@@ -10,9 +10,7 @@ class Order(Document):
 
     def calculate_totals(self):
         # Calculate total price from order items
-        total_price = sum(
-            item.price *
-            item.quantity for item in self.order_items)
+        total_price = sum(item.price * item.quantity for item in self.order_items)
         total_discount = sum(item.discount or 0 for item in self.order_items)
 
         # Calculate shop tax
@@ -27,12 +25,15 @@ class Order(Document):
 
         # Apply coupon
         if self.coupon_code:
-            coupon = frappe.db.get_value("Coupon", {"code": self.coupon_code}, [
-                                         "discount_type", "discount_amount"], as_dict=True)
+            coupon = frappe.db.get_value(
+                "Coupon",
+                {"code": self.coupon_code},
+                ["discount_type", "discount_amount"],
+                as_dict=True,
+            )
             if coupon:
                 if coupon.discount_type == "Percentage":
-                    coupon_discount = total_price * \
-                        (coupon.discount_amount / 100)
+                    coupon_discount = total_price * (coupon.discount_amount / 100)
                 else:
                     coupon_discount = coupon.discount_amount
                 total_discount += coupon_discount
@@ -42,8 +43,9 @@ class Order(Document):
         # Add service fee
         service_fee = 0
         if frappe.db.exists("DocType", "Permission Settings"):
-            service_fee = frappe.db.get_single_value(
-                "Permission Settings", "service_fee") or 0
+            service_fee = (
+                frappe.db.get_single_value("Permission Settings", "service_fee") or 0
+            )
 
         total_price += service_fee
         total_price += self.delivery_fee or 0
