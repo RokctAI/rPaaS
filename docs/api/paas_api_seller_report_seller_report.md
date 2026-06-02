@@ -1,0 +1,11 @@
+# API Reference: seller_report
+
+Source file: `paas/api/seller_report/seller_report.py`
+
+## Whitelisted API Endpoints
+
+### `def get_order_report(from_date=None, to_date=None)`
+*No documentation provided.*
+
+### `def get_order_report_paginate(limit_start=0, limit_page_length=20)`
+*No documentation provided.*
