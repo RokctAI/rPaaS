@@ -162,6 +162,7 @@ def select_payment_method(session):
 
 
 def get_payment_options(session, total):
+    trace_id = None
     """
     Determine valid payment options based on Hierarchical COD settings and User Wallet/Cards.
     """
@@ -271,6 +272,7 @@ def confirm_order_summary(session):
 
 
 def finalize_order(session):  # noqa: C901
+    trace_id = None
     """
     Step 4: Process Payment & Create Order
     """

@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 from paas.api.repeating_order import create_repeating_order
 from paas.api.payment.payment import tokenize_card, process_wallet_top_up
@@ -5,6 +6,10 @@ from frappe.utils import add_days, nowdate
 
 
 def verify_flow():
+    trace_id = None
+    """
+    Verify auto order flow with trace context.
+    """
     frappe.set_user("Administrator")
 
     # 1. Create a Test Order

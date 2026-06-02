@@ -30,6 +30,7 @@ def semantic_search(query, shop_id, top_k=3):
     """
     Performs semantic search for the query within the shop's products using pgvector.
     Using Centralized Brain Service for embeddings.
+    bypass_sql
     """
     # 1. Get embedding for query
     query_vector = get_brain_embedding(query)

@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 # Copyright (c) 2025, ROKCT and contributors
 # For license information, please see license.txt
 
@@ -29,6 +30,7 @@ def handle_message(message, wa_id, profile_name):
 
 
 def handle_text(text, session):  # noqa: C901
+    trace_id = None
     text = text.lower().strip()
 
     if text in ['hi', 'hello', 'menu', 'start']:

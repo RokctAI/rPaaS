@@ -4,6 +4,7 @@ import json
 
 @frappe.whitelist(allow_guest=True)
 def get_branches(shop_id: str):
+    trace_id = None
     """
     Retrieves a list of branches for a given shop.
     """

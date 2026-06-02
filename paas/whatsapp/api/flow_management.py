@@ -33,7 +33,7 @@ def create_flow():
     }
 
     try:
-        resp = requests.post(create_url, headers=headers, json=payload)
+        resp = requests.post(create_url, headers=headers, json=payload, timeout=10)
         resp.raise_for_status()
         flow_id = resp.json().get("id")
     except Exception as e:
@@ -72,7 +72,8 @@ def create_flow():
             asset_url,
             headers=headers_multipart,
             data=data,
-            files=files)
+            files=files,
+            timeout=10)
         resp.raise_for_status()
     except Exception as e:
         frappe.log_error(
@@ -82,7 +83,7 @@ def create_flow():
     # 3. Publish Flow
     publish_url = f"{base_url}/{flow_id}/publish"
     try:
-        resp = requests.post(publish_url, headers=headers)
+        resp = requests.post(publish_url, headers=headers, timeout=10)
         resp.raise_for_status()
     except Exception as e:
         frappe.log_error(

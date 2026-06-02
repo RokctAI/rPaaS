@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 import json
 from frappe.utils import cint

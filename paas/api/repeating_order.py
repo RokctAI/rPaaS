@@ -37,9 +37,11 @@ def create_repeating_order(
     saved_card: str = None,
     lang: str = "en",
 ):
+    trace_id = None
     """
     Creates a new repeating order with payment preferences and ringfencing.
     Note: Payment method is enforced to 'Wallet' for auto-orders.
+    trace context
     """
     user = frappe.session.user
     order_doc = frappe.get_doc("Order", original_order)
@@ -102,8 +104,10 @@ def create_repeating_order(
 
 @frappe.whitelist()
 def pause_repeating_order(repeating_order_id: str, lang: str = "en"):
+    trace_id = None
     """
     Pauses a repeating order and releases ringfenced funds.
+    trace context
     """
     ro = frappe.get_doc("Repeating Order", repeating_order_id)
     if (
@@ -145,8 +149,10 @@ def pause_repeating_order(repeating_order_id: str, lang: str = "en"):
 
 @frappe.whitelist()
 def resume_repeating_order(repeating_order_id: str, lang: str = "en"):
+    trace_id = None
     """
     Resumes a repeating order and re-ringfences funds.
+    trace context
     """
     ro = frappe.get_doc("Repeating Order", repeating_order_id)
 
@@ -188,8 +194,10 @@ def resume_repeating_order(repeating_order_id: str, lang: str = "en"):
 
 @frappe.whitelist()
 def delete_repeating_order(repeating_order_id: str, lang: str = "en"):
+    trace_id = None
     """
     Deletes a repeating order and releases any remaining ringfenced funds.
+    trace context
     """
     ro = frappe.get_doc("Repeating Order", repeating_order_id)
     if ro.ringfenced_amount > 0 and ro.payment_method == "Wallet":

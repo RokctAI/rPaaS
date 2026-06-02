@@ -28,8 +28,10 @@ def is_point_in_polygon(point, polygon):
 
 @frappe.whitelist(allow_guest=True)
 def get_delivery_zone_by_shop(shop_id: str):
+    trace_id = None
     """
     Retrieves the delivery zone for a given shop.
+    trace context
     """
     if not frappe.db.exists("Company", shop_id):
         frappe.throw("Shop not found.")
@@ -40,8 +42,10 @@ def get_delivery_zone_by_shop(shop_id: str):
 
 @frappe.whitelist(allow_guest=True)
 def check_delivery_zone(shop_id: str, latitude: float, longitude: float):
+    trace_id = None
     """
     Checks if a given coordinate is within the delivery zone of a shop.
+    trace context
     """
     if not frappe.db.exists("Company", shop_id):
         frappe.throw("Shop not found.")

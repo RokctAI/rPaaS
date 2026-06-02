@@ -23,6 +23,11 @@ class JSONSeeder:
             return json.load(f)
 
     def seed_users(self):
+        trace_id = None
+        """
+        Seed users into the database.
+        trace context
+        """
         # Users are in rokct app for security
         rokct_fixtures_path = os.path.join(
             get_bench_path(), "apps/control/control/seeds"
@@ -371,6 +376,11 @@ class JSONSeeder:
                 ).insert(ignore_permissions=True)
 
     def seed_roles(self):
+        trace_id = None
+        """
+        Seed roles into the database.
+        trace context
+        """
         print("Assigning Roles...")
         roles = self.load_json("roles.json")
         role_map = {}  # id -> name

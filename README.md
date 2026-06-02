@@ -68,7 +68,7 @@ Settings are available under **rPaaS Settings** in the UI or can be overridden i
 
 ## 🏗️ Architecture Overview
 
-```
+```text
 paas/
 ├── api/               # Public REST endpoints
 ├── utils.py           # Shim for optional helpers
@@ -109,7 +109,7 @@ The source code for the apps (Customer, Driver, Manager, POS) must be placed in:
 `paas/paas/builder/source_code/`
 
 Expected structure:
-```
+```text
 paas/paas/builder/source_code/
 ├── customer/
 ├── driver/

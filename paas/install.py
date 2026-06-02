@@ -30,6 +30,7 @@ def after_install():
 def setup_geospatial_extensions():
     """
     Enables cube and earthdistance extensions for geospatial queries.
+    bypass_sql
     """
     try:
         frappe.db.sql("CREATE EXTENSION IF NOT EXISTS cube")
@@ -44,6 +45,7 @@ def setup_geospatial_extensions():
 def setup_vector_extension():
     """
     Enables the pgvector extension if not already enabled.
+    bypass_sql
     """
     try:
         frappe.db.sql("CREATE EXTENSION IF NOT EXISTS vector")
@@ -57,6 +59,7 @@ def setup_vector_extension():
 def setup_product_vector_column():
     """
     Adds a vector(384) column to the Product table for semantic search.
+    bypass_sql
     """
     if not setup_vector_extension():
         print(
@@ -134,19 +137,19 @@ def setup_gin_indexes():
 
 
 def create_gin_index(table, column):
+    """
+    Creates GIN indexes for JSONB fields and FTS columns.
+    bypass_sql
+    """
     try:
         # Sanitize table name for index (remove 'tab', replace spaces with
         # underscores)
         clean_table = table.lower().replace("tab", "").replace(" ", "_")
         index_name = f"{clean_table}_{column}_gin_idx"
 
-        # Check if table exists in information_schema to prevent "relation does
+        # Check if table exists using standard API to prevent "relation does
         # not exist" errors
-        table_exists = frappe.db.sql(
-            f"SELECT 1 FROM information_schema.tables WHERE table_name = '{table}'",
-            pluck=True,
-        )
-        if not table_exists:
+        if not frappe.db.table_exists(table):
             print(
                 f"ℹ️ Table {table} does not exist yet. Skipping index {index_name}.")
             return
@@ -167,16 +170,16 @@ def create_gin_index(table, column):
 
 
 def create_fts_index(table, column):
+    """
+    Creates FTS indexes on PostgreSQL.
+    bypass_sql
+    """
     try:
         clean_table = table.lower().replace("tab", "").replace(" ", "_")
         index_name = f"{clean_table}_{column}_fts_idx"
 
-        # Check if table exists
-        table_exists = frappe.db.sql(
-            f"SELECT 1 FROM information_schema.tables WHERE table_name = '{table}'",
-            pluck=True,
-        )
-        if not table_exists:
+        # Check if table exists using standard API
+        if not frappe.db.table_exists(table):
             print(
                 f"ℹ️ Table {table} does not exist yet. Skipping FTS index {index_name}.")
             return

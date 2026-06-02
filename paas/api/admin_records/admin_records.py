@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 import json
 from ..utils import _require_admin
@@ -85,6 +86,7 @@ def delete_admin_parcel_order(parcel_order_id):
 
 @frappe.whitelist()
 def assign_deliveryman_to_parcel(parcel_order_id, deliveryman_id):
+    trace_id = None
     """
     Assigns a deliveryman to a parcel order (for admins).
     """

@@ -30,7 +30,7 @@ class PlatformWallet(Document):
 
         headers = {"X-Rokct-Secret": api_secret, "X-Rokct-Tenant": frappe.local.site}
         try:
-            response = requests.post(api_url, headers=headers)
+            response = requests.post(api_url, headers=headers, timeout=10)
             if response.status_code == 200:
                 data = response.json()
                 self.set_onload(
@@ -59,7 +59,7 @@ class PlatformWallet(Document):
         headers = {"X-Rokct-Secret": api_secret, "X-Rokct-Tenant": frappe.local.site}
         data = {"amount": amount}
 
-        response = requests.post(api_url, headers=headers, json=data)
+        response = requests.post(api_url, headers=headers, json=data, timeout=10)
         if response.status_code == 200:
             return response.json()
         else:

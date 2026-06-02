@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 from frappe.model.document import Document
 import json

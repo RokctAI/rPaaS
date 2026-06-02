@@ -79,6 +79,7 @@ def initiate_flutterwave_parcel_payment(order_id: str):
 
 
 def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
+    trace_id = None
     """
     Internal logic for Flutterwave initiation across different doctypes.
     """
@@ -145,6 +146,7 @@ def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
             "https://api.flutterwave.com/v3/payments",
             json=payload,
             headers=headers,
+            timeout=10,
         )
         response.raise_for_status()
         response_data = response.json()
@@ -202,7 +204,7 @@ def flutterwave_callback():
             headers = {"Authorization": f"Bearer {
                 flutterwave_settings.get_password('secret_key')}"}
             verify_url = f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"
-            response = requests.get(verify_url, headers=headers)
+            response = requests.get(verify_url, headers=headers, timeout=10)
             response.raise_for_status()
             verification_data = response.json()
 
@@ -438,6 +440,7 @@ def handle_paypal_callback():
         auth_url,
         auth=(client_id, client_secret),
         data={"grant_type": "client_credentials"},
+        timeout=10,
     )
     auth_response.raise_for_status()
     access_token = auth_response.json()["access_token"]
@@ -454,6 +457,7 @@ def handle_paypal_callback():
             "Content-Type": "application/json",
             "Authorization": f"Bearer {access_token}",
         },
+        timeout=10,
     )
     order_response.raise_for_status()
     paypal_order = order_response.json()
@@ -516,6 +520,7 @@ def _initiate_paypal_logic(doctype: str, docname: str):
         auth_url,
         auth=(client_id, client_secret),
         data={"grant_type": "client_credentials"},
+        timeout=10,
     )
     auth_response.raise_for_status()
     access_token = auth_response.json()["access_token"]
@@ -547,6 +552,7 @@ def _initiate_paypal_logic(doctype: str, docname: str):
             "Authorization": f"Bearer {access_token}",
         },
         json=order_payload,
+        timeout=10,
     )
     order_response.raise_for_status()
     paypal_order = order_response.json()
@@ -616,6 +622,7 @@ def _initiate_paystack_logic(doctype: str, docname: str):
         "https://api.paystack.co/transaction/initialize",
         headers=headers,
         json=body,
+        timeout=10,
     )
     response.raise_for_status()
     paystack_data = response.json()
@@ -657,6 +664,7 @@ def handle_paystack_callback():
     response = requests.get(
         f"https://api.paystack.co/transaction/verify/{reference}",
         headers=headers,
+        timeout=10,
     )
     response.raise_for_status()
     paystack_data = response.json()
@@ -853,6 +861,7 @@ def _charge_card_token(token, amount, currency, description, user):
 
 
 def _charge_flutterwave_token(token, amount, currency, description, user):
+    trace_id = None
     """
     Executes a tokenized charge via Flutterwave.
     """
@@ -1091,6 +1100,7 @@ def tip_process(order_id: str, tip_amount: float):
 
 @frappe.whitelist()
 def process_wallet_top_up(amount, token=None):
+    trace_id = None
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to top up your wallet.")
@@ -1132,6 +1142,7 @@ def process_wallet_top_up(amount, token=None):
 
 @frappe.whitelist()
 def process_wallet_payment(order_id):
+    trace_id = None
     """
     Deducts payment from User's wallet.
     """

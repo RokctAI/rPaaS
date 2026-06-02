@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 import json
 import requests
@@ -287,9 +288,11 @@ def get_seller_shop_ads_packages(
 
 @frappe.whitelist()
 def purchase_shop_ads_package(package_name):
+    trace_id = None
     """
     Purchases an ads package for the current seller's shop, including
     subscription validation and payment processing.
+    trace context
     """
     user = frappe.session.user
     if user == "Guest":
@@ -353,7 +356,7 @@ def purchase_shop_ads_package(package_name):
 
     try:
         response = requests.post(
-            api_url, headers=headers, data=json.dumps(payment_data)
+            api_url, headers=headers, data=json.dumps(payment_data), timeout=10
         )
         response.raise_for_status()
         response_json = response.json()

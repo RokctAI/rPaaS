@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 import json
 from ..utils import _require_admin

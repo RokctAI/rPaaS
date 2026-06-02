@@ -798,7 +798,7 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
     log_message(f"Syncing {env_path} to Monorepo...", app_config.name)
     
     url = f"https://api.github.com/repos/RokctAI/Monorepo/contents/{env_path}"
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers, timeout=10)
     sha = None
     if resp.status_code == 200:
         sha = resp.json().get("sha")
@@ -810,7 +810,7 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
     if sha:
         payload["sha"] = sha
         
-    put_resp = requests.put(url, headers=headers, json=payload)
+    put_resp = requests.put(url, headers=headers, json=payload, timeout=10)
     if put_resp.status_code not in [200, 201]:
         raise Exception(f"Failed to write env to Monorepo: {put_resp.text}")
         
@@ -824,7 +824,7 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
         gs_path = f".env/{client_prefix}_google-services.json"
         url = f"https://api.github.com/repos/RokctAI/Monorepo/contents/{gs_path}"
         
-        resp = requests.get(url, headers=headers)
+        resp = requests.get(url, headers=headers, timeout=10)
         sha = None
         if resp.status_code == 200:
             sha = resp.json().get("sha")
@@ -836,7 +836,7 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
         if sha:
             payload["sha"] = sha
             
-        put_resp = requests.put(url, headers=headers, json=payload)
+        put_resp = requests.put(url, headers=headers, json=payload, timeout=10)
         if put_resp.status_code not in [200, 201]:
             raise Exception(f"Failed to write google-services to Monorepo: {put_resp.text}")
 
@@ -847,10 +847,10 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
     branch_tag = f"build_{client_prefix}-{frappe.utils.now_datetime().strftime('%Y%m%d%H%M')}"
     
     ref_url = f"https://api.github.com/repos/RokctAI/{repo_name}/git/refs/heads/main"
-    ref_resp = requests.get(ref_url, headers=headers)
+    ref_resp = requests.get(ref_url, headers=headers, timeout=10)
     if ref_resp.status_code != 200:
         ref_url = f"https://api.github.com/repos/RokctAI/{repo_name}/git/refs/heads/master"
-        ref_resp = requests.get(ref_url, headers=headers)
+        ref_resp = requests.get(ref_url, headers=headers, timeout=10)
         if ref_resp.status_code != 200:
             raise Exception(f"Could not resolve base branch of {repo_name}: {ref_resp.text}")
             
@@ -862,7 +862,7 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
         "ref": f"refs/heads/{branch_tag}",
         "sha": base_sha
     }
-    create_resp = requests.post(create_ref_url, headers=headers, json=create_payload)
+    create_resp = requests.post(create_ref_url, headers=headers, json=create_payload, timeout=10)
     if create_resp.status_code not in [200, 201]:
         raise Exception(f"Failed to create GitOps branch ref: {create_resp.text}")
         

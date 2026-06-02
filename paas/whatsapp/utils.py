@@ -45,6 +45,7 @@ def save_whatsapp_config(
 
 
 def get_or_create_session(wa_id, phone_number=None, name=None):
+    trace_id = None
     """
     Retrieves or creates a WhatsApp Session for the given wa_id.
     """

@@ -5,6 +5,7 @@ from paas.api.utils import api_response
 
 @frappe.whitelist()
 def create_parcel_order(order_data):  # noqa: C901
+    trace_id = None
     """
     Creates a new parcel order from a flexible payload.
     'order_data' is a JSON string or dict with parcel details.

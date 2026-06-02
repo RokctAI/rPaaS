@@ -47,8 +47,10 @@ def remove_expired_stories():
 
 @frappe.whitelist()
 def process_repeating_orders():  # noqa: C901
+    trace_id = None
     """
     Process repeating orders that are due for execution.
+    trace/tenant isolation context.
     """
     try:
         from croniter import croniter

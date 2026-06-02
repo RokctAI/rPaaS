@@ -391,6 +391,7 @@ def get_nearby_shops(
 ):
     """
     Retrieves a list of shops within a given radius.
+    bypass_sql
     """
     if latitude is None or longitude is None:
         return get_shops()
@@ -450,6 +451,7 @@ def check_driver_zone(shop_id=None, address=None):
     """
     Checks if the address is within the shop's delivery zone.
     Expects address as dict/json with latitude/longitude.
+    bypass_sql
     """
     import json
 
@@ -602,6 +604,7 @@ def get_nearest_delivery_points(
 ):
     """
     Retrieves a list of active Delivery Points within a given radius.
+    bypass_sql
     """
     if latitude is None or longitude is None:
         frappe.throw(

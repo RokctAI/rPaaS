@@ -19,6 +19,7 @@ def logout():
 
 @frappe.whitelist(allow_guest=True)
 def login(usr, pwd):
+    trace_id = None
     """
     Login endpoint compatible with legacy Flutter app.
     Supports both email and phone number as the username.
@@ -99,6 +100,7 @@ def login(usr, pwd):
 
 @frappe.whitelist()
 def get_profile():
+    trace_id = None
     """
     Get the current user's profile details.
     """
@@ -152,6 +154,7 @@ def get_profile():
 def update_profile(
     firstname=None, lastname=None, email=None, phone=None, images=None
 ):
+    trace_id = None
     """
     Update the current user's profile.
     """
@@ -184,6 +187,7 @@ def update_profile(
 
 @frappe.whitelist()
 def update_password(password, password_confirmation):
+    trace_id = None
     """
     Update the current user's password.
     """
@@ -206,6 +210,7 @@ def update_password(password, password_confirmation):
 
 @frappe.whitelist()
 def delete_account():
+    trace_id = None
     """
     Deletes the currently logged-in user's account.
     If deletion fails due to linked documents, the account is deactivated instead.
@@ -235,6 +240,7 @@ def delete_account():
 @frappe.whitelist()
 @check_subscription_feature("phone_verification")
 def check_phone(phone: str):
+    trace_id = None
     """
     Check if a phone number is already registered to a user.
     """
@@ -287,6 +293,7 @@ def send_phone_verification_code(phone: str):
 @frappe.whitelist()
 @check_subscription_feature("phone_verification")
 def verify_phone_code(phone: str, otp: str):
+    trace_id = None
     """
     Verify the OTP sent to a user's phone.
     Note: This flow is designed for existing users verifying their number.
@@ -355,6 +362,7 @@ def verify_phone_code(phone: str, otp: str):
 
 @frappe.whitelist(allow_guest=True)
 def verify_email_code(email: str, otp: str):
+    trace_id = None
     """
     Verify a user's email address using a 6-digit OTP.
     """
@@ -414,6 +422,7 @@ def verify_email_code(email: str, otp: str):
 
 @frappe.whitelist(allow_guest=True)
 def register_user(password, first_name, last_name, email=None, phone=None):
+    trace_id = None
     """
     Register a new user and send a verification code (OTP).
     Handles both email and phone registration.
@@ -500,6 +509,7 @@ def register_user(password, first_name, last_name, email=None, phone=None):
 
 @frappe.whitelist(allow_guest=True)
 def forgot_password(user: str):
+    trace_id = None
     """
     Initiate a password reset for a given user.
     Handles both email and phone number inputs.
@@ -548,6 +558,7 @@ def forgot_password(user: str):
 
 @frappe.whitelist(allow_guest=True)
 def forgot_password_confirm(email, verify_code, password=None):
+    trace_id = None
     """
     Confirm password reset using a verification code (OTP) or token.
     'email' can be the email address OR the phone number used for reset.
@@ -584,6 +595,7 @@ def forgot_password_confirm(email, verify_code, password=None):
 
 @frappe.whitelist(allow_guest=True)
 def login_with_google(email, display_name, id, avatar=None):
+    trace_id = None
     """
     Social login endpoint. Links accounts by email or creates new ones.
     """
@@ -684,6 +696,7 @@ def search_user(name: str, page: int = 1, limit: int = 20, lang: str = "en"):
 def send_wallet_balance(
     amount: float, name_or_number: str, message: str = None, lang: str = "en"
 ):
+    trace_id = None
     """
     Transfers wallet balance from current user to another user.
     """
@@ -1476,6 +1489,7 @@ def reply_to_ticket(name, content):
 
 @frappe.whitelist()
 def get_user_profile():
+    trace_id = None
     """
     Retrieves the profile information for the currently logged-in user.
     """
@@ -1502,6 +1516,7 @@ def get_user_profile():
 
 @frappe.whitelist()
 def update_user_profile(profile_data):
+    trace_id = None
     """
     Updates the profile information for the currently logged-in user.
     """

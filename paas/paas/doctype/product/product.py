@@ -33,13 +33,8 @@ def auto_vectorize_product(doc, method=None):
         vector = embed_text(text)
 
         if vector:
-            # Direct SQL update to avoid recursive triggers or permission
-            # issues
-            frappe.db.sql(f"""
-                UPDATE "tabItem"
-                SET embedding = '{vector}'
-                WHERE name = %s
-            """, (doc.name,))
+            # Direct database set_value to avoid recursive triggers or permission issues
+            frappe.db.set_value("Item", doc.name, "embedding", str(vector))
             # We don't commit here, we let the transaction handler do it
 
     except ImportError:

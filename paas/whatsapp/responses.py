@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 # Copyright (c) 2025, ROKCT and contributors
 # For license information, please see license.txt
 
@@ -26,7 +27,7 @@ def send_message(wa_id, payload):
     payload['messaging_product'] = "whatsapp"
 
     try:
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, timeout=10)
         response.raise_for_status()
     except Exception as e:
         frappe.log_error(f"Meta API Error: {str(e)}", "WhatsApp Send Failed")

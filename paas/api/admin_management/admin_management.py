@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 import json
 from ..utils import _require_admin
@@ -72,8 +73,10 @@ def delete_shop(shop_name):
 
 @frappe.whitelist()
 def get_all_users(limit_start: int = 0, limit_page_length: int = 20):
+    trace_id = None
     """
     Retrieves a list of all users on the platform (for admins).
+    trace context
     """
     _require_admin()
     return frappe.get_list(

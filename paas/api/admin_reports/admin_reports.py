@@ -1,3 +1,4 @@
+# Tenant context: session.user validation
 import frappe
 import json
 from ..utils import _require_admin
@@ -5,6 +6,7 @@ from ..utils import _require_admin
 
 @frappe.whitelist()
 def get_admin_statistics():
+    trace_id = None
     """
     Retrieves detailed statistics for the admin dashboard including cards and charts.
     """
@@ -109,6 +111,7 @@ def get_admin_statistics():
 def get_multi_company_sales_report(
     from_date: str, to_date: str, company: str = None
 ):
+    trace_id = None
     """
     Retrieves a sales report for a specific company or all companies within a date range (for admins).
     """

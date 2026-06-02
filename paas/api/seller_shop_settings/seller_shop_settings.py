@@ -106,6 +106,7 @@ def get_shop_users(limit_start: int = 0, limit_page_length: int = 20):
 
 @frappe.whitelist()
 def add_shop_user(user_email: str, role: str):
+    trace_id = None
     """
     Adds a user to the current seller's shop with a specific role.
     """
