@@ -10,16 +10,17 @@ class TestNotificationsAPI(FrappeTestCase):
     def setUp(self):
         # Create a test user
         if not frappe.db.exists("User", "test_notifications@example.com"):
-            self.test_user = frappe.get_doc({
-                "doctype": "User",
-                "email": "test_notifications@example.com",
-                "first_name": "Test",
-                "last_name": "Notifications",
-                "send_welcome_email": 0
-            }).insert(ignore_permissions=True)
-        else:
             self.test_user = frappe.get_doc(
-                "User", "test_notifications@example.com")
+                {
+                    "doctype": "User",
+                    "email": "test_notifications@example.com",
+                    "first_name": "Test",
+                    "last_name": "Notifications",
+                    "send_welcome_email": 0,
+                }
+            ).insert(ignore_permissions=True)
+        else:
+            self.test_user = frappe.get_doc("User", "test_notifications@example.com")
         self.test_user.add_roles("System Manager")
 
         # Create notification type if not exists (Usually standard, but Alert
@@ -48,21 +49,20 @@ class TestNotificationsAPI(FrappeTestCase):
         # safely.
 
         existing_alert = frappe.db.get_value(
-            "Notification Type", {"type": "Alert"}, "name")
+            "Notification Type", {"type": "Alert"}, "name"
+        )
         if not existing_alert:
             try:
-                self.alert_type_doc = frappe.get_doc({
-                    "doctype": "Notification Type",
-                    "name": "Alert",
-                    "type": "Alert"
-                }).insert(ignore_permissions=True)
+                self.alert_type_doc = frappe.get_doc(
+                    {"doctype": "Notification Type", "name": "Alert", "type": "Alert"}
+                ).insert(ignore_permissions=True)
             except frappe.DuplicateEntryError:
                 # Race condition or it exists now
                 self.alert_type_doc = frappe.get_doc(
-                    "Notification Type", {"type": "Alert"})
+                    "Notification Type", {"type": "Alert"}
+                )
         else:
-            self.alert_type_doc = frappe.get_doc(
-                "Notification Type", existing_alert)
+            self.alert_type_doc = frappe.get_doc("Notification Type", existing_alert)
 
         frappe.db.commit()
 
@@ -71,14 +71,16 @@ class TestNotificationsAPI(FrappeTestCase):
         frappe.db.delete("Notification Log", {"user": self.test_user.name})
 
         # Create a notification log for the user
-        self.notification_log = frappe.get_doc({
-            "doctype": "Notification Log",
-            "subject": f"Test Notification {frappe.generate_hash()}",
-            "user": self.test_user.name,  # Was for_user
-            "type": "Alert",
-            "message": "Test Content",  # Was email_content
-            "notification_type": self.alert_type_doc.name
-        }).insert(ignore_permissions=True)
+        self.notification_log = frappe.get_doc(
+            {
+                "doctype": "Notification Log",
+                "subject": f"Test Notification {frappe.generate_hash()}",
+                "user": self.test_user.name,  # Was for_user
+                "type": "Alert",
+                "message": "Test Content",  # Was email_content
+                "notification_type": self.alert_type_doc.name,
+            }
+        ).insert(ignore_permissions=True)
 
         # Log in as the test user
         frappe.set_user(self.test_user.name)
@@ -97,9 +99,7 @@ class TestNotificationsAPI(FrappeTestCase):
         notifications = get_user_notifications()
         self.assertTrue(isinstance(notifications, list))
         self.assertEqual(len(notifications), 1)
-        self.assertEqual(
-            notifications[0].get("subject"),
-            self.notification_log.subject)
+        self.assertEqual(notifications[0].get("subject"), self.notification_log.subject)
 
     def test_get_notification_settings(self):
         from paas.api.notification.notification import get_notification_settings
@@ -115,18 +115,21 @@ class TestNotificationsAPI(FrappeTestCase):
         self.assertTrue(any(s.get("type") == "Alert" for s in settings_list))
 
     def test_update_notification_settings(self):
-        from paas.api.notification.notification import update_notification_settings, get_notification_settings
+        from paas.api.notification.notification import (
+            update_notification_settings,
+            get_notification_settings,
+        )
 
         # Turn it off
         response = update_notification_settings(type="Alert", active=0)
-        self.assertEqual(response.get("message"),
-                         "Notification settings updated successfully.")
+        self.assertEqual(
+            response.get("message"), "Notification settings updated successfully."
+        )
 
         # Verify it's off
         response = get_notification_settings()
         settings_list = response.get("data").get("data")
-        alert_setting = next(
-            s for s in settings_list if s.get("type") == "Alert")
+        alert_setting = next(s for s in settings_list if s.get("type") == "Alert")
         self.assertFalse(alert_setting.get("active"))
 
         # Turn it back on
@@ -135,6 +138,5 @@ class TestNotificationsAPI(FrappeTestCase):
         # Verify it's on
         response = get_notification_settings()
         settings_list = response.get("data").get("data")
-        alert_setting = next(
-            s for s in settings_list if s.get("type") == "Alert")
+        alert_setting = next(s for s in settings_list if s.get("type") == "Alert")
         self.assertTrue(alert_setting.get("active"))

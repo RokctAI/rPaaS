@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 
@@ -55,9 +59,7 @@ def check_financial_eligibility(
 
 
 @frappe.whitelist()
-def save_incomplete_loan_application(
-    financial_details: dict, lang: str = "en"
-):
+def save_incomplete_loan_application(financial_details: dict, lang: str = "en"):
     """
     Saves an incomplete loan application as a draft.
     """
