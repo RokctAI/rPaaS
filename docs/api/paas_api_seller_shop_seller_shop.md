@@ -12,6 +12,3 @@ Updates the current seller's shop details.
 
 ### `def set_working_status(status)`
 Updates the shop's open status.
-
-### `def set_shop_working_status(status=None)`
-*No documentation provided.*

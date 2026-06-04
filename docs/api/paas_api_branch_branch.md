@@ -5,7 +5,7 @@ Source file: `paas/api/branch/branch.py`
 ## Whitelisted API Endpoints
 
 ### `def get_branches(shop_id)`
-*No documentation provided.*
+*No documentation provided (generation failed).*
 
 ### `def get_branch(branch_id)`
 Retrieves a single branch.

@@ -87,33 +87,3 @@ Updates a tag for the current seller's shop.
 
 ### `def delete_seller_tag(tag_name)`
 Deletes a tag for the current seller's shop.
-
-### `def create_product(product_data=None)`
-*No documentation provided.*
-
-### `def get_seller_products_paginate(limit_start=0, limit_page_length=20)`
-*No documentation provided.*
-
-### `def get_extras_groups(limit_start=0, limit_page_length=20)`
-*No documentation provided.*
-
-### `def create_extras_group(group_data=None)`
-*No documentation provided.*
-
-### `def delete_extras_group(group_name=None)`
-*No documentation provided.*
-
-### `def create_extras_value(value_data=None)`
-*No documentation provided.*
-
-### `def delete_extras_value(value_name=None)`
-*No documentation provided.*
-
-### `def get_product_details(product_name=None)`
-*No documentation provided.*
-
-### `def update_product_extras(product_name=None, extras_data=None)`
-*No documentation provided.*
-
-### `def update_product_stocks(product_name=None, stocks_data=None)`
-*No documentation provided.*

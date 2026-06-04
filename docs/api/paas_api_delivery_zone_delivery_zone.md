@@ -27,6 +27,3 @@ Returns list of shops that deliver to this location.
 Ray-casting algorithm to check if point is in polygon.
 Polygon is list of [lng, lat] coordinates (GeoJSON standard).
 lat: Y, lng: X
-
-### `def calculate_delivery_price(lat, lng, shop)`
-Calculates delivery price based on shop settings.

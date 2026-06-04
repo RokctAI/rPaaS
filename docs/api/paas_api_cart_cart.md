@@ -45,8 +45,3 @@ Deletes a user from a group cart.
 
 ### `def join_order(cart_id, user_name, lang='en')`
 Allows a user to join a group order.
-
-## Documented Module Functions
-
-### `def calculate_cart_totals(cart_name)`
-Helper function to recalculate the total price of a cart.

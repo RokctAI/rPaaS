@@ -36,8 +36,3 @@ Get the current seller's shop subscription.
 
 ### `def subscribe_my_shop(subscription_id)`
 Subscribe the seller's shop to a new plan.
-
-## Documented Module Functions
-
-### `def get_seller_shop()`
-Get the shop associated with the current seller.

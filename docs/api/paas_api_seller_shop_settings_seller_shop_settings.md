@@ -23,7 +23,7 @@ Deletes a closed day for the current seller's shop.
 Retrieves a list of users for the current seller's shop.
 
 ### `def add_shop_user(user_email, role)`
-*No documentation provided.*
+*No documentation provided (generation failed).*
 
 ### `def remove_shop_user(user_to_remove)`
 Removes a user from the current seller's shop.
@@ -45,6 +45,3 @@ Retrieves the deliveryman settings for the current seller's shop.
 
 ### `def update_seller_deliveryman_settings(settings_data)`
 Updates the deliveryman settings for the current seller's shop.
-
-### `def update_shop_working_days(working_days_data=None)`
-*No documentation provided.*

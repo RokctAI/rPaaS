@@ -9,8 +9,3 @@ Source file: `paas/whatsapp/doctype/whatsapp_tenant_config/whatsapp_tenant_confi
 #### Whitelisted API Methods
 ##### `generate_keys(self)`
 Generates RSA 2048 Key Pair for WhatsApp Flows Encryption.
-
-## Whitelisted API Endpoints
-
-### `def get_config()`
-Returns public configuration for the WhatsApp / Flutter Tenant.

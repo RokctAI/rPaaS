@@ -64,27 +64,3 @@ Updates a combo for the current seller's shop.
 
 ### `def delete_seller_combo(combo_name)`
 Deletes a combo for the current seller's shop.
-
-### `def get_seller_sections(limit_start=0, limit_page_length=20)`
-*No documentation provided.*
-
-### `def create_seller_section(section_data=None)`
-*No documentation provided.*
-
-### `def get_seller_tables(limit_start=0, limit_page_length=20)`
-*No documentation provided.*
-
-### `def delete_seller_tables(table_id=None)`
-*No documentation provided.*
-
-### `def get_table_disable_dates()`
-*No documentation provided.*
-
-### `def get_booking_working_days()`
-*No documentation provided.*
-
-### `def create_seller_booking(booking_data=None)`
-*No documentation provided.*
-
-### `def update_booking_status(booking_id=None, status=None)`
-*No documentation provided.*

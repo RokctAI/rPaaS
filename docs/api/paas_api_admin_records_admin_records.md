@@ -14,7 +14,7 @@ Retrieves a list of all parcel orders on the platform (for admins).
 Deletes a parcel order (for admins).
 
 ### `def assign_deliveryman_to_parcel(parcel_order_id, deliveryman_id)`
-*No documentation provided.*
+*No documentation provided (generation failed).*
 
 ### `def get_all_reviews(limit_start=0, limit_page_length=20)`
 Retrieves a list of all reviews on the platform (for admins).

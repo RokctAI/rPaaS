@@ -5,7 +5,7 @@ Source file: `paas/api/parcel/parcel.py`
 ## Whitelisted API Endpoints
 
 ### `def create_parcel_order(order_data)`
-*No documentation provided.*
+*No documentation provided (generation failed).*
 
 ### `def get_parcel_orders(limit=20, offset=0, status=None)`
 Retrieves a paginated list of parcel orders for the current user.
