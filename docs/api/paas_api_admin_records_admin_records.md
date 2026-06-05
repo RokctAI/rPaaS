@@ -14,7 +14,8 @@ Retrieves a list of all parcel orders on the platform (for admins).
 Deletes a parcel order (for admins).
 
 ### `def assign_deliveryman_to_parcel(parcel_order_id, deliveryman_id)`
-*No documentation provided (generation failed).*
+<!-- f8bbae2b9336ad8e8838f6228c804fa10f58e72209e5eb5b4f47f60b90c00ec2 -->
+The assign_deliveryman_to_parcel function assigns a deliveryman to a specific parcel order. This function is restricted to admin users and requires two parameters: parcel_order_id, which is the unique identifier of the parcel order, and deliveryman_id, which is the unique identifier of the deliveryman to be assigned. The function validates the existence of the deliveryman and then updates the parcel order with the assigned deliveryman, returning the updated parcel order details.
 
 ### `def get_all_reviews(limit_start=0, limit_page_length=20)`
 Retrieves a list of all reviews on the platform (for admins).
