@@ -747,7 +747,7 @@ def generate_flutter_app(app_config_name):
 def run_gitops_compilation(app_config, source_project):
     """
     Performs fully offloaded GitOps compilation of Flutter apps.
-    Saves environment settings and Google Services JSON to Monorepo via GitHub API,
+    Saves environment settings and Google Services JSON to occultation repository via GitHub API,
     then triggers a custom branch refs push on target repository to run CI/CD.
     """
     import base64
@@ -793,11 +793,11 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
         "Content-Type": "application/json"
     }
     
-    # Pushing env files to Monorepo
+    # Pushing env files to occultation repo
     env_path = f".env/{client_prefix}_production.env"
-    log_message(f"Syncing {env_path} to Monorepo...", app_config.name)
+    log_message(f"Syncing {env_path} to occultation...", app_config.name)
     
-    url = f"https://api.github.com/repos/RokctAI/Monorepo/contents/{env_path}"
+    url = f"https://api.github.com/repos/RokctAI/occultation/contents/{env_path}"
     resp = requests.get(url, headers=headers, timeout=10)
     sha = None
     if resp.status_code == 200:
@@ -812,17 +812,17 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
         
     put_resp = requests.put(url, headers=headers, json=payload, timeout=10)
     if put_resp.status_code not in [200, 201]:
-        raise Exception(f"Failed to write env to Monorepo: {put_resp.text}")
+        raise Exception(f"Failed to write env to occultation: {put_resp.text}")
         
     # Sync google-services.json if uploaded
     if app_config.google_services_json:
-        log_message("Syncing google-services.json to Monorepo...", app_config.name)
+        log_message("Syncing google-services.json to occultation...", app_config.name)
         file_doc = frappe.get_doc("File", {"file_url": app_config.google_services_json})
         gs_content = file_doc.get_content()
         gs_b64 = base64.b64encode(gs_content).decode("utf-8")
         
         gs_path = f".env/{client_prefix}_google-services.json"
-        url = f"https://api.github.com/repos/RokctAI/Monorepo/contents/{gs_path}"
+        url = f"https://api.github.com/repos/RokctAI/occultation/contents/{gs_path}"
         
         resp = requests.get(url, headers=headers, timeout=10)
         sha = None
@@ -838,7 +838,7 @@ APP_DISPLAY_NAME={app_config.app_display_name or app_config.name}
             
         put_resp = requests.put(url, headers=headers, json=payload, timeout=10)
         if put_resp.status_code not in [200, 201]:
-            raise Exception(f"Failed to write google-services to Monorepo: {put_resp.text}")
+            raise Exception(f"Failed to write google-services to occultation: {put_resp.text}")
 
     # 3. Push Build Branch to Target App Repo
     repo_name = f"paas_{source_project.lower()}"
