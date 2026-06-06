@@ -10,18 +10,21 @@ class TestDeliveryPointAPI(FrappeTestCase):
     def setUp(self):
         # Create a test delivery point
         if not frappe.db.exists("Delivery Point", "Test Delivery Point"):
-            self.delivery_point = frappe.get_doc({
-                "doctype": "Delivery Point",
-                "name": "Test Delivery Point",
-                "active": 1,
-                "price": 10.0,
-                "address": "123 Test Street",
-                "latitude": 12.340000,
-                "longitude": 56.780000,
-            }).insert(ignore_permissions=True)
+            self.delivery_point = frappe.get_doc(
+                {
+                    "doctype": "Delivery Point",
+                    "name": "Test Delivery Point",
+                    "active": 1,
+                    "price": 10.0,
+                    "address": "123 Test Street",
+                    "latitude": 12.340000,
+                    "longitude": 56.780000,
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.delivery_point = frappe.get_doc(
-                "Delivery Point", "Test Delivery Point")
+                "Delivery Point", "Test Delivery Point"
+            )
 
     def tearDown(self):
         try:
@@ -56,16 +59,22 @@ class TestDeliveryPointAPI(FrappeTestCase):
         # frappe.exceptions.FrappeTypeError
         try:
             from frappe.exceptions import FrappeTypeError
+
             ErrorType = FrappeTypeError
         except ImportError:
             ErrorType = TypeError
 
-        with self.assertRaises((frappe.exceptions.ValidationError, ErrorType, TypeError)):
+        with self.assertRaises(
+            (frappe.exceptions.ValidationError, ErrorType, TypeError)
+        ):
             get_nearest_delivery_points(latitude=None, longitude=56.78)
-        with self.assertRaises((frappe.exceptions.ValidationError, ErrorType, TypeError)):
+        with self.assertRaises(
+            (frappe.exceptions.ValidationError, ErrorType, TypeError)
+        ):
             get_nearest_delivery_points(latitude=12.34, longitude=None)
-        with self.assertRaises((frappe.exceptions.ValidationError, ErrorType, ValueError)):
+        with self.assertRaises(
+            (frappe.exceptions.ValidationError, ErrorType, ValueError)
+        ):
             # "invalid" string might cause ValueError inside float() conversion if it bypasses type check
             # or TypeError if type check catches it.
-            get_nearest_delivery_points(
-                latitude="invalid", longitude="invalid")
+            get_nearest_delivery_points(latitude="invalid", longitude="invalid")
