@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 from paas.api.utils import api_response
 
@@ -52,7 +56,8 @@ def get_weather(location: str):
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Weather Proxy API Error")
         frappe.throw(
-            f"An error occurred while fetching weather data from the control plane: {e}")
+            f"An error occurred while fetching weather data from the control plane: {e}"
+        )
 
 
 @frappe.whitelist(allow_guest=True)
@@ -128,9 +133,7 @@ def get_global_settings():
         # mapping schema fields to generic keys
 
         if settings.project_title:
-            settings_data.append(
-                {"key": "app_name", "value": settings.project_title}
-            )
+            settings_data.append({"key": "app_name", "value": settings.project_title})
 
         if settings.service_fee:
             settings_data.append(
@@ -156,23 +159,18 @@ def get_global_settings():
             )
 
         # Add default language
-        lang = (
-            frappe.db.get_single_value("System Settings", "language") or "en"
-        )
+        lang = frappe.db.get_single_value("System Settings", "language") or "en"
         settings_data.append({"key": "default_language", "value": lang})
 
         # Add default currency
         currency = frappe.db.get_value("Currency", {"enabled": 1}, "name")
         if currency:
-            settings_data.append(
-                {"key": "default_currency", "value": currency}
-            )
+            settings_data.append({"key": "default_currency", "value": currency})
 
         # Add distance unit
         # Check if defined in any relevant settings, otherwise default to km
         distance_unit = (
-            frappe.db.get_single_value("System Settings", "distance_unit")
-            or "km"
+            frappe.db.get_single_value("System Settings", "distance_unit") or "km"
         )
         settings_data.append({"key": "distance_unit", "value": distance_unit})
 

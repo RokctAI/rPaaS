@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 
 
@@ -65,9 +69,7 @@ def add_to_cart(
     addons_data = []
     if addons:
         try:
-            addons_data = (
-                json.loads(addons) if isinstance(addons, str) else addons
-            )
+            addons_data = json.loads(addons) if isinstance(addons, str) else addons
         except Exception:
             addons_data = []
 
@@ -107,9 +109,7 @@ def add_to_cart(
             if match:
                 # Check if existing item has addons. If yes, don't merge (since
                 # we have no addons)
-                existing_addons = (
-                    json.loads(detail.addons) if detail.addons else []
-                )
+                existing_addons = json.loads(detail.addons) if detail.addons else []
                 if not existing_addons:
                     existing_item = detail
                     break
@@ -267,9 +267,7 @@ def create_and_cart(cart: dict, lang: str = "en"):
 
 
 @frappe.whitelist()
-def get_cart_in_group(
-    cart_id: str, shop_id: str, cart_uuid: str, lang: str = "en"
-):
+def get_cart_in_group(cart_id: str, shop_id: str, cart_uuid: str, lang: str = "en"):
     """
     Retrieves a group cart.
     """
