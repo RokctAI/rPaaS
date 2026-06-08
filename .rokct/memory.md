@@ -3,8 +3,8 @@
 **Rule**: Before asking a question or starting a task, the Agent **MUST** read this file to check for past lessons or user preferences.
 
 ## User Profiles
-*   **Ray**:
-    *   **Safe ID**: sinyage.1aedb8 (Used for filenames)
+*   **[Name]**:
+    *   **Safe ID**: [ray.dev.9ac2b1] (Used for filenames)
     *   **Role/Preferences**: [Details]
 *   *(Agent: Add new users here as they appear)*
 
@@ -20,3 +20,7 @@
 *(Agent to append new lessons here when a mistake is made or a correction is received)*
 
 *   **[Date]** - [Lesson]
+
+
+## Safe ID
+sinyage.f74d39
