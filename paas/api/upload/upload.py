@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 from frappe.utils.file_manager import save_file
 from paas.api.utils import api_response
