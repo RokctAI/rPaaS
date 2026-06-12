@@ -12,7 +12,8 @@ from paas.api.admin_content.admin_content import (
     get_admin_faqs,
     update_admin_faq,
     delete_admin_faq,
-    create_admin_faq_category)
+    create_admin_faq_category,
+)
 
 
 class TestAdminContent_New(FrappeTestCase):
@@ -29,25 +30,23 @@ class TestAdminContent_New(FrappeTestCase):
         # Create
         data = {"title": "Admin Banner", "is_active": 1, "image": "test.jpg"}
         banner = create_admin_banner(data)
-        self.assertEqual(banner['title'], "Admin Banner")
-        self.assertIsNone(banner['shop'])
+        self.assertEqual(banner["title"], "Admin Banner")
+        self.assertIsNone(banner["shop"])
 
         # Get
         banners = get_admin_banners()
         self.assertTrue(len(banners) > 0)
 
         # Update
-        update_admin_banner(banner['name'], {"title": "Updated Admin Banner"})
+        update_admin_banner(banner["name"], {"title": "Updated Admin Banner"})
         self.assertEqual(
-            frappe.db.get_value(
-                "Banner",
-                banner['name'],
-                "title"),
-            "Updated Admin Banner")
+            frappe.db.get_value("Banner", banner["name"], "title"),
+            "Updated Admin Banner",
+        )
 
         # Delete
-        delete_admin_banner(banner['name'])
-        self.assertFalse(frappe.db.exists("Banner", banner['name']))
+        delete_admin_banner(banner["name"])
+        self.assertFalse(frappe.db.exists("Banner", banner["name"]))
 
     def test_admin_faq_crud(self):
         # 1. Create Category
@@ -55,22 +54,20 @@ class TestAdminContent_New(FrappeTestCase):
 
         # 2. Create FAQ
         faq = create_admin_faq(
-            {"question": "Admin Question", "answer": "Ans", "faq_category": cat['name']})
-        self.assertEqual(faq['question'], "Admin Question")
+            {"question": "Admin Question", "answer": "Ans", "faq_category": cat["name"]}
+        )
+        self.assertEqual(faq["question"], "Admin Question")
 
         # 3. Get
         faqs = get_admin_faqs()
         self.assertTrue(len(faqs) > 0)
 
         # 4. Update
-        update_admin_faq(faq['name'], {"question": "Updated Q"})
+        update_admin_faq(faq["name"], {"question": "Updated Q"})
         self.assertEqual(
-            frappe.db.get_value(
-                "FAQ",
-                faq['name'],
-                "question"),
-            "Updated Q")
+            frappe.db.get_value("FAQ", faq["name"], "question"), "Updated Q"
+        )
 
         # 5. Delete
-        delete_admin_faq(faq['name'])
-        self.assertFalse(frappe.db.exists("FAQ", faq['name']))
+        delete_admin_faq(faq["name"])
+        self.assertFalse(frappe.db.exists("FAQ", faq["name"]))

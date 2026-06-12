@@ -15,7 +15,7 @@ class TestFAQ(FrappeTestCase):
         data = {
             "question": "How do I order?",
             "answer": "Just click the button.",
-            "type": "web"
+            "type": "web",
         }
         faq = create_faq(data)
         self.assertEqual(faq.question, "How do I order?")

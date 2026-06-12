@@ -14,14 +14,16 @@ class TestBanner(FrappeTestCase):
         frappe.db.delete("Banner", {"title": "Test Banner"})
 
         # Create a Banner ensuring it's an ad
-        self.banner = frappe.get_doc({
-            "doctype": "Banner",
-            "title": "Test Banner",
-            "is_ad": 1,
-            "image": "/files/test_banner.jpg",
-            "is_active": 1,
-            "likes": 0
-        }).insert(ignore_permissions=True)
+        self.banner = frappe.get_doc(
+            {
+                "doctype": "Banner",
+                "title": "Test Banner",
+                "is_ad": 1,
+                "image": "/files/test_banner.jpg",
+                "is_active": 1,
+                "likes": 0,
+            }
+        ).insert(ignore_permissions=True)
 
     def tearDown(self):
         frappe.db.rollback()
@@ -30,7 +32,7 @@ class TestBanner(FrappeTestCase):
         # 1. Get Ads
         ads = get_ads()
         self.assertTrue(len(ads) > 0)
-        found = any(ad['name'] == self.banner.name for ad in ads)
+        found = any(ad["name"] == self.banner.name for ad in ads)
         self.assertTrue(found)
 
         # 2. Get Ad by ID
@@ -39,9 +41,4 @@ class TestBanner(FrappeTestCase):
 
         # 3. Like Banner
         like_banner(self.banner.name)
-        self.assertEqual(
-            frappe.db.get_value(
-                "Banner",
-                self.banner.name,
-                "likes"),
-            1)
+        self.assertEqual(frappe.db.get_value("Banner", self.banner.name, "likes"), 1)
