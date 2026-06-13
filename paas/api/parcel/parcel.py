@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from paas.api.utils import api_response
@@ -34,9 +38,7 @@ def create_parcel_order(order_data):  # noqa: C901
 
     # Get Permission Settings for auto-approval
     paas_settings = frappe.get_single("Permission Settings")
-    initial_status = (
-        "Accepted" if paas_settings.auto_approve_parcel_orders else "New"
-    )
+    initial_status = "Accepted" if paas_settings.auto_approve_parcel_orders else "New"
 
     # Start building the new parcel document
     new_parcel_doc = {
@@ -71,9 +73,7 @@ def create_parcel_order(order_data):  # noqa: C901
         new_parcel_doc["phone_to"] = customer.get("phone")
         new_parcel_doc["address_to"] = f"Customer: {customer.get('full_name')}"
 
-    elif destination_type == "delivery_point" and order_data.get(
-        "delivery_point_id"
-    ):
+    elif destination_type == "delivery_point" and order_data.get("delivery_point_id"):
         delivery_point = frappe.get_doc(
             "Delivery Point", order_data.get("delivery_point_id")
         )
@@ -81,9 +81,7 @@ def create_parcel_order(order_data):  # noqa: C901
         new_parcel_doc["address_to"] = delivery_point.address
         new_parcel_doc["username_to"] = f"Pickup Point: {delivery_point.name}"
 
-    elif destination_type == "custom_location" and order_data.get(
-        "address_to"
-    ):
+    elif destination_type == "custom_location" and order_data.get("address_to"):
         new_parcel_doc["address_to"] = json.dumps(order_data.get("address_to"))
 
     # Link Order if provided
@@ -114,9 +112,7 @@ def create_parcel_order(order_data):  # noqa: C901
 
     # Insert the document and return it
     parcel_order.insert(ignore_permissions=True)
-    return api_response(
-        data=parcel_order.as_dict(), message="Parcel Order Created"
-    )
+    return api_response(data=parcel_order.as_dict(), message="Parcel Order Created")
 
 
 @frappe.whitelist()
@@ -186,9 +182,7 @@ def get_user_parcel_order(name):
             )
         return api_response(data=parcel_order.as_dict())
     except frappe.DoesNotExistError:
-        frappe.throw(
-            f"Parcel Order {name} not found.", frappe.DoesNotExistError
-        )
+        frappe.throw(f"Parcel Order {name} not found.", frappe.DoesNotExistError)
 
 
 @frappe.whitelist()
@@ -225,7 +219,8 @@ def update_parcel_status(parcel_order_id, status):  # noqa: C901
         ):
             if status not in allowed_transitions.get(current_status, []):
                 frappe.throw(
-                    f"Invalid status transition from {current_status} to {status}.")
+                    f"Invalid status transition from {current_status} to {status}."
+                )
 
         # Role-Based Authorization
         if (
@@ -262,9 +257,7 @@ def update_parcel_status(parcel_order_id, status):  # noqa: C901
         parcel_order.status = status
         parcel_order.save(ignore_permissions=True)
 
-        return api_response(
-            data=parcel_order.as_dict(), message="Status Updated"
-        )
+        return api_response(data=parcel_order.as_dict(), message="Status Updated")
     except frappe.DoesNotExistError:
         frappe.throw(
             f"Parcel Order {parcel_order_id} not found.",
