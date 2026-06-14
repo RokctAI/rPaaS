@@ -11,25 +11,29 @@ class TestShopManagementAPI(FrappeTestCase):
     def setUp(self):
         # Create a test user
         if not frappe.db.exists("User", "shop_owner@example.com"):
-            self.test_user = frappe.get_doc({
-                "doctype": "User",
-                "email": "shop_owner@example.com",
-                "first_name": "Shop",
-                "last_name": "Owner",
-                "send_welcome_email": 0
-            }).insert(ignore_permissions=True)
+            self.test_user = frappe.get_doc(
+                {
+                    "doctype": "User",
+                    "email": "shop_owner@example.com",
+                    "first_name": "Shop",
+                    "last_name": "Owner",
+                    "send_welcome_email": 0,
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.test_user = frappe.get_doc("User", "shop_owner@example.com")
 
         # Create a test shop and link it to the user
         if not frappe.db.exists("Shop", "My Awesome Shop"):
-            self.shop = frappe.get_doc({
-                "doctype": "Shop",
-                "shop_name": "My Awesome Shop",
-                "user": self.test_user.name,
-                "uuid": "my_awesome_shop_uuid",
-                "phone": "+14155552671"
-            }).insert(ignore_permissions=True)
+            self.shop = frappe.get_doc(
+                {
+                    "doctype": "Shop",
+                    "shop_name": "My Awesome Shop",
+                    "user": self.test_user.name,
+                    "uuid": "my_awesome_shop_uuid",
+                    "phone": "+14155552671",
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.shop = frappe.get_doc("Shop", "My Awesome Shop")
 
@@ -48,10 +52,10 @@ class TestShopManagementAPI(FrappeTestCase):
                         "User",
                         "shop_owner@example.com",
                         force=True,
-                        ignore_permissions=True)
+                        ignore_permissions=True,
+                    )
                 except frappe.exceptions.LinkExistsError:
-                    frappe.db.set_value(
-                        "User", "shop_owner@example.com", "enabled", 0)
+                    frappe.db.set_value("User", "shop_owner@example.com", "enabled", 0)
         except Exception:
             pass
         try:
@@ -61,20 +65,19 @@ class TestShopManagementAPI(FrappeTestCase):
                         "User",
                         "other_owner@example.com",
                         force=True,
-                        ignore_permissions=True)
+                        ignore_permissions=True,
+                    )
                 except frappe.exceptions.LinkExistsError:
-                    frappe.db.set_value(
-                        "User", "other_owner@example.com", "enabled", 0)
+                    frappe.db.set_value("User", "other_owner@example.com", "enabled", 0)
         except Exception:
             pass
 
         # Handle cases where shop names might have changed and weren't caught
         # by cascade
         frappe.db.delete(
-            "Shop", {
-                "user": [
-                    "in", [
-                        "shop_owner@example.com", "other_owner@example.com"]]})
+            "Shop",
+            {"user": ["in", ["shop_owner@example.com", "other_owner@example.com"]]},
+        )
         frappe.db.commit()
 
     def test_get_user_shop(self):
@@ -88,12 +91,10 @@ class TestShopManagementAPI(FrappeTestCase):
             "shop_name": "My Updated Shop",
             "title": "My Updated Shop",
             "phone": "+14155552671",
-            "open": 0
+            "open": 0,
         }
         updated_shop = update_user_shop(shop_data=shop_data)
-        self.assertEqual(
-            updated_shop["data"].get("shop_name"),
-            "My Updated Shop")
+        self.assertEqual(updated_shop["data"].get("shop_name"), "My Updated Shop")
         self.assertEqual(updated_shop["data"].get("phone"), "+14155552671")
         self.assertEqual(updated_shop["data"].get("open"), 0)
 
@@ -101,20 +102,22 @@ class TestShopManagementAPI(FrappeTestCase):
         # Create another user and shop
         other_user_email = "other_owner@example.com"
         if not frappe.db.exists("User", other_user_email):
-            other_user = frappe.get_doc({
-                "doctype": "User", "email": other_user_email, "first_name": "Other"
-            }).insert(ignore_permissions=True)
+            other_user = frappe.get_doc(
+                {"doctype": "User", "email": other_user_email, "first_name": "Other"}
+            ).insert(ignore_permissions=True)
         else:
             other_user = frappe.get_doc("User", other_user_email)
 
         if not frappe.db.exists("Shop", "Other Shop"):
-            other_shop = frappe.get_doc({
-                "doctype": "Shop",
-                "shop_name": "Other Shop",
-                "user": other_user.name,
-                "uuid": "other_shop_uuid",
-                "phone": "+14155552671"
-            }).insert(ignore_permissions=True)
+            other_shop = frappe.get_doc(
+                {
+                    "doctype": "Shop",
+                    "shop_name": "Other Shop",
+                    "user": other_user.name,
+                    "uuid": "other_shop_uuid",
+                    "phone": "+14155552671",
+                }
+            ).insert(ignore_permissions=True)
         else:
             other_shop = frappe.get_doc("Shop", "Other Shop")
 

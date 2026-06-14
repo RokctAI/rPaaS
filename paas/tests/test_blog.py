@@ -17,7 +17,7 @@ class TestBlog(FrappeTestCase):
             "title": "Welcome to PaaS",
             "description": "This is the first post.",
             "type": "blog",
-            "published_at": now_datetime()
+            "published_at": now_datetime(),
         }
         blog = create_blog(data)
         self.assertEqual(blog["data"]["title"], "Welcome to PaaS")

@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 from paas.verification_utils import generate_verification_code
 
@@ -12,7 +16,9 @@ def get_context(context):
     shop_id = frappe.form_dict.get("shop_id")
 
     if not all([order_id, amount, shop_id]):
-        context.error = "Invalid Payment Link. Please scan the QR code at the counter again."
+        context.error = (
+            "Invalid Payment Link. Please scan the QR code at the counter again."
+        )
         return
 
     try:
@@ -26,15 +32,11 @@ def get_context(context):
 
         # Lookup shop name for better UX
         context.shop_name = (
-            frappe.db.get_value("Shop", shop_id, "name_1")
-            or "Spazafy Merchant"
+            frappe.db.get_value("Shop", shop_id, "name_1") or "Spazafy Merchant"
         )
 
         context.status = "Success"
 
     except Exception as e:
-        frappe.log_error(f"OTP Generation Error: {
-            str(e)}", "Payment Verification")
-        context.error = (
-            "An error occurred while processing your verification code."
-        )
+        frappe.log_error(f"OTP Generation Error: {str(e)}", "Payment Verification")
+        context.error = "An error occurred while processing your verification code."
