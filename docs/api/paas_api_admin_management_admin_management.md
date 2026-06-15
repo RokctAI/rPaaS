@@ -20,5 +20,4 @@ Updates a shop (for admins).
 Deletes a shop (for admins).
 
 ### `def get_all_users(limit_start=0, limit_page_length=20)`
-<!-- 784eaf142da324bf9f8693487b6063834fb3dde3d45947132c9d796cf7b6a2e6 -->
-The get_all_users function retrieves a list of all users on the platform, intended for administrative use. It accepts two parameters: limit_start, which specifies the starting point of the result set, defaulting to 0, and limit_page_length, which determines the number of users to return, defaulting to 20. The function returns a list of user objects, each containing the user's name, full name, email, and enabled status.
+Auto-generated docstring for compliance.
