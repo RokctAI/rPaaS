@@ -15,7 +15,7 @@ class JSONSeeder:
         self.product_map = {}  # old_id -> name
 
     def load_json(self, filename):
-        file_path = os.path.join(self.fixtures_path, filename)
+        file_path = os.path.abspath(os.path.join(self.fixtures_path, filename))
         if not os.path.exists(file_path):
             print(f"Skipping {filename} (not found)")
             return []
@@ -29,10 +29,10 @@ class JSONSeeder:
         trace context
         """
         # Users are in rokct app for security
-        rokct_fixtures_path = os.path.join(
+        rokct_fixtures_path = os.path.abspath(os.path.join(
             get_bench_path(), "apps/control/control/seeds"
-        )
-        users_file = os.path.join(rokct_fixtures_path, "users.json")
+        ))
+        users_file = os.path.abspath(os.path.join(rokct_fixtures_path, "users.json"))
 
         if not os.path.exists(users_file):
             print(f"Skipping users.json (not found in {rokct_fixtures_path})")
@@ -517,9 +517,9 @@ def execute():
     site = frappe.local.site
     # UPDATED: Use seeds_data directory instead of fixtures to prevent
     # auto-import
-    fixtures_path = os.path.join(
+    fixtures_path = os.path.abspath(os.path.join(
         get_bench_path(), "apps/control/control/seeds"
-    )
+    ))
     seeder = JSONSeeder(site, fixtures_path)
     seeder.run()
 

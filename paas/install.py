@@ -216,7 +216,7 @@ def run_seeders():
         def run_seeder_script(script_name):
             try:
                 # Path: apps/control/control/seeds/scripts/{script_name}.py
-                script_path = os.path.join(
+                script_path = os.path.abspath(os.path.join(
                     get_bench_path(),
                     "apps",
                     "control",
@@ -224,7 +224,7 @@ def run_seeders():
                     "seeds",
                     "scripts",
                     f"{script_name}.py",
-                )
+                ))
 
                 if not os.path.exists(script_path):
                     print(f"Seeder script not found: {script_path}")

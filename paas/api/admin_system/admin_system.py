@@ -43,7 +43,7 @@ def get_backups() -> Any:
             backups.append(
                 {
                     "filename": fname,
-                    "size": os.path.getsize(os.path.join(backups_path, fname)),
+                    "size": os.path.getsize(os.path.abspath(os.path.join(backups_path, fname))),
                     "path": f"/private/backups/{fname}",
                 }
             )
