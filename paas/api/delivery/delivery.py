@@ -29,7 +29,9 @@ def is_point_in_polygon(point, polygon):
 
 @frappe.whitelist(allow_guest=True)
 def get_delivery_zone_by_shop(shop_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The get_delivery_zone_by_shop function retrieves the delivery zone associated with a specific shop. It takes one parameter, shop_id, which is a string representing the unique identifier of the shop. The function first checks if the provided shop_id exists in the database, throwing an error if it does not. If the shop exists, it retrieves the corresponding delivery zone document and returns it as a dictionary.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
@@ -45,7 +47,9 @@ def get_delivery_zone_by_shop(shop_id: str) -> Any:
 
 @frappe.whitelist(allow_guest=True)
 def check_delivery_zone(shop_id: str, latitude: float, longitude: float) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The check_delivery_zone function determines whether a specific geographic location falls within the designated delivery area of a particular shop. It takes three parameters: shop_id, which is a unique string identifier for the shop, and latitude and longitude, which are floating-point values representing the coordinates of the location to be checked. The function returns a dictionary containing a status indicator and a corresponding message, indicating whether the location is within the delivery zone of the specified shop.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

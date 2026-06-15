@@ -7,14 +7,18 @@ from paas.api.delivery_man.delivery_man import (
 
 @frappe.whitelist()
 def get_driver_orders_paginate(limit_start: Any=0, limit_page_length: Any=20) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get driver orders paginate API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _get_orders(limit_start, limit_page_length)
 
 
 @frappe.whitelist()
 def fetch_current_order() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Fetch current order API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -37,7 +41,9 @@ def fetch_current_order() -> Any:
 
 @frappe.whitelist()
 def set_current_order(order_id: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Set current order API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if frappe.db.exists("Order", order_id):
@@ -51,7 +57,9 @@ def set_current_order(order_id: Any) -> Any:
 
 @frappe.whitelist()
 def attach_order_to_me(order_id: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Attach order to me API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if frappe.db.exists("Order", order_id):
@@ -66,7 +74,9 @@ def attach_order_to_me(order_id: Any) -> Any:
 
 @frappe.whitelist()
 def update_driver_order_status(order_id: Any, status: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update driver order status API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if frappe.db.exists("Order", order_id):
         doc = frappe.get_doc("Order", order_id)
@@ -79,7 +89,9 @@ def update_driver_order_status(order_id: Any, status: Any) -> Any:
 
 @frappe.whitelist()
 def upload_order_image(order_id: Any, image_url: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Upload order image API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if not image_url:
         return {"status": False}

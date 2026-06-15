@@ -7,7 +7,9 @@ from ..utils import _require_admin
 
 @frappe.whitelist()
 def get_admin_statistics() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The get_admin_statistics function retrieves detailed statistics for the admin dashboard, including cards and charts. This function does not take any parameters. It returns a dictionary containing two main sections: cards and charts. The cards section provides an overview of key metrics such as total users, shops, orders, sales, and product reviews. The charts section includes data for visualizing orders per day, new users per day, new shops per day, and order status breakdown over the last 30 days. The function requires admin privileges to execute.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
@@ -112,7 +114,9 @@ def get_admin_statistics() -> Any:
 
 @frappe.whitelist()
 def get_multi_company_sales_report(from_date: str, to_date: str, company: str=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The get_multi_company_sales_report function generates a sales report for a specified date range, allowing administrators to retrieve data for a single company or all companies. The function takes three parameters: from_date and to_date, which define the date range for the report, and an optional company parameter, which filters the results to a specific company if provided. If the company parameter is not specified, the function returns data for all companies. The report includes order details such as name, shop, user, grand total, status, and creation date, as well as calculated commission amounts based on the sales commission rate for each company.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

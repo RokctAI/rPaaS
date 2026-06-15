@@ -301,7 +301,9 @@ def get_seller_shop_ads_packages(limit_start: int=0, limit_page_length: int=20) 
 
 @frappe.whitelist()
 def purchase_shop_ads_package(package_name: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The purchase_shop_ads_package function allows a seller to purchase an ads package for their shop, handling subscription validation and payment processing. It takes one parameter, package_name, which specifies the name of the ads package to be purchased. The function checks if the seller's current subscription plan is eligible for the chosen ads package, initiates payment via the control panel, and upon successful payment, creates a new Shop Ads Package document with the relevant details, including start and end dates. The function returns the newly created Shop Ads Package document as a dictionary.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

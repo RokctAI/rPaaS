@@ -46,7 +46,9 @@ class PlatformWallet(Document):
 
     @frappe.whitelist()
     def request_payout(self, amount: Any) -> Any:
-        """Auto-generated docstring for compliance."""
+        """
+        The request_payout function initiates a payout request for a specified amount. It takes two parameters: self, a reference to the instance of the class, and amount, the amount to be requested for payout. The function first checks if the lending feature is enabled in the system's Permission Settings. If enabled, it constructs an API request to the control plane URL with the provided amount and sends it using a POST request. The function returns the response from the API if the request is successful, or throws an error if the request fails.
+        """
         import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
         if not frappe.db.get_single_value(
             "Permission Settings",

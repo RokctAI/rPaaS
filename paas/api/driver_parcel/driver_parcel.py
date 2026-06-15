@@ -7,14 +7,18 @@ from paas.api.delivery_man.delivery_man import (
 
 @frappe.whitelist()
 def get_driver_parcel_orders_paginate(limit_start: Any=0, limit_page_length: Any=20) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get driver parcel orders paginate API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _get_parcel_orders(limit_start, limit_page_length)
 
 
 @frappe.whitelist()
 def add_parcel_order_review(order_id: Any, rating: Any, comment: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Add parcel order review API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if frappe.db.exists("Parcel Order", order_id):
         doc = frappe.new_doc("Review")
@@ -30,7 +34,9 @@ def add_parcel_order_review(order_id: Any, rating: Any, comment: Any=None) -> An
 
 @frappe.whitelist()
 def attach_parcel_order_to_me(order_id: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Attach parcel order to me API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if frappe.db.exists("Parcel Order", order_id):
@@ -45,7 +51,9 @@ def attach_parcel_order_to_me(order_id: Any) -> Any:
 
 @frappe.whitelist()
 def set_current_parcel_order(order_id: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Set current parcel order API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if frappe.db.exists("Parcel Order", order_id):
@@ -59,7 +67,9 @@ def set_current_parcel_order(order_id: Any) -> Any:
 
 @frappe.whitelist()
 def update_driver_parcel_order_status(order_id: Any, status: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update driver parcel order status API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if frappe.db.exists("Parcel Order", order_id):
         doc = frappe.get_doc("Parcel Order", order_id)

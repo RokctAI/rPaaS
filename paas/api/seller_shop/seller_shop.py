@@ -120,6 +120,8 @@ def set_working_status(status: Any) -> Any:
 
 @frappe.whitelist()
 def set_shop_working_status(status: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Set shop working status API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return set_working_status(status)

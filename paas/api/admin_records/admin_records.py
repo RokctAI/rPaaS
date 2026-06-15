@@ -78,7 +78,9 @@ def delete_admin_parcel_order(parcel_order_id: Any) -> Any:
 
 @frappe.whitelist()
 def assign_deliveryman_to_parcel(parcel_order_id: Any, deliveryman_id: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The assign_deliveryman_to_parcel function assigns a deliveryman to a specific parcel order. This function is restricted to admin users and requires two parameters: parcel_order_id, which is the unique identifier of the parcel order, and deliveryman_id, which is the unique identifier of the deliveryman to be assigned. The function validates the existence of the deliveryman and then updates the parcel order with the assigned deliveryman, returning the updated parcel order details.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

@@ -683,56 +683,72 @@ def delete_seller_tag(tag_name: Any) -> Any:
 
 @frappe.whitelist()
 def create_product(product_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Create product API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return create_seller_product(product_data)
 
 
 @frappe.whitelist()
 def get_seller_products_paginate(limit_start: Any=0, limit_page_length: Any=20) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get seller products paginate API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return get_seller_products(limit_start, limit_page_length)
 
 
 @frappe.whitelist()
 def get_extras_groups(limit_start: Any=0, limit_page_length: Any=20) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get extras groups API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return get_seller_extra_groups(limit_start, limit_page_length)
 
 
 @frappe.whitelist()
 def create_extras_group(group_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Create extras group API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return create_seller_extra_group(group_data)
 
 
 @frappe.whitelist()
 def delete_extras_group(group_name: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Delete extras group API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return delete_seller_extra_group(group_name)
 
 
 @frappe.whitelist()
 def create_extras_value(value_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Create extras value API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return create_seller_extra_value(value_data)
 
 
 @frappe.whitelist()
 def delete_extras_value(value_name: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Delete extras value API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return delete_seller_extra_value(value_name)
 
 
 @frappe.whitelist()
 def get_product_details(product_name: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get product details API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if product_name and frappe.db.exists("Product", product_name):
         return {"data": frappe.get_doc("Product", product_name).as_dict()}
@@ -741,13 +757,17 @@ def get_product_details(product_name: Any=None) -> Any:
 
 @frappe.whitelist()
 def update_product_extras(product_name: Any=None, extras_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update product extras API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return {"status": True}
 
 
 @frappe.whitelist()
 def update_product_stocks(product_name: Any=None, stocks_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update product stocks API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return {"status": True}

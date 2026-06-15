@@ -6,7 +6,9 @@ from paas.api.utils import api_response
 
 @frappe.whitelist()
 def create_parcel_order(order_data: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The create_parcel_order function creates a new parcel order from a flexible payload. It takes one parameter, order_data, which is a JSON string or dictionary containing parcel details. The function checks for idempotency, handles different destination types, and links orders and parcel options if provided. It returns the newly created parcel order document. The order_data parameter should include relevant information such as total price, currency, parcel type, and destination details. If the user is not logged in, the function throws an authentication error.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

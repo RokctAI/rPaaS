@@ -73,14 +73,18 @@ def get_payment_gateway(id: str) -> Any:
 
 @frappe.whitelist()
 def initiate_flutterwave_payment(order_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The initiate_flutterwave_payment function initiates a payment transaction through Flutterwave for a specified order. It takes one parameter, order_id, which is a string representing the unique identifier of the order for which the payment is being initiated. This function serves as a wrapper around the core payment logic, providing a simplified interface for triggering payments.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _initiate_flutterwave_logic("Order", order_id)
 
 
 @frappe.whitelist()
 def initiate_flutterwave_parcel_payment(order_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Initiate flutterwave parcel payment API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _initiate_flutterwave_logic("Parcel Order", order_id)
 
@@ -494,14 +498,18 @@ def handle_paypal_callback() -> Any:
 
 @frappe.whitelist()
 def initiate_paypal_payment(order_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The initiate_paypal_payment function initiates a PayPal payment for a specific order. It takes one parameter, order_id, which is a string representing the unique identifier of the order for which the payment is being initiated. This function serves as a wrapper around the core PayPal payment logic, providing a simple and straightforward way to start the payment process for a given order.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _initiate_paypal_logic("Order", order_id)
 
 
 @frappe.whitelist()
 def initiate_paypal_parcel_payment(order_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Initiate paypal parcel payment API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _initiate_paypal_logic("Parcel Order", order_id)
 
@@ -604,14 +612,18 @@ def _initiate_paypal_logic(doctype: str, docname: str):
 
 @frappe.whitelist()
 def initiate_paystack_payment(order_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The initiate_paystack_payment function initiates a payment process through Paystack for a specific order. It takes one parameter, order_id, which is a string representing the unique identifier of the order for which the payment is being initiated. This function serves as a gateway to trigger the underlying payment logic, passing the order type as "Order" and the provided order_id to the _initiate_paystack_logic function for further processing.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _initiate_paystack_logic("Order", order_id)
 
 
 @frappe.whitelist()
 def initiate_paystack_parcel_payment(order_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Initiate paystack parcel payment API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _initiate_paystack_logic("Parcel Order", order_id)
 
@@ -735,7 +747,9 @@ def handle_stripe_webhook() -> Any:
 
 @frappe.whitelist()
 def get_saved_cards() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The get_saved_cards function retrieves a list of saved credit cards associated with the currently logged-in user. It first checks if the user is logged in, throwing an error if they are a guest. If the user is authenticated, it queries the system for a list of saved cards linked to the user's account, returning a list of card objects containing details such as the card name, payment gateway, token, last four digits, card type, expiry date, and card holder's name.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -759,7 +773,9 @@ def get_saved_cards() -> Any:
 
 @frappe.whitelist()
 def tokenize_card(card_number: Any, card_holder: Any, expiry_date: Any, cvc: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The tokenize_card function is used to securely store a user's credit card information. It takes four parameters: card_number, card_holder, expiry_date, and cvc, which represent the credit card number, card holder's name, expiration date, and card verification code, respectively. The function generates a unique token for the saved card and returns a dictionary containing the token, saved card name, last four digits of the card number, card type, and expiration date. The function requires the user to be logged in and automatically detects the card type based on the card number.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -806,7 +822,9 @@ def tokenize_card(card_number: Any, card_holder: Any, expiry_date: Any, cvc: Any
 
 @frappe.whitelist()
 def delete_card(card_name: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The delete_card function is used to remove a saved card from the system. It takes one parameter, card_name, which specifies the name of the card to be deleted. The function first checks if the current user is logged in, throwing an error if they are a guest. It then verifies that the user attempting to delete the card is the same user who saved it, throwing a permission error if they are not authorized. If both checks pass, the function deletes the specified card and returns a success status.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -825,7 +843,9 @@ def delete_card(card_name: Any) -> Any:
 
 @frappe.whitelist()
 def process_direct_card_payment(order_id: Any, card_number: Any, card_holder: Any, expiry_date: Any, cvc: Any, save_card: Any=False) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The process_direct_card_payment function facilitates direct card payments for a specific order. It takes in several parameters: order_id, which identifies the order being paid for, card_number, card_holder, expiry_date, and cvc, which are the card details used for payment. The save_card parameter is optional and defaults to False, indicating whether the card should be saved for future transactions. The function first verifies the user's login status and order ownership, then creates a new transaction record, updates the order status to Paid, and optionally tokenizes the card for future use. It returns a dictionary containing the status of the payment and the transaction ID.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -1043,7 +1063,9 @@ def _charge_payfast_token(token, amount, currency, description):
 
 @frappe.whitelist()
 def process_token_payment(order_id: Any, token: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The process_token_payment function facilitates payment processing for a specific order using a provided token. It takes two parameters: order_id, which identifies the order being paid for, and token, which represents the payment method. The function first verifies that the user is logged in and has permission to pay for the specified order. It then initiates a payment charge using the provided token and updates the order status to "Paid" if the payment is successful. The function returns the result of the payment processing operation.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -1135,7 +1157,9 @@ def tip_process(order_id: str, tip_amount: float) -> Any:
 
 @frappe.whitelist()
 def process_wallet_top_up(amount: Any, token: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The process_wallet_top_up function is used to top up a user's wallet with a specified amount. It takes two parameters: amount, which is the amount to be added to the wallet, and token, which is the payment token used for the transaction. The token parameter is optional but required to complete the top-up process. If the token is not provided, the function will throw an error. The function first checks if the user is logged in and then executes the charge via a payment gateway. After a successful charge, it creates a new transaction record and updates the user's wallet balance. The function returns a dictionary with a status of 'success' and the transaction ID.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     user = frappe.session.user
@@ -1179,7 +1203,9 @@ def process_wallet_top_up(amount: Any, token: Any=None) -> Any:
 
 @frappe.whitelist()
 def process_wallet_payment(order_id: Any) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The process_wallet_payment function is used to deduct payment from a user's wallet for a specific order. It takes one parameter, order_id, which is the unique identifier of the order being paid for. The function first checks if the user is logged in and has permission to pay for the order, then verifies if the user's wallet balance is sufficient to cover the order's grand total. If the balance is sufficient, it deducts the payment amount from the user's wallet, creates a new transaction record, and updates the order's payment status to "Paid".
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

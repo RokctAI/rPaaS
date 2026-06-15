@@ -49,7 +49,9 @@ def remove_expired_stories() -> Any:
 
 @frappe.whitelist()
 def process_repeating_orders() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The process_repeating_orders function is designed to process repeating orders that are due for execution. It fetches active repeating orders where the next execution is due or not set, and then attempts to create a new order based on the original order associated with the repeating order. The function processes payment for the new order using either the user's wallet or a saved card, and updates the order status accordingly. If payment fails, the function notifies the user. The function also calculates the next execution date for the repeating order and updates the repeating order's last execution and next execution dates. Additionally, the function cleans up any expired repeating orders by setting their status to inactive. The function does not take any parameters.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

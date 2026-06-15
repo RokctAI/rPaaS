@@ -79,7 +79,9 @@ def delete_shop(shop_name: Any) -> Any:
 
 @frappe.whitelist()
 def get_all_users(limit_start: int=0, limit_page_length: int=20) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The get_all_users function retrieves a list of all users on the platform, intended for administrative use. It accepts two parameters: limit_start, which specifies the starting point of the result set, defaulting to 0, and limit_page_length, which determines the number of users to return, defaulting to 20. The function returns a list of user objects, each containing the user's name, full name, email, and enabled status.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

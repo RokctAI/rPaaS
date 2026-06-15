@@ -8,14 +8,18 @@ from paas.api.delivery_man.delivery_man import (
 
 @frappe.whitelist()
 def get_driver_statistics() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get driver statistics API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return _get_deliveryman_statistics()
 
 
 @frappe.whitelist()
 def update_location(lat: Any=None, lng: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update location API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -37,7 +41,9 @@ def update_location(lat: Any=None, lng: Any=None) -> Any:
 
 @frappe.whitelist()
 def set_online_status() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Set online status API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
@@ -53,14 +59,18 @@ def set_online_status() -> Any:
 
 @frappe.whitelist()
 def get_car_requests() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get car requests API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return []
 
 
 @frappe.whitelist()
 def update_car_info(car_model: Any=None, car_number: Any=None, color: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update car info API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if frappe.db.exists("Deliveryman Settings", {"user": user}):

@@ -113,7 +113,9 @@ def get_shop_users(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 @frappe.whitelist()
 def add_shop_user(user_email: str, role: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The add_shop_user function is used to add a user to the current seller's shop with a specific role. It takes two parameters: user_email, which is the email address of the user to be added, and role, which defines the user's role within the shop. The function first checks if the user exists and if they are not already a member of the shop, then adds the user to the shop with the specified role. If the operation is successful, it returns a success status with a corresponding message.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
@@ -289,6 +291,8 @@ def update_seller_deliveryman_settings(settings_data: Any) -> Any:
 
 @frappe.whitelist()
 def update_shop_working_days(working_days_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update shop working days API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return update_seller_shop_working_days(working_days_data)

@@ -5,7 +5,9 @@ import json
 
 @frappe.whitelist(allow_guest=True)
 def get_branches(shop_id: str) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The get_branches function retrieves a list of branches associated with a specific shop. It takes one parameter, shop_id, which is a string representing the unique identifier of the shop. The function first checks if the provided shop_id exists in the database, throwing an error if it does not. If the shop exists, it queries the database for a list of branches linked to the shop, returning their names, addresses, and geographic coordinates.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """

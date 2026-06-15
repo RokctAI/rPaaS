@@ -473,7 +473,20 @@ def get_order_statuses() -> Any:
 
 @frappe.whitelist()
 def get_calculate(cart_id: Any, address: Any=None, coupon_code: Any=None, tips: Any=0, delivery_type: Any='Delivery') -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    The get_calculate function calculates the total cost of a shopping cart, taking into account various factors such as product prices, taxes, discounts, delivery fees, and service fees. 
+    
+    It accepts the following parameters: 
+    - cart_id: the unique identifier of the shopping cart
+    - address: the delivery address, which can be a string or a dictionary containing latitude and longitude coordinates
+    - coupon_code: a discount coupon code to apply to the order
+    - tips: the amount of tips to add to the order, defaulting to 0
+    - delivery_type: the type of delivery, defaulting to 'Delivery'
+    
+    The function returns a dictionary containing the calculated totals, including the total tax, product price, shop tax, total price, discount, delivery fee, service fee, tips, and coupon price. 
+    
+    This function is used to provide an accurate estimate of the total cost of an order, considering various factors that may affect the final price.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(address, str) and address:
         try:

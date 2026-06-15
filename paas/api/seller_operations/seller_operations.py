@@ -471,7 +471,9 @@ def delete_seller_combo(combo_name: Any) -> Any:
 
 @frappe.whitelist()
 def get_seller_sections(limit_start: Any=0, limit_page_length: Any=20) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get seller sections API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
@@ -484,14 +486,18 @@ def get_seller_sections(limit_start: Any=0, limit_page_length: Any=20) -> Any:
 
 @frappe.whitelist()
 def create_seller_section(section_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Create seller section API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return {"status": True}
 
 
 @frappe.whitelist()
 def get_seller_tables(limit_start: Any=0, limit_page_length: Any=20) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get seller tables API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
@@ -506,7 +512,9 @@ def get_seller_tables(limit_start: Any=0, limit_page_length: Any=20) -> Any:
 
 @frappe.whitelist()
 def delete_seller_tables(table_id: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Delete seller tables API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if table_id and frappe.db.exists("Shop Table", table_id):
         frappe.delete_doc("Shop Table", table_id, ignore_permissions=True)
@@ -515,14 +523,18 @@ def delete_seller_tables(table_id: Any=None) -> Any:
 
 @frappe.whitelist()
 def get_table_disable_dates() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get table disable dates API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return []
 
 
 @frappe.whitelist()
 def get_booking_working_days() -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Get booking working days API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
@@ -535,14 +547,18 @@ def get_booking_working_days() -> Any:
 
 @frappe.whitelist()
 def create_seller_booking(booking_data: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Create seller booking API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return {"status": True}
 
 
 @frappe.whitelist()
 def update_booking_status(booking_id: Any=None, status: Any=None) -> Any:
-    """Auto-generated docstring for compliance."""
+    """
+    Update booking status API endpoint.
+    """
     import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if booking_id and status and frappe.db.exists("Shop Booking", booking_id):
         doc = frappe.get_doc("Shop Booking", booking_id)
