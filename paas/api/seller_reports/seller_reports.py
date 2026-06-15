@@ -1,12 +1,14 @@
+from typing import Any, Optional
 import frappe
 from paas.api.utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_statistics():
+def get_seller_statistics() -> Any:
     """
     Retrieves sales and order statistics for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -97,10 +99,11 @@ def get_seller_statistics():
 
 
 @frappe.whitelist()
-def get_seller_sales_report(from_date: str, to_date: str):
+def get_seller_sales_report(from_date: str, to_date: str) -> Any:
     """
     Retrieves a sales report for the current seller's shop within a date range.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 

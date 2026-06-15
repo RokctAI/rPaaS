@@ -1,12 +1,14 @@
+from typing import Any, Optional
 import frappe
 from ..utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_transactions(limit_start=0, limit_page_length=20):
+def get_seller_transactions(limit_start: Any=0, limit_page_length: Any=20) -> Any:
     """
     Retrieves a list of transactions for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -35,12 +37,11 @@ def get_seller_transactions(limit_start=0, limit_page_length=20):
 
 
 @frappe.whitelist()
-def get_seller_shop_payments(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_shop_payments(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of shop payments for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -68,12 +69,11 @@ def get_seller_shop_payments(
 
 
 @frappe.whitelist()
-def get_seller_payment_to_partners(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_payment_to_partners(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of payments to partners for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 

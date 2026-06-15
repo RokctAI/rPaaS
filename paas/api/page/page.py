@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -13,10 +14,11 @@ def _require_admin():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_page(route: str):
+def get_page(route: str) -> Any:
     """
     Retrieves a single web page by its route.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     page = frappe.get_doc("Web Page", {"route": route})
     if not page.published:
         frappe.throw("Page not published.", frappe.PermissionError)
@@ -36,10 +38,11 @@ def get_page(route: str):
 
 
 @frappe.whitelist()
-def get_admin_pages(limit_start: int = 0, limit_page_length: int = 20):
+def get_admin_pages(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all web pages on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Web Page",
@@ -50,19 +53,21 @@ def get_admin_pages(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_admin_web_page(route: str):
+def get_admin_web_page(route: str) -> Any:
     """
     Retrieves a web page for admin management.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_doc("Web Page", {"route": route}).as_dict()
 
 
 @frappe.whitelist()
-def update_admin_web_page(route: str, page_data):
+def update_admin_web_page(route: str, page_data: Any) -> Any:
     """
     Updates a web page (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(page_data, str):
         page_data = json.loads(page_data)

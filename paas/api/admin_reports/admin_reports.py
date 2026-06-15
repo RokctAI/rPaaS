@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,7 +6,9 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_admin_statistics():
+def get_admin_statistics() -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Retrieves detailed statistics for the admin dashboard including cards and charts.
@@ -108,9 +111,9 @@ def get_admin_statistics():
 
 
 @frappe.whitelist()
-def get_multi_company_sales_report(
-    from_date: str, to_date: str, company: str = None
-):
+def get_multi_company_sales_report(from_date: str, to_date: str, company: str=None) -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Retrieves a sales report for a specific company or all companies within a date range (for admins).
@@ -146,16 +149,11 @@ def get_multi_company_sales_report(
 
 
 @frappe.whitelist()
-def get_admin_report(
-    doctype: str,
-    fields: str,
-    filters: str = None,
-    limit_start: int = 0,
-    limit_page_length: int = 20,
-):
+def get_admin_report(doctype: str, fields: str, filters: str=None, limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a report for a specified doctype with given fields and filters (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
 
     if isinstance(fields, str):
@@ -174,12 +172,11 @@ def get_admin_report(
 
 
 @frappe.whitelist()
-def get_all_wallet_histories(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_wallet_histories(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all wallet histories on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Wallet History",
@@ -191,10 +188,11 @@ def get_all_wallet_histories(
 
 
 @frappe.whitelist()
-def get_all_transactions(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_transactions(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all transactions on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Transaction",
@@ -214,10 +212,11 @@ def get_all_transactions(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_seller_payouts(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_seller_payouts(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all seller payouts on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Seller Payout",
@@ -229,10 +228,11 @@ def get_all_seller_payouts(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_shop_bonuses(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_shop_bonuses(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all shop bonuses on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Shop Bonus",

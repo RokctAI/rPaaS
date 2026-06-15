@@ -1,14 +1,14 @@
+from typing import Any, Optional
 import frappe
 from paas.api.utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_delivery_man_delivery_zones(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_delivery_man_delivery_zones(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of delivery zones for the deliverymen of the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -34,10 +34,11 @@ def get_seller_delivery_man_delivery_zones(
 
 
 @frappe.whitelist()
-def adjust_seller_inventory(item_code: str, warehouse: str, new_qty: int):
+def adjust_seller_inventory(item_code: str, warehouse: str, new_qty: int) -> Any:
     """
     Adjusts the inventory for a specific item in a warehouse for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 

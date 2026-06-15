@@ -1,13 +1,15 @@
+from typing import Any, Optional
 import frappe
 import json
 from ..utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_stories(limit_start: int = 0, limit_page_length: int = 20):
+def get_seller_stories(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of stories for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -23,10 +25,11 @@ def get_seller_stories(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_seller_story(story_data):
+def create_seller_story(story_data: Any) -> Any:
     """
     Creates a new story for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -41,10 +44,11 @@ def create_seller_story(story_data):
 
 
 @frappe.whitelist()
-def update_seller_story(story_name, story_data):
+def update_seller_story(story_name: Any, story_data: Any) -> Any:
     """
     Updates a story for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -65,10 +69,11 @@ def update_seller_story(story_name, story_data):
 
 
 @frappe.whitelist()
-def delete_seller_story(story_name):
+def delete_seller_story(story_name: Any) -> Any:
     """
     Deletes a story for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 

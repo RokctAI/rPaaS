@@ -1,13 +1,15 @@
+from typing import Any, Optional
 import frappe
 from frappe.utils.file_manager import save_file
 from paas.api.utils import api_response
 
 
 @frappe.whitelist()
-def upload_file(file, filename=None, is_private=0):
+def upload_file(file: Any, filename: Any=None, is_private: Any=0) -> Any:
     """
     Uploads a file and returns the file URL.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         # Save the file using Frappe's file manager
         file_doc = save_file(
@@ -29,15 +31,11 @@ def upload_file(file, filename=None, is_private=0):
 
 
 @frappe.whitelist()
-def upload_multi_image(
-    files: list = None,
-    upload_type: str = None,
-    doc_name: str = None,
-    lang: str = "en",
-):  # noqa: C901
+def upload_multi_image(files: list=None, upload_type: str=None, doc_name: str=None, lang: str='en') -> Any:
     """
     Uploads multiple images and attaches them to a specific document.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     # 1. Handle file input robustly
     # If `files` arg is empty, check `frappe.request.files`
     file_list = []

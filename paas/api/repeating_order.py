@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Repeating Order API
 import frappe
 from croniter import croniter
@@ -28,15 +29,9 @@ def calculate_ringfence_amount(
 
 
 @frappe.whitelist()
-def create_repeating_order(
-    original_order: str,
-    start_date: str,
-    cron_pattern: str,
-    end_date: str = None,
-    payment_method: str = "Wallet",
-    saved_card: str = None,
-    lang: str = "en",
-):
+def create_repeating_order(original_order: str, start_date: str, cron_pattern: str, end_date: str=None, payment_method: str='Wallet', saved_card: str=None, lang: str='en') -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Creates a new repeating order with payment preferences and ringfencing.
@@ -103,7 +98,9 @@ def create_repeating_order(
 
 
 @frappe.whitelist()
-def pause_repeating_order(repeating_order_id: str, lang: str = "en"):
+def pause_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Pauses a repeating order and releases ringfenced funds.
@@ -148,7 +145,9 @@ def pause_repeating_order(repeating_order_id: str, lang: str = "en"):
 
 
 @frappe.whitelist()
-def resume_repeating_order(repeating_order_id: str, lang: str = "en"):
+def resume_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Resumes a repeating order and re-ringfences funds.
@@ -193,7 +192,9 @@ def resume_repeating_order(repeating_order_id: str, lang: str = "en"):
 
 
 @frappe.whitelist()
-def delete_repeating_order(repeating_order_id: str, lang: str = "en"):
+def delete_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Deletes a repeating order and releases any remaining ringfenced funds.

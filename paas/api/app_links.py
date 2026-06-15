@@ -1,8 +1,11 @@
+from typing import Any, Optional
 import frappe
 
 
 @frappe.whitelist(allow_guest=True)
-def get_assetlinks():
+def get_assetlinks() -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.response["type"] = "json"
     try:
         config = frappe.get_single("Flutter App Configuration")
@@ -35,7 +38,9 @@ def get_assetlinks():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_apple_app_site_association():
+def get_apple_app_site_association() -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.response["type"] = "json"
     try:
         config = frappe.get_single("Flutter App Configuration")

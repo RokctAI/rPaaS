@@ -1,14 +1,14 @@
+from typing import Any, Optional
 import frappe
 from paas.api.utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_request_models(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_request_models(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of request models for the current seller.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -28,12 +28,11 @@ def get_seller_request_models(
 
 
 @frappe.whitelist()
-def get_seller_customer_addresses(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_customer_addresses(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of customer addresses for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 

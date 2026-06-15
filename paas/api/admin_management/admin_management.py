@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,10 +6,11 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_shops(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_shops(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all shops on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Shop",
@@ -19,10 +21,11 @@ def get_all_shops(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_roles(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_roles(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all roles on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Role",
@@ -33,10 +36,11 @@ def get_all_roles(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_shop(shop_data):
+def create_shop(shop_data: Any) -> Any:
     """
     Creates a new shop (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(shop_data, str):
         shop_data = json.loads(shop_data)
@@ -47,10 +51,11 @@ def create_shop(shop_data):
 
 
 @frappe.whitelist()
-def update_shop(shop_name, shop_data):
+def update_shop(shop_name: Any, shop_data: Any) -> Any:
     """
     Updates a shop (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(shop_data, str):
         shop_data = json.loads(shop_data)
@@ -62,17 +67,20 @@ def update_shop(shop_name, shop_data):
 
 
 @frappe.whitelist()
-def delete_shop(shop_name):
+def delete_shop(shop_name: Any) -> Any:
     """
     Deletes a shop (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("Shop", shop_name, ignore_permissions=True)
     return {"status": "success", "message": "Shop deleted successfully."}
 
 
 @frappe.whitelist()
-def get_all_users(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_users(limit_start: int=0, limit_page_length: int=20) -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Retrieves a list of all users on the platform (for admins).

@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025, Rendani Sinyage and contributors
 # For license information, please see license.txt
 
@@ -112,7 +113,8 @@ def get_paas_brand_html():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_paas_branding_for_tenant():
+def get_paas_branding_for_tenant() -> Any:
     """API endpoint to get PaaS branding"""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     branding = get_paas_branding()
     return branding

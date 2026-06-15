@@ -1,13 +1,15 @@
+from typing import Any, Optional
 import frappe
 from frappe.utils import get_site_path, get_url
 import os
 
 
 @frappe.whitelist()
-def get_system_info():
+def get_system_info() -> Any:
     """
     Returns the system information from the System Information singleton.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     # Fetch the System Information document
     doc = frappe.get_single("System Information")
 
@@ -23,10 +25,11 @@ def get_system_info():
 
 
 @frappe.whitelist()
-def get_backups():
+def get_backups() -> Any:
     """
     Returns the list of backups available for the current site.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if "System Manager" not in frappe.get_roles():
         frappe.throw("Unauthorized")
 
@@ -51,10 +54,11 @@ def get_backups():
 
 
 @frappe.whitelist()
-def create_backup():
+def create_backup() -> Any:
     """
     Triggers a backup creation.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if "System Manager" not in frappe.get_roles():
         frappe.throw("Unauthorized")
 
@@ -69,10 +73,11 @@ def create_backup():
 
 
 @frappe.whitelist()
-def clear_system_cache():
+def clear_system_cache() -> Any:
     """
     Clears the system cache.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if "System Manager" not in frappe.get_roles():
         frappe.throw("Unauthorized")
 

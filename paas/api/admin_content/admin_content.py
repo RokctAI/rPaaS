@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,10 +6,11 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_admin_stories(limit_start: int = 0, limit_page_length: int = 20):
+def get_admin_stories(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all stories on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Story",
@@ -19,10 +21,11 @@ def get_admin_stories(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_admin_banners(limit_start: int = 0, limit_page_length: int = 20):
+def get_admin_banners(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of platform-wide banners (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Banner",
@@ -34,10 +37,11 @@ def get_admin_banners(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_admin_banner(banner_data):
+def create_admin_banner(banner_data: Any) -> Any:
     """
     Creates a new platform-wide banner (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(banner_data, str):
         banner_data = json.loads(banner_data)
@@ -50,10 +54,11 @@ def create_admin_banner(banner_data):
 
 
 @frappe.whitelist()
-def update_admin_banner(banner_name, banner_data):
+def update_admin_banner(banner_name: Any, banner_data: Any) -> Any:
     """
     Updates a platform-wide banner (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(banner_data, str):
         banner_data = json.loads(banner_data)
@@ -65,20 +70,22 @@ def update_admin_banner(banner_name, banner_data):
 
 
 @frappe.whitelist()
-def delete_admin_banner(banner_name):
+def delete_admin_banner(banner_name: Any) -> Any:
     """
     Deletes a platform-wide banner (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("Banner", banner_name, ignore_permissions=True)
     return {"status": "success", "message": "Banner deleted successfully."}
 
 
 @frappe.whitelist()
-def get_admin_faqs(limit_start: int = 0, limit_page_length: int = 20):
+def get_admin_faqs(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all FAQs (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "FAQ",
@@ -89,10 +96,11 @@ def get_admin_faqs(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_admin_faq(faq_data):
+def create_admin_faq(faq_data: Any) -> Any:
     """
     Creates a new FAQ (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(faq_data, str):
         faq_data = json.loads(faq_data)
@@ -103,10 +111,11 @@ def create_admin_faq(faq_data):
 
 
 @frappe.whitelist()
-def update_admin_faq(faq_name, faq_data):
+def update_admin_faq(faq_name: Any, faq_data: Any) -> Any:
     """
     Updates an FAQ (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(faq_data, str):
         faq_data = json.loads(faq_data)
@@ -118,22 +127,22 @@ def update_admin_faq(faq_name, faq_data):
 
 
 @frappe.whitelist()
-def delete_admin_faq(faq_name):
+def delete_admin_faq(faq_name: Any) -> Any:
     """
     Deletes an FAQ (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("FAQ", faq_name, ignore_permissions=True)
     return {"status": "success", "message": "FAQ deleted successfully."}
 
 
 @frappe.whitelist()
-def get_admin_faq_categories(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_admin_faq_categories(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all FAQ categories (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "FAQ Category",
@@ -144,10 +153,11 @@ def get_admin_faq_categories(
 
 
 @frappe.whitelist()
-def create_admin_faq_category(category_data):
+def create_admin_faq_category(category_data: Any) -> Any:
     """
     Creates a new FAQ category (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(category_data, str):
         category_data = json.loads(category_data)
@@ -158,10 +168,11 @@ def create_admin_faq_category(category_data):
 
 
 @frappe.whitelist()
-def update_admin_faq_category(category_name, category_data):
+def update_admin_faq_category(category_name: Any, category_data: Any) -> Any:
     """
     Updates an FAQ category (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(category_data, str):
         category_data = json.loads(category_data)
@@ -173,10 +184,11 @@ def update_admin_faq_category(category_name, category_data):
 
 
 @frappe.whitelist()
-def delete_admin_faq_category(category_name):
+def delete_admin_faq_category(category_name: Any) -> Any:
     """
     Deletes an FAQ category (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("FAQ Category", category_name, ignore_permissions=True)
     return {

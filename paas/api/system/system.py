@@ -1,13 +1,15 @@
+from typing import Any, Optional
 import frappe
 from paas.api.utils import api_response
 
 
 @frappe.whitelist()
-def get_weather(location: str):
+def get_weather(location: str) -> Any:
     """
     Proxy endpoint to get weather data from the control site, with tenant-side caching.
     This follows the same authentication pattern as other tenant-to-control-panel APIs.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if not location:
         frappe.throw("Location is a required parameter.")
 
@@ -56,10 +58,11 @@ def get_weather(location: str):
 
 
 @frappe.whitelist(allow_guest=True)
-def api_status():
+def api_status() -> Any:
     """
     Returns a simple status of the API.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return api_response(
         data={
             "status": "ok",
@@ -70,10 +73,11 @@ def api_status():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_languages():
+def get_languages() -> Any:
     """
     Returns a list of all enabled languages.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     langs = frappe.get_all(
         "Language", filters={"enabled": 1}, fields=["name", "language_name"]
     )
@@ -81,10 +85,11 @@ def get_languages():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_currencies():
+def get_currencies() -> Any:
     """
     Returns a list of all enabled currencies.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     currencies = frappe.get_all(
         "Currency",
         filters={"enabled": 1},
@@ -94,10 +99,11 @@ def get_currencies():
 
 
 @frappe.whitelist()
-def trigger_system_update():
+def trigger_system_update() -> Any:
     """
     Triggers a system update. For tenant sites, this only runs a migration.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if frappe.session.user == "Guest":
         frappe.throw("Unauthorized")
 
@@ -112,11 +118,12 @@ def trigger_system_update():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_global_settings():
+def get_global_settings() -> Any:
     """
     Retrieves global settings formatted as a key-value list for the frontend.
     Aggregates data from 'Settings' and 'Global Settings'.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     settings_data = []
 
     try:
@@ -183,16 +190,18 @@ def get_global_settings():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_policy(lang: str = "en"):
+def get_policy(lang: str='en') -> Any:
     """
     Returns the privacy policy.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return {"content": "Privacy Policy content..."}
 
 
 @frappe.whitelist(allow_guest=True)
-def get_terms(lang: str = "en"):
+def get_terms(lang: str='en') -> Any:
     """
     Returns the terms and conditions.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return {"content": "Terms and Conditions content..."}

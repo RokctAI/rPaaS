@@ -1,13 +1,15 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
 
 
 @frappe.whitelist(allow_guest=True)
-def get_receipts(limit_start: int = 0, limit_page_length: int = 20):
+def get_receipts(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of receipts, formatted for frontend compatibility.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     receipts = frappe.get_list(
         "Receipt", fields=["*"], offset=limit_start, limit=limit_page_length
     )
@@ -20,10 +22,11 @@ def get_receipts(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_receipt(id: str):
+def get_receipt(id: str) -> Any:
     """
     Retrieves a single receipt.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     receipt = frappe.get_doc("Receipt", id)
 
     # Again, this is a simplified representation.

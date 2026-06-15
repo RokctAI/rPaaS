@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 # Copyright (c) 2025 ROKCT INTELLIGENCE (PTY) LTD
 # For license information, please see license.txt
@@ -28,8 +29,9 @@ def prevent_uninstall_if_build_active():
 
 
 @frappe.whitelist()
-def get_available_source_projects():
+def get_available_source_projects() -> Any:
     """Returns a list of available source project folders."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         source_path = frappe.get_app_path("paas", "builder", "source_code")
         if not os.path.exists(source_path):

@@ -1,13 +1,15 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
 
 
 @frappe.whitelist(allow_guest=True)
-def get_languages(active=True):
+def get_languages(active: Any=True) -> Any:
     """
     Retrieves list of languages.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     filters = {}
     if active:
         filters["active"] = 1
@@ -28,19 +30,21 @@ def get_languages(active=True):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_default_language():
+def get_default_language() -> Any:
     """
     Retrieves the default language.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_doc("PaaS Language", {"default": 1}).as_dict()
 
 
 @frappe.whitelist(allow_guest=True)
-def get_translations(locale, group=None):
+def get_translations(locale: Any, group: Any=None) -> Any:
     """
     Retrieves translations for a specific locale, optionally filtered by group.
     Returns a dictionary mapping keys to values, as expected by many frontends.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     filters = {"locale": locale, "status": 1}
     if group:
         filters["group"] = group

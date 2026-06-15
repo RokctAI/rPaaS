@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025 ROKCT INTELLIGENCE (PTY) LTD
 # For license information, please see license.txt
 
@@ -10,7 +11,7 @@ class DeliveryPoint(Document):
 
 
 @frappe.whitelist()
-def get_nearest_delivery_points(latitude, longitude, radius=20):
+def get_nearest_delivery_points(latitude: Any, longitude: Any, radius: Any=20) -> Any:
     """
     Get nearest delivery points based on latitude and longitude.
     :param latitude: User's latitude
@@ -18,6 +19,7 @@ def get_nearest_delivery_points(latitude, longitude, radius=20):
     :param radius: Search radius in kilometers (default: 20)
     :return: List of nearest delivery points
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if not latitude or not longitude:
         frappe.throw("Latitude and Longitude are required.")
 

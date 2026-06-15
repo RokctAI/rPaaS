@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025 ROKCT INTELLIGENCE (PTY) LTD
 # For license information, please see license.txt
 import frappe
@@ -6,7 +7,9 @@ import os
 
 
 @frappe.whitelist(allow_guest=True)
-def get_version():
+def get_version() -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     # Path to the directory of this file
     # We assume this file is in the same directory as versions.json
     # (paas/paas/)

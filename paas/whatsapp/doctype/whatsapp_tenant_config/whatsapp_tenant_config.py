@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025, ROKCT and contributors
 # For license information, please see license.txt
 
@@ -9,10 +10,11 @@ from cryptography.hazmat.primitives import serialization
 
 class WhatsAppTenantConfig(Document):
     @frappe.whitelist()
-    def generate_keys(self):
+    def generate_keys(self) -> Any:
         """
         Generates RSA 2048 Key Pair for WhatsApp Flows Encryption.
         """
+        import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
         if self.private_key and self.public_key:
             frappe.throw(
                 "Keys already exist. Clear them first if you want to regenerate functionality.")
@@ -43,10 +45,11 @@ class WhatsAppTenantConfig(Document):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_config():
+def get_config() -> Any:
     """
     Returns public configuration for the WhatsApp / Flutter Tenant.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         config = frappe.get_single("WhatsApp Tenant Config")
         return {

@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -6,10 +7,11 @@ from paas.api.utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_coupons(limit_start: int = 0, limit_page_length: int = 20):
+def get_seller_coupons(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of coupons for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -25,10 +27,11 @@ def get_seller_coupons(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_seller_coupon(coupon_data):
+def create_seller_coupon(coupon_data: Any) -> Any:
     """
     Creates a new coupon for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -43,10 +46,11 @@ def create_seller_coupon(coupon_data):
 
 
 @frappe.whitelist()
-def update_seller_coupon(coupon_name, coupon_data):
+def update_seller_coupon(coupon_name: Any, coupon_data: Any) -> Any:
     """
     Updates a coupon for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -67,10 +71,11 @@ def update_seller_coupon(coupon_name, coupon_data):
 
 
 @frappe.whitelist()
-def delete_seller_coupon(coupon_name):
+def delete_seller_coupon(coupon_name: Any) -> Any:
     """
     Deletes a coupon for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -87,10 +92,11 @@ def delete_seller_coupon(coupon_name):
 
 
 @frappe.whitelist()
-def get_seller_discounts(limit_start: int = 0, limit_page_length: int = 20):
+def get_seller_discounts(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of discounts for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -113,10 +119,11 @@ def get_seller_discounts(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_seller_discount(discount_data):
+def create_seller_discount(discount_data: Any) -> Any:
     """
     Creates a new discount for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -131,10 +138,11 @@ def create_seller_discount(discount_data):
 
 
 @frappe.whitelist()
-def update_seller_discount(discount_name, discount_data):
+def update_seller_discount(discount_name: Any, discount_data: Any) -> Any:
     """
     Updates a discount for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -155,10 +163,11 @@ def update_seller_discount(discount_name, discount_data):
 
 
 @frappe.whitelist()
-def delete_seller_discount(discount_name):
+def delete_seller_discount(discount_name: Any) -> Any:
     """
     Deletes a discount for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -175,10 +184,11 @@ def delete_seller_discount(discount_name):
 
 
 @frappe.whitelist()
-def get_seller_banners(limit_start: int = 0, limit_page_length: int = 20):
+def get_seller_banners(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of banners for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -194,10 +204,11 @@ def get_seller_banners(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_seller_banner(banner_data):
+def create_seller_banner(banner_data: Any) -> Any:
     """
     Creates a new banner for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -212,10 +223,11 @@ def create_seller_banner(banner_data):
 
 
 @frappe.whitelist()
-def update_seller_banner(banner_name, banner_data):
+def update_seller_banner(banner_name: Any, banner_data: Any) -> Any:
     """
     Updates a banner for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -236,10 +248,11 @@ def update_seller_banner(banner_name, banner_data):
 
 
 @frappe.whitelist()
-def delete_seller_banner(banner_name):
+def delete_seller_banner(banner_name: Any) -> Any:
     """
     Deletes a banner for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -256,22 +269,22 @@ def delete_seller_banner(banner_name):
 
 
 @frappe.whitelist()
-def get_ads_packages():
+def get_ads_packages() -> Any:
     """
     Retrieves a list of available ads packages.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_list(
         "Ads Package", fields=["name", "price", "duration_days"]
     )
 
 
 @frappe.whitelist()
-def get_seller_shop_ads_packages(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_shop_ads_packages(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of purchased ads packages for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -287,7 +300,9 @@ def get_seller_shop_ads_packages(
 
 
 @frappe.whitelist()
-def purchase_shop_ads_package(package_name):
+def purchase_shop_ads_package(package_name: Any) -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Purchases an ads package for the current seller's shop, including

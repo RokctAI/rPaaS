@@ -1,12 +1,14 @@
+from typing import Any, Optional
 import frappe
 from paas.utils import get_subscription_details
 
 
 @frappe.whitelist(allow_guest=True)
-def get_remote_config(app_type="Customer", site_name=None):
+def get_remote_config(app_type: Any='Customer', site_name: Any=None) -> Any:
     """
     Fetches remote configuration for the Juvo Customer App directly from the tenant site.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     # 1. Check Subscription Status
     try:
         # get_subscription_details calls the Control Panel to verify status

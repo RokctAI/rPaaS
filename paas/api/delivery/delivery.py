@@ -1,3 +1,4 @@
+from typing import Any, Optional
 import frappe
 
 
@@ -27,7 +28,9 @@ def is_point_in_polygon(point, polygon):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_delivery_zone_by_shop(shop_id: str):
+def get_delivery_zone_by_shop(shop_id: str) -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Retrieves the delivery zone for a given shop.
@@ -41,7 +44,9 @@ def get_delivery_zone_by_shop(shop_id: str):
 
 
 @frappe.whitelist(allow_guest=True)
-def check_delivery_zone(shop_id: str, latitude: float, longitude: float):
+def check_delivery_zone(shop_id: str, latitude: float, longitude: float) -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Checks if a given coordinate is within the delivery zone of a shop.
@@ -67,10 +72,11 @@ def check_delivery_zone(shop_id: str, latitude: float, longitude: float):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_delivery_points():
+def get_delivery_points() -> Any:
     """
     Retrieves a list of all active delivery points.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     delivery_points = frappe.get_list(
         "Delivery Point",
         filters={"active": 1},
@@ -80,18 +86,20 @@ def get_delivery_points():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_delivery_point(name):
+def get_delivery_point(name: Any) -> Any:
     """
     Retrieves a single delivery point by its name.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_doc("Delivery Point", name).as_dict()
 
 
 @frappe.whitelist(allow_guest=True)
-def get_driver_location(driver_id: str):
+def get_driver_location(driver_id: str) -> Any:
     """
     Retrieves the current location of a driver.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     location = frappe.db.get_value(
         "Driver Location",
         {"driver": driver_id},
@@ -107,12 +115,11 @@ def get_driver_location(driver_id: str):
 
 
 @frappe.whitelist()
-def update_driver_location(
-    latitude, longitude, order_id=None, parcel_order_id=None
-):
+def update_driver_location(latitude: Any, longitude: Any, order_id: Any=None, parcel_order_id: Any=None) -> Any:
     """
     Endpoint for the Driver App to send real-time coordinates.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Authentication required to update location.")

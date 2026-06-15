@@ -1,3 +1,4 @@
+from typing import Any, Optional
 import frappe
 import json
 import requests
@@ -5,12 +6,11 @@ from paas.api.utils import api_response
 
 
 @frappe.whitelist()
-def send_push_notification(
-    user: str, title: str, body: str, data: dict = None
-):
+def send_push_notification(user: str, title: str, body: str, data: dict=None) -> Any:
     """
     Sends a push notification to a specific user via FCM.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         settings = frappe.get_single("Push Notification Settings")
         if not settings.server_key:
@@ -74,10 +74,11 @@ def send_push_notification(
 
 
 @frappe.whitelist()
-def get_default_sms_payload():
+def get_default_sms_payload() -> Any:
     """
     Returns the default SMS payload from Push Notification Settings.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     settings = frappe.get_single("Push Notification Settings")
 
     payload = {
@@ -99,11 +100,12 @@ def get_default_sms_payload():
 
 
 @frappe.whitelist()
-def get_notification_settings():
+def get_notification_settings() -> Any:
     """
     Retrieves notification settings for the current user.
     Returns a list of notification types with their active status.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -163,10 +165,11 @@ def get_notification_settings():
 
 
 @frappe.whitelist()
-def update_notification_settings(type: str, active: int):
+def update_notification_settings(type: str, active: int) -> Any:
     """
     Updates the notification setting for a specific type.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -212,10 +215,11 @@ def update_notification_settings(type: str, active: int):
 
 
 @frappe.whitelist()
-def get_user_notifications(start=0, limit=20):
+def get_user_notifications(start: Any=0, limit: Any=20) -> Any:
     """
     Retrieves the list of notifications for the currently logged-in user.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -241,10 +245,11 @@ def get_user_notifications(start=0, limit=20):
 
 
 @frappe.whitelist()
-def get_notification_count():
+def get_notification_count() -> Any:
     """
     Retrieves the count of unread notifications for the currently logged-in user.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         return api_response(data={"count": 0})
@@ -254,10 +259,11 @@ def get_notification_count():
 
 
 @frappe.whitelist()
-def mark_notification_logs_as_read(ids=None):
+def mark_notification_logs_as_read(ids: Any=None) -> Any:
     """
     Marks specific notification logs as read.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in.", frappe.AuthenticationError)
@@ -282,10 +288,11 @@ def mark_notification_logs_as_read(ids=None):
 
 
 @frappe.whitelist()
-def read_all_notifications():
+def read_all_notifications() -> Any:
     """
     Marks all notifications as read for the current user.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in.", frappe.AuthenticationError)
@@ -301,10 +308,11 @@ def read_all_notifications():
 
 
 @frappe.whitelist()
-def read_one_notification(name):
+def read_one_notification(name: Any) -> Any:
     """
     Marks a single notification as read.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in.", frappe.AuthenticationError)

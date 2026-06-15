@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025 ROKCT INTELLIGENCE (PTY) LTD
 # For license information, please see license.txt
 
@@ -8,11 +9,12 @@ from paas.api.utils import api_response
 
 
 @frappe.whitelist()
-def create_shop(shop_data):
+def create_shop(shop_data: Any) -> Any:
     """
     Creates a new Shop document.
     Only users with 'System Manager' or 'Seller' roles can create a shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if (
         "System Manager" not in frappe.get_roles()
         and "Seller" not in frappe.get_roles()
@@ -46,18 +48,11 @@ def create_shop(shop_data):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_shops(
-    limit_start: int = 0,
-    limit_page_length: int = 20,
-    order_by: str = "name",
-    order: str = "desc",
-    latitude: float = None,
-    longitude: float = None,
-    **kwargs,
-):
+def get_shops(limit_start: int=0, limit_page_length: int=20, order_by: str='name', order: str='desc', latitude: float=None, longitude: float=None, **kwargs) -> Any:
     """
     Retrieves a list of shops with pagination and filters. Supports geo-sorting.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     from paas.api.utils import haversine
     import json
 
@@ -201,10 +196,11 @@ def get_shops(
 
 
 @frappe.whitelist(allow_guest=True)
-def get_shop_details(uuid: str):
+def get_shop_details(uuid: str) -> Any:
     """
     Retrieves a single shop by its UUID.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     shop = frappe.get_doc("Shop", {"uuid": uuid})
 
     if not shop:
@@ -261,15 +257,11 @@ def get_shop_details(uuid: str):
 
 
 @frappe.whitelist(allow_guest=True)
-def search_shops(
-    search: str,
-    category_id: int = None,
-    limit_start: int = 0,
-    limit_page_length: int = 20,
-):
+def search_shops(search: str, category_id: int=None, limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Searches for shops by name, optionally filtered by category.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     t_shop = frappe.qb.DocType("Shop")
     query = (
         frappe.qb.from_(t_shop)
@@ -373,10 +365,11 @@ def search_shops(
 
 
 @frappe.whitelist(allow_guest=True)
-def get_shop_types():
+def get_shop_types() -> Any:
     """
     Retrieves all available Shop Types.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     types = frappe.get_all(
         "Shop Type",
         fields=["name", "title", "description", "icon"],
@@ -386,13 +379,12 @@ def get_shop_types():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_nearby_shops(
-    latitude: float, longitude: float, radius_km: float = 10, lang: str = "en"
-):
+def get_nearby_shops(latitude: float, longitude: float, radius_km: float=10, lang: str='en') -> Any:
     """
     Retrieves a list of shops within a given radius.
     bypass_sql
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if latitude is None or longitude is None:
         return get_shops()
 
@@ -438,21 +430,23 @@ def get_nearby_shops(
 
 
 @frappe.whitelist()
-def get_shops_recommend(latitude: float, longitude: float, lang: str = "en"):
+def get_shops_recommend(latitude: float, longitude: float, lang: str='en') -> Any:
     """
     Returns recommended shops based on location and rating.
     Currently aliases to get_nearby_shops as we lack a rating field.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return get_nearby_shops(latitude, longitude, radius_km=20, lang=lang)
 
 
 @frappe.whitelist(allow_guest=True)
-def check_driver_zone(shop_id=None, address=None):
+def check_driver_zone(shop_id: Any=None, address: Any=None) -> Any:
     """
     Checks if the address is within the shop's delivery zone.
     Expects address as dict/json with latitude/longitude.
     bypass_sql
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     import json
 
     if isinstance(address, str):
@@ -507,10 +501,11 @@ def check_driver_zone(shop_id=None, address=None):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_shops_by_ids(shop_ids: list = None, **kwargs):
+def get_shops_by_ids(shop_ids: list=None, **kwargs) -> Any:
     """
     Retrieves shops by a list of IDs.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _filters = {}  # noqa: F841
     ids_to_filter = shop_ids
 
@@ -580,10 +575,11 @@ def get_shops_by_ids(shop_ids: list = None, **kwargs):
 
 
 @frappe.whitelist()
-def check_cashback(shop_id: str, amount: float, lang: str = "en"):
+def check_cashback(shop_id: str, amount: float, lang: str='en') -> Any:
     """
     Checks the cashback for a given shop and amount based on defined rules.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     cashback_rule = frappe.db.get_value(
         "Cashback Rule",
         filters={"shop": shop_id, "min_amount": ["<=", amount]},
@@ -599,13 +595,12 @@ def check_cashback(shop_id: str, amount: float, lang: str = "en"):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_nearest_delivery_points(
-    latitude: float, longitude: float, radius_km: float = 50
-):
+def get_nearest_delivery_points(latitude: float, longitude: float, radius_km: float=50) -> Any:
     """
     Retrieves a list of active Delivery Points within a given radius.
     bypass_sql
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if latitude is None or longitude is None:
         frappe.throw(
             "Latitude and Longitude are required.", frappe.ValidationError

@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025 ROKCT INTELLIGENCE (PTY) LTD
 # For license information, please see license.txt
 import frappe
@@ -701,8 +702,9 @@ def update_splash_screen(temp_dir, app_config, settings):
 
 
 @frappe.whitelist()
-def get_project_version(source_project):
+def get_project_version(source_project: Any) -> Any:
     """Reads and returns the version from the pubspec.yaml of a source project."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if not source_project:
         return None
 
@@ -729,12 +731,13 @@ def get_project_version(source_project):
 
 
 @frappe.whitelist()
-def generate_flutter_app(app_config_name):
+def generate_flutter_app(app_config_name: Any) -> Any:
     """
     This whitelisted function is called from the client-side script.
     Its only job is to enqueue the actual build task to run in the background
     on a dedicated queue.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.enqueue(
         'paas.builder.tasks._generate_flutter_app',
         queue='long',

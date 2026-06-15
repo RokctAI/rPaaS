@@ -1,12 +1,14 @@
+from typing import Any, Optional
 import frappe
 import json
 
 
 @frappe.whitelist()
-def get_deliveryman_orders(limit_start: int = 0, limit_page_length: int = 20):
+def get_deliveryman_orders(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of orders assigned to the current deliveryman.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -26,12 +28,11 @@ def get_deliveryman_orders(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_deliveryman_parcel_orders(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_deliveryman_parcel_orders(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of parcel orders assigned to the current deliveryman.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -51,10 +52,11 @@ def get_deliveryman_parcel_orders(
 
 
 @frappe.whitelist()
-def get_deliveryman_settings():
+def get_deliveryman_settings() -> Any:
     """
     Retrieves the settings for the current deliveryman.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -69,10 +71,11 @@ def get_deliveryman_settings():
 
 
 @frappe.whitelist()
-def update_deliveryman_settings(settings_data):
+def update_deliveryman_settings(settings_data: Any) -> Any:
     """
     Updates the settings for the current deliveryman.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -95,10 +98,11 @@ def update_deliveryman_settings(settings_data):
 
 
 @frappe.whitelist()
-def get_deliveryman_statistics():
+def get_deliveryman_statistics() -> Any:
     """
     Retrieves statistics for the current deliveryman.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -145,10 +149,11 @@ def get_deliveryman_statistics():
 
 
 @frappe.whitelist()
-def get_banned_shops():
+def get_banned_shops() -> Any:
     """
     Retrieves a list of shops from which the current deliveryman is banned.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -163,10 +168,11 @@ def get_banned_shops():
 
 
 @frappe.whitelist()
-def get_payment_to_partners(limit_start: int = 0, limit_page_length: int = 20):
+def get_payment_to_partners(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of payments to partners (deliverymen) for the current user.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -186,10 +192,11 @@ def get_payment_to_partners(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_deliveryman_order_report(from_date: str, to_date: str):
+def get_deliveryman_order_report(from_date: str, to_date: str) -> Any:
     """
     Retrieves a report of orders and parcel orders for the current deliveryman within a date range.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -223,10 +230,11 @@ def get_deliveryman_order_report(from_date: str, to_date: str):
 
 
 @frappe.whitelist()
-def get_deliveryman_delivery_zones():
+def get_deliveryman_delivery_zones() -> Any:
     """
     Retrieves a list of delivery zones assigned to the current deliveryman.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(

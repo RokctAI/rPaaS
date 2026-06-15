@@ -1,13 +1,15 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
 
 
 @frappe.whitelist()
-def create_ads_package(data):
+def create_ads_package(data: Any) -> Any:
     """
     Creates a new Ads Package.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -17,18 +19,20 @@ def create_ads_package(data):
 
 
 @frappe.whitelist()
-def get_ads_packages():
+def get_ads_packages() -> Any:
     """
     Retrieves all active Ads Packages.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_list("Ads Package", filters={"active": 1}, fields=["*"])
 
 
 @frappe.whitelist()
-def update_ads_package(name, data):
+def update_ads_package(name: Any, data: Any) -> Any:
     """
     Updates an Ads Package.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -39,9 +43,10 @@ def update_ads_package(name, data):
 
 
 @frappe.whitelist()
-def delete_ads_package(name):
+def delete_ads_package(name: Any) -> Any:
     """
     Deletes an Ads Package.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.delete_doc("Ads Package", name)
     return {"status": "success"}

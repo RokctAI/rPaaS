@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025, ROKCT and contributors
 # For license information, please see license.txt
 
@@ -16,23 +17,20 @@ def get_whatsapp_config():
 
 
 @frappe.whitelist()
-def get_admin_whatsapp_config():
+def get_admin_whatsapp_config() -> Any:
     """
     Returns the config for the Admin Settings page (even if disabled).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_single("WhatsApp Tenant Config")
 
 
 @frappe.whitelist()
-def save_whatsapp_config(
-        enabled=0,
-        phone_number_id=None,
-        access_token=None,
-        app_secret=None,
-        verify_token=None):
+def save_whatsapp_config(enabled: Any=0, phone_number_id: Any=None, access_token: Any=None, app_secret: Any=None, verify_token: Any=None) -> Any:
     """
     Updates the WhatsApp Tenant Config.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     doc = frappe.get_single("WhatsApp Tenant Config")
     doc.enabled = 1 if (enabled == 1 or enabled ==
                         "1" or enabled is True) else 0

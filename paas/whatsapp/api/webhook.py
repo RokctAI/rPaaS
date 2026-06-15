@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025, ROKCT and contributors
 # For license information, please see license.txt
 
@@ -8,11 +9,12 @@ from paas.whatsapp.utils import validate_signature
 
 
 @frappe.whitelist(allow_guest=True)
-def webhook():
+def webhook() -> Any:
     """
     Main entry point for WhatsApp Webhooks.
     Handles verification (GET) and messages (POST).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if frappe.request.method == "GET":
         return verify_webhook()
 

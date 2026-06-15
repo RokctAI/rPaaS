@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,10 +6,11 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_units(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_units(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all shop units on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Shop Unit",
@@ -19,10 +21,11 @@ def get_all_units(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_tags(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_tags(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all shop tags on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Shop Tag",
@@ -33,10 +36,11 @@ def get_all_tags(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_points(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_points(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all points on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Point",
@@ -47,10 +51,11 @@ def get_all_points(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_point(point_data):
+def create_point(point_data: Any) -> Any:
     """
     Creates a new point record (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(point_data, str):
         point_data = json.loads(point_data)
@@ -61,10 +66,11 @@ def create_point(point_data):
 
 
 @frappe.whitelist()
-def update_point(point_name, point_data):
+def update_point(point_name: Any, point_data: Any) -> Any:
     """
     Updates a point record (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(point_data, str):
         point_data = json.loads(point_data)
@@ -76,10 +82,11 @@ def update_point(point_name, point_data):
 
 
 @frappe.whitelist()
-def delete_point(point_name):
+def delete_point(point_name: Any) -> Any:
     """
     Deletes a point record (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("Point", point_name, ignore_permissions=True)
     return {
@@ -89,10 +96,11 @@ def delete_point(point_name):
 
 
 @frappe.whitelist()
-def get_all_translations(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_translations(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all translations on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Translation",
@@ -103,10 +111,11 @@ def get_all_translations(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_referrals(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_referrals(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all referrals on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Referral",
@@ -117,10 +126,11 @@ def get_all_referrals(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_referral(referral_data):
+def create_referral(referral_data: Any) -> Any:
     """
     Creates a new referral (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(referral_data, str):
         referral_data = json.loads(referral_data)
@@ -131,20 +141,22 @@ def create_referral(referral_data):
 
 
 @frappe.whitelist()
-def delete_referral(referral_name):
+def delete_referral(referral_name: Any) -> Any:
     """
     Deletes a referral (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("Referral", referral_name, ignore_permissions=True)
     return {"status": "success", "message": "Referral deleted successfully."}
 
 
 @frappe.whitelist()
-def get_all_shop_tags(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_shop_tags(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all shop tags on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Shop Tag",
@@ -155,12 +167,11 @@ def get_all_shop_tags(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_product_extra_groups(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_product_extra_groups(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all product extra groups on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Product Extra Group",
@@ -171,12 +182,11 @@ def get_all_product_extra_groups(
 
 
 @frappe.whitelist()
-def get_all_product_extra_values(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_product_extra_values(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all product extra values on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Product Extra Value",

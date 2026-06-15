@@ -1,15 +1,15 @@
+from typing import Any, Optional
 import frappe
 import json
 from ..utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_delivery_zones(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_delivery_zones(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of delivery zones for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -25,10 +25,11 @@ def get_seller_delivery_zones(
 
 
 @frappe.whitelist()
-def get_seller_delivery_zone(zone_name):
+def get_seller_delivery_zone(zone_name: Any) -> Any:
     """
     Retrieves a single delivery zone with its coordinates for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -44,10 +45,11 @@ def get_seller_delivery_zone(zone_name):
 
 
 @frappe.whitelist()
-def create_seller_delivery_zone(zone_data):
+def create_seller_delivery_zone(zone_data: Any) -> Any:
     """
     Creates a new delivery zone for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -62,10 +64,11 @@ def create_seller_delivery_zone(zone_data):
 
 
 @frappe.whitelist()
-def update_seller_delivery_zone(zone_name, zone_data):
+def update_seller_delivery_zone(zone_name: Any, zone_data: Any) -> Any:
     """
     Updates a delivery zone for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -86,10 +89,11 @@ def update_seller_delivery_zone(zone_name, zone_data):
 
 
 @frappe.whitelist()
-def delete_seller_delivery_zone(zone_name):
+def delete_seller_delivery_zone(zone_name: Any) -> Any:
     """
     Deletes a delivery zone for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -109,10 +113,11 @@ def delete_seller_delivery_zone(zone_name):
 
 
 @frappe.whitelist()
-def check_delivery_fee(lat, lng):
+def check_delivery_fee(lat: Any, lng: Any) -> Any:
     """
     Checks if a location is within any of the seller's delivery zones and returns the fee.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 

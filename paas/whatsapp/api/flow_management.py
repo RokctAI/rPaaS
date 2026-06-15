@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025, ROKCT and contributors
 # For license information, please see license.txt
 
@@ -8,10 +9,11 @@ from paas.whatsapp.utils import get_whatsapp_config
 
 
 @frappe.whitelist()
-def create_flow():
+def create_flow() -> Any:
     """
     Automates the creation of the 'Product Customizer' flow on Meta.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     config = frappe.get_single("WhatsApp Tenant Config")
     if not config.access_token or not config.waba_id:
         frappe.throw("Please ensure Access Token and WABA ID are saved first.")

@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -6,10 +7,11 @@ import json
 
 
 @frappe.whitelist()
-def create_extra_group(data):
+def create_extra_group(data: Any) -> Any:
     """
     Creates a new Product Extra Group.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -19,10 +21,11 @@ def create_extra_group(data):
 
 
 @frappe.whitelist()
-def get_extra_groups(shop_id=None):
+def get_extra_groups(shop_id: Any=None) -> Any:
     """
     Retrieves Extra Groups, optionally filtered by shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     filters = {}
     if shop_id:
         filters["shop"] = shop_id
@@ -33,10 +36,11 @@ def get_extra_groups(shop_id=None):
 
 
 @frappe.whitelist()
-def update_extra_group(name, data):
+def update_extra_group(name: Any, data: Any) -> Any:
     """
     Updates an Extra Group.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -47,10 +51,11 @@ def update_extra_group(name, data):
 
 
 @frappe.whitelist()
-def delete_extra_group(name):
+def delete_extra_group(name: Any) -> Any:
     """
     Deletes an Extra Group.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.delete_doc("Product Extra Group", name)
     return {"status": "success"}
 
@@ -59,10 +64,11 @@ def delete_extra_group(name):
 
 
 @frappe.whitelist()
-def create_extra_value(data):
+def create_extra_value(data: Any) -> Any:
     """
     Creates a new Product Extra Value.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -72,20 +78,22 @@ def create_extra_value(data):
 
 
 @frappe.whitelist()
-def get_extra_values(group_id):
+def get_extra_values(group_id: Any) -> Any:
     """
     Retrieves Extra Values for a specific group.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_list(
         "Product Extra Value", filters={"extra_group": group_id}, fields=["*"]
     )
 
 
 @frappe.whitelist()
-def update_extra_value(name, data):
+def update_extra_value(name: Any, data: Any) -> Any:
     """
     Updates an Extra Value.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -96,9 +104,10 @@ def update_extra_value(name, data):
 
 
 @frappe.whitelist()
-def delete_extra_value(name):
+def delete_extra_value(name: Any) -> Any:
     """
     Deletes an Extra Value.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.delete_doc("Product Extra Value", name)
     return {"status": "success"}

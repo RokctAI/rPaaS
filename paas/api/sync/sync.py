@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025 ROKCT INTELLIGENCE (PTY) LTD
 # For license information, please see license.txt
 
@@ -7,11 +8,12 @@ from paas.api.utils import api_response
 
 
 @frappe.whitelist()
-def sync_brain_events(events):
+def sync_brain_events(events: Any) -> Any:
     """
     Ingests a list of brain events from the mobile app.
     'events' should be a list of dictionaries.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(events, str):
         try:
             events = json.loads(events)

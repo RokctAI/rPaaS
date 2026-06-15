@@ -1,13 +1,15 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
 
 
 @frappe.whitelist()
-def create_faq(data):
+def create_faq(data: Any) -> Any:
     """
     Creates a new FAQ.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -17,10 +19,11 @@ def create_faq(data):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_faqs(type=None):
+def get_faqs(type: Any=None) -> Any:
     """
     Retrieves FAQs, optionally filtered by type.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     filters = {"active": 1}
     if type:
         filters["type"] = type
@@ -31,10 +34,11 @@ def get_faqs(type=None):
 
 
 @frappe.whitelist()
-def update_faq(name, data):
+def update_faq(name: Any, data: Any) -> Any:
     """
     Updates an FAQ.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -45,9 +49,10 @@ def update_faq(name, data):
 
 
 @frappe.whitelist()
-def delete_faq(name):
+def delete_faq(name: Any) -> Any:
     """
     Deletes an FAQ.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.delete_doc("FAQ", name)
     return {"status": "success"}

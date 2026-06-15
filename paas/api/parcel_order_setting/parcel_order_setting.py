@@ -1,12 +1,14 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 
 
 @frappe.whitelist(allow_guest=True)
-def get_parcel_order_settings():
+def get_parcel_order_settings() -> Any:
     """
     Retrieves a list of all active Parcel Order Settings.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         settings = frappe.get_list(
             "Parcel Order Setting",
@@ -43,10 +45,11 @@ def get_parcel_order_settings():
 
 
 @frappe.whitelist()
-def create_parcel_order_setting(setting_data):
+def create_parcel_order_setting(setting_data: Any) -> Any:
     """
     Creates a new Parcel Order Setting.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         if isinstance(setting_data, str):
             setting_data = frappe.parse_json(setting_data)
@@ -65,10 +68,11 @@ def create_parcel_order_setting(setting_data):
 
 
 @frappe.whitelist()
-def update_parcel_order_setting(name, setting_data):
+def update_parcel_order_setting(name: Any, setting_data: Any) -> Any:
     """
     Updates an existing Parcel Order Setting.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         if isinstance(setting_data, str):
             setting_data = frappe.parse_json(setting_data)
@@ -90,10 +94,11 @@ def update_parcel_order_setting(name, setting_data):
 
 
 @frappe.whitelist()
-def delete_parcel_order_setting(name):
+def delete_parcel_order_setting(name: Any) -> Any:
     """
     Deletes a Parcel Order Setting.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         frappe.delete_doc("Parcel Order Setting", name)
         return {

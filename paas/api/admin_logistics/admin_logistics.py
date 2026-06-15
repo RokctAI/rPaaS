@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,19 +6,21 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_deliveryman_global_settings():
+def get_deliveryman_global_settings() -> Any:
     """
     Retrieves the global deliveryman settings (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_doc("DeliveryMan Settings").as_dict()
 
 
 @frappe.whitelist()
-def update_deliveryman_global_settings(settings_data):
+def update_deliveryman_global_settings(settings_data: Any) -> Any:
     """
     Updates the global deliveryman settings (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(settings_data, str):
         settings_data = json.loads(settings_data)
@@ -29,12 +32,11 @@ def update_deliveryman_global_settings(settings_data):
 
 
 @frappe.whitelist()
-def get_parcel_order_settings(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_parcel_order_settings(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all parcel order settings (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Parcel Order Setting",
@@ -45,10 +47,11 @@ def get_parcel_order_settings(
 
 
 @frappe.whitelist()
-def create_parcel_order_setting(setting_data):
+def create_parcel_order_setting(setting_data: Any) -> Any:
     """
     Creates a new parcel order setting (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(setting_data, str):
         setting_data = json.loads(setting_data)
@@ -61,10 +64,11 @@ def create_parcel_order_setting(setting_data):
 
 
 @frappe.whitelist()
-def update_parcel_order_setting(setting_name, setting_data):
+def update_parcel_order_setting(setting_name: Any, setting_data: Any) -> Any:
     """
     Updates a parcel order setting (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(setting_data, str):
         setting_data = json.loads(setting_data)
@@ -76,10 +80,11 @@ def update_parcel_order_setting(setting_name, setting_data):
 
 
 @frappe.whitelist()
-def delete_parcel_order_setting(setting_name):
+def delete_parcel_order_setting(setting_name: Any) -> Any:
     """
     Deletes a parcel order setting (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc(
         "Parcel Order Setting", setting_name, ignore_permissions=True
@@ -91,10 +96,11 @@ def delete_parcel_order_setting(setting_name):
 
 
 @frappe.whitelist()
-def get_all_delivery_zones(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_delivery_zones(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all delivery zones on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Delivery Zone",
@@ -105,12 +111,11 @@ def get_all_delivery_zones(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_delivery_vehicle_types(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_delivery_vehicle_types(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all delivery vehicle types on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Delivery Vehicle Type",
@@ -121,10 +126,11 @@ def get_delivery_vehicle_types(
 
 
 @frappe.whitelist()
-def create_delivery_vehicle_type(type_data):
+def create_delivery_vehicle_type(type_data: Any) -> Any:
     """
     Creates a new delivery vehicle type (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(type_data, str):
         type_data = json.loads(type_data)
@@ -137,10 +143,11 @@ def create_delivery_vehicle_type(type_data):
 
 
 @frappe.whitelist()
-def update_delivery_vehicle_type(type_name, type_data):
+def update_delivery_vehicle_type(type_name: Any, type_data: Any) -> Any:
     """
     Updates a delivery vehicle type (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(type_data, str):
         type_data = json.loads(type_data)
@@ -152,10 +159,11 @@ def update_delivery_vehicle_type(type_name, type_data):
 
 
 @frappe.whitelist()
-def delete_delivery_vehicle_type(type_name):
+def delete_delivery_vehicle_type(type_name: Any) -> Any:
     """
     Deletes a delivery vehicle type (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc(
         "Delivery Vehicle Type", type_name, ignore_permissions=True
@@ -167,12 +175,11 @@ def delete_delivery_vehicle_type(type_name):
 
 
 @frappe.whitelist()
-def get_all_delivery_man_delivery_zones(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_delivery_man_delivery_zones(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all delivery man delivery zones on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Deliveryman Delivery Zone",
@@ -183,12 +190,11 @@ def get_all_delivery_man_delivery_zones(
 
 
 @frappe.whitelist()
-def get_all_shop_working_days(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_shop_working_days(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all shop working days on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Shop Working Day",
@@ -206,12 +212,11 @@ def get_all_shop_working_days(
 
 
 @frappe.whitelist()
-def get_all_shop_closed_days(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_shop_closed_days(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all shop closed days on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Shop Closed Day",

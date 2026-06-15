@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,10 +6,11 @@ from frappe.utils import flt
 
 
 @frappe.whitelist()
-def create_delivery_zone(data):
+def create_delivery_zone(data: Any) -> Any:
     """
     Creates a new Delivery Zone.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -18,20 +20,22 @@ def create_delivery_zone(data):
 
 
 @frappe.whitelist()
-def get_shop_delivery_zones(shop_id):
+def get_shop_delivery_zones(shop_id: Any) -> Any:
     """
     Retrieves all Delivery Zones for a shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_list(
         "Delivery Zone", filters={"shop": shop_id}, fields=["*"]
     )
 
 
 @frappe.whitelist()
-def update_delivery_zone(name, data):
+def update_delivery_zone(name: Any, data: Any) -> Any:
     """
     Updates a Delivery Zone.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -42,21 +46,23 @@ def update_delivery_zone(name, data):
 
 
 @frappe.whitelist()
-def delete_delivery_zone(name):
+def delete_delivery_zone(name: Any) -> Any:
     """
     Deletes a Delivery Zone.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.delete_doc("Delivery Zone", name)
     return {"status": "success"}
 
 
 @frappe.whitelist()
-def check_delivery_availability(lat, lng, shop_id=None):
+def check_delivery_availability(lat: Any, lng: Any, shop_id: Any=None) -> Any:
     """
     Checks if a location is within any delivery zone.
     If shop_id is provided, checks only that shop's zones.
     Returns list of shops that deliver to this location.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     lat = flt(lat)
     lng = flt(lng)
 

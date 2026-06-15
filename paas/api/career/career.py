@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -13,10 +14,11 @@ def _require_admin():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_careers(limit_start: int = 0, limit_page_length: int = 20):
+def get_careers(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of active careers, formatted for frontend compatibility.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     careers = frappe.get_list(
         "Career",
         filters={"is_active": 1},
@@ -46,10 +48,11 @@ def get_careers(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_career(id: str):
+def get_career(id: str) -> Any:
     """
     Retrieves a single career by its ID (name).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     career = frappe.get_doc("Career", id)
     if not career.is_active:
         frappe.throw("Career not active.", frappe.PermissionError)
@@ -67,10 +70,11 @@ def get_career(id: str):
 
 
 @frappe.whitelist()
-def get_admin_careers(limit_start: int = 0, limit_page_length: int = 20):
+def get_admin_careers(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all careers on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Career",

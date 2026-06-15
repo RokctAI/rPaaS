@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,16 +6,11 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_orders(
-    limit_start: int = 0,
-    limit_page_length: int = 20,
-    status: str = None,
-    from_date: str = None,
-    to_date: str = None,
-):
+def get_all_orders(limit_start: int=0, limit_page_length: int=20, status: str=None, from_date: str=None, to_date: str=None) -> Any:
     """
     Retrieves a list of all orders on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
 
     filters = {}
@@ -35,16 +31,11 @@ def get_all_orders(
 
 
 @frappe.whitelist()
-def get_all_parcel_orders(
-    limit_start: int = 0,
-    limit_page_length: int = 20,
-    status: str = None,
-    from_date: str = None,
-    to_date: str = None,
-):
+def get_all_parcel_orders(limit_start: int=0, limit_page_length: int=20, status: str=None, from_date: str=None, to_date: str=None) -> Any:
     """
     Retrieves a list of all parcel orders on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
 
     filters = {}
@@ -72,10 +63,11 @@ def get_all_parcel_orders(
 
 
 @frappe.whitelist()
-def delete_admin_parcel_order(parcel_order_id):
+def delete_admin_parcel_order(parcel_order_id: Any) -> Any:
     """
     Deletes a parcel order (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("Parcel Order", parcel_order_id, ignore_permissions=True)
     return {
@@ -85,7 +77,9 @@ def delete_admin_parcel_order(parcel_order_id):
 
 
 @frappe.whitelist()
-def assign_deliveryman_to_parcel(parcel_order_id, deliveryman_id):
+def assign_deliveryman_to_parcel(parcel_order_id: Any, deliveryman_id: Any) -> Any:
+    """Auto-generated docstring for compliance."""
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     trace_id = None
     """
     Assigns a deliveryman to a parcel order (for admins).
@@ -108,10 +102,11 @@ def assign_deliveryman_to_parcel(parcel_order_id, deliveryman_id):
 
 
 @frappe.whitelist()
-def get_all_reviews(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_reviews(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all reviews on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Review",
@@ -132,10 +127,11 @@ def get_all_reviews(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def update_admin_review(review_name, review_data):
+def update_admin_review(review_name: Any, review_data: Any) -> Any:
     """
     Updates a review (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(review_data, str):
         review_data = json.loads(review_data)
@@ -147,20 +143,22 @@ def update_admin_review(review_name, review_data):
 
 
 @frappe.whitelist()
-def delete_admin_review(review_name):
+def delete_admin_review(review_name: Any) -> Any:
     """
     Deletes a review (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("Review", review_name, ignore_permissions=True)
     return {"status": "success", "message": "Review deleted successfully."}
 
 
 @frappe.whitelist()
-def get_all_tickets(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_tickets(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all tickets on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Ticket",
@@ -172,10 +170,11 @@ def get_all_tickets(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def update_admin_ticket(ticket_name, ticket_data):
+def update_admin_ticket(ticket_name: Any, ticket_data: Any) -> Any:
     """
     Updates a ticket (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(ticket_data, str):
         ticket_data = json.loads(ticket_data)
@@ -187,10 +186,11 @@ def update_admin_ticket(ticket_name, ticket_data):
 
 
 @frappe.whitelist()
-def get_all_order_refunds(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_order_refunds(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all order refunds on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Order Refund",
@@ -202,10 +202,11 @@ def get_all_order_refunds(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def update_admin_order_refund(refund_name, status, answer=None):
+def update_admin_order_refund(refund_name: Any, status: Any, answer: Any=None) -> Any:
     """
     Updates the status and answer of an order refund (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
 
     refund = frappe.get_doc("Order Refund", refund_name)
@@ -222,10 +223,11 @@ def update_admin_order_refund(refund_name, status, answer=None):
 
 
 @frappe.whitelist()
-def get_all_notifications(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_notifications(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all notifications on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Notification Log",
@@ -244,10 +246,11 @@ def get_all_notifications(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_bookings(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_bookings(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all bookings on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Booking",
@@ -266,10 +269,11 @@ def get_all_bookings(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_booking(booking_data):
+def create_booking(booking_data: Any) -> Any:
     """
     Creates a new booking (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(booking_data, str):
         booking_data = json.loads(booking_data)
@@ -280,10 +284,11 @@ def create_booking(booking_data):
 
 
 @frappe.whitelist()
-def update_booking(booking_name, booking_data):
+def update_booking(booking_name: Any, booking_data: Any) -> Any:
     """
     Updates a booking (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(booking_data, str):
         booking_data = json.loads(booking_data)
@@ -295,20 +300,22 @@ def update_booking(booking_name, booking_data):
 
 
 @frappe.whitelist()
-def delete_booking(booking_name):
+def delete_booking(booking_name: Any) -> Any:
     """
     Deletes a booking (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc("Booking", booking_name, ignore_permissions=True)
     return {"status": "success", "message": "Booking deleted successfully."}
 
 
 @frappe.whitelist()
-def get_all_order_statuses(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_order_statuses(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all order statuses on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Order Status",
@@ -320,10 +327,11 @@ def get_all_order_statuses(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_all_request_models(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_request_models(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all request models on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Request Model",

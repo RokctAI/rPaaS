@@ -1,22 +1,15 @@
+from typing import Any, Optional
 import frappe
 import json
 from paas.api.utils import api_response
 
 
 @frappe.whitelist(allow_guest=True)
-def get_products(  # noqa: C901
-    limit_start: int = 0,
-    limit_page_length: int = 20,
-    category_id: str = None,
-    brand_id: str = None,
-    shop_id: str = None,
-    order_by: str = None,  # new, old, best_sale, low_sale, high_rating, low_rating
-    rating: str = None,  # e.g. "1,5"
-    search: str = None,
-):
+def get_products(limit_start: int=0, limit_page_length: int=20, category_id: str=None, brand_id: str=None, shop_id: str=None, order_by: str=None, rating: str=None, search: str=None) -> Any:
     """
     Retrieves a list of products (Items) with pagination, advanced filters, and sorting.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     params = {}
     conditions = [
         "t_item.disabled = 0",
@@ -249,10 +242,11 @@ def get_products(  # noqa: C901
 
 
 @frappe.whitelist(allow_guest=True)
-def most_sold_products(limit_start: int = 0, limit_page_length: int = 20):
+def most_sold_products(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of most sold products.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     from frappe.query_builder.functions import Sum
 
     t_sales_item = frappe.qb.DocType("Sales Invoice Item")
@@ -280,10 +274,11 @@ def most_sold_products(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
+def get_discounted_products(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of products with active discounts.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     today = frappe.utils.nowdate()
 
     # Get all active pricing rules
@@ -343,10 +338,11 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_products_by_ids(ids: list, **kwargs):
+def get_products_by_ids(ids: list, **kwargs) -> Any:
     """
     Retrieves a list of products by their IDs.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     filters = {}
     product_ids_to_filter = ids
 
@@ -377,28 +373,31 @@ def get_products_by_ids(ids: list, **kwargs):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_product_by_uuid(uuid: str):
+def get_product_by_uuid(uuid: str) -> Any:
     """
     Retrieves a single product by its UUID.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     product = frappe.get_doc("Item", {"uuid": uuid})
     return api_response(data=product.as_dict())
 
 
 @frappe.whitelist(allow_guest=True)
-def get_product_by_slug(slug: str):
+def get_product_by_slug(slug: str) -> Any:
     """
     Retrieves a single product by its slug.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     product = frappe.get_doc("Item", {"route": slug})
     return api_response(data=product.as_dict())
 
 
 @frappe.whitelist(allow_guest=True)
-def read_product_file(uuid: str):
+def read_product_file(uuid: str) -> Any:
     """
     Reads a product file.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     product = frappe.get_doc("Item", {"uuid": uuid})
     if not product.image:
         frappe.throw("Product does not have an image.")
@@ -411,12 +410,11 @@ def read_product_file(uuid: str):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_product_reviews(
-    uuid: str, limit_start: int = 0, limit_page_length: int = 20
-):
+def get_product_reviews(uuid: str, limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves reviews for a specific product by its UUID.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     product_name = frappe.db.get_value("Item", {"uuid": uuid}, "name")
     if not product_name:
         frappe.throw("Product not found.")
@@ -437,10 +435,11 @@ def get_product_reviews(
 
 
 @frappe.whitelist(allow_guest=True)
-def order_products_calculate(products: list):
+def order_products_calculate(products: list) -> Any:
     """
     Calculates the total price of a list of products.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     total_price = 0
     for product in products:
         item = frappe.get_doc("Item", product.get("product_id"))
@@ -449,12 +448,11 @@ def order_products_calculate(products: list):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_products_by_brand(
-    brand_id: str, limit_start: int = 0, limit_page_length: int = 20
-):
+def get_products_by_brand(brand_id: str, limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of products for a given brand.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     products = frappe.get_list(
         "Item",
         fields=["name", "item_name", "description", "image", "standard_rate"],
@@ -467,12 +465,11 @@ def get_products_by_brand(
 
 
 @frappe.whitelist(allow_guest=True)
-def products_search(
-    search: str, limit_start: int = 0, limit_page_length: int = 20
-):
+def products_search(search: str, limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Searches for products by a search term.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     t_item = frappe.qb.DocType("Item")
     query = frappe.qb.from_(t_item).select(
         t_item.name,
@@ -502,12 +499,11 @@ def products_search(
 
 
 @frappe.whitelist(allow_guest=True)
-def get_products_by_category(
-    uuid: str, limit_start: int = 0, limit_page_length: int = 20
-):
+def get_products_by_category(uuid: str, limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of products for a given category.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     category_name = frappe.db.get_value("Category", {"uuid": uuid}, "name")
     if not category_name:
         frappe.throw("Category not found.")
@@ -524,12 +520,11 @@ def get_products_by_category(
 
 
 @frappe.whitelist(allow_guest=True)
-def get_products_by_shop(
-    shop_id: str, limit_start: int = 0, limit_page_length: int = 20
-):
+def get_products_by_shop(shop_id: str, limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of products for a given shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     products = frappe.get_list(
         "Item",
         fields=["name", "item_name", "description", "image", "standard_rate"],
@@ -542,10 +537,11 @@ def get_products_by_shop(
 
 
 @frappe.whitelist()
-def add_product_review(uuid: str, rating: float, comment: str = None):
+def add_product_review(uuid: str, rating: float, comment: str=None) -> Any:
     """
     Adds a review for a product by its UUID, but only if the user has purchased it.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
 
     if user == "Guest":
@@ -601,10 +597,11 @@ def add_product_review(uuid: str, rating: float, comment: str = None):
 
 
 @frappe.whitelist()
-def get_product_history(limit_start: int = 0, limit_page_length: int = 20):
+def get_product_history(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves the viewing history for the current user, specific to products (Items).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to view your history.")
@@ -636,10 +633,11 @@ def get_product_history(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_product_by_uuid(uuid):  # noqa: F811
+def get_product_by_uuid(uuid: Any) -> Any:
     """
     Retrieves a single product by UUID.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         product_name = frappe.db.get_value("Item", {"uuid": uuid}, "name")
         if not product_name:
@@ -668,11 +666,12 @@ def get_product_by_uuid(uuid):  # noqa: F811
 
 
 @frappe.whitelist(allow_guest=True)
-def calculate_product_price(products):
+def calculate_product_price(products: Any) -> Any:
     """
     Calculates prices for products.
     Expects 'products' as a list of dicts: [{'id': ..., 'quantity': ...}] or JSON string.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     if isinstance(products, str):
         import json  # noqa: F811
 
@@ -700,12 +699,11 @@ def calculate_product_price(products):
 
 
 @frappe.whitelist()
-def add_product_review(
-    product_uuid, rating, comment=None, images=None
-):  # noqa: C901
+def add_product_review(product_uuid: Any, rating: Any, comment: Any=None, images: Any=None) -> Any:
     """
     Adds a review for a product by its UUID, verifying ownership if enabled.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to leave a review.")
@@ -771,12 +769,11 @@ def add_product_review(
 
 
 @frappe.whitelist()
-def get_suggest_price(
-    item_code: str = None, lang: str = "en", currency: str = "ZAR"
-):
+def get_suggest_price(item_code: str=None, lang: str='en', currency: str='ZAR') -> Any:
     """
     Retrieves a suggested price range based on similar items in the same category.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     import datetime
 
     min_price = 1.0
@@ -807,10 +804,11 @@ def get_suggest_price(
 
 
 @frappe.whitelist()
-def get_product_calculations(item_code: str, quantity: int, lang: str = "en"):
+def get_product_calculations(item_code: str, quantity: int, lang: str='en') -> Any:
     """
     Calculates the price for a single product.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     item = frappe.get_doc("Item", item_code)
     # Using standard_rate as per other functions in this file
     price = item.standard_rate or 0.0

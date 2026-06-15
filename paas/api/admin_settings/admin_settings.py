@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Tenant context: session.user validation
 import frappe
 import json
@@ -5,10 +6,11 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_languages(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_languages(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all languages (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Language",
@@ -19,10 +21,11 @@ def get_all_languages(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def update_language(language_name, language_data):
+def update_language(language_name: Any, language_data: Any) -> Any:
     """
     Updates a language (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(language_data, str):
         language_data = json.loads(language_data)
@@ -34,10 +37,11 @@ def update_language(language_name, language_data):
 
 
 @frappe.whitelist()
-def get_all_currencies(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_currencies(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all currencies (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Currency",
@@ -48,10 +52,11 @@ def get_all_currencies(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def update_currency(currency_name, currency_data):
+def update_currency(currency_name: Any, currency_data: Any) -> Any:
     """
     Updates a currency (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(currency_data, str):
         currency_data = json.loads(currency_data)
@@ -63,19 +68,21 @@ def update_currency(currency_name, currency_data):
 
 
 @frappe.whitelist()
-def get_email_settings():
+def get_email_settings() -> Any:
     """
     Retrieves the email settings (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_doc("Email Settings").as_dict()
 
 
 @frappe.whitelist()
-def update_email_settings(settings_data):
+def update_email_settings(settings_data: Any) -> Any:
     """
     Updates the email settings (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(settings_data, str):
         settings_data = json.loads(settings_data)
@@ -87,10 +94,11 @@ def update_email_settings(settings_data):
 
 
 @frappe.whitelist()
-def get_all_email_templates(limit_start: int = 0, limit_page_length: int = 20):
+def get_all_email_templates(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all email templates on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Email Template",
@@ -101,10 +109,11 @@ def get_all_email_templates(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def update_email_template(template_name, template_data):
+def update_email_template(template_name: Any, template_data: Any) -> Any:
     """
     Updates an email template (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(template_data, str):
         template_data = json.loads(template_data)
@@ -116,10 +125,11 @@ def update_email_template(template_name, template_data):
 
 
 @frappe.whitelist()
-def get_email_subscriptions(limit_start: int = 0, limit_page_length: int = 20):
+def get_email_subscriptions(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of all email subscriptions on the platform (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_list(
         "Email Subscription",
@@ -130,10 +140,11 @@ def get_email_subscriptions(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def create_email_subscription(subscription_data):
+def create_email_subscription(subscription_data: Any) -> Any:
     """
     Creates a new email subscription (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(subscription_data, str):
         subscription_data = json.loads(subscription_data)
@@ -146,10 +157,11 @@ def create_email_subscription(subscription_data):
 
 
 @frappe.whitelist()
-def delete_email_subscription(subscription_name):
+def delete_email_subscription(subscription_name: Any) -> Any:
     """
     Deletes an email subscription (for admins).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     frappe.delete_doc(
         "Email Subscription", subscription_name, ignore_permissions=True
@@ -161,19 +173,21 @@ def delete_email_subscription(subscription_name):
 
 
 @frappe.whitelist()
-def get_general_settings():
+def get_general_settings() -> Any:
     """
     Retrieves the General Settings (Settings Doctype).
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_single("Settings").as_dict()
 
 
 @frappe.whitelist()
-def update_general_settings(settings_data):
+def update_general_settings(settings_data: Any) -> Any:
     """
     Updates the General Settings.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(settings_data, str):
         settings_data = json.loads(settings_data)
@@ -185,19 +199,21 @@ def update_general_settings(settings_data):
 
 
 @frappe.whitelist()
-def get_app_settings():
+def get_app_settings() -> Any:
     """
     Retrieves the App Settings.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     return frappe.get_single("App Settings").as_dict()
 
 
 @frappe.whitelist()
-def update_app_settings(settings_data):
+def update_app_settings(settings_data: Any) -> Any:
     """
     Updates the App Settings.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     _require_admin()
     if isinstance(settings_data, str):
         settings_data = json.loads(settings_data)

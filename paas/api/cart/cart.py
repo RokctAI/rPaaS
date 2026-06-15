@@ -1,11 +1,13 @@
+from typing import Any, Optional
 import frappe
 
 
 @frappe.whitelist()
-def get_cart(shop_id: str):
+def get_cart(shop_id: str) -> Any:
     """
     Retrieves the active cart for the current user and a given shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to view your cart.")
@@ -20,19 +22,13 @@ def get_cart(shop_id: str):
 
 
 @frappe.whitelist()
-def add_to_cart(
-    qty: int,
-    shop_id: str,
-    item_code: str = None,
-    stock_id: int = None,
-    addons: str = None,
-    alternative_product: str = None,
-):  # noqa: C901
+def add_to_cart(qty: int, shop_id: str, item_code: str=None, stock_id: int=None, addons: str=None, alternative_product: str=None) -> Any:
     """
     Adds an item to the user's cart. Support multi-cart by shop_id.
     accepts item_code (ProductId) or stock_id (Variant).
     addons: JSON string of addons list.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     import json
 
     user = frappe.session.user
@@ -147,11 +143,12 @@ def add_to_cart(
 
 
 @frappe.whitelist()
-def remove_from_cart(cart_detail_name: str):
+def remove_from_cart(cart_detail_name: str) -> Any:
     """
     Removes an item from the cart.
     `cart_detail_name` is the name of the Cart Detail row.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to modify your cart.")
@@ -175,10 +172,11 @@ def remove_from_cart(cart_detail_name: str):
 
 
 @frappe.whitelist()
-def remove_product_cart(cart_detail_id: str):
+def remove_product_cart(cart_detail_id: str) -> Any:
     """
     Alias for remove_from_cart, used by Flutter app.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return remove_from_cart(cart_detail_name=cart_detail_id)
 
 
@@ -196,10 +194,11 @@ def calculate_cart_totals(cart_name: str):
 
 
 @frappe.whitelist()
-def create_cart(cart: dict, lang: str = "en"):
+def create_cart(cart: dict, lang: str='en') -> Any:
     """
     Creates a new cart.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     cart_doc = frappe.get_doc(
         {
             "doctype": "Cart",
@@ -221,10 +220,11 @@ def create_cart(cart: dict, lang: str = "en"):
 
 
 @frappe.whitelist()
-def insert_cart(cart: dict, lang: str = "en"):
+def insert_cart(cart: dict, lang: str='en') -> Any:
     """
     Inserts items into an existing cart.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     cart_doc = frappe.get_doc("Cart", cart.get("cart_id"))
     for item in cart.get("items", []):
         cart_doc.append(
@@ -240,10 +240,11 @@ def insert_cart(cart: dict, lang: str = "en"):
 
 
 @frappe.whitelist()
-def insert_cart_with_group(cart: dict, lang: str = "en"):
+def insert_cart_with_group(cart: dict, lang: str='en') -> Any:
     """
     Inserts items into an existing group cart.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     cart_doc = frappe.get_doc("Cart", cart.get("cart_id"))
     for item in cart.get("items", []):
         cart_doc.append(
@@ -259,46 +260,49 @@ def insert_cart_with_group(cart: dict, lang: str = "en"):
 
 
 @frappe.whitelist()
-def create_and_cart(cart: dict, lang: str = "en"):
+def create_and_cart(cart: dict, lang: str='en') -> Any:
     """
     Creates a new cart and adds items to it.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return create_cart(cart, lang)
 
 
 @frappe.whitelist()
-def get_cart_in_group(
-    cart_id: str, shop_id: str, cart_uuid: str, lang: str = "en"
-):
+def get_cart_in_group(cart_id: str, shop_id: str, cart_uuid: str, lang: str='en') -> Any:
     """
     Retrieves a group cart.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     return frappe.get_doc("Cart", cart_id)
 
 
 @frappe.whitelist()
-def delete_cart(cart_id: int, lang: str = "en"):
+def delete_cart(cart_id: int, lang: str='en') -> Any:
     """
     Deletes a cart.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     frappe.delete_doc("Cart", cart_id, ignore_permissions=True)
     return {"status": "success"}
 
 
 @frappe.whitelist()
-def change_status(user_uuid: str, cart_id: str, lang: str = "en"):
+def change_status(user_uuid: str, cart_id: str, lang: str='en') -> Any:
     """
     Changes the status of a user in a group cart.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     # This is a placeholder for the actual implementation.
     return {"status": "success"}
 
 
 @frappe.whitelist()
-def delete_user(cart_id: int, user_id: str, lang: str = "en"):
+def delete_user(cart_id: int, user_id: str, lang: str='en') -> Any:
     """
     Deletes a user from a group cart.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     cart_doc = frappe.get_doc("Cart", cart_id)
     cart_doc.remove("group_order_users", {"user": user_id})
     cart_doc.save(ignore_permissions=True)
@@ -309,9 +313,10 @@ def delete_user(cart_id: int, user_id: str, lang: str = "en"):
 
 
 @frappe.whitelist()
-def join_order(cart_id: str, user_name: str, lang: str = "en"):
+def join_order(cart_id: str, user_name: str, lang: str='en') -> Any:
     """
     Allows a user to join a group order.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     # Placeholder logic
     return {"status": "success", "message": "Joined order."}

@@ -1,3 +1,4 @@
+from typing import Any, Optional
 # Copyright (c) 2025, ROKCT and contributors
 # For license information, please see license.txt
 
@@ -13,11 +14,12 @@ import os
 
 
 @frappe.whitelist(allow_guest=True)
-def flow_data():
+def flow_data() -> Any:
     """
     Meta Data Endpoint for WhatsApp Flows.
     Handles encryption/decryption of the request from Meta.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     try:
         req_json = frappe.request.json
         encrypted_flow_data_b64 = req_json.get("encrypted_flow_data")

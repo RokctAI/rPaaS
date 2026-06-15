@@ -55,7 +55,9 @@ class SystemInformation(Document):
             # Only try fetching if it looks like a real URL
             if control_url and "http" in control_url:
                 api_endpoint = f"{control_url}/api/method/control.control.api.versions.get_versions"
-                response = requests.get(api_endpoint, timeout=3)
+                trace_id = frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else "system-information-trace"
+                headers = {"x-trace-id": trace_id or ""}
+                response = requests.get(api_endpoint, headers=headers, timeout=3)
 
                 if response.status_code == 200:
                     data = response.json()

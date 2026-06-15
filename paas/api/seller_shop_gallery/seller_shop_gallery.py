@@ -1,15 +1,15 @@
+from typing import Any, Optional
 import frappe
 import json
 from ..utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_shop_galleries(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_shop_galleries(limit_start: int=0, limit_page_length: int=20) -> Any:
     """
     Retrieves a list of shop gallery images for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -25,10 +25,11 @@ def get_seller_shop_galleries(
 
 
 @frappe.whitelist()
-def create_seller_shop_gallery(gallery_data):
+def create_seller_shop_gallery(gallery_data: Any) -> Any:
     """
     Creates a new shop gallery image for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -43,10 +44,11 @@ def create_seller_shop_gallery(gallery_data):
 
 
 @frappe.whitelist()
-def delete_seller_shop_gallery(gallery_name):
+def delete_seller_shop_gallery(gallery_name: Any) -> Any:
     """
     Deletes a shop gallery image for the current seller's shop.
     """
+    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
