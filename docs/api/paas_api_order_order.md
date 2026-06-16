@@ -26,7 +26,6 @@ Cancels a specific order.
 Retrieves a list of active order statuses, formatted for frontend compatibility.
 
 ### `def get_calculate(cart_id, address=None, coupon_code=None, tips=0, delivery_type='Delivery')`
-<!-- 0c7df2735020f60150b8918f274555db7d474fc573965c6cdb136ba96acdcc63 -->
 The get_calculate function calculates the total cost of a shopping cart, taking into account various factors such as product prices, taxes, discounts, delivery fees, and service fees. 
 
 It accepts the following parameters: 

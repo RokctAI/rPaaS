@@ -1,0 +1,2 @@
+recursive-include paas *.json *.html *.js *.css *.png *.svg *.md *.txt *.py *.csv *.sql
+recursive-exclude paas *.pyc

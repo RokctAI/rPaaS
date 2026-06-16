@@ -1,6 +1,1 @@
 # Frappe App Requirements
-staticmap
-pillow
-cryptography
-sentence-transformers
-requests

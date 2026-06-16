@@ -1,0 +1,127 @@
+{
+  "name": "paas_app",
+  "version": "1.0.0",
+  "description": "Frappe App Shell for PaaS",
+  "modules": [
+    {
+      "name": "core",
+      "enabled": true,
+      "path": "../SDKs/core/frappe"
+    },
+    {
+      "name": "polaris",
+      "enabled": true,
+      "path": "../SDKs/polaris/frappe"
+    },
+    {
+      "name": "subscriptions",
+      "enabled": true,
+      "path": "../SDKs/subscriptions/frappe"
+    },
+    {
+      "name": "auth",
+      "enabled": true,
+      "path": "../Users/auth/frappe"
+    },
+    {
+      "name": "agent",
+      "enabled": true,
+      "path": "../SDKs/agent/frappe"
+    },
+    {
+      "name": "users",
+      "enabled": true,
+      "path": "../Users/users/frappe"
+    },
+    {
+      "name": "comms",
+      "enabled": true,
+      "path": "../SDKs/comms/frappe"
+    },
+    {
+      "name": "wallet",
+      "enabled": true,
+      "path": "../SDKs/wallet/frappe"
+    },
+    {
+      "name": "pay",
+      "enabled": true,
+      "path": "../SDKs/payments/frappe"
+    },
+    {
+      "name": "delivery",
+      "enabled": true,
+      "path": "../zones/delivery/frappe"
+    },
+    {
+      "name": "map",
+      "enabled": true,
+      "path": "../zones/map/frappe"
+    },
+    {
+      "name": "zones",
+      "enabled": true,
+      "path": "../zones/zones/frappe"
+    },
+    {
+      "name": "hardware",
+      "enabled": true,
+      "path": "../hardware/hardware/frappe"
+    },
+    {
+      "name": "booking",
+      "enabled": true,
+      "path": "../commerce/booking/frappe"
+    },
+    {
+      "name": "kitchen",
+      "enabled": true,
+      "path": "../commerce/kitchen/frappe"
+    },
+    {
+      "name": "loyalty",
+      "enabled": true,
+      "path": "../commerce/loyalty/frappe"
+    },
+    {
+      "name": "merchants",
+      "enabled": true,
+      "path": "../commerce/merchants/frappe"
+    },
+    {
+      "name": "orders",
+      "enabled": true,
+      "path": "../commerce/orders/frappe"
+    },
+    {
+      "name": "products",
+      "enabled": true,
+      "path": "../commerce/products/frappe"
+    },
+    {
+      "name": "promotions",
+      "enabled": true,
+      "path": "../commerce/promotions/frappe"
+    },
+    {
+      "name": "dev",
+      "enabled": true,
+      "path": "../SDKs/dev/frappe"
+    },
+    {
+      "name": "telemetry",
+      "enabled": true,
+      "path": "../SDKs/telemetry/frappe"
+    },
+    {
+      "name": "productivity",
+      "enabled": true,
+      "path": "../SDKs/productivity/frappe"
+    },
+    {
+      "name": "weather",
+      "enabled": true,
+      "path": "../zones/weather/frappe"
+    }
+  ]
+}
