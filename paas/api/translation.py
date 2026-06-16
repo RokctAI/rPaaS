@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -71,9 +75,7 @@ def get_translations_paginate(
     total_keys = count_query.run()[0][0]
 
     if total_keys == 0:
-        return _api_success(
-            {"total": 0, "perPage": per_page, "translations": {}}
-        )
+        return _api_success({"total": 0, "perPage": per_page, "translations": {}})
 
     # Get paginated distinct keys
     keys_query = base_query.select(frappe.qb.fn.Distinct(t_translation.key))
@@ -110,9 +112,7 @@ def get_translations_paginate(
     if locale:
         details_query = details_query.where(t_translation.locale == locale)
 
-    details_query = details_query.orderby(
-        t_translation.key, order=frappe.qb.asc
-    )
+    details_query = details_query.orderby(t_translation.key, order=frappe.qb.asc)
     details = details_query.run(as_dict=True)
 
     grouped = {}
@@ -231,9 +231,7 @@ def delete_translation():
         return _api_error("Invalid parameters", 400)
 
     for k in ids:
-        docs = frappe.get_all(
-            "PaaS Translation", filters={"key": k}, pluck="name"
-        )
+        docs = frappe.get_all("PaaS Translation", filters={"key": k}, pluck="name")
         for d in docs:
             frappe.delete_doc("PaaS Translation", d, ignore_permissions=True)
 
@@ -245,9 +243,7 @@ def delete_translation_single(key):
     if not key:
         return _api_error("Key is required", 400)
 
-    docs = frappe.get_all(
-        "PaaS Translation", filters={"key": key}, pluck="name"
-    )
+    docs = frappe.get_all("PaaS Translation", filters={"key": key}, pluck="name")
     for d in docs:
         frappe.delete_doc("PaaS Translation", d, ignore_permissions=True)
 
@@ -398,9 +394,7 @@ def export_translations():
             output = io.StringIO()
             df.to_csv(output, index=False)
             fname = "translations_export.csv"
-            saved = save_file(
-                fname, output.getvalue().encode("utf-8"), is_private=0
-            )
+            saved = save_file(fname, output.getvalue().encode("utf-8"), is_private=0)
             return _api_success(
                 {"path": saved.file_url, "file_name": fname},
                 "Successfully exported (CSV)",
@@ -430,9 +424,7 @@ def get_ai_translations():
 
         groq_api_key = data.get("api_key")
         if not groq_api_key:
-            return _api_error(
-                "API key is not configured in the application.", 401
-            )
+            return _api_error("API key is not configured in the application.", 401)
 
         headers = {
             "Authorization": f"Bearer {groq_api_key}",
@@ -456,9 +448,7 @@ def get_ai_translations():
 
         if response.status_code == 200:
             res_json = response.json()
-            translated_content = res_json["choices"][0]["message"][
-                "content"
-            ].strip()
+            translated_content = res_json["choices"][0]["message"]["content"].strip()
 
             # Log the translation transaction
             log_doc = frappe.get_doc(
