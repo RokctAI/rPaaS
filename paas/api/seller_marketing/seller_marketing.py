@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -260,15 +264,11 @@ def get_ads_packages():
     """
     Retrieves a list of available ads packages.
     """
-    return frappe.get_list(
-        "Ads Package", fields=["name", "price", "duration_days"]
-    )
+    return frappe.get_list("Ads Package", fields=["name", "price", "duration_days"])
 
 
 @frappe.whitelist()
-def get_seller_shop_ads_packages(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_shop_ads_packages(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of purchased ads packages for the current seller's shop.
     """
@@ -303,8 +303,7 @@ def purchase_shop_ads_package(package_name):
 
     # 1. Check subscription eligibility
     eligible_plans = [
-        plan.subscription_plan
-        for plan in ads_package.get("eligible_plans", [])
+        plan.subscription_plan for plan in ads_package.get("eligible_plans", [])
     ]
 
     if eligible_plans:

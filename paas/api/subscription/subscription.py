@@ -50,9 +50,8 @@ def delete_subscription(name):
     if not frappe.has_permission("Subscription", "delete"):
         frappe.throw("Not permitted", frappe.PermissionError)
     frappe.delete_doc("Subscription", name)
-    return {
-        "status": "success",
-        "message": "Subscription deleted successfully"}
+    return {"status": "success", "message": "Subscription deleted successfully"}
+
 
 # Admin Shop Subscription Management
 
@@ -65,15 +64,17 @@ def assign_subscription_to_shop(shop, subscription, expired_at):
 
     sub = frappe.get_doc("Subscription", subscription)
 
-    doc = frappe.get_doc({
-        "doctype": "Shop Subscription",
-        "shop": shop,
-        "subscription": subscription,
-        "expired_at": expired_at,
-        "price": sub.price,
-        "type": sub.type,
-        "active": 1
-    })
+    doc = frappe.get_doc(
+        {
+            "doctype": "Shop Subscription",
+            "shop": shop,
+            "subscription": subscription,
+            "expired_at": expired_at,
+            "price": sub.price,
+            "type": sub.type,
+            "active": 1,
+        }
+    )
     doc.insert()
     return doc
 
@@ -83,9 +84,7 @@ def get_shop_subscriptions(shop):
     """Get all subscriptions for a shop."""
     if not frappe.has_permission("Shop Subscription", "read"):
         frappe.throw("Not permitted", frappe.PermissionError)
-    return frappe.get_list(
-        "Shop Subscription", filters={
-            "shop": shop}, fields=["*"])
+    return frappe.get_list("Shop Subscription", filters={"shop": shop}, fields=["*"])
 
 
 @frappe.whitelist()
@@ -109,6 +108,7 @@ def cancel_shop_subscription(name):
     doc.save()
     return doc
 
+
 # Seller Subscription Management
 
 
@@ -117,14 +117,15 @@ def get_seller_shop():
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
-            "You must be logged in to manage subscriptions.",
-            frappe.PermissionError)
+            "You must be logged in to manage subscriptions.", frappe.PermissionError
+        )
 
     shop = frappe.db.get_value("Shop", {"user": user}, "name")
     if not shop:
         frappe.throw(
             "You do not have a shop associated with your account.",
-            frappe.PermissionError)
+            frappe.PermissionError,
+        )
 
     return shop
 
@@ -134,11 +135,8 @@ def get_my_shop_subscription():
     """Get the current seller's shop subscription."""
     shop = get_seller_shop()
     return frappe.get_list(
-        "Shop Subscription",
-        filters={
-            "shop": shop,
-            "active": 1},
-        fields=["*"])
+        "Shop Subscription", filters={"shop": shop, "active": 1}, fields=["*"]
+    )
 
 
 @frappe.whitelist()
@@ -148,8 +146,8 @@ def subscribe_my_shop(subscription_id):
 
     # Cancel any existing active subscriptions for the shop
     existing_subscriptions = frappe.get_all(
-        "Shop Subscription", filters={
-            "shop": shop, "active": 1})
+        "Shop Subscription", filters={"shop": shop, "active": 1}
+    )
     for sub in existing_subscriptions:
         doc = frappe.get_doc("Shop Subscription", sub.name)
         doc.active = 0
@@ -159,16 +157,19 @@ def subscribe_my_shop(subscription_id):
     subscription = frappe.get_doc("Subscription", subscription_id)
 
     from frappe.utils import add_months, nowdate
+
     expired_at = add_months(nowdate(), subscription.month)
 
-    new_shop_sub = frappe.get_doc({
-        "doctype": "Shop Subscription",
-        "shop": shop,
-        "subscription": subscription_id,
-        "expired_at": expired_at,
-        "price": subscription.price,
-        "type": subscription.type,
-        "active": 1
-    })
+    new_shop_sub = frappe.get_doc(
+        {
+            "doctype": "Shop Subscription",
+            "shop": shop,
+            "subscription": subscription_id,
+            "expired_at": expired_at,
+            "price": subscription.price,
+            "type": subscription.type,
+            "active": 1,
+        }
+    )
     new_shop_sub.insert(ignore_permissions=True)
     return new_shop_sub

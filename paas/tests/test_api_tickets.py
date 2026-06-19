@@ -3,7 +3,12 @@
 
 import frappe
 from frappe.tests.utils import FrappeTestCase
-from paas.api.user.user import create_ticket, get_user_tickets, get_user_ticket, reply_to_ticket
+from paas.api.user.user import (
+    create_ticket,
+    get_user_tickets,
+    get_user_ticket,
+    reply_to_ticket,
+)
 import uuid
 
 
@@ -11,13 +16,15 @@ class TestTicketsAPI(FrappeTestCase):
     def setUp(self):
         # Create a test user
         if not frappe.db.exists("User", "test_tickets@example.com"):
-            self.test_user = frappe.get_doc({
-                "doctype": "User",
-                "email": "test_tickets@example.com",
-                "first_name": "Test",
-                "last_name": "Tickets",
-                "send_welcome_email": 0
-            }).insert(ignore_permissions=True)
+            self.test_user = frappe.get_doc(
+                {
+                    "doctype": "User",
+                    "email": "test_tickets@example.com",
+                    "first_name": "Test",
+                    "last_name": "Tickets",
+                    "send_welcome_email": 0,
+                }
+            ).insert(ignore_permissions=True)
             self.test_user.add_roles("System Manager")
         else:
             self.test_user = frappe.get_doc("User", "test_tickets@example.com")
@@ -46,13 +53,9 @@ class TestTicketsAPI(FrappeTestCase):
         self.assertEqual(len(retrieved_ticket.get("replies")), 0)
 
     def test_reply_to_ticket(self):
-        ticket = create_ticket(
-            subject="Test Reply",
-            content="Original message")
+        ticket = create_ticket(subject="Test Reply", content="Original message")
 
-        reply = reply_to_ticket(
-            name=ticket.get("name"),
-            content="This is a reply")
+        reply = reply_to_ticket(name=ticket.get("name"), content="This is a reply")
         self.assertEqual(reply.get("parent_ticket"), ticket.get("name"))
         self.assertEqual(reply.get("content"), "This is a reply")
 
@@ -64,5 +67,5 @@ class TestTicketsAPI(FrappeTestCase):
         full_ticket = get_user_ticket(name=ticket.get("name"))
         self.assertEqual(len(full_ticket.get("replies")), 1)
         self.assertEqual(
-            full_ticket.get("replies")[0].get("content"),
-            "This is a reply")
+            full_ticket.get("replies")[0].get("content"), "This is a reply"
+        )
