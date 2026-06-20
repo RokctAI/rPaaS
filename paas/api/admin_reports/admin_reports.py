@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -108,9 +112,7 @@ def get_admin_statistics():
 
 
 @frappe.whitelist()
-def get_multi_company_sales_report(
-    from_date: str, to_date: str, company: str = None
-):
+def get_multi_company_sales_report(from_date: str, to_date: str, company: str = None):
     trace_id = None
     """
     Retrieves a sales report for a specific company or all companies within a date range (for admins).
@@ -134,9 +136,7 @@ def get_multi_company_sales_report(
         fields=["name", "sales_commission_rate"],
         filters={"sales_commission_rate": [">", 0]},
     )
-    commission_map = {
-        c["name"]: c["sales_commission_rate"] for c in commission_rates
-    }
+    commission_map = {c["name"]: c["sales_commission_rate"] for c in commission_rates}
 
     for order in sales_report:
         commission_rate = commission_map.get(order.shop, 0)
@@ -174,9 +174,7 @@ def get_admin_report(
 
 
 @frappe.whitelist()
-def get_all_wallet_histories(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_all_wallet_histories(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of all wallet histories on the platform (for admins).
     """

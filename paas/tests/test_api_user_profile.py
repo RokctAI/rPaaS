@@ -11,19 +11,20 @@ class TestUserProfileAPI(FrappeTestCase):
     def setUp(self):
         # Create a test user
         if not frappe.db.exists("User", "test_user_profile@example.com"):
-            self.test_user = frappe.get_doc({
-                "doctype": "User",
-                "email": "test_user_profile@example.com",
-                "first_name": "Test",
-                "last_name": "User",
-                "phone": "+14155552671",
-                "birth_date": "1990-01-01",
-                "gender": "Male",
-                "send_welcome_email": 0
-            }).insert(ignore_permissions=True)
-        else:
             self.test_user = frappe.get_doc(
-                "User", "test_user_profile@example.com")
+                {
+                    "doctype": "User",
+                    "email": "test_user_profile@example.com",
+                    "first_name": "Test",
+                    "last_name": "User",
+                    "phone": "+14155552671",
+                    "birth_date": "1990-01-01",
+                    "gender": "Male",
+                    "send_welcome_email": 0,
+                }
+            ).insert(ignore_permissions=True)
+        else:
+            self.test_user = frappe.get_doc("User", "test_user_profile@example.com")
         self.test_user.add_roles("System Manager")
 
         # Log in as the test user
@@ -35,10 +36,8 @@ class TestUserProfileAPI(FrappeTestCase):
         if frappe.db.exists("User", self.test_user.name):
             try:
                 frappe.delete_doc(
-                    "User",
-                    self.test_user.name,
-                    force=True,
-                    ignore_permissions=True)
+                    "User", self.test_user.name, force=True, ignore_permissions=True
+                )
             except frappe.exceptions.LinkExistsError:
                 frappe.db.set_value("User", self.test_user.name, "enabled", 0)
 
@@ -57,7 +56,7 @@ class TestUserProfileAPI(FrappeTestCase):
             "last_name": "Name",
             "phone": "+14155552672",
             "birth_date": "1991-02-02",
-            "gender": "Female"
+            "gender": "Female",
         }
         response = update_user_profile(profile_data=json.dumps(profile_data))
         self.assertEqual(response.get("status"), "success")
@@ -71,22 +70,15 @@ class TestUserProfileAPI(FrappeTestCase):
         self.assertEqual(updated_profile.get("gender"), "Female")
 
     def test_update_user_profile_unauthorized_fields(self):
-        profile_data = {
-            "email": "new_email@example.com",
-            "roles": ["Administrator"]
-        }
+        profile_data = {"email": "new_email@example.com", "roles": ["Administrator"]}
         update_user_profile(profile_data=json.dumps(profile_data))
 
         # Verify that the unauthorized fields were not changed
         updated_profile = get_user_profile()
         # Verify that the unauthorized fields were not changed
         updated_profile = get_user_profile()
-        self.assertEqual(
-            updated_profile.get("email"),
-            "test_user_profile@example.com")
-        self.assertTrue(
-            "Administrator" not in frappe.get_roles(
-                self.test_user.name))
+        self.assertEqual(updated_profile.get("email"), "test_user_profile@example.com")
+        self.assertTrue("Administrator" not in frappe.get_roles(self.test_user.name))
 
     def test_delete_account(self):
         from paas.api.user.user import delete_account
@@ -97,9 +89,10 @@ class TestUserProfileAPI(FrappeTestCase):
         response = delete_account()
 
         # Check success message
-        self.assertIn(response.get("message"),
-                      ["Account deleted successfully.",
-                       "Account deactivated successfully."])
+        self.assertIn(
+            response.get("message"),
+            ["Account deleted successfully.", "Account deactivated successfully."],
+        )
 
         # Verify user is gone OR disabled
         if not frappe.db.exists("User", self.test_user.name):
@@ -108,8 +101,5 @@ class TestUserProfileAPI(FrappeTestCase):
         else:
             # Check disabled
             self.assertEqual(
-                frappe.db.get_value(
-                    "User",
-                    self.test_user.name,
-                    "enabled"),
-                0)
+                frappe.db.get_value("User", self.test_user.name, "enabled"), 0
+            )

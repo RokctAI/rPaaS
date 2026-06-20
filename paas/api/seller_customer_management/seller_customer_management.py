@@ -1,11 +1,13 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 from paas.api.utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_request_models(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_request_models(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of request models for the current seller.
     """
@@ -28,9 +30,7 @@ def get_seller_request_models(
 
 
 @frappe.whitelist()
-def get_seller_customer_addresses(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_customer_addresses(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of customer addresses for the current seller's shop.
     """
