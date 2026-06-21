@@ -10,16 +10,17 @@ class TestAdminDashboard(FrappeTestCase):
     def setUp(self):
         # Create an administrator user (System Manager)
         if not frappe.db.exists("User", "admin_tester@example.com"):
-            self.admin_user = frappe.get_doc({
-                "doctype": "User",
-                "email": "admin_tester@example.com",
-                "first_name": "Admin",
-                "last_name": "Tester",
-                "roles": [{"role": "System Manager"}]
-            }).insert(ignore_permissions=True)
-        else:
             self.admin_user = frappe.get_doc(
-                "User", "admin_tester@example.com")
+                {
+                    "doctype": "User",
+                    "email": "admin_tester@example.com",
+                    "first_name": "Admin",
+                    "last_name": "Tester",
+                    "roles": [{"role": "System Manager"}],
+                }
+            ).insert(ignore_permissions=True)
+        else:
+            self.admin_user = frappe.get_doc("User", "admin_tester@example.com")
             self.admin_user.add_roles("System Manager")
 
     def tearDown(self):
@@ -42,9 +43,13 @@ class TestAdminDashboard(FrappeTestCase):
     def test_non_admin_access(self):
         # Create non-admin
         if not frappe.db.exists("User", "guest_tester@example.com"):
-            guest = frappe.get_doc({
-                "doctype": "User", "email": "guest_tester@example.com", "first_name": "Guest"
-            }).insert(ignore_permissions=True)
+            guest = frappe.get_doc(
+                {
+                    "doctype": "User",
+                    "email": "guest_tester@example.com",
+                    "first_name": "Guest",
+                }
+            ).insert(ignore_permissions=True)
         else:
             guest = frappe.get_doc("User", "guest_tester@example.com")
 
