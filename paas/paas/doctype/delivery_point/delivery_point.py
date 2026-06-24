@@ -34,6 +34,7 @@ def get_nearest_delivery_points(latitude, longitude, radius=20):
 
     # We can use CustomFunction for the math parts
     from frappe.query_builder.functions import CustomFunction
+
     radians = CustomFunction("RADIANS", ["x"])
     sin = CustomFunction("SIN", ["x"])
     cos = CustomFunction("COS", ["x"])
@@ -48,16 +49,21 @@ def get_nearest_delivery_points(latitude, longitude, radius=20):
     d_lat = radians(t_dp.latitude - latitude)
     d_lon = radians(t_dp.longitude - longitude)
 
-    a = power(sin(d_lat / 2), 2) + cos(radians(latitude)) * \
-        cos(radians(t_dp.latitude)) * power(sin(d_lon / 2), 2)
+    a = power(sin(d_lat / 2), 2) + cos(radians(latitude)) * cos(
+        radians(t_dp.latitude)
+    ) * power(sin(d_lon / 2), 2)
     c = 2 * asin(sqrt(a))
     distance = 6371 * c
 
     query = (
         frappe.qb.from_(t_dp)
         .select(
-            t_dp.name, t_dp.address, t_dp.latitude, t_dp.longitude, t_dp.img,
-            distance.as_("distance")
+            t_dp.name,
+            t_dp.address,
+            t_dp.latitude,
+            t_dp.longitude,
+            t_dp.img,
+            distance.as_("distance"),
         )
         .where(t_dp.active == 1)
         .where(distance < radius)
