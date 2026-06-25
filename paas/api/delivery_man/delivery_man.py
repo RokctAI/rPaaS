@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 
@@ -26,9 +30,7 @@ def get_deliveryman_orders(limit_start: int = 0, limit_page_length: int = 20):
 
 
 @frappe.whitelist()
-def get_deliveryman_parcel_orders(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_deliveryman_parcel_orders(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of parcel orders assigned to the current deliveryman.
     """
