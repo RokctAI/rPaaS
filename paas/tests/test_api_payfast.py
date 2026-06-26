@@ -3,108 +3,120 @@
 import json
 import frappe
 from frappe.tests.utils import FrappeTestCase
-from paas.api.payment.payment import get_payfast_settings, save_payfast_card, get_saved_payfast_cards, delete_payfast_card, handle_payfast_callback, process_payfast_token_payment
+from paas.api.payment.payment import (
+    get_payfast_settings,
+    save_payfast_card,
+    get_saved_payfast_cards,
+    delete_payfast_card,
+    handle_payfast_callback,
+    process_payfast_token_payment,
+)
 
 
 class TestPayFastAPI(FrappeTestCase):
     def setUp(self):
         # Create a test user
         if not frappe.db.exists("User", "test_payfast_user@example.com"):
-            self.test_user = frappe.get_doc({
-                "doctype": "User",
-                "email": "test_payfast_user@example.com",
-                "first_name": "Test",
-                "last_name": "User"
-            }).insert(ignore_permissions=True)
-        else:
             self.test_user = frappe.get_doc(
-                "User", "test_payfast_user@example.com")
+                {
+                    "doctype": "User",
+                    "email": "test_payfast_user@example.com",
+                    "first_name": "Test",
+                    "last_name": "User",
+                }
+            ).insert(ignore_permissions=True)
+        else:
+            self.test_user = frappe.get_doc("User", "test_payfast_user@example.com")
 
         # Create Shop
         if not frappe.db.exists("Shop", {"shop_name": "PayFast Shop"}):
-            self.shop = frappe.get_doc({
-                "doctype": "Shop",
-                "shop_name": "PayFast Shop",
-                "user": self.test_user.name,
-                "uuid": "payfast-shop-uuid",
-                "status": "approved",
-                "phone": "+14155552671"
-            }).insert(ignore_permissions=True)
+            self.shop = frappe.get_doc(
+                {
+                    "doctype": "Shop",
+                    "shop_name": "PayFast Shop",
+                    "user": self.test_user.name,
+                    "uuid": "payfast-shop-uuid",
+                    "status": "approved",
+                    "phone": "+14155552671",
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.shop = frappe.get_doc("Shop", {"shop_name": "PayFast Shop"})
 
         # Create Product
         if not frappe.db.exists("Product", {"title": "PayFast Product"}):
-            self.product = frappe.get_doc({
-                "doctype": "Product",
-                "shop": self.shop.name,
-                "title": "PayFast Product",
-                "price": 100
-            }).insert(ignore_permissions=True)
-        else:
             self.product = frappe.get_doc(
-                "Product", {"title": "PayFast Product"})
+                {
+                    "doctype": "Product",
+                    "shop": self.shop.name,
+                    "title": "PayFast Product",
+                    "price": 100,
+                }
+            ).insert(ignore_permissions=True)
+        else:
+            self.product = frappe.get_doc("Product", {"title": "PayFast Product"})
 
         # Create a test order
-        self.test_order = frappe.get_doc({
-            "doctype": "Order",
-            "user": self.test_user.name,
-            "shop": self.shop.name,
-            "total_price": 100,
-            "currency": "USD",
-            "order_items": [{
-                "product": self.product.name,
-                "quantity": 1,
-                "price": 100
-            }]
-        }).insert(ignore_permissions=True)
+        self.test_order = frappe.get_doc(
+            {
+                "doctype": "Order",
+                "user": self.test_user.name,
+                "shop": self.shop.name,
+                "total_price": 100,
+                "currency": "USD",
+                "order_items": [
+                    {"product": self.product.name, "quantity": 1, "price": 100}
+                ],
+            }
+        ).insert(ignore_permissions=True)
 
         # Create PayFast Payment Gateway
         if not frappe.db.exists("PaaS Payment Gateway", "PayFast"):
-            frappe.get_doc({
-                "doctype": "PaaS Payment Gateway",
-                "gateway_controller": "PayFast",
-                "is_sandbox": 1,
-                "settings": [
-                    {"key": "merchant_id", "value": "10000100"},
-                    {"key": "merchant_key", "value": "46f0cd694581a"},
-                    {"key": "pass_phrase", "value": "your_passphrase_here"}
-                ]
-            }).insert(ignore_permissions=True)
+            frappe.get_doc(
+                {
+                    "doctype": "PaaS Payment Gateway",
+                    "gateway_controller": "PayFast",
+                    "is_sandbox": 1,
+                    "settings": [
+                        {"key": "merchant_id", "value": "10000100"},
+                        {"key": "merchant_key", "value": "46f0cd694581a"},
+                        {"key": "pass_phrase", "value": "your_passphrase_here"},
+                    ],
+                }
+            ).insert(ignore_permissions=True)
 
     def tearDown(self):
         # Clean up the test data
         frappe.set_user("Administrator")
-        if hasattr(
-                self,
-                "test_user") and self.test_user and frappe.db.exists(
-                "User",
-                self.test_user.name):
+        if (
+            hasattr(self, "test_user")
+            and self.test_user
+            and frappe.db.exists("User", self.test_user.name)
+        ):
             try:
                 frappe.delete_doc(
-                    "User",
-                    self.test_user.name,
-                    force=True,
-                    ignore_permissions=True)
-            except (frappe.LinkExistsError, frappe.exceptions.LinkExistsError, Exception):
+                    "User", self.test_user.name, force=True, ignore_permissions=True
+                )
+            except (
+                frappe.LinkExistsError,
+                frappe.exceptions.LinkExistsError,
+                Exception,
+            ):
                 try:
-                    frappe.db.set_value(
-                        "User", self.test_user.name, "enabled", 0)
+                    frappe.db.set_value("User", self.test_user.name, "enabled", 0)
                     frappe.db.commit()
                 except Exception:
                     pass
 
-        if hasattr(
-                self,
-                "shop") and self.shop and frappe.db.exists(
-                "Shop",
-                self.shop.name):
+        if (
+            hasattr(self, "shop")
+            and self.shop
+            and frappe.db.exists("Shop", self.shop.name)
+        ):
             try:
                 frappe.delete_doc(
-                    "Shop",
-                    self.shop.name,
-                    force=True,
-                    ignore_permissions=True)
+                    "Shop", self.shop.name, force=True, ignore_permissions=True
+                )
             except Exception:
                 pass
 
@@ -124,9 +136,9 @@ class TestPayFastAPI(FrappeTestCase):
             "last_four": "1234",
             "card_type": "Visa",
             "expiry_date": "12/25",
-            "card_holder_name": "Test User"}
-        save_response = save_payfast_card(
-            "test_token", json.dumps(card_details))
+            "card_holder_name": "Test User",
+        }
+        save_response = save_payfast_card("test_token", json.dumps(card_details))
         self.assertEqual(save_response.get("status"), "success")
 
         # Get saved cards

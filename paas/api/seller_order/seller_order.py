@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from paas.api.utils import _get_seller_shop
@@ -79,8 +83,7 @@ def update_seller_order_status(order_id, status):
         "Failed",
     ]
     if status not in valid_statuses:
-        frappe.throw(f"Invalid status. Must be one of: {
-            ', '.join(valid_statuses)}")
+        frappe.throw(f"Invalid status. Must be one of: {', '.join(valid_statuses)}")
 
     order.status = status
     order.save(ignore_permissions=True)
@@ -88,9 +91,7 @@ def update_seller_order_status(order_id, status):
 
 
 @frappe.whitelist()
-def get_seller_order_refunds(
-    limit_start: int = 0, limit_page_length: int = 20
-):
+def get_seller_order_refunds(limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves a list of order refunds for the current seller's shop.
     """

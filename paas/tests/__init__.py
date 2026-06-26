@@ -46,7 +46,7 @@ if "frappe" not in sys.modules:
 
     # Mock core attributes/functions
     mock_frappe._ = lambda x: x
-    mock_frappe.whitelist = lambda *args, **kwargs: (lambda f: f)
+    mock_frappe.whitelist = lambda *args, **kwargs: lambda f: f
 
     # Define a base class that skips tests when mocked
     class SkipOnMockTestCase(unittest.TestCase):
@@ -55,9 +55,7 @@ if "frappe" not in sys.modules:
             if "frappe" in sys.modules and getattr(
                 sys.modules["frappe"], "_is_mock", False
             ):
-                raise unittest.SkipTest(
-                    "Skipping Frappe test in mocked environment"
-                )
+                raise unittest.SkipTest("Skipping Frappe test in mocked environment")
 
     mock_frappe._is_mock = True
     sys.modules["frappe.tests.utils"].FrappeTestCase = SkipOnMockTestCase

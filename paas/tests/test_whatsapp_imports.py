@@ -4,6 +4,7 @@ try:
     import staticmap
     from paas.whatsapp.api import webhook
     from paas.whatsapp import utils
+
     print("✅ All modules imported successfully.")
 except ImportError as e:
     print(f"❌ Import Error: {e}")

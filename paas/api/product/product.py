@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from paas.api.utils import api_response
@@ -85,11 +89,9 @@ def get_products(  # noqa: C901
                 self.right = right
 
             def get_sql(self, **kwargs):
-                return f"{
-                    self.left.get_sql(
-                        **kwargs)} @@ {
-                    self.right.get_sql(
-                        **kwargs)}"
+                return (
+                    f"{self.left.get_sql(**kwargs)} @@ {self.right.get_sql(**kwargs)}"
+                )
 
         # Instantiate functions
         ts_vector = Function("to_tsvector", "english", t_item.item_name)
@@ -106,16 +108,12 @@ def get_products(  # noqa: C901
         # Subquery for average rating
         subquery = (
             frappe.qb.from_(t_review)
-            .select(
-                t_review.reviewable_id, Avg(t_review.rating).as_("avg_rating")
-            )
+            .select(t_review.reviewable_id, Avg(t_review.rating).as_("avg_rating"))
             .where(t_review.reviewable_type == "Item")
             .groupby(t_review.reviewable_id)
         ).as_("t_reviews")
 
-        query = query.left_join(subquery).on(
-            subquery.reviewable_id == t_item.name
-        )
+        query = query.left_join(subquery).on(subquery.reviewable_id == t_item.name)
 
         if rating:
             try:
@@ -127,13 +125,13 @@ def get_products(  # noqa: C901
                 pass  # Ignore invalid rating format
 
         if order_by == "high_rating":
-            query = query.orderby(
-                subquery.avg_rating, order=frappe.qb.desc
-            ).orderby(subquery.avg_rating.isnull())
+            query = query.orderby(subquery.avg_rating, order=frappe.qb.desc).orderby(
+                subquery.avg_rating.isnull()
+            )
         elif order_by == "low_rating":
-            query = query.orderby(
-                subquery.avg_rating, order=frappe.qb.asc
-            ).orderby(subquery.avg_rating.isnull())
+            query = query.orderby(subquery.avg_rating, order=frappe.qb.asc).orderby(
+                subquery.avg_rating.isnull()
+            )
 
     # Sales-based sorting
     elif order_by in ["best_sale", "low_sale"]:
@@ -143,22 +141,20 @@ def get_products(  # noqa: C901
         # Subquery for sales quantity
         subquery = (
             frappe.qb.from_(t_sales_item)
-            .select(
-                t_sales_item.item_code, Sum(t_sales_item.qty).as_("total_qty")
-            )
+            .select(t_sales_item.item_code, Sum(t_sales_item.qty).as_("total_qty"))
             .groupby(t_sales_item.item_code)
         ).as_("t_sales")
 
         query = query.left_join(subquery).on(subquery.item_code == t_item.name)
 
         if order_by == "best_sale":
-            query = query.orderby(
-                subquery.total_qty, order=frappe.qb.desc
-            ).orderby(subquery.total_qty.isnull())
+            query = query.orderby(subquery.total_qty, order=frappe.qb.desc).orderby(
+                subquery.total_qty.isnull()
+            )
         elif order_by == "low_sale":
-            query = query.orderby(
-                subquery.total_qty, order=frappe.qb.asc
-            ).orderby(subquery.total_qty.isnull())
+            query = query.orderby(subquery.total_qty, order=frappe.qb.asc).orderby(
+                subquery.total_qty.isnull()
+            )
 
     elif order_by == "new":
         query = query.orderby(t_item.creation, order=frappe.qb.desc)
@@ -241,9 +237,7 @@ def get_products(  # noqa: C901
     for p in products:
         p["stock_quantity"] = stocks_map.get(p.name, 0)
         p["discount"] = discounts_map.get(p.name)
-        p["reviews"] = reviews_map.get(
-            p.name, {"avg_rating": 0, "reviews_count": 0}
-        )
+        p["reviews"] = reviews_map.get(p.name, {"avg_rating": 0, "reviews_count": 0})
 
     return api_response(data=products)
 
@@ -307,11 +301,7 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
     for rule in active_rules:
         if rule.apply_on == "Item Code" and has_item_code and rule.item_code:
             item_codes.add(rule.item_code)
-        elif (
-            rule.apply_on == "Item Group"
-            and has_item_group
-            and rule.item_group
-        ):
+        elif rule.apply_on == "Item Group" and has_item_group and rule.item_group:
             items_in_group = frappe.get_all(
                 "Item", filters={"item_group": rule.item_group}, pluck="name"
             )
@@ -327,7 +317,7 @@ def get_discounted_products(limit_start: int = 0, limit_page_length: int = 20):
 
     # Paginate on the final list of item codes
     paginated_item_codes = list(item_codes)[
-        limit_start: limit_start + limit_page_length
+        limit_start : limit_start + limit_page_length
     ]
 
     if not paginated_item_codes:
@@ -411,9 +401,7 @@ def read_product_file(uuid: str):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_product_reviews(
-    uuid: str, limit_start: int = 0, limit_page_length: int = 20
-):
+def get_product_reviews(uuid: str, limit_start: int = 0, limit_page_length: int = 20):
     """
     Retrieves reviews for a specific product by its UUID.
     """
@@ -467,9 +455,7 @@ def get_products_by_brand(
 
 
 @frappe.whitelist(allow_guest=True)
-def products_search(
-    search: str, limit_start: int = 0, limit_page_length: int = 20
-):
+def products_search(search: str, limit_start: int = 0, limit_page_length: int = 20):
     """
     Searches for products by a search term.
     """
@@ -595,9 +581,7 @@ def add_product_review(uuid: str, rating: float, comment: str = None):
         }
     )
     review.insert(ignore_permissions=True)
-    return api_response(
-        data=review.as_dict(), message="Review added successfully"
-    )
+    return api_response(data=review.as_dict(), message="Review added successfully")
 
 
 @frappe.whitelist()
@@ -684,9 +668,7 @@ def calculate_product_price(products):
     for item in products:
         # Resolve item ID to price
         # item['id'] usually maps to stock_id/variant
-        rate = (
-            frappe.db.get_value("Item", item.get("id"), "standard_rate") or 0
-        )
+        rate = frappe.db.get_value("Item", item.get("id"), "standard_rate") or 0
         qty = float(item.get("quantity", 0))
         total_price += rate * qty
 
@@ -700,9 +682,7 @@ def calculate_product_price(products):
 
 
 @frappe.whitelist()
-def add_product_review(
-    product_uuid, rating, comment=None, images=None
-):  # noqa: C901
+def add_product_review(product_uuid, rating, comment=None, images=None):  # noqa: C901
     """
     Adds a review for a product by its UUID, verifying ownership if enabled.
     """
@@ -765,15 +745,11 @@ def add_product_review(
     review = frappe.get_doc(review_data)
     review.insert(ignore_permissions=True)
 
-    return api_response(
-        data=review.as_dict(), message="Review added successfully"
-    )
+    return api_response(data=review.as_dict(), message="Review added successfully")
 
 
 @frappe.whitelist()
-def get_suggest_price(
-    item_code: str = None, lang: str = "en", currency: str = "ZAR"
-):
+def get_suggest_price(item_code: str = None, lang: str = "en", currency: str = "ZAR"):
     """
     Retrieves a suggested price range based on similar items in the same category.
     """
