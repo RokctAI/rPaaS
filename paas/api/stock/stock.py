@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -29,9 +33,7 @@ def get_product_stocks(product_id):
     """
     Retrieves all Stock variants for a Product.
     """
-    return frappe.get_list(
-        "Stock", filters={"product": product_id}, fields=["*"]
-    )
+    return frappe.get_list("Stock", filters={"product": product_id}, fields=["*"])
 
 
 @frappe.whitelist()
