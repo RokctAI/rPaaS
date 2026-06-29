@@ -11,14 +11,14 @@ def get_version():
     # We assume this file is in the same directory as versions.json
     # (paas/paas/)
     paas_path = os.path.abspath(os.path.dirname(__file__))
-    versions_file_path = os.path.join(paas_path, 'versions.json')
+    versions_file_path = os.path.join(paas_path, "versions.json")
 
     try:
-        with open(versions_file_path, 'r') as f:
+        with open(versions_file_path, "r") as f:
             versions = json.load(f)
-        return versions.get('paas', '0.1.0')  # Default fallback
+        return versions.get("paas", "0.1.0")  # Default fallback
     except Exception:
-        return '0.1.0'  # Default fallback in case of any error
+        return "0.1.0"  # Default fallback in case of any error
 
 
 __version__ = get_version()

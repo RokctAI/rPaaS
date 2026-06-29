@@ -12,12 +12,7 @@ class TestAdsPackage(FrappeTestCase):
 
     def test_ads_package_crud(self):
         # 1. Create Ads Package
-        data = {
-            "title": "Premium Banner",
-            "price": 50,
-            "time_type": "day",
-            "time": 7
-        }
+        data = {"title": "Premium Banner", "price": 50, "time_type": "day", "time": 7}
         package = create_ads_package(data)
         self.assertEqual(package.title, "Premium Banner")
         self.assertEqual(package.price, 50)
