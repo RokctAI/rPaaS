@@ -7,33 +7,39 @@ class TestRcoreIntegration(FrappeTestCase):
     def setUp(self):
         # Create a test user
         if not frappe.db.exists("User", "test_rcore_user@example.com"):
-            self.user = frappe.get_doc({
-                "doctype": "User",
-                "email": "test_rcore_user@example.com",
-                "first_name": "Test",
-                "last_name": "Rcore User",
-                "roles": [{"role": "Customer"}]
-            }).insert(ignore_permissions=True)
+            self.user = frappe.get_doc(
+                {
+                    "doctype": "User",
+                    "email": "test_rcore_user@example.com",
+                    "first_name": "Test",
+                    "last_name": "Rcore User",
+                    "roles": [{"role": "Customer"}],
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.user = frappe.get_doc("User", "test_rcore_user@example.com")
 
         # Create a test customer linked to user
         if not frappe.db.exists("Customer", "Test Rcore Customer"):
             if not frappe.db.exists("Customer Group", "Individual"):
-                frappe.get_doc({
-                    "doctype": "Customer Group",
-                    "customer_group_name": "Individual",
-                    "is_group": 0,
-                    "parent_customer_group": "All Customer Groups"
-                }).insert(ignore_permissions=True)
+                frappe.get_doc(
+                    {
+                        "doctype": "Customer Group",
+                        "customer_group_name": "Individual",
+                        "is_group": 0,
+                        "parent_customer_group": "All Customer Groups",
+                    }
+                ).insert(ignore_permissions=True)
 
-            self.customer = frappe.get_doc({
-                "doctype": "Customer",
-                "customer_name": "Test Rcore Customer",
-                "customer_type": "Individual",
-                "customer_group": "Individual",
-                "territory": "All Territories"
-            }).insert(ignore_permissions=True)
+            self.customer = frappe.get_doc(
+                {
+                    "doctype": "Customer",
+                    "customer_name": "Test Rcore Customer",
+                    "customer_type": "Individual",
+                    "customer_group": "Individual",
+                    "territory": "All Territories",
+                }
+            ).insert(ignore_permissions=True)
 
             # Manually set user if field exists, else ignore (mock scenario)
             if self.customer.meta.has_field("user"):
@@ -48,11 +54,16 @@ class TestRcoreIntegration(FrappeTestCase):
         # Cleanup
         if hasattr(self, "user"):
             frappe.db.delete(
-                "Wallet History", {
+                "Wallet History",
+                {
                     "wallet": [
-                        "in", frappe.get_all(
-                            "Wallet", {
-                                "user": self.user.name}, pluck="name")]})
+                        "in",
+                        frappe.get_all(
+                            "Wallet", {"user": self.user.name}, pluck="name"
+                        ),
+                    ]
+                },
+            )
             frappe.db.delete("Wallet", {"user": self.user.name})
             # Clean up Loan Docs too? Maybe later.
 
@@ -83,20 +94,19 @@ class TestRcoreIntegration(FrappeTestCase):
 
         # Verify history record
         history = frappe.get_all(
-            "Wallet History", filters={
-                "wallet": wallet.name}, fields=[
-                "transaction_type", "amount"])
+            "Wallet History",
+            filters={"wallet": wallet.name},
+            fields=["transaction_type", "amount"],
+        )
         self.assertEqual(len(history), 1)
         self.assertEqual(history[0].transaction_type, "Loan Disbursement")
         self.assertEqual(history[0].amount, 5000)
 
     def test_loan_repayment_wallet_integration(self):
         # 1. Ensure wallet exists with balance
-        wallet = frappe.get_doc({
-            "doctype": "Wallet",
-            "user": self.user.name,
-            "balance": 1000
-        }).insert(ignore_permissions=True)
+        wallet = frappe.get_doc(
+            {"doctype": "Wallet", "user": self.user.name, "balance": 1000}
+        ).insert(ignore_permissions=True)
 
         try:
             from rcore.rlending.wallet_integration import debit_wallet_on_repayment

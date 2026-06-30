@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -15,9 +19,7 @@ def create_blog(data):
 
     doc = frappe.get_doc({"doctype": "Blog", **data})
     doc.insert()
-    return api_response(
-        data=doc.as_dict(), message="Blog created successfully."
-    )
+    return api_response(data=doc.as_dict(), message="Blog created successfully.")
 
 
 @frappe.whitelist(allow_guest=True)
@@ -67,9 +69,7 @@ def update_blog(name, data):
     doc = frappe.get_doc("Blog", name)
     doc.update(data)
     doc.save()
-    return api_response(
-        data=doc.as_dict(), message="Blog updated successfully."
-    )
+    return api_response(data=doc.as_dict(), message="Blog updated successfully.")
 
 
 @frappe.whitelist()

@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 import uuid
@@ -496,9 +500,7 @@ def get_booking_working_days():
     user = frappe.session.user
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Working Day"):
-        return frappe.get_all(
-            "Shop Working Day", filters={"shop": shop}, fields=["*"]
-        )
+        return frappe.get_all("Shop Working Day", filters={"shop": shop}, fields=["*"])
     return []
 
 
