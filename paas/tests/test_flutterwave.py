@@ -7,7 +7,6 @@ from paas.api.payment.payment import initiate_flutterwave_payment, flutterwave_c
 
 
 class TestFlutterwave(FrappeTestCase):
-
     def setUp(self):
         # Save original state to restore in tearDown
         self._original_session_user = frappe.session.user
@@ -36,8 +35,8 @@ class TestFlutterwave(FrappeTestCase):
 
         # Patch get_website_settings to return a dummy logo
         self.patcher_settings = patch(
-            "frappe.get_website_settings",
-            return_value="http://test.com/logo.png")
+            "frappe.get_website_settings", return_value="http://test.com/logo.png"
+        )
         self.patcher_settings.start()
 
     def tearDown(self):
@@ -50,19 +49,19 @@ class TestFlutterwave(FrappeTestCase):
         frappe.set_user("Administrator")
         self.patcher_settings.stop()
 
-    @patch('paas.api.payment.payment.frappe.db.commit')
-    @patch('paas.api.payment.payment.frappe.get_doc')
-    @patch('paas.api.payment.payment.requests.post')
+    @patch("paas.api.payment.payment.frappe.db.commit")
+    @patch("paas.api.payment.payment.frappe.get_doc")
+    @patch("paas.api.payment.payment.requests.post")
     def test_initiate_flutterwave_payment_success(
-            self, mock_post, mock_get_doc, mock_commit):
+        self, mock_post, mock_get_doc, mock_commit
+    ):
         # Arrange
-        mock_get_doc.side_effect = [
-            self.order, self.flutterwave_settings, self.user]
+        mock_get_doc.side_effect = [self.order, self.flutterwave_settings, self.user]
 
         mock_response = MagicMock()
         mock_response.json.return_value = {
             "status": "success",
-            "data": {"link": "https://flutterwave.com/pay/test"}
+            "data": {"link": "https://flutterwave.com/pay/test"},
         }
         mock_post.return_value = mock_response
 
@@ -70,16 +69,12 @@ class TestFlutterwave(FrappeTestCase):
         result = initiate_flutterwave_payment(self.order.name)
 
         # Assert
-        self.assertEqual(
-            result, {
-                "payment_url": "https://flutterwave.com/pay/test"})
+        self.assertEqual(result, {"payment_url": "https://flutterwave.com/pay/test"})
         self.order.save.assert_called_once()
         mock_commit.assert_called_once()
-        self.assertIn(
-            "TEST-ORDER-001",
-            self.order.custom_payment_transaction_id)
+        self.assertIn("TEST-ORDER-001", self.order.custom_payment_transaction_id)
 
-    @patch('paas.api.payment.payment.frappe.get_doc')
+    @patch("paas.api.payment.payment.frappe.get_doc")
     def test_initiate_flutterwave_payment_already_paid(self, mock_get_doc):
         # Arrange
         self.order.payment_status = "Paid"
@@ -89,21 +84,17 @@ class TestFlutterwave(FrappeTestCase):
         with self.assertRaises(frappe.ValidationError):
             initiate_flutterwave_payment(self.order.name)
 
-    @patch('paas.api.payment.payment.frappe.db.commit')
-    @patch('paas.api.payment.payment.frappe.get_doc')
-    @patch('paas.api.payment.payment.requests.get')
-    def test_flutterwave_callback_success(
-            self, mock_get, mock_get_doc, mock_commit):
+    @patch("paas.api.payment.payment.frappe.db.commit")
+    @patch("paas.api.payment.payment.frappe.get_doc")
+    @patch("paas.api.payment.payment.requests.get")
+    def test_flutterwave_callback_success(self, mock_get, mock_get_doc, mock_commit):
         # Arrange
         mock_get_doc.side_effect = [self.flutterwave_settings, self.order]
 
         mock_verification_response = MagicMock()
         mock_verification_response.json.return_value = {
             "status": "success",
-            "data": {
-                "tx_ref": "TEST-ORDER-001-12345",
-                "amount": 100.00
-            }
+            "data": {"tx_ref": "TEST-ORDER-001-12345", "amount": 100.00},
         }
         mock_get.return_value = mock_verification_response
 
@@ -111,7 +102,7 @@ class TestFlutterwave(FrappeTestCase):
         frappe.request.args = {
             "status": "successful",
             "tx_ref": "TEST-ORDER-001-12345",
-            "transaction_id": "FLW-TXN-123"
+            "transaction_id": "FLW-TXN-123",
         }
         frappe.local.response = {}
 
@@ -120,18 +111,17 @@ class TestFlutterwave(FrappeTestCase):
 
         # Assert
         self.assertEqual(self.order.payment_status, "Paid")
-        self.assertEqual(
-            self.order.custom_payment_transaction_id,
-            "FLW-TXN-123")
+        self.assertEqual(self.order.custom_payment_transaction_id, "FLW-TXN-123")
         self.order.save.assert_called_once()
         mock_commit.assert_called_once()
         self.assertEqual(frappe.local.response["type"], "redirect")
         self.assertEqual(
             frappe.local.response["location"],
-            self.flutterwave_settings.success_redirect_url)
+            self.flutterwave_settings.success_redirect_url,
+        )
 
-    @patch('paas.api.payment.payment.frappe.db.commit')
-    @patch('paas.api.payment.payment.frappe.get_doc')
+    @patch("paas.api.payment.payment.frappe.db.commit")
+    @patch("paas.api.payment.payment.frappe.get_doc")
     def test_flutterwave_callback_cancelled(self, mock_get_doc, mock_commit):
         # Arrange
         mock_get_doc.side_effect = [self.flutterwave_settings, self.order]
@@ -153,5 +143,6 @@ class TestFlutterwave(FrappeTestCase):
         self.assertEqual(frappe.local.response["type"], "redirect")
         self.assertIn(
             self.flutterwave_settings.failure_redirect_url,
-            frappe.local.response["location"])
+            frappe.local.response["location"],
+        )
         self.assertIn("reason=cancelled", frappe.local.response["location"])
