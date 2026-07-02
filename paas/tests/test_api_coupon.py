@@ -9,67 +9,72 @@ class TestCouponAPI(FrappeTestCase):
     def setUp(self):
         # Create a shop
         if not frappe.db.exists("Shop", "TestShopAPICoupon"):
-            self.shop = frappe.get_doc({
-                "doctype": "Shop",
-                "shop_name": "TestShopAPICoupon",
-                "user": "Administrator",
-                "phone": "+14155552671",
-                "uuid": "test-coupon-shop-uuid",
-                "owner": "Administrator"
-            }).insert(ignore_permissions=True)
+            self.shop = frappe.get_doc(
+                {
+                    "doctype": "Shop",
+                    "shop_name": "TestShopAPICoupon",
+                    "user": "Administrator",
+                    "phone": "+14155552671",
+                    "uuid": "test-coupon-shop-uuid",
+                    "owner": "Administrator",
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.shop = frappe.get_doc("Shop", "TestShopAPICoupon")
 
         # Create coupons
-        if not frappe.db.exists(
-            "Coupon", {
-                "code": "VALID10", "shop": self.shop.name}):
-            self.valid_coupon = frappe.get_doc({
-                "doctype": "Coupon",
-                "code": "VALID10",
-                "shop": self.shop.name,
-                "type": "Percentage",
-                "amount": 10,
-                "discount_amount": 10,
-                "expired_at": "2099-12-31",
-                "quantity": 10
-            }).insert(ignore_permissions=True)
+        if not frappe.db.exists("Coupon", {"code": "VALID10", "shop": self.shop.name}):
+            self.valid_coupon = frappe.get_doc(
+                {
+                    "doctype": "Coupon",
+                    "code": "VALID10",
+                    "shop": self.shop.name,
+                    "type": "Percentage",
+                    "amount": 10,
+                    "discount_amount": 10,
+                    "expired_at": "2099-12-31",
+                    "quantity": 10,
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.valid_coupon = frappe.get_doc(
-                "Coupon", {"code": "VALID10", "shop": self.shop.name})
+                "Coupon", {"code": "VALID10", "shop": self.shop.name}
+            )
 
-        if not frappe.db.exists(
-            "Coupon", {
-                "code": "EXPIRED", "shop": self.shop.name}):
-            self.expired_coupon = frappe.get_doc({
-                "doctype": "Coupon",
-                "code": "EXPIRED",
-                "shop": self.shop.name,
-                "type": "Fixed",
-                "amount": 5,
-                "discount_amount": 5,
-                "expired_at": "2020-01-01 00:00:00"
-            }).insert(ignore_permissions=True)
+        if not frappe.db.exists("Coupon", {"code": "EXPIRED", "shop": self.shop.name}):
+            self.expired_coupon = frappe.get_doc(
+                {
+                    "doctype": "Coupon",
+                    "code": "EXPIRED",
+                    "shop": self.shop.name,
+                    "type": "Fixed",
+                    "amount": 5,
+                    "discount_amount": 5,
+                    "expired_at": "2020-01-01 00:00:00",
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.expired_coupon = frappe.get_doc(
-                "Coupon", {"code": "EXPIRED", "shop": self.shop.name})
+                "Coupon", {"code": "EXPIRED", "shop": self.shop.name}
+            )
 
-        if not frappe.db.exists(
-            "Coupon", {
-                "code": "ZEROQ", "shop": self.shop.name}):
-            self.zero_quantity_coupon = frappe.get_doc({
-                "doctype": "Coupon",
-                "code": "ZEROQ",
-                "shop": self.shop.name,
-                "type": "Percentage",
-                "amount": 20,
-                "discount_amount": 20,
-                "expired_at": "2099-12-31",
-                "quantity": 0
-            }).insert(ignore_permissions=True)
+        if not frappe.db.exists("Coupon", {"code": "ZEROQ", "shop": self.shop.name}):
+            self.zero_quantity_coupon = frappe.get_doc(
+                {
+                    "doctype": "Coupon",
+                    "code": "ZEROQ",
+                    "shop": self.shop.name,
+                    "type": "Percentage",
+                    "amount": 20,
+                    "discount_amount": 20,
+                    "expired_at": "2099-12-31",
+                    "quantity": 0,
+                }
+            ).insert(ignore_permissions=True)
         else:
             self.zero_quantity_coupon = frappe.get_doc(
-                "Coupon", {"code": "ZEROQ", "shop": self.shop.name})
+                "Coupon", {"code": "ZEROQ", "shop": self.shop.name}
+            )
 
     def tearDown(self):
         try:
