@@ -17,9 +17,7 @@ def create_shop(shop_data):
         "System Manager" not in frappe.get_roles()
         and "Seller" not in frappe.get_roles()
     ):
-        frappe.throw(
-            "You are not authorized to create a shop.", frappe.PermissionError
-        )
+        frappe.throw("You are not authorized to create a shop.", frappe.PermissionError)
 
     if not isinstance(shop_data, dict):
         frappe.throw("shop_data must be a dictionary.", frappe.ValidationError)
@@ -36,9 +34,7 @@ def create_shop(shop_data):
         shop = frappe.get_doc({"doctype": "Shop", **shop_data})
         shop.insert(ignore_permissions=True)
         frappe.db.commit()
-        return api_response(
-            data=shop.as_dict(), message="Shop created successfully"
-        )
+        return api_response(data=shop.as_dict(), message="Shop created successfully")
     except Exception as e:
         frappe.db.rollback()
         frappe.log_error(frappe.get_traceback(), "Shop Creation Failed")
@@ -134,12 +130,10 @@ def get_shops(
     else:
         # Standard sorting
         rev = True if order.lower() == "desc" else False
-        shops.sort(
-            key=lambda x: str(x.get(order_by or "name")).lower(), reverse=rev
-        )
+        shops.sort(key=lambda x: str(x.get(order_by or "name")).lower(), reverse=rev)
 
     # Paginate
-    shops_slice = shops[limit_start: limit_start + limit_page_length]
+    shops_slice = shops[limit_start : limit_start + limit_page_length]
 
     # Global COD Check
     cash_gateway = frappe.db.get_value(
@@ -208,9 +202,7 @@ def get_shop_details(uuid: str):
     shop = frappe.get_doc("Shop", {"uuid": uuid})
 
     if not shop:
-        frappe.throw(
-            f"Shop with UUID {uuid} not found.", frappe.DoesNotExistError
-        )
+        frappe.throw(f"Shop with UUID {uuid} not found.", frappe.DoesNotExistError)
 
     # Global COD Check
     cash_gateway = frappe.db.get_value(
@@ -425,9 +417,7 @@ def get_nearby_shops(
     nearby_shop_ids = [s.name for s in nearby_shops_data]
 
     # Include Ecommerce shops (global reach)
-    ecommerce_shops = frappe.get_all(
-        "Shop", filters={"is_ecommerce": 1}, pluck="name"
-    )
+    ecommerce_shops = frappe.get_all("Shop", filters={"is_ecommerce": 1}, pluck="name")
     nearby_shop_ids.extend(ecommerce_shops)
 
     # Unique IDs
@@ -461,11 +451,7 @@ def check_driver_zone(shop_id=None, address=None):
         except ValueError:
             frappe.throw("Invalid address format", frappe.ValidationError)
 
-    if (
-        not address
-        or not address.get("latitude")
-        or not address.get("longitude")
-    ):
+    if not address or not address.get("latitude") or not address.get("longitude"):
         frappe.throw(
             "Address must contain latitude and longitude",
             frappe.ValidationError,
@@ -475,9 +461,7 @@ def check_driver_zone(shop_id=None, address=None):
     user_lon = float(address.get("longitude"))
 
     # Get Shop Location
-    shop = frappe.db.get_value(
-        "Shop", shop_id, ["latitude", "longitude"], as_dict=True
-    )
+    shop = frappe.db.get_value("Shop", shop_id, ["latitude", "longitude"], as_dict=True)
     if not shop or not shop.latitude or not shop.longitude:
         return api_response(
             data={"status": False, "message": "Shop location not found"}
@@ -490,9 +474,7 @@ def check_driver_zone(shop_id=None, address=None):
     query = """
         SELECT (earth_distance(ll_to_earth(%s, %s), ll_to_earth(%s, %s)) / 1000) as distance_km
     """
-    distance_km = frappe.db.sql(
-        query, (user_lat, user_lon, shop_lat, shop_lon)
-    )[0][0]
+    distance_km = frappe.db.sql(query, (user_lat, user_lon, shop_lat, shop_lon))[0][0]
 
     # Default Max Radius: 50km (Can be made configurable in Shop settings
     # later)
@@ -607,18 +589,14 @@ def get_nearest_delivery_points(
     bypass_sql
     """
     if latitude is None or longitude is None:
-        frappe.throw(
-            "Latitude and Longitude are required.", frappe.ValidationError
-        )
+        frappe.throw("Latitude and Longitude are required.", frappe.ValidationError)
 
     try:
         lat = float(latitude)
         lon = float(longitude)
         radius = float(radius_km) * 1000  # meters
     except ValueError:
-        frappe.throw(
-            "Invalid Latitude or Longitude format.", frappe.ValidationError
-        )
+        frappe.throw("Invalid Latitude or Longitude format.", frappe.ValidationError)
 
     # Calculate distance in SQL: earth_distance(ll_to_earth(lat, lon), ll_to_earth(db_lat, db_lon))
     # We select fields matchng the original response

@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -22,9 +26,7 @@ def get_shop_delivery_zones(shop_id):
     """
     Retrieves all Delivery Zones for a shop.
     """
-    return frappe.get_list(
-        "Delivery Zone", filters={"shop": shop_id}, fields=["*"]
-    )
+    return frappe.get_list("Delivery Zone", filters={"shop": shop_id}, fields=["*"])
 
 
 @frappe.whitelist()
