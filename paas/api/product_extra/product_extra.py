@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -27,9 +31,7 @@ def get_extra_groups(shop_id=None):
     if shop_id:
         filters["shop"] = shop_id
 
-    return frappe.get_list(
-        "Product Extra Group", filters=filters, fields=["*"]
-    )
+    return frappe.get_list("Product Extra Group", filters=filters, fields=["*"])
 
 
 @frappe.whitelist()

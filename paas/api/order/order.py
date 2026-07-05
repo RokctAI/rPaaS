@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 import frappe
 import json
 from frappe.model.document import Document
@@ -15,9 +19,7 @@ def create_order(order_data):
     # 1. Idempotency Check (Offline UUID)
     offline_uuid = order_data.get("offline_uuid")
     if offline_uuid:
-        existing_order = frappe.db.exists(
-            "Order", {"offline_uuid": offline_uuid}
-        )
+        existing_order = frappe.db.exists("Order", {"offline_uuid": offline_uuid})
         if existing_order:
             return api_response(
                 data=frappe.get_doc("Order", existing_order).as_dict(),
@@ -121,9 +123,7 @@ def create_order(order_data):
                 is_substituted = 1
 
         # Fetch current price for the chosen product (primary or substituted)
-        current_price = (
-            frappe.db.get_value("Product", product_id, "price") or 0
-        )
+        current_price = frappe.db.get_value("Product", product_id, "price") or 0
         cost_price = frappe.db.get_value("Product", product_id, "cost") or 0
 
         order.append(
@@ -165,9 +165,7 @@ def create_order(order_data):
         order.db_set("cashback_amount", cashback_amount.get("cashback_amount"))
 
     if order_data.get("coupon_code"):
-        coupon = frappe.get_doc(
-            "Coupon", {"code": order_data.get("coupon_code")}
-        )
+        coupon = frappe.get_doc("Coupon", {"code": order_data.get("coupon_code")})
         frappe.get_doc(
             {
                 "doctype": "Coupon Usage",
@@ -177,9 +175,7 @@ def create_order(order_data):
             }
         ).insert(ignore_permissions=True)
 
-    return api_response(
-        data=order.as_dict(), message="Order created successfully."
-    )
+    return api_response(data=order.as_dict(), message="Order created successfully.")
 
 
 def deposit_to_wallet(user, amount, note):
@@ -286,12 +282,9 @@ def update_order_status(order_id: str, status: str):  # noqa: C901
             frappe.PermissionError,
         )
 
-    valid_statuses = (
-        frappe.get_meta("Order").get_field("status").options.split("\n")
-    )
+    valid_statuses = frappe.get_meta("Order").get_field("status").options.split("\n")
     if status not in valid_statuses:
-        frappe.throw(f"Invalid status. Must be one of {
-            ', '.join(valid_statuses)}")
+        frappe.throw(f"Invalid status. Must be one of {', '.join(valid_statuses)}")
 
     previous_status = order.status
     order.status = status
@@ -369,9 +362,7 @@ def add_order_review(order_id: str, rating: float, comment: str = None):
         frappe.set_user(original_user)
 
     if order.user != user:
-        frappe.throw(
-            "You can only review your own orders.", frappe.PermissionError
-        )
+        frappe.throw("You can only review your own orders.", frappe.PermissionError)
 
     if order.status != "Delivered":
         frappe.throw("You can only review delivered orders.")
@@ -394,9 +385,7 @@ def add_order_review(order_id: str, rating: float, comment: str = None):
         }
     )
     review.insert(ignore_permissions=True)
-    return api_response(
-        data=review.as_dict(), message="Review added successfully."
-    )
+    return api_response(data=review.as_dict(), message="Review added successfully.")
 
 
 @frappe.whitelist()
@@ -423,18 +412,14 @@ def cancel_order(order_id: str):
         )
 
     if order.status != "New":
-        frappe.throw(
-            "You can only cancel orders that have not been accepted yet."
-        )
+        frappe.throw("You can only cancel orders that have not been accepted yet.")
 
     order.status = "Cancelled"
     # No stock restoration needed for "New" orders as stock wasn't deducted
     # yet.
 
     order.save(ignore_permissions=True)
-    return api_response(
-        data=order.as_dict(), message="Order cancelled successfully."
-    )
+    return api_response(data=order.as_dict(), message="Order cancelled successfully.")
 
 
 @frappe.whitelist(allow_guest=True)
@@ -493,16 +478,11 @@ def get_calculate(
         effective_price = item_price
         if item.alternative_product:
             alt_price = (
-                frappe.db.get_value(
-                    "Product", item.alternative_product, "price"
-                )
-                or 0
+                frappe.db.get_value("Product", item.alternative_product, "price") or 0
             )
             if alt_price > item_price:
                 effective_price = alt_price
-                subtotal_buffer += (alt_price - item_price) * (
-                    item.quantity or 0
-                )
+                subtotal_buffer += (alt_price - item_price) * (item.quantity or 0)
 
         item_qty = item.quantity or 0
         item_tax = (effective_price * (product_doc.tax or 0) / 100) * item_qty
@@ -558,9 +538,7 @@ def get_calculate(
                 address["latitude"],
                 address["longitude"],
             )
-            delivery_fee = (
-                distance * shop.price_per_km if shop.price_per_km else 0
-            )
+            delivery_fee = distance * shop.price_per_km if shop.price_per_km else 0
 
     # 3. Calculate Shop Tax
     # Total tax on the whole order from the shop's tax setting
