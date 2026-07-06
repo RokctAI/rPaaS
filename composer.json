@@ -9,31 +9,6 @@
       "path": "../SDKs/core/frappe"
     },
     {
-      "name": "polaris",
-      "enabled": true,
-      "path": "../SDKs/polaris/frappe"
-    },
-    {
-      "name": "subscriptions",
-      "enabled": true,
-      "path": "../SDKs/subscriptions/frappe"
-    },
-    {
-      "name": "auth",
-      "enabled": true,
-      "path": "../Users/auth/frappe"
-    },
-    {
-      "name": "agent",
-      "enabled": true,
-      "path": "../SDKs/agent/frappe"
-    },
-    {
-      "name": "users",
-      "enabled": true,
-      "path": "../Users/users/frappe"
-    },
-    {
       "name": "comms",
       "enabled": true,
       "path": "../SDKs/comms/frappe"
@@ -42,11 +17,6 @@
       "name": "wallet",
       "enabled": true,
       "path": "../SDKs/wallet/frappe"
-    },
-    {
-      "name": "pay",
-      "enabled": true,
-      "path": "../SDKs/payments/frappe"
     },
     {
       "name": "delivery",
@@ -112,16 +82,6 @@
       "name": "telemetry",
       "enabled": true,
       "path": "../SDKs/telemetry/frappe"
-    },
-    {
-      "name": "productivity",
-      "enabled": true,
-      "path": "../SDKs/productivity/frappe"
-    },
-    {
-      "name": "weather",
-      "enabled": true,
-      "path": "../zones/weather/frappe"
     }
   ]
 }
