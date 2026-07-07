@@ -1,3 +1,7 @@
+# Copyright (c) 2026, Rokct Intelligence (pty) Ltd.
+# For license information, please see license.txt
+
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -57,9 +61,7 @@ def get_category_types():
 
 
 @frappe.whitelist()
-def get_children_categories(
-    id: str, limit_start: int = 0, limit_page_length: int = 10
-):
+def get_children_categories(id: str, limit_start: int = 0, limit_page_length: int = 10):
     """
     Retrieves the children of a given category.
     """
@@ -76,9 +78,7 @@ def get_children_categories(
 
 
 @frappe.whitelist()
-def search_categories(
-    search: str, limit_start: int = 0, limit_page_length: int = 10
-):
+def search_categories(search: str, limit_start: int = 0, limit_page_length: int = 10):
     """
     Searches for categories by a search term.
     """
@@ -139,9 +139,7 @@ def create_category(category_data):
         frappe.throw("Category with this UUID already exists.")
 
     paas_settings = frappe.get_single("Permission Settings")
-    initial_status = (
-        "Approved" if paas_settings.auto_approve_categories else "Pending"
-    )
+    initial_status = "Approved" if paas_settings.auto_approve_categories else "Pending"
 
     category = frappe.get_doc(
         {
