@@ -14,15 +14,16 @@ def prevent_uninstall_if_build_active():
         "RQ Job",
         filters={
             "status": ["in", ["queued", "started"]],
-            "method": "paas.builder.tasks._generate_flutter_app"
+            "method": "paas.builder.tasks._generate_flutter_app",
         },
-        limit=1
+        limit=1,
     )
 
     if active_builds:
         frappe.throw(
             "Cannot uninstall the Rokct app while one or more app builds are in progress. "
-            "Please wait for the builds to complete or cancel them from the 'RQ Job' list.")
+            "Please wait for the builds to complete or cancel them from the 'RQ Job' list."
+        )
 
     print("No active builds found. Proceeding with uninstallation.")
 
@@ -38,7 +39,7 @@ def get_available_source_projects():
         projects = []
         for item in os.listdir(source_path):
             item_path = os.path.join(source_path, item)
-            if os.path.isdir(item_path) and not item.startswith('.'):
+            if os.path.isdir(item_path) and not item.startswith("."):
                 # Format label: paas_customer -> Customer
                 label = item.replace("paas_", "").replace("_", " ").title()
                 projects.append({"label": label, "value": item})
