@@ -4,84 +4,142 @@
   "description": "Frappe App Shell for PaaS",
   "modules": [
     {
-      "name": "core",
+      "name": "base",
       "enabled": true,
-      "path": "../SDKs/core/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/core",
+      "path": "../core/base/frappe",
+      "ref": "sdk-refork-2026-07-11",
+      "_comment": "Shared kernel content module (Blog, Banner, Branch, Career, App Settings, etc.); moved on disk to core/base/frappe (from the retired core/core) during the refork. manifest.json's own 'name' and its 137 hardcoded '{app_name}.core....' hook path segments were rewritten to 'base' in the same commit as this rename, so the module 'name' here and the manifest's identity now agree."
     },
     {
       "name": "comms",
       "enabled": true,
-      "path": "../SDKs/comms/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/core",
+      "path": "../core/comms/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "wallet",
       "enabled": true,
-      "path": "../SDKs/wallet/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/pay",
+      "path": "../pay/wallet/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "delivery",
       "enabled": true,
-      "path": "../zones/delivery/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/zones",
+      "path": "../zones/delivery/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "map",
       "enabled": true,
-      "path": "../zones/map/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/zones",
+      "path": "../zones/map/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "zones",
       "enabled": true,
-      "path": "../zones/zones/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/zones",
+      "path": "../zones/zones/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "hardware",
       "enabled": true,
-      "path": "../hardware/hardware/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/hardware",
+      "path": "../hardware/hardware/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "booking",
       "enabled": true,
-      "path": "../commerce/booking/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/commerce",
+      "path": "../commerce/booking/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "kitchen",
       "enabled": true,
-      "path": "../commerce/kitchen/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/commerce",
+      "path": "../commerce/kitchen/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "loyalty",
       "enabled": true,
-      "path": "../commerce/loyalty/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/commerce",
+      "path": "../commerce/loyalty/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "merchants",
       "enabled": true,
-      "path": "../commerce/merchants/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/commerce",
+      "path": "../commerce/merchants/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "orders",
       "enabled": true,
-      "path": "../commerce/orders/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/commerce",
+      "path": "../commerce/orders/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "products",
       "enabled": true,
-      "path": "../commerce/products/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/commerce",
+      "path": "../commerce/products/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "promotions",
       "enabled": true,
-      "path": "../commerce/promotions/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/commerce",
+      "path": "../commerce/promotions/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "dev",
       "enabled": true,
-      "path": "../SDKs/dev/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/corporate",
+      "path": "../corporate/dev/frappe",
+      "ref": "sdk-refork-2026-07-11"
     },
     {
       "name": "telemetry",
       "enabled": true,
-      "path": "../SDKs/telemetry/frappe"
+      "source": "git",
+      "git": "https://github.com/RokctAI/core",
+      "path": "../core/telemetry/frappe",
+      "ref": "sdk-refork-2026-07-11"
+    },
+    {
+      "name": "lms",
+      "enabled": true,
+      "source": "git",
+      "git": "https://github.com/RokctAI/agent",
+      "path": "../agent/lms/frappe",
+      "ref": "sdk-refork-2026-07-11",
+      "_comment": "Supacharge's home SDK (LMS domain: lessons, schedule, partner links). Included in paas so Supacharge shares the same control site as other tenants; build_ecosystem.sh strips it back out for the normal-tenant docker build after the Supacharge image is built (see PlatformStack build orchestration)."
     }
   ]
 }
