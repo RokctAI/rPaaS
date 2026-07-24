@@ -131,15 +131,6 @@
       "git": "https://github.com/RokctAI/core",
       "path": "../core/telemetry/frappe",
       "ref": "sdk-refork-2026-07-11"
-    },
-    {
-      "name": "lms",
-      "enabled": true,
-      "source": "git",
-      "git": "https://github.com/RokctAI/agent",
-      "path": "../agent/lms/frappe",
-      "ref": "sdk-refork-2026-07-11",
-      "_comment": "Supacharge's home SDK (LMS domain: lessons, schedule, partner links). Included in paas so Supacharge shares the same control site as other tenants; build_ecosystem.sh strips it back out for the normal-tenant docker build after the Supacharge image is built (see PlatformStack build orchestration)."
     }
   ]
 }
