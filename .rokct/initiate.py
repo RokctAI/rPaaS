@@ -196,7 +196,8 @@ def main():
     if email:
         prefix = email.split("@")[0].replace(".", "").lower()
         domain = email.split("@")[1].lower()
-        domain_hash = hashlib.md5(domain.encode()).hexdigest()[:6]
+        # Non-security use: short domain fingerprint for a safe ID, not a cryptographic hash.
+        domain_hash = hashlib.md5(domain.encode(), usedforsecurity=False).hexdigest()[:6]
         safe_id = f"{prefix}.{domain_hash}"
         mem = os.path.join(ROKCT_DIR, "memory.md")
         existing_mem_content = ""
