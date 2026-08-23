@@ -1,5 +1,7 @@
 # PaaS Module Development Guide
 
+> **Status note (2026-08-23):** This guide dates from the monorepo era (January 2026). Several paths it references (`paas/juvo/`, `/analyze`, `TODO.md`, `roadmap_progress.txt`, `paas/api/`) no longer exist in this repository. The sections below are kept for historical context, with dated status notes where functionality has since been superseded by the split SDK repositories.
+
 This document provides architectural guidelines and instructions for developers working on the `PaaS` module of the ROKCT application.
 
 ## Core Architectural Principle
@@ -15,6 +17,8 @@ The immediate priority is to **convert the existing Laravel backend** into Frapp
 This will allow the various frontend applications (Flutter, React) to be switched over to the new Frappe backend simply by changing their base URL. This minimizes the need for changes in the frontend applications.
 
 ## Codebase for Analysis
+
+> **Status note (2026-08-23):** The `paas/juvo/` directory (and the `/analyze` directory referenced below) is not present in this repository; the original Laravel/Flutter/React sources were part of the monorepo and were not carried over.
 
 To facilitate the conversion, the source code for the original applications will be placed in the `paas/juvo/` directory:
 
@@ -41,6 +45,8 @@ A `Roadmap` DocType has been created to track the progress of the Juvo applicati
 
 ## Project Tracking & Documentation
 
+> **Status note (2026-08-23):** `TODO.md` and `roadmap_progress.txt` do not exist in this repository; they were monorepo-era tracking files.
+
 To maintain clarity on the project's progress, we use several key documents. It is crucial that these files are kept synchronized to provide a consistent view of the development status.
 
 *   **`TODO.md`**: This file contains a high-level list of active and pending tasks. It serves as a quick reference for what needs to be worked on next. For complex features, it may link to a more detailed status report.
@@ -54,6 +60,9 @@ To maintain clarity on the project's progress, we use several key documents. It 
 Certain functionality in PaaS (Lending, Billing, Verification) is designed to be pluggable. By default, these features are disabled or stubbed. To activate them, you must implement the required logic in your own **custom Frappe app**.
 
 ### 1. Lending Module
+
+> **Status note (2026-08-23): SUPERSEDED BY the polaris SDK** (corporate repo, `corporate/polaris`). The shipped lending fork provides the full loan doctype suite (`polaris/frappe/src/tenant/doctype/loan*`, `loan_application`, `loan_repayment`, etc.) and the API surface specced below: `disburse_loan` in `polaris/frappe/src/tenant/api/loan.py`, with `create_loan_application`, `disburse_loan`, and `get_my_loan_applications` in `polaris/frappe/src/tenant/api/lending_mocks.py`. `request_payout` is covered by the pay SDK's wallet module (`pay/wallet` — `Platform Wallet.request_payout`, which calls the control plane). The `rcore.rlending` namespace and `paas/api/__init__.py` referenced below no longer exist in this repository.
+
 * **Status**: Disabled (Python dependencies missing).
 * **Requirement**: Implement the following methods in your custom app to handle loan logic.
 * **Integration**:
@@ -66,6 +75,9 @@ Certain functionality in PaaS (Lending, Billing, Verification) is designed to be
         - `request_payout(amount)`
 
 ### 2. Billing & Payments
+
+> **Status note (2026-08-23): SUPERSEDED BY the control repo's billing API plus the pay SDK.** All three endpoints specced below are now hosted by the control app: `control/control/api/billing/get_tenant_wallet_balance.py`, `control/control/api/billing/request_tenant_payout.py`, and `charge_customer_for_addon` in `control/control/billing.py` (mapped in `control/hooks.py`). Tenant-side wallet, payments, and gateway functionality lives in the pay SDK (`pay/wallet`, `pay/payments`, `pay/gateways`). No custom backend service needs to be built.
+
 * **Status**: Disabled (Missing Control Plane configuration).
 * **Requirement**: A backend service (Frappe app or external) to handle wallet balances and payment processing.
 * **Integration**:
@@ -82,6 +94,9 @@ Certain functionality in PaaS (Lending, Billing, Verification) is designed to be
       - `POST /api/method/control.control.billing.charge_customer_for_addon`
 
 ### 3. User Verification
+
+> **Status note (2026-08-23): SUPERSEDED BY the users SDK.** Email verification is now handled by an OTP-based flow in `users/frappe/src/tenant/api/user/user.py` (`verify_email_code`), replacing the token-link approach specced below. Related identity/KYC tracking exists in the CRM SDK (productivity repo — `kyc_status` field on the Lead doctype), but that covers KYC state, not email verification. The `paas/api/user/user.py` file referenced below no longer exists in this repository.
+
 * **Status**: Broken Link (Points to missing method).
 * **Requirement**: A method to handle email verification tokens.
 * **Integration**:
