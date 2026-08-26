@@ -21,6 +21,30 @@ before_uninstall = ["paas.builder.utils.prevent_uninstall_if_build_active"]
 # --------------
 auth_hooks = []
 
+# Scheduler Events
+# ----------------
+import frappe  # noqa: E402
+
+
+def get_safe_scheduler_events():
+    """
+    Safely get scheduler events by checking if frappe.conf exists.
+    This prevents crashes during installation where frappe.conf is not yet available.
+    """
+    # This function is called at import time, so we must be defensive.
+    if not hasattr(frappe, "conf") or not frappe.conf:
+        return {}
+
+    app_role = frappe.conf.get("app_role", "tenant")
+    events = {}
+
+    if app_role == "tenant":
+        # PaaS tasks only run on tenant sites
+        events = {
+            "hourly": ["paas.tasks.process_repeating_orders"],
+            "daily": ["paas.tasks.remove_expired_stories"],
+        }
+
     return events
 
 
@@ -33,7 +57,6 @@ whitelisted_methods = {}
 # Fixtures
 # ---------
 fixtures = []
-]
 
 # Website Route Rules
 website_route_rules = [
