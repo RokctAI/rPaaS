@@ -34,7 +34,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/zones",
       "path": "../zones/delivery/frappe",
-      "ref": "036480e184b8db2327e2aac9f125bc51328eb1c4"
+      "ref": "5e1dee79c60cd881e94658c049048d254076e6c4"
     },
     {
       "name": "map",
@@ -42,7 +42,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/zones",
       "path": "../zones/map/frappe",
-      "ref": "036480e184b8db2327e2aac9f125bc51328eb1c4"
+      "ref": "5e1dee79c60cd881e94658c049048d254076e6c4"
     },
     {
       "name": "zones",
@@ -50,7 +50,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/zones",
       "path": "../zones/zones/frappe",
-      "ref": "036480e184b8db2327e2aac9f125bc51328eb1c4"
+      "ref": "5e1dee79c60cd881e94658c049048d254076e6c4"
     },
     {
       "name": "hardware",
