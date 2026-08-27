@@ -9,7 +9,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/core",
       "path": "../core/base/frappe",
-      "ref": "main",
+      "ref": "1fd57a85ab8b8843b993928912348f5bc7974b6b",
       "_comment": "Shared kernel content module (Blog, Banner, Branch, Career, App Settings, etc.); moved on disk to core/base/frappe (from the retired core/core) during the refork. manifest.json's own 'name' and its 137 hardcoded '{app_name}.core....' hook path segments were rewritten to 'base' in the same commit as this rename, so the module 'name' here and the manifest's identity now agree."
     },
     {
@@ -18,7 +18,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/core",
       "path": "../core/comms/frappe",
-      "ref": "main"
+      "ref": "1fd57a85ab8b8843b993928912348f5bc7974b6b"
     },
     {
       "name": "wallet",
@@ -26,7 +26,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/pay",
       "path": "../pay/wallet/frappe",
-      "ref": "main"
+      "ref": "5416f45101481787eb07bc116ff650246da383c9"
     },
     {
       "name": "delivery",
@@ -34,7 +34,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/zones",
       "path": "../zones/delivery/frappe",
-      "ref": "main"
+      "ref": "036480e184b8db2327e2aac9f125bc51328eb1c4"
     },
     {
       "name": "map",
@@ -42,7 +42,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/zones",
       "path": "../zones/map/frappe",
-      "ref": "main"
+      "ref": "036480e184b8db2327e2aac9f125bc51328eb1c4"
     },
     {
       "name": "zones",
@@ -50,7 +50,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/zones",
       "path": "../zones/zones/frappe",
-      "ref": "main"
+      "ref": "036480e184b8db2327e2aac9f125bc51328eb1c4"
     },
     {
       "name": "hardware",
@@ -58,7 +58,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/hardware",
       "path": "../hardware/hardware/frappe",
-      "ref": "main"
+      "ref": "e3c0b5331805a7740209e850325946c4ce814633"
     },
     {
       "name": "booking",
@@ -66,7 +66,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/commerce",
       "path": "../commerce/booking/frappe",
-      "ref": "main"
+      "ref": "d3f6cf834371382a624196c108c84124c57573f4"
     },
     {
       "name": "kitchen",
@@ -74,7 +74,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/commerce",
       "path": "../commerce/kitchen/frappe",
-      "ref": "main"
+      "ref": "d3f6cf834371382a624196c108c84124c57573f4"
     },
     {
       "name": "loyalty",
@@ -82,7 +82,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/commerce",
       "path": "../commerce/loyalty/frappe",
-      "ref": "main"
+      "ref": "d3f6cf834371382a624196c108c84124c57573f4"
     },
     {
       "name": "merchants",
@@ -90,7 +90,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/commerce",
       "path": "../commerce/merchants/frappe",
-      "ref": "main"
+      "ref": "d3f6cf834371382a624196c108c84124c57573f4"
     },
     {
       "name": "orders",
@@ -98,7 +98,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/commerce",
       "path": "../commerce/orders/frappe",
-      "ref": "main"
+      "ref": "d3f6cf834371382a624196c108c84124c57573f4"
     },
     {
       "name": "products",
@@ -106,7 +106,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/commerce",
       "path": "../commerce/products/frappe",
-      "ref": "main"
+      "ref": "d3f6cf834371382a624196c108c84124c57573f4"
     },
     {
       "name": "promotions",
@@ -114,7 +114,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/commerce",
       "path": "../commerce/promotions/frappe",
-      "ref": "main"
+      "ref": "d3f6cf834371382a624196c108c84124c57573f4"
     },
     {
       "name": "dev",
@@ -122,7 +122,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/corporate",
       "path": "../corporate/dev/frappe",
-      "ref": "main"
+      "ref": "ca9101a28c6fa14536ab35d07ab4e41f6a11cd85"
     },
     {
       "name": "telemetry",
@@ -130,7 +130,7 @@
       "source": "git",
       "git": "https://github.com/RokctAI/core",
       "path": "../core/telemetry/frappe",
-      "ref": "main"
+      "ref": "1fd57a85ab8b8843b993928912348f5bc7974b6b"
     }
   ]
 }
