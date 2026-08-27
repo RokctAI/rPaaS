@@ -17,3 +17,10 @@ build-backend = "flit_core.buildapi"
 # authors = "Frappe Technologies Pvt. Ltd."
 # email = "hello@frappe.io"
 # website = "https://frappe.io"
+
+[tool.ruff]
+# .rokct/cache holds raw SDK module sources cached by the compose step.
+# They are pre-substitution templates (literal "{app_name}" imports), so
+# they are not valid Python and must never be linted or formatted.
+# extend-exclude is additive, so it survives the CI's explicit --exclude list.
+extend-exclude = [".rokct/cache"]
