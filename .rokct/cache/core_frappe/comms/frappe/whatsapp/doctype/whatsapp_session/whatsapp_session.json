@@ -1,0 +1,103 @@
+{
+    "actions": [],
+    "creation": "2025-12-17 22:45:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "wa_id",
+        "phone_number",
+        "expiry",
+        "column_break_state",
+        "current_flow",
+        "current_shop",
+        "location",
+        "section_break_cart",
+        "cart_items"
+    ],
+    "fields": [
+        {
+            "fieldname": "wa_id",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "WhatsApp ID",
+            "reqd": 1,
+            "unique": 1
+        },
+        {
+            "fieldname": "linked_user",
+            "fieldtype": "Link",
+            "label": "Linked User",
+            "options": "User",
+            "read_only": 1
+        },
+        {
+            "fieldname": "phone_number",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Phone Number"
+        },
+        {
+            "fieldname": "expiry",
+            "fieldtype": "Datetime",
+            "label": "Session Expiry"
+        },
+        {
+            "fieldname": "column_break_state",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "current_flow",
+            "fieldtype": "Data",
+            "label": "Current Flow State"
+        },
+        {
+            "fieldname": "current_shop",
+            "fieldtype": "Link",
+            "label": "Current Shop",
+            "options": "Shop"
+        },
+        {
+            "fieldname": "location",
+            "fieldtype": "Geolocation",
+            "label": "Last Known Location"
+        },
+        {
+            "fieldname": "section_break_cart",
+            "fieldtype": "Section Break",
+            "label": "Cart"
+        },
+        {
+            "fieldname": "cart_items",
+            "fieldtype": "Code",
+            "label": "Cart Items (JSON)",
+            "options": "JSON"
+        },
+        {
+            "fieldname": "checkout_data",
+            "fieldtype": "Code",
+            "label": "Checkout Data",
+            "options": "JSON"
+        }
+    ],
+    "links": [],
+    "modified": "2025-12-17 22:45:00.000000",
+    "modified_by": "Administrator",
+    "module": "WhatsApp",
+    "name": "WhatsApp Session",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "print": 1,
+            "read": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

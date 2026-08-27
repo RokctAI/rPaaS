@@ -1,0 +1,33 @@
+{
+  "name": "zones",
+  "description": "Modular backend package for zones",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.delivery_zone.check_delivery_availability": "{app_name}.zones.tenant.api.delivery_zone.delivery_zone.check_delivery_availability",
+          "{app_name}.api.delivery_zone.create_delivery_zone": "{app_name}.zones.tenant.api.delivery_zone.delivery_zone.create_delivery_zone",
+          "{app_name}.api.delivery_zone.delete_delivery_zone": "{app_name}.zones.tenant.api.delivery_zone.delivery_zone.delete_delivery_zone",
+          "{app_name}.api.delivery_zone.get_shop_delivery_zones": "{app_name}.zones.tenant.api.delivery_zone.delivery_zone.get_shop_delivery_zones",
+          "{app_name}.api.delivery_zone.update_delivery_zone": "{app_name}.zones.tenant.api.delivery_zone.delivery_zone.update_delivery_zone"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Delivery Zone"
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "staticmap"
+      ]
+    },
+    "control": {}
+  }
+}

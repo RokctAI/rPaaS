@@ -1,0 +1,37 @@
+{
+  "name": "polaris",
+  "description": "Modular backend package for lending (Polaris)",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.lending.check_loan_eligibility": "{app_name}.polaris.tenant.api.lending_mocks.check_loan_eligibility",
+          "{app_name}.api.lending.check_loan_history_eligibility": "{app_name}.polaris.tenant.api.lending_mocks.check_loan_history_eligibility",
+          "{app_name}.api.lending.mark_application_as_rejected": "{app_name}.polaris.tenant.api.lending_mocks.mark_application_as_rejected",
+          "{app_name}.api.lending.check_financial_eligibility": "{app_name}.polaris.tenant.api.lending_mocks.check_financial_eligibility",
+          "{app_name}.api.lending.save_incomplete_loan_application": "{app_name}.polaris.tenant.api.lending_mocks.save_incomplete_loan_application",
+          "{app_name}.api.lending.fetch_saved_application": "{app_name}.polaris.tenant.api.lending_mocks.fetch_saved_application",
+          "{app_name}.api.lending.fetch_saved_applications": "{app_name}.polaris.tenant.api.lending_mocks.fetch_saved_applications",
+          "{app_name}.api.lending.create_loan_application": "{app_name}.polaris.tenant.api.lending_mocks.create_loan_application",
+          "{app_name}.api.lending.get_my_loan_applications": "{app_name}.polaris.tenant.api.lending_mocks.get_my_loan_applications",
+          "{app_name}.api.lending.disburse_loan": "{app_name}.polaris.tenant.api.loan.disburse_loan",
+          "{app_name}.api.lending.get_credit_score": "{app_name}.polaris.tenant.api.decision.get_credit_score",
+          "{app_name}.api.lending.get_loan_product_list": "{app_name}.polaris.tenant.api.product.get_loan_product_list",
+          "{app_name}.api.lending.run_interest_accrual": "{app_name}.polaris.doctype.process_loan_interest_accrual.process_loan_interest_accrual.process_loan_interest_accrual_for_loans",
+          "{app_name}.api.lending.run_security_shortfall_check": "{app_name}.polaris.doctype.process_loan_security_shortfall.process_loan_security_shortfall.create_process_loan_security_shortfall",
+          "{app_name}.api.lending.run_loan_classification": "{app_name}.polaris.doctype.process_loan_classification.process_loan_classification.create_process_loan_classification",
+          "{app_name}.api.lending.release_security": "{app_name}.polaris.tenant.asset_realisation.release_security"
+        },
+        "doc_events": {
+          "Loan Disbursement": {
+            "on_submit": "{app_name}.polaris.tenant.wallet_integration.credit_wallet_on_disbursement"
+          },
+          "Loan Repayment": {
+            "on_submit": "{app_name}.polaris.tenant.wallet_integration.debit_wallet_on_repayment"
+          }
+        }
+      }
+    },
+    "control": {}
+  }
+}

@@ -1,0 +1,40 @@
+[
+    {
+      "git": "https://github.com/RokctAI/Users",
+      "dart": "../Users/users/dart",
+      "frappe": "../Users/users/frappe",
+      "public": false,
+      "ref": "main"
+    },
+    {
+      "git": "https://github.com/RokctAI/productivity",
+      "dart": "../productivity/productivity/dart",
+      "frappe": "../productivity/productivity/frappe",
+      "public": false,
+      "ref": "main"
+    },
+    {
+      "git": "https://github.com/RokctAI/commerce",
+      "dart": "../commerce/merchants/dart",
+      "frappe": "../commerce/merchants/frappe",
+      "public": false,
+      "ref": "main",
+      "note": "merchants_sdk lives at commerce/merchants; same repo also contains commerce/orders (orders_sdk), commerce/promotions (promotions_sdk), commerce/products (products_sdk), commerce/booking (booking_sdk), commerce/kitchen (kitchen_sdk), commerce/loyalty (loyalty_sdk) as sibling SDKs"
+    },
+    {
+      "git": "https://github.com/RokctAI/pay",
+      "dart": "../pay/payments/dart",
+      "frappe": "../pay/payments/frappe",
+      "public": false,
+      "ref": "main",
+      "note": "payments_sdk lives at pay/payments; same repo also contains pay/wallet (wallet_sdk) as a sibling SDK"
+    },
+    {
+      "git": "https://github.com/RokctAI/zones",
+      "dart": "../zones/delivery/dart",
+      "frappe": "../zones/delivery/frappe",
+      "public": false,
+      "ref": "main",
+      "note": "delivery_sdk lives at zones/delivery; same repo also contains zones/map (map_sdk), zones/weather (weather_sdk), zones/zones (zones_sdk) as sibling SDKs"
+    }
+]

@@ -1,0 +1,134 @@
+{
+  "doctype": "DocType",
+  "name": "Forex Signal Outcome",
+  "engine": "InnoDB",
+  "istable": 0,
+  "issingle": 0,
+  "is_submittable": 0,
+  "module": "{module_name}",
+  "autoname": "FXSO-.YYYY.-.#####",
+  "description": "One row per emitted forex signal, written at emission time and settled exactly once with what actually happened (win / loss / scratch / expired). The outcome ledger behind the human-triggered retraining loop — evidence only, nothing consumes these rows automatically. Admin-only, never sent to clients. Verdicts are append-once: the controller refuses any edit to a settled outcome. All datetimes are UTC.",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "search_fields": "strategy_id,pair,outcome",
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1,
+  "fields": [
+    {
+      "fieldname": "strategy_id",
+      "fieldtype": "Data",
+      "label": "Strategy",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "description": "The strategy's catalog identifier (Forex Strategy strategy_key)."
+    },
+    {
+      "fieldname": "strategy_checksum",
+      "fieldtype": "Data",
+      "label": "Strategy Version Checksum",
+      "reqd": 1,
+      "in_standard_filter": 1,
+      "description": "The pinned Forex Strategy Version's spec_checksum — the immutable identity of the parameter set that emitted this signal. Reports group by this, never across it."
+    },
+    {
+      "fieldname": "pair",
+      "fieldtype": "Data",
+      "label": "Pair",
+      "reqd": 1,
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "direction",
+      "fieldtype": "Select",
+      "label": "Direction",
+      "options": "long\nshort",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "entry_ts",
+      "fieldtype": "Datetime",
+      "label": "Entry Time (UTC)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "entry_price",
+      "fieldtype": "Float",
+      "label": "Entry Price",
+      "precision": "9",
+      "reqd": 1
+    },
+    {
+      "fieldname": "risk_preset",
+      "fieldtype": "Data",
+      "label": "Risk Preset",
+      "description": "Label only — the enforced numbers live in the user's Forex Risk Profile (resolved parameters, not this name)."
+    },
+    {
+      "fieldname": "signal_meta",
+      "fieldtype": "Code",
+      "label": "Signal Meta (JSON)",
+      "options": "JSON"
+    },
+    {
+      "fieldname": "outcome",
+      "fieldtype": "Select",
+      "label": "Outcome",
+      "options": "\nwin\nloss\nscratch\nexpired",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "description": "Empty until settled. win = target reached; loss = stop reached; scratch = closed flat-ish; expired = never triggered / timed out. Written once — settled rows refuse edits."
+    },
+    {
+      "fieldname": "exit_ts",
+      "fieldtype": "Datetime",
+      "label": "Exit Time (UTC)"
+    },
+    {
+      "fieldname": "exit_price",
+      "fieldtype": "Float",
+      "label": "Exit Price",
+      "precision": "9"
+    },
+    {
+      "fieldname": "pips",
+      "fieldtype": "Float",
+      "label": "Pips",
+      "precision": "2",
+      "description": "Signed result in pips, after spread. Negative for a loss, 0 for a scratch or an expiry."
+    },
+    {
+      "fieldname": "outcome_meta",
+      "fieldtype": "Code",
+      "label": "Outcome Meta (JSON)",
+      "options": "JSON"
+    },
+    {
+      "fieldname": "recorded_at",
+      "fieldtype": "Datetime",
+      "label": "Recorded At (UTC)",
+      "read_only": 1
+    },
+    {
+      "fieldname": "settled_at",
+      "fieldtype": "Datetime",
+      "label": "Settled At (UTC)",
+      "read_only": 1
+    }
+  ]
+}

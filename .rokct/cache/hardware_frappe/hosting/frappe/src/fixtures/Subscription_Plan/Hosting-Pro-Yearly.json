@@ -1,0 +1,29 @@
+{
+    "allow_self_subscription":  1,
+    "billing_cycle":  "Yearly",
+    "billing_interval":  1,
+    "cost":  300.0,
+    "currency":  "USD",
+    "doctype":  "Subscription Plan",
+    "item":  "Hosting Pro",
+    "plan_name":  "Hosting Pro (Yearly)",
+    "price_determination":  "Fixed Rate",
+    "trial_period_days":  14,
+    "plan_category":  "Hosting",
+    "max_websites":  10,
+    "max_databases":  20,
+    "max_storage":  50,
+    "modules":  [
+                    {
+                        "module":  "Hosting"
+                    }
+                ],
+    "is_ai":  0,
+    "features":  [
+                     "10 Website Deployments",
+                     "20 Managed Databases",
+                     "50GB NVMe Storage",
+                     "Priority Support Response"
+                 ],
+    "plan_type":  "Service"
+}

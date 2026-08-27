@@ -1,0 +1,176 @@
+{
+  "name": "merchants_sdk",
+  "version": "1.9.7",
+  "_comment_requires": "merchants_sdk >= 1.6.0 requires base_sdk >= 1.5.0 (SyncEngine/SyncHandler APIs from the offline-first Phase 0, core PR #15); merchants_sdk >= 1.7.0 requires base_sdk >= 1.7.0 (SyncEngine.parkedOps/retryOp/deleteOp backing the sync-issues screen). The composer manifest schema has no machine-readable minimum-version field, so this is the declaration.",
+  "home_sdk": true,
+  "home_page": "templates/pages/manager/main/main_page.dart",
+  "installs": [
+    {
+      "from": "templates/assets",
+      "to": "assets"
+    }
+  ],
+  "app_assets": [
+    "assets/audio/notification.wav",
+    "assets/images/splash.png",
+    "assets/images/splash1.png",
+    "assets/images/splash2.png",
+    "assets/svgs/menu.svg"
+  ],
+  "_comment_app_assets": "Home SDKs ship the splash/login background images (base_sdk's splash_page and auth_sdk's login_page reference assets/images/splash*.png). Each home SDK provides its own copies so every composed app can brand them independently; app_assets gets them into the host pubspec's sdk-app-assets block so they are actually bundled. If base_sdk also installed identical files first, the file copy is skipped (already-present guard) and only the pubspec declaration matters. menu.svg and audio/notification.wav are custodianship copies from paas_manager develop (legacy upstream-era manager assets evicted from base_sdk); notification.wav keeps the legacy assets/audio/ path the manager app played it from.",
+  "routes": [],
+  "integrations": [],
+  "app_type": {
+    "driver": {
+      "_comment": "Driver migration S-D6: paas_driver's intro-story block (B-move-merchants_sdk — application/story + pages/stores/story_page + the /story route). merchants_sdk is the driver story home per driver.json's merchants_sdk entry comment ('Story UI the driver app shows'); base_sdk already owns the story models (story_data/story_request), and this page needs neither — its three slides are hardcoded network images. The application slice lives at lib/src/driver/application/story/ (declaring this block also keeps lib/src/driver/ alive through sdk_composer.py's strip_unused_role_folders; it is stripped from manager composes). While paas_driver still tracks its own copies, the installer's hash guard skips the story_page install and the generated /story route duplicates the host's manual entry harmlessly until M2 deletes the host line + files. Version bumped 1.8.0 -> 1.9.0 (this block) so version-aware cache reconciliation re-extracts composed copies on both compositions.",
+      "installs": [
+        {
+          "from": "templates/pages/driver/stores/story_page.dart",
+          "to": "lib/presentation/pages/stores/story_page.dart"
+        }
+      ],
+      "routes": [
+        {
+          "path": "/story",
+          "page": "StoryRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/stores/story_page.dart",
+          "_comment": "Path, route name and CupertinoRoute type match paas_driver's host-owned entry outside the generated markers, so host navigation call-sites keep working when the host deletes its manual entry + its own copy of the page (M2). The installed page carries @RoutePage() (name auto-derived: StoryRoute) — delivery_sdk's installed home stores.dart tile pushes `const StoryRoute()` (zones#12)."
+        }
+      ],
+      "tr_keys": {
+        "deliverymanbottomslide1": "deliveryman_bottom_slide1",
+        "deliverymanbottomslide2": "deliveryman_bottom_slide2",
+        "deliverymanbottomslide3": "deliveryman_bottom_slide3"
+      }
+    },
+    "manager": {
+      "constants": {
+        "import": "package:base_sdk/src/presentation/components/floating_nav/floating_nav_mode.dart",
+        "overrides": {
+          "tabletNavPlacement": "FloatingNavPlacement.railStart"
+        }
+      },
+      "_comment_constants_tablet_nav": "Opts the manager app into the start-side nav rail in tablet mode (windows >= 600 logical px): the composed AppConstants.tabletNavPlacement is re-pointed at FloatingNavPlacement.railStart, which the manager main shell reads. Phones keep the floating bottom pill exactly as before, and the driver flavor is untouched (this block only merges when composing app_type manager). The import is already present in base_sdk's app_constants.dart, so the installer will find it and skip re-adding; it is declared here so the override stands on its own.",
+      "installs": [
+        {
+          "from": "templates/pages/manager/main/main_page.dart",
+          "to": "lib/presentation/pages/main/main_page.dart"
+        },
+        {
+          "from": "templates/pages/manager/main/widgets/bottom_navigator_item.dart",
+          "to": "lib/presentation/pages/main/widgets/bottom_navigator_item.dart"
+        },
+        {
+          "from": "templates/pages/manager/main/widgets/buttons_bouncing_effect.dart",
+          "to": "lib/presentation/pages/main/widgets/buttons_bouncing_effect.dart"
+        },
+        {
+          "from": "templates/pages/manager/restaurant",
+          "to": "lib/presentation/pages/restaurant"
+        },
+        {
+          "from": "templates/components/manager/small_weekday_item.dart",
+          "to": "lib/presentation/components/restaurant/small_weekday_item.dart"
+        },
+        {
+          "from": "templates/components/manager/horizontal_image_picker.dart",
+          "to": "lib/presentation/component/helper/horizontal_image_picker.dart"
+        },
+        {
+          "from": "templates/adapters/manager/merchants_adapters.dart",
+          "to": "lib/presentation/routes/merchants_adapters.dart"
+        },
+        {
+          "from": "templates/pages/manager/sync_issues/sync_issues_page.dart",
+          "to": "lib/presentation/pages/sync_issues/sync_issues_page.dart"
+        }
+      ],
+      "tr_keys": {
+        "theRestaurantIsClosedToday": "the_restaurant_is_closed_today",
+        "before": "before",
+        "after": "after",
+        "orderPayment": "order.payment",
+        "setUpYourShop": "set_up_your_shop",
+        "shopSetupExplainer": "a_few_details_to_open_your_shop_you_can_change_everything_later",
+        "shopName": "shop_name",
+        "accessDenied": "access.denied",
+        "syncIssues": "sync_issues",
+        "discard": "discard"
+      },
+      "session_policy": {
+        "allowed_roles": [
+          {
+            "role": "seller",
+            "landing_route": "/main"
+          }
+        ],
+        "rejection_message_tr_key": "access.denied",
+        "rejection_route": "/login"
+      },
+      "registration_steps": [
+        {
+          "id": "merchants.shop_setup",
+          "order": 10,
+          "imports": [
+            "package:merchants_sdk/src/manager/presentation/widgets/shop_setup_slide.dart",
+            "package:${package}/presentation/routes/merchants_adapters.dart"
+          ],
+          "body": "RegistrationStep(\n  data: const {'id': 'merchants.shop_setup'},\n  content: Builder(\n    builder: (context) => ShopSetupSlide(\n      capture: MerchantsShopSetupAdapter(),\n      initialPhone: RegistrationStepScope.of(context).account?.phone,\n      onContinue: () => RegistrationStepScope.of(context).next(),\n    ),\n  ),\n)"
+        }
+      ],
+      "routes": [
+        {
+          "path": "/main",
+          "page": "MainRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/main/main_page.dart",
+          "_comment": "The installed page carries @RoutePage(name: 'MainRoute'), so auto_route generates the route class in the host's own app_router.gr.dart. Path and route name match paas_manager's existing CupertinoRoute(path: '/main', page: MainRoute.page), so host navigation call-sites keep working when the host deletes its own copy of the page."
+        },
+        {
+          "path": "/sync-issues",
+          "page": "ManagerSyncIssuesRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/sync_issues/sync_issues_page.dart",
+          "_comment": "Sync-issues screen (park-and-surface): parked needs_attention records across the three manager boxes with per-record Retry/Discard. New path, no legacy paas_manager counterpart; route name follows the Manager prefix convention. Reached from the restaurant tab's sections list."
+        }
+      ],
+      "app_routes": [
+        {
+          "method": "replaceMainRoute",
+          "body": "context.router.replace(MainRoute());",
+          "imports": [
+            "import 'package:${package}/presentation/routes/app_router.dart';"
+          ]
+        }
+      ],
+      "_comment_app_routes": "merchants_sdk is the manager home SDK: it owns the app's main destination, so it implements AppRoutes.replaceMainRoute (what base_sdk's AppHelpers.goHome() calls after splash/login). Without this, _HostAppRoutes' noSuchMethod throws a StateError the moment the shell tries to navigate home. Mirrors launch_sdk's and lms_sdk's declarations.",
+      "di_hooks": [
+        {
+          "id": "merchants-manager-role-di",
+          "order": 12,
+          "body": "ManagerMerchantsDependencies.register(GetIt.instance);",
+          "imports": [
+            "import 'package:merchants_sdk/src/manager/di/manager_merchants_di.dart';"
+          ]
+        }
+      ],
+      "_comment_di_hooks": "Manager role DI moved out of paas_manager's tracked main.dart (M5, scratchpad/di-hooks-declarations.md; internally isRegistered-guarded). Order 12 instead of the doc's 10: orders_sdk already declares order 10 and the installer warns on cross-SDK order collisions - the intended sequence (role DIs before the order-20 facades) is preserved.",
+      "boot_hooks": [
+        {
+          "id": "merchants-manager-splash-preserve",
+          "order": 1,
+          "body": "FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());",
+          "imports": [
+            "import 'package:flutter_native_splash/flutter_native_splash.dart';"
+          ]
+        }
+      ],
+      "_comment_boot_hooks": "Splash hold until base_sdk's SplashPage calls FlutterNativeSplash.remove() - the base main.dart template says the splash-holding app's HOME SDK declares this, and merchants_sdk is manager's home SDK. ensureInitialized() re-returns the existing binding, so calling it again inside the hook is safe. No flutter/material import entry: main.dart already imports it statically and a wiring duplicate would trip duplicate_import."
+    }
+  },
+  "_comment_home": "merchants_sdk is the manager composition's home SDK (home_sdk flag here is what sdk_installer_base.resolve_home_sdk() reads; the composer entry in manager.json carries the same flag). home_page points at the bottom-nav shell template below. Installs are FILE-level, not a directory copy, so a transitional host that still owns other files under lib/presentation/pages/main/ (legacy orders/foods/create_order subfolders) is not clobbered.",
+  "_comment_app_type": "manager: the shell's three tabs and create-modals are owned by sibling SDKs and imported via ${package} host paths - orders_sdk installs pages/orders (+ ManagerCreateOrderRoute POS flow), products_sdk installs pages/foods and its create modals, merchants_sdk itself installs the restaurant tab (pages/restaurant, S-11 below). The shell therefore only compiles in a manager compose once those app_type.manager installs have landed; installing it standalone is expected to fail analysis until then. Tab/scroll state lives in this SDK at lib/src/manager/application/main/ (mainProvider); the foods-tab modal switch reads products_sdk's foodTabsProvider directly. Declaring this manager block also keeps lib/src/manager/ alive through sdk_composer.py's strip_unused_role_folders. Requires .rokct/config/app_type = manager, otherwise no flavor block fires. Version bumped 1.1.0 -> 1.2.0 (restaurant vertical), then 1.2.0 -> 1.3.0 (shop-setup registration step + merchants_adapters.dart install), then 1.3.0 -> 1.4.0 (adopted horizontal_image_picker from base_sdk per the component triage - only this SDK's templates use it; installed to the host's lib/presentation/component/ SINGULAR path deliberately, because that is the exact path edit_restaurant_modal.dart already imports, so no template rewrite is needed), then 1.4.0 -> 1.5.0 (declared the app_type.manager session_policy \u2014 sellers only -> /main, others rejected to /login with the accessDenied tr_key added alongside; consumed by sdk_installer_base.py's update_session_policy() once The-Rokct-Protocol#154 lands, harmlessly ignored before), then 1.6.0 -> 1.7.0 (sync-issues screen: installed sync_issues_page.dart + /sync-issues ManagerSyncIssuesRoute + restaurant-tab sections entry, over the lib/src sync_issues application slice and the extended SyncIssuesService; needs base_sdk >= 1.7.0 for SyncEngine.parkedOps/retryOp/deleteOp) so version-aware cache reconciliation re-extracts composed copies.",
+  "_comment_registration_steps": "registration_steps inject merchants' shop-setup capture into auth_sdk's post-register pipeline (see sdk_installer_base.py's update_registration_steps() and auth_sdk's templates/routes/registration_step_pages.dart shell; lms_sdk's school + grade steps are the reference consumer). The step lives INSIDE the app_type.manager block, so only the manager composition gets it \u2014 a supacharge or customer compose never asks a fresh account for a shop. It replaces (for the registration path) paas_manager's retired 'become a seller' CreateShopPage funnel, keeping only what the backend's create endpoint genuinely needs at registration: shop name (the one field shop.create_shop requires; user/uuid/slug are server-derived) plus phone (prefilled from the registered account via RegistrationStepScope.account) and address. Images, tax, delivery settings, prices and documents from that legacy page are management material, edited later on the restaurant tab over update_shop. Wiring: ShopSetupSlide (SDK-owned widget, lib/src/manager/presentation/widgets/) -> SellerShopSetupCapture (consumer-owned interface, ADR-005) -> MerchantsShopSetupAdapter in the installed merchants_adapters.dart (host composition code) -> SellerShopRepositoryFacade.createShop -> the universal platform gateway cmd api.shop.create_shop. skippable stays default-true inside the RegistrationStep(...) body and the adapter never throws \u2014 a failed or skipped create must never trap a fresh account; the restaurant tab handles the no-shop state. Recorded gap: create_shop requires the Seller (or System Manager) role, so a freshly registered manager-app account must already carry it for the create to land (docs/frappe-endpoint-contract.md). NOTE: manager.json currently composes auth_sdk with skip_install (host-owned auth pages), so the registration shell file is absent and update_registration_steps() no-ops \u2014 this declaration is forward-compatible and comes alive the moment the manager compose adopts auth_sdk's installed shell.",
+  "_comment_restaurant": "S-11 restaurant vertical. The pages/restaurant install is a whole-directory copy (restaurant_page + widgets); RestaurantPage is tab-hosted by main_page.dart via direct ${package} import, so it declares NO route (orders_sdk OrdersHomePage contract). Its call-sites route to owning SDKs' installed routes: ManagerIncomeRoute (revenue_sdk), ManagerOrderHistoryRoute (orders_sdk), ManagerDeliveryZoneRoute (zones_sdk, pending S-1/S-1b re-add of zones_sdk to manager.json); NotificationListRoute and LoginRoute stay HOST routes (comms consume / auth skip_install), and the logout modal's delete-account path keeps the host's application/profile slice via ${package} until users_sdk S-2 lands. Application slice: lib/src/manager/application/restaurant/ (restaurantProvider, workingDaysProvider) over SellerShopRepositoryFacade + base_sdk's GalleryRepositoryFacade; sections/tables live on SellerSectionsTablesRepositoryFacade - the OWNER side of orders_sdk's ADR-005 PosSectionsTablesFacade seam; the host adapter installed by orders_sdk (lib/presentation/routes/orders_adapters.dart) should delegate to it once registered. The manager host must call ManagerMerchantsDependencies.register(GetIt.instance) via direct src/ import (lib/src/manager/di/manager_merchants_di.dart) before the restaurant tab first builds. tr_keys: only the four keys missing from base_sdk TrKeys; endpoint state in docs/frappe-endpoint-contract.md. Templates additionally need host deps image_picker, intl_phone_field, intl (all already in paas_manager's pubspec keep-list)."
+}

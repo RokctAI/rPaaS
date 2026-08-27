@@ -1,0 +1,310 @@
+{
+  "timestamp": "2026-07-11T03:39:42.238614+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "FAIL",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/commerce/booking/dart",
+  "detail": "Architectural compliance scan failed with 50 violations across source code checks.",
+  "violations": [
+    {
+      "file": ".\\lib\\src\\domain\\interface\\manager\\table.dart",
+      "line": 12,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\manager\\table.dart",
+      "line": 44,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\manager\\table.dart",
+      "line": 55,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\manager\\table_repository.dart",
+      "line": 69,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\manager\\table_repository.dart",
+      "line": 250,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\manager\\table_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'table_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\bookings_data.dart",
+      "line": 14,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\bookings_data.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\disable_dates.dart",
+      "line": 10,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'disable_dates.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\disable_dates.dart",
+      "line": 15,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'disable_dates.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 51,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 98,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 111,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 131,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 134,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 152,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 160,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 221,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 236,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 237,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 241,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 248,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 277,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 288,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 292,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 307,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_data.dart",
+      "line": 310,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_response.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_response.dart",
+      "line": 27,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_bookings_response.dart",
+      "line": 28,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_bookings_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_data.dart",
+      "line": 26,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_data.dart",
+      "line": 40,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_data.dart",
+      "line": 41,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_data.dart",
+      "line": 76,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_data.dart",
+      "line": 88,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_data.dart",
+      "line": 89,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_info_data.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_info_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_info_data.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_info_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_info_response.dart",
+      "line": 16,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_info_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_info_response.dart",
+      "line": 24,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_info_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_response.dart",
+      "line": 11,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_response.dart",
+      "line": 18,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_response.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_response.dart",
+      "line": 24,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_statistics_data.dart",
+      "line": 22,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_statistics_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_statistics_data.dart",
+      "line": 38,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_statistics_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_statistics_data.dart",
+      "line": 75,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_statistics_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_statistics_data.dart",
+      "line": 83,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_statistics_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_statistic_response.dart",
+      "line": 24,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_statistic_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\table_statistic_response.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_statistic_response.dart'. Define concrete Dart models or strong types."
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+# Guided-tour fragment for delivery_sdk (driver-role screens).
+#
+# Brand-neutral by rule: app names, taglines and any per-app wording live in
+# the app shell's tour/app.tour.yaml ({app_name}/{app_tagline} placeholders
+# are substituted at merge time). This fragment owns only the screens
+# delivery_sdk installs into a driver compose (manifest.json app_type.driver
+# routes) - the same SDK whose Demo* courier repositories
+# (DemoCourierOrdersRepository / DemoCourierParcelRepository /
+# DemoCourierRepository / DemoCourierRouteRepository, seeded from
+# DemoDeliverySeed) populate these screens in demo builds
+# (--dart-define=IS_DEMO=true).
+#
+# Assumes a signed-in deliveryman session (the driver session_policy lands
+# the role on /home): the app manifest signs in through auth_sdk's fragment
+# before running this one. Auth screens are auth_sdk's fragment, not ours.
+#
+# The home step captures the courier map. Map TILES need network in the
+# capture emulator; the surrounding UI (zone polygon, online toggle, current
+# delivery sheet) renders from demo data either way, and a grey tile
+# background is an acceptable still. Tab-switch steps drive the real tabs
+# via AppHelpers.getTranslation(TrKeys.*) finders - the same strings the
+# tabs render - so they stay brand- and locale-neutral.
+#
+# Format: RokctAI/shared-workflows scripts/tour/README.md
+sdk: delivery
+imports:
+  - "import 'package:base_sdk/src/services/app_helpers.dart';"
+  - "import 'package:base_sdk/src/services/tr_keys.dart';"
+steps:
+  - key: driver_home
+    title: "Your day on the map"
+    caption: "Go *online* and drive - your zone, your current delivery and your next job all live on one map."
+    action: route
+    route: /home
+    settle: 10
+  - key: driver_orders
+    title: "Deliveries in hand"
+    caption: "Every delivery you have accepted, with the customer, the total and the *cash to collect* up front."
+    action: route
+    route: /orders
+    settle: 8
+  - key: driver_available_orders
+    title: "The next job is waiting"
+    caption: "Orders ready for pickup near you - *grab the next job* with one tap."
+    action: dart
+    screenshot: true
+    settle: 6
+    dart: |
+      // The orders screen's second tab. The finder goes through the same
+      // translated string the tab renders, so it resolves in any brand or
+      // locale.
+      await tester.tap(
+        find.text(AppHelpers.getTranslation(TrKeys.availableOrders)).first,
+        warnIfMissed: false,
+      );
+  - key: driver_route
+    title: "Every stop, in order"
+    caption: "Dispatch lines up your stops - pickups first, then drop-offs - with *distance and cash* per stop."
+    action: route
+    route: /driver-route
+    settle: 8
+  - key: driver_order_history
+    title: "Proof of every drop"
+    caption: "Your delivered orders stay on record - filter *any date range* when you need to look back."
+    action: route
+    route: /order-history
+    settle: 8
+  - key: driver_parcels
+    title: "Parcels too"
+    caption: "Documents and packages ride along - sender, receiver and fee on *every parcel*."
+    action: route
+    route: /parcels
+    settle: 8
+  - key: driver_available_parcels
+    title: "Pick up a parcel"
+    caption: "Parcels waiting nearby - *add one to your run* whenever it fits."
+    action: dart
+    screenshot: true
+    settle: 6
+    dart: |
+      // The parcels screen's second tab, found by its rendered translation.
+      await tester.tap(
+        find.text(AppHelpers.getTranslation(TrKeys.availableParcels)).first,
+        warnIfMissed: false,
+      );
+  - key: driver_parcel_history
+    title: "Parcel trail"
+    caption: "Delivered parcels keep their own history, ready whenever you *need the paper trail*."
+    action: route
+    route: /parcel-history
+    settle: 8
+  - key: driver_profile
+    title: "You, your bike, your balance"
+    caption: "Your vehicle, your delivery zone and your *balance* - all in one place."
+    action: route
+    route: /profile
+    settle: 8

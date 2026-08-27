@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 794 1123" width="794" height="1123">
+  <rect x="0" y="0" width="794" height="1123" fill="#000000" data-token="advertiser-6"/>
+  <rect x="0" y="0" width="794" height="320" fill="#000000" data-token="advertiser-1"/>
+  <image data-slot="logo" x="48" y="48" width="96" height="96" href=""/>
+  <text data-slot="cover-t1" x="48" y="200" font-size="48" fill="#000000" data-token="advertiser-5" font-family="DejaVu Sans" font-weight="bold" data-fit="shrink" data-fit-width="696">x</text>
+  <text data-slot="cover-t2" x="48" y="248" font-size="32" fill="#000000" data-token="advertiser-5" font-family="DejaVu Sans" font-weight="bold" data-fit="shrink" data-fit-width="696" data-fit-height="40">x</text>
+  <text data-slot="cover-t3" x="48" y="288" font-size="14" fill="#000000" data-token="advertiser-5" font-family="DejaVu Sans" data-fit="shrink" data-fit-width="696">x</text>
+  <rect x="48" y="344" width="240" height="8" fill="#000000" data-token="advertiser-2"/>
+  <rect x="48" y="376" width="696" height="48" fill="#000000" data-token="advertiser-2"/>
+  <text data-slot="cover-t4" x="64" y="408" font-size="16" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" font-weight="bold" data-fit="shrink" data-fit-width="664">x</text>
+  <text data-slot="cover-t5" x="48" y="480" font-size="20" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" font-weight="bold" data-fit="shrink" data-fit-width="696">x</text>
+  <text data-slot="cover-t6" x="48" y="528" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans">x</text>
+  <text data-slot="cover-t7" x="48" y="552" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans">x</text>
+  <text data-slot="cover-t8" x="48" y="576" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans">x</text>
+  <text data-slot="cover-t9" x="48" y="624" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" font-weight="bold">x</text>
+  <text data-slot="cover-t10" x="48" y="648" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" font-weight="bold">x</text>
+  <text data-slot="cover-t11" x="48" y="672" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" font-weight="bold">x</text>
+  <text data-slot="cover-t12" x="48" y="696" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" font-weight="bold">x</text>
+  <rect x="48" y="856" width="696" height="8" fill="#000000" data-token="advertiser-2"/>
+  <text data-slot="cover-t13" x="48" y="904" font-size="16" fill="#000000" data-token="advertiser-1" font-family="DejaVu Sans" font-weight="bold">x</text>
+  <text data-slot="cover-t14" x="48" y="936" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" data-fit="shrink" data-fit-width="696">x</text>
+  <text data-slot="cover-t15" x="48" y="960" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" data-fit="shrink" data-fit-width="696">x</text>
+  <text data-slot="cover-t16" x="48" y="984" font-size="14" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" data-fit="shrink" data-fit-width="696">x</text>
+  <text data-slot="cover-t17" x="48" y="1056" font-size="12" fill="#000000" data-token="advertiser-3" font-family="DejaVu Sans" data-fit="shrink" data-fit-width="696">x</text>
+</svg>

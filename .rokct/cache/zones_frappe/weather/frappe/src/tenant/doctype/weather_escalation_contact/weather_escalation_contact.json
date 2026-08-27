@@ -1,0 +1,82 @@
+{
+ "doctype": "DocType",
+ "name": "Weather Escalation Contact",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "field:contact_name",
+ "description": "One rung of the severe-weather human escalation ladder (TENANT-side, admin-configured). When a top-severity notice stays unacknowledged past the configured window, the hourly escalation job (src/tenant/escalation.py) notifies enabled contacts one at a time in priority order via whichever channels are composed and configured (push for linked users, email, SMS when a gateway exists; voice is a documented pluggable seam). A contact's tokened acknowledge link records into the Weather Notice Delivery ledger and stops the ladder. No rows configured means the ladder is a silent no-op.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "contact_name,priority",
+ "sort_field": "priority",
+ "sort_order": "ASC",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "contact_name",
+   "fieldtype": "Data",
+   "label": "Contact Name",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority (1 = first)",
+   "reqd": 1,
+   "default": "1",
+   "in_list_view": 1,
+   "description": "Ladder order - lower numbers are notified first"
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User (for push)",
+   "options": "User",
+   "description": "Optional: a linked user receives the escalation as a push notification via the comms module"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone",
+   "options": "Phone",
+   "description": "Used for SMS when an SMS gateway is configured (and for a voice channel if one is ever plugged in)"
+  },
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Data",
+   "label": "Watch Location Scope (Grid Key)",
+   "description": "Optional: restrict this contact to one 0.25 degree grid cell; empty means the whole site"
+  }
+ ]
+}

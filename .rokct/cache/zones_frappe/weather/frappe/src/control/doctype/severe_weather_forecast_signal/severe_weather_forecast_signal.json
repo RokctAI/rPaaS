@@ -1,0 +1,177 @@
+{
+ "doctype": "DocType",
+ "name": "Severe Weather Forecast Signal",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "SWF-.YYYY.-.#####",
+ "description": "One forecast-basis firing of the FROZEN severe-weather detector run over the Open-Meteo forecast feed (warnings_engine/forecast.py), or a missed_event accounting row. ADMIN/TELEMETRY ONLY - never sent to clients, never creates or alters a Severe Weather Warning, never mixed with observed-basis statistics. Every open signal is later settled against observed data (hit / false_alarm) by the daily verification pass; no forecast accuracy is claimed until this ledger accumulates. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "watch_location,event_class,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "basis",
+   "fieldtype": "Select",
+   "label": "Basis",
+   "options": "forecast",
+   "default": "forecast",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Always \"forecast\" - the hard tag separating these rows from observed-basis warnings. Forecast-basis and observed-basis signals never mix in any statistic."
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "open\nhit\nfalse_alarm\nmissed_event",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "open = fired, awaiting observed data; hit = extremes materialized in the predicted window (verified at the outcome ledger's own thresholds); false_alarm = the window elapsed quietly; missed_event = an observed-basis warning-tier episode no forecast signal preceded"
+  },
+  {
+   "fieldname": "event_class",
+   "fieldtype": "Select",
+   "label": "Event Class",
+   "options": "flash_flood\nflood\ndestructive_wind\ntornado",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Link",
+   "label": "Watch Location",
+   "options": "Weather Watch Location",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "warning",
+   "fieldtype": "Link",
+   "label": "Observed Episode",
+   "options": "Severe Weather Warning",
+   "in_standard_filter": 1,
+   "description": "Only on missed_event rows: the observed-basis episode the forecast pass failed to precede"
+  },
+  {
+   "fieldname": "issued_at",
+   "fieldtype": "Datetime",
+   "label": "Issued At (UTC)",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "When the pass first fired this signal (missed_event rows: when the miss was recorded)"
+  },
+  {
+   "fieldname": "refreshed_at",
+   "fieldtype": "Datetime",
+   "label": "Refreshed At (UTC)",
+   "read_only": 1,
+   "description": "Last hourly pass that still showed the event. A fired signal is never deleted by a weakening forecast - it stays until observed data settles it."
+  },
+  {
+   "fieldname": "refresh_count",
+   "fieldtype": "Int",
+   "label": "Refreshes",
+   "read_only": 1
+  },
+  {
+   "fieldname": "first_forecast_at",
+   "fieldtype": "Datetime",
+   "label": "First Forecast Hour (UTC)",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "First future hour at which the frozen conditions reach warning tier on the forecast timeline (latest refresh's view)"
+  },
+  {
+   "fieldname": "lead_hours",
+   "fieldtype": "Int",
+   "label": "Lead (h)",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Hours between issue and the first forecast warning-tier hour"
+  },
+  {
+   "fieldname": "horizon_hours",
+   "fieldtype": "Int",
+   "label": "Horizon (h)",
+   "read_only": 1,
+   "description": "Configured forward horizon at issue time"
+  },
+  {
+   "fieldname": "peak_tier",
+   "fieldtype": "Int",
+   "label": "Peak Tier",
+   "read_only": 1,
+   "description": "Highest detector tier over the forecast window - high-water mark across refreshes"
+  },
+  {
+   "fieldname": "peak_confidence",
+   "fieldtype": "Float",
+   "precision": "3",
+   "label": "Peak Confidence",
+   "read_only": 1,
+   "description": "Highest gated detector score over the forecast window - high-water mark across refreshes"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Forecast Model",
+   "read_only": 1,
+   "description": "Open-Meteo model the series came from (best_match unless severe_weather_forecast_model is set)"
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Data",
+   "label": "Source",
+   "read_only": 1
+  },
+  {
+   "fieldname": "config_sha256",
+   "fieldtype": "Data",
+   "label": "Frozen Config SHA256",
+   "read_only": 1,
+   "description": "sha256 of the frozen detector config the firing used - provenance proof that no threshold differed from the observed-basis detector"
+  },
+  {
+   "fieldname": "verified_at",
+   "fieldtype": "Datetime",
+   "label": "Verified At (UTC)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "evidence",
+   "fieldtype": "Long Text",
+   "label": "Evidence (admin only)",
+   "read_only": 1,
+   "description": "JSON schema v1: {version, basis, issued_at, first_forecast_at, lead_hours, horizon_hours, peak_tier, peak_confidence, already_active_at_issue, fired_conditions, source, model, config_sha256} (missed_event rows carry {kind, warning, onset, cover_tolerance_hours}). Never sent to clients."
+  },
+  {
+   "fieldname": "verification",
+   "fieldtype": "Long Text",
+   "label": "Verification (admin only)",
+   "read_only": 1,
+   "description": "JSON written when the daily pass settles the signal against observed data: {window, observed peaks, verdict, observed_source, data_horizon, verified_at}"
+  }
+ ]
+}

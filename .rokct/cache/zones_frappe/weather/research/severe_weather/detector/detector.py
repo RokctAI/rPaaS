@@ -1,0 +1,299 @@
+"""Per-location severe-weather warning detector - core algorithm.
+
+Turns a causal feature time series (produced by mining/features.py) for ONE
+location into time-indexed warning states per event class.
+
+Design constraints, in order (per the project plan):
+  1. interpretability - every alarm records which precursor conditions fired;
+  2. calibration      - confidence is the weighted fraction of precursors active;
+  3. cheapness        - the core loop is pure Python over plain sequences with no
+     third-party imports, so it can be adapted into the SDK backend and run
+     inside a scheduled job. pandas is touched only in the optional
+     run_on_dataframe adapter (lazy import).
+
+Causality: the detector is a forward state machine - state at time t depends
+only on feature values at times <= t. The features themselves are causal
+(right-aligned windows / backward differences; see mining/features.py).
+
+Config semantics (detector_config.json, per event class):
+
+  conditions   each has: feature, direction ("above"/"below"), on/off thresholds
+               (hysteresis: arms when the value crosses `on` and has held for
+               persistence_h consecutive hours; stays active until the value
+               falls back past `off`), weight.
+  required     condition names that must ALL be active for any alarm (all-of).
+  groups       list of name-lists; each group needs >= 1 active member (any-of).
+  score        sum of active weights / sum of all weights -> confidence in [0,1].
+  severity_on  score thresholds for watch < warning < severe; a tier is retained
+               until score < (its threshold - severity_off_margin), so warning
+               levels do not flap on score noise.
+  cooldown_h   after a warning-or-worse episode ends, re-entry into warning+ is
+               suppressed for this many hours (watch remains possible) - this
+               prevents alarm flapping from inflating alarm counts.
+  nan_tolerance_h  a condition holds its state across a NaN gap up to this many
+               hours (the extraction has documented variable gaps), then de-arms.
+
+Hourly cadence is assumed throughout: persistence / cooldown counts are in
+steps == hours.
+"""
+from __future__ import annotations
+
+import json
+import math
+from dataclasses import dataclass, field
+
+SEVERITY_LEVELS = ("none", "watch", "warning", "severe")
+WARNING_TIER = 2   # tiers: 0 none, 1 watch, 2 warning, 3 severe
+
+
+def _is_missing(v) -> bool:
+    return v is None or (isinstance(v, float) and math.isnan(v))
+
+
+# --------------------------------------------------------------------------- #
+# configuration
+# --------------------------------------------------------------------------- #
+
+@dataclass(frozen=True)
+class Condition:
+    name: str
+    feature: str
+    direction: str          # "above" | "below"
+    on: float               # arming threshold
+    off: float              # release threshold (hysteresis)
+    weight: float
+    persistence_h: int = 1  # consecutive on-side hours required to arm
+
+    def __post_init__(self):
+        if self.direction not in ("above", "below"):
+            raise ValueError(f"condition {self.name}: bad direction {self.direction!r}")
+        if self.direction == "above" and not self.off <= self.on:
+            raise ValueError(f"condition {self.name}: need off <= on for 'above'")
+        if self.direction == "below" and not self.off >= self.on:
+            raise ValueError(f"condition {self.name}: need off >= on for 'below'")
+        if self.weight < 0:
+            raise ValueError(f"condition {self.name}: negative weight")
+        if self.persistence_h < 1:
+            raise ValueError(f"condition {self.name}: persistence_h must be >= 1")
+
+
+@dataclass(frozen=True)
+class ClassRule:
+    event_class: str
+    conditions: tuple            # tuple[Condition, ...]
+    required: tuple = ()         # names that must all be active
+    groups: tuple = ()           # tuple[tuple[str, ...]]: each needs any-of
+    severity_on: dict = field(default_factory=lambda: {"watch": 0.35, "warning": 0.55,
+                                                       "severe": 0.80})
+    severity_off_margin: float = 0.10
+    cooldown_h: int = 24
+    nan_tolerance_h: int = 6
+    notes: str = ""
+
+    def __post_init__(self):
+        names = [c.name for c in self.conditions]
+        if len(set(names)) != len(names):
+            raise ValueError(f"{self.event_class}: duplicate condition names")
+        known = set(names)
+        for n in list(self.required) + [n for g in self.groups for n in g]:
+            if n not in known:
+                raise ValueError(f"{self.event_class}: unknown condition {n!r} referenced")
+        so = self.severity_on
+        if not (0 < so["watch"] <= so["warning"] <= so["severe"] <= 1):
+            raise ValueError(f"{self.event_class}: severity_on must be ordered in (0, 1]")
+        if sum(c.weight for c in self.conditions) <= 0:
+            raise ValueError(f"{self.event_class}: total weight must be positive")
+
+    @property
+    def feature_names(self):
+        return sorted({c.feature for c in self.conditions})
+
+
+def rule_from_dict(event_class: str, d: dict) -> ClassRule:
+    conds = tuple(Condition(name=c["name"], feature=c["feature"],
+                            direction=c["direction"], on=float(c["on"]),
+                            off=float(c["off"]), weight=float(c["weight"]),
+                            persistence_h=int(c.get("persistence_h", 1)))
+                  for c in d["conditions"])
+    return ClassRule(
+        event_class=event_class, conditions=conds,
+        required=tuple(d.get("required", [])),
+        groups=tuple(tuple(g) for g in d.get("groups", [])),
+        severity_on=dict(d.get("severity_on",
+                               {"watch": 0.35, "warning": 0.55, "severe": 0.80})),
+        severity_off_margin=float(d.get("severity_off_margin", 0.10)),
+        cooldown_h=int(d.get("cooldown_h", 24)),
+        nan_tolerance_h=int(d.get("nan_tolerance_h", 6)),
+        notes=str(d.get("notes", "")))
+
+
+def load_config(path: str) -> dict:
+    """Load detector_config.json -> {event_class: ClassRule}. Raises on bad config."""
+    with open(path) as f:
+        raw = json.load(f)
+    return {k: rule_from_dict(k, v) for k, v in raw["classes"].items()}
+
+
+# --------------------------------------------------------------------------- #
+# evaluation
+# --------------------------------------------------------------------------- #
+
+@dataclass
+class Alarm:
+    """One warning episode (a contiguous run of severity >= warning)."""
+    event_class: str
+    first_fired_at: object          # timestamp of the first warning-tier hour
+    last_active_at: object          # last hour the episode was still warning+
+    max_severity: str = "warning"   # highest tier reached ("warning" | "severe")
+    max_confidence: float = 0.0
+    fired_conditions: tuple = ()    # active precursor conditions at first firing
+
+
+@dataclass
+class DetectionResult:
+    """Time-indexed warning states for one (location, event class)."""
+    event_class: str
+    times: list
+    tier: list                      # int 0..3 per hour
+    confidence: list                # float 0..1 per hour (gated score)
+    alarms: list                    # list[Alarm]
+
+    def to_frame(self):
+        """Optional pandas adapter: time-indexed (event_class, severity,
+        confidence, first_fired_at) - first_fired_at is filled for hours inside
+        a warning episode with that episode's first firing time."""
+        import pandas as pd
+        sev = [SEVERITY_LEVELS[t] for t in self.tier]
+        fired = [None] * len(self.times)
+        pos = {t: i for i, t in enumerate(self.times)}
+        for a in self.alarms:
+            i, j = pos[a.first_fired_at], pos[a.last_active_at]
+            for k in range(i, j + 1):
+                if self.tier[k] >= WARNING_TIER:
+                    fired[k] = a.first_fired_at
+        return pd.DataFrame({"event_class": self.event_class, "severity": sev,
+                             "confidence": self.confidence,
+                             "first_fired_at": fired},
+                            index=pd.Index(self.times, name="time"))
+
+
+class _CondState:
+    """Forward hysteresis + persistence state machine for one condition."""
+    __slots__ = ("c", "active", "streak", "nan_run", "nan_tol")
+
+    def __init__(self, c: Condition, nan_tolerance_h: int):
+        self.c = c
+        self.active = False
+        self.streak = 0
+        self.nan_run = 0
+        self.nan_tol = nan_tolerance_h
+
+    def step(self, v) -> bool:
+        c = self.c
+        if _is_missing(v):
+            self.nan_run += 1
+            if self.nan_run > self.nan_tol:          # gap too long: no information
+                self.active, self.streak = False, 0
+            return self.active                       # else hold previous state
+        self.nan_run = 0
+        if c.direction == "above":
+            arm, hold = v >= c.on, v >= c.off
+        else:
+            arm, hold = v <= c.on, v <= c.off
+        if self.active:
+            self.active = hold                       # hysteresis: release at `off`
+            if not self.active:
+                self.streak = 0
+        else:
+            self.streak = self.streak + 1 if arm else 0
+            if self.streak >= c.persistence_h:       # persistence: must hold N hours
+                self.active = True
+        return self.active
+
+
+def run_class(times, features, rule: ClassRule) -> DetectionResult:
+    """Run one class rule over one location's feature series.
+
+    times:    sequence of timestamps (hourly, ascending).
+    features: mapping feature name -> sequence of floats aligned with `times`
+              (NaN/None where undefined). Every feature the rule references
+              must be present.
+    """
+    missing = [f for f in rule.feature_names if f not in features]
+    if missing:
+        raise KeyError(f"{rule.event_class}: features not provided: {missing}")
+    n = len(times)
+    cols = {c.name: features[c.feature] for c in rule.conditions}
+    states = [_CondState(c, rule.nan_tolerance_h) for c in rule.conditions]
+    total_w = sum(c.weight for c in rule.conditions)
+    on_w, on_wn, on_s = (rule.severity_on["watch"], rule.severity_on["warning"],
+                         rule.severity_on["severe"])
+    margin = rule.severity_off_margin
+
+    tier_out = [0] * n
+    conf_out = [0.0] * n
+    alarms: list = []
+    cur_tier = 0
+    cooldown = 0
+    open_alarm: Alarm | None = None
+
+    for i in range(n):
+        active = set()
+        score = 0.0
+        for st in states:
+            if st.step(cols[st.c.name][i]):
+                active.add(st.c.name)
+                score += st.c.weight
+        score /= total_w
+
+        gate = all(r in active for r in rule.required) and \
+            all(any(m in active for m in g) for g in rule.groups)
+        eff = score if gate else 0.0
+
+        # severity with retention margin (tier-level hysteresis)
+        new_tier = 3 if eff >= on_s else 2 if eff >= on_wn else 1 if eff >= on_w else 0
+        if new_tier < cur_tier:
+            retain_at = (on_s, on_wn, on_w)[3 - cur_tier] - margin
+            if eff >= retain_at:
+                new_tier = cur_tier
+        # cooldown after an episode: cap at watch so alarms cannot flap
+        if cooldown > 0:
+            cooldown -= 1
+            new_tier = min(new_tier, 1)
+
+        # episode bookkeeping
+        if new_tier >= WARNING_TIER:
+            if open_alarm is None:
+                open_alarm = Alarm(event_class=rule.event_class,
+                                   first_fired_at=times[i], last_active_at=times[i],
+                                   fired_conditions=tuple(sorted(active)))
+            open_alarm.last_active_at = times[i]
+            if new_tier == 3:
+                open_alarm.max_severity = "severe"
+            open_alarm.max_confidence = max(open_alarm.max_confidence, eff)
+        elif open_alarm is not None:
+            alarms.append(open_alarm)
+            open_alarm = None
+            cooldown = rule.cooldown_h
+
+        cur_tier = new_tier
+        tier_out[i] = new_tier
+        conf_out[i] = eff
+
+    if open_alarm is not None:
+        alarms.append(open_alarm)
+    return DetectionResult(rule.event_class, list(times), tier_out, conf_out, alarms)
+
+
+def run_all(times, features, rules: dict) -> dict:
+    """Run every class rule over one location: {event_class: DetectionResult}."""
+    return {k: run_class(times, features, r) for k, r in rules.items()}
+
+
+def run_on_dataframe(feature_df, rules: dict, classes=None) -> dict:
+    """Adapter for a mining/features.py DataFrame (hourly DatetimeIndex)."""
+    classes = classes or list(rules)
+    needed = sorted({f for k in classes for f in rules[k].feature_names})
+    times = list(feature_df.index)
+    feats = {name: feature_df[name].astype(float).tolist() for name in needed}
+    return {k: run_class(times, feats, rules[k]) for k in classes}

@@ -1,0 +1,64 @@
+{
+    "actions": [],
+    "creation": "2026-08-20 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-20 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Functionality Section",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "istable": 1,
+    "field_order": [
+        "section_label",
+        "max_points",
+        "threshold_pct",
+        "self_score_points",
+        "notes"
+    ],
+    "fields": [
+        {
+            "fieldname": "section_label",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Section Label",
+            "reqd": 1,
+            "description": "e.g. 'Section 1 — Guarding', 'Criterion 6', 'METHOD 4 matrix'"
+        },
+        {
+            "fieldname": "max_points",
+            "fieldtype": "Float",
+            "in_list_view": 1,
+            "label": "Max Points",
+            "reqd": 1,
+            "description": "Maximum points this section carries in the pack's evaluation matrix (e.g. 335, 165, 100, 70)"
+        },
+        {
+            "fieldname": "threshold_pct",
+            "fieldtype": "Percent",
+            "in_list_view": 1,
+            "label": "Threshold %",
+            "description": "Minimum percentage of max points this section must score — its own elimination kill (blank = informational row, no kill)"
+        },
+        {
+            "fieldname": "self_score_points",
+            "fieldtype": "Float",
+            "in_list_view": 1,
+            "label": "Self-Score (points)",
+            "description": "Self-assessed score for this section, in POINTS against Max Points (not a percentage)"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Small Text",
+            "label": "Notes",
+            "description": "Evaluation-criteria notes read from the pack, e.g. what evidence each score band requires"
+        }
+    ],
+    "permissions": []
+}

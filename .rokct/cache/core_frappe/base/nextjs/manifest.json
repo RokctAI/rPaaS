@@ -1,0 +1,11 @@
+{
+  "name": "base_sdk",
+  "version": "1.1.0",
+  "_comment": "base/nextjs is the shared kernel (ADR-005): unlike domain SDKs whose installable content root is templates/, its content root is src/ (mirroring base/dart/lib/src). Next.js has no package mechanism, so kernel modules reach hosts by file copy: installs points at src/services directly and lands the whole kernel services surface at app/services/base/, imported by hosts and by other SDKs' copied files as '@/app/services/base/...'.",
+  "installs": [
+    { "from": "src/services", "to": "app/services/base" }
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "integrations": []
+}

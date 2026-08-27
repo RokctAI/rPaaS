@@ -1,0 +1,95 @@
+{
+  "bid": "TB-2026-00041",
+  "regime": "CIDB",
+  "regime_name": "Construction (CIDB overlay)",
+  "generated_on": "2026-08-20",
+  "form_count": 5,
+  "forms": [
+    {
+      "form_code": "C1.1",
+      "form_name": "Form of Offer and Acceptance",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 5,
+      "auto_filled": 5,
+      "user_input": [
+        "Total offered amount in FIGURES",
+        "Total offered amount in WORDS",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "T2.x",
+      "form_name": "Returnable Schedules (T/A-series)",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 3,
+      "auto_filled": 3,
+      "user_input": [
+        "Every returnable schedule completed and signed",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "HS-PLAN",
+      "form_name": "Health & Safety Plan (bid-stage)",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 3,
+      "auto_filled": 3,
+      "user_input": [
+        "Bid-stage H&S plan prepared per the pack's H&S Specification and attached",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "QC-PLAN",
+      "form_name": "Quality Control Plan",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 3,
+      "auto_filled": 3,
+      "user_input": [
+        "Quality control plan attached (with ISO certification where it scores)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "GCC-ACCEPT",
+      "form_name": "GCC/SCC 'ACCEPT ALL' tick-box",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 1,
+      "auto_filled": 1,
+      "user_input": [
+        "ACCEPT ALL box on the GCC/SCC contract conditions ticked"
+      ],
+      "missing_auto": []
+    }
+  ],
+  "fill": {
+    "auto_total": 15,
+    "auto_filled": 15,
+    "coverage_pct": 100.0,
+    "user_input_total": 14,
+    "missing_auto": []
+  },
+  "open_fatal_gates": [
+    "Fatal checklist item still open: Municipal rates and taxes clearance for the COMPANY and EVERY DIRECTOR - the arrears threshold is BUYER-SPECIFIC (90 days at some, ONE month at others, including arrears with any other municipality) and a settlement arrangement can save you; renters use a certified lease (plus affidavit at some buyers); start collecting director proofs on day one [GATE-RATES]",
+    "Missing or expired compliance artifact: Audited Financial Statements (required by GATE-MBD5 - MBD 5 + three years' audited AFS (municipal above R10m))",
+    "Fatal checklist item still open: Confirm CIDB 6CE registration ACTIVE through the 120-day validity period and file the certificate as returnable B1 - tracked manually: GATE-CIDB does not auto-attach under the MBD regime. [manual]"
+  ],
+  "signed": false,
+  "warnings": [
+    "Complete the OFFICIAL forms issued in the tender pack - never retype or substitute them (an explicit disqualifier at about a third of buyers). This pack mirrors each form field-for-field so you can transcribe values onto, and check them against, the official forms.",
+    "3 FATAL compliance gate(s) still open on this bid - submitting now risks disqualification. See the warning page."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "wallet_sdk",
+  "version": "1.1.0",
+  "installs": [
+    {
+      "from": "templates/routes/wallet_route_pages.dart",
+      "to": "lib/presentation/routes/wallet_route_pages.dart"
+    }
+  ],
+  "routes": [
+    {
+      "path": "/wallet-topup",
+      "page": "WalletTopUpRoute.page",
+      "type": "MaterialRoute",
+      "import": "package:${package}/presentation/routes/wallet_route_pages.dart"
+    }
+  ],
+  "_comment_routes": "/wallet-topup is the exact path lms_sdk's subscribe surface pushes beside its insufficient-funds refusal (agent PR #150, pushNamed('/wallet-topup')); rename only in lockstep with that caller.",
+  "integrations": []
+}

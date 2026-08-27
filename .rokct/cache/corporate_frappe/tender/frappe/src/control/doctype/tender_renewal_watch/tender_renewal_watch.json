@@ -1,0 +1,174 @@
+{
+    "actions": [],
+    "creation": "2026-08-23 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-23 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Renewal Watch",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "autoname": "format:TRW-{#####}",
+    "field_order": [
+        "buyer",
+        "buyer_normalized",
+        "category",
+        "section_anchor",
+        "anchor_ocid",
+        "anchor_date",
+        "source",
+        "stated_duration_months",
+        "section_prediction",
+        "predicted_date",
+        "predicted_window_start",
+        "predicted_window_end",
+        "section_outcome",
+        "status",
+        "confirmed_ocid",
+        "confirmed_date",
+        "error_days"
+    ],
+    "fields": [
+        {
+            "fieldname": "buyer",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Buyer",
+            "reqd": 1,
+            "description": "Buyer/institution name as the anchor advert carried it"
+        },
+        {
+            "fieldname": "buyer_normalized",
+            "fieldtype": "Data",
+            "in_standard_filter": 1,
+            "label": "Buyer (Normalized)",
+            "reqd": 1,
+            "description": "market_context.normalize_buyer key - successor matching is by this + category (section 8: match by buyer + category, never title text)"
+        },
+        {
+            "fieldname": "category",
+            "fieldtype": "Data",
+            "in_standard_filter": 1,
+            "label": "Category",
+            "description": "eTenders category of the anchor advert"
+        },
+        {
+            "fieldname": "section_anchor",
+            "fieldtype": "Section Break",
+            "label": "Anchor (the advert this prediction grows from)"
+        },
+        {
+            "fieldname": "anchor_ocid",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Anchor OCID",
+            "reqd": 1,
+            "description": "The advert this watch predicts a successor for - a watch never confirms on its own anchor"
+        },
+        {
+            "fieldname": "anchor_date",
+            "fieldtype": "Date",
+            "label": "Anchor Date",
+            "description": "stated_duration: the anchor's closing date (prediction = close + stated duration); observed_cycle: the latest advert in the cell"
+        },
+        {
+            "fieldname": "source",
+            "fieldtype": "Select",
+            "in_standard_filter": 1,
+            "label": "Source",
+            "options": "stated_duration\nobserved_cycle",
+            "reqd": 1,
+            "description": "stated_duration: term parsed from advert/pack text, lateness-corrected per buyer; observed_cycle: median observed advert-to-advert gap for the buyer x category cell"
+        },
+        {
+            "fieldname": "stated_duration_months",
+            "fieldtype": "Int",
+            "label": "Stated Duration (Months)",
+            "depends_on": "eval:doc.source=='stated_duration'",
+            "description": "The parsed contract term behind a stated_duration watch; 0 on observed_cycle watches"
+        },
+        {
+            "fieldname": "section_prediction",
+            "fieldtype": "Section Break",
+            "label": "Predicted Re-advertisement"
+        },
+        {
+            "fieldname": "predicted_date",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "label": "Predicted Date",
+            "reqd": 1,
+            "description": "Deterministic point prediction; the window around it is what confirms, the point is what error_days measures against"
+        },
+        {
+            "fieldname": "predicted_window_start",
+            "fieldtype": "Date",
+            "label": "Window Start",
+            "reqd": 1,
+            "description": "predicted_date - 90 days"
+        },
+        {
+            "fieldname": "predicted_window_end",
+            "fieldtype": "Date",
+            "label": "Window End",
+            "reqd": 1,
+            "description": "predicted_date + 180 days (asymmetric: buyers extend expiring contracts, so late beats early - research section 8, caveat 2)"
+        },
+        {
+            "fieldname": "section_outcome",
+            "fieldtype": "Section Break",
+            "label": "Outcome"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Status",
+            "options": "open\nconfirmed\nmissed",
+            "default": "open",
+            "reqd": 1,
+            "description": "confirmed: a same buyer+category advert landed inside the window; missed: none by window end + 60 days grace. Trust = confirmed / (confirmed + missed) per buyer - counts, no probabilities"
+        },
+        {
+            "fieldname": "confirmed_ocid",
+            "fieldtype": "Data",
+            "label": "Confirmed By (OCID)",
+            "depends_on": "eval:doc.status=='confirmed'",
+            "description": "The successor advert that confirmed this prediction"
+        },
+        {
+            "fieldname": "confirmed_date",
+            "fieldtype": "Date",
+            "label": "Confirmed Date",
+            "depends_on": "eval:doc.status=='confirmed'"
+        },
+        {
+            "fieldname": "error_days",
+            "fieldtype": "Int",
+            "label": "Error (Days)",
+            "depends_on": "eval:doc.status=='confirmed'",
+            "description": "Signed confirmed_date - predicted_date; the per-buyer running MEDIAN of these is the lateness correction on future stated-duration predictions"
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ]
+}

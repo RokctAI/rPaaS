@@ -1,0 +1,18 @@
+name: desktop_sdk
+description: "Custom native desktop runners (windows, macos, linux) and desktop configurations for RokctApp."
+version: 1.1.0
+# Internal SDK consumed via path/git, never published to pub.dev (matches
+# hardware_sdk/base_sdk).
+publish_to: 'none'
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  # Aligned with hardware_sdk so the graphs co-resolve; used by the
+  # DesktopSdkDependencies DI registrar the installer wires into main.dart.
+  get_it: ^8.0.0
+
+dependency_overrides:
+  http: ^1.2.0

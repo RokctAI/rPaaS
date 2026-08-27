@@ -1,0 +1,124 @@
+{
+  "name": "wallet",
+  "description": "Modular backend package for wallet. Role-split per frappe_sdk_management.md: tenant-side payment/card/wallet surfaces (src/tenant/) compose into tenant products; the control-plane customer wallet (Customer Wallet / Wallet Ledger doc-event hooks, Tenant Payout Request workflow, and the X-Rokct-Secret-authed tenant balance/payout endpoints called by src/tenant's Platform Wallet) lives in src/control/ and composes only into the control hub product.",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.payment.create_transaction": "{app_name}.wallet.tenant.api.payment.create_transaction",
+          "{app_name}.api.payment.delete_card": "{app_name}.wallet.tenant.api.payment.delete_card",
+          "{app_name}.api.payment.get_saved_cards": "{app_name}.wallet.tenant.api.payment.get_saved_cards",
+          "{app_name}.api.payment.process_direct_card_payment": "{app_name}.wallet.tenant.api.payment.process_direct_card_payment",
+          "{app_name}.api.payment.process_token_payment": "{app_name}.wallet.tenant.api.payment.process_token_payment",
+          "{app_name}.api.payment.process_wallet_top_up": "{app_name}.wallet.tenant.api.payment.process_wallet_top_up",
+          "{app_name}.api.payment.tip_process": "{app_name}.wallet.tenant.api.payment.tip_process",
+          "{app_name}.api.payment.tokenize_card": "{app_name}.wallet.tenant.api.payment.tokenize_card",
+          "{app_name}.api.payment.create_order_transaction": "{app_name}.wallet.tenant.api.payment.create_order_transaction",
+          "{app_name}.api.payment.delete_payfast_card": "{app_name}.wallet.tenant.api.payment.delete_payfast_card",
+          "{app_name}.api.payment.flutterwave_callback": "{app_name}.wallet.tenant.api.payment.flutterwave_callback",
+          "{app_name}.api.payment.get_payfast_settings": "{app_name}.wallet.tenant.api.payment.get_payfast_settings",
+          "{app_name}.api.payment.get_payment_gateways": "{app_name}.wallet.tenant.api.payment.get_payment_gateways",
+          "{app_name}.api.payment.get_wallet_balance": "{app_name}.wallet.tenant.api.payment.get_wallet_balance",
+          "{app_name}.api.payment.get_saved_payfast_cards": "{app_name}.wallet.tenant.api.payment.get_saved_payfast_cards",
+          "{app_name}.api.payment.handle_payfast_callback": "{app_name}.wallet.tenant.api.payment.handle_payfast_callback",
+          "{app_name}.api.payment.handle_paypal_callback": "{app_name}.wallet.tenant.api.payment.handle_paypal_callback",
+          "{app_name}.api.payment.handle_paystack_callback": "{app_name}.wallet.tenant.api.payment.handle_paystack_callback",
+          "{app_name}.api.payment.handle_stripe_webhook": "{app_name}.wallet.tenant.api.payment.handle_stripe_webhook",
+          "{app_name}.api.payment.initiate_flutterwave_payment": "{app_name}.wallet.tenant.api.payment.initiate_flutterwave_payment",
+          "{app_name}.api.payment.initiate_paypal_payment": "{app_name}.wallet.tenant.api.payment.initiate_paypal_payment",
+          "{app_name}.api.payment.initiate_paystack_payment": "{app_name}.wallet.tenant.api.payment.initiate_paystack_payment",
+          "{app_name}.api.payment.log_payment_payload": "{app_name}.wallet.tenant.api.payment.log_payment_payload",
+          "{app_name}.api.payment.process_payfast_token_payment": "{app_name}.wallet.tenant.api.payment.process_payfast_token_payment",
+          "{app_name}.api.payment.process_wallet_payment": "{app_name}.wallet.tenant.api.payment.process_wallet_payment",
+          "{app_name}.api.payment.save_payfast_card": "{app_name}.wallet.tenant.api.payment.save_payfast_card"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Wallet"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Saved Card"
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "cryptography"
+      ]
+    },
+    "control": {
+      "hooks": {
+        "doc_events": {
+          "Customer": {
+            "after_insert": [
+              "{app_name}.wallet.control.wallet_hooks.create_wallet_for_customer"
+            ]
+          },
+          "Payment Entry": {
+            "on_submit": [
+              "{app_name}.wallet.control.wallet_hooks.credit_wallet_on_payment"
+            ]
+          },
+          "Sales Invoice": {
+            "on_submit": [
+              "{app_name}.wallet.control.wallet_hooks.debit_wallet_on_invoice"
+            ]
+          }
+        },
+        "whitelisted_methods": {
+          "{app_name}.api.get_tenant_wallet_balance": "{app_name}.wallet.control.api.get_tenant_wallet_balance.get_tenant_wallet_balance",
+          "{app_name}.api.request_tenant_payout": "{app_name}.wallet.control.api.request_tenant_payout.request_tenant_payout",
+          "control:get_tenant_wallet_balance": "{app_name}.wallet.control.api.get_tenant_wallet_balance.get_tenant_wallet_balance",
+          "control:request_tenant_payout": "{app_name}.wallet.control.api.request_tenant_payout.request_tenant_payout",
+          "control.control.api.billing.get_tenant_wallet_balance": "{app_name}.wallet.control.api.get_tenant_wallet_balance.get_tenant_wallet_balance",
+          "control.control.api.billing.request_tenant_payout": "{app_name}.wallet.control.api.request_tenant_payout.request_tenant_payout"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Customer Wallet"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Wallet Ledger"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Tenant Payout Request"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "name": "revenue_sdk",
+  "version": "1.3.2",
+  "installs": [],
+  "routes": [],
+  "integrations": [],
+  "app_type": {
+    "driver": {
+      "installs": [
+        {
+          "from": "templates/pages/driver/income",
+          "to": "lib/presentation/pages/income"
+        }
+      ],
+      "tr_keys": {
+        "deliverymanTransactions": "deliveryman_transactions",
+        "doneOrders": "Done orders"
+      },
+      "routes": [
+        {
+          "path": "/income",
+          "page": "DriverIncomeRoute.page",
+          "type": "MaterialRoute",
+          "import": "package:${package}/presentation/pages/income/income_page.dart"
+        }
+      ],
+      "di_hooks": [
+        {
+          "id": "revenue-driver-role-di",
+          "order": 12,
+          "body": "DriverRevenueDependencies.register(GetIt.instance);",
+          "imports": [
+            "import 'package:revenue_sdk/src/driver/di/driver_revenue_di.dart';"
+          ]
+        }
+      ],
+      "_comment_di_hooks": "Driver migration M4: the driver-role revenue DI (CourierStatisticsRepositoryFacade for the installed profile/income pages) moved out of paas_driver's tracked dependency_manager.dart into the #160 di_hooks mechanism, mirroring commerce#17's manager role-DI entries. Direct src/ import by design - DriverRevenueDependencies is role code kept out of the barrel so a manager app's stripped cache still compiles (see driver_revenue_di.dart). register() is isRegistered-guarded, so a host that still calls it by hand during its own migration window double-boots safely."
+    },
+    "manager": {
+      "installs": [
+        {
+          "from": "templates/pages/manager/income",
+          "to": "lib/presentation/pages/income"
+        }
+      ],
+      "tr_keys": {
+        "needOrder": "need.order",
+        "cancelOrders": "cancel_orders",
+        "deliveredOrdersCount": "delivered.orders.count",
+        "restaurantRevenue": "restaurant_revenue",
+        "fMRevenue": "fm_revenue",
+        "moreAboutOrders": "more_about_orders"
+      },
+      "routes": [
+        {
+          "path": "/income",
+          "page": "ManagerIncomeRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/income/income_page.dart"
+        }
+      ]
+    }
+  },
+  "_comment_tr_keys": "app_type.<role>.tr_keys: translation keys that role's income templates use that base_sdk's TrKeys does not declare. driver adds deliverymanTransactions and doneOrders, with the exact key strings from paas_driver's legacy lib/infrastructure/services/tr_keys.dart (doneOrders' value really is the display string 'Done orders' upstream - kept verbatim so existing backend translation data keeps matching). Manager block: sdk_installer_base stores them per-package and update_tr_keys_registration() injects them into the composed tr_keys.dart between the @sdk-tr-keys-start/end markers, so TrKeys.needOrder etc. resolve at build time. Values are the exact key strings from paas_manager's legacy lib/infrastructure/services/tr_keys.dart, so existing backend translation data keeps matching. None of these names exist in base_sdk's tr_keys.dart (checked against core@main) - adding one that does would recreate the duplicate-'payment' collision the composed build already flags.",
+  "_comment_app_type": "Both personas now get a real page install. manager: templates/pages/manager/income -> lib/presentation/pages/income (ManagerIncomeRoute, CupertinoRoute). driver: templates/pages/driver/income -> the same host path (DriverIncomeRoute, MaterialRoute - matching zones_sdk's DriverDeliveryZoneRoute convention); since 1.2.0 the driver templates no longer import the host's services/components/styles barrels or a host-owned application/statistics layer - they resolve against base_sdk (services, AppStyle, promoted components) and this SDK's src/driver/application/statistics slice (notifier/state/provider over CourierStatisticsRepositoryFacade, ported from paas_driver), the same shape as the manager templates. The chart still uses the host's charts_flutter dependency: the SDK slice emits plain OrdinalSales rows (src/driver/infrastructure/models/chart.dart) and the installed income_page builds the Series - the template compiles in the HOST package, so charts_flutter stays in the host pubspec, not here. Driver also keeps the directly-imported lib/src/driver/ slice, and declaring both personas keeps the matching lib/src/ role folder alive through sdk_composer.py's strip_unused_role_folders. A non-manager, non-driver app that composes revenue_sdk still gets the package and its DI registration, but no pages and no role-specific code kept in cache. Requires .rokct/config/app_type to contain the matching value - resolve_app_type() returns None without it and no flavour block fires. Both installs are whole-directory copies, so verify lib/presentation/pages/income actually lands after composing.",
+  "_comment_routes": "Each persona's income_page.dart carries @RoutePage(name: '...IncomeRoute') (ManagerIncomeRoute / DriverIncomeRoute) and installs into the HOST's lib/, so auto_route codegen generates the route class there - which is why these routes import the installed page directly via ${package} rather than needing a *_route_pages.dart wrapper the way auth_sdk does."
+}

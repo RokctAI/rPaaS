@@ -1,0 +1,204 @@
+event_id,source,event_class,event_type,name,start_utc,end_utc,lat,lon,country,region,deaths,injuries,damage_usd,displaced,magnitude,magnitude_type,geo_precision,major
+ib_1952268N20291,ibtracs,destructive_wind,Tropical Cyclone,Charlie,1952-09-24 00:00:00,1952-10-01 00:00:00,30.3,-73.1,,North Atlantic,,,,,105.0,max_sustained_wind_kt,peak_intensity_fix,True
+ib_1954169N13267,ibtracs,destructive_wind,Tropical Cyclone,Not_Named,1954-06-18 00:00:00,1954-06-22 12:00:00,13.0,-93.2,,East Pacific,,,,,45.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1962308N08138,ibtracs,destructive_wind,Tropical Cyclone,Jean,1962-11-04 06:00:00,1962-11-20 00:00:00,14.4,115.629,,West Pacific,,,,,90.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1976055S06156,ibtracs,destructive_wind,Tropical Cyclone,Colin,1976-02-24 00:00:00,1976-03-07 12:00:00,-18.8669,155.729,,South Pacific,,,,,90.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1976070S13166,ibtracs,destructive_wind,Tropical Cyclone,Hope,1976-03-09 12:00:00,1976-03-19 00:00:00,-20.0,165.273,,South Pacific,,,,,40.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1978230N12239,ibtracs,destructive_wind,Tropical Cyclone,John,1978-08-18 00:00:00,1978-08-31 00:00:00,16.0667,-145.767,,East Pacific,,,,,90.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1978231N13224,ibtracs,destructive_wind,Tropical Cyclone,Lane,1978-08-19 00:00:00,1978-08-24 00:00:00,14.4,-139.8,,East Pacific,,,,,45.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1981094S06094,ibtracs,destructive_wind,Tropical Cyclone,Olga,1981-04-04 00:00:00,1981-04-18 00:00:00,-15.7533,88.445,,South Indian,,,,,120.0,max_sustained_wind_kt,peak_intensity_fix,True
+ib_1981324N08158,ibtracs,destructive_wind,Tropical Cyclone,Jeff,1981-11-20 00:00:00,1981-11-26 12:00:00,13.9132,148.751,,West Pacific,,,,,35.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1982220N08154,ibtracs,destructive_wind,Tropical Cyclone,Dot,1982-08-08 00:00:00,1982-08-18 00:00:00,13.7594,134.406,,West Pacific,,,,,80.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1984267N18120,ibtracs,destructive_wind,Tropical Cyclone,Lynn,1984-09-22 18:00:00,1984-09-27 18:00:00,18.06,113.62,,West Pacific,,,,,40.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_1984270N22147,ibtracs,destructive_wind,Tropical Cyclone,Maury,1984-09-26 06:00:00,1984-10-02 00:00:00,24.7311,150.385,,West Pacific,,,,,60.0,max_sustained_wind_kt,peak_intensity_fix,False
+dfo_293,dfo_flood_archive,flood,Monsoon rain,Yemen,1989-03-19 00:00:00,1989-05-01 23:59:00,15.9819,49.9988,Yemen,Yemen,53.0,,,80000.0,1.0,dfo_severity_class,event_centroid,True
+dfo_297,dfo_flood_archive,flood,Heavy rain,Brazil,1989-04-08 00:00:00,1989-04-15 23:59:00,-6.4618,-35.61,Brazil,Brazil,34.0,,,4080.0,1.0,dfo_severity_class,event_centroid,True
+dfo_356,dfo_flood_archive,flood,Heavy rain,Iran,1989-08-22 00:00:00,1989-08-25 23:59:00,27.923,58.8318,Iran,Iran,6.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_473,dfo_flood_archive,flood,Heavy rain,France,1990-10-18 00:00:00,1990-10-19 23:59:00,43.5014,6.2038,France,France,1.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_541,dfo_flood_archive,flood,Heavy rain,Bangladesh,1991-07-14 00:00:00,1991-07-16 23:59:00,24.1787,90.0572,Bangladesh,Bangladesh,17.0,,,300000.0,1.0,dfo_severity_class,event_centroid,True
+ib_1994313N12278,ibtracs,destructive_wind,Tropical Cyclone,Gordon,1994-11-08 12:00:00,1994-11-21 18:00:00,33.1,-74.2,,North Atlantic,,,,,75.0,max_sustained_wind_kt,peak_intensity_fix,False
+dfo_929,dfo_flood_archive,flood,Heavy rain,South Africa,1995-01-08 00:00:00,1995-01-09 23:59:00,-23.0133,29.6887,South Africa,South Africa,0.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_940,dfo_flood_archive,flood,Rain and snowmelt,USA,1995-03-08 00:00:00,1995-03-20 23:59:00,38.7256,-121.562,USA,USA,15.0,,,10000.0,1.0,dfo_severity_class,event_centroid,True
+dfo_965,dfo_flood_archive,flood,Heavy rain,Ukraine,1995-06-29 00:00:00,1995-07-11 23:59:00,49.9115,36.2744,Ukraine,Ukraine,0.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_1035,dfo_flood_archive,flash_flood,Brief torrential rain,Philippines,1995-12-10 00:00:00,1995-12-16 23:59:00,7.2065,125.619,Philippines,Philippines,12.0,,,9000.0,1.0,dfo_severity_class,event_centroid,True
+se_5569763,noaa_storm_events,flood,Flood,Gallatin,1996-01-23 17:00:00,1996-01-30 17:00:00,38.7495,-84.8599,USA,Kentucky,0.0,0.0,20000.0,,,,zone_name_centroid,False
+se_5558233,noaa_storm_events,destructive_wind,High Wind,Central Coast Range Of W Oregon,1996-02-28 14:00:00,1996-02-29 13:00:00,44.5669,-121.4628,USA,Oregon,0.0,0.0,0.0,,43.0,wind_kt,state_centroid,False
+se_5561001,noaa_storm_events,flash_flood,Flash Flood,Albemarle,1996-06-19 23:00:00,1996-06-20 02:00:00,38.0254,-78.5229,USA,Virginia,0.0,0.0,10000.0,,,,cz_centroid,False
+se_5552105,noaa_storm_events,destructive_wind,Thunderstorm Wind,Decatur,1996-06-23 01:28:00,1996-06-23 01:28:00,39.72,-100.28,USA,Kansas,0.0,0.0,0.0,,52.0,wind_kt,point,False
+dfo_1132,dfo_flood_archive,flood,Heavy Rain,Haiti,1996-11-13 00:00:00,1996-11-17 23:59:00,19.7426,-72.5452,Haiti,Haiti,18.0,,,160.0,1.0,dfo_severity_class,event_centroid,True
+se_5588595,noaa_storm_events,tornado,Tornado,Oconee,1997-02-21 20:20:00,1997-02-21 20:21:00,34.63,-83.07,USA,South Carolina,0.0,0.0,5000.0,,0.0,f_ef_scale,point,False
+se_5595068,noaa_storm_events,flood,Flood,Hardin,1997-03-01 10:00:00,1997-03-11 06:00:00,35.2265,-88.2523,USA,Tennessee,0.0,0.0,5000.0,,,,zone_name_centroid,False
+se_5598722,noaa_storm_events,flash_flood,Flash Flood,Wise,1997-05-09 08:00:00,1997-05-09 10:00:00,33.1686,-97.6251,USA,Texas,0.0,0.0,75000.0,,,,cz_centroid,False
+se_5615004,noaa_storm_events,tornado,Tornado,Sibley,1997-07-14 00:20:00,1997-07-14 00:20:00,44.62,-93.93,USA,Minnesota,0.0,0.0,0.0,,0.0,f_ef_scale,point,False
+dfo_1181,dfo_flood_archive,flood,Monsoonal rain,Pakistan,1997-08-12 00:00:00,1997-09-03 23:59:00,32.3559,72.5263,Pakistan,Pakistan,165.0,,,836300.0,2.0,dfo_severity_class,event_centroid,True
+se_5625526,noaa_storm_events,destructive_wind,Thunderstorm Wind,Vernon,1997-12-21 08:00:00,1997-12-21 08:00:00,31.15,-93.27,USA,Louisiana,0.0,0.0,10000.0,,,wind_kt,point,False
+dfo_1343,dfo_flood_archive,flash_flood,Brief torrential rain,South Africa,1998-04-23 00:00:00,1998-04-24 23:59:00,-33.1981,22.0037,South Africa,South Africa,0.0,,,200.0,1.0,dfo_severity_class,event_centroid,False
+dfo_1346,dfo_flood_archive,flash_flood,Brief torrential rain,China,1998-04-26 00:00:00,1998-04-27 23:59:00,22.4657,113.915,China,China,0.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_1359,dfo_flood_archive,flash_flood,Brief torrential rain,China,1998-05-01 00:00:00,1998-05-05 23:59:00,28.7172,111.459,China,China,0.0,,,2000.0,1.0,dfo_severity_class,event_centroid,False
+dfo_1358,dfo_flood_archive,flash_flood,Brief torrential rain,China,1998-05-07 00:00:00,1998-05-13 23:59:00,30.511,108.082,China,China,9.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_1367,dfo_flood_archive,flash_flood,Brief torrential rain,China,1998-05-20 00:00:00,1998-05-21 23:59:00,36.0394,107.668,China,China,37.0,,,3600.0,1.0,dfo_severity_class,event_centroid,True
+se_5658300,noaa_storm_events,tornado,Tornado,Allegany,1998-06-03 00:21:00,1998-06-03 00:23:00,39.62,-78.73,USA,Maryland,0.0,0.0,15000.0,,0.0,f_ef_scale,point,False
+dfo_1417,dfo_flood_archive,flash_flood,Brief torrential rain,Sri Lanka,1998-07-17 00:00:00,1998-07-20 23:59:00,7.3816,80.2213,Sri Lanka,Sri Lanka,1.0,,,12500.0,1.0,dfo_severity_class,event_centroid,False
+se_5656082,noaa_storm_events,flood,Flood,Jackson,1998-07-30 12:22:00,1998-07-30 12:22:00,39.0134,-94.4225,USA,Missouri,0.0,0.0,0.0,,,,cz_centroid,False
+se_5667410,noaa_storm_events,tornado,Tornado,Bullock,1998-09-28 20:44:00,1998-09-28 20:50:00,32.07,-85.72,USA,Alabama,0.0,0.0,19000.0,,0.0,f_ef_scale,point,False
+dfo_1478,dfo_flood_archive,flash_flood,Brief torrential rain,Indonesia,1998-12-27 00:00:00,1998-12-31 23:59:00,-6.84,107.063,Indonesia,Indonesia,0.0,,,9600.0,1.0,dfo_severity_class,event_centroid,False
+se_5679060,noaa_storm_events,destructive_wind,Thunderstorm Wind,Lawrence,1999-01-18 06:05:00,1999-01-18 06:05:00,38.17,-82.67,USA,Kentucky,0.0,0.0,2000.0,,,wind_kt,point,False
+ib_1999024S11138,ibtracs,destructive_wind,Tropical Cyclone,Not_Named,1999-01-24 00:00:00,1999-01-27 00:00:00,-13.2,138.7,,South Pacific,,,,,35.0,max_sustained_wind_kt,peak_intensity_fix,False
+dfo_1509,dfo_flood_archive,flash_flood,Brief torrential rain,Peru,1999-05-13 00:00:00,1999-05-24 23:59:00,-3.402,-69.9695,Peru,Peru,4.0,,,250000.0,1.0,dfo_severity_class,event_centroid,True
+dfo_1541,dfo_flood_archive,flash_flood,Brief torrential rain,Chad,1999-08-01 00:00:00,1999-08-23 23:59:00,19.8554,19.552,Chad,Chad,0.0,,,130000.0,1.0,dfo_severity_class,event_centroid,True
+dfo_1543,dfo_flood_archive,flash_flood,Brief torrential rain,China,1999-08-21 00:00:00,1999-08-25 23:59:00,23.4891,113.711,China,China,1.0,,,352.0,1.0,dfo_severity_class,event_centroid,False
+dfo_1559,dfo_flood_archive,flash_flood,Brief torrential rain,India,1999-09-24 00:00:00,1999-09-29 23:59:00,23.3997,88.9474,India,India + Bangladesh,45.0,,,0.0,1.0,dfo_severity_class,event_centroid,True
+dfo_1576,dfo_flood_archive,flash_flood,Brief torrential rain,Venezuela,1999-12-15 00:00:00,1999-12-20 23:59:00,9.4206,-70.5443,Venezuela,Venezuela + Columbia,20006.0,,,400000.0,2.0,dfo_severity_class,event_centroid,True
+dfo_1584,dfo_flood_archive,flash_flood,Brief torrential rain,Philippines,2000-01-28 00:00:00,2000-02-01 23:59:00,7.1994,126.1,Philippines,Philippines,23.0,,,20000.0,1.0,dfo_severity_class,event_centroid,True
+ib_2000075S17119,ibtracs,destructive_wind,Tropical Cyclone,Olga,2000-03-14 18:00:00,2000-03-20 04:00:00,-19.0613,108.901,,South Indian,,,,,50.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_5151028,noaa_storm_events,flood,Flood,Lincoln,2000-06-21 01:30:00,2000-06-21 04:30:00,39.0308,-90.9399,USA,Missouri,0.0,0.0,0.0,,,,cz_centroid,False
+se_5149072,noaa_storm_events,flood,Flood,Owen,2000-06-21 12:00:00,2000-06-22 04:00:00,40.0833,-85.4,USA,Indiana,0.0,0.0,0.0,,,,cz_centroid,False
+se_5164501,noaa_storm_events,tornado,Tornado,Logan,2000-06-23 23:33:00,2000-06-23 23:33:00,40.5833,-102.7833,USA,Colorado,0.0,0.0,0.0,,0.0,f_ef_scale,point,False
+se_5150902,noaa_storm_events,flood,Flood,Pike,2000-06-27 22:30:00,2000-06-28 00:00:00,37.4825,-82.4123,USA,Kentucky,0.0,0.0,0.0,,,,cz_centroid,False
+dfo_1613,dfo_flood_archive,flash_flood,Brief torrential rain,China,2000-06-30 00:00:00,2000-07-10 23:59:00,27.4163,109.248,China,China,65.0,,,88000.0,1.0,dfo_severity_class,event_centroid,True
+se_5176066,noaa_storm_events,flash_flood,Flash Flood,Fillmore,2000-07-10 07:00:00,2000-07-10 16:45:00,43.6723,-92.1212,USA,Minnesota,0.0,0.0,250000.0,,,,cz_centroid,False
+se_5164360,noaa_storm_events,tornado,Tornado,Pottawattamie,2000-07-26 23:00:00,2000-07-26 23:05:00,41.4333,-95.2,USA,Iowa,0.0,0.0,0.0,,0.0,f_ef_scale,point,False
+se_5173796,noaa_storm_events,destructive_wind,Thunderstorm Wind,Warren,2000-08-24 04:10:00,2000-08-24 04:10:00,38.8167,-91.1333,USA,Missouri,0.0,0.0,0.0,,60.0,wind_kt,point,False
+dfo_1642,dfo_flood_archive,flash_flood,Brief torrential rain,Nigeria,2000-09-20 00:00:00,2000-09-21 23:59:00,6.7472,3.218,Nigeria,Nigeria + Bangladesh,0.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+ib_2000290N30289,ibtracs,destructive_wind,Tropical Cyclone,Michael,2000-10-15 12:00:00,2000-10-20 18:00:00,44.0,-58.5,,North Atlantic,,,,,85.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_5244089,noaa_storm_events,destructive_wind,Thunderstorm Wind,Rush,2001-04-22 02:00:00,2001-04-22 02:00:00,38.6,-99.1167,USA,Kansas,0.0,0.0,0.0,,52.0,wind_kt,point,False
+se_5243138,noaa_storm_events,tornado,Tornado,Warren,2001-05-19 23:45:00,2001-05-19 23:45:00,36.4333,-78.2333,USA,North Carolina,0.0,0.0,0.0,,0.0,f_ef_scale,point,False
+se_5253935,noaa_storm_events,tornado,Tornado,Weston,2001-06-09 22:50:00,2001-06-09 23:00:00,43.85,-104.2167,USA,Wyoming,0.0,2.0,0.0,,0.0,f_ef_scale,point,False
+ib_2001170N11138,ibtracs,destructive_wind,Tropical Cyclone,Chebi,2001-06-19 06:00:00,2001-06-25 18:00:00,22.175,119.425,,West Pacific,,,,,100.0,max_sustained_wind_kt,peak_intensity_fix,True
+dfo_1780,dfo_flood_archive,flash_flood,Brief torrential rain,Pakistan,2001-08-16 00:00:00,2001-08-16 23:59:00,30.0691,70.7261,Pakistan,Pakistan,6.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+se_5267872,noaa_storm_events,tornado,Tornado,Navajo,2001-09-16 16:35:00,2001-09-16 17:03:00,34.5,-110.0833,USA,Arizona,0.0,0.0,0.0,,0.0,f_ef_scale,point,False
+dfo_1797,dfo_flood_archive,flash_flood,Brief torrential rain,China,2001-09-19 00:00:00,2001-09-22 23:59:00,31.0389,104.595,China,China,25.0,,,100000.0,1.0,dfo_severity_class,event_centroid,True
+dfo_1804,dfo_flood_archive,flash_flood,Brief torrential rain,Iran,2001-10-01 00:00:00,2001-10-02 23:59:00,37.0335,54.3165,Iran,Iran,0.0,,,3000.0,1.0,dfo_severity_class,event_centroid,False
+se_5271670,noaa_storm_events,destructive_wind,Thunderstorm Wind,Muskogee,2001-10-10 20:10:00,2001-10-10 20:10:00,35.6667,-95.1833,USA,Oklahoma,0.0,0.0,5000.0,,61.0,wind_kt,point,False
+dfo_1815,dfo_flood_archive,flash_flood,Brief torrential rain,Vietnam,2001-10-20 00:00:00,2001-10-24 23:59:00,14.4472,108.217,Vietnam,Vietnam,39.0,,,0.0,1.0,dfo_severity_class,event_centroid,True
+se_5271131,noaa_storm_events,tornado,Tornado,Miller,2001-10-23 21:30:00,2001-10-23 22:05:00,38.2,-92.7833,USA,Missouri,0.0,1.0,100000.0,,1.0,f_ef_scale,point,False
+se_5273467,noaa_storm_events,flood,Flood,Tulare,2001-11-12 23:30:00,2001-11-13 05:53:00,36.2762,-119.1281,USA,California,0.0,0.0,0.0,,,,cz_centroid,False
+se_5304250,noaa_storm_events,tornado,Tornado,Glades,2002-07-29 19:35:00,2002-07-29 19:35:00,26.8333,-81.0667,USA,Florida,0.0,0.0,20000.0,,1.0,f_ef_scale,point,False
+se_5319599,noaa_storm_events,flash_flood,Flash Flood,Evangeline,2002-10-03 18:30:00,2002-10-03 21:00:00,30.683,-92.3662,USA,Louisiana,0.0,0.0,25000.0,,,,cz_centroid,False
+dfo_2132,dfo_flood_archive,flash_flood,Brief torrential rain,Bolivia,2003-01-21 00:00:00,2003-01-22 23:59:00,-16.4938,-68.1304,Bolivia,Bolivia,4.0,,,300.0,1.0,dfo_severity_class,event_centroid,False
+dfo_2136,dfo_flood_archive,flood,Heavy rain,UK,2003-01-22 00:00:00,2003-01-23 23:59:00,57.049,-2.4986,UK,UK,0.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+se_5347083,noaa_storm_events,destructive_wind,Thunderstorm Wind,Saline,2003-03-13 11:00:00,2003-03-13 11:00:00,34.7167,-92.6333,USA,Arkansas,0.0,0.0,0.0,,50.0,wind_kt,point,False
+dfo_2228,dfo_flood_archive,flash_flood,Brief torrential rain,Australia,2003-05-13 00:00:00,2003-05-18 23:59:00,-33.7036,151.153,Australia,Australia,0.0,,,300.0,1.0,dfo_severity_class,event_centroid,False
+dfo_2294,dfo_flood_archive,flood,Heavy rain,Nigeria,2003-07-27 00:00:00,2003-07-27 23:59:00,6.9289,9.1346,Nigeria,Nigeria,2.0,,,3000.0,1.0,dfo_severity_class,event_centroid,False
+dfo_2344,dfo_flood_archive,flash_flood,Brief torrential rain,Ethiopia,2003-09-05 00:00:00,2003-09-05 23:59:00,10.5406,37.868,Ethiopia,Ethiopia,7.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_2355,dfo_flood_archive,flash_flood,Brief torrential rain,Philippines,2003-09-21 00:00:00,2003-09-22 23:59:00,9.3504,122.896,Philippines,Philippines,9.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+se_5332397,noaa_storm_events,flood,Flood,Doddridge,2003-11-12 10:30:00,2003-11-12 13:00:00,39.3001,-80.7405,USA,West Virginia,0.0,0.0,5000.0,,,,zone_name_centroid,False
+dfo_2384,dfo_flood_archive,flash_flood,Brief torrential rain,South Africa,2003-11-13 00:00:00,2003-11-13 23:59:00,-27.5236,24.7996,South Africa,South Africa,4.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_2421,dfo_flood_archive,flash_flood,Brief torrential rain,Namibia,2004-01-14 00:00:00,2004-01-17 23:59:00,-22.5514,17.1124,Namibia,Namibia,1.0,,,0.0,2.0,dfo_severity_class,event_centroid,True
+se_5416363,noaa_storm_events,flash_flood,Flash Flood,Cameron,2004-05-08 20:00:00,2004-05-09 00:00:00,26.0965,-97.5306,USA,Texas,0.0,0.0,2000000.0,,,,cz_centroid,False
+se_5400566,noaa_storm_events,flash_flood,Flash Flood,Yates,2004-05-21 04:00:00,2004-05-21 05:30:00,42.6424,-77.0843,USA,New York,0.0,0.0,30000.0,,,,cz_centroid,False
+se_5401372,noaa_storm_events,flash_flood,Flash Flood,Ontario,2004-05-23 03:30:00,2004-05-23 05:30:00,42.8845,-77.2493,USA,New York,0.0,0.0,10000.0,,,,cz_centroid,False
+se_5404440,noaa_storm_events,destructive_wind,Thunderstorm Wind,Letcher,2004-05-26 21:00:00,2004-05-26 21:00:00,37.0333,-82.8833,USA,Kentucky,0.0,0.0,0.0,,50.0,wind_kt,point,False
+dfo_2489,dfo_flood_archive,flash_flood,Brief torrential rain,China,2004-05-31 00:00:00,2004-06-01 23:59:00,47.8637,86.2589,China,China,4.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+se_5417128,noaa_storm_events,flash_flood,Flash Flood,Cumberland,2004-07-31 12:43:00,2004-07-31 15:30:00,36.8177,-85.4014,USA,Kentucky,0.0,0.0,0.0,,,,cz_centroid,False
+se_5423884,noaa_storm_events,flood,Flood,Southern Lycoming,2004-09-18 12:15:00,2004-09-20 04:30:00,41.2693,-76.9536,USA,Pennsylvania,0.0,0.0,0.0,,,,zone_name_centroid,False
+dfo_2577,dfo_flood_archive,flood,Heavy rain,Central African Republic,2004-10-24 00:00:00,2004-11-02 23:59:00,4.4087,18.5304,Central African Republic,Central African Republic,1.0,,,1410.0,1.0,dfo_severity_class,event_centroid,False
+se_5436801,noaa_storm_events,flash_flood,Flash Flood,San Bernardino,2005-01-11 18:30:00,2005-01-11 18:35:00,34.2333,-116.8667,USA,California,0.0,0.0,500000.0,,,,point,False
+ib_2005027S18168,ibtracs,destructive_wind,Tropical Cyclone,Lola,2005-01-27 00:00:00,2005-02-02 06:00:00,-23.5,184.4,,South Pacific,,,,,40.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_5451493,noaa_storm_events,flood,Flood,Northern Oxford,2005-04-29 00:00:00,2005-05-01 00:00:00,45.9667,-70.4167,USA,Maine,0.0,0.0,400000.0,,,,point,False
+se_5463678,noaa_storm_events,flood,Flood,Clay,2005-07-02 21:38:00,2005-07-03 01:07:00,30.039,-81.8024,USA,Florida,0.0,0.0,0.0,,,,zone_name_centroid,False
+dfo_2716,dfo_flood_archive,flood,Heavy rain,Switzerland,2005-08-21 00:00:00,2005-08-26 23:59:00,47.4865,9.5781,Switzerland,Switzerland + Austria,12.0,,,2500.0,2.0,dfo_severity_class,event_centroid,True
+se_5488452,noaa_storm_events,flood,Flood,Tioga,2005-12-01 05:00:00,2005-12-01 16:05:00,43.1167,-77.6833,USA,New York,0.0,0.0,5000.0,,,,point,False
+se_5489085,noaa_storm_events,destructive_wind,Strong Wind,Indian Wells Vly,2005-12-02 07:20:00,2005-12-02 13:00:00,36.0307,-119.0809,USA,California,0.0,0.0,5000.0,,75.6,wind_kt,state_centroid,False
+dfo_2788,dfo_flood_archive,flood,Monsoonal rain,Indonesia,2006-01-22 00:00:00,2006-01-27 23:59:00,-8.4413,117.291,Indonesia,Indonesia,11.0,,,3000.0,1.0,dfo_severity_class,event_centroid,True
+se_5517977,noaa_storm_events,destructive_wind,Thunderstorm Wind,Lebanon,2006-06-23 01:40:00,2006-06-23 01:40:00,40.3333,-76.4167,USA,Pennsylvania,0.0,0.0,0.0,,50.0,wind_kt,point,False
+dfo_2983,dfo_flood_archive,flood,Heavy rain,UK,2006-10-26 00:00:00,2006-10-28 23:59:00,57.7042,-4.1824,UK,UK,1.0,,,300.0,2.0,dfo_severity_class,event_centroid,True
+dfo_2987,dfo_flood_archive,flood,Heavy rain,Turkey,2006-10-27 00:00:00,2006-11-07 23:59:00,37.643,39.6462,Turkey,Turkey + Syria,46.0,,,63000.0,2.0,dfo_severity_class,event_centroid,True
+ib_2007021S12195,ibtracs,destructive_wind,Tropical Cyclone,Zita,2007-01-20 18:00:00,2007-01-25 18:00:00,-17.65,-153.35,,South Pacific,,,,,60.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_9846,noaa_storm_events,destructive_wind,Strong Wind,Kern Cty Mtns,2007-02-23 17:00:00,2007-02-24 02:00:00,38.35,-121.95,USA,California,0.0,0.0,1000.0,,41.0,wind_kt,cz_centroid,False
+dfo_3035,dfo_flood_archive,flood,Heavy rain,Algeria,2007-03-07 00:00:00,2007-03-11 23:59:00,35.1559,3.378,Algeria,Algeria,3.0,,,0.0,1.0,dfo_severity_class,event_centroid,False
+dfo_3088,dfo_flood_archive,flood,Heavy rain,Turkey,2007-05-27 00:00:00,2007-06-01 23:59:00,39.4015,43.8014,Turkey,Turkey,13.0,,,0.0,1.0,dfo_severity_class,event_centroid,True
+se_44383,noaa_storm_events,flash_flood,Flash Flood,Greene,2007-06-11 15:00:00,2007-06-11 16:45:00,37.2,-93.29,USA,Missouri,0.0,0.0,0.0,,,,point,False
+dfo_3101,dfo_flood_archive,flash_flood,Brief torrential rain,Pakistan,2007-06-16 00:00:00,2007-06-20 23:59:00,34.9758,72.2258,Pakistan,Pakistan,22.0,,,500.0,1.0,dfo_severity_class,event_centroid,True
+se_52737,noaa_storm_events,flash_flood,Flash Flood,Apache,2007-07-29 05:30:00,2007-07-29 07:30:00,35.22,-109.35,USA,Arizona,0.0,0.0,0.0,,,,point,False
+se_51567,noaa_storm_events,destructive_wind,Thunderstorm Wind,Keith,2007-08-15 00:16:00,2007-08-15 00:16:00,41.3538,-102.0398,USA,Nebraska,0.0,0.0,0.0,,52.0,wind_kt,point,False
+se_108595,noaa_storm_events,destructive_wind,Thunderstorm Wind,Rappahannock,2008-06-22 21:34:00,2008-06-22 21:34:00,38.66,-78.32,USA,Virginia,0.0,0.0,5000.0,,50.0,wind_kt,point,False
+se_134085,noaa_storm_events,flash_flood,Flash Flood,Addison,2008-08-07 19:00:00,2008-08-07 20:00:00,43.9698,-73.3342,USA,Vermont,0.0,0.0,25000.0,,,,point,False
+se_133182,noaa_storm_events,destructive_wind,Thunderstorm Wind,Glynn,2008-09-30 22:45:00,2008-09-30 22:45:00,31.26,-81.37,USA,Georgia,0.0,0.0,0.0,,50.0,wind_kt,point,False
+dfo_3409,dfo_flood_archive,flood,Heavy Rain,Philippines,2008-11-18 00:00:00,2008-11-24 23:59:00,17.9542,121.351,Philippines,Philippines,6.0,,,30000.0,1.0,dfo_severity_class,event_centroid,False
+dfo_3420,dfo_flood_archive,flash_flood,Brief Torrential Rain,United Kingdom,2008-12-11 00:00:00,2008-12-15 23:59:00,51.4945,-1.7344,United Kingdom,United Kingdom,0.0,,,200.0,1.0,dfo_severity_class,event_centroid,False
+se_156993,noaa_storm_events,flood,Flood,Dorad,2009-02-10 05:20:00,2009-02-10 10:20:00,18.4628,-66.2834,USA,Puerto Rico,0.0,0.0,20000.0,,,,point,False
+se_191032,noaa_storm_events,tornado,Tornado,Cattaraugus,2009-07-26 23:15:00,2009-07-26 23:20:00,42.0578,-78.6885,USA,New York,0.0,0.0,20000.0,,0.0,f_ef_scale,point,False
+ib_2009251N12336,ibtracs,destructive_wind,Tropical Cyclone,Fred,2009-09-07 18:00:00,2009-09-19 12:00:00,13.6,-32.1,,North Atlantic,,,,,105.0,max_sustained_wind_kt,peak_intensity_fix,True
+se_238689,noaa_storm_events,flash_flood,Flash Flood,Marshall,2010-05-01 17:45:00,2010-05-01 23:45:00,34.65,-89.32,USA,Mississippi,0.0,0.0,50000.0,,,,point,False
+se_252920,noaa_storm_events,flash_flood,Flash Flood,Benton,2010-07-11 19:37:00,2010-07-12 01:00:00,38.46,-93.2,USA,Missouri,0.0,0.0,0.0,,,,point,False
+se_256113,noaa_storm_events,destructive_wind,Thunderstorm Wind,Amherst,2010-08-05 21:23:00,2010-08-05 21:23:00,37.46,-79.08,USA,Virginia,0.0,0.0,2000.0,,55.0,wind_kt,point,False
+se_257623,noaa_storm_events,destructive_wind,Thunderstorm Wind,Box Elder,2010-08-05 23:45:00,2010-08-05 23:45:00,41.06,-112.89,USA,Utah,0.0,0.0,0.0,,54.0,wind_kt,point,False
+ib_2010302N09306,ibtracs,destructive_wind,Tropical Cyclone,Tomas,2010-10-29 06:00:00,2010-11-10 18:00:00,13.4,-61.2,,North Atlantic,,,,,85.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_285306,noaa_storm_events,tornado,Tornado,Winnebago,2011-04-11 01:04:00,2011-04-11 01:07:00,44.1612,-88.8855,USA,Wisconsin,0.0,0.0,1370000.0,,1.0,f_ef_scale,point,False
+se_306770,noaa_storm_events,tornado,Tornado,Jasper,2011-05-25 14:24:00,2011-05-25 14:27:00,40.9409,-87.2104,USA,Indiana,0.0,0.0,500.0,,1.0,f_ef_scale,point,False
+se_360939,noaa_storm_events,destructive_wind,Thunderstorm Wind,Ashtabula,2012-01-17 21:53:00,2012-01-17 21:53:00,41.95,-80.55,USA,Ohio,0.0,0.0,0.0,,56.0,wind_kt,point,False
+se_372911,noaa_storm_events,flood,Flood,St. Landry,2012-03-13 01:00:00,2012-03-19 06:00:00,30.4,-91.93,USA,Louisiana,0.0,0.0,0.0,,,,point,False
+se_373880,noaa_storm_events,flash_flood,Flash Flood,Perry,2012-03-22 09:22:00,2012-03-22 11:22:00,30.9379,-88.9226,USA,Mississippi,0.0,0.0,0.0,,,,point,False
+se_407743,noaa_storm_events,tornado,Tornado,Hanover,2012-06-01 23:17:00,2012-06-01 23:20:00,37.79,-77.4,USA,Virginia,0.0,0.0,0.0,,0.0,f_ef_scale,point,False
+ib_2012196N19144,ibtracs,destructive_wind,Tropical Cyclone,Khanun,2012-07-13 18:00:00,2012-07-20 00:00:00,28.7,127.45,,West Pacific,,,,,55.0,max_sustained_wind_kt,peak_intensity_fix,False
+dfo_3956,dfo_flood_archive,flood,Tropical Storm Saola,Philippines,2012-07-28 00:00:00,2012-08-06 23:59:00,15.9469,121.037,Philippines,Philippines,3.0,,,13000.0,1.5,dfo_severity_class,event_centroid,False
+se_414051,noaa_storm_events,destructive_wind,Thunderstorm Wind,Delaware,2012-09-18 21:40:00,2012-09-18 21:40:00,39.9,-75.3,USA,Pennsylvania,0.0,2.0,0.0,,52.0,wind_kt,point,False
+dfo_4024,dfo_flood_archive,flood,Tropical Storm Oswald,Australia,2013-01-22 00:00:00,2013-02-01 23:59:00,-19.3725,144.818,Australia,Australia,6.0,,,8000.0,1.5,dfo_severity_class,event_centroid,False
+se_428346,noaa_storm_events,destructive_wind,Thunderstorm Wind,Haralson,2013-03-05 21:11:00,2013-03-05 21:11:00,33.8,-85.1,USA,Georgia,0.0,0.0,1500.0,,50.0,wind_kt,point,False
+se_444340,noaa_storm_events,tornado,Tornado,Grant,2013-05-31 02:36:00,2013-05-31 02:37:00,34.4355,-92.5823,USA,Arkansas,1.0,0.0,25000.0,,1.0,f_ef_scale,point,False
+se_464218,noaa_storm_events,flood,Flood,Gibson,2013-07-01 06:00:00,2013-07-02 15:00:00,38.4901,-87.5428,USA,Indiana,0.0,0.0,22000.0,,,,point,False
+se_477437,noaa_storm_events,flood,Flood,Hamilton,2013-09-28 14:00:00,2013-09-30 23:00:00,40.8723,-98.2825,USA,Nebraska,0.0,0.0,0.0,,,,point,False
+ib_2014019S26165,ibtracs,destructive_wind,Tropical Cyclone,June,2014-01-19 00:00:00,2014-01-21 18:00:00,-26.1,165.1,,South Pacific,,,,,40.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_2014030S14129,ibtracs,destructive_wind,Tropical Cyclone,Fletcher,2014-01-30 00:00:00,2014-02-12 00:00:00,-17.1,140.7,,South Indian,,,,,35.0,max_sustained_wind_kt,peak_intensity_fix,False
+dfo_4159,dfo_flood_archive,flood,Heavy Rain,Brazil,2014-05-22 00:00:00,2014-07-29 23:59:00,-2.9293,-59.5597,Brazil,Brazil,0.0,,,0.0,2.0,dfo_severity_class,event_centroid,True
+dfo_4144,dfo_flood_archive,flood,Heavy Rain,Afghanistan,2014-06-03 00:00:00,2014-06-10 23:59:00,35.6352,68.0178,Afghanistan,Afghanistan,0.0,,,300.0,1.5,dfo_severity_class,event_centroid,False
+se_523232,noaa_storm_events,flash_flood,Flash Flood,Potter,2014-06-06 07:15:00,2014-06-06 09:00:00,35.19,-101.82,USA,Texas,0.0,0.0,0.0,,,,point,False
+se_533230,noaa_storm_events,tornado,Tornado,Polk,2014-06-22 01:35:00,2014-06-22 01:42:00,47.63,-96.4411,USA,Minnesota,0.0,0.0,5000.0,,1.0,f_ef_scale,point,False
+se_538908,noaa_storm_events,destructive_wind,Tropical Storm,Central Interior,2014-08-02 21:00:00,2014-08-03 00:00:00,18.2749,-66.4089,USA,Puerto Rico,0.0,0.0,0.0,,,wind_kt,zone_name_centroid,False
+dfo_4222,dfo_flood_archive,flood,Heavy Rain,Indonesia,2015-02-05 00:00:00,2015-02-09 23:59:00,0.6861,122.862,Indonesia,Indonesia,0.0,,,300.0,1.0,dfo_severity_class,event_centroid,False
+se_588376,noaa_storm_events,flood,Flood,Hand,2015-06-20 00:15:00,2015-06-23 00:15:00,44.73,-99.31,USA,South Dakota,0.0,0.0,0.0,,,,point,False
+se_637954,noaa_storm_events,flash_flood,Flash Flood,Kerr,2016-05-29 09:20:00,2016-05-29 12:30:00,29.9525,-99.045,USA,Texas,0.0,0.0,0.0,,,,point,False
+dfo_4374,dfo_flood_archive,flood,Heavy Rain,Sudan,2016-07-11 00:00:00,2016-08-26 23:59:00,12.0017,29.5664,Sudan,Sudan,114.0,,,100000.0,1.0,dfo_severity_class,event_centroid,True
+se_681597,noaa_storm_events,flood,Flood,Santa Cruz,2017-02-20 21:31:00,2017-02-20 23:31:00,36.9339,-121.86,USA,California,0.0,0.0,0.0,,,,point,False
+se_693571,noaa_storm_events,flood,Flood,Middlesex,2017-04-06 09:00:00,2017-04-07 04:00:00,42.5572,-71.283,USA,Massachusetts,0.0,0.0,0.0,,,,point,False
+se_691305,noaa_storm_events,flash_flood,Flash Flood,Ozark,2017-04-29 22:27:00,2017-04-30 01:27:00,36.6035,-92.4257,USA,Missouri,0.0,0.0,10000.0,,,,point,False
+se_698519,noaa_storm_events,flood,Flood,Benton,2017-05-03 19:09:00,2017-05-03 21:09:00,38.17,-93.1,USA,Missouri,0.0,0.0,0.0,,,,point,False
+se_708811,noaa_storm_events,destructive_wind,Thunderstorm Wind,Kingman,2017-06-16 01:08:00,2017-06-16 01:09:00,37.65,-98.11,USA,Kansas,0.0,0.0,0.0,,50.0,wind_kt,point,False
+se_707110,noaa_storm_events,destructive_wind,Thunderstorm Wind,Geneva,2017-07-26 22:12:00,2017-07-26 22:12:00,31.1232,-85.5326,USA,Alabama,0.0,0.0,1000.0,,45.0,wind_kt,point,False
+se_711484,noaa_storm_events,flash_flood,Flash Flood,Simpson,2017-09-01 07:07:00,2017-09-01 07:07:00,36.74,-86.67,USA,Kentucky,0.0,0.0,0.0,,,,point,False
+se_718345,noaa_storm_events,flash_flood,Flash Flood,Garfield,2017-09-14 23:00:00,2017-09-15 01:00:00,37.72,-111.65,USA,Utah,0.0,0.0,0.0,,,,point,False
+dfo_4524,dfo_flood_archive,flood,Tropical Storm Nate,Nicaragua,2017-10-06 00:00:00,2017-10-07 23:59:00,31.1039,-91.2314,Nicaragua,Nicaragua + USA,22.0,,,10000.0,1.5,dfo_severity_class,event_centroid,True
+se_723112,noaa_storm_events,tornado,Tornado,Laurens,2017-10-08 20:40:00,2017-10-08 20:53:00,34.51,-81.967,USA,South Carolina,0.0,0.0,250000.0,,2.0,f_ef_scale,point,False
+se_741943,noaa_storm_events,tornado,Tornado,Sumter,2018-02-07 11:11:00,2018-02-07 11:14:00,32.4284,-88.2756,USA,Alabama,0.0,0.0,0.0,,0.0,f_ef_scale,point,False
+ib_2018064S16172,ibtracs,destructive_wind,Tropical Cyclone,Hola,2018-03-05 06:00:00,2018-03-13 00:00:00,-17.15,165.65,,South Pacific,,,,,105.0,max_sustained_wind_kt,peak_intensity_fix,True
+se_815775,noaa_storm_events,flood,Flood,Cedar,2019-03-14 01:43:00,2019-03-14 02:43:00,42.43,-97.09,USA,Nebraska,0.0,0.0,0.0,,,,point,False
+se_830763,noaa_storm_events,tornado,Tornado,Jackson,2019-05-24 23:35:00,2019-05-24 23:35:00,34.7655,-99.33,USA,Oklahoma,0.0,0.0,20000.0,,0.0,f_ef_scale,point,False
+se_820390,noaa_storm_events,destructive_wind,Thunderstorm Wind,Dare,2019-06-20 22:05:00,2019-06-20 22:05:00,36.18,-75.75,USA,North Carolina,0.0,0.0,0.0,,68.0,wind_kt,point,False
+se_842409,noaa_storm_events,flash_flood,Flash Flood,St. Louis,2019-06-26 20:45:00,2019-06-27 00:00:00,38.5525,-90.356,USA,Missouri,0.0,0.0,0.0,,,,point,False
+se_847944,noaa_storm_events,flash_flood,Flash Flood,Huerfano,2019-07-23 00:40:00,2019-07-23 01:40:00,37.55,-105.12,USA,Colorado,0.0,0.0,0.0,,,,point,False
+ib_2020019S11063,ibtracs,destructive_wind,Tropical Cyclone,Not_Named,2020-01-19 06:00:00,2020-01-24 06:00:00,-21.5,70.5,,South Indian,,,,,45.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_877508,noaa_storm_events,flood,Flood,Prairie,2020-02-01 06:00:00,2020-03-01 05:59:00,34.993,-91.51,USA,Arkansas,0.0,0.0,0.0,,,,point,False
+se_882999,noaa_storm_events,tornado,Tornado,Davidson,2020-03-03 06:32:00,2020-03-03 06:54:00,36.1717,-86.9562,USA,Tennessee,2.0,170.0,1090000000.0,,3.0,f_ef_scale,point,True
+se_897168,noaa_storm_events,flood,Flood,Ogemaw,2020-05-18 17:00:00,2020-05-20 17:00:00,44.1617,-83.884,USA,Michigan,0.0,0.0,450000.0,,,,point,False
+se_895387,noaa_storm_events,destructive_wind,Thunderstorm Wind,Allendale,2020-05-22 22:44:00,2020-05-22 22:45:00,33.04,-81.31,USA,South Carolina,0.0,0.0,0.0,,50.0,wind_kt,point,False
+dfo_4948,dfo_flood_archive,flood,Torrential Rain,South Korea,2020-07-29 00:00:00,2020-07-30 23:59:00,36.3489,127.056,South Korea,South Korea,2.0,,,0.0,1.5,dfo_severity_class,event_centroid,False
+ib_2021093S11123,ibtracs,destructive_wind,Tropical Cyclone,Seroja,2021-04-02 12:00:00,2021-04-12 06:00:00,-26.1,112.0,,South Indian,,,,,75.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_968696,noaa_storm_events,destructive_wind,Thunderstorm Wind,Clay,2021-06-08 03:35:00,2021-06-08 03:35:00,46.85,-96.67,USA,Minnesota,0.0,0.0,0.0,,55.0,wind_kt,point,False
+dfo_5104,dfo_flood_archive,flood,Heavy Rain,Panama,2021-07-22 00:00:00,2021-07-28 23:59:00,8.7849,-82.002,Panama,Panama,0.0,,,1408.0,1.5,dfo_severity_class,event_centroid,False
+se_972760,noaa_storm_events,tornado,Tornado,Wright,2021-08-21 02:05:00,2021-08-21 02:10:00,42.7606,-93.9139,USA,Iowa,0.0,0.0,1000.0,,0.0,f_ef_scale,point,False
+se_981294,noaa_storm_events,flash_flood,Flash Flood,Mohave,2021-08-30 02:00:00,2021-08-30 03:30:00,34.91,-113.55,USA,Arizona,0.0,0.0,1000.0,,,,point,False
+se_990529,noaa_storm_events,flood,Flood,Essex,2021-11-12 21:35:00,2021-11-12 21:35:00,42.5368,-70.9557,USA,Massachusetts,0.0,0.0,200.0,,,,point,False
+se_999679,noaa_storm_events,tornado,Tornado,St. Tammany,2021-12-06 20:56:00,2021-12-06 21:00:00,30.438,-90.0813,USA,Louisiana,0.0,0.0,50000.0,,0.0,f_ef_scale,point,False
+ib_2022038S19164,ibtracs,destructive_wind,Tropical Cyclone,Dovi,2022-02-07 00:00:00,2022-02-12 12:00:00,-25.0,165.9,,South Pacific,,,,,90.0,max_sustained_wind_kt,peak_intensity_fix,False
+ib_2022044S15061,ibtracs,destructive_wind,Tropical Cyclone,Dumako,2022-02-13 06:00:00,2022-02-16 12:00:00,-16.5,55.2,,South Indian,,,,,51.0,max_sustained_wind_kt,peak_intensity_fix,False
+se_1032497,noaa_storm_events,tornado,Tornado,Wadena,2022-05-13 00:51:00,2022-05-13 01:11:00,46.3688,-95.0426,USA,Minnesota,0.0,0.0,0.0,,2.0,f_ef_scale,point,False
+se_1044262,noaa_storm_events,tornado,Tornado,Dutchess,2022-07-18 21:35:00,2022-07-18 21:35:00,41.9,-73.96,USA,New York,0.0,0.0,0.0,,,f_ef_scale,point,False
+se_1054899,noaa_storm_events,flash_flood,Flash Flood,San Bernardino,2022-08-16 22:13:00,2022-08-16 23:45:00,34.1208,-116.4085,USA,California,0.0,0.0,2000.0,,,,point,False
+se_1069131,noaa_storm_events,flash_flood,Flash Flood,Faulkner,2023-01-02 20:30:00,2023-01-02 23:30:00,35.09,-92.45,USA,Arkansas,0.0,0.0,0.0,,,,point,False
+se_1076247,noaa_storm_events,flood,Flood,Fresno,2023-03-10 15:00:00,2023-03-10 18:00:00,36.7315,-119.2717,USA,California,0.0,0.0,0.0,,,,point,False
+se_1105776,noaa_storm_events,destructive_wind,Thunderstorm Wind,Tarrant,2023-06-12 00:30:00,2023-06-12 00:30:00,32.78,-97.42,USA,Texas,0.0,0.0,0.0,,50.0,wind_kt,point,False
+se_1131374,noaa_storm_events,destructive_wind,Thunderstorm Wind,Genesee,2023-08-25 01:41:00,2023-08-25 01:41:00,42.8,-83.71,USA,Michigan,0.0,0.0,0.0,,50.0,wind_kt,point,False
+se_1150355,noaa_storm_events,destructive_wind,High Wind,Grapevine,2024-02-01 10:00:00,2024-02-01 10:00:00,36.0307,-119.0809,USA,California,0.0,0.0,0.0,,56.0,wind_kt,state_centroid,False
+se_1164552,noaa_storm_events,flood,Flood,San Joaquin,2024-02-20 22:42:00,2024-02-21 05:42:00,37.9743,-121.3392,USA,California,0.0,0.0,0.0,,,,point,False
+se_1174140,noaa_storm_events,tornado,Tornado,Posey,2024-04-02 10:33:00,2024-04-02 10:43:00,38.069,-87.966,USA,Indiana,0.0,0.0,130000.0,,2.0,f_ef_scale,point,False
+se_1177306,noaa_storm_events,flood,Flood,Kennebec,2024-04-13 20:00:00,2024-04-14 17:00:00,44.6573,-69.6084,USA,Maine,0.0,0.0,0.0,,,,point,False
+se_1170152,noaa_storm_events,tornado,Tornado,Adams,2024-05-21 20:18:00,2024-05-21 20:35:00,40.9539,-94.6758,USA,Iowa,0.0,0.0,100000.0,,1.0,f_ef_scale,point,False
+se_1188351,noaa_storm_events,tornado,Tornado,Bowie,2024-05-25 00:05:00,2024-05-25 00:09:00,33.5266,-94.4741,USA,Texas,0.0,0.0,0.0,,1.0,f_ef_scale,point,False
+se_1206057,noaa_storm_events,flash_flood,Flash Flood,Richmond (C),2024-07-20 19:06:00,2024-07-20 19:06:00,37.5207,-77.4149,USA,Virginia,0.0,0.0,0.0,,,,point,False
+se_1218178,noaa_storm_events,flash_flood,Flash Flood,Caldwell,2024-09-26 21:00:00,2024-09-27 20:00:00,35.983,-81.787,USA,North Carolina,0.0,0.0,40000000.0,,,,point,False
+se_1237995,noaa_storm_events,flash_flood,Flash Flood,Hardin,2025-02-16 07:15:00,2025-02-16 08:15:00,37.675,-85.8869,USA,Kentucky,0.0,0.0,0.0,,,,point,False
+se_1276093,noaa_storm_events,tornado,Tornado,Ellis,2025-06-18 01:06:00,2025-06-18 01:14:00,36.005,-99.999,USA,Oklahoma,0.0,0.0,75000.0,,2.0,f_ef_scale,point,False
+se_1279196,noaa_storm_events,flash_flood,Flash Flood,Allegheny,2025-06-26 22:00:00,2025-06-27 00:00:00,40.43,-80.12,USA,Pennsylvania,0.0,0.0,50000.0,,,,point,False
+se_1279195,noaa_storm_events,flood,Flood,Sullivan,2025-07-14 11:23:00,2025-07-14 12:23:00,41.3267,-76.5839,USA,Pennsylvania,0.0,0.0,0.0,,,,point,False
+se_1295562,noaa_storm_events,flood,Flood,Broward,2025-09-21 21:03:00,2025-09-21 21:03:00,26.05,-80.15,USA,Florida,0.0,0.0,0.0,,,,point,False

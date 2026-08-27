@@ -1,0 +1,29 @@
+{
+    "doctype":  "Subscription Plan",
+    "plan_name":  "Telephony Pro (Yearly)",
+    "billing_cycle":  "Yearly",
+    "billing_interval":  1,
+    "is_per_seat_plan":  1,
+    "base_user_count":  1,
+    "cost":  100.0,
+    "currency":  "USD",
+    "is_ai":  0,
+    "plan_category":  "Telephony",
+    "modules":  [
+                    {
+                        "module":  "Telephony"
+                    }
+                ],
+    "allow_self_subscription":  1,
+    "trial_period_days":  14,
+    "price_determination":  "Fixed Rate",
+    "item":  "Telephony Pro Plan",
+    "features":  [
+                     "Multi-line SIP Support",
+                     "Unlimited Internal Calls",
+                     "Advanced Call Analytics",
+                     "Priority Voice Routing"
+                 ],
+    "plan_type":  "Service",
+    "storage_quota_gb":  10
+}

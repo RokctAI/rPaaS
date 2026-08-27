@@ -1,0 +1,38 @@
+{
+  "doctype": "DocType",
+  "name": "Customer Wallet",
+  "module": "wallet",
+  "engine": "InnoDB",
+  "autoname": "format:W-{customer}",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "fields": [
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "options": "Customer",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "balance",
+      "fieldtype": "Currency",
+      "label": "Balance",
+      "default": "0",
+      "read_only": 1
+    }
+  ]
+}

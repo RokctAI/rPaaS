@@ -1,0 +1,51 @@
+{
+  "name": "gateways",
+  "description": "Modular SDK for payment gateway integrations: full frappe/payments port (Payment Gateway doctype plus Braintree, GoCardless, Mpesa, Paymob, PayPal, Paytm, Razorpay and Stripe gateway settings) flattened into a single composed frappe module, plus Rokct's own PayFast and Paystack gateways (gateways/local overlay). Fork of frappe/payments (MIT) via Frappenize/payments@rokct. Control flavor (src/control/): the hub-side PaystackController verify/charge delegate imported by the control plane's subscription billing - importable code only, so app_type.control declares no hooks; the persona split still strips src/control/ out of tenant composes and src/tenant/ out of control composes.",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "doc_events": {},
+        "scheduler_events": {
+          "all": [
+            "{app_name}.gateways.doctype.razorpay_settings.razorpay_settings.capture_payment"
+          ]
+        },
+        "whitelisted_methods": {
+          "frappe.website.doctype.web_form.web_form.accept": "{app_name}.gateways.tenant.overrides.payment_webform.accept"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "PayFast Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Paystack Settings"
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "paytmchecksum~=1.7.0",
+        "razorpay~=2.0.0",
+        "stripe~=10.12.0",
+        "braintree~=4.20.0",
+        "pycryptodome>=3.18.0,<4.0.0",
+        "gocardless-pro~=1.22.0",
+        "setuptools==80.9.0"
+      ]
+    },
+    "control": {}
+  }
+}

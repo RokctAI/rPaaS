@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-18 06:06:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "weatherapi_com_api_key",
+  "default_location"
+ ],
+ "fields": [
+  {
+   "default": "1d7aef13eb304913951131342250301",
+   "fieldname": "weatherapi_com_api_key",
+   "fieldtype": "Password",
+   "label": "weatherapi.com API Key"
+  },
+  {
+   "fieldname": "default_location",
+   "fieldtype": "Data",
+   "label": "Default Weather Location",
+   "default": "messina,za",
+   "description": "The default location to use for weather queries if the requested location is invalid (e.g., coordinates)."
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-09-18 06:06:00.000000",
+ "modified_by": "Administrator",
+ "module": "{module_name}",
+ "name": "Weather Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
+

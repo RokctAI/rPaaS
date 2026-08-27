@@ -1,0 +1,293 @@
+// Copyright (c) 2026 RokctAI
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+
+// Ported from paas_manager lib/presentation/pages/restaurant/
+// notification_list_page.dart (comms_sdk manager consume, fork plan S-3 /
+// migration bucket b, D4 minimal parameterization: same page, imports and
+// theming swapped for SDK conventions). Installed to the comms-owned
+// lib/presentation/pages/notification/ path; the class keeps the
+// NotificationListPage name so auto_route regenerates the exact
+// NotificationListRoute the composed restaurant tab already pushes.
+// The order-details modal is orders_sdk's installed host-composition file
+// (${package} path), typed on orders_sdk's manager OrderData — only the id
+// crosses the model seam (cross-SDK composition in host lib/ per ADR-005).
+
+// ignore_for_file: deprecated_member_use
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'package:base_sdk/src/constants/app_constants.dart';
+import 'package:base_sdk/src/models/response/notification_response.dart';
+import 'package:base_sdk/src/presentation/components/app_bars/common_app_bar.dart';
+import 'package:base_sdk/src/presentation/components/buttons/custom_button.dart';
+import 'package:base_sdk/src/presentation/components/buttons/pop_button.dart';
+import 'package:base_sdk/src/presentation/components/helper/common_image.dart';
+import 'package:base_sdk/src/presentation/components/loading.dart';
+import 'package:base_sdk/src/presentation/theme/app_style.dart';
+import 'package:base_sdk/src/services/app_helpers.dart';
+import 'package:base_sdk/src/services/local_storage.dart';
+import 'package:base_sdk/src/services/tr_keys.dart';
+import 'package:${package}/application/notification/notification_provider.dart';
+import 'package:${package}/presentation/pages/orders/details/order_details_modal.dart';
+import 'package:orders_sdk/src/manager/infrastructure/models/data/order_data.dart'
+    as sdk;
+
+@RoutePage()
+class NotificationListPage extends ConsumerStatefulWidget {
+  const NotificationListPage({super.key});
+
+  @override
+  ConsumerState<NotificationListPage> createState() =>
+      _NotificationListPageState();
+}
+
+class _NotificationListPageState extends ConsumerState<NotificationListPage> {
+  final bool isLtr = LocalStorage.getLangLtr();
+  late RefreshController refreshController;
+
+  @override
+  void initState() {
+    refreshController = RefreshController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(notificationProvider.notifier).fetchAllNotifications(context);
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    refreshController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(notificationProvider);
+    final event = ref.read(notificationProvider.notifier);
+    return Directionality(
+      textDirection: isLtr ? TextDirection.ltr : TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: AppStyle.bgGrey,
+        body: state.isAllNotificationsLoading
+            ? const Loading()
+            : Column(
+                children: [
+                  CommonAppBar(
+                    child: Text(
+                      AppHelpers.getTranslation(TrKeys.notifications),
+                      style: AppStyle.interSemi(
+                        size: 18,
+                        color: AppStyle.black,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: SmartRefresher(
+                      controller: refreshController,
+                      enablePullDown: true,
+                      enablePullUp: true,
+                      onRefresh: () {
+                        event.fetchNotificationsPaginate(
+                            refreshController: refreshController,
+                            isRefresh: true);
+                      },
+                      onLoading: () {
+                        event.fetchNotificationsPaginate(
+                          refreshController: refreshController,
+                        );
+                      },
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.only(
+                              top: 24.h,
+                              right: 16.w,
+                              left: 16.w,
+                              bottom:
+                                  MediaQuery.paddingOf(context).bottom + 72.h),
+                          itemCount: state.notifications.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () async {
+                                if (state.notifications[index].readAt == null) {
+                                  event.readOne(
+                                      index: index,
+                                      context,
+                                      id: state.notifications[index].id);
+                                }
+                                if (state.notifications[index].orderData !=
+                                    null) {
+                                  if (state.notifications[index].orderData !=
+                                      null) {
+                                    // The installed modal is typed on
+                                    // orders_sdk's manager OrderData and
+                                    // refetches details by id; both models
+                                    // now carry the Order docname as String,
+                                    // so the id passes straight through.
+                                    AppHelpers.showCustomModalBottomSheet(
+                                        context: context,
+                                        modal: OrderDetailsModal(
+                                            order: sdk.OrderData(
+                                                id: state.notifications[index]
+                                                    .orderData?.id)),
+                                        isDarkMode: false);
+                                  }
+                                } else if (state
+                                        .notifications[index].blogData !=
+                                    null) {
+                                  await launch(
+                                    "${AppConstants.webUrl}/blog/${state.notifications[index].blogData?.uuid}",
+                                    forceSafariVC: true,
+                                    forceWebView: true,
+                                    enableJavaScript: true,
+                                  );
+                                } else if (state.notifications[index].type ==
+                                    "reservation") {
+                                  await launch(
+                                    "${AppConstants.webUrl}/reservations",
+                                    forceSafariVC: true,
+                                    forceWebView: true,
+                                    enableJavaScript: true,
+                                  );
+                                } else {
+                                  AppHelpers.showAlertDialog(
+                                      context: context,
+                                      child: Text(
+                                          '${state.notifications[index].body ?? state.notifications[index].title}'));
+                                }
+                              },
+                              child: Column(
+                                children: [
+                                  notificationItem(state.notifications[index]),
+                                  const Divider()
+                                ],
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                ],
+              ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Row(
+            children: [
+              const PopButton(),
+              10.horizontalSpace,
+              Expanded(
+                  child: CustomButton(
+                background: AppStyle.black,
+                textColor: AppStyle.white,
+                title: AppHelpers.getTranslation(TrKeys.readAll),
+                onPressed: () async {
+                  event.readAll(context);
+                },
+              ))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget notificationItem(NotificationModel notification) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 6.r),
+      child: Row(
+        children: [
+          CommonImage(
+            radius: 22,
+            url: notification.client?.img ?? notification.blogData?.img,
+            height: 44,
+            width: 44,
+          ),
+          12.horizontalSpace,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (notification.client != null)
+                Row(
+                  children: [
+                    Text(
+                      '${notification.client?.firstname ?? ''} ${notification.client?.lastname?.substring(0, 1) ?? ''}.',
+                      style: AppStyle.interSemi(size: 16, color: AppStyle.black),
+                    ),
+                    15.horizontalSpace,
+                    Container(
+                      height: 8.r,
+                      width: 8.r,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: notification.readAt == null
+                              ? AppStyle.primary
+                              : AppStyle.transparent),
+                    )
+                  ],
+                ),
+              2.verticalSpace,
+              Row(
+                children: [
+                  SizedBox(
+                    width: notification.client != null
+                        ? MediaQuery.sizeOf(context).width / 2
+                        : null,
+                    child: Text(
+                      '${notification.body ?? notification.title}',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                      style: AppStyle.interRegular(
+                          size: 14, color: AppStyle.black),
+                    ),
+                  ),
+                  if (notification.client == null)
+                    Container(
+                      margin: EdgeInsets.only(left: 8.r),
+                      height: 8.r,
+                      width: 8.r,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: notification.readAt == null
+                              ? AppStyle.primary
+                              : AppStyle.transparent),
+                    )
+                ],
+              ),
+              4.verticalSpace,
+              Text(
+                Jiffy.parseFromDateTime(
+                        notification.createdAt ?? DateTime.now())
+                    .fromNow(),
+                style: AppStyle.interRegular(
+                    size: 12, color: AppStyle.textGrey),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

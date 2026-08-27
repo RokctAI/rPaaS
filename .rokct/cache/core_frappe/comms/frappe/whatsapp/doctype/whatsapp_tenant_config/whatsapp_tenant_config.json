@@ -1,0 +1,115 @@
+{
+    "actions": [],
+    "creation": "2025-12-17 22:45:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "enabled",
+        "section_break_config",
+        "phone_number_id",
+        "waba_id",
+        "verify_token",
+        "access_token",
+        "column_break_vendor",
+        "is_multi_vendor",
+        "default_shop"
+    ],
+    "fields": [
+        {
+            "fieldname": "enabled",
+            "fieldtype": "Check",
+            "label": "Enabled"
+        },
+        {
+            "fieldname": "section_break_config",
+            "fieldtype": "Section Break",
+            "label": "Meta Configuration"
+        },
+        {
+            "fieldname": "phone_number_id",
+            "fieldtype": "Data",
+            "label": "Phone Number ID"
+        },
+        {
+            "fieldname": "waba_id",
+            "fieldtype": "Data",
+            "label": "WhatsApp Business Account ID"
+        },
+        {
+            "fieldname": "verify_token",
+            "fieldtype": "Data",
+            "label": "Verify Token"
+        },
+        {
+            "fieldname": "access_token",
+            "fieldtype": "Password",
+            "label": "Access Token"
+        },
+        {
+            "fieldname": "app_secret",
+            "fieldtype": "Password",
+            "label": "App Secret (for Signature Verification)"
+        },
+        {
+            "fieldname": "section_break_keys",
+            "fieldtype": "Section Break",
+            "label": "Flow Encryption Keys"
+        },
+        {
+            "fieldname": "private_key",
+            "fieldtype": "Password",
+            "label": "Private Key",
+            "read_only": 1,
+            "description": "Generated automatically. Used to decrypt Flow requests."
+        },
+        {
+            "fieldname": "public_key",
+            "fieldtype": "Small Text",
+            "label": "Public Key (Upload to Meta)",
+            "read_only": 1,
+            "description": "Copy this and upload it to the Meta Developer Dashboard > WhatsApp > Flows."
+        },
+        {
+            "fieldname": "column_break_vendor",
+            "fieldtype": "Column Break"
+        },
+        {
+            "default": "1",
+            "fieldname": "is_multi_vendor",
+            "fieldtype": "Check",
+            "label": "Is Multi Vendor?",
+            "description": "If unchecked, the bot will skip the 'Shop List' and go directly to the 'Default Shop'.",
+            "default": 1
+        },
+        {
+            "fieldname": "default_shop",
+            "fieldtype": "Link",
+            "label": "Default Shop",
+            "options": "Shop",
+            "depends_on": "eval:!doc.is_multi_vendor",
+            "mandatory_depends_on": "eval:!doc.is_multi_vendor"
+        }
+    ],
+    "issingle": 1,
+    "links": [],
+    "modified": "2025-12-17 22:45:00.000000",
+    "modified_by": "Administrator",
+    "module": "WhatsApp",
+    "name": "WhatsApp Tenant Config",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "print": 1,
+            "read": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

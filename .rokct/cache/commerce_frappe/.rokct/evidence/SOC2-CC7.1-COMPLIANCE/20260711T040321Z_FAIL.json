@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-07-11T04:03:21.197713+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "FAIL",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/commerce/kitchen/dart",
+  "detail": "Architectural compliance scan failed with 5 violations across source code checks.",
+  "violations": [
+    {
+      "file": ".\\lib\\src\\domain\\kitchen_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'kitchen_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\kitchens_paginate_response.dart",
+      "line": 24,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'kitchens_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\kitchens_paginate_response.dart",
+      "line": 25,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'kitchens_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\kitchen_data.dart",
+      "line": 23,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'kitchen_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\kitchen_data.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'kitchen_data.dart'. Define concrete Dart models or strong types."
+    }
+  ]
+}

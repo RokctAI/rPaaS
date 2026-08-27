@@ -1,0 +1,73 @@
+name: Umzansi Infrastructure Group (FICTIONAL)
+color:
+  tokens:
+    primary:
+      hex: '#0b6e4f'
+      role: primary
+    accent:
+      hex: '#e8a13d'
+      role: accent
+    ink:
+      hex: '#11241c'
+      role: ink
+    text:
+      hex: '#294036'
+      role: text
+    on-primary:
+      hex: '#f7fbf9'
+      role: text
+    surface:
+      hex: '#e9f3ee'
+      role: surface
+    paper:
+      hex: '#f7fbf9'
+      role: surface
+    neutral-800:
+      hex: '#2c4037'
+      role: other
+    neutral-500:
+      hex: '#62776d'
+      role: other
+    neutral-300:
+      hex: '#9eb4a9'
+      role: other
+    neutral-100:
+      hex: '#d4ebe0'
+      role: other
+  max_colors: 11
+  snap_warning_distance: 0.18
+gradient:
+  allowed: true
+  max_stops: 4
+typography:
+  fonts:
+  - DejaVu Sans
+  - sans-serif
+  scale:
+  - 12
+  - 14
+  - 16
+  - 20
+  - 24
+  - 32
+  - 48
+  - 64
+layout:
+  grid: 8.0
+  min_element_size: 4.0
+  alignment_tolerance: 2.0
+  role_aware_snapping: true
+stroke:
+  widths:
+  - 1
+  - 2
+  - 4
+  - 8
+print:
+  bleed: 35.4
+  min_stroke: 0.75
+  max_ink_coverage: 300
+accessibility:
+  min_contrast_text: 4.5
+  min_contrast_large_text: 3.0
+  large_text_size: 24.0

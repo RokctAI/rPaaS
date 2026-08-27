@@ -1,0 +1,44 @@
+# Guided-tour fragment for merchants_sdk (manager role).
+#
+# Brand-neutral by rule: app names, taglines and any per-app wording live in
+# the app shell's tour/app.tour.yaml ({app_name}/{app_tagline} placeholders
+# are substituted at merge time). This fragment owns only the screens
+# merchants_sdk itself installs for app_type=manager composes: the manager
+# home shell (/main, manifest.json app_type.manager) and the sync-issues
+# screen (/sync-issues). Include it only in manager-family app manifests
+# (paas_manager, pos, launch_manager) - those routes do not exist in other
+# composes.
+#
+# Demo grounding (--dart-define=IS_DEMO=true): merchants_di.dart swaps in
+# MockShopsRepository for the customer-facing ShopsRepositoryFacade. The
+# manager-side SellerShopRepositoryFacade is NOT demo-gated yet, so the
+# restaurant tab's shop header renders without a shop identity in demo
+# builds - that screen is deliberately NOT captured here. Follow-up (rule
+# #59): demo-gate SellerShopRepositoryFacade (reusing MockShopsRepository's
+# _demoShop) and add a restaurant-tab step. The driver-role story screen
+# (/story, app_type.driver) is also out of scope - it belongs in a future
+# driver-role fragment, since this fragment's /main route does not exist in
+# driver composes.
+#
+# The sync-issues screen renders truthfully in demo: nothing is parked, so
+# its own empty state ("no data") is the correct all-synced picture.
+#
+# Format: RokctAI/shared-workflows scripts/tour/README.md
+sdk: merchants
+steps:
+  # Arrival/warm-up step: land the manager home shell (bottom navigation,
+  # create FAB, order queue preloaded on tab 0). No still is captured here -
+  # the queue tab's content is orders_sdk's to tour (see orders.tour.yaml),
+  # and capturing it twice would duplicate that chapter's still.
+  - key: manager_home
+    title: "Open the manager home"
+    action: route
+    route: /main
+    settle: 10
+    screenshot: false
+  - key: sync_issues
+    title: "Nothing gets lost offline"
+    caption: "Sell through any outage - offline work syncs back by itself, and anything that snags waits here with *retry or discard*."
+    action: route
+    route: /sync-issues
+    settle: 6

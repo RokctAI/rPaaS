@@ -1,0 +1,40 @@
+{
+    "actions": [],
+    "allow_rename": 0,
+    "creation": "2025-10-12 12:21:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "subject",
+        "due_date_offset_days"
+    ],
+    "fields": [
+        {
+            "fieldname": "subject",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Subject",
+            "reqd": 1
+        },
+        {
+            "fieldname": "due_date_offset_days",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "Due Date Offset (Days)",
+            "description": "e.g., 7 means the task will be due 7 days after the tender is accepted.",
+            "reqd": 1
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "istable": 1,
+    "links": [],
+    "modified": "2025-10-12 12:21:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Workflow Task",
+    "owner": "Administrator",
+    "permissions": [],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

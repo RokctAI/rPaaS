@@ -1,0 +1,80 @@
+{
+ "doctype": "DocType",
+ "name": "Weather Cell Climatology",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "field:grid_key",
+ "description": "Durable per-grid-cell calendar-week climatology cache, built once ever per cell from the ERA5 year files (1940-2021 subsample) on the cell's first evaluation. normals_json holds the 52 weekly normals (precipitation weekly-sum median/p75/p90/p99 and TCWV weekly mean/std) consumed by warnings_engine/climatology.py for the optional seasonal-anomaly context. Deleting a row simply triggers a rebuild on the next evaluation. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 0,
+ "fields": [
+  {
+   "fieldname": "grid_key",
+   "fieldtype": "Data",
+   "label": "Grid Key",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "description": "Grid-rounded \"lat,lng\" at 0.25 degree resolution - same key as the Weather Watch Location name"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "8",
+   "reqd": 1
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "8",
+   "reqd": 1
+  },
+  {
+   "fieldname": "computed_at",
+   "fieldtype": "Datetime",
+   "label": "Computed At (UTC)",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "years_sampled",
+   "fieldtype": "Int",
+   "label": "Years Sampled",
+   "read_only": 1,
+   "description": "Number of climatology years sampled from the 1940-2021 ERA5 year files"
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Data",
+   "label": "Data Source",
+   "read_only": 1
+  },
+  {
+   "fieldname": "normals_json",
+   "fieldtype": "Long Text",
+   "label": "Weekly Normals (JSON)",
+   "read_only": 1,
+   "description": "JSON schema v1: {version, latitude, longitude, years_sampled, source, computed_at, weeks: [{week 0..51, precip_mm: {n, median, p75, p90, p99} | null, tcwv: {n, mean, std} | null}]}. Admin/debug only - never sent to clients."
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+{
+    "name": "tender",
+    "description": "Modular backend package for TenderAssist (SA public-sector tendering): opportunity catalog fetch layer, tender bids with checklists, and the deterministic SA-tender compliance layer (rules as fixtures, validators as code, no AI).",
+    "app_type": {
+        "control": {
+            "hooks": {
+                "whitelisted_methods": {
+                    "{app_name}.api.tenders.get_relevant_tenders": "{app_name}.tender.control.api.tenders.get_relevant_tenders.get_relevant_tenders",
+                    "{app_name}.api.tenders.get_relevant_grants": "{app_name}.tender.control.api.tenders.get_relevant_grants.get_relevant_grants",
+                    "{app_name}.api.tenders.get_relevant_equity": "{app_name}.tender.control.api.tenders.get_relevant_equity.get_relevant_equity",
+                    "{app_name}.api.tenders.get_tender_workflow_template": "{app_name}.tender.control.api.tenders.get_tender_workflow_template.get_tender_workflow_template",
+                    "{app_name}.api.tenders.get_tender_detail": "{app_name}.tender.control.api.tenders.get_tender_detail.get_tender_detail",
+                    "{app_name}.api.tenders.claim_tender": "{app_name}.tender.control.api.tenders.claim_tender.claim_tender",
+                    "{app_name}.api.tenders.get_my_bids": "{app_name}.tender.control.api.tenders.get_my_bids.get_my_bids",
+                    "{app_name}.api.tenders.update_bid_status": "{app_name}.tender.control.api.tenders.update_bid_status.update_bid_status",
+                    "{app_name}.api.tenders.update_checklist_item": "{app_name}.tender.control.api.tenders.update_checklist_item.update_checklist_item",
+                    "{app_name}.api.tenders.generate_bid_pack": "{app_name}.tender.control.api.tenders.generate_bid_pack.generate_bid_pack",
+                    "{app_name}.api.tenders.get_pack_status": "{app_name}.tender.control.api.tenders.get_pack_status.get_pack_status",
+                    "{app_name}.api.tenders.create_bid_quotation": "{app_name}.tender.control.api.tenders.create_bid_quotation.create_bid_quotation",
+                    "{app_name}.api.tenders.get_enrichment_stats": "{app_name}.tender.control.api.tenders.get_enrichment_stats.get_enrichment_stats",
+                    "{app_name}.api.tenders.seed_bid_returnables": "{app_name}.tender.control.api.tenders.seed_bid_returnables.seed_bid_returnables",
+                    "{app_name}.api.tenders.parse_tender_pack": "{app_name}.tender.control.api.tenders.parse_tender_pack.parse_tender_pack",
+                    "{app_name}.api.tenders.dispatch_bid_pack": "{app_name}.tender.control.api.tenders.dispatch_bid_pack.dispatch_bid_pack",
+                    "{app_name}.api.tenders.attach_returnable_artifact": "{app_name}.tender.control.api.tenders.attach_returnable_artifact.attach_returnable_artifact",
+                    "{app_name}.api.tenders.get_tender_suitability": "{app_name}.tender.control.api.tenders.get_tender_suitability.get_tender_suitability",
+                    "{app_name}.api.tenders.get_renewal_radar": "{app_name}.tender.control.api.tenders.get_renewal_radar.get_renewal_radar",
+                    "{app_name}.api.tenders.get_low_competition_tenders": "{app_name}.tender.control.api.tenders.get_low_competition_tenders.get_low_competition_tenders",
+                    "{app_name}.api.tenders.get_buyer_dossier": "{app_name}.tender.control.api.tenders.get_buyer_dossier.get_buyer_dossier",
+                    "{app_name}.api.tenders.get_award_ledger": "{app_name}.tender.control.api.tenders.get_award_ledger.get_award_ledger",
+                    "{app_name}.api.tenders.get_compliance_calendar": "{app_name}.tender.control.api.tenders.get_compliance_calendar.get_compliance_calendar",
+                    "{app_name}.api.tenders.get_public_opportunities": "{app_name}.tender.control.api.external.get_public_opportunities.get_public_opportunities",
+                    "control:get_relevant_tenders": "{app_name}.tender.control.api.tenders.get_relevant_tenders.get_relevant_tenders",
+                    "control:get_relevant_grants": "{app_name}.tender.control.api.tenders.get_relevant_grants.get_relevant_grants",
+                    "control:get_relevant_equity": "{app_name}.tender.control.api.tenders.get_relevant_equity.get_relevant_equity",
+                    "control:get_tender_workflow_template": "{app_name}.tender.control.api.tenders.get_tender_workflow_template.get_tender_workflow_template",
+                    "control:get_stimulus_workflow_template": "{app_name}.tender.control.api.tenders.get_tender_workflow_template.get_tender_workflow_template",
+                    "control:claim_tender": "{app_name}.tender.control.api.tenders.claim_tender.claim_tender",
+                    "control:get_my_bids": "{app_name}.tender.control.api.tenders.get_my_bids.get_my_bids",
+                    "control:get_tender_detail": "{app_name}.tender.control.api.tenders.get_tender_detail.get_tender_detail",
+                    "control:update_bid_status": "{app_name}.tender.control.api.tenders.update_bid_status.update_bid_status",
+                    "control:update_checklist_item": "{app_name}.tender.control.api.tenders.update_checklist_item.update_checklist_item",
+                    "control:get_public_opportunities": "{app_name}.tender.control.api.external.get_public_opportunities.get_public_opportunities",
+                    "control:generate_bid_pack": "{app_name}.tender.control.api.tenders.generate_bid_pack.generate_bid_pack",
+                    "control:get_pack_status": "{app_name}.tender.control.api.tenders.get_pack_status.get_pack_status",
+                    "control:create_bid_quotation": "{app_name}.tender.control.api.tenders.create_bid_quotation.create_bid_quotation",
+                    "control:get_enrichment_stats": "{app_name}.tender.control.api.tenders.get_enrichment_stats.get_enrichment_stats",
+                    "control:seed_bid_returnables": "{app_name}.tender.control.api.tenders.seed_bid_returnables.seed_bid_returnables",
+                    "control:parse_tender_pack": "{app_name}.tender.control.api.tenders.parse_tender_pack.parse_tender_pack",
+                    "control:dispatch_bid_pack": "{app_name}.tender.control.api.tenders.dispatch_bid_pack.dispatch_bid_pack",
+                    "control:attach_returnable_artifact": "{app_name}.tender.control.api.tenders.attach_returnable_artifact.attach_returnable_artifact",
+                    "control:get_tender_suitability": "{app_name}.tender.control.api.tenders.get_tender_suitability.get_tender_suitability",
+                    "control:get_renewal_radar": "{app_name}.tender.control.api.tenders.get_renewal_radar.get_renewal_radar",
+                    "control:get_low_competition_tenders": "{app_name}.tender.control.api.tenders.get_low_competition_tenders.get_low_competition_tenders",
+                    "control:get_buyer_dossier": "{app_name}.tender.control.api.tenders.get_buyer_dossier.get_buyer_dossier",
+                    "control:get_award_ledger": "{app_name}.tender.control.api.tenders.get_award_ledger.get_award_ledger",
+                    "control:get_compliance_calendar": "{app_name}.tender.control.api.tenders.get_compliance_calendar.get_compliance_calendar",
+                    "control.control.api.tenders.get_relevant_tenders": "{app_name}.tender.control.api.tenders.get_relevant_tenders.get_relevant_tenders",
+                    "control.control.api.tenders.get_relevant_grants": "{app_name}.tender.control.api.tenders.get_relevant_grants.get_relevant_grants",
+                    "control.control.api.tenders.get_relevant_equity": "{app_name}.tender.control.api.tenders.get_relevant_equity.get_relevant_equity",
+                    "control.control.api.tenders.get_tender_workflow_template": "{app_name}.tender.control.api.tenders.get_tender_workflow_template.get_tender_workflow_template",
+                    "control.control.api.get_stimulus_workflow_template": "{app_name}.tender.control.api.tenders.get_tender_workflow_template.get_tender_workflow_template",
+                    "control.control.api.tenders.claim_tender": "{app_name}.tender.control.api.tenders.claim_tender.claim_tender",
+                    "control.control.api.tenders.get_my_bids": "{app_name}.tender.control.api.tenders.get_my_bids.get_my_bids",
+                    "control.control.api.tenders.get_tender_detail": "{app_name}.tender.control.api.tenders.get_tender_detail.get_tender_detail",
+                    "control.control.api.tenders.update_bid_status": "{app_name}.tender.control.api.tenders.update_bid_status.update_bid_status",
+                    "control.control.api.tenders.update_checklist_item": "{app_name}.tender.control.api.tenders.update_checklist_item.update_checklist_item",
+                    "control.control.api.tenders.get_enrichment_stats": "{app_name}.tender.control.api.tenders.get_enrichment_stats.get_enrichment_stats",
+                    "control.control.api.tenders.seed_bid_returnables": "{app_name}.tender.control.api.tenders.seed_bid_returnables.seed_bid_returnables",
+                    "control.control.api.tenders.parse_tender_pack": "{app_name}.tender.control.api.tenders.parse_tender_pack.parse_tender_pack",
+                    "control.control.api.tenders.dispatch_bid_pack": "{app_name}.tender.control.api.tenders.dispatch_bid_pack.dispatch_bid_pack",
+                    "control.control.api.tenders.attach_returnable_artifact": "{app_name}.tender.control.api.tenders.attach_returnable_artifact.attach_returnable_artifact",
+                    "control.control.api.tenders.get_tender_suitability": "{app_name}.tender.control.api.tenders.get_tender_suitability.get_tender_suitability",
+                    "control.control.api.tenders.get_renewal_radar": "{app_name}.tender.control.api.tenders.get_renewal_radar.get_renewal_radar",
+                    "control.control.api.tenders.get_low_competition_tenders": "{app_name}.tender.control.api.tenders.get_low_competition_tenders.get_low_competition_tenders",
+                    "control.control.api.tenders.get_buyer_dossier": "{app_name}.tender.control.api.tenders.get_buyer_dossier.get_buyer_dossier",
+                    "control.control.api.tenders.get_award_ledger": "{app_name}.tender.control.api.tenders.get_award_ledger.get_award_ledger",
+                    "control.control.api.tenders.get_compliance_calendar": "{app_name}.tender.control.api.tenders.get_compliance_calendar.get_compliance_calendar",
+                    "control.control.api.get_public_opportunities": "{app_name}.tender.control.api.external.get_public_opportunities.get_public_opportunities",
+                    "control.control.api.external.get_public_opportunities": "{app_name}.tender.control.api.external.get_public_opportunities.get_public_opportunities"
+                },
+                "scheduler_events": {
+                    "daily": [
+                        "{app_name}.tender.control.tasks.refresh_opportunities_cache",
+                        "{app_name}.tender.control.compliance.deadline_watch.sweep_bid_deadlines"
+                    ],
+                    "weekly": [
+                        "{app_name}.tender.control.compliance.artifact_expiry.sweep_compliance_artifacts",
+                        "{app_name}.tender.control.quotation_link.ensure_quotation_tender_field",
+                        "{app_name}.tender.control.drift_report.run_suitability_drift_report"
+                    ]
+                },
+                "after_install": [
+                    "{app_name}.tender.control.quotation_link.ensure_quotation_tender_field"
+                ],
+                "doc_events": {
+                    "Tender Bid": {
+                        "validate": "{app_name}.tender.control.compliance.computed_fields.update_computed_fields"
+                    },
+                    "Quotation": {
+                        "validate": "{app_name}.tender.control.quotation_link.sync_quotation_link"
+                    }
+                },
+                "fixtures": [
+                    {
+                        "dt": "Custom Field",
+                        "filters": [
+                            [
+                                "name",
+                                "in",
+                                [
+                                    "Subscription Plan-enable_tenders",
+                                    "User-receive_tender_notifications"
+                                ]
+                            ]
+                        ]
+                    },
+                    {
+                        "dt": "Tender Form Regime"
+                    },
+                    {
+                        "dt": "Tender Compliance Rule"
+                    },
+                    {
+                        "dt": "Tender Workflow Template"
+                    },
+                    {
+                        "dt": "Tender Form Template"
+                    }
+                ]
+            },
+            "dependencies": [
+                "requests",
+                "Pillow",
+                "pypdf"
+            ]
+        },
+        "tenant": {}
+    }
+}

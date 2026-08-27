@@ -1,0 +1,214 @@
+{
+  "name": "erp",
+  "description": "Modular SDK for core ERP: ERPNext v16.32.1 port (accounts, stock, selling, buying, manufacturing, assets, regional and more) flattened into a single composed frappe module. The upstream crm, projects and support modules are excluded \u2014 they are carried by their own SDK modules in the productivity repo ({app_name}.crm, {app_name}.projects, {app_name}.support), which erp's references to them resolve to. Fork of frappe/erpnext (GPL-3.0) via Frappenize/erpnext@rokct.",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "doc_events": {
+          "*": {
+            "validate": [
+              "{app_name}.erp.doctype.transaction_deletion_record.transaction_deletion_record.check_for_running_deletion_job"
+            ]
+          },
+          "Sales Invoice": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ],
+            "on_submit": [
+              "{app_name}.erp.tenant.regional.italy.utils.sales_invoice_on_submit"
+            ],
+            "on_cancel": [
+              "{app_name}.erp.tenant.regional.italy.utils.sales_invoice_on_cancel"
+            ],
+            "on_trash": [
+              "{app_name}.erp.tenant.regional.check_deletion_permission"
+            ]
+          },
+          "Purchase Invoice": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save",
+              "{app_name}.erp.tenant.regional.united_arab_emirates.utils.update_grand_total_for_rcm",
+              "{app_name}.erp.tenant.regional.united_arab_emirates.utils.validate_returns"
+            ]
+          },
+          "Journal Entry": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Bank Clearance": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Stock Entry": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ],
+            "on_submit": [
+              "{app_name}.erp.doctype.material_request.material_request.update_completed_and_requested_qty"
+            ],
+            "on_cancel": [
+              "{app_name}.erp.doctype.material_request.material_request.update_completed_and_requested_qty"
+            ]
+          },
+          "Dunning": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Invoice Discounting": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Payment Entry": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ],
+            "on_trash": [
+              "{app_name}.erp.tenant.regional.check_deletion_permission"
+            ]
+          },
+          "Period Closing Voucher": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Process Deferred Accounting": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Asset": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Asset Capitalization": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Asset Repair": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Delivery Note": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Landed Cost Voucher": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Purchase Receipt": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Stock Reconciliation": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "Subcontracting Receipt": {
+            "validate": [
+              "{app_name}.erp.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save"
+            ]
+          },
+          "User": {
+            "after_insert": [
+              "frappe.contacts.doctype.contact.contact.update_contact"
+            ],
+            "validate": [
+              "{app_name}.erp.doctype.employee.employee.validate_employee_role"
+            ],
+            "on_update": [
+              "{app_name}.erp.tenant.portal.utils.set_default_role"
+            ]
+          },
+          "Address": {
+            "validate": [
+              "{app_name}.erp.tenant.regional.italy.utils.set_state_code"
+            ]
+          },
+          "Contact": {
+            "after_insert": [
+              "{app_name}.erp.doctype.call_log.call_log.link_existing_conversations"
+            ]
+          },
+          "Integration Request": {
+            "validate": [
+              "{app_name}.erp.doctype.payment_request.payment_request.validate_payment"
+            ]
+          }
+        },
+        "scheduler_events": {
+          "cron": {
+            "0/15 * * * *": [
+              "{app_name}.erp.doctype.bom_update_log.bom_update_log.resume_bom_cost_update_jobs",
+              "{app_name}.erp.doctype.repost_item_valuation.repost_item_valuation.run_parallel_reposting"
+            ],
+            "30 * * * *": [
+              "{app_name}.erp.doctype.gl_entry.gl_entry.rename_gle_sle_docs"
+            ]
+          },
+          "hourly_maintenance": [
+            "{app_name}.erp.doctype.repost_item_valuation.repost_item_valuation.repost_entries",
+            "{app_name}.erp.tenant.utilities.bulk_transaction.retry",
+            "{app_name}.erp.doctype.plaid_settings.plaid_settings.automatic_synchronization",
+            "{app_name}.erp.doctype.bank_transaction_rule.bank_transaction_rule.scheduler_run_rule_evaluation"
+          ],
+          "daily_maintenance": [
+            "{app_name}.erp.tenant.controllers.accounts_controller.update_invoice_status",
+            "{app_name}.erp.doctype.fiscal_year.fiscal_year.auto_create_fiscal_year",
+            "{app_name}.erp.doctype.serial_no.serial_no.update_maintenance_status",
+            "{app_name}.erp.doctype.supplier_scorecard.supplier_scorecard.refresh_scorecards",
+            "{app_name}.erp.doctype.company.company.cache_companies_monthly_sales_history",
+            "{app_name}.erp.doctype.asset.asset.update_maintenance_status",
+            "{app_name}.erp.doctype.asset.asset.make_post_gl_entry",
+            "{app_name}.erp.doctype.quality_review.quality_review.review",
+            "{app_name}.erp.doctype.quotation.quotation.set_expired_status",
+            "{app_name}.erp.doctype.supplier_quotation.supplier_quotation.set_expired_status",
+            "{app_name}.erp.doctype.process_statement_of_accounts.process_statement_of_accounts.send_auto_email",
+            "{app_name}.erp.tenant.accounts.utils.auto_create_exchange_rate_revaluation_daily",
+            "{app_name}.erp.tenant.accounts.utils.run_ledger_health_checks",
+            "{app_name}.erp.doctype.asset_maintenance_log.asset_maintenance_log.update_asset_maintenance_log_status",
+            "{app_name}.erp.tenant.stock.reorder_item.reorder_item",
+            "{app_name}.erp.doctype.email_digest.email_digest.send",
+            "{app_name}.erp.doctype.bom_update_tool.bom_update_tool.auto_update_latest_price_in_all_boms",
+            "{app_name}.erp.doctype.asset.depreciation.post_depreciation_entries"
+          ],
+          "weekly": [
+            "{app_name}.erp.tenant.accounts.utils.auto_create_exchange_rate_revaluation_weekly",
+            "{app_name}.erp.doctype.stock_reposting_settings.stock_reposting_settings.repost_incorrect_valuation_entries"
+          ],
+          "monthly_long": [
+            "{app_name}.erp.tenant.accounts.deferred_revenue.process_deferred_accounting",
+            "{app_name}.erp.tenant.accounts.utils.auto_create_exchange_rate_revaluation_monthly"
+          ]
+        },
+        "whitelisted_methods": {
+          "frappe.www.contact.send_message": "{app_name}.erp.templates.utils.send_message"
+        }
+      },
+      "dependencies": [
+        "Unidecode~=1.4.0",
+        "barcodenumber~=0.5.0",
+        "rapidfuzz~=3.14.3",
+        "holidays~=0.87",
+        "googlemaps~=4.10.0",
+        "plaid-python~=7.2.1",
+        "python-youtube~=0.9.9",
+        "pypng~=0.20220715.0",
+        "mt-940>=4.26.0",
+        "pdfplumber>=0.11.0"
+      ]
+    },
+    "control": {}
+  }
+}

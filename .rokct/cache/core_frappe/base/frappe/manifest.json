@@ -1,0 +1,1072 @@
+{
+  "name": "base",
+  "description": "Modular backend package for core",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.system.get_global_settings": "{app_name}.base.tenant.api.system.get_global_settings",
+          "{app_name}.api.translation.get_mobile_translations": "{app_name}.base.tenant.api.translation.get_mobile_translations",
+          "{app_name}.api.system.get_policy": "{app_name}.base.tenant.api.system.get_policy",
+          "{app_name}.api.system.get_terms": "{app_name}.base.tenant.api.system.get_terms",
+          "{app_name}.api.payout.request_payout": "{app_name}.merchants.tenant.api.payout.payout.request_payout",
+          "{app_name}.api.upload.upload_multi_image": "{app_name}.base.tenant.api.upload.upload_multi_image",
+          "{app_name}.api.admin_content.create_admin_banner": "{app_name}.base.tenant.api.admin_content.create_admin_banner",
+          "{app_name}.api.admin_content.create_admin_faq": "{app_name}.base.tenant.api.admin_content.create_admin_faq",
+          "{app_name}.api.admin_content.create_admin_faq_category": "{app_name}.base.tenant.api.admin_content.create_admin_faq_category",
+          "{app_name}.api.admin_content.delete_admin_banner": "{app_name}.base.tenant.api.admin_content.delete_admin_banner",
+          "{app_name}.api.admin_content.delete_admin_faq": "{app_name}.base.tenant.api.admin_content.delete_admin_faq",
+          "{app_name}.api.admin_content.delete_admin_faq_category": "{app_name}.base.tenant.api.admin_content.delete_admin_faq_category",
+          "{app_name}.api.admin_content.get_admin_banners": "{app_name}.base.tenant.api.admin_content.get_admin_banners",
+          "{app_name}.api.admin_content.get_admin_faq_categories": "{app_name}.base.tenant.api.admin_content.get_admin_faq_categories",
+          "{app_name}.api.admin_content.get_admin_faqs": "{app_name}.base.tenant.api.admin_content.get_admin_faqs",
+          "{app_name}.api.admin_content.get_admin_stories": "{app_name}.base.tenant.api.admin_content.get_admin_stories",
+          "{app_name}.api.admin_content.update_admin_banner": "{app_name}.base.tenant.api.admin_content.update_admin_banner",
+          "{app_name}.api.admin_content.update_admin_faq": "{app_name}.base.tenant.api.admin_content.update_admin_faq",
+          "{app_name}.api.admin_content.update_admin_faq_category": "{app_name}.base.tenant.api.admin_content.update_admin_faq_category",
+          "{app_name}.api.admin_data.create_point": "{app_name}.base.tenant.api.admin_data.create_point",
+          "{app_name}.api.admin_data.create_referral": "{app_name}.base.tenant.api.admin_data.create_referral",
+          "{app_name}.api.admin_data.delete_point": "{app_name}.base.tenant.api.admin_data.delete_point",
+          "{app_name}.api.admin_data.delete_referral": "{app_name}.base.tenant.api.admin_data.delete_referral",
+          "{app_name}.api.admin_data.get_all_points": "{app_name}.base.tenant.api.admin_data.get_all_points",
+          "{app_name}.api.admin_data.get_all_product_extra_groups": "{app_name}.base.tenant.api.admin_data.get_all_product_extra_groups",
+          "{app_name}.api.admin_data.get_all_product_extra_values": "{app_name}.base.tenant.api.admin_data.get_all_product_extra_values",
+          "{app_name}.api.admin_data.get_all_referrals": "{app_name}.base.tenant.api.admin_data.get_all_referrals",
+          "{app_name}.api.admin_data.get_all_shop_tags": "{app_name}.base.tenant.api.admin_data.get_all_shop_tags",
+          "{app_name}.api.admin_data.get_all_tags": "{app_name}.base.tenant.api.admin_data.get_all_tags",
+          "{app_name}.api.admin_data.get_all_translations": "{app_name}.base.tenant.api.admin_data.get_all_translations",
+          "{app_name}.api.admin_data.get_all_units": "{app_name}.base.tenant.api.admin_data.get_all_units",
+          "{app_name}.api.admin_data.update_point": "{app_name}.base.tenant.api.admin_data.update_point",
+          "{app_name}.api.admin_logistics.create_delivery_vehicle_type": "{app_name}.base.tenant.api.admin_logistics.create_delivery_vehicle_type",
+          "{app_name}.api.admin_logistics.create_parcel_order_setting": "{app_name}.base.tenant.api.admin_logistics.create_parcel_order_setting",
+          "{app_name}.api.admin_logistics.delete_delivery_vehicle_type": "{app_name}.base.tenant.api.admin_logistics.delete_delivery_vehicle_type",
+          "{app_name}.api.admin_logistics.delete_parcel_order_setting": "{app_name}.base.tenant.api.admin_logistics.delete_parcel_order_setting",
+          "{app_name}.api.admin_logistics.get_all_delivery_man_delivery_zones": "{app_name}.base.tenant.api.admin_logistics.get_all_delivery_man_delivery_zones",
+          "{app_name}.api.admin_logistics.get_all_delivery_zones": "{app_name}.base.tenant.api.admin_logistics.get_all_delivery_zones",
+          "{app_name}.api.admin_logistics.get_all_shop_closed_days": "{app_name}.base.tenant.api.admin_logistics.get_all_shop_closed_days",
+          "{app_name}.api.admin_logistics.get_all_shop_working_days": "{app_name}.base.tenant.api.admin_logistics.get_all_shop_working_days",
+          "{app_name}.api.admin_logistics.get_delivery_vehicle_types": "{app_name}.base.tenant.api.admin_logistics.get_delivery_vehicle_types",
+          "{app_name}.api.admin_logistics.get_deliveryman_global_settings": "{app_name}.base.tenant.api.admin_logistics.get_deliveryman_global_settings",
+          "{app_name}.api.admin_logistics.get_parcel_order_settings": "{app_name}.base.tenant.api.admin_logistics.get_parcel_order_settings",
+          "{app_name}.api.admin_logistics.update_delivery_vehicle_type": "{app_name}.base.tenant.api.admin_logistics.update_delivery_vehicle_type",
+          "{app_name}.api.admin_logistics.update_deliveryman_global_settings": "{app_name}.base.tenant.api.admin_logistics.update_deliveryman_global_settings",
+          "{app_name}.api.admin_logistics.update_parcel_order_setting": "{app_name}.base.tenant.api.admin_logistics.update_parcel_order_setting",
+          "{app_name}.api.admin_management.create_shop": "{app_name}.base.tenant.api.admin_management.create_shop",
+          "{app_name}.api.admin_management.delete_shop": "{app_name}.base.tenant.api.admin_management.delete_shop",
+          "{app_name}.api.admin_management.get_all_roles": "{app_name}.base.tenant.api.admin_management.get_all_roles",
+          "{app_name}.api.admin_management.get_all_shops": "{app_name}.base.tenant.api.admin_management.get_all_shops",
+          "{app_name}.api.admin_management.get_all_users": "{app_name}.base.tenant.api.admin_management.get_all_users",
+          "{app_name}.api.admin_management.update_shop": "{app_name}.base.tenant.api.admin_management.update_shop",
+          "{app_name}.api.admin_records.assign_deliveryman_to_parcel": "{app_name}.base.tenant.api.admin_records.assign_deliveryman_to_parcel",
+          "{app_name}.api.admin_records.create_booking": "{app_name}.base.tenant.api.admin_records.create_booking",
+          "{app_name}.api.admin_records.delete_admin_parcel_order": "{app_name}.base.tenant.api.admin_records.delete_admin_parcel_order",
+          "{app_name}.api.admin_records.delete_admin_review": "{app_name}.base.tenant.api.admin_records.delete_admin_review",
+          "{app_name}.api.admin_records.delete_booking": "{app_name}.base.tenant.api.admin_records.delete_booking",
+          "{app_name}.api.admin_records.get_all_bookings": "{app_name}.base.tenant.api.admin_records.get_all_bookings",
+          "{app_name}.api.admin_records.get_all_notifications": "{app_name}.base.tenant.api.admin_records.get_all_notifications",
+          "{app_name}.api.admin_records.get_all_order_refunds": "{app_name}.base.tenant.api.admin_records.get_all_order_refunds",
+          "{app_name}.api.admin_records.get_all_order_statuses": "{app_name}.base.tenant.api.admin_records.get_all_order_statuses",
+          "{app_name}.api.admin_records.get_all_orders": "{app_name}.base.tenant.api.admin_records.get_all_orders",
+          "{app_name}.api.admin_records.get_all_parcel_orders": "{app_name}.base.tenant.api.admin_records.get_all_parcel_orders",
+          "{app_name}.api.admin_records.get_all_request_models": "{app_name}.base.tenant.api.admin_records.get_all_request_models",
+          "{app_name}.api.admin_records.get_all_reviews": "{app_name}.base.tenant.api.admin_records.get_all_reviews",
+          "{app_name}.api.admin_records.get_all_tickets": "{app_name}.base.tenant.api.admin_records.get_all_tickets",
+          "{app_name}.api.admin_records.update_admin_order_refund": "{app_name}.base.tenant.api.admin_records.update_admin_order_refund",
+          "{app_name}.api.admin_records.update_admin_review": "{app_name}.base.tenant.api.admin_records.update_admin_review",
+          "{app_name}.api.admin_records.update_admin_ticket": "{app_name}.base.tenant.api.admin_records.update_admin_ticket",
+          "{app_name}.api.admin_records.update_booking": "{app_name}.base.tenant.api.admin_records.update_booking",
+          "{app_name}.api.admin_reports.get_admin_report": "{app_name}.base.tenant.api.admin_reports.get_admin_report",
+          "{app_name}.api.admin_reports.get_admin_statistics": "{app_name}.base.tenant.api.admin_reports.get_admin_statistics",
+          "{app_name}.api.admin_reports.get_all_seller_payouts": "{app_name}.base.tenant.api.admin_reports.get_all_seller_payouts",
+          "{app_name}.api.admin_reports.get_all_shop_bonuses": "{app_name}.base.tenant.api.admin_reports.get_all_shop_bonuses",
+          "{app_name}.api.admin_reports.get_all_transactions": "{app_name}.base.tenant.api.admin_reports.get_all_transactions",
+          "{app_name}.api.admin_reports.get_all_wallet_histories": "{app_name}.base.tenant.api.admin_reports.get_all_wallet_histories",
+          "{app_name}.api.admin_reports.get_multi_company_sales_report": "{app_name}.base.tenant.api.admin_reports.get_multi_company_sales_report",
+          "{app_name}.api.admin_settings.create_email_subscription": "{app_name}.base.tenant.api.admin_settings.create_email_subscription",
+          "{app_name}.api.admin_settings.delete_email_subscription": "{app_name}.base.tenant.api.admin_settings.delete_email_subscription",
+          "{app_name}.api.admin_settings.get_all_currencies": "{app_name}.base.tenant.api.admin_settings.get_all_currencies",
+          "{app_name}.api.admin_settings.get_all_email_templates": "{app_name}.base.tenant.api.admin_settings.get_all_email_templates",
+          "{app_name}.api.admin_settings.get_all_languages": "{app_name}.base.tenant.api.admin_settings.get_all_languages",
+          "{app_name}.api.admin_settings.get_app_settings": "{app_name}.base.tenant.api.admin_settings.get_app_settings",
+          "{app_name}.api.admin_settings.get_email_settings": "{app_name}.base.tenant.api.admin_settings.get_email_settings",
+          "{app_name}.api.admin_settings.get_email_subscriptions": "{app_name}.base.tenant.api.admin_settings.get_email_subscriptions",
+          "{app_name}.api.admin_settings.get_general_settings": "{app_name}.base.tenant.api.admin_settings.get_general_settings",
+          "{app_name}.api.admin_settings.update_app_settings": "{app_name}.base.tenant.api.admin_settings.update_app_settings",
+          "{app_name}.api.admin_settings.update_currency": "{app_name}.base.tenant.api.admin_settings.update_currency",
+          "{app_name}.api.admin_settings.update_email_settings": "{app_name}.base.tenant.api.admin_settings.update_email_settings",
+          "{app_name}.api.admin_settings.update_email_template": "{app_name}.base.tenant.api.admin_settings.update_email_template",
+          "{app_name}.api.admin_settings.update_general_settings": "{app_name}.base.tenant.api.admin_settings.update_general_settings",
+          "{app_name}.api.admin_settings.update_language": "{app_name}.base.tenant.api.admin_settings.update_language",
+          "{app_name}.api.admin_system.clear_system_cache": "{app_name}.base.tenant.api.admin_system.clear_system_cache",
+          "{app_name}.api.admin_system.create_backup": "{app_name}.base.tenant.api.admin_system.create_backup",
+          "{app_name}.api.admin_system.get_backups": "{app_name}.base.tenant.api.admin_system.get_backups",
+          "{app_name}.api.admin_system.get_system_info": "{app_name}.base.tenant.api.admin_system.get_system_info",
+          "{app_name}.api.app_links.get_apple_app_site_association": "{app_name}.base.tenant.api.app_links.get_apple_app_site_association",
+          "{app_name}.api.app_links.get_assetlinks": "{app_name}.base.tenant.api.app_links.get_assetlinks",
+          "{app_name}.api.branch.create_branch": "{app_name}.base.tenant.api.branch.create_branch",
+          "{app_name}.api.branch.delete_branch": "{app_name}.base.tenant.api.branch.delete_branch",
+          "{app_name}.api.branch.get_branch": "{app_name}.base.tenant.api.branch.get_branch",
+          "{app_name}.api.branch.get_branches": "{app_name}.base.tenant.api.branch.get_branches",
+          "{app_name}.api.branch.update_branch": "{app_name}.base.tenant.api.branch.update_branch",
+          "{app_name}.api.language.get_default_language": "{app_name}.base.tenant.api.language.get_default_language",
+          "{app_name}.api.language.get_languages": "{app_name}.base.tenant.api.language.get_languages",
+          "{app_name}.api.language.get_translations": "{app_name}.base.tenant.api.language.get_translations",
+          "{app_name}.api.page.get_admin_pages": "{app_name}.base.tenant.api.page.get_admin_pages",
+          "{app_name}.api.page.get_admin_web_page": "{app_name}.base.tenant.api.page.get_admin_web_page",
+          "{app_name}.api.page.get_page": "{app_name}.base.tenant.api.page.get_page",
+          "{app_name}.api.page.update_admin_web_page": "{app_name}.base.tenant.api.page.update_admin_web_page",
+          "{app_name}.api.remote_config.get_remote_config": "{app_name}.base.tenant.api.remote_config.get_remote_config",
+          "{app_name}.api.system.api_status": "{app_name}.base.tenant.api.system.api_status",
+          "{app_name}.api.system.get_currencies": "{app_name}.base.tenant.api.system.get_currencies",
+          "{app_name}.api.system.get_languages": "{app_name}.base.tenant.api.system.get_languages",
+          "{app_name}.api.system.get_weather": "{app_name}.base.tenant.api.system.get_weather",
+          "{app_name}.api.system.trigger_system_update": "{app_name}.base.tenant.api.system.trigger_system_update",
+          "{app_name}.api.translation.create_translation": "{app_name}.base.tenant.api.translation.create_translation",
+          "{app_name}.api.translation.delete_translation": "{app_name}.base.tenant.api.translation.delete_translation",
+          "{app_name}.api.translation.drop_all_translations": "{app_name}.base.tenant.api.translation.drop_all_translations",
+          "{app_name}.api.translation.export_translations": "{app_name}.base.tenant.api.translation.export_translations",
+          "{app_name}.api.translation.get_translations_paginate": "{app_name}.base.tenant.api.translation.get_translations_paginate",
+          "{app_name}.api.translation.import_translations": "{app_name}.base.tenant.api.translation.import_translations",
+          "{app_name}.api.translation.restore_all_translations": "{app_name}.base.tenant.api.translation.restore_all_translations",
+          "{app_name}.api.translation.truncate_translations": "{app_name}.base.tenant.api.translation.truncate_translations",
+          "{app_name}.api.translation.update_translation": "{app_name}.base.tenant.api.translation.update_translation",
+          "{app_name}.api.upload.upload_file": "{app_name}.base.tenant.api.upload.upload_file",
+          "{app_name}.tenant.api.initial_setup": "{app_name}.base.tenant.core.initial_setup.initial_setup",
+          "{app_name}.tenant.api.complete_onboarding": "{app_name}.base.tenant.core.complete_onboarding.complete_onboarding",
+          "{app_name}.tenant.api.update_fiscal_year_if_default": "{app_name}.base.tenant.core.update_fiscal_year_if_default.update_fiscal_year_if_default",
+          "{app_name}.tenant.api.create_sales_invoice": "{app_name}.base.tenant.core.create_sales_invoice.create_sales_invoice",
+          "{app_name}.tenant.api.set_platform_secret": "{app_name}.base.tenant.core.set_platform_secret.set_platform_secret",
+          "{app_name}.tenant.api.announce_ready_to_control": "{app_name}.base.tenant.core.announce_ready_to_control.announce_ready_to_control",
+          "{app_name}.api.setup.update_naming_series.update_naming_series": "{app_name}.base.tenant.setup.update_naming_series.update_naming_series"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Idempotency Key"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Kitchen Translation"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Subscription"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Parcel Order Item"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Parcel Category"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Parcel Option"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Ads Package"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Membership"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Booking Closed Date"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Wallet History"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Cart"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Coupon Translation"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Point"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Order Item"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "User Shop"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Seller Payout"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Unit"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Ads Package"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Booking Working Day"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Branch"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Gallery"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Delivery Vehicle Type"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Deliveryman Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Menu Item"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Loan Contract"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Product Extra Value"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Closed Day"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Cart User"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Delivery Point"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Subscription"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Working Day"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Category"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "FAQ Category"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Tag"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "User Booking"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Category Translation"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "DeliveryMan Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Section"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Ticket"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Deliveryman Delivery Zone"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Coupon Usage"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Flutterwave Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Email Subscription"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Ban"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "User Membership"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Payment Payload"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Parcel Order Setting"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Product Translation"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop Bonus"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Cashback Rule"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Combo Item"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Permission Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Project Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Email Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Request Model"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "FAQ"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Invitation"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Product Extra Group"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Tag"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Order Refund"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Loan Application"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Global Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Parcel Review"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Loan Eligibility Check"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Cart User"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Eligible Plan"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Career Category"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Career"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Delivery Zone Coordinate"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Order Status"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Receipt Stock"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Receipt Instruction"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Receipt Ingredient"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Receipt Nutrition"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "User Cart"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Cart Detail"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "PaaS Translation"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Settings"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Referral Campaign"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Referral Campaign Translation"
+              ]
+            ]
+          },
+          {
+            "dt": "Province"
+          },
+          {
+            "dt": "Organ of State"
+          },
+          {
+            "dt": "Custom Field",
+            "filters": [
+              [
+                "fieldname",
+                "in",
+                [
+                  "login_redirect",
+                  "item_is_visible"
+                ]
+              ]
+            ]
+          },
+          {
+            "dt": "Custom DocPerm",
+            "filters": [
+              [
+                "parent",
+                "in",
+                [
+                  "Company",
+                  "Sales Invoice"
+                ]
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Legacy Vault"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Legacy Relationship"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Obituary Draft"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Life Event"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Province"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Organ of State"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Location Type"
+              ]
+            ]
+          }
+        ],
+        "override_doctype_class": {
+          "File": "{app_name}.base.tenant.overrides.CustomFile"
+        },
+        "doc_events": {
+          "Company": {
+            "before_insert": [
+              "{app_name}.base.tenant.core.company_guard.company_guard.block_second_company"
+            ]
+          }
+        },
+        "scheduler_events": {
+          "daily": [
+            "{app_name}.base.tenant.core.tasks.check_invoice_payments",
+            "{app_name}.base.tenant.core.tasks.check_protocol_99_sequences",
+            "{app_name}.base.tenant.core.tasks.purge_expired_idempotency_keys"
+          ]
+        },
+        "commands": []
+      },
+      "dependencies": [
+        "requests",
+        "pillow"
+      ]
+    },
+    "control": {}
+  }
+}

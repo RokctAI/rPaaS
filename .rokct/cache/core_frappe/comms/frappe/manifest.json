@@ -1,0 +1,96 @@
+{
+  "name": "comms",
+  "description": "Modular backend package for comms. Role-split per frappe_sdk_management.md: notifications/whatsapp/email settings (src/tenant/) compose only into tenant products; the hub-side SMTP relay for tenant email (src/control/ relay_email, X-Rokct-Secret auth) composes only into the control product; the juvo push-notification seed patch (src/patches/) composes into every product and self-gates on the target site.",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.notification.get_notification_count": "{app_name}.comms.tenant.api.notification.get_notification_count",
+          "{app_name}.api.notification.get_user_notifications": "{app_name}.comms.tenant.api.notification.get_user_notifications",
+          "{app_name}.api.notification.get_notification_settings": "{app_name}.comms.tenant.api.notification.get_notification_settings",
+          "{app_name}.api.notification.mark_notification_logs_as_read": "{app_name}.comms.tenant.api.notification.mark_notification_logs_as_read",
+          "{app_name}.api.notification.read_all_notifications": "{app_name}.comms.tenant.api.notification.read_all_notifications",
+          "{app_name}.api.notification.read_one_notification": "{app_name}.comms.tenant.api.notification.read_one_notification",
+          "{app_name}.api.notification.update_notification_settings": "{app_name}.comms.tenant.api.notification.update_notification_settings",
+          "{app_name}.api.whatsapp.flow_endpoint": "{app_name}.comms.tenant.api.whatsapp.flow_endpoint",
+          "{app_name}.api.whatsapp.hook": "{app_name}.comms.tenant.api.whatsapp.hook",
+          "{app_name}.api.notification.get_default_sms_payload": "{app_name}.comms.tenant.api.notification.get_default_sms_payload",
+          "{app_name}.api.notification.send_push_notification": "{app_name}.comms.tenant.api.notification.send_push_notification",
+          "{app_name}.tenant.api.get_welcome_email_details": "{app_name}.comms.tenant.comms.get_welcome_email_details.get_welcome_email_details",
+          "{app_name}.tenant.api.save_email_settings": "{app_name}.comms.tenant.comms.save_email_settings.save_email_settings"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Device Token"
+              ]
+            ]
+          },
+          {
+            "dt": "Email Template",
+            "filters": [
+              [
+                "name",
+                "in",
+                [
+                  "New User Welcome",
+                  "Support User Expired",
+                  "Critical Tenant Creation Failed",
+                  "Critical Tenant Setup Failed"
+                ]
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Meeting"
+              ]
+            ]
+          },
+          {
+            "dt": "Custom Field",
+            "filters": [
+              [
+                "name",
+                "in",
+                [
+                  "Push Notification Settings-firebase_config_section",
+                  "Push Notification Settings-api_key",
+                  "Push Notification Settings-ios_api_key",
+                  "Push Notification Settings-android_api_key",
+                  "Push Notification Settings-server_key",
+                  "Push Notification Settings-vapid_key",
+                  "Push Notification Settings-auth_domain",
+                  "Push Notification Settings-project_id",
+                  "Push Notification Settings-storage_bucket",
+                  "Push Notification Settings-messaging_sender_id",
+                  "Push Notification Settings-app_id",
+                  "Push Notification Settings-measurement_id"
+                ]
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "control": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.relay_email": "{app_name}.comms.control.api.relay_email.relay_email",
+          "control:relay_email": "{app_name}.comms.control.api.relay_email.relay_email",
+          "control.control.api.relay_email": "{app_name}.comms.control.api.relay_email.relay_email",
+          "control.control.api.email.relay_email": "{app_name}.comms.control.api.relay_email.relay_email",
+          "control.control.api.email.relay_email.relay_email": "{app_name}.comms.control.api.relay_email.relay_email"
+        }
+      }
+    }
+  }
+}

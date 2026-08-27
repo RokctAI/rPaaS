@@ -1,0 +1,213 @@
+{
+  "name": "hrms",
+  "description": "Modular SDK for HR & Payroll: Frappe HR port (employee lifecycle, leaves, attendance, shifts, recruitment, appraisals, expense claims, salary structures, payroll entry and more) flattened into a single composed frappe module. Composes ONLY alongside the erp module \u2014 the Employee master and accounting doctypes live in erp, and every upstream erpnext reference resolves to {app_name}.erp (or {app_name}.crm for the excluded crm module). Fork of frappe/hrms (GPL-3.0) via Frappenize/hrms@rokct-hotfix.",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "doc_events": {
+          "User": {
+            "validate": [
+              "{app_name}.erp.doctype.employee.employee.validate_employee_role",
+              "{app_name}.hrms.tenant.overrides.employee_master.update_approver_user_roles"
+            ]
+          },
+          "Company": {
+            "validate": [
+              "{app_name}.hrms.tenant.overrides.company.validate_default_accounts"
+            ],
+            "on_update": [
+              "{app_name}.hrms.tenant.overrides.company.make_company_fixtures",
+              "{app_name}.hrms.tenant.overrides.company.set_default_hr_accounts"
+            ],
+            "on_trash": [
+              "{app_name}.hrms.tenant.overrides.company.handle_linked_docs"
+            ]
+          },
+          "Holiday List": {
+            "on_update": [
+              "{app_name}.hrms.tenant.utils.holiday_list.invalidate_cache"
+            ],
+            "on_trash": [
+              "{app_name}.hrms.tenant.utils.holiday_list.invalidate_cache"
+            ]
+          },
+          "Timesheet": {
+            "validate": [
+              "{app_name}.hrms.tenant.hr.utils.validate_active_employee"
+            ]
+          },
+          "Payment Entry": {
+            "on_submit": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.update_payment_for_expense_claim"
+            ],
+            "on_cancel": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.update_payment_for_expense_claim"
+            ],
+            "on_update_after_submit": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.update_payment_for_expense_claim"
+            ]
+          },
+          "Unreconcile Payment": {
+            "on_submit": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.update_payment_for_expense_claim"
+            ]
+          },
+          "Journal Entry": {
+            "validate": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.validate_expense_claim_in_jv"
+            ],
+            "on_submit": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.update_payment_for_expense_claim",
+              "{app_name}.hrms.doctype.full_and_final_statement.full_and_final_statement.update_full_and_final_statement_status",
+              "{app_name}.hrms.doctype.salary_withholding.salary_withholding.update_salary_withholding_payment_status"
+            ],
+            "on_update_after_submit": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.update_payment_for_expense_claim"
+            ],
+            "on_cancel": [
+              "{app_name}.hrms.doctype.expense_claim.expense_claim.update_payment_for_expense_claim",
+              "{app_name}.hrms.doctype.salary_slip.salary_slip.unlink_ref_doc_from_salary_slip",
+              "{app_name}.hrms.doctype.full_and_final_statement.full_and_final_statement.update_full_and_final_statement_status",
+              "{app_name}.hrms.doctype.salary_withholding.salary_withholding.update_salary_withholding_payment_status"
+            ]
+          },
+          "Loan": {
+            "validate": [
+              "{app_name}.hrms.tenant.hr.utils.validate_loan_repay_from_salary"
+            ]
+          },
+          "Employee": {
+            "validate": [
+              "{app_name}.hrms.tenant.overrides.employee_master.validate_onboarding_process"
+            ],
+            "on_update": [
+              "{app_name}.hrms.tenant.overrides.employee_master.update_approver_role",
+              "{app_name}.hrms.tenant.overrides.employee_master.publish_update"
+            ],
+            "after_insert": [
+              "{app_name}.hrms.tenant.overrides.employee_master.update_job_applicant_and_offer",
+              "{app_name}.hrms.tenant.telemetry.on_milestone_insert"
+            ],
+            "on_trash": [
+              "{app_name}.hrms.tenant.overrides.employee_master.update_employee_transfer"
+            ],
+            "after_delete": [
+              "{app_name}.hrms.tenant.overrides.employee_master.publish_update"
+            ]
+          },
+          "Project": {
+            "validate": [
+              "{app_name}.hrms.tenant.controllers.employee_boarding_controller.update_employee_boarding_status"
+            ]
+          },
+          "Task": {
+            "on_update": [
+              "{app_name}.hrms.tenant.controllers.employee_boarding_controller.update_task"
+            ]
+          },
+          "Leave Application": {
+            "on_submit": [
+              "{app_name}.hrms.tenant.telemetry.on_leave_application_submit"
+            ]
+          },
+          "Expense Claim": {
+            "on_submit": [
+              "{app_name}.hrms.tenant.telemetry.on_expense_claim_submit"
+            ]
+          },
+          "Attendance Request": {
+            "on_submit": [
+              "{app_name}.hrms.tenant.telemetry.on_attendance_request_submit"
+            ]
+          },
+          "Shift Request": {
+            "on_submit": [
+              "{app_name}.hrms.tenant.telemetry.on_shift_request_submit"
+            ]
+          },
+          "Employee Checkin": {
+            "after_insert": [
+              "{app_name}.hrms.tenant.telemetry.on_employee_checkin"
+            ]
+          },
+          "Shift Type": {
+            "after_insert": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_insert"
+            ]
+          },
+          "Leave Type": {
+            "after_insert": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_insert"
+            ]
+          },
+          "Salary Structure": {
+            "after_insert": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_insert"
+            ]
+          },
+          "Job Opening": {
+            "after_insert": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_insert"
+            ]
+          },
+          "Appraisal Cycle": {
+            "after_insert": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_insert"
+            ]
+          },
+          "Employee Onboarding": {
+            "after_insert": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_insert"
+            ]
+          },
+          "Salary Slip": {
+            "on_submit": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_submit"
+            ]
+          },
+          "Payroll Entry": {
+            "on_submit": [
+              "{app_name}.hrms.tenant.telemetry.on_milestone_submit"
+            ]
+          }
+        },
+        "scheduler_events": {
+          "all": [
+            "{app_name}.hrms.doctype.interview.interview.send_interview_reminder"
+          ],
+          "hourly": [
+            "{app_name}.hrms.doctype.daily_work_summary_group.daily_work_summary_group.trigger_emails"
+          ],
+          "hourly_long": [
+            "{app_name}.hrms.doctype.shift_type.shift_type.update_last_sync_of_checkin",
+            "{app_name}.hrms.doctype.shift_type.shift_type.process_auto_attendance_for_all_shifts",
+            "{app_name}.hrms.doctype.shift_schedule_assignment.shift_schedule_assignment.process_auto_shift_creation"
+          ],
+          "daily": [
+            "{app_name}.hrms.tenant.controllers.employee_reminders.send_birthday_reminders",
+            "{app_name}.hrms.tenant.controllers.employee_reminders.send_work_anniversary_reminders",
+            "{app_name}.hrms.doctype.daily_work_summary_group.daily_work_summary_group.send_summary",
+            "{app_name}.hrms.doctype.interview.interview.send_daily_feedback_reminder",
+            "{app_name}.hrms.doctype.shift_assignment.shift_assignment.mark_expired_shift_assignments_as_inactive",
+            "{app_name}.hrms.doctype.job_opening.job_opening.close_expired_job_openings",
+            "{app_name}.hrms.tenant.telemetry.capture_daily_attendance_pulse"
+          ],
+          "daily_long": [
+            "{app_name}.hrms.doctype.leave_ledger_entry.leave_ledger_entry.process_expired_allocation",
+            "{app_name}.hrms.tenant.hr.utils.generate_leave_encashment",
+            "{app_name}.hrms.tenant.hr.utils.allocate_earned_leaves"
+          ],
+          "weekly": [
+            "{app_name}.hrms.tenant.controllers.employee_reminders.send_reminders_in_advance_weekly"
+          ],
+          "monthly": [
+            "{app_name}.hrms.tenant.controllers.employee_reminders.send_reminders_in_advance_monthly"
+          ]
+        },
+        "whitelisted_methods": {}
+      },
+      "dependencies": []
+    },
+    "control": {}
+  }
+}

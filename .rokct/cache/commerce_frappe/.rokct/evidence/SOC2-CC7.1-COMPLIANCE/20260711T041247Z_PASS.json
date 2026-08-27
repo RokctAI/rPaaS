@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-07-11T04:12:47.095295+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "PASS",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/commerce/loyalty/dart",
+  "detail": "Architectural compliance scan completed successfully with 0 violations. Codebase standards verified.",
+  "violations": []
+}

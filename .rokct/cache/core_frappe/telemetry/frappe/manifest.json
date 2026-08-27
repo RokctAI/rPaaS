@@ -1,0 +1,109 @@
+{
+  "name": "telemetry",
+  "description": "Modular backend package for telemetry and observability features. Role-split per frappe_sdk_management.md: the tenant-side dispatcher/senders and API Error Log (src/tenant/) compose only into tenant products; the hub-side inbound telemetry surface (src/control/) - report_tenant_error/report_tenant_visitors sinks with X-Rokct-Secret auth, the guest record_unique_visit counter, the Next.js log_frontend_error sink, and the Tenant Error Log / Tenant Visitor Log doctypes - composes only into the control product.",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.tenant.api.report_client_error": "{app_name}.telemetry.tenant.telemetry.forward_error_to_control.forward_error_to_control",
+          "{app_name}.tenant.api.log_frontend_error": "{app_name}.telemetry.tenant.telemetry.log_frontend_error.log_frontend_error",
+          "{app_name}.tenant.api.track_event": "{app_name}.telemetry.tenant.telemetry.track_event.track_event"
+        },
+        "scheduler_events": {
+          "daily": [
+            "{app_name}.telemetry.tenant.telemetry.sync_visitors_to_control.sync_visitors_to_control",
+            "{app_name}.telemetry.tenant.telemetry.sync_usage_to_control.sync_usage_to_control"
+          ]
+        },
+        "doc_events": {
+          "API Error Log": {
+            "after_insert": "{app_name}.telemetry.tenant.telemetry.forward_error_to_control.forward_error_to_control"
+          },
+          "*": {
+            "before_insert": "{app_name}.telemetry.tenant.telemetry.utils.inject_trace_context",
+            "validate": "{app_name}.telemetry.tenant.telemetry.utils.inject_trace_context"
+          }
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "API Error Log"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Client Usage Event"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "control": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.report_tenant_error": "{app_name}.telemetry.control.api.tenant.report_tenant_error.report_tenant_error",
+          "{app_name}.api.report_tenant_visitors": "{app_name}.telemetry.control.api.tenant.report_tenant_visitors.report_tenant_visitors",
+          "{app_name}.api.report_tenant_usage": "{app_name}.telemetry.control.api.tenant.report_tenant_usage.report_tenant_usage",
+          "{app_name}.api.record_unique_visit": "{app_name}.telemetry.control.api.tenant.record_unique_visit.record_unique_visit",
+          "{app_name}.api.log_frontend_error": "{app_name}.telemetry.control.api.log_frontend_error.log_frontend_error",
+          "control:report_tenant_error": "{app_name}.telemetry.control.api.tenant.report_tenant_error.report_tenant_error",
+          "control:report_tenant_visitors": "{app_name}.telemetry.control.api.tenant.report_tenant_visitors.report_tenant_visitors",
+          "control:report_tenant_usage": "{app_name}.telemetry.control.api.tenant.report_tenant_usage.report_tenant_usage",
+          "control:record_unique_visit": "{app_name}.telemetry.control.api.tenant.record_unique_visit.record_unique_visit",
+          "control.control.api.report_tenant_error": "{app_name}.telemetry.control.api.tenant.report_tenant_error.report_tenant_error",
+          "control.control.api.tenant.report_tenant_error": "{app_name}.telemetry.control.api.tenant.report_tenant_error.report_tenant_error",
+          "control.control.api.tenant.report_tenant_error.report_tenant_error": "{app_name}.telemetry.control.api.tenant.report_tenant_error.report_tenant_error",
+          "control.control.api.tenant.report_tenant_visitors": "{app_name}.telemetry.control.api.tenant.report_tenant_visitors.report_tenant_visitors",
+          "control.control.api.tenant.report_tenant_visitors.report_tenant_visitors": "{app_name}.telemetry.control.api.tenant.report_tenant_visitors.report_tenant_visitors",
+          "control.control.api.tenant.report_tenant_usage": "{app_name}.telemetry.control.api.tenant.report_tenant_usage.report_tenant_usage",
+          "control.control.api.tenant.report_tenant_usage.report_tenant_usage": "{app_name}.telemetry.control.api.tenant.report_tenant_usage.report_tenant_usage",
+          "control.control.api.tenant.record_unique_visit": "{app_name}.telemetry.control.api.tenant.record_unique_visit.record_unique_visit",
+          "control.control.api.tenant.record_unique_visit.record_unique_visit": "{app_name}.telemetry.control.api.tenant.record_unique_visit.record_unique_visit",
+          "control.api.log_frontend_error": "{app_name}.telemetry.control.api.log_frontend_error.log_frontend_error"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Tenant Error Log"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Tenant Visitor Log"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Tenant Usage Log"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

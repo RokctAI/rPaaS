@@ -1,0 +1,27 @@
+{
+    "allow_self_subscription":  1,
+    "billing_cycle":  "Monthly",
+    "billing_interval":  1,
+    "cost":  0.0,
+    "currency":  "USD",
+    "doctype":  "Subscription Plan",
+    "is_ai":  0,
+    "is_free_plan":  1,
+    "item":  "Telephony Free Plan",
+    "plan_name":  "Telephony Free (Monthly)",
+    "price_determination":  "Fixed Rate",
+    "trial_period_days":  0,
+    "plan_category":  "Telephony",
+    "modules":  [
+                    {
+                        "module":  "Telephony"
+                    }
+                ],
+    "features":  [
+                     "1 Dedicated SIP Line",
+                     "Basic Web Portal Access",
+                     "Call History (7 Days)"
+                 ],
+    "plan_type":  "Service",
+    "storage_quota_gb":  0.5
+}

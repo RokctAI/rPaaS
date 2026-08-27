@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-07-11T03:39:51.378539+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "FAIL",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/corporate/polaris/dart",
+  "detail": "Architectural compliance scan failed with 6 violations across source code checks.",
+  "violations": [
+    {
+      "file": ".\\lib\\src\\domain\\interface\\polaris_repository_facade.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'polaris_repository_facade.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\mock_polaris_repository_impl.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'mock_polaris_repository_impl.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\services\\polaris_draft_storage.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'polaris_draft_storage.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\services\\polaris_draft_storage.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'polaris_draft_storage.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\polaris_models.dart",
+      "line": 199,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'polaris_models.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\polaris_models.dart",
+      "line": 213,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'polaris_models.dart'. Define concrete Dart models or strong types."
+    }
+  ]
+}

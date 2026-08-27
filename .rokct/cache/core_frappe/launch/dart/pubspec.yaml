@@ -1,0 +1,29 @@
+name: launch_sdk
+description: "Platform Launcher and Orchestration SDK"
+version: 1.0.0
+publish_to: 'none'
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  base_sdk:
+    path: ../base
+  users_sdk:
+    path: ../users
+  flutter_riverpod: ^2.4.9
+  get_it: ^8.0.0
+  installed_apps: ^2.1.1
+  remixicon: ^1.4.1
+
+# Workspace-relative overrides so this package resolves standalone for
+# analysis. The paths above are correct once composed (sdk_composer.py
+# copies every SDK as a sibling under .rokct/cache/); these overrides target
+# the raw monorepo checkout instead. Ignored when a host app is the
+# resolution root and has already composed launch_sdk into .rokct/cache/.
+dependency_overrides:
+  base_sdk:
+    path: ../../../core/base/dart
+  users_sdk:
+    path: ../../../Users/users/dart

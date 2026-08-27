@@ -1,0 +1,2170 @@
+{
+  "compliance_remaps": {
+    "__init__.py": 2,
+    "accounts/custom/address.py": 1,
+    "accounts/doctype/account_category/account_category.py": 1,
+    "accounts/doctype/bank_transaction/auto_match_party.py": 1,
+    "accounts/doctype/chart_of_accounts_importer/chart_of_accounts_importer.py": 1,
+    "accounts/doctype/currency_exchange_settings/currency_exchange_settings.py": 1,
+    "accounts/doctype/financial_report_template/financial_report_template.py": 1,
+    "accounts/doctype/loyalty_point_entry/loyalty_point_entry.py": 2,
+    "accounts/doctype/payment_entry/payment_entry.py": 1,
+    "accounts/doctype/payment_gateway_account/payment_gateway_account.py": 2,
+    "accounts/doctype/payment_gateway_account/payment_gateway_account_dashboard.py": 1,
+    "accounts/report/sales_payment_summary/sales_payment_summary.py": 6,
+    "accounts/report/share_ledger/share_ledger.py": 1,
+    "assets/doctype/asset_capitalization_asset_item/asset_capitalization_asset_item.py": 1,
+    "assets/doctype/asset_capitalization_service_item/asset_capitalization_service_item.py": 1,
+    "assets/doctype/asset_capitalization_stock_item/asset_capitalization_stock_item.py": 1,
+    "assets/doctype/location/location.py": 1,
+    "buying/doctype/supplier/patches/migrate_supplier_portal_users.py": 1,
+    "buying/doctype/supplier_scorecard_criteria/supplier_scorecard_criteria.py": 2,
+    "buying/doctype/supplier_scorecard_standing/supplier_scorecard_standing.py": 1,
+    "controllers/status_updater.py": 5,
+    "controllers/website_list_for_contact.py": 3,
+    "edi/doctype/code_list/code_list_import.py": 1,
+    "manufacturing/report/material_requirements_planning_report/material_requirements_planning_report.py": 1,
+    "regional/address_template/setup.py": 1,
+    "regional/united_arab_emirates/setup.py": 1,
+    "regional/united_states/setup.py": 1,
+    "selling/report/available_stock_for_packing_items/available_stock_for_packing_items.py": 2,
+    "selling/report/customer_acquisition_and_loyalty/customer_acquisition_and_loyalty.py": 2,
+    "selling/report/item_wise_sales_history/item_wise_sales_history.py": 1,
+    "selling/report/pending_so_items_for_purchase_request/pending_so_items_for_purchase_request.py": 1,
+    "selling/report/sales_order_analysis/sales_order_analysis.py": 1,
+    "setup/demo.py": 1,
+    "setup/doctype/authorization_rule/authorization_rule.py": 2,
+    "setup/doctype/incoterm/incoterm.py": 1,
+    "setup/install.py": 1,
+    "setup/setup_wizard/data/dashboard_charts.py": 2,
+    "setup/setup_wizard/operations/install_fixtures.py": 1,
+    "setup/setup_wizard/operations/taxes_setup.py": 4,
+    "setup/utils.py": 1,
+    "stock/__init__.py": 1,
+    "stock/doctype/item_alternative/item_alternative.py": 1,
+    "templates/pages/help.py": 2,
+    "templates/pages/material_request_info.py": 2,
+    "templates/pages/partners.py": 1,
+    "templates/pages/search_help.py": 2,
+    "templates/utils.py": 1,
+    "utilities/naming.py": 2
+  },
+  "dependencies": [
+    "Unidecode~=1.4.0",
+    "barcodenumber~=0.5.0",
+    "rapidfuzz~=3.14.3",
+    "holidays~=0.87",
+    "googlemaps~=4.10.0",
+    "plaid-python~=7.2.1",
+    "python-youtube~=0.9.9",
+    "pypng~=0.20220715.0",
+    "mt-940>=4.26.0",
+    "pdfplumber>=0.11.0"
+  ],
+  "doctype_count": 460,
+  "excluded": [
+    "change_log",
+    "hooks.py",
+    "locale",
+    "modules.txt",
+    "patches",
+    "patches.txt",
+    "www"
+  ],
+  "excluded_doctypes": {
+    "artifact_records": {
+      "report": [
+        "youtube_interactions"
+      ]
+    },
+    "doctypes": {
+      "bom_website_item": {
+        "module": "manufacturing",
+        "name": "BOM Website Item"
+      },
+      "bom_website_operation": {
+        "module": "manufacturing",
+        "name": "BOM Website Operation"
+      },
+      "item_website_specification": {
+        "module": "stock",
+        "name": "Item Website Specification"
+      },
+      "video": {
+        "module": "utilities",
+        "name": "Video"
+      },
+      "video_settings": {
+        "module": "utilities",
+        "name": "Video Settings"
+      },
+      "website_attribute": {
+        "module": "portal",
+        "name": "Website Attribute"
+      },
+      "website_filter_field": {
+        "module": "portal",
+        "name": "Website Filter Field"
+      },
+      "website_item_group": {
+        "module": "setup",
+        "name": "Website Item Group"
+      }
+    },
+    "export_dir": "port/exports/dead_doctypes/",
+    "hooks_dropped": {
+      "scheduler_events": {
+        "hourly_maintenance": [
+          "erpnext.utilities.doctype.video.video.update_youtube_data"
+        ]
+      }
+    },
+    "reason": "dead surfaces with zero inbound references: orphaned website child tables (parents lost the embedding Table fields in the v14 e-commerce split) and the desk-only Video/YouTube learn feature (+ its youtube_interactions report)."
+  },
+  "excluded_fixture_records": {
+    "counts": {
+      "dashboard_chart": 34,
+      "dashboard_chart_source": 3,
+      "desktop_icon": 24,
+      "erp_dashboard": 7,
+      "form_tour": 2,
+      "module_onboarding": 8,
+      "number_card": 34,
+      "onboarding_step": 44,
+      "report_center": 1,
+      "workspace": 11,
+      "workspace_sidebar": 22
+    },
+    "export_dir": "port/exports/desk_fixtures/",
+    "merged_duplicates": [
+      "selling/onboarding_step/create_item replaced earlier same-named record 'Create Item' (modules.txt order, last wins)",
+      "selling/onboarding_step/create_sales_invoice replaced earlier same-named record 'Create Sales Invoice' (modules.txt order, last wins)",
+      "stock/module_onboarding/stock_onboarding replaced earlier same-named record 'Stock Onboarding' (modules.txt order, last wins)",
+      "stock/onboarding_step/create_delivery_note replaced earlier same-named record 'Create Delivery Note' (modules.txt order, last wins)",
+      "stock/onboarding_step/create_item replaced earlier same-named record 'Create Item' (modules.txt order, last wins)",
+      "stock/onboarding_step/view_stock_balance_report replaced earlier same-named record 'View Stock Balance Report' (modules.txt order, last wins)",
+      "assets/onboarding_step/view_balance_sheet replaced earlier same-named record 'View Balance Sheet' (modules.txt order, last wins)",
+      "subcontracting/onboarding_step/create_bill_of_materials replaced earlier same-named record 'Create Bill of Materials' (modules.txt order, last wins)",
+      "subcontracting/onboarding_step/create_raw_materials replaced earlier same-named record 'Create Raw Materials' (modules.txt order, last wins)"
+    ],
+    "reason": "Frappe-desk furniture \u2014 workspaces, sidebars, desktop icons, onboarding, dashboard charts/cards, form tours, dashboards, report center. The platform's product surfaces are Flutter + Next.js shells, not the Frappe desk; the records' content is preserved verbatim in the export dir for reuse (Next.js SDK charts/KPIs/onboarding).",
+    "total": 190
+  },
+  "excluded_fleet_collisions": {
+    "doctypes": {
+      "branch": {
+        "collides_with": "core repo, base module (shop-location Branch)",
+        "module": "setup",
+        "name": "Branch"
+      },
+      "brand": {
+        "collides_with": "commerce repo, products module (marketplace Brand)",
+        "module": "setup",
+        "name": "Brand"
+      },
+      "delivery_settings": {
+        "collides_with": "zones repo, delivery module (Delivery Settings)",
+        "module": "stock",
+        "name": "Delivery Settings"
+      },
+      "process_subscription": {
+        "collides_with": "dependent: imports the excluded subscription controller and enqueues its process_all",
+        "module": "accounts",
+        "name": "Process Subscription"
+      },
+      "subscription": {
+        "collides_with": "agent repo, subscriptions module (Subscription)",
+        "module": "accounts",
+        "name": "Subscription"
+      },
+      "subscription_invoice": {
+        "collides_with": "dependent: child table whose only parent doctype (Subscription) is excluded",
+        "module": "accounts",
+        "name": "Subscription Invoice"
+      },
+      "subscription_settings": {
+        "collides_with": "agent repo, subscriptions module (Subscription Settings)",
+        "module": "accounts",
+        "name": "Subscription Settings"
+      }
+    },
+    "export_dir": "port/exports/fleet_collisions/",
+    "hooks_dropped": {
+      "scheduler_events": {
+        "daily_maintenance": [
+          "erpnext.accounts.doctype.process_subscription.process_subscription.create_subscription_process"
+        ]
+      }
+    },
+    "reason": "fleet collision: the erp fork keeps upstream doctype names verbatim, and these doctype dir names collide with doctype dirs owned by other fleet SDK modules \u2014 the composer hard-fails a strict build on any duplicate doctype, so erp could never compose beside those modules. Exclusion over rename (crm-excision precedent); reversible by removing the entry from EXCLUDE_FLEET_DOCTYPES in port_erpnext.py and re-running the port. Link fields pointing at the doctype names stay and resolve to the fleet owner's doctype.",
+    "remapped_references": {
+      "accounts/doctype/payment_request/payment_request.py": 1,
+      "assets/doctype/asset_capitalization/asset_capitalization.py": 1,
+      "controllers/stock_controller.py": 1,
+      "stock/doctype/material_request/material_request.py": 1,
+      "stock/doctype/stock_entry/stock_entry.py": 1,
+      "stock/get_item_details.py": 1,
+      "subcontracting/doctype/subcontracting_receipt/subcontracting_receipt.py": 1
+    }
+  },
+  "excluded_modules": {
+    "artifacts": {
+      "crm_dashboard": [
+        "crm"
+      ],
+      "dashboard_chart": [
+        "incoming_leads",
+        "lead_source",
+        "opportunities_via_campaigns",
+        "opportunity_trends",
+        "territory_wise_opportunity_count",
+        "territory_wise_sales",
+        "won_opportunities",
+        "completed_projects",
+        "project_summary"
+      ],
+      "module_onboarding": [
+        "projects_onboarding"
+      ],
+      "number_card": [
+        "new_lead_(last_1_month)",
+        "new_opportunity_(last_1_month)",
+        "open_opportunity",
+        "won_opportunity_(last_1_month)",
+        "non_completed_tasks",
+        "open_projects",
+        "timesheet_working_hours"
+      ],
+      "onboarding_step": [
+        "create_project",
+        "create_tasks",
+        "create_timesheet",
+        "view_project_summary"
+      ],
+      "projects_dashboard": [
+        "project"
+      ],
+      "report": [
+        "campaign_efficiency",
+        "first_response_time_for_opportunity",
+        "lead_conversion_time",
+        "lead_details",
+        "lead_owner_efficiency",
+        "lost_opportunity",
+        "opportunity_summary_by_sales_stage",
+        "prospects_engaged_but_not_converted",
+        "sales_pipeline_analytics",
+        "daily_timesheet_summary",
+        "delayed_tasks_summary",
+        "project_summary",
+        "project_wise_stock_tracking",
+        "timesheet_billing_summary",
+        "first_response_time_for_issues",
+        "issue_analytics",
+        "issue_summary",
+        "support_hour_distribution"
+      ],
+      "web_form": [
+        "tasks",
+        "issues"
+      ],
+      "workspace": [
+        "crm",
+        "projects",
+        "support"
+      ]
+    },
+    "doctypes": [
+      "activity_cost",
+      "activity_type",
+      "appointment",
+      "appointment_booking_settings",
+      "appointment_booking_slots",
+      "availability_of_slots",
+      "campaign",
+      "campaign_email_schedule",
+      "competitor",
+      "competitor_detail",
+      "contract",
+      "contract_fulfilment_checklist",
+      "contract_template",
+      "contract_template_fulfilment_terms",
+      "crm_note",
+      "crm_settings",
+      "dependent_task",
+      "email_campaign",
+      "frappe_crm_allowed_user",
+      "issue",
+      "issue_priority",
+      "issue_type",
+      "lead",
+      "lost_reason_detail",
+      "market_segment",
+      "opportunity",
+      "opportunity_item",
+      "opportunity_lost_reason",
+      "opportunity_lost_reason_detail",
+      "opportunity_type",
+      "pause_sla_on_status",
+      "project",
+      "project_template",
+      "project_template_task",
+      "project_type",
+      "project_update",
+      "project_user",
+      "projects_settings",
+      "prospect",
+      "prospect_lead",
+      "prospect_opportunity",
+      "sales_stage",
+      "service_day",
+      "service_level_agreement",
+      "service_level_priority",
+      "sla_fulfilled_on_status",
+      "support_search_source",
+      "support_settings",
+      "task",
+      "task_depends_on",
+      "task_type",
+      "timesheet",
+      "timesheet_detail",
+      "warranty_claim"
+    ],
+    "hooks_reassigned": {
+      "doc_events": {
+        "*": {
+          "validate": [
+            "{app_name}.support.doctype.service_level_agreement.service_level_agreement.apply"
+          ]
+        },
+        "Communication": {
+          "after_insert": [
+            "{app_name}.crm.tenant.utils.link_communications_with_prospect",
+            "{app_name}.crm.tenant.utils.update_modified_timestamp"
+          ],
+          "on_update": [
+            "{app_name}.support.doctype.service_level_agreement.service_level_agreement.on_communication_update",
+            "{app_name}.support.doctype.issue.issue.set_first_response_time"
+          ]
+        },
+        "Contact": {
+          "on_trash": [
+            "{app_name}.support.doctype.issue.issue.update_issue"
+          ],
+          "validate": [
+            "{app_name}.crm.tenant.utils.update_lead_phone_numbers"
+          ]
+        },
+        "Contact Us Settings": {
+          "on_update": [
+            "{app_name}.crm.tenant.utils.disable_opportunity_creation_on_contact_us_disabled"
+          ]
+        },
+        "Email Unsubscribe": {
+          "after_insert": [
+            "{app_name}.crm.doctype.email_campaign.email_campaign.unsubscribe_recipient"
+          ]
+        },
+        "Event": {
+          "after_insert": [
+            "{app_name}.crm.tenant.utils.link_events_with_prospect"
+          ]
+        }
+      },
+      "scheduler_events": {
+        "daily_maintenance": [
+          "{app_name}.support.doctype.issue.issue.auto_close_tickets",
+          "{app_name}.crm.doctype.opportunity.opportunity.auto_close_opportunity",
+          "{app_name}.projects.doctype.task.task.set_tasks_as_overdue",
+          "{app_name}.crm.doctype.contract.contract.update_status_for_contracts",
+          "{app_name}.projects.doctype.project.project.update_project_sales_billing",
+          "{app_name}.projects.doctype.project.project.send_project_status_email_to_users",
+          "{app_name}.support.doctype.service_level_agreement.service_level_agreement.check_agreement_status",
+          "{app_name}.crm.doctype.email_campaign.email_campaign.send_email_to_leads_or_contacts",
+          "{app_name}.crm.doctype.email_campaign.email_campaign.set_email_campaign_status",
+          "{app_name}.crm.tenant.utils.open_leads_opportunities_based_on_todays_event"
+        ],
+        "hourly": [
+          "{app_name}.projects.doctype.project.project.hourly_reminder"
+        ],
+        "hourly_maintenance": [
+          "{app_name}.crm.doctype.appointment.appointment.handle_expired_unverified_appointments",
+          "{app_name}.projects.doctype.project.project.collect_project_status",
+          "{app_name}.projects.doctype.project.project.project_status_update_reminder"
+        ]
+      }
+    },
+    "modules": [
+      "crm",
+      "projects",
+      "support"
+    ],
+    "remap": "erpnext.<mod>.X -> {app_name}.<mod>.X \u2014 each excluded module's content is owned by its own composed SDK module in the productivity repo (merged crm module; projects and support modules), which composes at {app_name}/<mod>/ with the upstream package layout and identical doctype dir names."
+  },
+  "hooks_supported": {
+    "doc_events": "23 doctype keys (tuple key over 18 period-closing doctypes expanded)",
+    "scheduler_events": {
+      "cron": {
+        "0/15 * * * *": 2,
+        "30 * * * *": 1
+      },
+      "daily_maintenance": 18,
+      "hourly_maintenance": 4,
+      "monthly_long": 2,
+      "weekly": 2
+    },
+    "whitelisted_methods": [
+      "frappe.www.contact.send_message"
+    ]
+  },
+  "hooks_unsupported": {
+    "accounting_dimension_doctypes": [
+      "GL Entry",
+      "Payment Ledger Entry",
+      "Sales Invoice",
+      "Purchase Invoice",
+      "Payment Entry",
+      "Asset",
+      "Stock Entry",
+      "Budget",
+      "Delivery Note",
+      "Sales Invoice Item",
+      "Purchase Invoice Item",
+      "Purchase Order Item",
+      "Sales Order Item",
+      "Journal Entry Account",
+      "Journal Entry Template Account",
+      "Material Request Item",
+      "Delivery Note Item",
+      "Purchase Receipt Item",
+      "Stock Entry Detail",
+      "Payment Entry Deduction",
+      "Sales Taxes and Charges",
+      "Purchase Taxes and Charges",
+      "Shipping Rule",
+      "Landed Cost Item",
+      "Asset Value Adjustment",
+      "Asset Repair",
+      "Asset Capitalization",
+      "Loyalty Program",
+      "Stock Reconciliation",
+      "POS Profile",
+      "Opening Invoice Creation Tool",
+      "Opening Invoice Creation Tool Item",
+      "Subscription",
+      "Subscription Plan",
+      "POS Invoice",
+      "POS Invoice Item",
+      "Purchase Order",
+      "Purchase Receipt",
+      "Sales Order",
+      "Subcontracting Order",
+      "Subcontracting Order Item",
+      "Subcontracting Receipt",
+      "Subcontracting Receipt Item",
+      "Account Closing Balance",
+      "Supplier Quotation",
+      "Supplier Quotation Item",
+      "Payment Reconciliation",
+      "Payment Reconciliation Allocation",
+      "Payment Request",
+      "Asset Movement Item",
+      "Asset Depreciation Schedule",
+      "Advance Taxes and Charges"
+    ],
+    "add_to_apps_screen": [
+      {
+        "has_permission": "{app_name}.erp.tenant.erp_init.check_app_permission",
+        "logo": "/assets/erpnext/images/erpnext-logo.svg",
+        "name": "erpnext",
+        "route": "/desk",
+        "title": "ERPNext"
+      }
+    ],
+    "additional_print_settings": "{app_name}.erp.tenant.controllers.print_settings.get_print_settings",
+    "additional_timeline_content": {
+      "*": [
+        "{app_name}.erp.doctype.call_log.call_log.get_linked_call_logs"
+      ]
+    },
+    "advance_payment_payable_doctypes": [
+      "Purchase Order"
+    ],
+    "advance_payment_receivable_doctypes": [
+      "Sales Order"
+    ],
+    "after_app_install": "{app_name}.erp.tenant.setup.install.after_app_install",
+    "after_app_uninstall": "{app_name}.erp.tenant.setup.install.after_app_uninstall",
+    "app_color": "#e74c3c",
+    "app_description": "ERP made simple",
+    "app_email": "hello@frappe.io",
+    "app_home": "/desk",
+    "app_icon": "fa fa-th",
+    "app_include_css": "erpnext.bundle.css",
+    "app_include_icons": [
+      "/assets/erpnext/icons/pos-icons.svg"
+    ],
+    "app_include_js": "erpnext.bundle.js",
+    "app_license": "GNU General Public License (v3)",
+    "app_logo_url": "/assets/erpnext/images/erpnext-logo.svg",
+    "app_name": "erpnext",
+    "app_publisher": "Frappe Technologies Pvt. Ltd.",
+    "app_title": "ERPNext",
+    "auto_cancel_exempted_doctypes": [
+      "Payment Entry"
+    ],
+    "bank_reconciliation_doctypes": [
+      "Payment Entry",
+      "Journal Entry",
+      "Purchase Invoice",
+      "Sales Invoice"
+    ],
+    "boot_session": "{app_name}.erp.tenant.startup.boot.boot_session",
+    "bot_parsers": [
+      "{app_name}.erp.tenant.utilities.bot.FindItemBot"
+    ],
+    "calendars": [
+      "Task",
+      "Work Order",
+      "Sales Order",
+      "Holiday List",
+      "ToDo"
+    ],
+    "communication_doctypes": [
+      "Customer",
+      "Supplier"
+    ],
+    "default_log_clearing_doctypes": {
+      "Repost Item Valuation": 60
+    },
+    "default_mail_footer": "\n\t<span>\n\t\tSent via\n\t\t<a class=\"text-muted\" href=\"https://frappe.io/erpnext?source=via_email_footer\" target=\"_blank\">\n\t\t\tERPNext\n\t\t</a>\n\t</span>\n",
+    "demo_master_doctypes": [
+      "item_group",
+      "item",
+      "customer_group",
+      "supplier_group",
+      "customer",
+      "supplier"
+    ],
+    "demo_transaction_doctypes": [
+      "purchase_order",
+      "sales_order"
+    ],
+    "develop_version": "15.x.x-develop",
+    "doctype_js": {
+      "Address": "public/js/address.js",
+      "Communication": "public/js/communication.js",
+      "Contact": "public/js/contact.js",
+      "Event": "public/js/event.js",
+      "Newsletter": "public/js/newsletter.js"
+    },
+    "doctype_list_js": {
+      "Code List": [
+        "edi/doctype/code_list/code_list_import.js"
+      ],
+      "Common Code": [
+        "edi/doctype/code_list/code_list_import.js"
+      ]
+    },
+    "email_brand_image": "assets/erpnext/images/erpnext-logo.jpg",
+    "email_css": "email_erpnext.bundle.css",
+    "export_python_type_annotations": "True",
+    "extend_bootinfo": [
+      "{app_name}.support.doctype.service_level_agreement.service_level_agreement.add_sla_doctypes",
+      "{app_name}.erp.tenant.startup.boot.bootinfo"
+    ],
+    "extend_doctype_class": {
+      "Address": "{app_name}.erp.tenant.accounts.custom.address.ERPNextAddress"
+    },
+    "fields_for_group_similar_items": [
+      "qty",
+      "amount"
+    ],
+    "filters_config": "{app_name}.erp.tenant.startup.filters.get_filters_config",
+    "get_amounts_not_reflected_in_system_for_bank_reconciliation_statement": "{app_name}.erp.tenant.report.bank_reconciliation_statement.bank_reconciliation_statement.get_amounts_not_reflected_in_system_for_bank_reconciliation_statement",
+    "get_entries_for_bank_clearance_summary": "{app_name}.erp.tenant.report.bank_clearance_summary.bank_clearance_summary.get_entries_for_bank_clearance_summary",
+    "get_entries_for_bank_reconciliation_statement": "{app_name}.erp.tenant.report.bank_reconciliation_statement.bank_reconciliation_statement.get_entries_for_bank_reconciliation_statement",
+    "get_help_messages": "{app_name}.erp.tenant.utilities.activation.get_help_messages",
+    "get_matching_queries": "{app_name}.erp.doctype.bank_reconciliation_tool.bank_reconciliation_tool.get_matching_queries",
+    "get_payment_entries_for_bank_clearance": "{app_name}.erp.doctype.bank_clearance.bank_clearance.get_payment_entries_for_bank_clearance",
+    "get_site_info": "{app_name}.erp.tenant.utilities.get_site_info",
+    "get_translated_dict": {
+      "('doctype', 'Global Defaults')": "frappe.geo.country_info.get_translated_dict"
+    },
+    "global_search_doctypes": {
+      "Default": [
+        {
+          "doctype": "Customer",
+          "index": 0
+        },
+        {
+          "doctype": "Supplier",
+          "index": 1
+        },
+        {
+          "doctype": "Item",
+          "index": 2
+        },
+        {
+          "doctype": "Warehouse",
+          "index": 3
+        },
+        {
+          "doctype": "Account",
+          "index": 4
+        },
+        {
+          "doctype": "Employee",
+          "index": 5
+        },
+        {
+          "doctype": "BOM",
+          "index": 6
+        },
+        {
+          "doctype": "Sales Invoice",
+          "index": 7
+        },
+        {
+          "doctype": "Sales Order",
+          "index": 8
+        },
+        {
+          "doctype": "Quotation",
+          "index": 9
+        },
+        {
+          "doctype": "Work Order",
+          "index": 10
+        },
+        {
+          "doctype": "Purchase Order",
+          "index": 11
+        },
+        {
+          "doctype": "Purchase Receipt",
+          "index": 12
+        },
+        {
+          "doctype": "Purchase Invoice",
+          "index": 13
+        },
+        {
+          "doctype": "Delivery Note",
+          "index": 14
+        },
+        {
+          "doctype": "Stock Entry",
+          "index": 15
+        },
+        {
+          "doctype": "Material Request",
+          "index": 16
+        },
+        {
+          "doctype": "Delivery Trip",
+          "index": 17
+        },
+        {
+          "doctype": "Pick List",
+          "index": 18
+        },
+        {
+          "doctype": "Payment Entry",
+          "index": 22
+        },
+        {
+          "doctype": "Lead",
+          "index": 23
+        },
+        {
+          "doctype": "Opportunity",
+          "index": 24
+        },
+        {
+          "doctype": "Item Price",
+          "index": 25
+        },
+        {
+          "doctype": "Purchase Taxes and Charges Template",
+          "index": 26
+        },
+        {
+          "doctype": "Sales Taxes and Charges",
+          "index": 27
+        },
+        {
+          "doctype": "Asset",
+          "index": 28
+        },
+        {
+          "doctype": "Project",
+          "index": 29
+        },
+        {
+          "doctype": "Task",
+          "index": 30
+        },
+        {
+          "doctype": "Timesheet",
+          "index": 31
+        },
+        {
+          "doctype": "Issue",
+          "index": 32
+        },
+        {
+          "doctype": "Serial No",
+          "index": 33
+        },
+        {
+          "doctype": "Batch",
+          "index": 34
+        },
+        {
+          "doctype": "Branch",
+          "index": 35
+        },
+        {
+          "doctype": "Department",
+          "index": 36
+        },
+        {
+          "doctype": "Designation",
+          "index": 38
+        },
+        {
+          "doctype": "Maintenance Schedule",
+          "index": 45
+        },
+        {
+          "doctype": "Maintenance Visit",
+          "index": 46
+        },
+        {
+          "doctype": "Warranty Claim",
+          "index": 47
+        }
+      ]
+    },
+    "has_upload_permission": {
+      "Employee": "{app_name}.erp.doctype.employee.employee.has_upload_permission"
+    },
+    "has_website_permission": {
+      "Delivery Note": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Issue": "{app_name}.support.doctype.issue.issue.has_website_permission",
+      "Material Request": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Project": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Purchase Invoice": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Purchase Order": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Quotation": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Sales Invoice": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Sales Order": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Supplier Quotation": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission",
+      "Timesheet": "{app_name}.erp.tenant.controllers.website_list_for_contact.has_website_permission"
+    },
+    "ignore_links_on_delete": [
+      "Tax Withholding Entry"
+    ],
+    "ignore_translatable_strings_from": [
+      "frappe"
+    ],
+    "invoice_doctypes": [
+      "Sales Invoice",
+      "Purchase Invoice"
+    ],
+    "jinja": {
+      "methods": [
+        "{app_name}.erp.tenant.stock.serial_batch_bundle.get_serial_or_batch_nos"
+      ]
+    },
+    "leaderboards": "{app_name}.erp.tenant.startup.leaderboard.get_leaderboards",
+    "naming_series_variables": {
+      "ABBR": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "DD": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "FY": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "JJJ": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "MM": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "TFY": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "WW": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "YY": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable",
+      "YYYY": "{app_name}.erp.tenant.accounts.utils.parse_naming_series_variable"
+    },
+    "notification_config": "{app_name}.erp.tenant.startup.notifications.get_notification_config",
+    "on_session_creation": "{app_name}.erp.tenant.portal.utils.create_customer_or_supplier",
+    "page_js": {
+      "print": "public/js/print.js"
+    },
+    "payment_gateway_enabled": "{app_name}.erp.tenant.accounts.utils.create_payment_gateway_account",
+    "regional_overrides": {
+      "France": {
+        "erpnext.tests.test_regional.test_method": "{app_name}.erp.tenant.regional.france.utils.test_method"
+      },
+      "Italy": {
+        "erpnext.controllers.accounts_controller.validate_regional": "{app_name}.erp.tenant.regional.italy.utils.sales_invoice_validate",
+        "erpnext.controllers.taxes_and_totals.update_itemised_tax_data": "{app_name}.erp.tenant.regional.italy.utils.update_itemised_tax_data"
+      },
+      "Saudi Arabia": {
+        "erpnext.controllers.taxes_and_totals.update_itemised_tax_data": "{app_name}.erp.tenant.regional.united_arab_emirates.utils.update_itemised_tax_data"
+      },
+      "United Arab Emirates": {
+        "erpnext.accounts.doctype.purchase_invoice.purchase_invoice.make_regional_gl_entries": "{app_name}.erp.tenant.regional.united_arab_emirates.utils.make_regional_gl_entries",
+        "erpnext.controllers.taxes_and_totals.update_itemised_tax_data": "{app_name}.erp.tenant.regional.united_arab_emirates.utils.update_itemised_tax_data"
+      }
+    },
+    "repost_allowed_doctypes": [
+      "Sales Invoice",
+      "Purchase Invoice",
+      "Journal Entry",
+      "Payment Entry",
+      "Purchase Receipt"
+    ],
+    "setup_wizard_requires": "assets/erpnext/js/setup_wizard.js",
+    "setup_wizard_stages": "{app_name}.erp.tenant.setup.setup_wizard.setup_wizard.get_setup_stages",
+    "sounds": [
+      {
+        "name": "incoming-call",
+        "src": "/assets/erpnext/sounds/incoming-call.mp3",
+        "volume": 0.2
+      },
+      {
+        "name": "call-disconnect",
+        "src": "/assets/erpnext/sounds/call-disconnect.mp3",
+        "volume": 0.2
+      },
+      {
+        "name": "numpad-touch",
+        "src": "/assets/erpnext/sounds/numpad-touch.mp3",
+        "volume": 0.8
+      }
+    ],
+    "source_link": "https://github.com/frappe/erpnext",
+    "standard_navbar_items": [
+      {
+        "action": "erpnext.demo.clear_demo();",
+        "condition": "eval: frappe.boot.sysdefaults.demo_company && frappe.boot.sysdefaults.demo_company.length > 0",
+        "icon": "trash",
+        "is_standard": 1,
+        "item_label": "Delete Demo Data",
+        "item_type": "Action"
+      }
+    ],
+    "standard_portal_menu_items": [
+      {
+        "reference_doctype": "Project",
+        "role": "Customer",
+        "route": "/project",
+        "title": "Projects"
+      },
+      {
+        "reference_doctype": "Request for Quotation",
+        "role": "Supplier",
+        "route": "/rfq",
+        "title": "Request for Quotations"
+      },
+      {
+        "reference_doctype": "Supplier Quotation",
+        "role": "Supplier",
+        "route": "/supplier-quotations",
+        "title": "Supplier Quotation"
+      },
+      {
+        "reference_doctype": "Purchase Order",
+        "role": "Supplier",
+        "route": "/purchase-orders",
+        "title": "Purchase Orders"
+      },
+      {
+        "reference_doctype": "Purchase Invoice",
+        "role": "Supplier",
+        "route": "/purchase-invoices",
+        "title": "Purchase Invoices"
+      },
+      {
+        "reference_doctype": "Quotation",
+        "role": "Customer",
+        "route": "/quotations",
+        "title": "Quotations"
+      },
+      {
+        "reference_doctype": "Sales Order",
+        "role": "Customer",
+        "route": "/orders",
+        "title": "Orders"
+      },
+      {
+        "reference_doctype": "Sales Invoice",
+        "role": "Customer",
+        "route": "/invoices",
+        "title": "Invoices"
+      },
+      {
+        "reference_doctype": "Delivery Note",
+        "role": "Customer",
+        "route": "/shipments",
+        "title": "Shipments"
+      },
+      {
+        "reference_doctype": "Issue",
+        "role": "Customer",
+        "route": "/issues",
+        "title": "Issues"
+      },
+      {
+        "reference_doctype": "Address",
+        "role": "Customer",
+        "route": "/addresses",
+        "title": "Addresses"
+      },
+      {
+        "reference_doctype": "Timesheet",
+        "role": "Customer",
+        "route": "/timesheets",
+        "title": "Timesheets"
+      },
+      {
+        "reference_doctype": "Newsletter",
+        "route": "/newsletters",
+        "title": "Newsletter"
+      },
+      {
+        "reference_doctype": "Material Request",
+        "role": "Customer",
+        "route": "/material-requests",
+        "title": "Material Request"
+      },
+      {
+        "route": "/book_appointment",
+        "title": "Appointment Booking"
+      }
+    ],
+    "subscription_doctypes": [
+      "Sales Invoice",
+      "Purchase Invoice",
+      "Payment Request",
+      "POS Invoice"
+    ],
+    "treeviews": [
+      "Account",
+      "Cost Center",
+      "Warehouse",
+      "Item Group",
+      "Customer Group",
+      "Supplier Group",
+      "Sales Person",
+      "Territory",
+      "Department"
+    ],
+    "user_data_fields": [
+      {
+        "doctype": "Lead",
+        "filter_by": "email_id",
+        "redact_fields": [
+          "phone",
+          "mobile_no",
+          "fax",
+          "website",
+          "lead_name"
+        ]
+      },
+      {
+        "doctype": "Opportunity",
+        "filter_by": "contact_email",
+        "redact_fields": [
+          "contact_mobile",
+          "contact_display",
+          "customer_name"
+        ]
+      }
+    ],
+    "web_include_css": "erpnext-web.bundle.css",
+    "web_include_icons": [
+      "/assets/erpnext/icons/pos-icons.svg"
+    ],
+    "webform_list_context": "{app_name}.erp.tenant.controllers.website_list_for_contact.get_webform_list_context",
+    "website_context": {
+      "favicon": "/assets/erpnext/images/erpnext-favicon.svg",
+      "splash_image": "/assets/erpnext/images/erpnext-logo.svg"
+    },
+    "website_generators": [
+      "BOM",
+      "Sales Partner"
+    ],
+    "website_route_rules": [
+      {
+        "from_route": "/orders",
+        "to_route": "Sales Order"
+      },
+      {
+        "defaults": {
+          "doctype": "Sales Order",
+          "parents": [
+            {
+              "label": "Orders",
+              "route": "orders"
+            }
+          ]
+        },
+        "from_route": "/orders/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "from_route": "/invoices",
+        "to_route": "Sales Invoice"
+      },
+      {
+        "defaults": {
+          "doctype": "Sales Invoice",
+          "parents": [
+            {
+              "label": "Invoices",
+              "route": "invoices"
+            }
+          ]
+        },
+        "from_route": "/invoices/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "from_route": "/supplier-quotations",
+        "to_route": "Supplier Quotation"
+      },
+      {
+        "defaults": {
+          "doctype": "Supplier Quotation",
+          "parents": [
+            {
+              "label": "Supplier Quotation",
+              "route": "supplier-quotations"
+            }
+          ]
+        },
+        "from_route": "/supplier-quotations/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "from_route": "/purchase-orders",
+        "to_route": "Purchase Order"
+      },
+      {
+        "defaults": {
+          "doctype": "Purchase Order",
+          "parents": [
+            {
+              "label": "Purchase Order",
+              "route": "purchase-orders"
+            }
+          ]
+        },
+        "from_route": "/purchase-orders/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "defaults": {
+          "doctype": "Purchase Order",
+          "parents": [
+            {
+              "label": "Purchase Order",
+              "route": "purchase-orders"
+            }
+          ]
+        },
+        "from_route": "/purchase-orders/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "from_route": "/purchase-invoices",
+        "to_route": "Purchase Invoice"
+      },
+      {
+        "defaults": {
+          "doctype": "Purchase Invoice",
+          "parents": [
+            {
+              "label": "Purchase Invoice",
+              "route": "purchase-invoices"
+            }
+          ]
+        },
+        "from_route": "/purchase-invoices/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "from_route": "/quotations",
+        "to_route": "Quotation"
+      },
+      {
+        "defaults": {
+          "doctype": "Quotation",
+          "parents": [
+            {
+              "label": "Quotations",
+              "route": "quotations"
+            }
+          ]
+        },
+        "from_route": "/quotations/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "from_route": "/shipments",
+        "to_route": "Delivery Note"
+      },
+      {
+        "defaults": {
+          "doctype": "Delivery Note",
+          "parents": [
+            {
+              "label": "Shipments",
+              "route": "shipments"
+            }
+          ]
+        },
+        "from_route": "/shipments/<path:name>",
+        "to_route": "order"
+      },
+      {
+        "from_route": "/rfq",
+        "to_route": "Request for Quotation"
+      },
+      {
+        "defaults": {
+          "doctype": "Request for Quotation",
+          "parents": [
+            {
+              "label": "Request for Quotation",
+              "route": "rfq"
+            }
+          ]
+        },
+        "from_route": "/rfq/<path:name>",
+        "to_route": "rfq"
+      },
+      {
+        "from_route": "/addresses",
+        "to_route": "Address"
+      },
+      {
+        "defaults": {
+          "doctype": "Address",
+          "parents": [
+            {
+              "label": "Addresses",
+              "route": "addresses"
+            }
+          ]
+        },
+        "from_route": "/addresses/<path:name>",
+        "to_route": "addresses"
+      },
+      {
+        "from_route": "/boms",
+        "to_route": "BOM"
+      },
+      {
+        "from_route": "/timesheets",
+        "to_route": "Timesheet"
+      },
+      {
+        "from_route": "/material-requests",
+        "to_route": "Material Request"
+      },
+      {
+        "defaults": {
+          "doctype": "Material Request",
+          "parents": [
+            {
+              "label": "Material Request",
+              "route": "material-requests"
+            }
+          ]
+        },
+        "from_route": "/material-requests/<path:name>",
+        "to_route": "material_request_info"
+      },
+      {
+        "from_route": "/project",
+        "to_route": "Project"
+      },
+      {
+        "from_route": "/tasks",
+        "to_route": "Task"
+      },
+      {
+        "from_route": "/banking/<path:app_path>",
+        "to_route": "banking"
+      }
+    ],
+    "welcome_email": "{app_name}.erp.tenant.setup.utils.welcome_email"
+  },
+  "merged_duplicates": [
+    "selling/print_format/pos_invoice replaced earlier same-named record 'POS Invoice' (modules.txt order, last wins)"
+  ],
+  "module_count": 21,
+  "notes": [
+    "after_install NOT declared in manifest: composer merge_hooks() would append to the shell scaffold's after_install *string* and crash hooks.py at import. Run `bench --site <site> execute {app}.erp.setup.install.after_install` once per fresh site instead.",
+    "hooks_unsupported keys are NOT wired by the composer; a shell can hand-write any of them above its hooks.py fence. Their dotted values are pre-mapped to composed paths here for that purpose.",
+    "payments_remaps: upstream runtime references to the separate `payments` app (Payment Request's gateway-controller/stripe imports, payment_app_import_guard, the order-page pay-button check) are re-pointed at the composed gateways module ({app_name}.gateways \u2014 pay's own frappe/payments port). No composed shell needs the upstream payments package; erp composed WITHOUT gateways degrades exactly as upstream did without payments (guarded frappe.throw / hidden pay button).",
+    "upstream_fix_remaps: targeted fixes for upstream bugs not yet merged upstream \u2014 currently the reinstated PaymentRequest.on_payment_authorized handler (frappe/payments#204): gateway controllers finalize successful payments via run_method('on_payment_authorized', status), and without the handler the Payment Request stays 'Requested' with no Payment Entry. Drop each rule once upstream ships its own fix (the exactly-once anchor check will flag it loudly).",
+    "rokct_fixes: ROKCT features carried on top of the pinned upstream source (rhrms rewire \u2014 Employee SA hardening, added Employee fields, HR-Settings-aware autoname). They ride the port deterministically: to change them, change ROKCT_FIXES in port_erpnext.py and re-run. The hrms port's unwired override_doctype_class[Employee] (EmployeeMaster) is redundant for autoname once this lands \u2014 its only behavioral delta is baked in here.",
+    "excluded_fleet_collisions: doctypes whose dir names collide with fleet-owned doctypes are excluded from the port (exclusion over rename, crm-excision precedent, reversible via EXCLUDE_FLEET_DOCTYPES). Their python callers are guarded by FLEET_COLLISION_REMAPS (brand defaults neutralized via fleet_shims.py; the payment-request subscription lookup reports no plans) and hooks targeting them are dropped into the ledger. Name-based runtime lookups of 'Delivery Settings' (delivery_trip dispatch notifications, setup-wizard defaults) resolve to the zones module's single of that name and degrade to unset values.",
+    "compliance_remaps: the fleet SDK compliance sweep (pay#33) folded into the port \u2014 compliance-ignore suppressions with inline reasons, requests timeouts, and escaped IN-lists in sales_payment_summary. Re-audit the suppressions when the compliance scanner or the upstream source changes."
+  ],
+  "payments_remaps": {
+    "accounts/doctype/payment_request/payment_request.py": 2,
+    "templates/pages/order.py": 2,
+    "utilities/__init__.py": 2
+  },
+  "rokct_fixes": {
+    "setup/doctype/employee/employee.json": {
+      "origin": "rewire of the retired rhrms overlay (rokctai/core@451e00a base/frappe/src/rhrms/ \u2014 dead code since the core->base module rename): SA Employee hardening (id_number Luhn/18+ and bank-detail validation, gated on the company being South African), the id_number/bank_account_no/bank_branch_code Employee fields the pay frontend already binds, and the HR-Settings-aware employee naming method (upstream hrms EmployeeMaster.autoname, whose override_doctype_class wiring the hrms port defers).",
+      "rules": 4
+    },
+    "setup/doctype/employee/employee.py": {
+      "origin": "rewire of the retired rhrms overlay (rokctai/core@451e00a base/frappe/src/rhrms/ \u2014 dead code since the core->base module rename): SA Employee hardening (id_number Luhn/18+ and bank-detail validation, gated on the company being South African), the id_number/bank_account_no/bank_branch_code Employee fields the pay frontend already binds, and the HR-Settings-aware employee naming method (upstream hrms EmployeeMaster.autoname, whose override_doctype_class wiring the hrms port defers).",
+      "rules": 6
+    }
+  },
+  "skipped_carveout_files": [
+    "templates/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)",
+    "templates/generators/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)",
+    "templates/includes/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)",
+    "templates/pages/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)",
+    "templates/pages/integrations/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)",
+    "templates/pages/non_profit/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)",
+    "templates/pages/regional/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)",
+    "templates/pages/regional/india/__init__.py (empty; app-level templates/ composes as namespace packages and the composer hard-errors duplicate files)"
+  ],
+  "skipped_doctype_stubs": [
+    "stock/doctype/sales_bom",
+    "stock/doctype/sales_bom_item"
+  ],
+  "source": "/tmp/claude-0/-home-user/16937467-4ee7-5134-b0ed-e57a9e14a221/scratchpad/erpnext",
+  "source_branch": "rokct-hotfix",
+  "source_commit": "f813774f63c9ad437bebe351746daf76e59a4130",
+  "unmapped_detail": {
+    "erpnext.BOMComparisonTool": [
+      "manufacturing/page/bom_comparison_tool/bom_comparison_tool.js"
+    ],
+    "erpnext.ItemSelector": [
+      "public/js/controllers/transaction.js",
+      "public/js/utils/item_selector.js"
+    ],
+    "erpnext.PointOfSale": [
+      "selling/page/point_of_sale/point_of_sale.js"
+    ],
+    "erpnext.PointOfSale.Controller": [
+      "selling/page/point_of_sale/point_of_sale.js",
+      "selling/page/point_of_sale/pos_controller.js"
+    ],
+    "erpnext.PointOfSale.ItemCart": [
+      "selling/page/point_of_sale/pos_controller.js",
+      "selling/page/point_of_sale/pos_item_cart.js"
+    ],
+    "erpnext.PointOfSale.ItemDetails": [
+      "selling/page/point_of_sale/pos_controller.js",
+      "selling/page/point_of_sale/pos_item_details.js"
+    ],
+    "erpnext.PointOfSale.ItemSelector": [
+      "selling/page/point_of_sale/pos_controller.js",
+      "selling/page/point_of_sale/pos_item_selector.js"
+    ],
+    "erpnext.PointOfSale.NumberPad": [
+      "selling/page/point_of_sale/pos_item_cart.js",
+      "selling/page/point_of_sale/pos_number_pad.js",
+      "selling/page/point_of_sale/pos_payment.js"
+    ],
+    "erpnext.PointOfSale.PastOrderList": [
+      "selling/page/point_of_sale/pos_controller.js",
+      "selling/page/point_of_sale/pos_past_order_list.js"
+    ],
+    "erpnext.PointOfSale.PastOrderSummary": [
+      "selling/page/point_of_sale/pos_controller.js",
+      "selling/page/point_of_sale/pos_past_order_summary.js"
+    ],
+    "erpnext.PointOfSale.Payment": [
+      "selling/page/point_of_sale/pos_controller.js",
+      "selling/page/point_of_sale/pos_payment.js"
+    ],
+    "erpnext.SMSManager": [
+      "public/js/controllers/transaction.js",
+      "public/js/sms_manager.js"
+    ],
+    "erpnext.SalesFunnel": [
+      "selling/page/sales_funnel/sales_funnel.js"
+    ],
+    "erpnext.SerialBatchPackageSelector": [
+      "assets/doctype/asset_repair/asset_repair.js",
+      "public/js/controllers/buying.js",
+      "public/js/controllers/transaction.js",
+      "public/js/utils.js",
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.StockAnalytics": [
+      "public/js/stock_analytics.js"
+    ],
+    "erpnext.StockGridReport": [
+      "public/js/stock_analytics.js",
+      "public/js/stock_grid_report.js"
+    ],
+    "erpnext.TransactionController": [
+      "manufacturing/doctype/bom/bom.js",
+      "manufacturing/doctype/bom_creator/bom_creator.js",
+      "manufacturing/doctype/work_order/work_order.js",
+      "public/js/controllers/buying.js",
+      "public/js/controllers/transaction.js"
+    ],
+    "erpnext.apply_putaway_rule": [
+      "public/js/controllers/transaction.js",
+      "stock/doctype/purchase_receipt/purchase_receipt.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.asset": [
+      "assets/doctype/asset/asset.js",
+      "assets/doctype/asset_depreciation_schedule/asset_depreciation_schedule.js"
+    ],
+    "erpnext.asset.restore_asset": [
+      "assets/doctype/asset/asset.js"
+    ],
+    "erpnext.asset.scrap_asset": [
+      "assets/doctype/asset/asset.js"
+    ],
+    "erpnext.asset.set_accumulated_depreciation": [
+      "assets/doctype/asset_depreciation_schedule/asset_depreciation_schedule.js"
+    ],
+    "erpnext.asset.transfer_asset": [
+      "assets/doctype/asset/asset.js"
+    ],
+    "erpnext.bom": [
+      "manufacturing/doctype/bom/bom.js",
+      "manufacturing/doctype/bom_creator/bom_creator.js"
+    ],
+    "erpnext.bom.BomConfigurator": [
+      "manufacturing/doctype/bom_creator/bom_creator.js"
+    ],
+    "erpnext.bom.BomController": [
+      "manufacturing/doctype/bom/bom.js"
+    ],
+    "erpnext.bom.calculate_op_cost": [
+      "manufacturing/doctype/bom/bom.js"
+    ],
+    "erpnext.bom.calculate_rm_cost": [
+      "manufacturing/doctype/bom/bom.js"
+    ],
+    "erpnext.bom.calculate_total": [
+      "manufacturing/doctype/bom/bom.js"
+    ],
+    "erpnext.bom.update_cost": [
+      "manufacturing/doctype/bom/bom.js",
+      "manufacturing/doctype/bom_creator/bom_creator.js"
+    ],
+    "erpnext.bulk_transaction_processing": [
+      "public/js/bulk_transaction_processing.js"
+    ],
+    "erpnext.bulk_transaction_processing.create": [
+      "accounts/doctype/purchase_invoice/purchase_invoice_list.js",
+      "accounts/doctype/sales_invoice/sales_invoice_list.js",
+      "buying/doctype/purchase_order/purchase_order_list.js",
+      "buying/doctype/supplier_quotation/supplier_quotation_list.js",
+      "selling/doctype/quotation/quotation_list.js"
+    ],
+    "erpnext.call_popup": [
+      "public/js/call_popup/call_popup.js"
+    ],
+    "erpnext.cheque_print": [
+      "accounts/doctype/cheque_print_template/cheque_print_template.js"
+    ],
+    "erpnext.cheque_print.view_cheque_print": [
+      "accounts/doctype/cheque_print_template/cheque_print_template.js"
+    ],
+    "erpnext.custom.financial_apis.get_custom_revenue": [
+      "accounts/doctype/financial_report_template/financial_report_template.js"
+    ],
+    "erpnext.demo": [
+      "public/js/utils/demo.js"
+    ],
+    "erpnext.demo.clear_demo": [
+      "public/js/utils/demo.js"
+    ],
+    "erpnext.financial_statements": [
+      "accounts/report/balance_sheet/balance_sheet.js",
+      "accounts/report/cash_flow/cash_flow.js",
+      "accounts/report/custom_financial_statement/custom_financial_statement.js",
+      "accounts/report/gross_and_net_profit_report/gross_and_net_profit_report.js",
+      "accounts/report/profit_and_loss_statement/profit_and_loss_statement.js"
+    ],
+    "erpnext.financial_statements._format_custom_account_column": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._format_custom_report": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._format_custom_value_column": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._format_special_view": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._format_standard_report": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._get_formatting_for_column": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._is_special_view": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._parse_column_info": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements._style_custom_value": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements.filters": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements.formatter": [
+      "accounts/report/consolidated_trial_balance/consolidated_trial_balance.js",
+      "accounts/report/dimension_wise_accounts_balance_report/dimension_wise_accounts_balance_report.js",
+      "accounts/report/trial_balance/trial_balance.js"
+    ],
+    "erpnext.financial_statements.is_blank_row": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements.name_field": [
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.financial_statements.open_general_ledger": [
+      "accounts/report/consolidated_financial_statement/consolidated_financial_statement.js",
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.get_currency": [
+      "accounts/doctype/advance_payment_ledger_entry/advance_payment_ledger_entry.js",
+      "accounts/doctype/dunning/dunning.js",
+      "accounts/print_format/balance_sheet_standard/balance_sheet_standard.json",
+      "accounts/print_format/cash_flow_statement_standard/cash_flow_statement_standard.json",
+      "accounts/print_format/p&l_statement_standard/p&l_statement_standard.json"
+    ],
+    "erpnext.get_presentation_currency_list": [
+      "accounts/report/consolidated_financial_statement/consolidated_financial_statement.js",
+      "accounts/report/consolidated_trial_balance/consolidated_trial_balance.js",
+      "accounts/report/general_ledger/general_ledger.js",
+      "accounts/report/trial_balance/trial_balance.js",
+      "public/js/financial_statements.js"
+    ],
+    "erpnext.hide_company": [
+      "accounts/doctype/payment_entry/payment_entry.js",
+      "manufacturing/doctype/blanket_order/blanket_order.js",
+      "public/js/controllers/transaction.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.in_production_item_onchange": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.integrations": [
+      "accounts/doctype/bank/bank.js",
+      "erpnext_integrations/doctype/plaid_settings/plaid_settings.js"
+    ],
+    "erpnext.integrations.plaidLink": [
+      "erpnext_integrations/doctype/plaid_settings/plaid_settings.js"
+    ],
+    "erpnext.integrations.refreshPlaidLink": [
+      "accounts/doctype/bank/bank.js"
+    ],
+    "erpnext.item": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.item_dashboard": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.item_dashboard.refresh": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.make_dashboard": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.render_item_prices": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.setup_queries": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.show_modal_for_manufacturers": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.show_multiple_variants_dialog": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.show_single_variant_dialog": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.toggle_attributes": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.item.weight_to_validate": [
+      "stock/doctype/item/item.js"
+    ],
+    "erpnext.journal_entry": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.account_query": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.clear_fields": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.lock_reversal_entry": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.quick_entry": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.reverse_journal_entry": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.set_account_details": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.set_amount_on_last_row": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.set_debit_credit_in_company_currency": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.set_exchange_rate": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.journal_entry.toggle_fields_based_on_currency": [
+      "accounts/doctype/journal_entry/journal_entry.js"
+    ],
+    "erpnext.landed_cost_taxes_and_charges": [
+      "public/js/utils/landed_taxes_and_charges_common.js"
+    ],
+    "erpnext.landed_cost_taxes_and_charges.setup_triggers": [
+      "stock/doctype/landed_cost_voucher/landed_cost_voucher.js",
+      "stock/doctype/stock_entry/stock_entry.js",
+      "subcontracting/doctype/subcontracting_order/subcontracting_order.js",
+      "subcontracting/doctype/subcontracting_receipt/subcontracting_receipt.js"
+    ],
+    "erpnext.last_selected_company": [
+      "public/js/controllers/transaction.js",
+      "public/js/utils.js"
+    ],
+    "erpnext.patches.v16_0": [
+      "stock/doctype/purchase_receipt/test_purchase_receipt.py"
+    ],
+    "erpnext.patches.v16_0.merge_seeded_item_group_root": [
+      "setup/doctype/item_group/test_item_group.py"
+    ],
+    "erpnext.patches.v16_0.repair_work_order_material_transfer": [
+      "manufacturing/doctype/work_order/test_work_order.py"
+    ],
+    "erpnext.patches.v16_0.set_stock_uom_in_job_card": [
+      "manufacturing/doctype/job_card/test_job_card.py"
+    ],
+    "erpnext.payments": [
+      "public/js/controllers/taxes_and_totals.js",
+      "public/js/payment/payments.js"
+    ],
+    "erpnext.pre_sales": [
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.pre_sales.set_as_lost": [
+      "selling/doctype/quotation/quotation.js"
+    ],
+    "erpnext.purchase_trends_filters": [
+      "accounts/report/purchase_invoice_trends/purchase_invoice_trends.js",
+      "buying/report/purchase_order_trends/purchase_order_trends.js",
+      "public/js/purchase_trends_filters.js",
+      "stock/report/purchase_receipt_trends/purchase_receipt_trends.js"
+    ],
+    "erpnext.queries": [
+      "public/js/queries.js",
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.queries.address_query": [
+      "accounts/doctype/dunning/dunning.js",
+      "maintenance/doctype/maintenance_schedule/maintenance_schedule.js",
+      "maintenance/doctype/maintenance_visit/maintenance_visit.js",
+      "public/js/controllers/buying.js",
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.queries.company_address_query": [
+      "accounts/doctype/dunning/dunning.js",
+      "public/js/controllers/buying.js",
+      "public/js/utils/sales_common.js",
+      "subcontracting/doctype/subcontracting_order/subcontracting_order.js",
+      "subcontracting/doctype/subcontracting_receipt/subcontracting_receipt.js"
+    ],
+    "erpnext.queries.company_contact_query": [
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.queries.contact_query": [
+      "accounts/doctype/dunning/dunning.js",
+      "maintenance/doctype/maintenance_schedule/maintenance_schedule.js",
+      "maintenance/doctype/maintenance_visit/maintenance_visit.js",
+      "public/js/controllers/buying.js",
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.queries.customer": [
+      "maintenance/doctype/maintenance_schedule/maintenance_schedule.js",
+      "maintenance/doctype/maintenance_visit/maintenance_visit.js",
+      "selling/doctype/installation_note/installation_note.js"
+    ],
+    "erpnext.queries.dispatch_address_query": [
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.queries.get_filtered_dimensions": [
+      "public/js/utils/dimension_tree_filter.js"
+    ],
+    "erpnext.queries.item": [
+      "assets/doctype/asset_capitalization/asset_capitalization.js",
+      "public/js/utils/item_selector.js",
+      "stock/doctype/pick_list/pick_list.js",
+      "stock/doctype/serial_no/serial_no.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.queries.setup_queries": [
+      "accounts/doctype/pos_profile/pos_profile.js",
+      "accounts/doctype/purchase_invoice/purchase_invoice.js",
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "buying/doctype/purchase_order/purchase_order.js",
+      "public/js/controllers/stock_controller.js"
+    ],
+    "erpnext.queries.setup_warehouse_query": [
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "public/js/queries.js",
+      "stock/doctype/delivery_note/delivery_note.js"
+    ],
+    "erpnext.queries.supplier": [
+      "public/js/controllers/buying.js"
+    ],
+    "erpnext.queries.warehouse": [
+      "accounts/doctype/pos_profile/pos_profile.js",
+      "accounts/doctype/purchase_invoice/purchase_invoice.js",
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "buying/doctype/purchase_order/purchase_order.js",
+      "public/js/controllers/stock_controller.js"
+    ],
+    "erpnext.route_to_pending_reposts": [
+      "stock/utils.py"
+    ],
+    "erpnext.sales_common": [
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.sales_common.setup_selling_controller": [
+      "accounts/doctype/pos_invoice/pos_invoice.js",
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "selling/doctype/quotation/quotation.js",
+      "selling/doctype/sales_order/sales_order.js",
+      "stock/doctype/delivery_note/delivery_note.js"
+    ],
+    "erpnext.sales_trends_filters": [
+      "accounts/report/sales_invoice_trends/sales_invoice_trends.js",
+      "public/js/sales_trends_filters.js",
+      "selling/report/quotation_trends/quotation_trends.js",
+      "selling/report/sales_order_trends/sales_order_trends.js",
+      "stock/report/delivery_note_trends/delivery_note_trends.js"
+    ],
+    "erpnext.set_unit_price_items_note": [
+      "buying/doctype/purchase_order/purchase_order.js",
+      "buying/doctype/request_for_quotation/request_for_quotation.js",
+      "buying/doctype/supplier_quotation/supplier_quotation.js",
+      "public/js/controllers/transaction.js",
+      "selling/doctype/quotation/quotation.js"
+    ],
+    "erpnext.setup_serial_or_batch_no": [
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "assets/doctype/asset_repair/asset_repair.js",
+      "stock/doctype/delivery_note/delivery_note.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.share_transfer": [
+      "accounts/doctype/share_transfer/share_transfer.js"
+    ],
+    "erpnext.share_transfer.make_jv": [
+      "accounts/doctype/share_transfer/share_transfer.js"
+    ],
+    "erpnext.share_transfer.update_amount": [
+      "accounts/doctype/share_transfer/share_transfer.js"
+    ],
+    "erpnext.show_serial_batch_selector": [
+      "public/js/controllers/transaction.js"
+    ],
+    "erpnext.stale_rate_allowed": [
+      "accounts/doctype/dunning/dunning.js",
+      "accounts/doctype/payment_entry/payment_entry.js",
+      "public/js/controllers/transaction.js"
+    ],
+    "erpnext.stock.doctype.item_standard_cost.item_standard_cost": [
+      "stock/doctype/bin/bin.py"
+    ],
+    "erpnext.stock_reservation": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.cancel_stock_reservation": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.dialog": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.fields": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.get_dialog_fields": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.get_fields_for_cancel": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.get_parms": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.get_stock_reservation_entries": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.make_entries": [
+      "manufacturing/doctype/production_plan/production_plan.js",
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.stock_reservation.prepare_for_cancel_sre_entries": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.render_items": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.reserve_stock": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.setup": [
+      "public/js/stock_reservation.js"
+    ],
+    "erpnext.stock_reservation.show_reserved_stock": [
+      "manufacturing/doctype/production_plan/production_plan.js",
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.stock_reservation.unreserve_stock": [
+      "manufacturing/doctype/production_plan/production_plan.js",
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.taxable_base_resolvers": [
+      "public/js/controllers/taxes_and_totals.js"
+    ],
+    "erpnext.taxes": [
+      "public/js/controllers/accounts.js"
+    ],
+    "erpnext.taxes_and_totals": [
+      "public/js/controllers/taxes_and_totals.js",
+      "public/js/controllers/transaction.js"
+    ],
+    "erpnext.timesheet": [
+      "public/js/projects/timer.js"
+    ],
+    "erpnext.timesheet.control_timer": [
+      "public/js/projects/timer.js"
+    ],
+    "erpnext.timesheet.timer": [
+      "public/js/projects/timer.js"
+    ],
+    "erpnext.toggle_naming_series": [
+      "accounts/doctype/journal_entry/journal_entry.js",
+      "buying/doctype/supplier/supplier.js",
+      "manufacturing/doctype/work_order/work_order.js",
+      "public/js/controllers/transaction.js",
+      "public/js/newsletter.js"
+    ],
+    "erpnext.toggle_serial_batch_fields": [
+      "assets/doctype/asset_capitalization/asset_capitalization.js",
+      "public/js/controllers/transaction.js",
+      "stock/doctype/pick_list/pick_list.js",
+      "stock/doctype/stock_entry/stock_entry.js",
+      "stock/doctype/stock_reconciliation/stock_reconciliation.js"
+    ],
+    "erpnext.utils": [
+      "accounts/report/accounts_receivable/accounts_receivable.js",
+      "public/js/utils.js",
+      "public/js/utils/party.js"
+    ],
+    "erpnext.utils.BarcodeScanner": [
+      "public/js/controllers/transaction.js",
+      "public/js/utils.js",
+      "public/js/utils/barcode_scanner.js",
+      "stock/doctype/pick_list/pick_list.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.utils.CRMActivities": [
+      "public/js/utils/crm_activities.js"
+    ],
+    "erpnext.utils.CRMNotes": [
+      "public/js/utils/crm_activities.js"
+    ],
+    "erpnext.utils.add_dimensions": [
+      "accounts/report/accounts_payable/accounts_payable.js",
+      "accounts/report/accounts_payable_summary/accounts_payable_summary.js",
+      "accounts/report/accounts_receivable/accounts_receivable.js",
+      "accounts/report/accounts_receivable_summary/accounts_receivable_summary.js",
+      "accounts/report/balance_sheet/balance_sheet.js"
+    ],
+    "erpnext.utils.add_indicator_for_multicompany": [
+      "public/js/utils.js"
+    ],
+    "erpnext.utils.add_inventory_dimensions": [
+      "stock/report/available_serial_no/available_serial_no.js",
+      "stock/report/stock_balance/stock_balance.js",
+      "stock/report/stock_ledger/stock_ledger.js"
+    ],
+    "erpnext.utils.add_item": [
+      "public/js/utils/party.js",
+      "stock/doctype/material_request/material_request.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.utils.check_payments_app": [
+      "accounts/doctype/payment_gateway_account/payment_gateway_account.js",
+      "accounts/doctype/subscription_plan/subscription_plan.js"
+    ],
+    "erpnext.utils.copy_value_in_all_rows": [
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "buying/doctype/purchase_order/purchase_order.js",
+      "manufacturing/doctype/production_plan/production_plan.js",
+      "public/js/controllers/transaction.js",
+      "selling/doctype/sales_order/sales_order.js"
+    ],
+    "erpnext.utils.get_address_display": [
+      "accounts/doctype/dunning/dunning.js",
+      "maintenance/doctype/maintenance_schedule/maintenance_schedule.js",
+      "maintenance/doctype/maintenance_visit/maintenance_visit.js",
+      "public/js/controllers/buying.js",
+      "public/js/utils/party.js"
+    ],
+    "erpnext.utils.get_contact_details": [
+      "accounts/doctype/payment_entry/payment_entry.js",
+      "maintenance/doctype/maintenance_schedule/maintenance_schedule.js",
+      "maintenance/doctype/maintenance_visit/maintenance_visit.js",
+      "public/js/controllers/transaction.js",
+      "public/js/utils/party.js"
+    ],
+    "erpnext.utils.get_employee_contact_details": [
+      "accounts/doctype/payment_entry/payment_entry.js",
+      "public/js/utils/party.js"
+    ],
+    "erpnext.utils.get_fiscal_year": [
+      "accounts/doctype/account/account.js",
+      "accounts/doctype/account/account_tree.js",
+      "accounts/report/asset_depreciations_and_balances/asset_depreciations_and_balances.js",
+      "accounts/report/bank_clearance_summary/bank_clearance_summary.js",
+      "accounts/report/budget_variance_report/budget_variance_report.js"
+    ],
+    "erpnext.utils.get_party_details": [
+      "accounts/doctype/dunning/dunning.js",
+      "accounts/doctype/pos_invoice/pos_invoice.js",
+      "accounts/doctype/purchase_invoice/purchase_invoice.js",
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "maintenance/doctype/maintenance_schedule/maintenance_schedule.js"
+    ],
+    "erpnext.utils.get_party_name": [
+      "accounts/report/general_ledger/general_ledger.js"
+    ],
+    "erpnext.utils.get_shipping_address": [
+      "public/js/controllers/transaction.js",
+      "public/js/utils/party.js"
+    ],
+    "erpnext.utils.get_terms": [
+      "manufacturing/doctype/blanket_order/blanket_order.js",
+      "public/js/controllers/transaction.js"
+    ],
+    "erpnext.utils.get_tree_default": [
+      "accounts/doctype/account/account_tree.js",
+      "accounts/doctype/cost_center/cost_center_tree.js",
+      "setup/doctype/employee/employee_tree.js",
+      "stock/doctype/warehouse/warehouse_tree.js"
+    ],
+    "erpnext.utils.get_tree_options": [
+      "accounts/doctype/account/account_tree.js",
+      "accounts/doctype/cost_center/cost_center_tree.js",
+      "setup/doctype/employee/employee_tree.js",
+      "stock/doctype/warehouse/warehouse_tree.js"
+    ],
+    "erpnext.utils.make_bank_account": [
+      "buying/doctype/supplier/supplier.js",
+      "selling/doctype/customer/customer.js",
+      "setup/doctype/employee/employee.js"
+    ],
+    "erpnext.utils.map_current_doc": [
+      "accounts/doctype/dunning/dunning.js",
+      "accounts/doctype/payment_order/payment_order.js",
+      "accounts/doctype/purchase_invoice/purchase_invoice.js",
+      "accounts/doctype/sales_invoice/sales_invoice.js",
+      "buying/doctype/purchase_order/purchase_order.js"
+    ],
+    "erpnext.utils.pick_serial_and_batch_bundle": [
+      "stock/doctype/stock_reconciliation/stock_reconciliation.js"
+    ],
+    "erpnext.utils.remove_empty_first_row": [
+      "stock/doctype/material_request/material_request.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.utils.select_alternate_items": [
+      "manufacturing/doctype/bom/bom.js",
+      "manufacturing/doctype/work_order/work_order.js",
+      "public/js/utils.js",
+      "stock/doctype/stock_entry/stock_entry.js"
+    ],
+    "erpnext.utils.set_letter_head": [
+      "accounts/doctype/journal_entry/journal_entry.js",
+      "accounts/doctype/payment_entry/payment_entry.js",
+      "accounts/doctype/pos_invoice/pos_invoice.js",
+      "accounts/doctype/pos_profile/pos_profile.js",
+      "accounts/doctype/process_statement_of_accounts/process_statement_of_accounts.js"
+    ],
+    "erpnext.utils.set_party_dashboard_indicators": [
+      "buying/doctype/supplier/supplier.js",
+      "selling/doctype/customer/customer.js"
+    ],
+    "erpnext.utils.set_taxes": [
+      "public/js/controllers/transaction.js",
+      "public/js/utils/party.js"
+    ],
+    "erpnext.utils.set_taxes_from_address": [
+      "public/js/controllers/buying.js",
+      "public/js/utils/party.js",
+      "public/js/utils/sales_common.js"
+    ],
+    "erpnext.utils.update_child_items": [
+      "buying/doctype/purchase_order/purchase_order.js",
+      "buying/doctype/supplier_quotation/supplier_quotation.js",
+      "public/js/utils.js",
+      "selling/doctype/quotation/quotation.js",
+      "selling/doctype/sales_order/sales_order.js"
+    ],
+    "erpnext.utils.validate_mandatory": [
+      "public/js/utils/party.js"
+    ],
+    "erpnext.utils.view_serial_batch_nos": [
+      "public/js/controllers/transaction.js",
+      "stock/doctype/stock_entry/stock_entry.js",
+      "stock/doctype/stock_reconciliation/stock_reconciliation.js"
+    ],
+    "erpnext.work_order": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.calculate_cost": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.calculate_total_cost": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.change_work_order_status": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.create_pick_list": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.make_consumption_se": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.make_material_request": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.make_se": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.set_custom_buttons": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.set_default_warehouse": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ],
+    "erpnext.work_order.setup_stock_reservation": [
+      "manufacturing/doctype/work_order/work_order.js"
+    ]
+  },
+  "unmapped_dotted_paths": [
+    "erpnext.BOMComparisonTool",
+    "erpnext.ItemSelector",
+    "erpnext.PointOfSale",
+    "erpnext.PointOfSale.Controller",
+    "erpnext.PointOfSale.ItemCart",
+    "erpnext.PointOfSale.ItemDetails",
+    "erpnext.PointOfSale.ItemSelector",
+    "erpnext.PointOfSale.NumberPad",
+    "erpnext.PointOfSale.PastOrderList",
+    "erpnext.PointOfSale.PastOrderSummary",
+    "erpnext.PointOfSale.Payment",
+    "erpnext.SMSManager",
+    "erpnext.SalesFunnel",
+    "erpnext.SerialBatchPackageSelector",
+    "erpnext.StockAnalytics",
+    "erpnext.StockGridReport",
+    "erpnext.TransactionController",
+    "erpnext.apply_putaway_rule",
+    "erpnext.asset",
+    "erpnext.asset.restore_asset",
+    "erpnext.asset.scrap_asset",
+    "erpnext.asset.set_accumulated_depreciation",
+    "erpnext.asset.transfer_asset",
+    "erpnext.bom",
+    "erpnext.bom.BomConfigurator",
+    "erpnext.bom.BomController",
+    "erpnext.bom.calculate_op_cost",
+    "erpnext.bom.calculate_rm_cost",
+    "erpnext.bom.calculate_total",
+    "erpnext.bom.update_cost",
+    "erpnext.bulk_transaction_processing",
+    "erpnext.bulk_transaction_processing.create",
+    "erpnext.call_popup",
+    "erpnext.cheque_print",
+    "erpnext.cheque_print.view_cheque_print",
+    "erpnext.custom.financial_apis.get_custom_revenue",
+    "erpnext.demo",
+    "erpnext.demo.clear_demo",
+    "erpnext.financial_statements",
+    "erpnext.financial_statements._format_custom_account_column",
+    "erpnext.financial_statements._format_custom_report",
+    "erpnext.financial_statements._format_custom_value_column",
+    "erpnext.financial_statements._format_special_view",
+    "erpnext.financial_statements._format_standard_report",
+    "erpnext.financial_statements._get_formatting_for_column",
+    "erpnext.financial_statements._is_special_view",
+    "erpnext.financial_statements._parse_column_info",
+    "erpnext.financial_statements._style_custom_value",
+    "erpnext.financial_statements.filters",
+    "erpnext.financial_statements.formatter",
+    "erpnext.financial_statements.is_blank_row",
+    "erpnext.financial_statements.name_field",
+    "erpnext.financial_statements.open_general_ledger",
+    "erpnext.get_currency",
+    "erpnext.get_presentation_currency_list",
+    "erpnext.hide_company",
+    "erpnext.in_production_item_onchange",
+    "erpnext.integrations",
+    "erpnext.integrations.plaidLink",
+    "erpnext.integrations.refreshPlaidLink",
+    "erpnext.item",
+    "erpnext.item.item_dashboard",
+    "erpnext.item.item_dashboard.refresh",
+    "erpnext.item.make_dashboard",
+    "erpnext.item.render_item_prices",
+    "erpnext.item.setup_queries",
+    "erpnext.item.show_modal_for_manufacturers",
+    "erpnext.item.show_multiple_variants_dialog",
+    "erpnext.item.show_single_variant_dialog",
+    "erpnext.item.toggle_attributes",
+    "erpnext.item.weight_to_validate",
+    "erpnext.journal_entry",
+    "erpnext.journal_entry.account_query",
+    "erpnext.journal_entry.clear_fields",
+    "erpnext.journal_entry.lock_reversal_entry",
+    "erpnext.journal_entry.quick_entry",
+    "erpnext.journal_entry.reverse_journal_entry",
+    "erpnext.journal_entry.set_account_details",
+    "erpnext.journal_entry.set_amount_on_last_row",
+    "erpnext.journal_entry.set_debit_credit_in_company_currency",
+    "erpnext.journal_entry.set_exchange_rate",
+    "erpnext.journal_entry.toggle_fields_based_on_currency",
+    "erpnext.landed_cost_taxes_and_charges",
+    "erpnext.landed_cost_taxes_and_charges.setup_triggers",
+    "erpnext.last_selected_company",
+    "erpnext.patches.v16_0",
+    "erpnext.patches.v16_0.merge_seeded_item_group_root",
+    "erpnext.patches.v16_0.repair_work_order_material_transfer",
+    "erpnext.patches.v16_0.set_stock_uom_in_job_card",
+    "erpnext.payments",
+    "erpnext.pre_sales",
+    "erpnext.pre_sales.set_as_lost",
+    "erpnext.purchase_trends_filters",
+    "erpnext.queries",
+    "erpnext.queries.address_query",
+    "erpnext.queries.company_address_query",
+    "erpnext.queries.company_contact_query",
+    "erpnext.queries.contact_query",
+    "erpnext.queries.customer",
+    "erpnext.queries.dispatch_address_query",
+    "erpnext.queries.get_filtered_dimensions",
+    "erpnext.queries.item",
+    "erpnext.queries.setup_queries",
+    "erpnext.queries.setup_warehouse_query",
+    "erpnext.queries.supplier",
+    "erpnext.queries.warehouse",
+    "erpnext.route_to_pending_reposts",
+    "erpnext.sales_common",
+    "erpnext.sales_common.setup_selling_controller",
+    "erpnext.sales_trends_filters",
+    "erpnext.set_unit_price_items_note",
+    "erpnext.setup_serial_or_batch_no",
+    "erpnext.share_transfer",
+    "erpnext.share_transfer.make_jv",
+    "erpnext.share_transfer.update_amount",
+    "erpnext.show_serial_batch_selector",
+    "erpnext.stale_rate_allowed",
+    "erpnext.stock.doctype.item_standard_cost.item_standard_cost",
+    "erpnext.stock_reservation",
+    "erpnext.stock_reservation.cancel_stock_reservation",
+    "erpnext.stock_reservation.dialog",
+    "erpnext.stock_reservation.fields",
+    "erpnext.stock_reservation.get_dialog_fields",
+    "erpnext.stock_reservation.get_fields_for_cancel",
+    "erpnext.stock_reservation.get_parms",
+    "erpnext.stock_reservation.get_stock_reservation_entries",
+    "erpnext.stock_reservation.make_entries",
+    "erpnext.stock_reservation.prepare_for_cancel_sre_entries",
+    "erpnext.stock_reservation.render_items",
+    "erpnext.stock_reservation.reserve_stock",
+    "erpnext.stock_reservation.setup",
+    "erpnext.stock_reservation.show_reserved_stock",
+    "erpnext.stock_reservation.unreserve_stock",
+    "erpnext.taxable_base_resolvers",
+    "erpnext.taxes",
+    "erpnext.taxes_and_totals",
+    "erpnext.timesheet",
+    "erpnext.timesheet.control_timer",
+    "erpnext.timesheet.timer",
+    "erpnext.toggle_naming_series",
+    "erpnext.toggle_serial_batch_fields",
+    "erpnext.utils",
+    "erpnext.utils.BarcodeScanner",
+    "erpnext.utils.CRMActivities",
+    "erpnext.utils.CRMNotes",
+    "erpnext.utils.add_dimensions",
+    "erpnext.utils.add_indicator_for_multicompany",
+    "erpnext.utils.add_inventory_dimensions",
+    "erpnext.utils.add_item",
+    "erpnext.utils.check_payments_app",
+    "erpnext.utils.copy_value_in_all_rows",
+    "erpnext.utils.get_address_display",
+    "erpnext.utils.get_contact_details",
+    "erpnext.utils.get_employee_contact_details",
+    "erpnext.utils.get_fiscal_year",
+    "erpnext.utils.get_party_details",
+    "erpnext.utils.get_party_name",
+    "erpnext.utils.get_shipping_address",
+    "erpnext.utils.get_terms",
+    "erpnext.utils.get_tree_default",
+    "erpnext.utils.get_tree_options",
+    "erpnext.utils.make_bank_account",
+    "erpnext.utils.map_current_doc",
+    "erpnext.utils.pick_serial_and_batch_bundle",
+    "erpnext.utils.remove_empty_first_row",
+    "erpnext.utils.select_alternate_items",
+    "erpnext.utils.set_letter_head",
+    "erpnext.utils.set_party_dashboard_indicators",
+    "erpnext.utils.set_taxes",
+    "erpnext.utils.set_taxes_from_address",
+    "erpnext.utils.update_child_items",
+    "erpnext.utils.validate_mandatory",
+    "erpnext.utils.view_serial_batch_nos",
+    "erpnext.work_order",
+    "erpnext.work_order.calculate_cost",
+    "erpnext.work_order.calculate_total_cost",
+    "erpnext.work_order.change_work_order_status",
+    "erpnext.work_order.create_pick_list",
+    "erpnext.work_order.make_consumption_se",
+    "erpnext.work_order.make_material_request",
+    "erpnext.work_order.make_se",
+    "erpnext.work_order.set_custom_buttons",
+    "erpnext.work_order.set_default_warehouse",
+    "erpnext.work_order.setup_stock_reservation"
+  ],
+  "upstream_fix_remaps": {
+    "accounts/doctype/payment_request/payment_request.py": 1
+  }
+}

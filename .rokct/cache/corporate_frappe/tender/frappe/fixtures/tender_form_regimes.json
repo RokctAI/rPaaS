@@ -1,0 +1,274 @@
+[
+    {
+        "doctype": "Tender Form Regime",
+        "name": "SBD",
+        "regime_code": "SBD",
+        "regime_name": "National / Provincial (SBD forms)",
+        "statute": "PFMA",
+        "description": "National and provincial departments and PFMA public entities. Consolidated SBD 1 + 4 + 6.1 (+3.x) spread; post-2022 SBD 4 absorbs the old SBD 8/9 declarations. State-employee bans explicit; checklist-driven evaluation. Guide ref: SA-Tender-Completion-Guide.md sections 1.2, 4, 8.",
+        "forms": [
+            {
+                "form_code": "SBD1",
+                "form_name": "Invitation to Bid (cover form)",
+                "mandatory": 1,
+                "kill_note": "Fill EVERY field. Write the TOTAL BID PRICE on the face of the form, carried over exactly from the pricing schedule. Sign, date, state signing capacity, attach proof of authority."
+            },
+            {
+                "form_code": "SBD4",
+                "form_name": "Declaration of Interest / Bidder's Disclosure",
+                "mandatory": 1,
+                "kill_note": "Every question answered individually - a blank is a kill. List ALL directors with ID/tax numbers. Newer versions demand disclosure of ALL CSD-registered companies linked to any director, even unrelated ones. Post-2022 version absorbs the SBD 8/9 anti-collusion declarations."
+            },
+            {
+                "form_code": "SBD6.1",
+                "form_name": "Preference Points Claim Form",
+                "mandatory": 1,
+                "kill_note": "Write the number of points claimed against each goal (ticks rejected at some buyers); attach the exact proof per goal - a claim without proof scores zero, and fraudulent claims carry up to 10-year blacklisting."
+            },
+            {
+                "form_code": "SBD6.2",
+                "form_name": "Declaration of Local Production and Content",
+                "mandatory": 0,
+                "kill_note": "Designated sectors only, but pass/fail where it applies: the Declaration Certificate plus Annex C (per SATS 1286) missing by the deadline can disqualify the bid. Confirm the N/A marking otherwise."
+            },
+            {
+                "form_code": "SBD3.x",
+                "form_name": "Pricing Schedules",
+                "mandatory": 1,
+                "kill_note": "Price every line - blanks, dashes and N/A count as unpriced and can invalidate the whole tender. Keep the printed format; firm Rand prices UNLESS the pack issues a non-firm schedule with a mandatory escalation/rate-of-exchange formula; reconcile the total to SBD1 and the Form of Offer."
+            },
+            {
+                "form_code": "SBD3.2",
+                "form_name": "Method-of-Pricing / Non-Firm Prices form",
+                "mandatory": 0,
+                "kill_note": "Where issued: the firm/non-firm option selection is mandatory - a blank selection means the bid is not considered. Non-firm schedules carry mandatory escalation/rate-of-exchange formulas; submit the formula or be locked into fixed prices."
+            },
+            {
+                "form_code": "SBD7",
+                "form_name": "Contract Form",
+                "mandatory": 0,
+                "kill_note": "Where included as a returnable: complete and sign Part 1 at bid stage, in duplicate, both signed in the original, with two witnesses per party where required."
+            },
+            {
+                "form_code": "POPIA",
+                "form_name": "POPIA consent / processing form",
+                "mandatory": 0,
+                "kill_note": "Near-cross-sector returnable, mandatory at multiple buyers - sign it wherever the pack includes one; skipping it is a missing-returnable kill."
+            },
+            {
+                "form_code": "CST",
+                "form_name": "Certificate of Single Tender Submission",
+                "mandatory": 0,
+                "kill_note": "Where included: certifies one bid per entity - more than one submission (solo or via JV) voids ALL your submissions."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Regime",
+        "name": "MBD",
+        "regime_code": "MBD",
+        "regime_name": "Municipal (MBD forms)",
+        "statute": "MFMA",
+        "description": "Municipalities, municipal entities and TVET colleges running the MBD spread. MBD 8 and 9 are ALWAYS separate returnables; rates clearance for the company AND every director is the signature municipal gate. Mostly single-shot cure culture. Guide ref: sections 1.2, 3.2, 4, 8.",
+        "forms": [
+            {
+                "form_code": "MBD1",
+                "form_name": "Invitation to Bid (cover form)",
+                "mandatory": 1,
+                "kill_note": "Total price on the face of the form - 'bidders who do not put prices on MBD 1 will be eliminated'. Sign with capacity stated and proof of authority attached."
+            },
+            {
+                "form_code": "MBD4",
+                "form_name": "Declaration of Interest",
+                "mandatory": 1,
+                "kill_note": "Every question answered individually - a blank is a kill. All directors listed with ID and tax numbers; state-employed directors disclosed with Persal numbers."
+            },
+            {
+                "form_code": "MBD5",
+                "form_name": "Declaration for Procurement above R10 million",
+                "mandatory": 0,
+                "kill_note": "Mandatory above R10m: this declaration plus THREE years of audited annual financial statements (or AFS since incorporation). Unaudited AFS cannot be fixed inside a bid window - resolve months ahead."
+            },
+            {
+                "form_code": "MBD6.1",
+                "form_name": "Preference Points Claim Form",
+                "mandatory": 1,
+                "kill_note": "Points written per claimed goal, signed, exact proof attached per goal; claims must match CIPC/CSD/B-BBEE records exactly."
+            },
+            {
+                "form_code": "MBD6.2",
+                "form_name": "Declaration of Local Production and Content",
+                "mandatory": 0,
+                "kill_note": "Designated sectors only; pass/fail where applicable (per SATS 1286)."
+            },
+            {
+                "form_code": "MBD8",
+                "form_name": "Declaration of Bidder's Past SCM Practices",
+                "mandatory": 1,
+                "kill_note": "Separate returnable in every municipal pack: yes/no questionnaire on restricted-supplier listing, fraud convictions, prior terminations, rates arrears. Furnish particulars for any yes; sign."
+            },
+            {
+                "form_code": "MBD9",
+                "form_name": "Certificate of Independent Bid Determination",
+                "mandatory": 1,
+                "kill_note": "Must be signed by an authorised signatory - omission makes the bid non-responsive."
+            },
+            {
+                "form_code": "MBD10",
+                "form_name": "Buyer-specific municipal declarations",
+                "mandatory": 0,
+                "kill_note": "Buyer-specific; sign every declaration form the pack includes - skipping a form because it looks like legal furniture is a missing-returnable kill."
+            },
+            {
+                "form_code": "MBD2",
+                "form_name": "Original Tax Clearance Certificate",
+                "mandatory": 0,
+                "kill_note": "A recurring older-template trait, not a one-off: where the pack demands the MBD 2 route, the tax clearance certificate must be an ORIGINAL - certified copies are rejected."
+            },
+            {
+                "form_code": "MBD3.x",
+                "form_name": "Pricing Schedules",
+                "mandatory": 1,
+                "kill_note": "Price every line - blanks, dashes and N/A count as unpriced and can invalidate the whole tender. Keep the printed format; reconcile the total EXACTLY to the price on the face of MBD 1 - 'bidders who do not put prices on MBD 1 will be eliminated'."
+            },
+            {
+                "form_code": "MBD3.2",
+                "form_name": "Method-of-Pricing / Non-Firm Prices form",
+                "mandatory": 0,
+                "kill_note": "Where issued: the firm/non-firm option selection is mandatory - blank = not considered; submit the escalation formula where a non-firm schedule provides one."
+            },
+            {
+                "form_code": "MBD6.4",
+                "form_name": "Local Content Bonus Points form",
+                "mandatory": 0,
+                "kill_note": "Where the pack scores local-content bonus points: claim explicitly with the named proof, exactly as with MBD 6.1 - an unclaimed or unproven bonus scores zero."
+            },
+            {
+                "form_code": "POPIA",
+                "form_name": "POPIA consent / processing form",
+                "mandatory": 0,
+                "kill_note": "Near-cross-sector returnable, mandatory at multiple buyers - sign it wherever the pack includes one."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Regime",
+        "name": "SOE",
+        "regime_code": "SOE",
+        "regime_name": "SOE / Public Entity (buyer-branded wrappers)",
+        "statute": "PFMA",
+        "description": "SOEs and public entities wrap SBD content in buyer-branded forms - match forms by TITLE, not number. Portal-only submission channels; tiered curable-vs-fatal returnables with 48h-7day cure windows; buyer-specific insurance regimes. Guide ref: sections 1.2, 2, 8.",
+        "forms": [
+            {
+                "form_code": "SBD4-W",
+                "form_name": "Declaration of Interest (buyer-branded wrapper)",
+                "mandatory": 1,
+                "kill_note": "Same content and same traps as SBD 4 - identify it by title inside the buyer's own form set."
+            },
+            {
+                "form_code": "SBD6.1-W",
+                "form_name": "Preference Points Claim (buyer-branded wrapper)",
+                "mandatory": 1,
+                "kill_note": "SOE point maps are often non-standard: one SOE gives B-BBEE Level 1 only 5 of 20 points, another gives Level 1 all 20. Read the buyer's actual specific-goals table."
+            },
+            {
+                "form_code": "NDA",
+                "form_name": "Confidentiality / Non-disclosure undertaking",
+                "mandatory": 0,
+                "kill_note": "Where the pack includes an NDA as a returnable, it is part of the bid - skipping it is a missing-returnable kill."
+            },
+            {
+                "form_code": "DPIP-FPPO",
+                "form_name": "DPIP / FPPO politically-exposed-persons declaration",
+                "mandatory": 0,
+                "kill_note": "SANRAL Form A5, Transnet and others: 'tender may be rendered invalid' if omitted - sweep for it by title and complete it wherever the pack includes one."
+            },
+            {
+                "form_code": "INTEGRITY-PACT",
+                "form_name": "Buyer-branded Integrity Pact",
+                "mandatory": 0,
+                "kill_note": "IN ADDITION to SBD/MBD 9, not instead of it (Gauteng Treasury, Eskom, Transnet) - sign both where both appear."
+            },
+            {
+                "form_code": "LIT-HISTORY",
+                "form_name": "Litigation-history disclosure",
+                "mandatory": 0,
+                "kill_note": "SANRAL Form A8-style returnable; feeds the buyer's PPPFA s2(1)(f) objective-criteria review - disclose fully, understatement risks the whole bid."
+            },
+            {
+                "form_code": "LOT-TABLE",
+                "form_name": "Lot / field tick-box tables",
+                "mandatory": 0,
+                "kill_note": "An unticked lot = disqualified for that lot - tick every lot/field you intend to bid."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Regime",
+        "name": "CIDB",
+        "regime_code": "CIDB",
+        "regime_name": "Construction (CIDB overlay)",
+        "statute": "CIDB Act / PFMA / MFMA",
+        "description": "Construction overlay on top of the funding buyer's regime: CIDB C1.1 Form of Offer, T/A-series returnable schedules, NEC/GCC contract forms, CIDB grading as an absolute eligibility gate, signed (and where demanded notarised) JV agreement BEFORE submission, bid-stage H&S and quality plans, performance guarantee post-award. Guide ref: sections 1.3, 3.2, 4.6, 8.",
+        "forms": [
+            {
+                "form_code": "C1.1",
+                "form_name": "Form of Offer and Acceptance",
+                "mandatory": 1,
+                "kill_note": "Sign the Offer with the total price in words AND figures, witnessed. Failure to sign, or to carry the price over from the pricing/activity schedule, renders the tender invalid."
+            },
+            {
+                "form_code": "T2.x",
+                "form_name": "Returnable Schedules (T/A-series)",
+                "mandatory": 1,
+                "kill_note": "Every schedule in the pack's returnables list must be present, completed and signed; locate the pack's filing clause (F.2.13.x) - a pack-level filing rule overrides per-form attachment instructions."
+            },
+            {
+                "form_code": "T2.x-PRICE",
+                "form_name": "Priced Schedule / Bill of Quantities (C2.2 pricing worksheet)",
+                "mandatory": 1,
+                "kill_note": "Price every item of the pricing data / BoQ including rate-only items - 'items against which N/A, left blank or - (dash) is entered' invalidate the tender at about half of buyers; carry the total over to the C1.1 Form of Offer in words AND figures - a missing or mismatched carry-over renders the tender invalid."
+            },
+            {
+                "form_code": "HS-PLAN",
+                "form_name": "Health & Safety Plan (bid-stage)",
+                "mandatory": 1,
+                "kill_note": "Per the pack's H&S Specification - include it even if the pack's own checklist omits it."
+            },
+            {
+                "form_code": "QC-PLAN",
+                "form_name": "Quality Control Plan",
+                "mandatory": 0,
+                "kill_note": "Include where scored or demanded (with ISO certification where it scores)."
+            },
+            {
+                "form_code": "GCC-ACCEPT",
+                "form_name": "GCC/SCC 'ACCEPT ALL' tick-box",
+                "mandatory": 0,
+                "kill_note": "An independent kill where present: failure to tick the ACCEPT ALL box on the contract conditions = disqualification - check for it as its own returnable, not part of the contract form."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Regime",
+        "name": "RFQ",
+        "regime_code": "RFQ",
+        "regime_name": "Request for Quotation (minimal spread)",
+        "statute": "PFMA / MFMA (issuing buyer's regime)",
+        "description": "Minimal form spread - sometimes only SBD 4 + 6.1 - but the core kill-rules still apply in full: late = dead, unpriced lines, unsigned forms, defaulters listing. Judge RFQ-vs-formal-bid by content, not the cover page: SOE 'RFQs' can carry full scored functionality gates, and the label warning is not construction-specific. Short validity (30-90 days). RFQs often default to VAT-EXCLUSIVE if silent. Cure culture follows the issuing buyer's regime - SOE RFQs can carry tiered cure windows; assume single-shot only for small municipal/departmental RFQs. RFI (market sounding - register interest or you won't receive addenda) and EOI (non-binding market test up to a full three-phase scored pipeline) are separate pack types - judge by content. Guide ref: sections 1.1, 8.",
+        "forms": [
+            {
+                "form_code": "SBD4",
+                "form_name": "Declaration of Interest",
+                "mandatory": 1,
+                "kill_note": "Same traps as the formal-bid SBD 4: every question answered individually, all directors disclosed."
+            },
+            {
+                "form_code": "SBD6.1",
+                "form_name": "Preference Points Claim Form",
+                "mandatory": 1,
+                "kill_note": "Same 80/20 rules as formal bids; points written per goal with proof attached."
+            }
+        ]
+    }
+]

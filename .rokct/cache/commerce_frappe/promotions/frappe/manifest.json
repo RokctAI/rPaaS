@@ -1,0 +1,98 @@
+{
+  "name": "promotions",
+  "description": "Modular backend package for promotions",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "scheduler_events": {
+          "daily": [
+            "{app_name}.promotions.tenant.tasks.remove_expired_stories"
+          ]
+        },
+        "whitelisted_methods": {
+          "{app_name}.api.banner.get_ad": "{app_name}.promotions.tenant.api.banner.get_ad",
+          "{app_name}.api.banner.get_ads": "{app_name}.promotions.tenant.api.banner.get_ads",
+          "{app_name}.api.banner.get_banner": "{app_name}.promotions.tenant.api.banner.get_banner",
+          "{app_name}.api.banner.get_banners": "{app_name}.promotions.tenant.api.banner.get_banners",
+          "{app_name}.api.faq.get_faqs": "{app_name}.base.tenant.api.faq.faq.get_faqs",
+          "{app_name}.api.story.get_story": "{app_name}.merchants.tenant.api.story.story.get_story",
+          "{app_name}.api.banner.like_banner": "{app_name}.promotions.tenant.api.banner.like_banner",
+          "{app_name}.api.ads_package.create_ads_package": "{app_name}.promotions.tenant.api.ads_package.create_ads_package",
+          "{app_name}.api.ads_package.delete_ads_package": "{app_name}.promotions.tenant.api.ads_package.delete_ads_package",
+          "{app_name}.api.ads_package.get_ads_packages": "{app_name}.promotions.tenant.api.ads_package.get_ads_packages",
+          "{app_name}.api.ads_package.update_ads_package": "{app_name}.promotions.tenant.api.ads_package.update_ads_package",
+          "{app_name}.api.blog.create_admin_blog": "{app_name}.base.tenant.api.blog.blog.create_admin_blog",
+          "{app_name}.api.blog.create_blog": "{app_name}.base.tenant.api.blog.blog.create_blog",
+          "{app_name}.api.blog.delete_admin_blog": "{app_name}.base.tenant.api.blog.blog.delete_admin_blog",
+          "{app_name}.api.blog.delete_blog": "{app_name}.base.tenant.api.blog.blog.delete_blog",
+          "{app_name}.api.blog.get_admin_blogs": "{app_name}.base.tenant.api.blog.blog.get_admin_blogs",
+          "{app_name}.api.blog.get_blog": "{app_name}.base.tenant.api.blog.blog.get_blog",
+          "{app_name}.api.blog.get_blog_details": "{app_name}.base.tenant.api.blog.blog.get_blog_details",
+          "{app_name}.api.blog.get_blogs": "{app_name}.base.tenant.api.blog.blog.get_blogs",
+          "{app_name}.api.blog.update_admin_blog": "{app_name}.base.tenant.api.blog.blog.update_admin_blog",
+          "{app_name}.api.blog.update_blog": "{app_name}.base.tenant.api.blog.blog.update_blog",
+          "{app_name}.api.career.get_admin_careers": "{app_name}.base.tenant.api.career.career.get_admin_careers",
+          "{app_name}.api.career.get_career": "{app_name}.base.tenant.api.career.career.get_career",
+          "{app_name}.api.career.get_careers": "{app_name}.base.tenant.api.career.career.get_careers",
+          "{app_name}.api.coupon.check_coupon": "{app_name}.promotions.tenant.api.coupon.check_coupon",
+          "{app_name}.api.faq.create_faq": "{app_name}.base.tenant.api.faq.faq.create_faq",
+          "{app_name}.api.faq.delete_faq": "{app_name}.base.tenant.api.faq.faq.delete_faq",
+          "{app_name}.api.faq.update_faq": "{app_name}.base.tenant.api.faq.faq.update_faq"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Story"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Coupon"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Banner"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Ad"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Referral"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "control": {}
+  }
+}

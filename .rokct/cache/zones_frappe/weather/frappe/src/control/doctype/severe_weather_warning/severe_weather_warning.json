@@ -1,0 +1,153 @@
+{
+ "doctype": "DocType",
+ "name": "Severe Weather Warning",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "SWW-.YYYY.-.#####",
+ "description": "One active/expired severe-weather heads-up for a watch location, produced by the hourly evaluator. headline/message are the exact end-user strings (heads-up possibility phrasing only - never official warning taxonomy); precursors is admin/debug detail and is never sent to clients. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "watch_location,event_class,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Link",
+   "label": "Watch Location",
+   "options": "Weather Watch Location",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "event_class",
+   "fieldtype": "Select",
+   "label": "Event Class",
+   "options": "flash_flood\nflood\ndestructive_wind\ntornado\ncold_front\nupstream_flood",
+   "description": "cold_front is the informational cool-change class (warnings_engine/cold_front.py) - always severity advisory, never pushed. upstream_flood is the basin-routed river-rise class (warnings_engine/basin.py) - raised from rain over the cell's upstream catchment, never by the frozen detector",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "label": "Severity (internal enum)",
+   "options": "advisory\nheads_up\nwarning",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Machine identifier only - clients render the wording-based label/strings, never this value. advisory (neighbor-propagated soft notice) is strictly below heads_up in prominence; clients that do not know it must render nothing"
+  },
+  {
+   "fieldname": "detector_tier",
+   "fieldtype": "Int",
+   "label": "Detector Tier",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Frozen detector tier at the last evaluation (2 warning, 3 severe). Admin visibility only - duplicated out of precursors so the desk list view / report builder can show and filter it. Never sent to clients."
+  },
+  {
+   "fieldname": "confidence",
+   "fieldtype": "Float",
+   "label": "Confidence",
+   "precision": "3",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Detector confidence (0-1) at the last evaluation. Admin visibility only - duplicated out of precursors for list/report use. Never sent to clients."
+  },
+  {
+   "fieldname": "headline",
+   "fieldtype": "Data",
+   "label": "Headline"
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Small Text",
+   "label": "Message"
+  },
+  {
+   "fieldname": "onset",
+   "fieldtype": "Datetime",
+   "label": "Onset (UTC)",
+   "description": "First hour the detector episode fired"
+  },
+  {
+   "fieldname": "valid_until",
+   "fieldtype": "Datetime",
+   "label": "Valid Until (UTC)",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "issued_at",
+   "fieldtype": "Datetime",
+   "label": "Issued At (UTC)"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "active\nexpired\nwithdrawn",
+   "default": "active",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "last_push_severity",
+   "fieldtype": "Select",
+   "label": "Last Pushed Severity (internal)",
+   "options": "\nheads_up\nwarning",
+   "read_only": 1,
+   "description": "Highest internal severity already push-notified for this episode - empty means no push yet. Refreshes at or below this level never push again; an escalation above it pushes immediately."
+  },
+  {
+   "fieldname": "last_pushed_at",
+   "fieldtype": "Datetime",
+   "label": "Last Pushed At (UTC)",
+   "read_only": 1,
+   "description": "When the last push notification for this record went out - drives the per-(location, class) cooldown"
+  },
+  {
+   "fieldname": "is_drill",
+   "fieldtype": "Check",
+   "label": "Drill",
+   "default": "0",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "1 = training-exercise record written by the drill replay runner (warnings_engine/drill.py). Drill records are admin-visible only: excluded from push notifications, from the outcome ledger, from the CAP feed's Actual alerts and from client responses unless a drill flag is explicitly requested. Fail-closed everywhere - a drill can never reach a real end user."
+  },
+  {
+   "fieldname": "drill_run_id",
+   "fieldtype": "Data",
+   "label": "Drill Run ID",
+   "read_only": 1,
+   "description": "Identifier of the drill replay run that wrote this record (empty on real records) - lets one exercise be inspected and cleared as a unit (api/clear_drill)."
+  },
+  {
+   "fieldname": "precursors",
+   "fieldtype": "Long Text",
+   "label": "Precursors (admin only)",
+   "read_only": 1,
+   "description": "JSON: fired detector conditions, confidence, tier, data horizon, source, config sha256. Never sent to clients."
+  }
+ ]
+}

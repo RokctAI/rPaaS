@@ -1,0 +1,105 @@
+{
+ "doctype": "DocType",
+ "name": "Weather Site Notice",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "WSN-.YYYY.-.#####",
+ "description": "One site-specific notice attached to a Severe Weather Warning record: the calm per-asset line for a registered Weather Vulnerable Site in the warning's grid cell. Written by warnings_engine/sites.py on every active warning upsert (engine-owned - do not edit rows by hand); served alongside the parent warning by get_weather_warnings (marked kind=site_notice) and live exactly as long as the parent warning is active. headline/message are exact end-user strings - heads-up possibility phrasing only, never official warning taxonomy. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "vulnerable_site,site_name,event_class",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "warning",
+   "fieldtype": "Link",
+   "label": "Warning",
+   "options": "Severe Weather Warning",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "vulnerable_site",
+   "fieldtype": "Link",
+   "label": "Vulnerable Site",
+   "options": "Weather Vulnerable Site",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Link",
+   "label": "Watch Location",
+   "options": "Weather Watch Location",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "event_class",
+   "fieldtype": "Data",
+   "label": "Event Class",
+   "read_only": 1,
+   "in_standard_filter": 1,
+   "description": "Mirror of the parent warning's event class, for list/report filtering"
+  },
+  {
+   "fieldname": "site_name",
+   "fieldtype": "Data",
+   "label": "Site Name",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Snapshot of the site's name at generation time"
+  },
+  {
+   "fieldname": "site_type",
+   "fieldtype": "Data",
+   "label": "Site Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "label": "Severity (internal enum)",
+   "options": "heads_up\nwarning",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Machine identifier only - clients render the wording-based label/strings, never this value. Site notices exist at heads_up and above only (no advisory tier)"
+  },
+  {
+   "fieldname": "headline",
+   "fieldtype": "Data",
+   "label": "Headline",
+   "read_only": 1
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Small Text",
+   "label": "Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "generated_at",
+   "fieldtype": "Datetime",
+   "label": "Generated At (UTC)",
+   "read_only": 1
+  }
+ ]
+}

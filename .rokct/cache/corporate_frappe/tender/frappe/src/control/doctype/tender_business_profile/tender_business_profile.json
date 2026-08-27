@@ -1,0 +1,357 @@
+{
+    "actions": [],
+    "creation": "2026-08-19 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-19 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Business Profile",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "autoname": "format:TBP-{#####}",
+    "field_order": [
+        "user",
+        "company",
+        "section_identity",
+        "trading_name",
+        "registered_name",
+        "company_registration_no",
+        "vat_number",
+        "csd_maaa_number",
+        "tcs_pin",
+        "section_preference",
+        "enterprise_type",
+        "bbbee_level",
+        "bbbee_certificate_expiry",
+        "cidb_grade",
+        "section_directors",
+        "directors",
+        "section_contact",
+        "physical_address",
+        "postal_address",
+        "contact_person",
+        "contact_phone",
+        "contact_email",
+        "section_signing",
+        "authorized_signatory_name",
+        "authorized_signatory_capacity",
+        "authorized_signatory_id_number",
+        "signature_image",
+        "signature_image_processed",
+        "initials_image",
+        "initials_image_processed",
+        "section_witnesses",
+        "witnesses",
+        "section_banking",
+        "bank_details_current_on_csd",
+        "section_capabilities",
+        "capabilities",
+        "section_operations",
+        "operating_sectors",
+        "operating_provinces",
+        "briefing_travel_radius",
+        "section_readiness",
+        "coida_good_standing",
+        "municipal_rates_current",
+        "psira_registered",
+        "nhbrc_registered",
+        "track_record_evidence"
+    ],
+    "fields": [
+        {
+            "fieldname": "user",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "User",
+            "options": "User",
+            "reqd": 1,
+            "unique": 1,
+            "description": "The bidder this profile belongs to - one profile per company/user, feeds the auto-fill in generated bid packs"
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Data",
+            "label": "Company"
+        },
+        {
+            "fieldname": "section_identity",
+            "fieldtype": "Section Break",
+            "label": "Company Identity (SBD/MBD 1 header block)"
+        },
+        {
+            "fieldname": "trading_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Trading Name",
+            "description": "Name of bidder as written on the SBD/MBD 1 cover form"
+        },
+        {
+            "fieldname": "registered_name",
+            "fieldtype": "Data",
+            "label": "Registered Name (CIPC)",
+            "description": "Must match CIPC, CSD and the B-BBEE certificate EXACTLY - one buyer zeroes preference points where records disagree"
+        },
+        {
+            "fieldname": "company_registration_no",
+            "fieldtype": "Data",
+            "label": "Company Registration No (CIPC)"
+        },
+        {
+            "fieldname": "vat_number",
+            "fieldtype": "Data",
+            "label": "VAT Number",
+            "description": "Leave empty if not VAT-registered - the pack marks the VAT line for manual completion instead"
+        },
+        {
+            "fieldname": "csd_maaa_number",
+            "fieldtype": "Data",
+            "label": "CSD Supplier Number (MAAA)",
+            "description": "Central Supplier Database registration number. CSD has no supplier API (tender/CSD-API-Findings.md) - keep this current by hand"
+        },
+        {
+            "fieldname": "tcs_pin",
+            "fieldtype": "Data",
+            "label": "SARS Tax Compliance Status PIN",
+            "description": "Generate a CURRENT TCS PIN per bid on eFiling - this stored value is the standing PIN, verify freshness before submitting"
+        },
+        {
+            "fieldname": "section_preference",
+            "fieldtype": "Section Break",
+            "label": "B-BBEE & Grading (SBD/MBD 6.1 inputs)"
+        },
+        {
+            "fieldname": "enterprise_type",
+            "fieldtype": "Select",
+            "label": "Enterprise Size Class",
+            "options": "\nEME (turnover under R10m - sworn affidavit)\nQSE (R10m-R50m - sworn affidavit)\nGeneric (over R50m - SANAS certificate)",
+            "description": "Determines whether B-BBEE evidence is a sworn affidavit (EME/QSE) or a SANAS-accredited certificate"
+        },
+        {
+            "fieldname": "bbbee_level",
+            "fieldtype": "Select",
+            "label": "B-BBEE Level",
+            "options": "\n1\n2\n3\n4\n5\n6\n7\n8\nNon-compliant",
+            "description": "Track the evidence document itself as a Compliance Artifact (B-BBEE Affidavit / B-BBEE Certificate)"
+        },
+        {
+            "fieldname": "bbbee_certificate_expiry",
+            "fieldtype": "Date",
+            "label": "B-BBEE Evidence Expiry",
+            "description": "Affidavits are valid 12 months from commissioning. Mirror of the Compliance Artifact valid_until for pack fill"
+        },
+        {
+            "fieldname": "cidb_grade",
+            "fieldtype": "Data",
+            "label": "CIDB Grading (if any)",
+            "description": "Exact class and designation, e.g. 6CE, 7GB, 3ME - construction bids only. Must be ACTIVE at close; track the registration as a Compliance Artifact (CIDB Grading)"
+        },
+        {
+            "fieldname": "section_directors",
+            "fieldtype": "Section Break",
+            "label": "Directors / Members (SBD/MBD 4 disclosure)"
+        },
+        {
+            "fieldname": "directors",
+            "fieldtype": "Table",
+            "label": "Directors / Members / Trustees",
+            "options": "Tender Profile Director",
+            "description": "List ALL of them - SBD/MBD 4 demands every director with ID and tax numbers; omission invalidates the bid"
+        },
+        {
+            "fieldname": "section_contact",
+            "fieldtype": "Section Break",
+            "label": "Addresses & Contact"
+        },
+        {
+            "fieldname": "physical_address",
+            "fieldtype": "Small Text",
+            "label": "Physical Address",
+            "description": "Must match CSD/CIPC exactly - locality preference claims verify the address against a municipal account or lease"
+        },
+        {
+            "fieldname": "postal_address",
+            "fieldtype": "Small Text",
+            "label": "Postal Address"
+        },
+        {
+            "fieldname": "contact_person",
+            "fieldtype": "Data",
+            "label": "Contact Person"
+        },
+        {
+            "fieldname": "contact_phone",
+            "fieldtype": "Data",
+            "label": "Contact Phone"
+        },
+        {
+            "fieldname": "contact_email",
+            "fieldtype": "Data",
+            "label": "Contact Email",
+            "options": "Email",
+            "description": "Monitored DAILY after submission - clarification/cure windows run from the buyer's email, not from when you read it"
+        },
+        {
+            "fieldname": "section_signing",
+            "fieldtype": "Section Break",
+            "label": "Authorised Signatory & Signing"
+        },
+        {
+            "fieldname": "authorized_signatory_name",
+            "fieldtype": "Data",
+            "label": "Authorised Signatory Name",
+            "description": "The person named in the board/members' resolution - proof of signing authority is fatal-if-missing in every pack"
+        },
+        {
+            "fieldname": "authorized_signatory_capacity",
+            "fieldtype": "Data",
+            "label": "Signatory Capacity / Position",
+            "description": "e.g. Director, Member - stated wherever a form asks the capacity in which you sign"
+        },
+        {
+            "fieldname": "authorized_signatory_id_number",
+            "fieldtype": "Data",
+            "label": "Signatory ID Number"
+        },
+        {
+            "fieldname": "signature_image",
+            "fieldtype": "Attach Image",
+            "label": "Signature Image",
+            "description": "Sign in dark ink on plain WHITE paper and photograph/scan squarely - the background is stripped automatically (solid colors also handled). Stamped into signature slots ONLY when the user explicitly generates a signed pack"
+        },
+        {
+            "fieldname": "signature_image_processed",
+            "fieldtype": "Attach",
+            "label": "Processed Signature (transparent)",
+            "read_only": 1,
+            "description": "Background-stripped transparent PNG working copy, regenerated whenever the source image changes - this is what gets stamped"
+        },
+        {
+            "fieldname": "initials_image",
+            "fieldtype": "Attach Image",
+            "label": "Initials Image",
+            "description": "Initial in dark ink on plain WHITE paper. Stamped into the initial-every-page footer of a signed pack where the form demands per-page initialling"
+        },
+        {
+            "fieldname": "initials_image_processed",
+            "fieldtype": "Attach",
+            "label": "Processed Initials (transparent)",
+            "read_only": 1,
+            "description": "Background-stripped transparent PNG working copy, regenerated whenever the source image changes"
+        },
+        {
+            "fieldname": "section_witnesses",
+            "fieldtype": "Section Break",
+            "label": "Witness Signatories"
+        },
+        {
+            "fieldname": "witnesses",
+            "fieldtype": "Table",
+            "label": "Witnesses",
+            "options": "Tender Profile Witness",
+            "description": "Several forms (SBD 7, C1.1, NDAs) need witness signatures - a signed pack stamps witness slots from these rows; rows without an image render as marked blanks. Commissioner-of-oaths slots are never stamped: a commissioner must sign in person"
+        },
+        {
+            "fieldname": "section_banking",
+            "fieldtype": "Section Break",
+            "label": "Banking"
+        },
+        {
+            "fieldname": "bank_details_current_on_csd",
+            "fieldtype": "Check",
+            "label": "Bank Details Current on CSD",
+            "description": "Actual bank details live on the CSD, not here - outdated CSD banking information is a stated cause for disqualification"
+        },
+        {
+            "fieldname": "section_capabilities",
+            "fieldtype": "Section Break",
+            "label": "Capability Register (sector evidence)"
+        },
+        {
+            "fieldname": "capabilities",
+            "fieldtype": "Table",
+            "label": "Capability Items",
+            "options": "Tender Capability Item",
+            "description": "Sector evidence the packs keep asking for and the profile could not hold (findings F-07): portfolio/reference sites, hosting infrastructure, data residency, uptime SLAs, security certifications, support tiers - and, sector-extensibly, PSIRA grades, plant/equipment, key personnel. Rows render as a table on capability worksheets (e.g. ICT-CAPABILITY); an empty register renders as a marked profile gap, never silently blank"
+        },
+        {
+            "fieldname": "section_operations",
+            "fieldtype": "Section Break",
+            "label": "Operating Footprint (suitability scoring)"
+        },
+        {
+            "fieldname": "operating_sectors",
+            "fieldtype": "Small Text",
+            "label": "Operating Sectors",
+            "description": "Comma-separated sectors/keywords the business actually operates in (e.g. ICT, cleaning, security, construction, civil engineering). Matched deterministically against opportunity categories/titles by the suitability scorer (FEEDBACK 1.2) - plain substring matching, no AI."
+        },
+        {
+            "fieldname": "operating_provinces",
+            "fieldtype": "Small Text",
+            "label": "Operating Provinces",
+            "description": "Comma-separated provinces the business can service (e.g. Limpopo, Gauteng). Leave empty to score geography as undeclared; national/unspecified opportunities match everyone."
+        },
+        {
+            "fieldname": "briefing_travel_radius",
+            "fieldtype": "Select",
+            "label": "Briefing Travel Radius",
+            "options": "\nLocal (own provinces only)\nNeighbouring provinces\nNational",
+            "description": "How far the business will travel for a compulsory briefing. Local-only profiles get an extra process-feasibility deduction when a compulsory briefing sits outside the declared operating provinces."
+        },
+        {
+            "fieldname": "section_readiness",
+            "fieldtype": "Section Break",
+            "label": "Readiness Evidence (demanded returnables)"
+        },
+        {
+            "fieldname": "coida_good_standing",
+            "fieldtype": "Check",
+            "label": "COIDA Letter of Good Standing held",
+            "description": "Compensation Fund letter of good standing, current. Demanded on works / site-based service tenders (GATE-COIDA); feeds the readiness factor's gap list."
+        },
+        {
+            "fieldname": "municipal_rates_current",
+            "fieldtype": "Check",
+            "label": "Municipal Rates Account Current (< 90 days)",
+            "description": "Municipal rates/services account not older than 90 days (or lease + owner account). Municipal buyers demand it routinely (GATE-RATES); feeds the readiness factor."
+        },
+        {
+            "fieldname": "psira_registered",
+            "fieldtype": "Check",
+            "label": "PSIRA Registered",
+            "description": "Private Security Industry Regulatory Authority registration - security-sector tenders only; feeds the readiness factor."
+        },
+        {
+            "fieldname": "nhbrc_registered",
+            "fieldtype": "Check",
+            "label": "NHBRC Registered",
+            "description": "National Home Builders Registration Council registration - home-building tenders only; feeds the readiness factor."
+        },
+        {
+            "fieldname": "track_record_evidence",
+            "fieldtype": "Check",
+            "label": "Track-Record Evidence Pack Ready",
+            "description": "Signed reference letters / completion certificates / appointment letters (the 'Trinity of Evidence') collated and current. Feeds the readiness factor where experience evidence is demanded."
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ]
+}

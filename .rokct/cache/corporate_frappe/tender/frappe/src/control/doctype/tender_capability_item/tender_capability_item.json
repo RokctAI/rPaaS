@@ -1,0 +1,70 @@
+{
+    "actions": [],
+    "creation": "2026-08-20 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-20 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Capability Item",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "istable": 1,
+    "field_order": [
+        "capability_type",
+        "label",
+        "value",
+        "detail",
+        "reference_url",
+        "valid_until"
+    ],
+    "fields": [
+        {
+            "fieldname": "capability_type",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Type",
+            "options": "Portfolio / Reference Site\nHosting Infrastructure\nData Residency\nUptime SLA\nSecurity Certification\nSupport Tier\nDisaster Recovery\nSector Registration\nPlant / Equipment\nKey Personnel\nOther",
+            "description": "Sector-extensible capability class (findings F-07): a Select keeps matching deterministic; 'Other' plus the label keeps it extensible without schema churn — options are only ever ADDED (PSIRA grades and construction plant close the same way later)"
+        },
+        {
+            "fieldname": "label",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Item",
+            "reqd": 1,
+            "description": "What the item IS, e.g. 'www.client-municipality.gov.za', 'Teraco JB1', 'PSIRA registration'"
+        },
+        {
+            "fieldname": "value",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Value",
+            "description": "The claimable value, e.g. '99.9% monthly', 'ZA-only', 'PSIRA Grade B'"
+        },
+        {
+            "fieldname": "detail",
+            "fieldtype": "Small Text",
+            "label": "Detail",
+            "description": "Supporting detail an evaluator would want, e.g. scope of the reference engagement, data-centre tier, cert scope"
+        },
+        {
+            "fieldname": "reference_url",
+            "fieldtype": "Data",
+            "label": "Reference URL",
+            "description": "Live URL for portfolio/reference items (evaluators do click these)"
+        },
+        {
+            "fieldname": "valid_until",
+            "fieldtype": "Date",
+            "label": "Valid Until",
+            "description": "Expiry for certifications/registrations — an expired cert claimed as current is a misrepresentation risk"
+        }
+    ],
+    "permissions": []
+}

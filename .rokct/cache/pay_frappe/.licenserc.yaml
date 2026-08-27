@@ -1,0 +1,70 @@
+# License-header check config for skywalking-eyes (License Eye), consumed by
+# RokctAI/shared-workflows .github/workflows/universal-license.yml, which
+# prefers this repo-level file over its generated default.
+#
+# Content mirrors the shared default config exactly, with additions for the
+# forked subtrees: `erp/**`, `gateways/**`, and `hrms/**` are excluded from
+# the MIT header check. The erp/ subtree is a GPL-3.0 fork of frappe/erpnext,
+# the gateways/ subtree is an MIT fork of frappe/payments (Frappe
+# Technologies copyright), and the hrms/ subtree is a GPL-3.0 fork of
+# frappe/hrms — see each subtree's LICENSE and README.md; their files keep
+# their upstream copyright/license headers verbatim and must never be
+# stamped or checked against this repo's MIT/RokctAI header.
+header:
+  license:
+    spdx-id: MIT
+    copyright-owner: RokctAI
+    content: |
+      Copyright (c) 2026 RokctAI
+
+      Permission is hereby granted, free of charge, to any person obtaining a copy
+      of this software and associated documentation files (the "Software"), to deal
+      in the Software without restriction, including without limitation the rights
+      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+      copies of the Software, and to permit persons to whom the Software is
+      furnished to do so, subject to the following conditions:
+
+      The above copyright notice and this permission notice shall be included in all
+      copies or substantial portions of the Software.
+
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+      SOFTWARE.
+  # Only real, hand-written source files need a header.
+  paths:
+    - '**/*.py'
+    - '**/*.js'
+    - '**/*.jsx'
+    - '**/*.ts'
+    - '**/*.tsx'
+    - '**/*.dart'
+  paths-ignore:
+    # GPL-3.0 subtree forked from frappe/erpnext — upstream headers are
+    # preserved verbatim; MIT headers must never be applied here.
+    - 'erp/**'
+    # MIT subtree forked from frappe/payments — upstream Frappe Technologies
+    # headers are preserved verbatim; RokctAI headers must never be applied.
+    - 'gateways/**'
+    # GPL-3.0 subtree forked from frappe/hrms — upstream headers are
+    # preserved verbatim; MIT headers must never be applied here.
+    - 'hrms/**'
+    # Vendored / third-party code
+    - '**/node_modules/**'
+    - '**/vendor/**'
+    # Build output and generated code
+    - '**/dist/**'
+    - '**/build/**'
+    - '**/.dart_tool/**'
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - '**/*.gr.dart'
+    - '**/*.min.js'
+    # Local environments
+    - '**/venv/**'
+    - '**/.venv/**'
+    # Agent-internal protocol state (mirrors per-repo configs)
+    - '.rokct/**'

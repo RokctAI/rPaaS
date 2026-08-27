@@ -1,0 +1,298 @@
+{
+  "timestamp": "2026-07-11T04:03:39.660499+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "FAIL",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/zones/zones/dart",
+  "detail": "Architectural compliance scan failed with 48 violations across source code checks.",
+  "violations": [
+    {
+      "file": ".\\lib\\src\\domain\\interface\\driver\\draw_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'draw_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\manager\\zone_delivery_interface.dart",
+      "line": 7,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'zone_delivery_interface.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\manager\\zone_delivery_interface.dart",
+      "line": 8,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'zone_delivery_interface.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\draw_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'draw_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\draw_repository_impl.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'draw_repository_impl.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 34,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 35,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 53,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 60,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 61,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 74,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 83,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 84,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 85,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 102,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 110,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 111,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 113,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 128,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 134,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 137,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 158,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 167,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 173,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 183,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 188,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 206,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 214,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 234,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 242,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 260,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 270,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 271,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\draw_routing_response.dart",
+      "line": 272,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'draw_routing_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\delivery_zone_data.dart",
+      "line": 10,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\delivery_zone_data.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\delivery_zone_data.dart",
+      "line": 25,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\delivery_zone_paginate.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\delivery_zone_paginate.dart",
+      "line": 37,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\delivery_zone_paginate.dart",
+      "line": 43,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\delivery_zone_paginate.dart",
+      "line": 24,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\delivery_zone_paginate.dart",
+      "line": 25,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\delivery_zone_paginate.dart",
+      "line": 41,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\delivery_zone_paginate.dart",
+      "line": 45,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\delivery_zone_paginate.dart",
+      "line": 78,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\delivery_zone_paginate.dart",
+      "line": 79,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'delivery_zone_paginate.dart'. Define concrete Dart models or strong types."
+    }
+  ]
+}

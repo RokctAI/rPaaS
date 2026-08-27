@@ -1,0 +1,142 @@
+{
+  "timestamp": "2026-07-11T04:03:31.268406+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "FAIL",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/pay/wallet/dart",
+  "detail": "Architectural compliance scan failed with 22 violations across source code checks.",
+  "violations": [
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\wallet_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'wallet_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\wallet_repository.dart",
+      "line": 1,
+      "what": "Layer 15 (Webhook & Integration - Flutter HTTP Timeout)",
+      "why": "Flutter file 'wallet_repository.dart' uses an HTTP client (http/dio) but configures no timeout. Set connectTimeout and receiveTimeout to prevent hanging requests."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\payment_data.dart",
+      "line": 56,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'payment_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\payment_data.dart",
+      "line": 57,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'payment_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\refund_data.dart",
+      "line": 8,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\refund_data.dart",
+      "line": 17,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\refund_data.dart",
+      "line": 18,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\refund_data.dart",
+      "line": 41,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\refund_data.dart",
+      "line": 51,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\refund_data.dart",
+      "line": 68,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\refund_data.dart",
+      "line": 73,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_histories_response.dart",
+      "line": 43,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_histories_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_histories_response.dart",
+      "line": 44,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_histories_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_histories_response.dart",
+      "line": 169,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_histories_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_histories_response.dart",
+      "line": 170,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_histories_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_models.dart",
+      "line": 2,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_models.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_models.dart",
+      "line": 13,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_models.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_models.dart",
+      "line": 24,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_models.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_models.dart",
+      "line": 136,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_models.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_models.dart",
+      "line": 137,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_models.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_models.dart",
+      "line": 236,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_models.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\wallet_models.dart",
+      "line": 237,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'wallet_models.dart'. Define concrete Dart models or strong types."
+    }
+  ]
+}

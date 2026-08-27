@@ -1,0 +1,12 @@
+# Configuration for apache/skywalking-eyes (license-eye) v0.4.0.
+header:
+  license:
+    spdx-id: MIT
+    copyright-owner: RokctAI
+  paths-ignore:
+    # ERPNext/Frappe-derived code is GPL-licensed and must NEVER carry the
+    # MIT header. Permanently excluded from MIT header stamping/checking.
+    - base/frappe/doctype/location_type/**
+    # Also cover the post-migration path (#71 moves the doctype under src/tenant).
+    - base/frappe/src/tenant/doctype/location_type/**
+  comment: on-failure

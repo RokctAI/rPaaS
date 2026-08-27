@@ -1,0 +1,17 @@
+[
+    {
+      "git": "https://github.com/RokctAI/core",
+      "dart": "../core/base/dart",
+      "frappe": "../core/base/frappe",
+      "public": false,
+      "ref": "main"
+    },
+    {
+      "git": "https://github.com/RokctAI/commerce",
+      "dart": "../commerce/merchants/dart",
+      "frappe": "../commerce/merchants/frappe",
+      "public": false,
+      "ref": "main",
+      "note": "merchants_sdk lives at commerce/merchants; same repo also contains commerce/orders, commerce/promotions, commerce/products, commerce/booking, commerce/kitchen, commerce/loyalty as sibling SDKs"
+    }
+]

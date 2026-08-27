@@ -1,0 +1,72 @@
+{
+    "name": "Tender Control Settings",
+    "issingle": 1,
+    "doctype": "DocType",
+    "module": "tender",
+    "fields": [
+        {
+            "fieldname": "tender_country",
+            "fieldtype": "Link",
+            "label": "Tender Country",
+            "options": "Country",
+            "default": "South Africa",
+            "description": "Scopes the shipped country fixture pack. The compliance rules, form regimes/templates and workflow templates that ship with this module are the SOUTH AFRICA (ZA) pack; with the default South Africa everything behaves as always. Any other country has no shipped pack yet: no compliance rules load (honest empty, never SA rules applied abroad) and the SA eTenders direct fetcher stays off. Supporting another country means shipping its fixture pack, not editing code."
+        },
+        {
+            "fieldname": "enforce_submission_gates",
+            "fieldtype": "Check",
+            "label": "Enforce Submission Gates",
+            "default": "0",
+            "description": "When enabled, moving a Tender Bid to Submitted requires every Fatal checklist item Done, required compliance artifacts unexpired, and functionality self-score at or above the threshold. Off by default for rollout safety \u2014 the validator then warns instead of blocking."
+        },
+        {
+            "fieldname": "section_catalog",
+            "fieldtype": "Section Break",
+            "label": "Published Catalog"
+        },
+        {
+            "fieldname": "catalog_base_url",
+            "fieldtype": "Data",
+            "label": "Catalog Base URL",
+            "default": "https://raw.githubusercontent.com/RokctAI/opportunities/main/published/api/",
+            "description": "Base URL of the pre-synced published opportunity catalog the daily cache refresh reads (tenders/grants/equity JSON files are fetched relative to it). Leave blank to use the shipped default. Point it at a staging/test catalog to swap the data source without code edits; a trailing slash is added automatically."
+        },
+        {
+            "fieldname": "section_deadline_watch",
+            "fieldtype": "Section Break",
+            "label": "Deadline Watch"
+        },
+        {
+            "fieldname": "deadline_watch_days",
+            "fieldtype": "Int",
+            "label": "Deadline Watch Window (Days)",
+            "default": "7",
+            "description": "How many days ahead the daily bid deadline watcher looks. Active bids (Watching/Preparing) closing within this window that still carry open fatal gates, unattested returnables or mandatory returnables with no artifact yet are emailed to their owner, and upcoming briefings inside the window are reminded before they happen. Emails only go to users who opted in via Receive Tender Notifications. Blank or 0 falls back to 7."
+        },
+        {
+            "fieldname": "section_direct_fetch",
+            "fieldtype": "Section Break",
+            "label": "Direct eTenders Fetch"
+        },
+        {
+            "fieldname": "last_fetched_release_id",
+            "fieldtype": "Int",
+            "label": "Last Fetched Release ID",
+            "description": "Resume pointer for the direct eTenders single-release fetcher: the highest ocds-9t57fa-{N} integer id ingested so far. 0 = never run (the next run binary-searches the current max and ingests only a trailing window). Managed by the fetcher; edit only to force a re-scan."
+        },
+        {
+            "fieldname": "refetch_window_ids",
+            "fieldtype": "Int",
+            "label": "Re-fetch Window (IDs)",
+            "default": "300",
+            "description": "How many recent release ids below the last fetched max are re-fetched on every run. Releases are compiled snapshots that gain awards and amendments after first publication, so a trailing window must be refreshed, not just the gap."
+        },
+        {
+            "fieldname": "max_ids_per_run",
+            "fieldtype": "Int",
+            "label": "Max IDs per Run",
+            "default": "2000",
+            "description": "Per-run request budget for the direct fetcher (trailing window + gap scan). A run that exhausts the budget resumes from the persisted max next time."
+        }
+    ]
+}

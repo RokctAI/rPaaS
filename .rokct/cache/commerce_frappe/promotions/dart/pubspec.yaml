@@ -1,0 +1,31 @@
+name: promotions_sdk
+description: "promotions_sdk - extracted from paas_customer (refork 2026-07-11)."
+version: 1.0.0
+publish_to: 'none'
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  base_sdk:
+    path: ../base
+  auto_route: ^9.2.0
+  cached_network_image: ^3.3.1
+  flutter_remix: ^0.0.3
+  flutter_riverpod: ^2.5.1
+  flutter_screenutil: ^5.9.0
+  jiffy: ^6.2.2
+  pull_to_refresh: ^2.0.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.10.4
+  freezed: ^3.2.3
+  json_serializable: ^6.8.0
+
+# Workspace-relative override so this package resolves standalone for
+# codegen/analysis. Ignored when a host app is the resolution root.
+dependency_overrides:
+  base_sdk:
+    path: ../../../core/base/dart

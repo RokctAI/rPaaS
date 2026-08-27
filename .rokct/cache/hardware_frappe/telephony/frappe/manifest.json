@@ -1,0 +1,124 @@
+{
+    "name": "telephony",
+    "description": "Modular backend package for the hosted telephony (PortaBilling) product: control-hub-only surface (src/control/) with the PortaBilling REST client, subscription lifecycle management, the Company Subscription after_insert integration hook, portal APIs incl. the Paystack top-up webhook, the five telephony doctypes, and the service-only provisioning pair (provision_new_service / provision_service_subscription) behind telephony's signup path incl. DID assignment. src/fixtures/ carries the Telephony plan seed records (Item + Subscription_Plan JSONs) discovered at install time by the control hub's cross-app Subscription Plan fixture-dir scan, plus the Telephony Customer role record.",
+    "version": "1.0.0",
+    "app_type": {
+        "control": {
+            "hooks": {
+                "whitelisted_methods": {
+                    "{app_name}.api.telephony.create_telephony_subscription": "{app_name}.telephony.control.api.telephony.create_telephony_subscription.create_telephony_subscription",
+                    "{app_name}.api.telephony_portal.get_available_area_codes": "{app_name}.telephony.control.api.telephony_portal.get_available_area_codes.get_available_area_codes",
+                    "{app_name}.api.telephony_portal.get_customer_balance": "{app_name}.telephony.control.api.telephony_portal.get_customer_balance.get_customer_balance",
+                    "{app_name}.api.telephony_portal.get_payment_request_details": "{app_name}.telephony.control.api.telephony_portal.get_payment_request_details.get_payment_request_details",
+                    "{app_name}.api.telephony_portal.get_subscription_details": "{app_name}.telephony.control.api.telephony_portal.get_subscription_details.get_subscription_details",
+                    "{app_name}.api.telephony_portal.get_user_subscriptions": "{app_name}.telephony.control.api.telephony_portal.get_user_subscriptions.get_user_subscriptions",
+                    "{app_name}.api.telephony_portal.handle_paystack_callback": "{app_name}.telephony.control.api.telephony_portal.handle_paystack_callback.handle_paystack_callback",
+                    "{app_name}.api.telephony_portal.initiate_top_up": "{app_name}.telephony.control.api.telephony_portal.initiate_top_up.initiate_top_up",
+                    "{app_name}.api.telephony_management.cancel_subscription": "{app_name}.telephony.control.telephony_management.cancel_subscription",
+                    "{app_name}.api.telephony_management.restart_subscription": "{app_name}.telephony.control.telephony_management.restart_subscription",
+                    "{app_name}.api.telephony_management.get_call_history": "{app_name}.telephony.control.telephony_management.get_call_history",
+                    "{app_name}.api.provisioning.provision_new_service": "{app_name}.telephony.control.api.provisioning.provision_new_service.provision_new_service",
+                    "{app_name}.api.provisioning.provision_service_subscription": "{app_name}.telephony.control.api.provisioning.provision_service_subscription.provision_service_subscription",
+                    "control:create_telephony_subscription": "{app_name}.telephony.control.api.telephony.create_telephony_subscription.create_telephony_subscription",
+                    "control:get_available_area_codes": "{app_name}.telephony.control.api.telephony_portal.get_available_area_codes.get_available_area_codes",
+                    "control:get_customer_balance": "{app_name}.telephony.control.api.telephony_portal.get_customer_balance.get_customer_balance",
+                    "control:get_payment_request_details": "{app_name}.telephony.control.api.telephony_portal.get_payment_request_details.get_payment_request_details",
+                    "control:get_subscription_details": "{app_name}.telephony.control.api.telephony_portal.get_subscription_details.get_subscription_details",
+                    "control:get_user_subscriptions": "{app_name}.telephony.control.api.telephony_portal.get_user_subscriptions.get_user_subscriptions",
+                    "control:handle_paystack_callback": "{app_name}.telephony.control.api.telephony_portal.handle_paystack_callback.handle_paystack_callback",
+                    "control:initiate_top_up": "{app_name}.telephony.control.api.telephony_portal.initiate_top_up.initiate_top_up",
+                    "control:cancel_subscription": "{app_name}.telephony.control.telephony_management.cancel_subscription",
+                    "control:restart_subscription": "{app_name}.telephony.control.telephony_management.restart_subscription",
+                    "control:get_call_history": "{app_name}.telephony.control.telephony_management.get_call_history",
+                    "control:provision_new_service": "{app_name}.telephony.control.api.provisioning.provision_new_service.provision_new_service",
+                    "control:provision_service_subscription": "{app_name}.telephony.control.api.provisioning.provision_service_subscription.provision_service_subscription",
+                    "control.control.api.telephony.create_telephony_subscription": "{app_name}.telephony.control.api.telephony.create_telephony_subscription.create_telephony_subscription",
+                    "control.control.api.telephony_portal.get_available_area_codes": "{app_name}.telephony.control.api.telephony_portal.get_available_area_codes.get_available_area_codes",
+                    "control.control.api.telephony_portal.get_customer_balance": "{app_name}.telephony.control.api.telephony_portal.get_customer_balance.get_customer_balance",
+                    "control.control.api.telephony_portal.get_payment_request_details": "{app_name}.telephony.control.api.telephony_portal.get_payment_request_details.get_payment_request_details",
+                    "control.control.api.telephony_portal.get_subscription_details": "{app_name}.telephony.control.api.telephony_portal.get_subscription_details.get_subscription_details",
+                    "control.control.api.telephony_portal.get_user_subscriptions": "{app_name}.telephony.control.api.telephony_portal.get_user_subscriptions.get_user_subscriptions",
+                    "control.control.api.telephony_portal.handle_paystack_callback": "{app_name}.telephony.control.api.telephony_portal.handle_paystack_callback.handle_paystack_callback",
+                    "control.control.api.telephony_portal.initiate_top_up": "{app_name}.telephony.control.api.telephony_portal.initiate_top_up.initiate_top_up",
+                    "control.control.telephony_management.cancel_subscription": "{app_name}.telephony.control.telephony_management.cancel_subscription",
+                    "control.control.telephony_management.restart_subscription": "{app_name}.telephony.control.telephony_management.restart_subscription",
+                    "control.control.telephony_management.get_call_history": "{app_name}.telephony.control.telephony_management.get_call_history",
+                    "control.control.api.provisioning.provision_new_service": "{app_name}.telephony.control.api.provisioning.provision_new_service.provision_new_service",
+                    "control.control.api.provisioning.provision_service_subscription": "{app_name}.telephony.control.api.provisioning.provision_service_subscription.provision_service_subscription",
+                    "control.control.provisioning.provision_service_subscription": "{app_name}.telephony.control.api.provisioning.provision_service_subscription.provision_service_subscription"
+                },
+                "doc_events": {
+                    "Company Subscription": {
+                        "after_insert": "{app_name}.telephony.control.telephony_integration.on_subscription_submit"
+                    }
+                },
+                "fixtures": [
+                    {
+                        "dt": "DocType",
+                        "filters": [
+                            [
+                                "name",
+                                "=",
+                                "Available DID"
+                            ]
+                        ]
+                    },
+                    {
+                        "dt": "DocType",
+                        "filters": [
+                            [
+                                "name",
+                                "=",
+                                "Telephony Customer"
+                            ]
+                        ]
+                    },
+                    {
+                        "dt": "DocType",
+                        "filters": [
+                            [
+                                "name",
+                                "=",
+                                "Telephony Settings"
+                            ]
+                        ]
+                    },
+                    {
+                        "dt": "DocType",
+                        "filters": [
+                            [
+                                "name",
+                                "=",
+                                "Telephony Subscription"
+                            ]
+                        ]
+                    },
+                    {
+                        "dt": "DocType",
+                        "filters": [
+                            [
+                                "name",
+                                "=",
+                                "Telephony Transaction"
+                            ]
+                        ]
+                    },
+                    {
+                        "dt": "Role",
+                        "filters": [
+                            [
+                                "name",
+                                "=",
+                                "Telephony Customer"
+                            ]
+                        ]
+                    }
+                ]
+            },
+            "dependencies": [
+                "requests"
+            ]
+        },
+        "tenant": {}
+    }
+}

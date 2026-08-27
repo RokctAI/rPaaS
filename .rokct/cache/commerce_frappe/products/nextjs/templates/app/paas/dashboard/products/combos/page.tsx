@@ -1,0 +1,214 @@
+/*
+ * Copyright (c) 2026 RokctAI
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+"use client";
+
+import { Loader2, Plus, Trash2, Package } from "lucide-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+
+import {
+  getCombos,
+  createCombo,
+  deleteCombo,
+} from "@/app/actions/paas/operations";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import t from "@/app/lib/i18n";
+
+export default function CombosPage() {
+  const [combos, setCombos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [formData, setFormData] = useState({ name: "", price: 0 });
+
+  useEffect(() => {
+    fetchCombos();
+  }, []);
+
+  async function fetchCombos() {
+    try {
+      const data = await getCombos();
+      setCombos(data);
+    } catch (error) {
+      console.error("Error fetching combos:", error);
+      toast.error("Failed to load combos");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const handleSubmit = async () => {
+    if (!formData.name) {
+      toast.error("Combo name is required");
+      return;
+    }
+
+    setProcessing(true);
+    try {
+      await createCombo(formData);
+      toast.success("Combo created successfully");
+      setIsDialogOpen(false);
+      setFormData({ name: "", price: 0 });
+      fetchCombos();
+    } catch (error) {
+      console.error("Error creating combo:", error);
+      toast.error("Failed to create combo");
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  const handleDelete = async (name: string) => {
+    if (!confirm("Are you sure you want to delete this combo?")) return;
+    try {
+      await deleteCombo(name);
+      toast.success("Combo deleted successfully");
+      fetchCombos();
+    } catch (error) {
+      console.error("Error deleting combo:", error);
+      toast.error("Failed to delete combo");
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="size-8 animate-spin text-gray-500" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-8 space-y-8">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold">
+            {t("app.paas.dashboard.products.combos.title")}
+          </h1>
+          <p className="text-muted-foreground">
+            {t("app.paas.dashboard.products.combos.desc")}
+          </p>
+        </div>
+        <Button onClick={() => setIsDialogOpen(true)}>
+          <Plus className="mr-2 size-4" />{" "}
+          {t("app.paas.dashboard.products.combos.btn_add")}
+        </Button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {combos.length === 0 ? (
+          <Card className="col-span-full">
+            <CardContent className="py-12 text-center text-muted-foreground">
+              {t("app.paas.dashboard.products.combos.no_data")}
+            </CardContent>
+          </Card>
+        ) : (
+          combos.map((combo) => (
+            <Card key={combo.name}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {combo.name}
+                </CardTitle>
+                <Package className="size-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-center mt-4">
+                  <div className="font-bold">${combo.price.toFixed(2)}</div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-red-500"
+                    onClick={() => handleDelete(combo.name)}
+                  >
+                    <Trash2 className="size-4" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        )}
+      </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              {t("app.paas.dashboard.products.combos.dialog_title")}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="name">
+                {t("app.paas.dashboard.products.combos.label_name")}
+              </Label>
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, name: e.target.value }))
+                }
+                placeholder={t("app.paas.dashboard.products.combos.ph_name")}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="price">
+                {t("app.paas.dashboard.products.combos.label_price")}
+              </Label>
+              <Input
+                id="price"
+                type="number"
+                value={formData.price}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    price: parseFloat(e.target.value),
+                  }))
+                }
+                placeholder="0.00"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={handleSubmit} disabled={processing}>
+              {processing ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                t("common.create")
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

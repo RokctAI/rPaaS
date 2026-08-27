@@ -1,0 +1,239 @@
+value,ocid,buyer,buyer_type
+70,acsa-power-retic-maint-rfq,,(unknown)
+83.3,cge-wan-voip,,(unknown)
+75,dbsa-bulk-water-feasibility,,(unknown)
+60,dlrrd-cleaning-hygiene-kzn,,(unknown)
+75,fs-publicworks-eoi-qs,,(unknown)
+70,hda-asbestos-monitoring-prt,,(unknown)
+80,joburgtheatre-ahu-replacement,,(unknown)
+80,joburgtheatre-frozen-dry-goods,,(unknown)
+75,kokstad-franklin-roads,,(unknown)
+60,limpopo-dsd-catering,,(unknown)
+60,mkhondo-task-work-study,,(unknown)
+70,mpofana-healthcare-panel,,(unknown)
+70,mvula-qs-psp-sanitation,,(unknown)
+80,namakwa-dm-banking,,(unknown)
+70,nc-coghsta-bng-nababeep,,(unknown)
+70,nkomazi-legal-panel,,(unknown)
+60,ocds-9t57fa-164091,City of Cape Town,other
+65,ocds-9t57fa-164104,Solplaatje Local Municipality,municipality
+80,ocds-9t57fa-164137,Tourism,other
+80,ocds-9t57fa-164146,Tourism,other
+80,ocds-9t57fa-164148,Tourism,other
+70,ocds-9t57fa-164166,Gauteng - Agriculture and Rural Development,other
+80,ocds-9t57fa-164172,Passenger Rail Agency of South Africa,SOE/statutory body
+70,ocds-9t57fa-164185,SASRIA,other
+70,ocds-9t57fa-164196,National Youth Development Agency,national/provincial dept
+60,ocds-9t57fa-164199,Airports Company of South Africa Limited,SOE/statutory body
+70,ocds-9t57fa-164209,Breede-Gouritz Catchment Management Agency,SOE/statutory body
+70,ocds-9t57fa-164215,Gamagara Local Municipality,municipality
+70,ocds-9t57fa-164221,Airports Company of South Africa,SOE/statutory body
+70,ocds-9t57fa-164226,Prince Albert Municipality,municipality
+70,ocds-9t57fa-164237,Thabazimbi Local Municipality,municipality
+60,ocds-9t57fa-164238,Prince Albert Municipality,municipality
+70,ocds-9t57fa-164245,Home Affairs,other
+70,ocds-9t57fa-164246,Ehlanzeni District Municipality,municipality
+70,ocds-9t57fa-164273,Limpopo - Economic Development Agency,SOE/statutory body
+70,ocds-9t57fa-164292,Limpopo - Economic Development Agency,SOE/statutory body
+70,ocds-9t57fa-164304,Limpopo - Economic Development Agency,SOE/statutory body
+70,ocds-9t57fa-164305,Limpopo - Economic Development Agency,SOE/statutory body
+70,ocds-9t57fa-164307,Limpopo - Economic Development Agency,SOE/statutory body
+75,ocds-9t57fa-164320,Commission for Conciliation Mediation & Arbitration,other
+70,ocds-9t57fa-164321,Mhlontlo Local Municipality,municipality
+75,ocds-9t57fa-164373,Banking Sector Education and Training Authority,education
+70,ocds-9t57fa-164374,Ulundi Local Municipality,municipality
+70,ocds-9t57fa-164403,South African Airways (Pty) Limited,(unknown)
+60,ocds-9t57fa-164451,Enoch Mgijima Local Municipality,municipality
+70,ocds-9t57fa-164477,iSimangaliso Wetland Park,(unknown)
+70,ocds-9t57fa-164488,Ulundi Local Municipality,municipality
+40,ocds-9t57fa-164520,Mandela Bay Theatre Complex,(unknown)
+70,ocds-9t57fa-164537,The Playhouse Company,SOE/statutory body
+60,ocds-9t57fa-164604,Enoch Mgijima Local Municipality,municipality
+70,ocds-9t57fa-164616,Western Cape - Western Cape Liquor Board,SOE/statutory body
+70,ocds-9t57fa-164630,Nongoma Local Municipality,municipality
+75,ocds-9t57fa-164668,Mkhondo Local Municipality,municipality
+75,ocds-9t57fa-164671,Mkhondo Local Municipality,municipality
+75,ocds-9t57fa-164680,Drakenstein Municipality,municipality
+75,ocds-9t57fa-164682,Drakenstein Municipality,municipality
+70,ocds-9t57fa-164736,Phokwane Local Municipality,municipality
+60,ocds-9t57fa-164747,The Richards Bay Industrial Development Zone,(unknown)
+75,ocds-9t57fa-164755,National - Department of Electricity and Energy,national/provincial dept
+70,ocds-9t57fa-164786,Swellendam Municipality,municipality
+70,ocds-9t57fa-164807,Ingonyama Trust Board,SOE/statutory body
+70,ocds-9t57fa-164845,Finance and Accounting Services Sector Education and Training Authority (Fasset),SOE/statutory body
+70,ocds-9t57fa-164870,North West - North West Community Education and Training College,education
+70,ocds-9t57fa-164881,Maquassi hill Local Municipality,municipality
+60,ocds-9t57fa-164889,Agricultural Research Council,SOE/statutory body
+75,ocds-9t57fa-164899,Commission for Conciliation Mediation & Arbitration,SOE/statutory body
+69,ocds-9t57fa-164914,Umzimkhulu Local Municipality,municipality
+70,ocds-9t57fa-164924,City of Cape Town,other public entity
+60,ocds-9t57fa-164925,City of Cape Town,other public entity
+70,ocds-9t57fa-164935,False Bay TVET College,education
+70,ocds-9t57fa-164937,Sarah Baartman District Municipality,municipality
+70,ocds-9t57fa-164939,Sarah Baartman District Municipality,municipality
+65,ocds-9t57fa-164943,"Media, Information and Communication Technologies Sector Education and training Authority (MICT SETA)",other public entity
+80,ocds-9t57fa-164957,Kwadukuza Municipality,municipality
+60,ocds-9t57fa-164958,Airports Company of South Africa,other public entity
+60,ocds-9t57fa-164970,"Kwazulu Natal - Economic Development, Tourism and Environ Affairs",other public entity
+70,ocds-9t57fa-164983,Health,other public entity
+50,ocds-9t57fa-164986,Mogale City Local Municipality,municipality
+70,ocds-9t57fa-164988,Tswaing Local Municipality,municipality
+70,ocds-9t57fa-164991,TSHWANE AUTOMOTIVE SPECIAL ECONOMIC ZONE,other public entity
+70,ocds-9t57fa-164995,Airports Company of South Africa,other public entity
+70,ocds-9t57fa-165015,King Sabata Dalindyebo Local Municipality,municipality
+60,ocds-9t57fa-165016,Mkhondo Local Municipality,municipality
+70,ocds-9t57fa-165017,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165018,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165020,iSimangaliso Wetland Park,other public entity
+70,ocds-9t57fa-165021,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165024,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165026,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165029,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165031,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165044,Gauteng - Provincial Treasury,other public entity
+75,ocds-9t57fa-165053,Energy and Water Sector Education and Training Authority,SOE/statutory body
+70,ocds-9t57fa-165065,The Playhouse Company,other public entity
+60,ocds-9t57fa-165080,"Kwazulu Natal - Economic Development, Tourism and Environ Affairs",other public entity
+70,ocds-9t57fa-165086,Ehlanzeni District Municipality,municipality
+70,ocds-9t57fa-165091,Ehlanzeni District Municipality,municipality
+70,ocds-9t57fa-165094,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165096,King Sabata Dalindyebo Local Municipality,municipality
+70,ocds-9t57fa-165097,Ehlanzeni District Municipality,municipality
+70,ocds-9t57fa-165098,Health,other public entity
+70,ocds-9t57fa-165100,King Sabata Dalindyebo Local Municipality,municipality
+80,ocds-9t57fa-165111,"Manufacturing, Engineering and Related Services SETA (merSETA)",(unknown)
+75,ocds-9t57fa-165118,Airports Company of South Africa,other public entity
+70,ocds-9t57fa-165121,Limpopo - Gateway Airport Authority Limited,other public entity
+75,ocds-9t57fa-165124,,(unknown)
+70,ocds-9t57fa-165126,Commission for Conciliation Mediation & Arbitration,other public entity
+70,ocds-9t57fa-165127,Transnet SOC Ltd,SOE/statutory body
+70,ocds-9t57fa-165129,Commission for Conciliation Mediation & Arbitration,other public entity
+70,ocds-9t57fa-165132,Commission for Conciliation Mediation & Arbitration,other public entity
+70,ocds-9t57fa-165140,KwaZulu Natal Economic Regulatory Authority,other public entity
+65,ocds-9t57fa-165180,Commission for Gender Equality,SOE/statutory body
+60,ocds-9t57fa-165192,Knysna Municipality,municipality
+70,ocds-9t57fa-165194,TSHWANE AUTOMOTIVE SPECIAL ECONOMIC ZONE,(unknown)
+70,ocds-9t57fa-165203,Knysna Municipality,municipality
+60,ocds-9t57fa-165210,Knysna Municipality,municipality
+75,ocds-9t57fa-165215,Independent Development Trust,(unknown)
+80,ocds-9t57fa-165234,ESKOM,SOE/statutory body
+75,ocds-9t57fa-165235,"National - Environment, Forestry and Fisheries",(unknown)
+56,ocds-9t57fa-165236,Transnet SOC Ltd,SOE/statutory body
+70,ocds-9t57fa-165291,Passenger Rail Agency of South Africa,SOE/statutory body
+75,ocds-9t57fa-165292,SA Bureau of Standards,(unknown)
+80,ocds-9t57fa-165298,,(unknown)
+70,ocds-9t57fa-165301,Small Enterprise Development and Finance Agency,SOE/statutory body
+80,ocds-9t57fa-165303,Bojanala District Municipality,municipality
+70,ocds-9t57fa-165306,Bojanala District Municipality,municipality
+70,ocds-9t57fa-165307,Bojanala District Municipality,municipality
+70,ocds-9t57fa-165314,Bojanala District Municipality,municipality
+70,ocds-9t57fa-165316,Bojanala District Municipality,municipality
+70,ocds-9t57fa-165320,Bojanala District Municipality,municipality
+70,ocds-9t57fa-165323,Department of Rural Development & Land Reform,national/provincial dept
+70,ocds-9t57fa-165325,Winnie Madikizela-Mandela Local Municipality,municipality
+70,ocds-9t57fa-165327,Iziko Museums of Cape Town,(unknown)
+70,ocds-9t57fa-165329,Winnie Madikizela-Mandela Local Municipality,municipality
+50,ocds-9t57fa-165331,South African Broadcasting Corporation Limited,SOE/statutory body
+70,ocds-9t57fa-165333,Winnie Madikizela-Mandela Local Municipality,municipality
+70,ocds-9t57fa-165337,Winnie Madikizela-Mandela Local Municipality,municipality
+70,ocds-9t57fa-165339,Winnie Madikizela-Mandela Local Municipality,municipality
+60,ocds-9t57fa-165341,Agricultural Research Council,SOE/statutory body
+75,ocds-9t57fa-165359,"National - Environment, Forestry and Fisheries",(unknown)
+70,ocds-9t57fa-165367,National Film and Video Foundation of South Africa,(unknown)
+70,ocds-9t57fa-165372,South African Human Rights Commission,other
+75,ocds-9t57fa-165376,National Film and Video Foundation of South Africa,(unknown)
+60,ocds-9t57fa-165381,Gauteng - Agriculture and Rural Development,(unknown)
+70,ocds-9t57fa-165387,Vaal Central Water,(unknown)
+75,ocds-9t57fa-165392,Energy and Water Sector Education and Training Authority,SOE/statutory body
+70,ocds-9t57fa-165397,Housing Development Agency,SOE/statutory body
+70,ocds-9t57fa-165400,Airports Company of South Africa,(unknown)
+70,ocds-9t57fa-165402,Overberg Water,(unknown)
+75,ocds-9t57fa-165405,Overberg Water,(unknown)
+70,ocds-9t57fa-165407,Overberg Water,(unknown)
+70,ocds-9t57fa-165409,Commission for Conciliation Mediation & Arbitration,SOE/statutory body
+70,ocds-9t57fa-165410,Social Housing Regulatory Authority,SOE/statutory body
+70,ocds-9t57fa-165424,Eastern Cape - Health,other
+65,ocds-9t57fa-165426,Eastern Cape - Health,other
+70,ocds-9t57fa-165445,Swellendam Municipality,municipality
+80,ocds-9t57fa-165454,Polokwane Municipality,municipality
+80,ocds-9t57fa-165461,"Media, Information and Communication Technologies Sector Education and training Authority (MICT SETA)",other
+80,ocds-9t57fa-165462,Polokwane Municipality,municipality
+80,ocds-9t57fa-165469,Polokwane Municipality,municipality
+80,ocds-9t57fa-165473,Polokwane Municipality,municipality
+75,ocds-9t57fa-165474,Agricultural Sector Education and Training Authority,other
+70,ocds-9t57fa-165476,Department of Rural Development & Land Reform,national/provincial dept
+70,ocds-9t57fa-165478,Transnet SOC Ltd,SOE/statutory body
+80,ocds-9t57fa-165483,Polokwane Municipality,municipality
+80,ocds-9t57fa-165488,Polokwane Municipality,municipality
+70,ocds-9t57fa-165496,Eastern Cape - East London Industrial Development Zone Corporation,other
+70,ocds-9t57fa-165498,Transnet SOC Ltd,SOE/statutory body
+70,ocds-9t57fa-165501,Eastern Cape - East London Industrial Development Zone Corporation,other
+70,ocds-9t57fa-165512,Sarah Baartman District Municipality,municipality
+66.6,ocds-9t57fa-165529,Transnet SOC Ltd,SOE/statutory body
+60,ocds-9t57fa-165533,Eastern Cape CET College,other
+60,ocds-9t57fa-165536,Limpopo - Limpopo Tourism Agency,other
+36,ocds-9t57fa-165538,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165539,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165540,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165541,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165542,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165544,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165546,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165551,Mogale City Local Municipality,municipality
+36,ocds-9t57fa-165552,Mogale City Local Municipality,municipality
+70,ocds-9t57fa-165553,Industrial Development Corporation of South Africa Limited,SOE/statutory body
+65,ocds-9t57fa-165578,Gauteng - Infrastructure Development,other
+70,ocds-9t57fa-165579,Ntabankulu Local Municipality,municipality
+80,ocds-9t57fa-165593,JOBURG THEATRE (SOC) LTD,SOE/statutory body
+80,ocds-9t57fa-165596,JOBURG THEATRE (SOC) LTD,SOE/statutory body
+80,ocds-9t57fa-165597,JOBURG THEATRE (SOC) LTD,SOE/statutory body
+80,ocds-9t57fa-165600,JOBURG THEATRE (SOC) LTD,SOE/statutory body
+80,ocds-9t57fa-165601,JOBURG THEATRE (SOC) LTD,SOE/statutory body
+70,ocds-9t57fa-165641,Government Pensions Administration Agency (GPAA),other
+70,ocds-9t57fa-165651,Government Pensions Administration Agency (GPAA),other
+60,ocds-9t57fa-165662,Dr JS Moroka Local Municipality,municipality
+70,ocds-9t57fa-165668,Kouga Municipality,municipality
+60,ocds-9t57fa-165669,Enoch Mgijima Local Municipality,municipality
+70,ocds-9t57fa-165686,City Of Joburg Property Company (SOC) Ltd,SOE/statutory body
+73,ocds-9t57fa-165711,Joe Gqabi District Municipality,municipality
+65,ocds-9t57fa-165713,Joe Gqabi District Municipality,municipality
+65,ocds-9t57fa-165714,Community Schemes Ombud Service,other
+70,ocds-9t57fa-165718,Community Schemes Ombud Service,other
+65,ocds-9t57fa-165723,Agricultural Research Council,other
+70,ocds-9t57fa-165726,Energy and Water Sector Education and Training Authority,other
+70,ocds-9t57fa-165727,Energy and Water Sector Education and Training Authority,other
+70,ocds-9t57fa-165749,South African Forestry Company Limited,other
+80,ocds-9t57fa-165754,Senqu Local Municipality,municipality
+65,ocds-9t57fa-165773,Eastern Cape - Agriculture,other
+80,ocds-9t57fa-165777,Passenger Rail Agency of South Africa,other
+60,ocds-9t57fa-165778,Eastern Cape - Agriculture,other
+70,ocds-9t57fa-165790,Iziko Museums of Cape Town,other
+70,ocds-9t57fa-165792,"Kwazulu Natal - Economic Development, Tourism and Environ Affairs",other
+70,ocds-9t57fa-165802,South African National Parks,other
+70,ocds-9t57fa-165813,"Kwazulu Natal - Economic Development, Tourism and Environ Affairs",other
+80,ocds-9t57fa-165824,ESKOM,SOE/statutory body
+60,ocds-9t57fa-165829,Transnet National Ports Authority,SOE/statutory body
+70,ocds-9t57fa-165840,Maquassi hill Local Municipality,municipality
+50,ocds-9t57fa-165842,Kwazulu Natal - Social Development,SOE/statutory body
+50,ocds-9t57fa-165850,Kwazulu Natal - Social Development,SOE/statutory body
+75,ocds-9t57fa-165861,Overberg Water,other
+50,ocds-9t57fa-165882,Small Enterprise Development and Finance Agency,other
+70,ocds-9t57fa-165887,Airports Company of South Africa,other
+70,ocds-9t57fa-165905,Airports Company of South Africa,other
+60,ocds-9t57fa-165912,National - Department of Agriculture,national/provincial dept
+65,ocds-9t57fa-165918,South African National Parks,other
+80,ocds-9t57fa-165928,Limpopo - Economic Development Agency,other
+70,ocds-9t57fa-165938,Industrial Development Corporation of South Africa Limited,other
+70,ocds-9t57fa-165951,Water and Sanitation,other
+80,ocds-9t57fa-165954,Agricultural Sector Education and Training Authority,other
+70,ocds-9t57fa-165955,Rand Water,other
+70,ocds-9t57fa-165974,SASRIA,other
+70,ocds-9t57fa-165983,TSHWANE AUTOMOTIVE SPECIAL ECONOMIC ZONE,other
+70,ocds-9t57fa-165987,South African National Parks,other
+75,ocds-9t57fa-165990,Council for Medical Schemes,SOE/statutory body
+80,ocds-9t57fa-165991,National Regulator for Compulsory Specifications,other
+100,ocds-9t57fa-165996,Maquassi hill Local Municipality,municipality
+60,raynkonyeni-mgodlwa-bridge,,(unknown)
+70,saws-patch-vuln-mgmt,,(unknown)
+70,tshwane-eng-consulting,,(unknown)
+75,vaalcentral-total-security,,(unknown)

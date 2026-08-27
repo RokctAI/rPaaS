@@ -1,0 +1,39 @@
+[
+    {
+      "git": "https://github.com/RokctAI/Users",
+      "dart": "../Users/users/dart",
+      "frappe": "../Users/users/frappe",
+      "public": false,
+      "ref": "main"
+    },
+    {
+      "git": "https://github.com/RokctAI/core",
+      "dart": "../core/base/dart",
+      "frappe": "../core/base/frappe",
+      "public": false,
+      "ref": "main"
+    },
+    {
+      "git": "https://github.com/RokctAI/pay",
+      "dart": "../pay/payments/dart",
+      "frappe": "../pay/payments/frappe",
+      "public": false,
+      "ref": "main",
+      "note": "payments_sdk lives at pay/payments; same repo also contains pay/wallet (wallet_sdk) as a sibling SDK. Previous path ../pay/pay/dart did not exist on disk."
+    },
+    {
+      "git": "https://github.com/RokctAI/productivity",
+      "dart": "../productivity/productivity/dart",
+      "frappe": "../productivity/productivity/frappe",
+      "public": false,
+      "ref": "main"
+    },
+    {
+      "git": "https://github.com/RokctAI/zones",
+      "dart": "../zones/delivery/dart",
+      "frappe": "../zones/delivery/frappe",
+      "public": false,
+      "ref": "main",
+      "note": "delivery_sdk lives at zones/delivery; same repo also contains zones/map (map_sdk), zones/weather (weather_sdk), zones/zones (zones_sdk) as sibling SDKs"
+    }
+]

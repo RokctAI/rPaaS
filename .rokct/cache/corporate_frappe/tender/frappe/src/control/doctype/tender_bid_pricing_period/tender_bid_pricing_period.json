@@ -1,0 +1,85 @@
+{
+    "actions": [],
+    "creation": "2026-08-20 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-20 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Bid Pricing Period",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "istable": 1,
+    "field_order": [
+        "period_label",
+        "once_off",
+        "monthly",
+        "annual_total",
+        "unit_tariff",
+        "unit_label",
+        "escalation_applied_pct",
+        "notes"
+    ],
+    "fields": [
+        {
+            "fieldname": "period_label",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Period",
+            "reqd": 1,
+            "description": "e.g. 'Year 1', 'Year 2', 'Year 3', 'Per-unit call tariff' — one row per year column (or per-unit tariff line) of the pack's official pricing grid"
+        },
+        {
+            "fieldname": "once_off",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Once-Off (R)",
+            "description": "Once-off cost for this period (e.g. Musina's Year 1 implementation/setup column)"
+        },
+        {
+            "fieldname": "monthly",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Monthly (R)",
+            "description": "Monthly cost for this period, as the official grid's Monthly column demands"
+        },
+        {
+            "fieldname": "annual_total",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Annual Total (R)",
+            "description": "Annual total for this period — self-audit: once-off + 12 × monthly where the grid works that way; the full-term sum must reconcile to the cover price"
+        },
+        {
+            "fieldname": "unit_tariff",
+            "fieldtype": "Currency",
+            "in_list_view": 1,
+            "label": "Unit Tariff (R)",
+            "description": "Per-unit call tariff lines: the rate per unit — the actual variable value is dependent on call activity over the term, so no fixed total exists for these rows"
+        },
+        {
+            "fieldname": "unit_label",
+            "fieldtype": "Data",
+            "label": "Per Unit",
+            "description": "What one unit is for a tariff line, e.g. 'per logged call'"
+        },
+        {
+            "fieldname": "escalation_applied_pct",
+            "fieldtype": "Percent",
+            "label": "Escalation Applied %",
+            "description": "Escalation applied to this period's prices over the prior period (e.g. 5.0 on a fixed-%-per-annum schedule — TWK's 5-year shape); leave blank on firm-price grids"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Small Text",
+            "label": "Notes",
+            "description": "Pack-specific notes for this row, e.g. the grid's own wording for what the column covers"
+        }
+    ],
+    "permissions": []
+}

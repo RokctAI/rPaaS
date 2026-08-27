@@ -1,0 +1,343 @@
+{
+    "actions": [],
+    "autoname": "format:BID-{#####}",
+    "creation": "2026-07-26 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "user",
+        "company",
+        "tender_slug",
+        "tender_title",
+        "institution",
+        "closing_date",
+        "status",
+        "enrichment_level",
+        "source_record_class",
+        "section_compliance",
+        "regime",
+        "overlay_regime",
+        "estimated_value",
+        "quotation",
+        "preference_system",
+        "functionality_mode",
+        "functionality_threshold",
+        "functionality_self_score",
+        "functionality_sections",
+        "readiness_score",
+        "open_fatal_gates",
+        "section_term",
+        "contract_term_months",
+        "escalation_provision",
+        "escalation_rate_pct",
+        "pricing_periods",
+        "section_returnables",
+        "returnables_override",
+        "custom_returnables",
+        "section_dispatch",
+        "submission_channel",
+        "buyer_contact_person",
+        "buyer_contact_email",
+        "dispatched_on",
+        "dispatched_to",
+        "section_outcome",
+        "submitted_on",
+        "outcome_value",
+        "outcome_notes",
+        "section_checklist",
+        "checklist"
+    ],
+    "fields": [
+        {
+            "fieldname": "user",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "User",
+            "options": "User",
+            "reqd": 1,
+            "set_only_once": 1
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Data",
+            "label": "Company"
+        },
+        {
+            "fieldname": "tender_slug",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Tender Slug",
+            "reqd": 1,
+            "set_only_once": 1
+        },
+        {
+            "fieldname": "tender_title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Tender Title"
+        },
+        {
+            "fieldname": "institution",
+            "fieldtype": "Data",
+            "label": "Institution"
+        },
+        {
+            "fieldname": "closing_date",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "label": "Closing Date"
+        },
+        {
+            "default": "Watching",
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Status",
+            "options": "Watching\nPreparing\nSubmitted\nAwarded\nLost\nWithdrawn"
+        },
+        {
+            "default": "GENERIC",
+            "description": "Whether the checklist was seeded from per-tender advanced enrichment or the generic defaults",
+            "fieldname": "enrichment_level",
+            "fieldtype": "Select",
+            "label": "Enrichment Level",
+            "options": "ADVANCED\nGENERIC",
+            "read_only": 1
+        },
+        {
+            "description": "Deterministic classification of the catalog record this bid was created from (compliance/enrichment_gate.py, findings F-08). Advert-Only auto-attaches the GATE-PACK-COLLECT fatal gate: the pack must be collected before anything beyond the universal spine can be confirmed.",
+            "fieldname": "source_record_class",
+            "fieldtype": "Select",
+            "label": "Source Record Class",
+            "options": "\nFull\nAdvert-Only",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_compliance",
+            "fieldtype": "Section Break",
+            "label": "Compliance & Scoring"
+        },
+        {
+            "description": "Which SBD/MBD form regime this pack follows. Manual selector — never inferred automatically.",
+            "fieldname": "regime",
+            "fieldtype": "Link",
+            "label": "Form Regime",
+            "options": "Tender Form Regime"
+        },
+        {
+            "description": "Optional second form-set overlay (e.g. CIDB on an MBD municipal works bid). The pack renders the UNION of both regimes' forms (deduped by form code, base regime wins) and compliance rules see both regime codes. Manual selection read from the tender pack, never inferred.",
+            "fieldname": "overlay_regime",
+            "fieldtype": "Link",
+            "label": "Overlay Regime (optional)",
+            "options": "Tender Form Regime"
+        },
+        {
+            "description": "User-entered estimated bid value, all taxes included — drives the 80/20 vs 90/10 preference system computation",
+            "fieldname": "estimated_value",
+            "fieldtype": "Currency",
+            "label": "Estimated Value (incl. taxes)"
+        },
+        {
+            "description": "Name of an erp Quotation to price the pack's pricing schedule from. SOFT link (Data on purpose): the erp module (forked ERPNext in the pay repo) is optional at compose time - the generator resolves this only when the Quotation doctype exists on the bench, otherwise pricing renders as marked user-input blanks.",
+            "fieldname": "quotation",
+            "fieldtype": "Data",
+            "label": "ERP Quotation (optional)"
+        },
+        {
+            "description": "Computed from estimated_value against the SCORE-SYSTEM compliance rule threshold (R50m). Straddling = within the rule's straddle band — the bid must survive both systems.",
+            "fieldname": "preference_system",
+            "fieldtype": "Select",
+            "label": "Preference System",
+            "options": "\n80/20\n90/10\nStraddling",
+            "read_only": 1
+        },
+        {
+            "description": "How this pack scores functionality. Blank or 'Single threshold' = the single threshold/self-score pair below (legacy behaviour, unchanged). 'Sectioned' = per-section thresholds in the Functionality Sections table (e.g. VCW dual sections, DFFE criterion rubric). 'No scored functionality' = the pack has no scored functionality stage (e.g. Musina pass/fail mandatory requirements) and the gate is skipped entirely — no more ambiguous zero.",
+            "fieldname": "functionality_mode",
+            "fieldtype": "Select",
+            "label": "Functionality Mode",
+            "options": "\nSingle threshold\nSectioned\nNo scored functionality"
+        },
+        {
+            "description": "Minimum functionality percentage from the tender pack (read by a human from the pack — functionality is an elimination gate before price/preference)",
+            "fieldname": "functionality_threshold",
+            "fieldtype": "Percent",
+            "label": "Functionality Threshold"
+        },
+        {
+            "description": "Self-assessed functionality score against the pack's criteria",
+            "fieldname": "functionality_self_score",
+            "fieldtype": "Percent",
+            "label": "Functionality Self-Score"
+        },
+        {
+            "description": "Per-section functionality scoring (Sectioned mode): every row with a threshold is its own elimination gate — one failing section kills the whole bid (e.g. VCW's two sections each carry their own 75% kill).",
+            "fieldname": "functionality_sections",
+            "fieldtype": "Table",
+            "label": "Functionality Sections",
+            "options": "Tender Functionality Section"
+        },
+        {
+            "description": "Weighted percentage of Fatal checklist items marked Done (computed on save)",
+            "fieldname": "readiness_score",
+            "fieldtype": "Percent",
+            "label": "Readiness Score",
+            "read_only": 1
+        },
+        {
+            "description": "Count of Fatal checklist items still open (computed on save)",
+            "fieldname": "open_fatal_gates",
+            "fieldtype": "Int",
+            "label": "Open Fatal Gates",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_term",
+            "fieldtype": "Section Break",
+            "label": "Term & Escalation"
+        },
+        {
+            "description": "Contract term in months as the pack states it (36, 60, ...). Blank/0 = single-delivery or unstated — everything renders exactly as before. Over 12 months attaches the PRICE-MULTIYEAR-ESC pricing check.",
+            "fieldname": "contract_term_months",
+            "fieldtype": "Int",
+            "label": "Contract Term (months)"
+        },
+        {
+            "description": "How the pack says multi-year prices move. CPA/CPI-formula packs KILL substituted fixed rates (KILL-ALT-OFFER) — price on the pack's basis, never your own.",
+            "fieldname": "escalation_provision",
+            "fieldtype": "Select",
+            "label": "Escalation Provision",
+            "options": "\nNone / firm prices\nCPI-linked\nCPA / prescribed formula\nFixed % per annum"
+        },
+        {
+            "description": "Annual escalation rate used by the 'Fixed % per annum' option (e.g. 5.0)",
+            "fieldname": "escalation_rate_pct",
+            "fieldtype": "Percent",
+            "label": "Escalation Rate % p.a."
+        },
+        {
+            "description": "Year-by-year pricing overlay for multi-year terms — one row per year column (or per-unit tariff line) of the pack's official grid (e.g. Musina's Year 1–3 Once-Off/Monthly/Annual grid with per-unit call tariffs). The flat pricing_lines from the linked erp Quotation stay the per-line source; this table renders the year grid on the pricing worksheets and only when rows exist.",
+            "fieldname": "pricing_periods",
+            "fieldtype": "Table",
+            "label": "Pricing Periods",
+            "options": "Tender Bid Pricing Period"
+        },
+        {
+            "fieldname": "section_returnables",
+            "fieldtype": "Section Break",
+            "label": "Per-Pack Returnables"
+        },
+        {
+            "default": "0",
+            "description": "When ticked, the pack's form set is EXACTLY the custom returnables list below (the fixture regime set is suppressed for this pack); unticked, custom rows append after the regime forms (deduped by code, regime wins). The regime fixtures themselves are never modified.",
+            "fieldname": "returnables_override",
+            "fieldtype": "Check",
+            "label": "Returnables Override"
+        },
+        {
+            "description": "Buyer-authored returnables hand-captured from THIS pack (findings F-02: Musina Forms A–E + §5.1 items, RNM A1–A15, DFFE Annexures A–C, VCW schedules). Rows naming a Tender Form Template code render that template; the rest render the guided template-less worksheet page. No pack parsing, no AI.",
+            "fieldname": "custom_returnables",
+            "fieldtype": "Table",
+            "label": "Custom Returnables",
+            "options": "Tender Bid Returnable"
+        },
+        {
+            "fieldname": "section_dispatch",
+            "fieldtype": "Section Break",
+            "label": "Submission Channel & Dispatch"
+        },
+        {
+            "description": "How THIS pack must be delivered, read from the tender document - manual selection, never inferred. All five mock-sample packs demand sealed-envelope/tender-box submission (Musina explicitly kills emailed bids), so 'Email allowed' is the exception path (RFQ-class): full-pack email dispatch is refused unless this says Email allowed. Blank = unknown = dispatch refused. The pack cover renders the delivery line from this field.",
+            "fieldname": "submission_channel",
+            "fieldtype": "Select",
+            "label": "Submission Channel",
+            "options": "\nPhysical tender box\nPortal upload\nEmail allowed"
+        },
+        {
+            "description": "The tender's named Contact Person - seeded from the cached opportunity record on claim when present, desk-editable",
+            "fieldname": "buyer_contact_person",
+            "fieldtype": "Data",
+            "label": "Buyer Contact Person"
+        },
+        {
+            "description": "The tender's contact email - seeded from the cached opportunity record on claim when present, desk-editable. Email dispatch requires the caller to RETYPE this exact address as confirmation; nothing sends automatically.",
+            "fieldname": "buyer_contact_email",
+            "fieldtype": "Data",
+            "label": "Buyer Contact Email",
+            "options": "Email"
+        },
+        {
+            "description": "Audit: when the last successful email dispatch left the system (set by dispatch_bid_pack)",
+            "fieldname": "dispatched_on",
+            "fieldtype": "Datetime",
+            "label": "Dispatched On",
+            "read_only": 1
+        },
+        {
+            "description": "Audit: the confirmed address the last dispatch was sent to (set by dispatch_bid_pack)",
+            "fieldname": "dispatched_to",
+            "fieldtype": "Data",
+            "label": "Dispatched To",
+            "read_only": 1
+        },
+        {
+            "fieldname": "section_outcome",
+            "fieldtype": "Section Break",
+            "label": "Submission & Outcome"
+        },
+        {
+            "fieldname": "submitted_on",
+            "fieldtype": "Date",
+            "label": "Submitted On"
+        },
+        {
+            "fieldname": "outcome_value",
+            "fieldtype": "Currency",
+            "label": "Outcome Value"
+        },
+        {
+            "fieldname": "outcome_notes",
+            "fieldtype": "Small Text",
+            "label": "Outcome Notes"
+        },
+        {
+            "fieldname": "section_checklist",
+            "fieldtype": "Section Break",
+            "label": "Checklist"
+        },
+        {
+            "fieldname": "checklist",
+            "fieldtype": "Table",
+            "label": "Checklist",
+            "options": "Bid Checklist Item"
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-07-26 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Bid",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

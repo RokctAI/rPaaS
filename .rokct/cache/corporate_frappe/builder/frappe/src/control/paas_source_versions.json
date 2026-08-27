@@ -1,0 +1,18 @@
+{
+    "paas_customer": {
+        "owner": "RokctAI",
+        "visibility": "private"
+    },
+    "paas_manager": {
+        "owner": "RokctAI",
+        "visibility": "private"
+    },
+    "paas_driver": {
+        "owner": "RokctAI",
+        "visibility": "private"
+    },
+    "paas_pos": {
+        "owner": "RokctAI",
+        "visibility": "private"
+    }
+}

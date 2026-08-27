@@ -1,0 +1,29 @@
+{
+    "allow_self_subscription":  1,
+    "billing_cycle":  "Monthly",
+    "billing_interval":  1,
+    "cost":  10.0,
+    "currency":  "USD",
+    "doctype":  "Subscription Plan",
+    "item":  "Hosting Basic",
+    "plan_name":  "Hosting Basic (Monthly)",
+    "price_determination":  "Fixed Rate",
+    "trial_period_days":  14,
+    "plan_category":  "Hosting",
+    "max_websites":  1,
+    "max_databases":  5,
+    "max_storage":  10,
+    "modules":  [
+                    {
+                        "module":  "Hosting"
+                    }
+                ],
+    "is_ai":  0,
+    "features":  [
+                     "1 Website Deployment",
+                     "5 Managed Databases",
+                     "10GB NVMe Storage",
+                     "Free SSL Certificates"
+                 ],
+    "plan_type":  "Service"
+}

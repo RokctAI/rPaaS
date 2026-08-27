@@ -1,0 +1,33 @@
+{
+    "allow_self_subscription":  1,
+    "billing_cycle":  "Monthly",
+    "billing_interval":  1,
+    "cost":  100.0,
+    "currency":  "USD",
+    "doctype":  "Subscription Plan",
+    "item":  "Hosting Enterprise",
+    "plan_name":  "Hosting Enterprise (Monthly)",
+    "price_determination":  "Fixed Rate",
+    "trial_period_days":  14,
+    "plan_category":  "Hosting",
+    "max_websites":  100,
+    "max_databases":  200,
+    "max_storage":  500,
+    "modules":  [
+                    {
+                        "module":  "Hosting"
+                    },
+                    {
+                        "module":  "Frappe Tenancy"
+                    }
+                ],
+    "is_ai":  0,
+    "features":  [
+                     "100 Website Deployments",
+                     "200 Managed Databases",
+                     "500GB NVMe Storage",
+                     "Frappe Tenancy Support",
+                     "Dedicated Storage Tier"
+                 ],
+    "plan_type":  "Service"
+}

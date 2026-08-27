@@ -1,0 +1,71 @@
+{
+    "name": "tender_sdk",
+    "version": "1.0.0",
+    "installs": [],
+    "dependencies": {},
+    "devDependencies": {},
+    "app_type": {
+        "control": {
+            "installs": [
+                {
+                    "from": "templates/control/app/services/control",
+                    "to": "app/services/control"
+                },
+                {
+                    "from": "templates/control/app/services/public",
+                    "to": "app/services/public"
+                },
+                {
+                    "from": "templates/control/app/actions/opportunities",
+                    "to": "app/actions/opportunities"
+                },
+                {
+                    "from": "templates/control/app/actions/handson/control/tender",
+                    "to": "app/actions/handson/control/tender"
+                },
+                {
+                    "from": "templates/control/app/handson/control/tender",
+                    "to": "app/handson/control/tender"
+                },
+                {
+                    "from": "templates/control/app/opportunities",
+                    "to": "app/opportunities"
+                },
+                {
+                    "from": "templates/control/app/api/opportunities/search",
+                    "to": "app/api/opportunities/search"
+                },
+                {
+                    "from": "templates/control/components/custom",
+                    "to": "components/custom"
+                }
+            ],
+            "dependencies": {
+                "lucide-react": "^0.563.0",
+                "react-icons": "^5.5.0",
+                "sonner": "^2.0.7"
+            },
+            "integrations": [
+                {
+                    "target": "app/handson/sidebar-client.tsx",
+                    "placeholder": "// @rokct-sdk-nav-start",
+                    "replacement": "  { href: \"/handson/control/tender\", label: \"Tender\" },"
+                }
+            ],
+            "requires": [
+                "app/(auth)/auth.ts",
+                "app/lib/intent-engine.ts",
+                "app/services/base/platform-gateway.ts",
+                "app/services/control/base.ts",
+                "app/services/server/semantic-search.ts",
+                "components/custom/header.tsx",
+                "components/ui/badge.tsx",
+                "components/ui/button.tsx",
+                "components/ui/card.tsx",
+                "components/ui/table.tsx",
+                "components/ui/tabs.tsx"
+            ]
+        },
+        "tenant": {}
+    }
+}

@@ -1,0 +1,31 @@
+import frappe
+
+
+def execute():
+	frappe.reload_doc("hr", "doctype", "employee_advance")
+
+	advance = frappe.qb.DocType("Employee Advance")
+	(
+		frappe.qb.update(advance)
+		.set(advance.status, "Returned")
+		.where(
+			(advance.docstatus == 1)
+			# ROKCT fix(postgres): cast bounds to boolean (rokct commit 74d817398)
+			& ((advance.return_amount > 0) & (advance.paid_amount == advance.return_amount))
+			& (advance.status == "Paid")
+		)
+	).run()
+
+	(
+		frappe.qb.update(advance)
+		.set(advance.status, "Partly Claimed and Returned")
+		.where(
+			(advance.docstatus == 1)
+			& (
+				# ROKCT fix(postgres): cast bounds to boolean (rokct commit 74d817398)
+				((advance.claimed_amount > 0) & (advance.return_amount > 0))
+				& (advance.paid_amount == (advance.return_amount + advance.claimed_amount))
+			)
+			& (advance.status == "Paid")
+		)
+	).run()

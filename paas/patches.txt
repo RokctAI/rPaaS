@@ -1,1 +1,3 @@
 
+paas.patches.v1_0_seed_push_notification_settings
+paas.patches.fold_user_wallet_balance_into_wallet

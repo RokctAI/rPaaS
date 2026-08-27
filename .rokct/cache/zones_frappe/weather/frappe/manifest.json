@@ -1,0 +1,176 @@
+{
+  "name": "weather",
+  "description": "Modular backend package for weather integration features. Role-split per frappe_sdk_management.md: the severe-weather warnings engine plus the hub-side weatherapi.com fetcher and tenant-facing get_weather endpoint (src/control/) compose only into the control product, the thin cached proxy + subscriber registry + push-sync plus the get_weather proxy (src/tenant/) only into tenant products, and messages/push/admin_log (src/warnings_engine/) into both.",
+  "app_type": {
+    "control": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.tenant.api.get_weather_warnings": "{app_name}.weather.control.api.get_weather_warnings.get_weather_warnings",
+          "{app_name}.api.get_weather_warnings": "{app_name}.weather.control.api.get_weather_warnings.get_weather_warnings",
+          "{app_name}.api.get_retraining_report": "{app_name}.weather.control.api.get_retraining_report.get_retraining_report",
+          "{app_name}.api.get_cap_feed": "{app_name}.weather.control.api.get_cap_feed.get_cap_feed",
+          "{app_name}.api.run_drill": "{app_name}.weather.control.api.run_drill.run_drill",
+          "{app_name}.api.clear_drill": "{app_name}.weather.control.api.run_drill.clear_drill",
+          "{app_name}.api.get_site_notices": "{app_name}.weather.control.api.get_site_notices.get_site_notices",
+          "{app_name}.api.get_weather": "{app_name}.weather.control.api.get_weather.get_weather",
+          "{app_name}.api.set_weather_alias": "{app_name}.weather.control.weather_service.set_weather_alias",
+          "control:get_weather": "{app_name}.weather.control.api.get_weather.get_weather",
+          "control.control.api.get_weather": "{app_name}.weather.control.api.get_weather.get_weather",
+          "control.control.api.weather.get_weather": "{app_name}.weather.control.api.get_weather.get_weather",
+          "control.control.weather.set_weather_alias": "{app_name}.weather.control.weather_service.set_weather_alias",
+          "control.control.weather.get_weather_data": "{app_name}.weather.control.weather_service.get_weather_data"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Watch Location"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Severe Weather Warning"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Cell Climatology"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Severe Weather Outcome"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Vulnerable Site"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Site Notice"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Severe Weather Forecast Signal"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Settings"
+              ]
+            ]
+          }
+        ],
+        "scheduler_events": {
+          "hourly": [
+            "{app_name}.weather.control.warnings_engine.evaluator.evaluate_watch_locations",
+            "{app_name}.weather.control.warnings_engine.forecast.run_forecast_pass"
+          ],
+          "daily": [
+            "{app_name}.weather.control.warnings_engine.evaluator.sweep_expired_warnings",
+            "{app_name}.weather.control.warnings_engine.outcomes.run_outcome_pass",
+            "{app_name}.weather.control.warnings_engine.forecast.verify_forecast_signals"
+          ]
+        }
+      },
+      "dependencies": [
+        "numpy",
+        "omfiles",
+        "s3fs",
+        "requests"
+      ]
+    },
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.tenant.api.get_weather": "{app_name}.weather.tenant.weather.get_weather.get_weather",
+          "{app_name}.tenant.api.set_weather_alias": "{app_name}.weather.tenant.weather.set_weather_alias.set_weather_alias",
+          "{app_name}.tenant.api.get_weather_warnings": "{app_name}.weather.tenant.api.get_weather_warnings.get_weather_warnings",
+          "{app_name}.tenant.api.ack_weather_notice": "{app_name}.weather.tenant.api.ack_weather_notice.ack_weather_notice",
+          "{app_name}.tenant.api.ack_weather_escalation": "{app_name}.weather.tenant.api.ack_weather_escalation.ack_weather_escalation",
+          "{app_name}.tenant.api.get_weather_notice_stats": "{app_name}.weather.tenant.api.get_weather_notice_stats.get_weather_notice_stats"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Watch Subscriber"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Notice Delivery"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Escalation Contact"
+              ]
+            ]
+          }
+        ],
+        "scheduler_events": {
+          "hourly": [
+            "{app_name}.weather.tenant.push_sync.run_push_sync",
+            "{app_name}.weather.tenant.sms_fallback.run_sms_fallback",
+            "{app_name}.weather.tenant.escalation.run_escalation"
+          ]
+        }
+      }
+    }
+  }
+}

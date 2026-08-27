@@ -1,0 +1,48 @@
+{
+  "name": "launch_sdk",
+  "version": "1.1.1",
+  "home_page": "templates/pages/home.dart",
+  "installs": [
+    {
+      "from": "templates/pages/home.dart",
+      "to": "lib/presentation/pages/launch/home.dart"
+    },
+    {
+      "from": "templates/widgets/app_item.dart",
+      "to": "lib/presentation/pages/launch/widgets/app_item.dart"
+    },
+    {
+      "from": "templates/android/AndroidManifest_snippets.xml",
+      "to": "android/app/src/main/AndroidManifest_snippets.xml"
+    },
+    {
+      "from": "templates/assets",
+      "to": "assets"
+    }
+  ],
+  "app_assets": [
+    "assets/images/splash.png",
+    "assets/images/splash1.png",
+    "assets/images/splash2.png"
+  ],
+  "_comment_app_assets": "Home SDKs ship the splash/login background images (base_sdk's splash_page and auth_sdk's login_page reference assets/images/splash*.png). Each home SDK provides its own copies so every composed app can brand them independently; app_assets gets them into the host pubspec's sdk-app-assets block so they are actually bundled. If base_sdk also installed identical files first, the file copy is skipped (already-present guard) and only the pubspec declaration matters.",
+  "routes": [
+    {
+      "path": "/launcher",
+      "page": "LauncherHomeRoute.page",
+      "type": "CupertinoRoute",
+      "import": "package:${package}/presentation/pages/launch/home.dart"
+    }
+  ],
+  "app_routes": [
+    {
+      "method": "replaceMainRoute",
+      "body": "context.router.replace(LauncherHomeRoute());",
+      "imports": [
+        "import 'package:${package}/presentation/routes/app_router.dart';"
+      ]
+    }
+  ],
+  "_comment_app_routes": "launch_sdk is a home SDK: it owns the app's main destination, so it implements AppRoutes.replaceMainRoute (what base_sdk's AppHelpers.goHome() calls after splash/login). Without this, _HostAppRoutes' noSuchMethod throws a StateError the moment the shell tries to navigate home. Mirrors lms_sdk's declaration for supacharge.",
+  "integrations": []
+}

@@ -1,0 +1,110 @@
+[
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-firebase_config_section",
+        "dt": "Push Notification Settings",
+        "fieldname": "firebase_config_section",
+        "fieldtype": "Section Break",
+        "label": "Firebase Config",
+        "insert_after": "fcm_server_key"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-api_key",
+        "dt": "Push Notification Settings",
+        "fieldname": "api_key",
+        "fieldtype": "Data",
+        "label": "API Key",
+        "insert_after": "firebase_config_section"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-ios_api_key",
+        "dt": "Push Notification Settings",
+        "fieldname": "ios_api_key",
+        "fieldtype": "Data",
+        "label": "IOS API Key",
+        "insert_after": "api_key"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-android_api_key",
+        "dt": "Push Notification Settings",
+        "fieldname": "android_api_key",
+        "fieldtype": "Data",
+        "label": "Android API Key",
+        "insert_after": "ios_api_key"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-server_key",
+        "dt": "Push Notification Settings",
+        "fieldname": "server_key",
+        "fieldtype": "Data",
+        "label": "Server Key",
+        "insert_after": "android_api_key"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-vapid_key",
+        "dt": "Push Notification Settings",
+        "fieldname": "vapid_key",
+        "fieldtype": "Data",
+        "label": "VAPID Key",
+        "insert_after": "server_key"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-auth_domain",
+        "dt": "Push Notification Settings",
+        "fieldname": "auth_domain",
+        "fieldtype": "Data",
+        "label": "Auth Domain",
+        "insert_after": "vapid_key"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-project_id",
+        "dt": "Push Notification Settings",
+        "fieldname": "project_id",
+        "fieldtype": "Data",
+        "label": "Project ID",
+        "insert_after": "auth_domain"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-storage_bucket",
+        "dt": "Push Notification Settings",
+        "fieldname": "storage_bucket",
+        "fieldtype": "Data",
+        "label": "Storage Bucket",
+        "insert_after": "project_id"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-messaging_sender_id",
+        "dt": "Push Notification Settings",
+        "fieldname": "messaging_sender_id",
+        "fieldtype": "Data",
+        "label": "Messaging Sender ID",
+        "insert_after": "storage_bucket"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-app_id",
+        "dt": "Push Notification Settings",
+        "fieldname": "app_id",
+        "fieldtype": "Data",
+        "label": "App ID",
+        "insert_after": "messaging_sender_id"
+    },
+    {
+        "doctype": "Custom Field",
+        "name": "Push Notification Settings-measurement_id",
+        "dt": "Push Notification Settings",
+        "fieldname": "measurement_id",
+        "fieldtype": "Data",
+        "label": "Measurement ID",
+        "insert_after": "app_id"
+    }
+]

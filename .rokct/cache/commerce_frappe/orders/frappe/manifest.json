@@ -1,0 +1,78 @@
+{
+  "name": "orders",
+  "description": "Modular backend package for orders",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "scheduler_events": {
+          "hourly": [
+            "{app_name}.orders.tenant.tasks.process_repeating_orders"
+          ]
+        },
+        "whitelisted_methods": {
+          "{app_name}.api.cart.change_status": "{app_name}.orders.tenant.api.cart.change_status",
+          "{app_name}.api.cart.create_and_cart": "{app_name}.orders.tenant.api.cart.create_and_cart",
+          "{app_name}.api.cart.create_cart": "{app_name}.orders.tenant.api.cart.create_cart",
+          "{app_name}.api.cart.delete_cart": "{app_name}.orders.tenant.api.cart.delete_cart",
+          "{app_name}.api.cart.delete_user": "{app_name}.orders.tenant.api.cart.delete_user",
+          "{app_name}.api.cart.get_cart_in_group": "{app_name}.orders.tenant.api.cart.get_cart_in_group",
+          "{app_name}.api.cart.insert_cart": "{app_name}.orders.tenant.api.cart.insert_cart",
+          "{app_name}.api.cart.insert_cart_with_group": "{app_name}.orders.tenant.api.cart.insert_cart_with_group",
+          "{app_name}.api.cart.join_order": "{app_name}.orders.tenant.api.cart.join_order",
+          "{app_name}.api.cart.remove_product_cart": "{app_name}.orders.tenant.api.cart.remove_product_cart",
+          "{app_name}.api.cart.add_to_cart": "{app_name}.orders.tenant.api.cart.add_to_cart",
+          "{app_name}.api.cart.get_cart": "{app_name}.orders.tenant.api.cart.get_cart",
+          "{app_name}.api.cart.remove_from_cart": "{app_name}.orders.tenant.api.cart.remove_from_cart",
+          "{app_name}.api.order.add_order_review": "{app_name}.orders.tenant.api.order.add_order_review",
+          "{app_name}.api.order.cancel_order": "{app_name}.orders.tenant.api.order.cancel_order",
+          "{app_name}.api.order.create_order": "{app_name}.orders.tenant.api.order.create_order",
+          "{app_name}.api.order.get_calculate": "{app_name}.orders.tenant.api.order.get_calculate",
+          "{app_name}.api.order.get_order_details": "{app_name}.orders.tenant.api.order.get_order_details",
+          "{app_name}.api.order.get_order_statuses": "{app_name}.orders.tenant.api.order.get_order_statuses",
+          "{app_name}.api.order.list_orders": "{app_name}.orders.tenant.api.order.list_orders",
+          "{app_name}.api.order.update_order_status": "{app_name}.orders.tenant.api.order.update_order_status",
+          "{app_name}.api.repeating_order.create_repeating_order": "{app_name}.orders.tenant.api.repeating_order.create_repeating_order",
+          "{app_name}.api.repeating_order.delete_repeating_order": "{app_name}.orders.tenant.api.repeating_order.delete_repeating_order",
+          "{app_name}.api.repeating_order.pause_repeating_order": "{app_name}.orders.tenant.api.repeating_order.pause_repeating_order",
+          "{app_name}.api.repeating_order.resume_repeating_order": "{app_name}.orders.tenant.api.repeating_order.resume_repeating_order"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Repeating Order"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Order"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Cart"
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "croniter"
+      ]
+    },
+    "control": {}
+  }
+}

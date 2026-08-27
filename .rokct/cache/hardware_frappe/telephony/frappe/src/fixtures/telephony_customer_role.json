@@ -1,0 +1,9 @@
+[
+ {
+  "doctype": "Role",
+  "role_name": "Telephony Customer",
+  "name": "Telephony Customer",
+  "desk_access": 0,
+  "module": "{module_name}"
+ }
+]

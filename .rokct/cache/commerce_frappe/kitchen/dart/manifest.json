@@ -1,0 +1,24 @@
+{
+  "name": "kitchen_sdk",
+  "version": "1.2.0",
+  "boot_hooks": [
+    {
+      "id": "kitchen-af-bundled-translations",
+      "order": 63,
+      "body": "BundledTranslations.register('af', kKitchenAfTranslations);",
+      "imports": [
+        "import 'package:base_sdk/src/services/bundled_translations.dart';",
+        "import 'package:kitchen_sdk/src/translations/kitchen_af_translations.dart';"
+      ],
+      "_comment": "Registers this SDK's bundled Afrikaans map for its manifest tr_keys into base_sdk's BundledTranslations registry at boot. Backend-served translation rows still win; the map is only the offline/unseeded fallback consulted before the humanized-key fallback. Requires a base_sdk with bundled_translations.dart."
+    }
+  ],
+  "installs": [],
+  "routes": [],
+  "integrations": [],
+  "tr_keys": {
+    "kitchen": "kitchen",
+    "kitchens": "kitchens"
+  },
+  "_comment_tr_keys": "Declared here rather than hand-written into base_sdk because only this SDK uses them - checked against base_sdk's 532 hand-written keys and against paas_driver's 122 app-local new keys, no collision either way. Keys needed by two or more SDKs belong hand-written in base_sdk instead, since the installer resolves a double declaration by silently keeping whichever it sees first."
+}

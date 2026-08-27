@@ -1,0 +1,29 @@
+{
+    "allow_self_subscription":  1,
+    "billing_cycle":  "Yearly",
+    "billing_interval":  1,
+    "cost":  200.0,
+    "currency":  "USD",
+    "doctype":  "Subscription Plan",
+    "item":  "PaaS Plan",
+    "plan_name":  "PaaS (Yearly)",
+    "price_determination":  "Fixed Rate",
+    "trial_period_days":  14,
+    "is_ai":  0,
+    "plan_category":  "paas",
+    "modules":  [
+                    {
+                        "module":  "paas"
+                    }
+                ],
+    "is_free_plan":  0,
+    "features":  [
+                     "Delivery Platform \u003cspan class=\"text-[10px] bg-primary text-primary-foreground px-2 py-0.5 rounded-full ml-1 font-bold uppercase\"\u003eWhite Label\u003c/span\u003e",
+                     "WhatsApp Order Integration",
+                     "Parcel Tracking Sync",
+                     "Digital Wallet History",
+                     "Yearly Priority Support"
+                 ],
+    "plan_type":  "Tenant",
+    "storage_quota_gb":  1
+}

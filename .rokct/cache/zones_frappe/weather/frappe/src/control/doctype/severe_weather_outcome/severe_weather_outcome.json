@@ -1,0 +1,122 @@
+{
+ "doctype": "DocType",
+ "name": "Severe Weather Outcome",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "SWO-.YYYY.-.#####",
+ "description": "One automatic after-the-fact verdict from the daily outcome ledger (warnings_engine/outcomes.py): did extreme weather actually follow an episode (verified = hit, unverified = evidence of a false alarm), or did a disaster-grade extreme arrive with no warning-tier episode at all (candidate_miss)? Evidence base for a future HUMAN-TRIGGERED retraining run - nothing consumes these rows automatically. Admin-only, never sent to clients. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "watch_location,event_class,verdict",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "verdict",
+   "fieldtype": "Select",
+   "label": "Verdict",
+   "options": "verified\nunverified\ncandidate_miss",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "verified = extremes materialized after the episode (hit); unverified = nothing extreme followed (evidence of a false alarm); candidate_miss = disaster-grade extremes observed with no warning-tier episode active"
+  },
+  {
+   "fieldname": "event_class",
+   "fieldtype": "Select",
+   "label": "Event Class",
+   "options": "flash_flood\nflood\ndestructive_wind\ntornado",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Link",
+   "label": "Watch Location",
+   "options": "Weather Watch Location",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "warning",
+   "fieldtype": "Link",
+   "label": "Warning Episode",
+   "options": "Severe Weather Warning",
+   "in_standard_filter": 1,
+   "description": "The judged episode - empty for candidate_miss rows (there was no episode; that is the point)"
+  },
+  {
+   "fieldname": "period_start",
+   "fieldtype": "Datetime",
+   "label": "Period Start (UTC)",
+   "read_only": 1,
+   "description": "Start of the observed window the verdict is based on (episode onset, or the start of the quiet-scan window)"
+  },
+  {
+   "fieldname": "period_end",
+   "fieldtype": "Datetime",
+   "label": "Period End (UTC)",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "End of the observed window (episode valid_until + 48 h aftermath, capped at the data horizon)"
+  },
+  {
+   "fieldname": "peak_precip_24h_mm",
+   "fieldtype": "Float",
+   "precision": "1",
+   "label": "Peak 24h Precip (mm)",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Max 24 h precipitation sum observed in the window. Duplicated out of the evidence JSON for list/report use."
+  },
+  {
+   "fieldname": "peak_precip_pctl",
+   "fieldtype": "Float",
+   "precision": "3",
+   "label": "Peak Precip Pctl",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "The peak 24 h fall on the cell's own climatological weekly-sum percentile curve (conservative measure; empty when the cell has no Weather Cell Climatology row)"
+  },
+  {
+   "fieldname": "peak_gust_ms",
+   "fieldtype": "Float",
+   "precision": "1",
+   "label": "Peak Gust (m/s)",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "Max 10 m wind gust observed in the window. Duplicated out of the evidence JSON for list/report use."
+  },
+  {
+   "fieldname": "recorded_at",
+   "fieldtype": "Datetime",
+   "label": "Recorded At (UTC)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "evidence",
+   "fieldtype": "Long Text",
+   "label": "Evidence (admin only)",
+   "read_only": 1,
+   "description": "JSON schema v1: {version, kind: episode|quiet_scan, window, observed: {max_precip_24h_mm, precip_peak_at, precip_weekly_pctl, max_gust_ms, gust_peak_at, gust_pctl}, climatology_available, thresholds, source, data_horizon, episode?}. Never sent to clients."
+  }
+ ]
+}

@@ -1,0 +1,166 @@
+{
+    "actions": [],
+    "creation": "2026-08-18 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-18 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Compliance Rule",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "autoname": "field:rule_code",
+    "field_order": [
+        "rule_code",
+        "title",
+        "rule_class",
+        "scope",
+        "severity",
+        "enabled",
+        "section_applicability",
+        "regimes",
+        "trigger_condition",
+        "artifact_type",
+        "freshness_days",
+        "section_content",
+        "checklist_text",
+        "guidance",
+        "evidence_required",
+        "params",
+        "guide_ref"
+    ],
+    "fields": [
+        {
+            "fieldname": "rule_code",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Rule Code",
+            "reqd": 1,
+            "unique": 1,
+            "description": "Stable key, e.g. GATE-CSD, KILL-01, SCORE-SYSTEM"
+        },
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Title",
+            "reqd": 1
+        },
+        {
+            "fieldname": "rule_class",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Rule Class",
+            "reqd": 1,
+            "options": "Registration Gate\nDisqualification Cause\nForm Rule\nPricing Rule\nSubmission Rule\nScoring Rule\nBuyer Quirk"
+        },
+        {
+            "fieldname": "scope",
+            "fieldtype": "Select",
+            "label": "Scope",
+            "reqd": 1,
+            "default": "Universal",
+            "options": "Universal\nConditional",
+            "description": "Universal rules apply to every bid; Conditional rules apply only when the trigger condition matches the bid"
+        },
+        {
+            "fieldname": "severity",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Severity",
+            "reqd": 1,
+            "options": "Fatal\nCurable\nPoints-only"
+        },
+        {
+            "fieldname": "enabled",
+            "fieldtype": "Check",
+            "label": "Enabled",
+            "default": "1"
+        },
+        {
+            "fieldname": "section_applicability",
+            "fieldtype": "Section Break",
+            "label": "Applicability"
+        },
+        {
+            "fieldname": "regimes",
+            "fieldtype": "Small Text",
+            "label": "Regimes",
+            "description": "Comma-separated form-regime codes this rule is limited to (SBD, MBD, SOE, CIDB, RFQ). Blank = all regimes."
+        },
+        {
+            "fieldname": "trigger_condition",
+            "fieldtype": "Code",
+            "options": "JSON",
+            "label": "Trigger Condition (JSON)",
+            "description": "For Conditional rules: a JSON object matched deterministically against the bid, e.g. {\"estimated_value_over\": 10000000} or a buyer match on the cached OCDS buyer name {\"institution_matches\": [\"eskom\", \"transnet\"]} (normalized substring, patterns are data). No AI is ever involved."
+        },
+        {
+            "fieldname": "artifact_type",
+            "fieldtype": "Data",
+            "label": "Required Artifact Type",
+            "description": "When set, the pre-submission validator requires an unexpired Compliance Artifact of this type for the bidding user"
+        },
+        {
+            "fieldname": "freshness_days",
+            "fieldtype": "Int",
+            "label": "Freshness (days)",
+            "description": "How recent the supporting evidence must be at submission (e.g. 7, 30, 90, 180)"
+        },
+        {
+            "fieldname": "section_content",
+            "fieldtype": "Section Break",
+            "label": "Content"
+        },
+        {
+            "fieldname": "checklist_text",
+            "fieldtype": "Small Text",
+            "label": "Checklist Text",
+            "description": "The task text appended to a bid's checklist when this rule applies. Blank = the rule never generates a checklist row."
+        },
+        {
+            "fieldname": "guidance",
+            "fieldtype": "Text",
+            "label": "Guidance"
+        },
+        {
+            "fieldname": "evidence_required",
+            "fieldtype": "Small Text",
+            "label": "Evidence Required"
+        },
+        {
+            "fieldname": "params",
+            "fieldtype": "Code",
+            "options": "JSON",
+            "label": "Parameters (JSON)",
+            "description": "Structured constants for Scoring/Pricing rules, e.g. {\"threshold_rand\": 50000000, \"straddle_band_pct\": 10} or {\"points_base\": 80}"
+        },
+        {
+            "fieldname": "guide_ref",
+            "fieldtype": "Data",
+            "label": "Guide Reference",
+            "description": "Section anchor in tender/SA-Tender-Completion-Guide.md that this rule was lifted from"
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ]
+}

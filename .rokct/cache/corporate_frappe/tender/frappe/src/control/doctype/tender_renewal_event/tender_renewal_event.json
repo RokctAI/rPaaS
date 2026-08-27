@@ -1,0 +1,104 @@
+{
+    "actions": [],
+    "creation": "2026-08-23 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-23 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Renewal Event",
+    "owner": "Administrator",
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "states": [],
+    "autoname": "format:TRE-{#####}",
+    "field_order": [
+        "buyer",
+        "buyer_normalized",
+        "category",
+        "event_type",
+        "ocid",
+        "event_date",
+        "stated_duration_months",
+        "source_field"
+    ],
+    "fields": [
+        {
+            "fieldname": "buyer",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Buyer",
+            "reqd": 1,
+            "description": "Buyer/institution name exactly as the advert carried it"
+        },
+        {
+            "fieldname": "buyer_normalized",
+            "fieldtype": "Data",
+            "in_standard_filter": 1,
+            "label": "Buyer (Normalized)",
+            "reqd": 1,
+            "description": "market_context.normalize_buyer key - gap math and watch matching group by this + category, never by raw name"
+        },
+        {
+            "fieldname": "category",
+            "fieldtype": "Data",
+            "in_standard_filter": 1,
+            "label": "Category",
+            "description": "eTenders category as carried on the card - the second half of the buyer x category cell key"
+        },
+        {
+            "fieldname": "event_type",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Event Type",
+            "options": "advert\naward\nclose",
+            "default": "advert",
+            "reqd": 1,
+            "description": "The opportunities sync appends advert events; award/close exist for future Raw Tender Cache OCDS ingestion"
+        },
+        {
+            "fieldname": "ocid",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "OCID",
+            "reqd": 1,
+            "description": "OCDS release ocid / card tender_number - the sync dedupes advert events by this (one advert event per ocid)"
+        },
+        {
+            "fieldname": "event_date",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "label": "Event Date",
+            "reqd": 1,
+            "description": "Advert: date_published (closing_date fallback); the gap math runs over these dates"
+        },
+        {
+            "fieldname": "stated_duration_months",
+            "fieldtype": "Int",
+            "label": "Stated Duration (Months)",
+            "description": "Contract duration parsed deterministically from the event's text (6-120 months band, noise-guarded); 0 = none stated"
+        },
+        {
+            "fieldname": "source_field",
+            "fieldtype": "Data",
+            "label": "Duration Source",
+            "description": "Where the stated duration was read from: advert_text or pack_text; empty when no duration was stated"
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ]
+}

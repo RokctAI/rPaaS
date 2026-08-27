@@ -1,0 +1,69 @@
+{
+  "name": "desktop_sdk",
+  "version": "1.1.1",
+  "_comment": "Native desktop runner scaffolding, installed into the HOST repo (not lib/) - the installer supports arbitrary install targets, same as SDKs that install to android/, ios/ or assets/. Every install is app_type-gated: each host opts into exactly the desktop platforms it builds, keyed by its .rokct/config/app_type marker. App-name parameterization: the installer substitutes the literal ${package} token (the host composer.json's package_name) into text files at install time, and its substitution extension list includes .rc/.cpp/.h alongside .txt, so windows/CMakeLists.txt (project()/BINARY_NAME), windows/runner/Runner.rc (FileDescription/InternalName/OriginalFilename/ProductName) and windows/runner/main.cpp (window title) are all shared, fully ${package}-parameterized templates - no per-app copies anywhere under windows/. To adopt desktop_sdk in a new app: add an app_type block here installing templates/windows, and add desktop_sdk to that app's composer template.",
+  "installs": [],
+  "app_type": {
+    "manager": {
+      "installs": [
+        {
+          "from": "templates/windows",
+          "to": "windows"
+        }
+      ]
+    },
+    "pos": {
+      "installs": [
+        {
+          "from": "templates/windows",
+          "to": "windows"
+        },
+        {
+          "from": "templates/macos",
+          "to": "macos"
+        },
+        {
+          "from": "templates/linux",
+          "to": "linux"
+        }
+      ],
+      "_comment": "pos keeps all three desktop platforms (it always had them via the old ungated top-level installs). macos/linux templates still carry pos-era admin_desktop naming and are not yet parameterized - follow-up when a second app adopts them."
+    },
+    "supacharge": {
+      "installs": [
+        {
+          "from": "templates/windows",
+          "to": "windows"
+        }
+      ],
+      "_comment": "Windows only (supacharge's committed macos/linux trees are host-owned flutter-create output; the SDK's macos/linux templates still carry pos-era naming). supacharge's repo already carries a windows/ tree - the historical source of these templates - so on that host the installer's host-file guard leaves existing files untouched and this block only fills in anything missing; on a fresh compose it installs the full ${package}-parameterized tree as 'supacharge'."
+    },
+    "driver": {
+      "installs": [
+        {
+          "from": "templates/windows",
+          "to": "windows"
+        }
+      ],
+      "_comment": "TEMPORARY (desktop test wave): windows-only, mirrors the manager block so driver-type apps can be desktop-tested. Revert candidate."
+    },
+    "customer": {
+      "installs": [
+        {
+          "from": "templates/windows",
+          "to": "windows"
+        }
+      ],
+      "_comment": "TEMPORARY (desktop test wave): windows-only, mirrors the manager block so customer-type apps can be desktop-tested. Revert candidate."
+    },
+    "launcher": {
+      "installs": [
+        {
+          "from": "templates/windows",
+          "to": "windows"
+        }
+      ],
+      "_comment": "TEMPORARY (desktop test wave): windows-only, mirrors the manager block so launcher-type apps can be desktop-tested. Revert candidate."
+    }
+  }
+}

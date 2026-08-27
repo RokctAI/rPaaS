@@ -1,0 +1,159 @@
+# Guided-tour fragment for marketplace_sdk (customer role).
+#
+# Brand-neutral by rule: app names, taglines and any per-app wording live in
+# the app shell's tour/app.tour.yaml ({app_name}/{app_tagline} placeholders
+# are substituted at merge time). This fragment owns only the screens
+# marketplace_sdk itself ships for customer composes (paas_customer marks it
+# home_sdk): the customer home (home_zero's HomePage), the category shop
+# browser (ResultFilterPage), search (SearchPage), favourites (LikePage) and
+# the account screen (base_sdk's GenericProfilePage, composed from the
+# sections this SDK registers at boot). Include it only in customer-family app
+# manifests, after the manifest's arrival/auth steps have settled the shell
+# on a stable route.
+#
+# Navigation note: marketplace_sdk's manifest.json declares only the
+# /profile route so far (the rest of the customer route table is still
+# host-owned), so no screen here is reachable via action: route in every
+# compose. Every step instead pushes the SDK's own parameter-less page onto
+# the root Navigator (the same tester/Navigator idiom the sibling fragments
+# use for pops and taps), which is truthful to the widgets themselves and
+# keeps the fragment independent of the unfinished customer route
+# migration. Follow-up (rule #59): declare the remaining app_type.customer
+# routes in manifest.json and switch these steps to action: route.
+#
+# Demo grounding (--dart-define=IS_DEMO=true): every facade these screens
+# read is demo-gated in commerce's DI modules -
+#   - home: base_sdk's homeProvider pulls MockBannersRepository
+#     (promotions_di), MockShopsRepository (merchants_di) and
+#     MockCategories/MockProducts/MockBrands (products_di);
+#   - category browse: filterProvider -> MockShopsRepository.getShopFilter
+#     (category id "1" is MockCategoriesRepository's "Burgers");
+#   - search: searchProvider -> MockShopsRepository.searchShops;
+#   - favourites: likeProvider -> MockShopsRepository.getShopsByIds, fed by
+#     the saved-shop id ("1", the mock's Demo Shop) seeded in the first
+#     step - LocalStorage.getSavedShopsList() is empty on a fresh install;
+#   - account: renders its guest state without a token (profile fetches are
+#     token-guarded), which is truthful for a signed-out browser.
+# The first step also seeds a selected address: home's post-frame
+# viewMapProvider.checkAddress() otherwise covers the screen with the
+# AddAddress dialog on a fresh install.
+#
+# NOT toured yet (rule #59 follow-ups, say-so over invention):
+#   - product detail / shop page: not owned by marketplace_sdk (the shop
+#     screen has not been migrated into commerce; base_sdk only carries the
+#     ProductDetailSheet interface), so there is no commerce-owned widget to
+#     push;
+#   - cart / checkout: MockCartRepository (orders_di) backs the customer
+#     cart facade, but orders_sdk's app_type.customer block installs no
+#     pages, so no cart or checkout screen exists in commerce to capture.
+#
+# Format: RokctAI/shared-workflows scripts/tour/README.md
+sdk: marketplace
+imports:
+  - "import 'package:base_sdk/src/models/data/address_old_data.dart';"
+  - "import 'package:base_sdk/src/models/data/location.dart';"
+  - "import 'package:base_sdk/src/services/local_storage.dart';"
+  - "import 'package:marketplace_sdk/src/common/presentation/pages/home/home_zero/filter/result_filter.dart' as marketplace_filter;"
+  - "import 'package:marketplace_sdk/src/common/presentation/pages/home/home_zero/home_page.dart' as marketplace_home;"
+  - "import 'package:marketplace_sdk/src/common/presentation/pages/like/like_page.dart' as marketplace_like;"
+  - "import 'package:base_sdk/src/presentation/pages/profile/generic_profile_page.dart' as base_profile;"
+  - "import 'package:marketplace_sdk/src/common/presentation/pages/search/search_page.dart' as marketplace_search;"
+steps:
+  - key: marketplace_home
+    title: "Every shop, one home"
+    caption: "Deals, categories and *every local shop* on one screen."
+    action: dart
+    settle: 10
+    dart: |
+      // Seed the demo session state the customer screens key off:
+      //  - a selected address, so home's checkAddress() does not cover the
+      //    screen with the AddAddress dialog on a fresh install;
+      //  - one saved shop id ("1" = MockShopsRepository's Demo Shop), so
+      //    the favourites step later shows a stocked list.
+      await LocalStorage.setAddressSelected(AddressData(
+        id: 1,
+        title: 'Demo address',
+        address: '1 Demo Street',
+        location: LocationModel(latitude: -26.2041, longitude: 28.0473),
+      ));
+      await LocalStorage.setSavedShopsList(<String>['1']);
+      // marketplace_sdk declares no customer routes yet, so push its own
+      // page directly (see the header note); the pushed page inherits the
+      // app's ProviderScope, theme and localization.
+      final NavigatorState navigator =
+          tester.state(find.byType(Navigator).first);
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) => const marketplace_home.HomePage(),
+      ));
+  - key: marketplace_category
+    title: "Shop by category"
+    caption: "Pick a category and see *just the shops* that stock it."
+    action: dart
+    settle: 8
+    dart: |
+      final NavigatorState navigator =
+          tester.state(find.byType(Navigator).first);
+      // Bounded: pop the page the previous step pushed.
+      for (int i = 0; i < 3 && navigator.canPop(); i++) {
+        navigator.pop();
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+      }
+      // Category id "1" is MockCategoriesRepository's demo "Burgers"
+      // category; the shop list comes from MockShopsRepository.
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) =>
+            const marketplace_filter.ResultFilterPage(categoryId: '1'),
+      ));
+  - key: marketplace_search
+    title: "Find it fast"
+    caption: "One search across *shops and products*, with filters a tap away."
+    action: dart
+    settle: 8
+    dart: |
+      final NavigatorState navigator =
+          tester.state(find.byType(Navigator).first);
+      for (int i = 0; i < 3 && navigator.canPop(); i++) {
+        navigator.pop();
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+      }
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) => const marketplace_search.SearchPage(),
+      ));
+  - key: marketplace_favourites
+    title: "Your favourites, kept"
+    caption: "Heart a shop once and it waits for you here - *your favourites*, one tap away."
+    action: dart
+    settle: 8
+    dart: |
+      final NavigatorState navigator =
+          tester.state(find.byType(Navigator).first);
+      for (int i = 0; i < 3 && navigator.canPop(); i++) {
+        navigator.pop();
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+      }
+      // Renders the saved shop seeded in the first step via
+      // MockShopsRepository.getShopsByIds.
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) => const marketplace_like.LikePage(),
+      ));
+  - key: marketplace_profile
+    title: "Make it yours"
+    caption: "Addresses, language, currency and more - *your account*, set up your way."
+    action: dart
+    settle: 8
+    dart: |
+      final NavigatorState navigator =
+          tester.state(find.byType(Navigator).first);
+      for (int i = 0; i < 3 && navigator.canPop(); i++) {
+        navigator.pop();
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+      }
+      // The account screen is base_sdk's generic profile host, composed
+      // from the sections marketplace_sdk registered at boot (its
+      // manifest's marketplace-profile-sections di hook) - the same page
+      // the /profile route shows since the GenericProfilePage migration.
+      // Without a token the profile fetches are guarded and the page
+      // renders its guest state - truthful for a signed-out browser.
+      navigator.push(MaterialPageRoute<void>(
+        builder: (_) => const base_profile.GenericProfilePage(),
+      ));

@@ -1,0 +1,24 @@
+{
+  "fixtures": [
+    {
+      "dt": "DocType",
+      "filters": [
+        [
+          "name",
+          "=",
+          "PayFast Settings"
+        ]
+      ]
+    },
+    {
+      "dt": "DocType",
+      "filters": [
+        [
+          "name",
+          "=",
+          "Paystack Settings"
+        ]
+      ]
+    }
+  ]
+}

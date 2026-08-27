@@ -1,0 +1,59 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "creation": "2025-10-12 12:18:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "ocid",
+        "retrieved_on",
+        "data"
+    ],
+    "fields": [
+        {
+            "fieldname": "ocid",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "OCID",
+            "unique": 1,
+            "description": "OCDS release ocid (e.g. ocds-9t57fa-166390) — the dedup key for the direct eTenders fetcher. Blank on legacy rows cached before the field existed."
+        },
+        {
+            "fieldname": "retrieved_on",
+            "fieldtype": "Datetime",
+            "in_list_view": 1,
+            "label": "Retrieved On",
+            "reqd": 1
+        },
+        {
+            "fieldname": "data",
+            "fieldtype": "Long Text",
+            "label": "Data",
+            "reqd": 1
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2025-10-12 12:18:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Raw Tender Cache",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "states": []
+}

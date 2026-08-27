@@ -1,0 +1,84 @@
+{
+    "actions": [],
+    "creation": "2026-08-19 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-19 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Form Template",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "autoname": "field:template_code",
+    "field_order": [
+        "template_code",
+        "form_title",
+        "guide_ref",
+        "initial_every_page",
+        "instructions",
+        "fields_table"
+    ],
+    "fields": [
+        {
+            "fieldname": "template_code",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Template Code",
+            "reqd": 1,
+            "unique": 1,
+            "description": "Matches Tender Form Requirement.form_code (SBD1, MBD4, C1.1, POPIA...) - the regime's form list selects templates by this code"
+        },
+        {
+            "fieldname": "form_title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Form Title",
+            "reqd": 1
+        },
+        {
+            "fieldname": "guide_ref",
+            "fieldtype": "Data",
+            "label": "Guide Reference",
+            "description": "Section of tender/SA-Tender-Completion-Guide.md this template is derived from"
+        },
+        {
+            "fieldname": "initial_every_page",
+            "fieldtype": "Check",
+            "in_list_view": 1,
+            "label": "Initial Every Page",
+            "description": "Pack checklists audit per-page initials on this form - a signed pack stamps the initials image in the page footer; an unsigned pack renders the reminder strip"
+        },
+        {
+            "fieldname": "instructions",
+            "fieldtype": "Small Text",
+            "label": "Completion Instructions",
+            "description": "Form-level guidance printed under the form header (derived from the guide's per-form kill notes)"
+        },
+        {
+            "fieldname": "fields_table",
+            "fieldtype": "Table",
+            "label": "Fields",
+            "options": "Tender Form Template Field",
+            "description": "Ordered field list - each row auto-fills from the business profile or the bid, or renders as a clearly marked USER INPUT blank"
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ]
+}

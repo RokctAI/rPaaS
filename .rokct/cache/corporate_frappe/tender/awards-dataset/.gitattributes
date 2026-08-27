@@ -1,0 +1,3 @@
+# Keep the dataset byte-identical to the source extract (CRLF row terminators,
+# sha256-verified). Do NOT let the repo-wide `* text=auto` normalize it.
+awards_only.csv -text

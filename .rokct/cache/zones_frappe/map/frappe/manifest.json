@@ -1,0 +1,34 @@
+{
+  "name": "map",
+  "description": "Modular backend package for map",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.driver_order.attach_order_to_me": "{app_name}.map.tenant.api.driver_order.driver_order.attach_order_to_me",
+          "{app_name}.api.driver_order.confirm_cod_collection": "{app_name}.map.tenant.api.driver_order.driver_order.confirm_cod_collection",
+          "{app_name}.api.driver_order.convert_cod_to_credit": "{app_name}.map.tenant.api.driver_order.driver_order.convert_cod_to_credit",
+          "{app_name}.api.driver_order.get_driver_orders_paginate": "{app_name}.map.tenant.api.driver_order.driver_order.get_driver_orders_paginate",
+          "{app_name}.api.driver_order.get_driver_route": "{app_name}.map.tenant.api.driver_order.driver_order.get_driver_route",
+          "{app_name}.api.driver_order.set_current_order": "{app_name}.map.tenant.api.driver_order.driver_order.set_current_order",
+          "{app_name}.api.driver_order.update_driver_order_status": "{app_name}.map.tenant.api.driver_order.driver_order.update_driver_order_status",
+          "{app_name}.api.driver_order.upload_order_image": "{app_name}.map.tenant.api.driver_order.driver_order.upload_order_image",
+          "{app_name}.api.driver.update_location": "{app_name}.map.tenant.api.driver.driver.update_location"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Driver Location"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "control": {}
+  }
+}

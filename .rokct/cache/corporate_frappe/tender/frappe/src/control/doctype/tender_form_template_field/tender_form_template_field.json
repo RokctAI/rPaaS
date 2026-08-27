@@ -1,0 +1,80 @@
+{
+    "actions": [],
+    "creation": "2026-08-19 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-19 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Form Template Field",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "istable": 1,
+    "field_order": [
+        "section",
+        "field_label",
+        "source_type",
+        "source_field",
+        "signature_role",
+        "multiline",
+        "guidance"
+    ],
+    "fields": [
+        {
+            "fieldname": "section",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Section",
+            "description": "Section heading this field renders under (consecutive rows with the same section group together)"
+        },
+        {
+            "fieldname": "field_label",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Field Label",
+            "reqd": 1
+        },
+        {
+            "fieldname": "source_type",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Source",
+            "reqd": 1,
+            "options": "Profile Field\nBid Field\nUser Input\nSignature",
+            "description": "Profile Field / Bid Field auto-fill; User Input renders a marked blank with guidance; Signature renders a signing block (stamped with the profile's signature image only in an explicitly signed pack)"
+        },
+        {
+            "fieldname": "source_field",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Source Field",
+            "description": "Tender Business Profile fieldname (Profile Field) or bid context key (Bid Field). The 'directors' profile field renders as a table"
+        },
+        {
+            "fieldname": "signature_role",
+            "fieldtype": "Select",
+            "label": "Signature Role",
+            "options": "\nSignatory\nWitness 1\nWitness 2\nCommissioner of Oaths",
+            "description": "For Signature rows: who signs this slot. Signatory/witness slots stamp from the profile's uploaded images in a signed pack; Commissioner of Oaths slots ALWAYS render as marked blanks - a commissioner must sign in person",
+            "depends_on": "eval:doc.source_type=='Signature'"
+        },
+        {
+            "fieldname": "multiline",
+            "fieldtype": "Check",
+            "label": "Multiline",
+            "description": "Render the blank/value as a multi-line block instead of a single line"
+        },
+        {
+            "fieldname": "guidance",
+            "fieldtype": "Small Text",
+            "label": "Guidance",
+            "description": "Kill-note-derived completion guidance printed with the field"
+        }
+    ],
+    "permissions": []
+}

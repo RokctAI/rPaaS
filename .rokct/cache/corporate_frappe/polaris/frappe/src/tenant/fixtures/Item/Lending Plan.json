@@ -1,0 +1,8 @@
+{
+ "doctype": "Item",
+ "item_code": "Lending Plan",
+ "item_name": "Lending Plan",
+ "item_group": "Services",
+ "is_stock_item": 0,
+ "stock_uom": "Nos"
+}

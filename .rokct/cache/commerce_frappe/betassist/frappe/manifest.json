@@ -1,0 +1,22 @@
+{
+  "name": "betassist",
+  "description": "Modular backend package for betassist",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "scheduler_events": {
+          "daily": [
+            "{app_name}.betassist.tenant.tasks.trigger_match_analysis"
+          ]
+        },
+        "whitelisted_methods": {
+          "{app_name}.api.betassist.register_user": "{app_name}.betassist.tenant.api.betassist.register_user",
+          "{app_name}.api.betassist.get_matches_feed": "{app_name}.betassist.tenant.api.betassist.get_matches_feed",
+          "{app_name}.api.betassist.log_bet": "{app_name}.betassist.tenant.api.betassist.log_bet",
+          "{app_name}.api.betassist.offboard_partner": "{app_name}.betassist.tenant.api.betassist.offboard_partner"
+        }
+      }
+    },
+    "control": {}
+  }
+}

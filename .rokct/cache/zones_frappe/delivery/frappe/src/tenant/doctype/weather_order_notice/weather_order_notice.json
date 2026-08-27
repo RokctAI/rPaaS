@@ -1,0 +1,60 @@
+{
+    "doctype": "DocType",
+    "name": "Weather Order Notice",
+    "engine": "InnoDB",
+    "istable": 0,
+    "module": "paas",
+    "description": "Send-once ledger for severe-weather order notices: one row per (order, weather notice episode, audience) push attempted by the hourly order-notice job (src/weather_notice/order_notices.py). Rows are written by the scheduler only; deleting a row would re-notify.",
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1
+        }
+    ],
+    "fields": [
+        {
+            "fieldname": "order",
+            "fieldtype": "Data",
+            "label": "Order",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "description": "Order name. Data (not Link) so this ledger composes even on shells without the orders module."
+        },
+        {
+            "fieldname": "notice",
+            "fieldtype": "Data",
+            "label": "Weather Notice",
+            "reqd": 1,
+            "in_list_view": 1,
+            "description": "The weather module's Severe Weather Warning record id (stable per episode; the record lives control-side)."
+        },
+        {
+            "fieldname": "audience",
+            "fieldtype": "Select",
+            "label": "Audience",
+            "options": "Customer\nShop",
+            "reqd": 1,
+            "in_list_view": 1,
+            "in_standard_filter": 1
+        },
+        {
+            "fieldname": "user",
+            "fieldtype": "Data",
+            "label": "Notified User",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "sent_at",
+            "fieldtype": "Datetime",
+            "label": "Sent At",
+            "read_only": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1
+}

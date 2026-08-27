@@ -1,0 +1,38 @@
+name: hms_sdk
+description: "Huawei Mobile Services (HMS) support: GMS/HMS device-services detection and a Push Kit token bootstrap for GMS-free devices."
+version: 1.0.0
+# Internal SDK consumed via path/git, never published to pub.dev (matches
+# desktop_sdk/hardware_sdk/base_sdk).
+publish_to: 'none'
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  # PlatformGateway (the universal /api/v1/method/rokct.platform.api POST)
+  # for the HMS push-token sync; resolves to the sibling cache folder in a
+  # composed app, same as every feature SDK.
+  base_sdk:
+    path: ../base
+  # Aligned with desktop_sdk/hardware_sdk so the graphs co-resolve; used by
+  # the HmsSdkDependencies DI registrar the installer wires into main.dart.
+  get_it: ^8.0.0
+  # GMS presence check (Baseflow plugin). The fleet has no other Play
+  # Services availability probe; Firebase init succeeding is NOT one (it
+  # initializes fine on GMS-free devices, only messaging silently fails).
+  google_api_availability: ^5.0.1
+  # HMS Core availability check - answers whether Huawei mobile services
+  # exist on the device at all.
+  huawei_hmsavailability: ^6.13.0+300
+  # Huawei Push Kit: token acquisition on GMS-free devices. Its Android
+  # plugin injects the Huawei maven repo into all Gradle projects itself,
+  # so a plain GMS build of a composed app resolves without host changes.
+  huawei_push: ^6.15.0+300
+
+dependency_overrides:
+  http: ^1.2.0
+  # Workspace-relative override so this package resolves standalone for
+  # codegen/analysis. Ignored when a host app is the resolution root.
+  base_sdk:
+    path: ../../../core/base/dart

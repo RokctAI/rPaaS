@@ -1,0 +1,330 @@
+{
+  "name": "delivery_sdk",
+  "version": "1.10.1",
+  "home_sdk": true,
+  "home_page": "templates/pages/driver/home/home_page.dart",
+  "installs": [
+    {
+      "from": "templates/assets",
+      "to": "assets"
+    }
+  ],
+  "app_assets": [
+    "assets/images/marker.png",
+    "assets/images/splash.png",
+    "assets/images/splash1.png",
+    "assets/images/splash2.png",
+    "assets/lottie/empty-box.json",
+    "assets/image/my_location.png",
+    "assets/svg/balance.svg"
+  ],
+  "_comment_app_assets": "Home SDKs ship the splash/login background images (base_sdk's splash_page and auth_sdk's login_page reference assets/images/splash*.png). Each home SDK provides its own copies so every composed app can brand them independently; app_assets gets them into the host pubspec's sdk-app-assets block so they are actually bundled. If base_sdk also installed identical files first, the file copy is skipped (already-present guard) and only the pubspec declaration matters. marker.png and empty-box.json are custodianship copies from paas_driver develop (legacy upstream-era driver assets evicted from base_sdk). my_location.png and balance.svg are custodianship copies from paas_driver main (referenced by the courier home/profile pages via the asset_keys below; paas_driver's own tracked assets/ copies survive, so the already-present guard skips the file copy there).",
+  "asset_keys": {
+    "pngMyLocation": "assets/image/my_location.png",
+    "svgBalance": "assets/svg/balance.svg"
+  },
+  "_comment_asset_keys": "Injected into base's AppAssets between the @sdk-asset-keys markers (orders_sdk mechanism); the files themselves arrive via the templates/assets install above. The legacy driver AppAssets paths (assets/image, assets/svg - singular) are kept verbatim so the composed constants keep pointing at the files paas_driver already bundles.",
+  "routes": [],
+  "integrations": [],
+  "app_type": {
+    "driver": {
+      "_comment_platform_permissions": "The courier tracker (courier_location_service.dart) reads GPS from a WorkManager background isolate, which on Android 10+ requires ACCESS_BACKGROUND_LOCATION on top of the fine/coarse pair every host already declares; the iOS side needs the combined Always-and-When-In-Use usage string for the same flow. Injected into the host platform files by update_platform_permissions(); driver-only via this flavor block.",
+      "platform_permissions": {
+        "android": [
+          "android.permission.ACCESS_BACKGROUND_LOCATION"
+        ],
+        "ios": {
+          "NSLocationAlwaysAndWhenInUseUsageDescription": "Your location is shared with dispatch while you are online so orders can be routed to you, including while the app is in the background."
+        }
+      },
+      "installs": [
+        {
+          "from": "templates/pages/driver/home",
+          "to": "lib/presentation/pages/home"
+        },
+        {
+          "from": "templates/pages/driver/orders/orders_page.dart",
+          "to": "lib/presentation/pages/orders/orders_page.dart"
+        },
+        {
+          "from": "templates/pages/driver/route/route_page.dart",
+          "to": "lib/presentation/pages/route/route_page.dart"
+        },
+        {
+          "from": "templates/pages/driver/order_history/order_history.dart",
+          "to": "lib/presentation/pages/order_history/order_history.dart"
+        },
+        {
+          "from": "templates/pages/driver/parcels",
+          "to": "lib/presentation/pages/parcel"
+        },
+        {
+          "from": "templates/pages/driver/parcel_history/parcel_history.dart",
+          "to": "lib/presentation/pages/parcels_history/parcel_history.dart"
+        },
+        {
+          "from": "templates/pages/driver/push_order/push_order_screen.dart",
+          "to": "lib/presentation/pages/push_order/push_order_screen.dart"
+        },
+        {
+          "from": "templates/pages/driver/profile/profile_page.dart",
+          "to": "lib/presentation/pages/profile/profile_page.dart"
+        },
+        {
+          "from": "templates/pages/driver/profile/edit_car.dart",
+          "to": "lib/presentation/pages/profile/edit_car.dart"
+        },
+        {
+          "from": "templates/pages/driver/profile/courier_statistics_provider.dart",
+          "to": "lib/presentation/pages/profile/courier_statistics_provider.dart"
+        },
+        {
+          "from": "templates/pages/driver/profile/widgets/cancel_dialog.dart",
+          "to": "lib/presentation/pages/profile/widgets/cancel_dialog.dart"
+        },
+        {
+          "from": "templates/pages/driver/profile/widgets/edit_profile_modal.dart",
+          "to": "lib/presentation/pages/profile/widgets/edit_profile_modal.dart"
+        },
+        {
+          "from": "templates/pages/driver/profile/widgets/logout_modal.dart",
+          "to": "lib/presentation/pages/profile/widgets/logout_modal.dart"
+        },
+        {
+          "from": "templates/pages/driver/profile/widgets/sections_item.dart",
+          "to": "lib/presentation/pages/profile/widgets/sections_item.dart"
+        },
+        {
+          "from": "templates/pages/driver/become_driver/become_driver.dart",
+          "to": "lib/presentation/pages/auth/become_driver/become_driver.dart"
+        },
+        {
+          "from": "templates/components/driver/driver_avatar.dart",
+          "to": "lib/presentation/component/driver_avatar.dart"
+        },
+        {
+          "from": "templates/components/driver/image_dialog.dart",
+          "to": "lib/presentation/component/image_dialog.dart"
+        },
+        {
+          "from": "templates/components/driver/order_detail.dart",
+          "to": "lib/presentation/component/order_detail.dart"
+        },
+        {
+          "from": "templates/components/driver/order_item.dart",
+          "to": "lib/presentation/component/order_item.dart"
+        },
+        {
+          "from": "templates/components/driver/orders_item.dart",
+          "to": "lib/presentation/component/orders_item.dart"
+        },
+        {
+          "from": "templates/components/driver/maps_list.dart",
+          "to": "lib/presentation/component/maps_list.dart"
+        },
+        {
+          "from": "templates/components/driver/product_item.dart",
+          "to": "lib/presentation/component/product_item.dart"
+        },
+        {
+          "from": "templates/components/driver/restaurant_item.dart",
+          "to": "lib/presentation/component/restaurant_item.dart"
+        },
+        {
+          "from": "templates/components/driver/custom_toggle.dart",
+          "to": "lib/presentation/component/custom_toggle.dart"
+        },
+        {
+          "from": "templates/components/driver/custom_date_picker.dart",
+          "to": "lib/presentation/component/custom_date_picker.dart"
+        },
+        {
+          "from": "templates/components/driver/filter_screen.dart",
+          "to": "lib/presentation/component/filter_screen.dart"
+        },
+        {
+          "from": "templates/components/driver/shop_avarat.dart",
+          "to": "lib/presentation/component/shop_avarat.dart"
+        },
+        {
+          "from": "templates/components/driver/buttons/buttons_bouncing_effect.dart",
+          "to": "lib/presentation/component/buttons/buttons_bouncing_effect.dart"
+        },
+        {
+          "from": "templates/components/driver/helper/keyboard_disable.dart",
+          "to": "lib/presentation/component/helper/keyboard_disable.dart"
+        },
+        {
+          "from": "templates/components/driver/text_fields/underline_bordered_text_field.dart",
+          "to": "lib/presentation/component/text_fields/underline_bordered_text_field.dart"
+        },
+        {
+          "from": "templates/adapters/driver/delivery_adapters.dart",
+          "to": "lib/presentation/routes/delivery_adapters.dart"
+        }
+      ],
+      "routes": [
+        {
+          "path": "/home",
+          "page": "HomeRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/home/home_page.dart",
+          "_comment": "Path, route name and CupertinoRoute type match paas_driver's host-owned entry outside the generated markers, so host navigation call-sites keep working when the host deletes its manual entry + its own copy of the page (M2). The installed page carries @RoutePage(name auto-derived: HomeRoute); SDK lib/ pages never get a generated route class, which is why every routed page here is an installed template."
+        },
+        {
+          "path": "/orders",
+          "page": "OrdersRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/orders/orders_page.dart"
+        },
+        {
+          "path": "/driver-route",
+          "page": "DriverRouteRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/route/route_page.dart"
+        },
+        {
+          "path": "/order-history",
+          "page": "OrderHistoryRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/order_history/order_history.dart"
+        },
+        {
+          "path": "/parcels",
+          "page": "ParcelsRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/parcel/parcels_page.dart"
+        },
+        {
+          "path": "/parcel-history",
+          "page": "ParcelHistoryRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/parcels_history/parcel_history.dart"
+        },
+        {
+          "path": "/profile",
+          "page": "ProfileRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/profile/profile_page.dart"
+        },
+        {
+          "path": "/become-driver",
+          "page": "BecomeDriverRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/auth/become_driver/become_driver.dart"
+        }
+      ],
+      "boot_hooks": [
+        {
+          "id": "delivery-driver-splash-preserve",
+          "order": 1,
+          "body": "FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());",
+          "imports": [
+            "import 'package:flutter_native_splash/flutter_native_splash.dart';"
+          ]
+        },
+        {
+          "id": "delivery-driver-courier-location-workmanager",
+          "order": 5,
+          "body": "if (!kIsWeb && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)) {\n  try {\n    await Workmanager().initialize(callbackDispatcher);\n  } catch (e) {\n    debugPrint('Workmanager boot skipped: $e');\n  }\n}",
+          "imports": [
+            "import 'package:flutter/foundation.dart';",
+            "import 'package:workmanager/workmanager.dart';",
+            "import 'package:delivery_sdk/src/driver/infrastructure/services/courier_location_service.dart';"
+          ],
+          "_comment": "Guarded like comms' firebase-fcm boot hook (platform allowlist + fail-open try/catch): workmanager only has Android/iOS implementations, so on a composed Windows exe the old unguarded 'await Workmanager().initialize(...)' threw 'No implementation found for workmanager on this platform' inside main() BEFORE runApp - the driver desktop build died before its first frame (window never shown). The allowlist mirrors the hms hook's capability-narrowed platform set; desktop/web now skip the courier background tracker entirely, which they never supported anyway."
+        }
+      ],
+      "_comment_boot_hooks": "Driver migration M4 - the last two host-owned startup lines from paas_driver's retired hand-written main.dart. Splash preserve: the home SDK holds the native splash until the router decides where to go (mirrors merchants-manager-splash-preserve, order 1). Workmanager: callbackDispatcher (the periodic courier-location report) is delivery_sdk package code (src/driver/infrastructure/services/courier_location_service.dart, vm:entry-point) because Workmanager invokes it by entry-point reference in a separate isolate - a host-private function could never be referenced from an injected hook body; the installed home page registers/cancels the task by its fetchBackground id from the same file.",
+      "app_routes": [
+        {
+          "method": "replaceLoginRoute",
+          "body": "context.router.replace(LoginRoute());",
+          "imports": [
+            "import 'package:${package}/presentation/routes/app_router.dart';"
+          ]
+        },
+        {
+          "method": "replaceMainRoute",
+          "body": "context.router.replace(HomeRoute());",
+          "imports": [
+            "import 'package:${package}/presentation/routes/app_router.dart';"
+          ],
+          "_comment": "base_sdk's logged-in splash path (AppHelpers.goHome) calls AppRoutes.I.replaceMainRoute; nothing else in a driver compose declares it, so without this entry a logged-in cold start throws via _HostAppRoutes.noSuchMethod. The driver 'main' is the courier home map (/home, HomeRoute) - same pattern as launch_sdk's LauncherHomeRoute declaration."
+        }
+      ],
+      "session_policy": {
+        "allowed_roles": [
+          { "role": "deliveryman", "landing_route": "/home" },
+          { "role": "*", "landing_route": "/become-driver" }
+        ],
+        "rejection_route": "/become-driver",
+        "rejection_message_tr_key": "become.driver"
+      },
+      "registration_steps": [
+        {
+          "id": "delivery.vehicle_details",
+          "order": 10,
+          "imports": [
+            "package:delivery_sdk/src/driver/presentation/widgets/vehicle_details_slide.dart",
+            "package:${package}/presentation/routes/delivery_adapters.dart"
+          ],
+          "body": "RegistrationStep(\n  data: const {'id': 'delivery.vehicle_details'},\n  content: Builder(\n    builder: (context) => VehicleDetailsSlide(\n      capture: CourierVehicleDetailsAdapter(),\n      onContinue: () => RegistrationStepScope.of(context).next(),\n    ),\n  ),\n)"
+        }
+      ],
+      "tr_keys": {
+        "activeParcels": "active_parcels",
+        "apart": "apart",
+        "askThisCodeFromCustomer": "ask.this.code.from.customer",
+        "availableOrders": "available_orders",
+        "availableParcels": "available_parcels",
+        "canceled": "canceled",
+        "cashToCollect": "cash.to.collect",
+        "checkRecipientId18Plus": "check.recipient.id.18.plus",
+        "deliveryRoute": "delivery.route",
+        "myRoute": "my.route",
+        "noLocationForStop": "no.location.for.stop",
+        "noRouteStops": "no.route.stops",
+        "pickupRoute": "pickup.route",
+        "quantity": "quantity",
+        "chooseFromLibrary": "choose.from.library",
+        "codConfirmed": "cod.confirmed",
+        "collectFromRecipient": "collect.from.recipient",
+        "completeCheckout": "complete_checkout",
+        "confirmPasswordDoesntMatchWithNewPassword": "confirm_password_doesnt_matches_with_new_password",
+        "deliveredOrder": "delivered_order",
+        "entr": "entr",
+        "evaluation": "evaluation",
+        "firstnameCannotBeEmpty": "firstname_cannot_be_empty",
+        "howMuchCashReceived": "how.much.cash.received",
+        "idRequired18Plus": "id.required.18.plus",
+        "iDeliveredTheOrder": "delivered_the_order",
+        "juvoBenefit": "juvo_benefit",
+        "inActive": "in_active",
+        "lastProfit": "last.profit",
+        "lastnameCannotBeEmpty": "lastname_cannot_be_empty",
+        "moreDistance": "more.distance",
+        "noteAboutClient": "note_about_the_client",
+        "offline": "offline",
+        "online": "online",
+        "onlineHelper": "online.helper",
+        "orderInformation": "order_information",
+        "rateTheCustomer": "rate_the_customer",
+        "recordAsCredit": "record.as.credit",
+        "restaurantHome": "restauran_home",
+        "startShopping": "start_shopping",
+        "statusNote": "status.note",
+        "telAdmin": "tel.admin",
+        "thatYouHaveIndeed": "that_you_have_indeed",
+        "thereAreOrders": "there_are",
+        "youStatus": "your.status",
+        "yourFeedbackService": "your_feedback_will_help_us_improve_our_delivery_service"
+      }
+    }
+  },
+  "_comment_home": "delivery_sdk is the driver composition's home SDK (home_sdk flag is what sdk_installer_base.resolve_home_sdk() reads; the composer entry in driver.json should carry the same flag). home_page points at the courier home-map shell template - the key the manifest already named before 1.3.0 without shipping the file; the template now exists and /home is a declared route.",
+  "_comment_app_type": "driver: paas_driver's courier vertical (S-D3 of the driver lib-regenerable plan). Application layer, the courier orders/parcel facades + Laravel deliveryman repositories (decision D2: moved AS-IS, no Frappe port - endpoints stay /api/v1/dashboard/deliveryman/*), the vehicle slice and the courier profile slices live in lib/src/driver/ - declaring this driver block also keeps that folder alive through sdk_composer.py's strip_unused_role_folders. Templates install to the EXACT paths paas_driver's tracked router/pages import today, so the hash guard skips them while the host copies exist and the recompose after the host deletions (M2/M3) takes over seamlessly; until then the declared routes duplicate the host router's manual entries outside the generated markers (same path + same route class, first match wins - the manual entries drop in M2). The driver host must call DriverDeliveryDependencies.register(GetIt.instance) via direct src/ import (lib/src/driver/di/driver_delivery_di.dart) before the courier pages first build; drawRepository/galleryRepository/userRepository resolve against base_sdk facades registered by map_sdk/products_sdk/users_sdk (all part of driver.json's compose). filter_screen.dart imports revenue_sdk's src/driver statistics provider - the slice S-D2 moves to corporate revenue_sdk; that template only starts installing once the host copy is deleted (M2), which the plan orders after S-D2 lands. courier_statistics_provider.dart is the host-composition seam to revenue_sdk's CourierStatisticsRepositoryFacade (SDK src imports base_sdk only - the profile/home earnings block reads this installed provider instead). restaurant_item/product_item/maps_list live here per decision D3 (single-consumer components live in the consuming SDK; driver.json's products_sdk annotation should be updated). Profile application slices stay courier-owned per decision D4 - they were diffed against base_sdk's profile/edit_profile/setting slices and are NOT identical (password + updateGeneralInfo endpoint + vehicle entanglement), so nothing base-identical is duplicated: generic reads go through base facades (UserRepositoryFacade/GalleryRepositoryFacade) and only courier extras stay. custom_toggle/custom_date_picker/filter_screen/shop_avarat/buttons_bouncing_effect/keyboard_disable/underline_bordered_text_field are custodianship copies: driver-only widgets whose base_sdk same-name twins have incompatible APIs (or no twin), used only by this vertical's templates - installed to the singular lib/presentation/component/ paths the existing driver code imports, so no template rewrites are needed. Templates additionally need host deps the driver pubspec already carries: workmanager, map_launcher, percent_indicator, flutter_rating_bar, google_sign_in, auto_size_text, cached_network_image, url_launcher, lottie, intl_phone_field, flutter_advanced_switch, calendar_date_picker2, shimmer, google_fonts, firebase_messaging, geolocator. Requires .rokct/config/app_type = driver. Version bumped 1.2.0 -> 1.3.0 so version-aware cache reconciliation re-extracts composed copies.",
+  "_comment_session_policy": "Driver flavour of merchants_sdk's manager policy, per the plan's decision D1 RECOMMENDATION (pending Ray + auth_sdk S-D4): couriers land on /home; any other authenticated role keeps its session and lands on /become-driver to file a courier request (the legacy behaviour - login_notifier.dart gated role != 'deliveryman' to BecomeDriver WITHOUT dropping the token). The '*' fallback entry only takes effect once auth_sdk supports it (S-D4); until then a non-courier is rejected to /become-driver via rejection_route, losing the session - the one behavioural delta, closed by S-D4. Inert today regardless: driver composes auth_sdk with skip_install, so the session-policy shell is absent until the M3 auth flip.",
+  "_comment_registration_steps": "Injects the courier vehicle-details capture into auth_sdk's post-register pipeline (merchants.shop_setup precedent; see sdk_installer_base.py update_registration_steps()). Fields are EXACTLY the host become_driver form's (decision D5: type_of_technique benzine/diesel/gas/motorbike/bike/foot, brand, model, state number, color, height/width/length/weight, car photo - no new document uploads). Wiring: VehicleDetailsSlide (SDK-owned, lib/src/driver/presentation/widgets/) -> CourierVehicleCapture (consumer-owned interface, ADR-005) -> CourierVehicleDetailsAdapter in the installed delivery_adapters.dart (host composition code) -> GalleryRepositoryFacade.uploadImage + CourierRepositoryFacade.createCarInfo -> POST /api/v1/dashboard/user/request-models. skippable stays default-true and the adapter never throws - a failed or skipped submit must never trap a fresh account; the profile page's edit-car modal offers the details again. NOTE: driver.json currently composes auth_sdk with skip_install, so update_registration_steps() no-ops - this declaration is forward-compatible and comes alive at the M3 flip.",
+  "_comment_tr_keys": "Courier keys absent from base_sdk's hand-written TrKeys (checked against core main), values verbatim from paas_driver's lib/infrastructure/services/tr_keys.dart - including the legacy 'restauran_home' typo the translation store already contains. The vehicle-step keys (becomeDriver, typeTechnique, benzine..foot, carBrand, carModels, stateNumber, height/width/length/kg, carPicture) already exist in base and are deliberately NOT redeclared (the installer skips base-owned collisions)."
+}

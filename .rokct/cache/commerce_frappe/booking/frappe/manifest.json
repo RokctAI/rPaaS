@@ -1,0 +1,67 @@
+{
+  "name": "booking",
+  "description": "Modular backend package for booking",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.booking.cancel_my_booking": "{app_name}.booking.tenant.api.booking.cancel_my_booking",
+          "{app_name}.api.booking.create_booking": "{app_name}.booking.tenant.api.booking.create_booking",
+          "{app_name}.api.booking.create_booking_slot": "{app_name}.booking.tenant.api.booking.create_booking_slot",
+          "{app_name}.api.booking.create_reservation": "{app_name}.booking.tenant.api.booking.create_reservation",
+          "{app_name}.api.booking.create_shop_section": "{app_name}.booking.tenant.api.booking.create_shop_section",
+          "{app_name}.api.booking.create_table": "{app_name}.booking.tenant.api.booking.create_table",
+          "{app_name}.api.booking.create_user_booking": "{app_name}.booking.tenant.api.booking.create_user_booking",
+          "{app_name}.api.booking.delete_booking": "{app_name}.booking.tenant.api.booking.delete_booking",
+          "{app_name}.api.booking.delete_booking_slot": "{app_name}.booking.tenant.api.booking.delete_booking_slot",
+          "{app_name}.api.booking.delete_shop_section": "{app_name}.booking.tenant.api.booking.delete_shop_section",
+          "{app_name}.api.booking.delete_table": "{app_name}.booking.tenant.api.booking.delete_table",
+          "{app_name}.api.booking.get_booking": "{app_name}.booking.tenant.api.booking.get_booking",
+          "{app_name}.api.booking.get_booking_slots": "{app_name}.booking.tenant.api.booking.get_booking_slots",
+          "{app_name}.api.booking.get_my_bookings": "{app_name}.booking.tenant.api.booking.get_my_bookings",
+          "{app_name}.api.booking.get_my_reservations": "{app_name}.booking.tenant.api.booking.get_my_reservations",
+          "{app_name}.api.booking.get_shop_bookings": "{app_name}.booking.tenant.api.booking.get_shop_bookings",
+          "{app_name}.api.booking.get_shop_reservations": "{app_name}.booking.tenant.api.booking.get_shop_reservations",
+          "{app_name}.api.booking.get_shop_section": "{app_name}.booking.tenant.api.booking.get_shop_section",
+          "{app_name}.api.booking.get_shop_sections_for_booking": "{app_name}.booking.tenant.api.booking.get_shop_sections_for_booking",
+          "{app_name}.api.booking.get_shop_user_bookings": "{app_name}.booking.tenant.api.booking.get_shop_user_bookings",
+          "{app_name}.api.booking.get_table": "{app_name}.booking.tenant.api.booking.get_table",
+          "{app_name}.api.booking.get_tables_for_section": "{app_name}.booking.tenant.api.booking.get_tables_for_section",
+          "{app_name}.api.booking.get_user_bookings": "{app_name}.booking.tenant.api.booking.get_user_bookings",
+          "{app_name}.api.booking.manage_shop_booking_closed_dates": "{app_name}.booking.tenant.api.booking.manage_shop_booking_closed_dates",
+          "{app_name}.api.booking.manage_shop_booking_working_days": "{app_name}.booking.tenant.api.booking.manage_shop_booking_working_days",
+          "{app_name}.api.booking.update_booking": "{app_name}.booking.tenant.api.booking.update_booking",
+          "{app_name}.api.booking.update_booking_slot": "{app_name}.booking.tenant.api.booking.update_booking_slot",
+          "{app_name}.api.booking.update_reservation_status": "{app_name}.booking.tenant.api.booking.update_reservation_status",
+          "{app_name}.api.booking.update_shop_section": "{app_name}.booking.tenant.api.booking.update_shop_section",
+          "{app_name}.api.booking.update_shop_user_booking_status": "{app_name}.booking.tenant.api.booking.update_shop_user_booking_status",
+          "{app_name}.api.booking.update_table": "{app_name}.booking.tenant.api.booking.update_table",
+          "{app_name}.api.booking.update_user_booking_status": "{app_name}.booking.tenant.api.booking.update_user_booking_status"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Booking"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Table"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "control": {}
+  }
+}

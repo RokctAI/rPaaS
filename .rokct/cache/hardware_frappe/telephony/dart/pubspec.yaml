@@ -1,0 +1,15 @@
+name: telephony_sdk
+description: A new Flutter package for telephony_sdk.
+version: 1.0.0
+
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  core_sdk:
+    path: ../core
+
+dependency_overrides:
+  http: ^1.2.0

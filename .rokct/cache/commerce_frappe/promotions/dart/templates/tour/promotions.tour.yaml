@@ -1,0 +1,29 @@
+# Guided-tour fragment for promotions_sdk.
+#
+# Registered EMPTY on purpose - this file claims the fleet-registry fragment
+# name `promotions` (fragment file names must be unique across composed
+# SDKs) and documents why there are no steps yet, so the merge's "SDK has
+# not adopted guided tours" warning does not hide a real decision.
+#
+# promotions_sdk currently owns no navigable screen a tour step could be
+# traced to:
+#   - Its demo data (MockBannersRepository, IS_DEMO-gated in
+#     promotions_di.dart) feeds base_sdk's home providers, and the banner
+#     carousels/detail screens that display it are owned and installed by
+#     OTHER SDKs (marketplace_sdk's customer home banner screens). Touring
+#     another SDK's screens from this fragment would break the ownership
+#     rule fragments are built on.
+#   - Its only page, StoryListPage, declares no route in manifest.json and
+#     requires constructor arguments (index, controller), so the tour
+#     runner cannot navigate to it via router.replaceNamed.
+#
+# Follow-ups before steps can land here (rule #59):
+#   - route a parameter-less promotions-owned screen (e.g. a banners/offers
+#     index) in manifest.json, or
+#   - agree that banner demo content is toured by the SDKs whose screens
+#     display it, and mark promotions_sdk exempt in the fleet table.
+#
+# Brand-neutral by rule; format: RokctAI/shared-workflows
+# scripts/tour/README.md
+sdk: promotions
+steps: []

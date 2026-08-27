@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-07-11T04:03:37.860555+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "FAIL",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/zones/map/dart",
+  "detail": "Architectural compliance scan failed with 3 violations across source code checks.",
+  "violations": [
+    {
+      "file": ".\\lib\\src\\infrastructure\\utils\\location_service.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'location_service.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\templates\\pages\\view_map_page.dart",
+      "line": 61,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'view_map_page.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\templates\\pages\\view_map_manager\\view_map_page.dart",
+      "line": 55,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'view_map_page.dart'. Define concrete Dart models or strong types."
+    }
+  ]
+}

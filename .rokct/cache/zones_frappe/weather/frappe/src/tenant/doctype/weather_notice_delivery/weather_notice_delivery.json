@@ -1,0 +1,150 @@
+{
+ "doctype": "DocType",
+ "name": "Weather Notice Delivery",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "WND-.YYYY.-.#####",
+ "description": "Per (warning id x recipient) delivery-assurance ledger for severe-weather notices. TENANT-side doctype. kind=subscriber rows are written by the hourly push-sync job when a push is handed to the comms sender, upgraded by the ack_weather_notice endpoint (opened beats seen beats delivered), and stamped by the SMS fallback job (send-once). kind=escalation rows record one escalation-ladder step per notified Weather Escalation Contact; their tokened acknowledge link acks via ack_weather_escalation and stops the ladder. Admin-only; aggregated by get_weather_notice_stats. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "warning_id,user,acked_event",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 0,
+ "fields": [
+  {
+   "fieldname": "kind",
+   "fieldtype": "Select",
+   "label": "Kind",
+   "options": "subscriber\nescalation",
+   "default": "subscriber",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "subscriber = a pushed end user; escalation = a Weather Escalation Contact notified by the escalation ladder"
+  },
+  {
+   "fieldname": "warning_id",
+   "fieldtype": "Data",
+   "label": "Warning ID",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1,
+   "description": "Control-side Severe Weather Warning record name carried in the push payload (the tenant shell has no warning records to link to)"
+  },
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Data",
+   "label": "Watch Location (Grid Key)",
+   "search_index": 1
+  },
+  {
+   "fieldname": "event_class",
+   "fieldtype": "Data",
+   "label": "Event Class"
+  },
+  {
+   "fieldname": "severity",
+   "fieldtype": "Data",
+   "label": "Severity (internal enum)",
+   "description": "Internal machine identifier (heads_up/warning) - never shown to end users"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "in_list_view": 1,
+   "description": "The pushed subscriber (kind=subscriber rows)"
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Data",
+   "label": "Escalation Contact",
+   "description": "Weather Escalation Contact name (kind=escalation rows)"
+  },
+  {
+   "fieldname": "escalation_priority",
+   "fieldtype": "Int",
+   "label": "Escalation Priority",
+   "description": "The contact's rung on the ladder at notification time"
+  },
+  {
+   "fieldname": "channels",
+   "fieldtype": "Data",
+   "label": "Channels Used",
+   "description": "Comma-separated channels the escalation step actually reached (e.g. push,email,sms)"
+  },
+  {
+   "fieldname": "push_sent_at",
+   "fieldtype": "Datetime",
+   "label": "Push Sent At (UTC)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sms_sent_at",
+   "fieldtype": "Datetime",
+   "label": "SMS Sent At (UTC)",
+   "read_only": 1,
+   "description": "Send-once mark of the SMS fallback (set even when the gateway send failed - repeat spam is worse than a lost transient)"
+  },
+  {
+   "fieldname": "notified_at",
+   "fieldtype": "Datetime",
+   "label": "Escalation Notified At (UTC)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "acked_event",
+   "fieldtype": "Select",
+   "label": "Acked Event",
+   "options": "\ndelivered\nseen\nopened",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Highest acknowledgment event so far - upgrade-only (opened beats seen beats delivered)"
+  },
+  {
+   "fieldname": "acked_at",
+   "fieldtype": "Datetime",
+   "label": "First Acked At (UTC)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "seen_at",
+   "fieldtype": "Datetime",
+   "label": "First Seen At (UTC)",
+   "read_only": 1,
+   "description": "First time the ack ladder reached at least seen - the timestamp behind the median-minutes-to-seen stat"
+  },
+  {
+   "fieldname": "ack_client_ts",
+   "fieldtype": "Datetime",
+   "label": "Client Timestamp (UTC)",
+   "read_only": 1,
+   "description": "Client-claimed timestamp from the ack payload; informational only, server clocks rule the metrics"
+  },
+  {
+   "fieldname": "ack_token",
+   "fieldtype": "Data",
+   "label": "Ack Token",
+   "hidden": 1,
+   "search_index": 1,
+   "description": "Opaque token of the escalation acknowledge link (kind=escalation rows only)"
+  }
+ ]
+}

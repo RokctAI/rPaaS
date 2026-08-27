@@ -1,0 +1,17 @@
+{
+  "name": "booking_sdk",
+  "version": "1.0.1",
+  "installs": [],
+  "integrations": [],
+  "routes": [],
+  "app_type": {
+    "customer": {
+      "installs": [
+        {
+          "from": "templates/pages/customer/reservation_shops.dart",
+          "to": "lib/presentation/pages/profile/reservation_shops.dart"
+        }
+      ]
+    }
+  }
+}

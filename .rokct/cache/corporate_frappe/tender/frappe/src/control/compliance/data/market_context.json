@@ -1,0 +1,3264 @@
+{
+ "buyers": {
+  "agricultural research council": {
+   "award_count": 161,
+   "benchmark_count": 114,
+   "buyer": "Agricultural Research Council",
+   "entrant_share_pct": 52.17,
+   "incumbency_share_pct": 6.21,
+   "iqr_rand": [
+    9887941,
+    209719560
+   ],
+   "median_rand": 63333400,
+   "publication_behavior": "low",
+   "publication_rate_pct": 2.22,
+   "zero_amount_share_pct": 28.57
+  },
+  "agricultural sector education and training authority": {
+   "award_count": 34,
+   "benchmark_count": 30,
+   "buyer": "Agricultural Sector Education and Training Authority",
+   "entrant_share_pct": 47.06,
+   "incumbency_share_pct": 8.82,
+   "iqr_rand": [
+    481751,
+    12200716
+   ],
+   "median_rand": 3278983,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 11.76
+  },
+  "airports company of south africa": {
+   "award_count": 102,
+   "benchmark_count": 76,
+   "buyer": "Airports Company of South Africa",
+   "entrant_share_pct": 68.63,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    3866454,
+    263182037
+   ],
+   "median_rand": 23845024,
+   "publication_behavior": "low",
+   "publication_rate_pct": 6.56,
+   "zero_amount_share_pct": 22.55
+  },
+  "alfred duma local municipality": {
+   "award_count": 31,
+   "benchmark_count": 3,
+   "buyer": "Alfred Duma Local Municipality",
+   "entrant_share_pct": 80.65,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 64.52
+  },
+  "amatola water board": {
+   "award_count": 79,
+   "benchmark_count": 45,
+   "buyer": "Amatola Water Board",
+   "entrant_share_pct": 46.84,
+   "incumbency_share_pct": 18.99,
+   "iqr_rand": [
+    83950,
+    24151634
+   ],
+   "median_rand": 1058500,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 40.51
+  },
+  "armscor": {
+   "award_count": 70,
+   "benchmark_count": 34,
+   "buyer": "ARMSCOR",
+   "entrant_share_pct": 64.29,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    17783408,
+    423855565
+   ],
+   "median_rand": 152082849,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 51.43
+  },
+  "automotive industry development centre (aidc)": {
+   "award_count": 146,
+   "benchmark_count": 145,
+   "buyer": "Automotive Industry Development Centre (AIDC)",
+   "entrant_share_pct": 58.22,
+   "incumbency_share_pct": 4.79,
+   "iqr_rand": [
+    776250,
+    9882880
+   ],
+   "median_rand": 2820000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "banking sector education and training authority": {
+   "award_count": 94,
+   "benchmark_count": 48,
+   "buyer": "Banking Sector Education and Training Authority",
+   "entrant_share_pct": 47.87,
+   "incumbency_share_pct": 9.57,
+   "iqr_rand": [
+    1859846,
+    45103513
+   ],
+   "median_rand": 9206200,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.94
+  },
+  "bela bela local municipality": {
+   "award_count": 52,
+   "benchmark_count": 46,
+   "buyer": "Bela Bela Local Municipality",
+   "entrant_share_pct": 69.23,
+   "incumbency_share_pct": 5.77,
+   "iqr_rand": [
+    65469908,
+    1229793092
+   ],
+   "median_rand": 305000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 11.54
+  },
+  "broadband infraco soc": {
+   "award_count": 38,
+   "benchmark_count": 23,
+   "buyer": "Broadband Infraco SOC",
+   "entrant_share_pct": 68.42,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 39.47
+  },
+  "cape agulhas municipality": {
+   "award_count": 318,
+   "benchmark_count": 195,
+   "buyer": "Cape Agulhas Municipality",
+   "entrant_share_pct": 38.36,
+   "incumbency_share_pct": 22.33,
+   "iqr_rand": [
+    1439171,
+    60282240
+   ],
+   "median_rand": 7826158,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 35.85
+  },
+  "cape town international convention centre": {
+   "award_count": 64,
+   "benchmark_count": 44,
+   "buyer": "Cape Town International Convention Centre",
+   "entrant_share_pct": 46.88,
+   "incumbency_share_pct": 4.69,
+   "iqr_rand": [
+    5661456,
+    319583040
+   ],
+   "median_rand": 45543621,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 29.69
+  },
+  "cape winelands district municipality": {
+   "award_count": 431,
+   "benchmark_count": 366,
+   "buyer": "Cape Winelands District Municipality",
+   "entrant_share_pct": 41.3,
+   "incumbency_share_pct": 29.23,
+   "iqr_rand": [
+    324114,
+    7877150
+   ],
+   "median_rand": 2000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 14.85
+  },
+  "capricorn district municipality": {
+   "award_count": 106,
+   "benchmark_count": 74,
+   "buyer": "Capricorn District Municipality",
+   "entrant_share_pct": 68.87,
+   "incumbency_share_pct": 6.6,
+   "iqr_rand": [
+    675667,
+    230735304
+   ],
+   "median_rand": 15533273,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 30.19
+  },
+  "casidra (soc) limited": {
+   "award_count": 38,
+   "benchmark_count": 28,
+   "buyer": "CASIDRA (SOC) Limited",
+   "entrant_share_pct": 52.63,
+   "incumbency_share_pct": 18.42,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.32
+  },
+  "cederberg municipality": {
+   "award_count": 76,
+   "benchmark_count": 59,
+   "buyer": "Cederberg Municipality",
+   "entrant_share_pct": 32.89,
+   "incumbency_share_pct": 9.21,
+   "iqr_rand": [
+    584672,
+    36723098
+   ],
+   "median_rand": 3986220,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 22.37
+  },
+  "chief albert luthuli municipality": {
+   "award_count": 54,
+   "benchmark_count": 32,
+   "buyer": "Chief Albert Luthuli Municipality",
+   "entrant_share_pct": 64.81,
+   "incumbency_share_pct": 11.11,
+   "iqr_rand": [
+    3084672,
+    75233212
+   ],
+   "median_rand": 15238020,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 38.89
+  },
+  "city council of johannesburg": {
+   "award_count": 0,
+   "benchmark_count": 0,
+   "buyer": "City Council of Johannesburg",
+   "entrant_share_pct": null,
+   "incumbency_share_pct": null,
+   "iqr_rand": null,
+   "median_rand": null,
+   "note": "documented zero publisher: 0 of 909 releases carry an award block in the OCDS feed - municipal award notices go to the buyer's own website (channel gap, not zero awards)",
+   "publication_behavior": "zero",
+   "publication_rate_pct": 0.0,
+   "release_count": 909,
+   "zero_amount_share_pct": null
+  },
+  "city of cape town": {
+   "award_count": 542,
+   "benchmark_count": 251,
+   "buyer": "City of Cape Town",
+   "entrant_share_pct": 40.96,
+   "incumbency_share_pct": 25.09,
+   "iqr_rand": [
+    34505338,
+    805376195
+   ],
+   "median_rand": 200000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 49.26
+  },
+  "city of tshwane": {
+   "award_count": 0,
+   "benchmark_count": 0,
+   "buyer": "City of Tshwane",
+   "entrant_share_pct": null,
+   "incumbency_share_pct": null,
+   "iqr_rand": null,
+   "median_rand": null,
+   "note": "documented zero publisher: 0 of 1254 releases carry an award block in the OCDS feed - municipal award notices go to the buyer's own website (channel gap, not zero awards)",
+   "publication_behavior": "zero",
+   "publication_rate_pct": 0.0,
+   "release_count": 1254,
+   "zero_amount_share_pct": null
+  },
+  "city power – johannesburg": {
+   "award_count": 76,
+   "benchmark_count": 24,
+   "buyer": "City Power – Johannesburg",
+   "entrant_share_pct": 67.11,
+   "incumbency_share_pct": 3.95,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 55.26
+  },
+  "commission for conciliation mediation & arbitration": {
+   "award_count": 73,
+   "benchmark_count": 51,
+   "buyer": "Commission for Conciliation Mediation & Arbitration",
+   "entrant_share_pct": 54.79,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    938552,
+    101428944
+   ],
+   "median_rand": 4222480,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 30.14
+  },
+  "community schemes ombud service": {
+   "award_count": 45,
+   "benchmark_count": 21,
+   "buyer": "Community Schemes Ombud Service",
+   "entrant_share_pct": 53.33,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 44.44
+  },
+  "companies and intellectual property commission": {
+   "award_count": 42,
+   "benchmark_count": 31,
+   "buyer": "Companies and Intellectual Property Commission",
+   "entrant_share_pct": 45.24,
+   "incumbency_share_pct": 7.14,
+   "iqr_rand": [
+    5239150,
+    60459534
+   ],
+   "median_rand": 26000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.19
+  },
+  "construction industry development board": {
+   "award_count": 33,
+   "benchmark_count": 17,
+   "buyer": "Construction Industry Development Board",
+   "entrant_share_pct": 57.58,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.48
+  },
+  "correctional services": {
+   "award_count": 56,
+   "benchmark_count": 15,
+   "buyer": "Correctional Services",
+   "entrant_share_pct": 64.29,
+   "incumbency_share_pct": 5.36,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 73.21
+  },
+  "council for geoscience": {
+   "award_count": 74,
+   "benchmark_count": 51,
+   "buyer": "Council for Geoscience",
+   "entrant_share_pct": 55.41,
+   "incumbency_share_pct": 8.11,
+   "iqr_rand": [
+    11385575,
+    229175759
+   ],
+   "median_rand": 45000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 25.68
+  },
+  "council for scientific and industrial research (csir)": {
+   "award_count": 448,
+   "benchmark_count": 412,
+   "buyer": "Council for Scientific and Industrial Research (CSIR)",
+   "entrant_share_pct": 60.71,
+   "incumbency_share_pct": 13.17,
+   "iqr_rand": [
+    3543011,
+    93919840
+   ],
+   "median_rand": 16518888,
+   "publication_behavior": "high",
+   "publication_rate_pct": 51.97,
+   "zero_amount_share_pct": 5.36
+  },
+  "culture arts, tourism, hospitality and sport sector education and training authority (cathsseta)": {
+   "award_count": 46,
+   "benchmark_count": 27,
+   "buyer": "Culture Arts, Tourism, Hospitality And Sport Sector Education And Training Authority (CATHSSETA)",
+   "entrant_share_pct": 45.65,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 41.3
+  },
+  "dawid kruiper local municipality": {
+   "award_count": 47,
+   "benchmark_count": 45,
+   "buyer": "Dawid kruiper Local Municipality",
+   "entrant_share_pct": 55.32,
+   "incumbency_share_pct": 19.15,
+   "iqr_rand": [
+    6930000,
+    253356159
+   ],
+   "median_rand": 63647532,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.13
+  },
+  "defence": {
+   "award_count": 101,
+   "benchmark_count": 98,
+   "buyer": "Defence",
+   "entrant_share_pct": 65.35,
+   "incumbency_share_pct": 26.73,
+   "iqr_rand": [
+    2345212,
+    46392188
+   ],
+   "median_rand": 17418910,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.97
+  },
+  "denel (pty) ltd": {
+   "award_count": 71,
+   "benchmark_count": 67,
+   "buyer": "DENEL (Pty) Ltd",
+   "entrant_share_pct": 76.06,
+   "incumbency_share_pct": 14.08,
+   "iqr_rand": [
+    172109,
+    3875163
+   ],
+   "median_rand": 551448,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 5.63
+  },
+  "department of agriculture, land reform & rural development": {
+   "award_count": 188,
+   "benchmark_count": 121,
+   "buyer": "Department of Agriculture, Land Reform & Rural Development",
+   "entrant_share_pct": 54.79,
+   "incumbency_share_pct": 18.62,
+   "iqr_rand": [
+    782219,
+    21434742
+   ],
+   "median_rand": 2999988,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 35.11
+  },
+  "department of corporative governance and traditional affairs": {
+   "award_count": 35,
+   "benchmark_count": 22,
+   "buyer": "Department of Corporative Governance and Traditional Affairs",
+   "entrant_share_pct": 31.43,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 37.14
+  },
+  "department of rural development & land reform": {
+   "award_count": 63,
+   "benchmark_count": 42,
+   "buyer": "Department of Rural Development & Land Reform",
+   "entrant_share_pct": 57.14,
+   "incumbency_share_pct": 15.87,
+   "iqr_rand": [
+    10120000,
+    245354196
+   ],
+   "median_rand": 89214386,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 33.33
+  },
+  "department of sports, arts & culture": {
+   "award_count": 68,
+   "benchmark_count": 32,
+   "buyer": "Department of Sports, Arts & Culture",
+   "entrant_share_pct": 50.0,
+   "incumbency_share_pct": 4.41,
+   "iqr_rand": [
+    977462,
+    55801432
+   ],
+   "median_rand": 12001452,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 52.94
+  },
+  "development bank of southern africa": {
+   "award_count": 201,
+   "benchmark_count": 142,
+   "buyer": "Development Bank of Southern Africa",
+   "entrant_share_pct": 47.26,
+   "incumbency_share_pct": 13.93,
+   "iqr_rand": [
+    22546267,
+    455954947
+   ],
+   "median_rand": 59524476,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 25.37
+  },
+  "dube tradeport": {
+   "award_count": 42,
+   "benchmark_count": 42,
+   "buyer": "Dube Tradeport",
+   "entrant_share_pct": 61.9,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    32355042,
+    627508573
+   ],
+   "median_rand": 177977854,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "eastern cape - agriculture": {
+   "award_count": 115,
+   "benchmark_count": 87,
+   "buyer": "Eastern Cape - Agriculture",
+   "entrant_share_pct": 50.43,
+   "incumbency_share_pct": 16.52,
+   "iqr_rand": [
+    1375158,
+    185052632
+   ],
+   "median_rand": 38674500,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 23.48
+  },
+  "eastern cape - coega development cooperation": {
+   "award_count": 168,
+   "benchmark_count": 106,
+   "buyer": "Eastern Cape - Coega Development Cooperation",
+   "entrant_share_pct": 58.33,
+   "incumbency_share_pct": 1.79,
+   "iqr_rand": [
+    8356413,
+    340242779
+   ],
+   "median_rand": 48181532,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 35.12
+  },
+  "eastern cape - cooperative governance and traditional affairs": {
+   "award_count": 38,
+   "benchmark_count": 26,
+   "buyer": "Eastern Cape - Cooperative Governance  and Traditional Affairs",
+   "entrant_share_pct": 31.58,
+   "incumbency_share_pct": 10.53,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.32
+  },
+  "eastern cape - east london industrial development zone corporation": {
+   "award_count": 57,
+   "benchmark_count": 46,
+   "buyer": "Eastern Cape - East London Industrial Development Zone Corporation",
+   "entrant_share_pct": 54.39,
+   "incumbency_share_pct": 15.79,
+   "iqr_rand": [
+    6461458,
+    988745576
+   ],
+   "median_rand": 200000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 17.54
+  },
+  "eastern cape - eastern cape development corporation": {
+   "award_count": 51,
+   "benchmark_count": 46,
+   "buyer": "Eastern Cape - Eastern Cape Development Corporation",
+   "entrant_share_pct": 58.82,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    11426971,
+    897505262
+   ],
+   "median_rand": 115341550,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 5.88
+  },
+  "eastern cape - eastern cape parks and tourism agency": {
+   "award_count": 40,
+   "benchmark_count": 13,
+   "buyer": "Eastern Cape - Eastern Cape Parks and Tourism Agency",
+   "entrant_share_pct": 67.5,
+   "incumbency_share_pct": 7.5,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 52.5
+  },
+  "eastern cape - economic development & environmental affairs": {
+   "award_count": 34,
+   "benchmark_count": 30,
+   "buyer": "Eastern Cape - Economic Development & Environmental Affairs",
+   "entrant_share_pct": 35.29,
+   "incumbency_share_pct": 50.0,
+   "iqr_rand": [
+    16882072,
+    46991202
+   ],
+   "median_rand": 31787305,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 11.76
+  },
+  "eastern cape - education": {
+   "award_count": 42,
+   "benchmark_count": 22,
+   "buyer": "Eastern Cape - Education",
+   "entrant_share_pct": 73.81,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "eastern cape - health": {
+   "award_count": 87,
+   "benchmark_count": 69,
+   "buyer": "Eastern Cape - Health",
+   "entrant_share_pct": 36.78,
+   "incumbency_share_pct": 17.24,
+   "iqr_rand": [
+    60785621,
+    1920615047
+   ],
+   "median_rand": 613448055,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 12.64
+  },
+  "eastern cape - provincial treasury": {
+   "award_count": 38,
+   "benchmark_count": 28,
+   "buyer": "Eastern Cape - Provincial Treasury",
+   "entrant_share_pct": 28.95,
+   "incumbency_share_pct": 18.42,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 13.16
+  },
+  "eastern cape - roads and public works": {
+   "award_count": 183,
+   "benchmark_count": 177,
+   "buyer": "Eastern Cape - Roads and Public Works",
+   "entrant_share_pct": 54.1,
+   "incumbency_share_pct": 16.39,
+   "iqr_rand": [
+    129562450,
+    798175347
+   ],
+   "median_rand": 273067730,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "eastern cape - rural development and agrarian reform": {
+   "award_count": 111,
+   "benchmark_count": 76,
+   "buyer": "Eastern Cape - Rural Development and Agrarian Reform",
+   "entrant_share_pct": 54.05,
+   "incumbency_share_pct": 15.32,
+   "iqr_rand": [
+    1202000,
+    3120013
+   ],
+   "median_rand": 1470020,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 31.53
+  },
+  "eastern cape - transport": {
+   "award_count": 53,
+   "benchmark_count": 35,
+   "buyer": "Eastern Cape - Transport",
+   "entrant_share_pct": 43.4,
+   "incumbency_share_pct": 11.32,
+   "iqr_rand": [
+    29252508,
+    582658222
+   ],
+   "median_rand": 227546150,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 28.3
+  },
+  "education, training and development practices seta": {
+   "award_count": 39,
+   "benchmark_count": 23,
+   "buyer": "Education, Training and Development Practices SETA",
+   "entrant_share_pct": 43.59,
+   "incumbency_share_pct": 7.69,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 41.03
+  },
+  "ekurhuleni water care company (erwat)": {
+   "award_count": 89,
+   "benchmark_count": 45,
+   "buyer": "Ekurhuleni Water Care Company (ERWAT)",
+   "entrant_share_pct": 62.92,
+   "incumbency_share_pct": 5.62,
+   "iqr_rand": [
+    7675127,
+    498490270
+   ],
+   "median_rand": 37535180,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 47.19
+  },
+  "electoral commission (iec)": {
+   "award_count": 259,
+   "benchmark_count": 207,
+   "buyer": "Electoral Commission (IEC)",
+   "entrant_share_pct": 58.3,
+   "incumbency_share_pct": 26.25,
+   "iqr_rand": [
+    16590708,
+    469754338
+   ],
+   "median_rand": 85750000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 20.08
+  },
+  "elias motsoaledi local municipality": {
+   "award_count": 92,
+   "benchmark_count": 47,
+   "buyer": "Elias Motsoaledi Local Municipality",
+   "entrant_share_pct": 68.48,
+   "incumbency_share_pct": 10.87,
+   "iqr_rand": [
+    3198213,
+    196768094
+   ],
+   "median_rand": 25585000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 23.91
+  },
+  "elundini local municipality": {
+   "award_count": 74,
+   "benchmark_count": 38,
+   "buyer": "Elundini Local Municipality",
+   "entrant_share_pct": 68.92,
+   "incumbency_share_pct": 4.05,
+   "iqr_rand": [
+    100,
+    100
+   ],
+   "median_rand": 100,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.65
+  },
+  "eskom": {
+   "award_count": 1271,
+   "benchmark_count": 772,
+   "buyer": "ESKOM",
+   "entrant_share_pct": 57.83,
+   "incumbency_share_pct": 24.63,
+   "iqr_rand": [
+    11648838,
+    726584245
+   ],
+   "median_rand": 121047075,
+   "publication_behavior": "low",
+   "publication_rate_pct": 9.87,
+   "zero_amount_share_pct": 28.87
+  },
+  "eskom national transmission company of south africa": {
+   "award_count": 58,
+   "benchmark_count": 49,
+   "buyer": "Eskom National Transmission Company of South Africa",
+   "entrant_share_pct": 34.48,
+   "incumbency_share_pct": 13.79,
+   "iqr_rand": [
+    16800000,
+    990713867
+   ],
+   "median_rand": 243611620,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 3.45
+  },
+  "ethekwini metropolitan municipality": {
+   "award_count": 273,
+   "benchmark_count": 264,
+   "buyer": "Ethekwini Metropolitan Municipality",
+   "entrant_share_pct": 71.79,
+   "incumbency_share_pct": 9.16,
+   "iqr_rand": [
+    11379409,
+    571915243
+   ],
+   "median_rand": 104936182,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 1.47
+  },
+  "financial intelligence centre": {
+   "award_count": 35,
+   "benchmark_count": 24,
+   "buyer": "Financial Intelligence Centre",
+   "entrant_share_pct": 25.71,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 8.57
+  },
+  "financial sector conduct authority (fsca)": {
+   "award_count": 47,
+   "benchmark_count": 23,
+   "buyer": "FINANCIAL SECTOR CONDUCT AUTHORITY (FSCA)",
+   "entrant_share_pct": 55.32,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 40.43
+  },
+  "francis baard district municipality": {
+   "award_count": 83,
+   "benchmark_count": 51,
+   "buyer": "Francis Baard District Municipality",
+   "entrant_share_pct": 56.63,
+   "incumbency_share_pct": 8.43,
+   "iqr_rand": [
+    790775,
+    22441445
+   ],
+   "median_rand": 4535600,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 38.55
+  },
+  "free state - health": {
+   "award_count": 53,
+   "benchmark_count": 12,
+   "buyer": "Free State - Health",
+   "entrant_share_pct": 75.47,
+   "incumbency_share_pct": 5.66,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 47.17
+  },
+  "free state - police, roads and transport": {
+   "award_count": 41,
+   "benchmark_count": 15,
+   "buyer": "Free State - Police, Roads and Transport",
+   "entrant_share_pct": 60.98,
+   "incumbency_share_pct": 9.76,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 43.9
+  },
+  "garden route district local municipality": {
+   "award_count": 158,
+   "benchmark_count": 81,
+   "buyer": "Garden Route District Local Municipality",
+   "entrant_share_pct": 51.9,
+   "incumbency_share_pct": 12.66,
+   "iqr_rand": [
+    372600,
+    5012972
+   ],
+   "median_rand": 1500000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 44.3
+  },
+  "gauteng - health": {
+   "award_count": 57,
+   "benchmark_count": 5,
+   "buyer": "Gauteng - Health",
+   "entrant_share_pct": 82.46,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 29.82
+  },
+  "gauteng - infrastructure development": {
+   "award_count": 46,
+   "benchmark_count": 13,
+   "buyer": "Gauteng - Infrastructure Development",
+   "entrant_share_pct": 69.57,
+   "incumbency_share_pct": 10.87,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 50.0
+  },
+  "george municipality": {
+   "award_count": 464,
+   "benchmark_count": 316,
+   "buyer": "George Municipality",
+   "entrant_share_pct": 44.61,
+   "incumbency_share_pct": 23.49,
+   "iqr_rand": [
+    246897,
+    29773586
+   ],
+   "median_rand": 3314852,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 31.9
+  },
+  "government technical advisory centre (gtac)": {
+   "award_count": 81,
+   "benchmark_count": 49,
+   "buyer": "Government Technical Advisory Centre (GTAC)",
+   "entrant_share_pct": 71.6,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    93600,
+    21908880
+   ],
+   "median_rand": 3041175,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 39.51
+  },
+  "greater kokstad local municipality": {
+   "award_count": 49,
+   "benchmark_count": 31,
+   "buyer": "Greater Kokstad Local Municipality",
+   "entrant_share_pct": 55.1,
+   "incumbency_share_pct": 10.2,
+   "iqr_rand": [
+    6650000,
+    242711644
+   ],
+   "median_rand": 29805530,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 4.08
+  },
+  "health": {
+   "award_count": 71,
+   "benchmark_count": 54,
+   "buyer": "Health",
+   "entrant_share_pct": 57.75,
+   "incumbency_share_pct": 25.35,
+   "iqr_rand": [
+    39535036,
+    660720518
+   ],
+   "median_rand": 160147496,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 12.68
+  },
+  "home affairs": {
+   "award_count": 66,
+   "benchmark_count": 36,
+   "buyer": "Home Affairs",
+   "entrant_share_pct": 53.03,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    39426725,
+    907881493
+   ],
+   "median_rand": 157342680,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 39.39
+  },
+  "housing development agency": {
+   "award_count": 115,
+   "benchmark_count": 83,
+   "buyer": "Housing Development Agency",
+   "entrant_share_pct": 53.91,
+   "incumbency_share_pct": 7.83,
+   "iqr_rand": [
+    1566780,
+    121280000
+   ],
+   "median_rand": 15218500,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 17.39
+  },
+  "human sciences research council": {
+   "award_count": 66,
+   "benchmark_count": 35,
+   "buyer": "Human Sciences Research Council",
+   "entrant_share_pct": 50.0,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    2167048,
+    151905484
+   ],
+   "median_rand": 23039100,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 42.42
+  },
+  "human settlements": {
+   "award_count": 31,
+   "benchmark_count": 9,
+   "buyer": "Human Settlements",
+   "entrant_share_pct": 70.97,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 64.52
+  },
+  "ikhala public tvet college": {
+   "award_count": 45,
+   "benchmark_count": 34,
+   "buyer": "IKHALA PUBLIC TVET COLLEGE",
+   "entrant_share_pct": 68.89,
+   "incumbency_share_pct": 6.67,
+   "iqr_rand": [
+    7060702,
+    95709752
+   ],
+   "median_rand": 32348258,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 24.44
+  },
+  "independent communications authority of south africa (icasa)": {
+   "award_count": 33,
+   "benchmark_count": 22,
+   "buyer": "Independent Communications Authority of South Africa (ICASA)",
+   "entrant_share_pct": 45.45,
+   "incumbency_share_pct": 18.18,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 30.3
+  },
+  "independent development trust": {
+   "award_count": 108,
+   "benchmark_count": 75,
+   "buyer": "Independent Development Trust",
+   "entrant_share_pct": 72.22,
+   "incumbency_share_pct": 5.56,
+   "iqr_rand": [
+    10225786,
+    1099867902
+   ],
+   "median_rand": 68925976,
+   "publication_behavior": "low",
+   "publication_rate_pct": 8.74,
+   "zero_amount_share_pct": 25.0
+  },
+  "industrial development corporation of south africa limited": {
+   "award_count": 128,
+   "benchmark_count": 116,
+   "buyer": "Industrial Development Corporation of South Africa Limited",
+   "entrant_share_pct": 66.41,
+   "incumbency_share_pct": 2.34,
+   "iqr_rand": [
+    40992166,
+    987742140
+   ],
+   "median_rand": 213823996,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 8.59
+  },
+  "ingquza hill local municipality": {
+   "award_count": 265,
+   "benchmark_count": 265,
+   "buyer": "Ingquza Hill Local Municipality",
+   "entrant_share_pct": 30.94,
+   "incumbency_share_pct": 59.62,
+   "iqr_rand": [
+    1707060,
+    24300000
+   ],
+   "median_rand": 6093850,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "inkomati catchment management agency": {
+   "award_count": 35,
+   "benchmark_count": 14,
+   "buyer": "Inkomati Catchment Management Agency",
+   "entrant_share_pct": 45.71,
+   "incumbency_share_pct": 11.43,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 57.14
+  },
+  "ithala soc limited": {
+   "award_count": 47,
+   "benchmark_count": 7,
+   "buyer": "ITHALA SOC LIMITED",
+   "entrant_share_pct": 48.94,
+   "incumbency_share_pct": 6.38,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 82.98
+  },
+  "iziko museums of cape town": {
+   "award_count": 38,
+   "benchmark_count": 35,
+   "buyer": "Iziko Museums of Cape Town",
+   "entrant_share_pct": 65.79,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    1672750,
+    31492618
+   ],
+   "median_rand": 5498960,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 7.89
+  },
+  "johannesburg city parks and zoo": {
+   "award_count": 47,
+   "benchmark_count": 44,
+   "buyer": "Johannesburg City Parks and Zoo",
+   "entrant_share_pct": 63.83,
+   "incumbency_share_pct": 6.38,
+   "iqr_rand": [
+    222724,
+    36000000
+   ],
+   "median_rand": 7595004,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 6.38
+  },
+  "johannesburg water": {
+   "award_count": 100,
+   "benchmark_count": 80,
+   "buyer": "Johannesburg Water",
+   "entrant_share_pct": 57.0,
+   "incumbency_share_pct": 22.0,
+   "iqr_rand": [
+    1394778,
+    19741952
+   ],
+   "median_rand": 5146119,
+   "publication_behavior": "low",
+   "publication_rate_pct": 4.08,
+   "zero_amount_share_pct": 17.0
+  },
+  "justice & constitutional development": {
+   "award_count": 1468,
+   "benchmark_count": 1005,
+   "buyer": "Justice & Constitutional Development",
+   "entrant_share_pct": 62.87,
+   "incumbency_share_pct": 30.65,
+   "iqr_rand": [
+    197600,
+    5935300
+   ],
+   "median_rand": 1395640,
+   "publication_behavior": "high",
+   "publication_rate_pct": 71.96,
+   "zero_amount_share_pct": 31.34
+  },
+  "king cetshwayo municipality": {
+   "award_count": 34,
+   "benchmark_count": 28,
+   "buyer": "King Cetshwayo Municipality",
+   "entrant_share_pct": 85.29,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 17.65
+  },
+  "king sabata dalindyebo local municipality": {
+   "award_count": 126,
+   "benchmark_count": 73,
+   "buyer": "King Sabata Dalindyebo Local Municipality",
+   "entrant_share_pct": 75.4,
+   "incumbency_share_pct": 3.17,
+   "iqr_rand": [
+    713586,
+    24135984
+   ],
+   "median_rand": 3593500,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 40.48
+  },
+  "kwa-zulu natal - ezemvelo kwazulu-natal wildlife": {
+   "award_count": 31,
+   "benchmark_count": 21,
+   "buyer": "Kwa-Zulu Natal - Ezemvelo KwaZulu-Natal Wildlife",
+   "entrant_share_pct": 74.19,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 29.03
+  },
+  "kwazulu natal - department of agriculture and rural develeopment": {
+   "award_count": 53,
+   "benchmark_count": 33,
+   "buyer": "Kwazulu Natal - Department of Agriculture and Rural Develeopment",
+   "entrant_share_pct": 84.91,
+   "incumbency_share_pct": 5.66,
+   "iqr_rand": [
+    13432064,
+    489478410
+   ],
+   "median_rand": 41891730,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 30.19
+  },
+  "kwazulu natal - economic development, tourism and environ affairs": {
+   "award_count": 431,
+   "benchmark_count": 312,
+   "buyer": "Kwazulu Natal - Economic Development, Tourism and Environ Affairs",
+   "entrant_share_pct": 44.55,
+   "incumbency_share_pct": 42.69,
+   "iqr_rand": [
+    692247,
+    23770812
+   ],
+   "median_rand": 4769000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 27.15
+  },
+  "kwazulu natal - education": {
+   "award_count": 58,
+   "benchmark_count": 49,
+   "buyer": "Kwazulu Natal - Education",
+   "entrant_share_pct": 75.86,
+   "incumbency_share_pct": 10.34,
+   "iqr_rand": [
+    494287367,
+    836562779
+   ],
+   "median_rand": 780198615,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 15.52
+  },
+  "kwazulu natal - health": {
+   "award_count": 185,
+   "benchmark_count": 96,
+   "buyer": "Kwazulu Natal - Health",
+   "entrant_share_pct": 54.05,
+   "incumbency_share_pct": 16.22,
+   "iqr_rand": [
+    5410771,
+    74705925
+   ],
+   "median_rand": 24071206,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 47.03
+  },
+  "kwazulu natal - provincial treasury": {
+   "award_count": 65,
+   "benchmark_count": 62,
+   "buyer": "Kwazulu Natal - Provincial Treasury",
+   "entrant_share_pct": 49.23,
+   "incumbency_share_pct": 13.85,
+   "iqr_rand": [
+    2176243,
+    36526343
+   ],
+   "median_rand": 11046152,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 3.08
+  },
+  "kwazulu natal - public works (head office)": {
+   "award_count": 291,
+   "benchmark_count": 253,
+   "buyer": "Kwazulu Natal - Public Works (Head Office)",
+   "entrant_share_pct": 62.89,
+   "incumbency_share_pct": 15.81,
+   "iqr_rand": [
+    2010177,
+    35537271
+   ],
+   "median_rand": 4445878,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 12.37
+  },
+  "kwazulu natal - transport": {
+   "award_count": 452,
+   "benchmark_count": 351,
+   "buyer": "Kwazulu Natal - Transport",
+   "entrant_share_pct": 66.37,
+   "incumbency_share_pct": 24.12,
+   "iqr_rand": [
+    4733160,
+    222200394
+   ],
+   "median_rand": 41950209,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 21.9
+  },
+  "kzn growth fund trust": {
+   "award_count": 34,
+   "benchmark_count": 32,
+   "buyer": "KZN Growth Fund Trust",
+   "entrant_share_pct": 26.47,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    2860481,
+    20645912
+   ],
+   "median_rand": 5103872,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 5.88
+  },
+  "labour": {
+   "award_count": 160,
+   "benchmark_count": 111,
+   "buyer": "Labour",
+   "entrant_share_pct": 26.25,
+   "incumbency_share_pct": 46.25,
+   "iqr_rand": [
+    2892545,
+    314464426
+   ],
+   "median_rand": 128116860,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 30.62
+  },
+  "land and agricultural development bank of south africa": {
+   "award_count": 48,
+   "benchmark_count": 35,
+   "buyer": "Land and Agricultural Development Bank of South Africa",
+   "entrant_share_pct": 54.17,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    17675982,
+    421554579
+   ],
+   "median_rand": 93538065,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 27.08
+  },
+  "langeberg municipality": {
+   "award_count": 40,
+   "benchmark_count": 3,
+   "buyer": "Langeberg Municipality",
+   "entrant_share_pct": 30.0,
+   "incumbency_share_pct": 7.5,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 92.5
+  },
+  "legal aid south africa": {
+   "award_count": 42,
+   "benchmark_count": 36,
+   "buyer": "Legal Aid South Africa",
+   "entrant_share_pct": 59.52,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    3761222,
+    345790018
+   ],
+   "median_rand": 41186899,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 11.9
+  },
+  "limpopo - agriculture": {
+   "award_count": 61,
+   "benchmark_count": 32,
+   "buyer": "Limpopo - Agriculture",
+   "entrant_share_pct": 62.3,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    4641505,
+    203981630
+   ],
+   "median_rand": 13545404,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 42.62
+  },
+  "limpopo - department of community safety and transport management": {
+   "award_count": 43,
+   "benchmark_count": 40,
+   "buyer": "Limpopo - Department of Community Safety and Transport Management",
+   "entrant_share_pct": 74.42,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    2874268,
+    85304655
+   ],
+   "median_rand": 11667132,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 4.65
+  },
+  "limpopo - economic development environment & tourism": {
+   "award_count": 42,
+   "benchmark_count": 36,
+   "buyer": "Limpopo - Economic Development Environment & Tourism",
+   "entrant_share_pct": 52.38,
+   "incumbency_share_pct": 26.19,
+   "iqr_rand": [
+    6966078,
+    154108581
+   ],
+   "median_rand": 14693435,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 11.9
+  },
+  "limpopo - gateway airport authority limited": {
+   "award_count": 44,
+   "benchmark_count": 36,
+   "buyer": "Limpopo - Gateway Airport Authority Limited",
+   "entrant_share_pct": 47.73,
+   "incumbency_share_pct": 20.45,
+   "iqr_rand": [
+    557860,
+    44993942
+   ],
+   "median_rand": 19389732,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 18.18
+  },
+  "limpopo - health": {
+   "award_count": 43,
+   "benchmark_count": 22,
+   "buyer": "Limpopo - Health",
+   "entrant_share_pct": 62.79,
+   "incumbency_share_pct": 16.28,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.84
+  },
+  "limpopo - public works": {
+   "award_count": 112,
+   "benchmark_count": 107,
+   "buyer": "Limpopo - Public Works",
+   "entrant_share_pct": 64.29,
+   "incumbency_share_pct": 22.32,
+   "iqr_rand": [
+    1068402,
+    290198426
+   ],
+   "median_rand": 27837035,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 3.57
+  },
+  "limpopo - social development": {
+   "award_count": 34,
+   "benchmark_count": 23,
+   "buyer": "Limpopo - Social Development",
+   "entrant_share_pct": 79.41,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 32.35
+  },
+  "local government education and training authority": {
+   "award_count": 33,
+   "benchmark_count": 16,
+   "buyer": "Local Government Education and Training Authority",
+   "entrant_share_pct": 63.64,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 18.18
+  },
+  "mangaung metropolitan municipality": {
+   "award_count": 118,
+   "benchmark_count": 76,
+   "buyer": "Mangaung Metropolitan Municipality",
+   "entrant_share_pct": 80.51,
+   "incumbency_share_pct": 2.54,
+   "iqr_rand": [
+    866294,
+    133718290
+   ],
+   "median_rand": 25480825,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 34.75
+  },
+  "matatiele local municipality": {
+   "award_count": 87,
+   "benchmark_count": 58,
+   "buyer": "Matatiele Local Municipality",
+   "entrant_share_pct": 77.01,
+   "incumbency_share_pct": 6.9,
+   "iqr_rand": [
+    2468095,
+    26251250
+   ],
+   "median_rand": 5377250,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 33.33
+  },
+  "matzikama municipality": {
+   "award_count": 112,
+   "benchmark_count": 34,
+   "buyer": "Matzikama Municipality",
+   "entrant_share_pct": 42.86,
+   "incumbency_share_pct": 5.36,
+   "iqr_rand": [
+    637492,
+    74701348
+   ],
+   "median_rand": 6577648,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 41.96
+  },
+  "media, information and communication technologies sector education and training authority (mict seta)": {
+   "award_count": 36,
+   "benchmark_count": 21,
+   "buyer": "Media, Information and Communication Technologies Sector Education and training Authority (MICT SETA)",
+   "entrant_share_pct": 44.44,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 38.89
+  },
+  "medical research council of south africa": {
+   "award_count": 105,
+   "benchmark_count": 65,
+   "buyer": "Medical Research Council of South Africa",
+   "entrant_share_pct": 47.62,
+   "incumbency_share_pct": 7.62,
+   "iqr_rand": [
+    140364,
+    112417445
+   ],
+   "median_rand": 8291592,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 38.1
+  },
+  "midvaal local municipality": {
+   "award_count": 210,
+   "benchmark_count": 93,
+   "buyer": "Midvaal Local Municipality",
+   "entrant_share_pct": 56.67,
+   "incumbency_share_pct": 17.14,
+   "iqr_rand": [
+    6367200,
+    251875328
+   ],
+   "median_rand": 50000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 55.71
+  },
+  "mine health and safety council": {
+   "award_count": 52,
+   "benchmark_count": 49,
+   "buyer": "Mine Health and Safety Council",
+   "entrant_share_pct": 44.23,
+   "incumbency_share_pct": 19.23,
+   "iqr_rand": [
+    1883960,
+    38995580
+   ],
+   "median_rand": 12586750,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 5.77
+  },
+  "mineral resources": {
+   "award_count": 51,
+   "benchmark_count": 23,
+   "buyer": "Mineral Resources",
+   "entrant_share_pct": 50.98,
+   "incumbency_share_pct": 13.73,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 50.98
+  },
+  "mintek": {
+   "award_count": 56,
+   "benchmark_count": 29,
+   "buyer": "MINTEK",
+   "entrant_share_pct": 48.21,
+   "incumbency_share_pct": 10.71,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.21
+  },
+  "mnquma local municipality": {
+   "award_count": 0,
+   "benchmark_count": 0,
+   "buyer": "Mnquma Local Municipality",
+   "entrant_share_pct": null,
+   "incumbency_share_pct": null,
+   "iqr_rand": null,
+   "median_rand": null,
+   "note": "documented zero publisher: 0 of 978 releases carry an award block in the OCDS feed - municipal award notices go to the buyer's own website (channel gap, not zero awards)",
+   "publication_behavior": "zero",
+   "publication_rate_pct": 0.0,
+   "release_count": 978,
+   "zero_amount_share_pct": null
+  },
+  "mogale city local municipality": {
+   "award_count": 35,
+   "benchmark_count": 20,
+   "buyer": "Mogale City Local Municipality",
+   "entrant_share_pct": 60.0,
+   "incumbency_share_pct": 8.57,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 42.86
+  },
+  "mossel bay municipality": {
+   "award_count": 310,
+   "benchmark_count": 197,
+   "buyer": "Mossel Bay Municipality",
+   "entrant_share_pct": 44.52,
+   "incumbency_share_pct": 25.48,
+   "iqr_rand": [
+    3160000,
+    123807929
+   ],
+   "median_rand": 14363805,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 33.55
+  },
+  "mpumalanga - agriculture rural development and land administration": {
+   "award_count": 72,
+   "benchmark_count": 28,
+   "buyer": "Mpumalanga - Agriculture Rural Development and Land Administration",
+   "entrant_share_pct": 65.28,
+   "incumbency_share_pct": 18.06,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.61
+  },
+  "mpumalanga - co-operative governance, human settlements, and traditional affairs": {
+   "award_count": 43,
+   "benchmark_count": 42,
+   "buyer": "Mpumalanga - Co-operative Governance, Human Settlements, and Traditional Affairs",
+   "entrant_share_pct": 79.07,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    100,
+    22250000
+   ],
+   "median_rand": 460000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "msinsi holding (soc)": {
+   "award_count": 37,
+   "benchmark_count": 27,
+   "buyer": "Msinsi Holding (SOC)",
+   "entrant_share_pct": 67.57,
+   "incumbency_share_pct": 10.81,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 27.03
+  },
+  "municipal infrastructure support agent": {
+   "award_count": 72,
+   "benchmark_count": 28,
+   "buyer": "Municipal Infrastructure Support Agent",
+   "entrant_share_pct": 38.89,
+   "incumbency_share_pct": 22.22,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 61.11
+  },
+  "national - environment, forestry and fisheries": {
+   "award_count": 131,
+   "benchmark_count": 110,
+   "buyer": "National - Environment, Forestry and Fisheries",
+   "entrant_share_pct": 56.49,
+   "incumbency_share_pct": 8.4,
+   "iqr_rand": [
+    642160,
+    16444466
+   ],
+   "median_rand": 2881096,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 13.74
+  },
+  "national energy regulator of south africa": {
+   "award_count": 72,
+   "benchmark_count": 29,
+   "buyer": "National Energy Regulator of South Africa",
+   "entrant_share_pct": 38.89,
+   "incumbency_share_pct": 5.56,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 58.33
+  },
+  "national health laboratory service": {
+   "award_count": 125,
+   "benchmark_count": 116,
+   "buyer": "National Health Laboratory Service",
+   "entrant_share_pct": 37.6,
+   "incumbency_share_pct": 38.4,
+   "iqr_rand": [
+    135731771,
+    985243860
+   ],
+   "median_rand": 458453256,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "national home builders registration council": {
+   "award_count": 56,
+   "benchmark_count": 44,
+   "buyer": "National Home Builders Registration Council",
+   "entrant_share_pct": 51.79,
+   "incumbency_share_pct": 10.71,
+   "iqr_rand": [
+    3000000,
+    30000000
+   ],
+   "median_rand": 14613568,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 17.86
+  },
+  "national lotteries commission": {
+   "award_count": 145,
+   "benchmark_count": 112,
+   "buyer": "National Lotteries Commission",
+   "entrant_share_pct": 50.34,
+   "incumbency_share_pct": 4.14,
+   "iqr_rand": [
+    325125,
+    16121311
+   ],
+   "median_rand": 3476820,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 20.0
+  },
+  "national nuclear regulator": {
+   "award_count": 32,
+   "benchmark_count": 24,
+   "buyer": "National Nuclear Regulator",
+   "entrant_share_pct": 37.5,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 25.0
+  },
+  "national prosecuting authority (npa)": {
+   "award_count": 50,
+   "benchmark_count": 28,
+   "buyer": "National Prosecuting Authority (NPA)",
+   "entrant_share_pct": 42.0,
+   "incumbency_share_pct": 30.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 34.0
+  },
+  "national research foundation": {
+   "award_count": 200,
+   "benchmark_count": 135,
+   "buyer": "National Research Foundation",
+   "entrant_share_pct": 47.0,
+   "incumbency_share_pct": 13.5,
+   "iqr_rand": [
+    10751421,
+    198635494
+   ],
+   "median_rand": 35761109,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 31.0
+  },
+  "national treasury": {
+   "award_count": 212,
+   "benchmark_count": 168,
+   "buyer": "National Treasury",
+   "entrant_share_pct": 49.06,
+   "incumbency_share_pct": 13.68,
+   "iqr_rand": [
+    644588,
+    101785356
+   ],
+   "median_rand": 7025110,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 16.51
+  },
+  "newcastle local municipality": {
+   "award_count": 144,
+   "benchmark_count": 67,
+   "buyer": "Newcastle Local Municipality",
+   "entrant_share_pct": 65.97,
+   "incumbency_share_pct": 16.67,
+   "iqr_rand": [
+    90446,
+    2269586
+   ],
+   "median_rand": 225572,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.61
+  },
+  "nkangala district municipality": {
+   "award_count": 39,
+   "benchmark_count": 38,
+   "buyer": "Nkangala District Municipality",
+   "entrant_share_pct": 89.74,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    4276502,
+    168814238
+   ],
+   "median_rand": 31150000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.56
+  },
+  "north west - department of health": {
+   "award_count": 46,
+   "benchmark_count": 33,
+   "buyer": "North West - Department of Health",
+   "entrant_share_pct": 67.39,
+   "incumbency_share_pct": 21.74,
+   "iqr_rand": [
+    7150433,
+    715043320
+   ],
+   "median_rand": 49878640,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 21.74
+  },
+  "north west - department of local government and human settlements": {
+   "award_count": 38,
+   "benchmark_count": 36,
+   "buyer": "North West - Department of Local Government and Human Settlements",
+   "entrant_share_pct": 86.84,
+   "incumbency_share_pct": 7.89,
+   "iqr_rand": [
+    211226200,
+    835634765
+   ],
+   "median_rand": 438597035,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 5.26
+  },
+  "north west - department of public works and roads": {
+   "award_count": 43,
+   "benchmark_count": 40,
+   "buyer": "North West - Department of Public Works and Roads",
+   "entrant_share_pct": 79.07,
+   "incumbency_share_pct": 13.95,
+   "iqr_rand": [
+    147328850,
+    949476326
+   ],
+   "median_rand": 354695443,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 0.0
+  },
+  "okhahlamba local municipality": {
+   "award_count": 32,
+   "benchmark_count": 14,
+   "buyer": "Okhahlamba Local Municipality",
+   "entrant_share_pct": 59.38,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 18.75
+  },
+  "onderstepoort biological products limited": {
+   "award_count": 109,
+   "benchmark_count": 106,
+   "buyer": "Onderstepoort Biological Products Limited",
+   "entrant_share_pct": 67.89,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    356030,
+    8137688
+   ],
+   "median_rand": 1000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.75
+  },
+  "oudtshoorn municipality": {
+   "award_count": 35,
+   "benchmark_count": 28,
+   "buyer": "Oudtshoorn Municipality",
+   "entrant_share_pct": 71.43,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 20.0
+  },
+  "overberg district municipality": {
+   "award_count": 72,
+   "benchmark_count": 58,
+   "buyer": "Overberg District Municipality",
+   "entrant_share_pct": 36.11,
+   "incumbency_share_pct": 13.89,
+   "iqr_rand": [
+    66337,
+    313915
+   ],
+   "median_rand": 141050,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 18.06
+  },
+  "overstrand municipality": {
+   "award_count": 333,
+   "benchmark_count": 254,
+   "buyer": "Overstrand Municipality",
+   "entrant_share_pct": 48.65,
+   "incumbency_share_pct": 12.31,
+   "iqr_rand": [
+    822132,
+    39592737
+   ],
+   "median_rand": 5754370,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 23.42
+  },
+  "passenger rail agency of south africa": {
+   "award_count": 1285,
+   "benchmark_count": 796,
+   "buyer": "Passenger Rail Agency of South Africa",
+   "entrant_share_pct": 56.03,
+   "incumbency_share_pct": 26.77,
+   "iqr_rand": [
+    1442062,
+    48169188
+   ],
+   "median_rand": 5000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 37.2
+  },
+  "performing arts council of the free state": {
+   "award_count": 64,
+   "benchmark_count": 13,
+   "buyer": "Performing Arts Council of the Free State",
+   "entrant_share_pct": 76.56,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 79.69
+  },
+  "petrosa": {
+   "award_count": 149,
+   "benchmark_count": 69,
+   "buyer": "PetroSA",
+   "entrant_share_pct": 57.72,
+   "incumbency_share_pct": 14.09,
+   "iqr_rand": [
+    905500,
+    28287325
+   ],
+   "median_rand": 9869277,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 53.02
+  },
+  "port st johns local municipality": {
+   "award_count": 70,
+   "benchmark_count": 24,
+   "buyer": "Port St Johns Local Municipality",
+   "entrant_share_pct": 78.57,
+   "incumbency_share_pct": 10.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 62.86
+  },
+  "prince albert municipality": {
+   "award_count": 33,
+   "benchmark_count": 30,
+   "buyer": "Prince Albert Municipality",
+   "entrant_share_pct": 51.52,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    90057,
+    1375000
+   ],
+   "median_rand": 345680,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 9.09
+  },
+  "private security industry regulatory authority": {
+   "award_count": 56,
+   "benchmark_count": 33,
+   "buyer": "Private Security Industry Regulatory Authority",
+   "entrant_share_pct": 41.07,
+   "incumbency_share_pct": 19.64,
+   "iqr_rand": [
+    307700,
+    121906670
+   ],
+   "median_rand": 2584774,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 41.07
+  },
+  "public protector south africa": {
+   "award_count": 37,
+   "benchmark_count": 16,
+   "buyer": "Public Protector South Africa",
+   "entrant_share_pct": 45.95,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 48.65
+  },
+  "public works": {
+   "award_count": 854,
+   "benchmark_count": 577,
+   "buyer": "Public Works",
+   "entrant_share_pct": 60.42,
+   "incumbency_share_pct": 19.79,
+   "iqr_rand": [
+    2524904,
+    142725739
+   ],
+   "median_rand": 14605471,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 31.73
+  },
+  "quality council for trades and occupations": {
+   "award_count": 39,
+   "benchmark_count": 27,
+   "buyer": "Quality Council for Trades and Occupations",
+   "entrant_share_pct": 53.85,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 28.21
+  },
+  "rand water": {
+   "award_count": 75,
+   "benchmark_count": 42,
+   "buyer": "Rand Water",
+   "entrant_share_pct": 74.67,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    18296832,
+    798071954
+   ],
+   "median_rand": 147616136,
+   "publication_behavior": "low",
+   "publication_rate_pct": 4.06,
+   "zero_amount_share_pct": 18.67
+  },
+  "rand west local municipality": {
+   "award_count": 66,
+   "benchmark_count": 59,
+   "buyer": "Rand West Local Municipality",
+   "entrant_share_pct": 75.76,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    1095578,
+    47208564
+   ],
+   "median_rand": 5243613,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 1.52
+  },
+  "road accident fund": {
+   "award_count": 162,
+   "benchmark_count": 159,
+   "buyer": "Road Accident Fund",
+   "entrant_share_pct": 48.77,
+   "incumbency_share_pct": 21.6,
+   "iqr_rand": [
+    1341475,
+    18406586
+   ],
+   "median_rand": 4383231,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 1.85
+  },
+  "rustenburg local municipality": {
+   "award_count": 130,
+   "benchmark_count": 68,
+   "buyer": "Rustenburg Local Municipality",
+   "entrant_share_pct": 65.38,
+   "incumbency_share_pct": 17.69,
+   "iqr_rand": [
+    6826562,
+    335235138
+   ],
+   "median_rand": 58198547,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 43.08
+  },
+  "safety and security sector education and training authority (sasseta)": {
+   "award_count": 43,
+   "benchmark_count": 29,
+   "buyer": "Safety and Security Sector Education and Training Authority (Sasseta)",
+   "entrant_share_pct": 65.12,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 30.23
+  },
+  "saldanha bay municipality": {
+   "award_count": 174,
+   "benchmark_count": 93,
+   "buyer": "SALDANHA BAY MUNICIPALITY",
+   "entrant_share_pct": 43.68,
+   "incumbency_share_pct": 8.05,
+   "iqr_rand": [
+    9052152,
+    223948663
+   ],
+   "median_rand": 38000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 45.4
+  },
+  "sekhukhune district municipality": {
+   "award_count": 83,
+   "benchmark_count": 76,
+   "buyer": "Sekhukhune District Municipality",
+   "entrant_share_pct": 72.29,
+   "incumbency_share_pct": 7.23,
+   "iqr_rand": [
+    9729062,
+    200307532
+   ],
+   "median_rand": 32980627,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 1.2
+  },
+  "sentech limited": {
+   "award_count": 36,
+   "benchmark_count": 22,
+   "buyer": "Sentech Limited",
+   "entrant_share_pct": 69.44,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 38.89
+  },
+  "services sector education and training authority": {
+   "award_count": 41,
+   "benchmark_count": 20,
+   "buyer": "Services Sector Education and Training Authority",
+   "entrant_share_pct": 36.59,
+   "incumbency_share_pct": 7.32,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 51.22
+  },
+  "small enterprise finance agency": {
+   "award_count": 38,
+   "benchmark_count": 16,
+   "buyer": "Small Enterprise Finance Agency",
+   "entrant_share_pct": 44.74,
+   "incumbency_share_pct": 7.89,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 57.89
+  },
+  "solplaatje local municipality": {
+   "award_count": 165,
+   "benchmark_count": 150,
+   "buyer": "Solplaatje Local Municipality",
+   "entrant_share_pct": 58.79,
+   "incumbency_share_pct": 24.85,
+   "iqr_rand": [
+    191009,
+    2893382
+   ],
+   "median_rand": 1296875,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 9.09
+  },
+  "south african broadcasting corporation limited": {
+   "award_count": 91,
+   "benchmark_count": 85,
+   "buyer": "South African Broadcasting Corporation Limited",
+   "entrant_share_pct": 49.45,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    14654335,
+    423000000
+   ],
+   "median_rand": 69988910,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.2
+  },
+  "south african civil aviation authority": {
+   "award_count": 165,
+   "benchmark_count": 120,
+   "buyer": "South African Civil Aviation Authority",
+   "entrant_share_pct": 72.73,
+   "incumbency_share_pct": 1.82,
+   "iqr_rand": [
+    142970,
+    3502638
+   ],
+   "median_rand": 575025,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.67
+  },
+  "south african local government association": {
+   "award_count": 542,
+   "benchmark_count": 397,
+   "buyer": "South African Local Government Association",
+   "entrant_share_pct": 51.85,
+   "incumbency_share_pct": 31.92,
+   "iqr_rand": [
+    362500,
+    13581500
+   ],
+   "median_rand": 2000000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.57
+  },
+  "south african national biodiversity institute": {
+   "award_count": 126,
+   "benchmark_count": 98,
+   "buyer": "South African National Biodiversity Institute",
+   "entrant_share_pct": 58.73,
+   "incumbency_share_pct": 15.08,
+   "iqr_rand": [
+    2502840,
+    135657618
+   ],
+   "median_rand": 12096058,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 22.22
+  },
+  "south african national parks": {
+   "award_count": 124,
+   "benchmark_count": 84,
+   "buyer": "South African National Parks",
+   "entrant_share_pct": 66.94,
+   "incumbency_share_pct": 2.42,
+   "iqr_rand": [
+    7540452,
+    646964880
+   ],
+   "median_rand": 55620900,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 12.9
+  },
+  "south african national roads agency soc limited (sanral)": {
+   "award_count": 601,
+   "benchmark_count": 295,
+   "buyer": "South African National Roads Agency Soc Limited (SANRAL)",
+   "entrant_share_pct": 25.29,
+   "incumbency_share_pct": 61.56,
+   "iqr_rand": [
+    36686400,
+    736995000
+   ],
+   "median_rand": 137956300,
+   "publication_behavior": "high",
+   "publication_rate_pct": 40.2,
+   "zero_amount_share_pct": 41.43
+  },
+  "south african national space agency": {
+   "award_count": 86,
+   "benchmark_count": 58,
+   "buyer": "South African National Space Agency",
+   "entrant_share_pct": 60.47,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    2102215,
+    146863718
+   ],
+   "median_rand": 26762875,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 30.23
+  },
+  "south african police service": {
+   "award_count": 59,
+   "benchmark_count": 43,
+   "buyer": "South African Police Service",
+   "entrant_share_pct": 47.46,
+   "incumbency_share_pct": 30.51,
+   "iqr_rand": [
+    2859790,
+    12247204
+   ],
+   "median_rand": 7731574,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 25.42
+  },
+  "south african revenue service": {
+   "award_count": 952,
+   "benchmark_count": 683,
+   "buyer": "South African Revenue Service",
+   "entrant_share_pct": 49.89,
+   "incumbency_share_pct": 34.56,
+   "iqr_rand": [
+    579855,
+    10181157
+   ],
+   "median_rand": 2738570,
+   "publication_behavior": "high",
+   "publication_rate_pct": 75.74,
+   "zero_amount_share_pct": 27.0
+  },
+  "south african social security agency": {
+   "award_count": 266,
+   "benchmark_count": 136,
+   "buyer": "South African Social Security Agency",
+   "entrant_share_pct": 62.03,
+   "incumbency_share_pct": 7.14,
+   "iqr_rand": [
+    8526958,
+    471090625
+   ],
+   "median_rand": 98137520,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 38.72
+  },
+  "south african tourism": {
+   "award_count": 41,
+   "benchmark_count": 28,
+   "buyer": "South African Tourism",
+   "entrant_share_pct": 53.66,
+   "incumbency_share_pct": 14.63,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 31.71
+  },
+  "south african weather service": {
+   "award_count": 126,
+   "benchmark_count": 92,
+   "buyer": "South African Weather Service",
+   "entrant_share_pct": 46.83,
+   "incumbency_share_pct": 10.32,
+   "iqr_rand": [
+    3476578,
+    111514072
+   ],
+   "median_rand": 23274609,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.98
+  },
+  "special investigation unit": {
+   "award_count": 46,
+   "benchmark_count": 36,
+   "buyer": "Special Investigation Unit",
+   "entrant_share_pct": 52.17,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    384195,
+    6050808
+   ],
+   "median_rand": 2116714,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 21.74
+  },
+  "state information technology agency": {
+   "award_count": 152,
+   "benchmark_count": 109,
+   "buyer": "State Information Technology Agency",
+   "entrant_share_pct": 39.47,
+   "incumbency_share_pct": 15.79,
+   "iqr_rand": [
+    26138777,
+    617595918
+   ],
+   "median_rand": 197064457,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 19.08
+  },
+  "stellenbosch municipality": {
+   "award_count": 493,
+   "benchmark_count": 302,
+   "buyer": "Stellenbosch Municipality",
+   "entrant_share_pct": 46.25,
+   "incumbency_share_pct": 13.79,
+   "iqr_rand": [
+    936904,
+    162799462
+   ],
+   "median_rand": 19833848,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 35.7
+  },
+  "swartland municipality": {
+   "award_count": 55,
+   "benchmark_count": 52,
+   "buyer": "Swartland Municipality",
+   "entrant_share_pct": 41.82,
+   "incumbency_share_pct": 21.82,
+   "iqr_rand": [
+    540367,
+    34158755
+   ],
+   "median_rand": 2185019,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 5.45
+  },
+  "swellendam municipality": {
+   "award_count": 263,
+   "benchmark_count": 185,
+   "buyer": "Swellendam Municipality",
+   "entrant_share_pct": 38.78,
+   "incumbency_share_pct": 18.25,
+   "iqr_rand": [
+    582993,
+    10301600
+   ],
+   "median_rand": 3070960,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 29.66
+  },
+  "technology innovation agency": {
+   "award_count": 112,
+   "benchmark_count": 109,
+   "buyer": "Technology Innovation Agency",
+   "entrant_share_pct": 59.82,
+   "incumbency_share_pct": 10.71,
+   "iqr_rand": [
+    149770,
+    3678970
+   ],
+   "median_rand": 914486,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.68
+  },
+  "the mvula trust": {
+   "award_count": 761,
+   "benchmark_count": 547,
+   "buyer": "THE MVULA TRUST",
+   "entrant_share_pct": 66.75,
+   "incumbency_share_pct": 19.58,
+   "iqr_rand": [
+    8534275,
+    452876962
+   ],
+   "median_rand": 208829880,
+   "publication_behavior": "high",
+   "publication_rate_pct": 63.05,
+   "zero_amount_share_pct": 28.12
+  },
+  "theewaterkloof municipality": {
+   "award_count": 53,
+   "benchmark_count": 44,
+   "buyer": "Theewaterkloof Municipality",
+   "entrant_share_pct": 47.17,
+   "incumbency_share_pct": 5.66,
+   "iqr_rand": [
+    1601858,
+    15936480
+   ],
+   "median_rand": 4143190,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 13.21
+  },
+  "trade & industry": {
+   "award_count": 40,
+   "benchmark_count": 25,
+   "buyer": "Trade & Industry",
+   "entrant_share_pct": 47.5,
+   "incumbency_share_pct": 7.5,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 37.5
+  },
+  "trans-caledon tunnel authority": {
+   "award_count": 73,
+   "benchmark_count": 46,
+   "buyer": "Trans-Caledon Tunnel Authority",
+   "entrant_share_pct": 63.01,
+   "incumbency_share_pct": 8.22,
+   "iqr_rand": [
+    1971185,
+    163590110
+   ],
+   "median_rand": 18565184,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 32.88
+  },
+  "transnet national ports authority": {
+   "award_count": 265,
+   "benchmark_count": 156,
+   "buyer": "Transnet National Ports Authority",
+   "entrant_share_pct": 67.55,
+   "incumbency_share_pct": 6.04,
+   "iqr_rand": [
+    3661664,
+    192534576
+   ],
+   "median_rand": 22171464,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 34.34
+  },
+  "transnet soc ltd": {
+   "award_count": 1008,
+   "benchmark_count": 655,
+   "buyer": "Transnet SOC Ltd",
+   "entrant_share_pct": 60.02,
+   "incumbency_share_pct": 17.16,
+   "iqr_rand": [
+    4664250,
+    252055800
+   ],
+   "median_rand": 40477937,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.29
+  },
+  "transport": {
+   "award_count": 55,
+   "benchmark_count": 30,
+   "buyer": "Transport",
+   "entrant_share_pct": 32.73,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": [
+    1725972,
+    41986082
+   ],
+   "median_rand": 7395706,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 40.0
+  },
+  "transport education and training authority": {
+   "award_count": 35,
+   "benchmark_count": 19,
+   "buyer": "Transport Education and Training Authority",
+   "entrant_share_pct": 40.0,
+   "incumbency_share_pct": 17.14,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 45.71
+  },
+  "tshwane automotive special economic zone": {
+   "award_count": 38,
+   "benchmark_count": 22,
+   "buyer": "TSHWANE AUTOMOTIVE SPECIAL ECONOMIC ZONE",
+   "entrant_share_pct": 55.26,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 39.47
+  },
+  "tygerburg hospital": {
+   "award_count": 64,
+   "benchmark_count": 38,
+   "buyer": "Tygerburg Hospital",
+   "entrant_share_pct": 39.06,
+   "incumbency_share_pct": 39.06,
+   "iqr_rand": [
+    3940707,
+    127429232
+   ],
+   "median_rand": 60798140,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 40.62
+  },
+  "ubuhlebezwe local municipality": {
+   "award_count": 87,
+   "benchmark_count": 68,
+   "buyer": "Ubuhlebezwe Local Municipality",
+   "entrant_share_pct": 59.77,
+   "incumbency_share_pct": 16.09,
+   "iqr_rand": [
+    1543121,
+    17719155
+   ],
+   "median_rand": 4453375,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 20.69
+  },
+  "umngeni-uthukela water": {
+   "award_count": 74,
+   "benchmark_count": 50,
+   "buyer": "uMngeni-uThukela Water",
+   "entrant_share_pct": 67.57,
+   "incumbency_share_pct": 4.05,
+   "iqr_rand": [
+    1107500,
+    65087571
+   ],
+   "median_rand": 7081600,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 32.43
+  },
+  "umzimkhulu local municipality": {
+   "award_count": 180,
+   "benchmark_count": 93,
+   "buyer": "Umzimkhulu Local Municipality",
+   "entrant_share_pct": 63.89,
+   "incumbency_share_pct": 22.22,
+   "iqr_rand": [
+    509450,
+    27891775
+   ],
+   "median_rand": 3616280,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 46.11
+  },
+  "victor khanye local municipality": {
+   "award_count": 41,
+   "benchmark_count": 24,
+   "buyer": "Victor Khanye Local Municipality",
+   "entrant_share_pct": 82.93,
+   "incumbency_share_pct": 0.0,
+   "iqr_rand": null,
+   "median_rand": null,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 41.46
+  },
+  "water and sanitation": {
+   "award_count": 276,
+   "benchmark_count": 241,
+   "buyer": "Water and Sanitation",
+   "entrant_share_pct": 61.96,
+   "incumbency_share_pct": 12.68,
+   "iqr_rand": [
+    1840000,
+    59335745
+   ],
+   "median_rand": 6710000,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 11.23
+  },
+  "western cape - education": {
+   "award_count": 42,
+   "benchmark_count": 41,
+   "buyer": "Western Cape - Education",
+   "entrant_share_pct": 76.19,
+   "incumbency_share_pct": 16.67,
+   "iqr_rand": [
+    1617907,
+    7400127
+   ],
+   "median_rand": 3685795,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.38
+  },
+  "western cape - health": {
+   "award_count": 172,
+   "benchmark_count": 154,
+   "buyer": "Western Cape - Health",
+   "entrant_share_pct": 56.98,
+   "incumbency_share_pct": 12.21,
+   "iqr_rand": [
+    11658274,
+    760344420
+   ],
+   "median_rand": 77392105,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 8.72
+  },
+  "western cape - nature conservation board": {
+   "award_count": 44,
+   "benchmark_count": 43,
+   "buyer": "Western Cape - Nature Conservation Board",
+   "entrant_share_pct": 34.09,
+   "incumbency_share_pct": 9.09,
+   "iqr_rand": [
+    3039400,
+    190218970
+   ],
+   "median_rand": 29909473,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 2.27
+  },
+  "western cape - transport and public works": {
+   "award_count": 84,
+   "benchmark_count": 60,
+   "buyer": "Western Cape - Transport and Public Works",
+   "entrant_share_pct": 32.14,
+   "incumbency_share_pct": 16.67,
+   "iqr_rand": [
+    55876566,
+    2176398952
+   ],
+   "median_rand": 419603375,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 26.19
+  },
+  "wholesale and retail sector education and training authority": {
+   "award_count": 96,
+   "benchmark_count": 78,
+   "buyer": "Wholesale and Retail Sector Education and Training Authority",
+   "entrant_share_pct": 54.17,
+   "incumbency_share_pct": 14.58,
+   "iqr_rand": [
+    515600,
+    9712440
+   ],
+   "median_rand": 2215850,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 7.29
+  },
+  "winnie madikizela-mandela local municipality": {
+   "award_count": 69,
+   "benchmark_count": 56,
+   "buyer": "Winnie Madikizela-Mandela Local Municipality",
+   "entrant_share_pct": 68.12,
+   "incumbency_share_pct": 17.39,
+   "iqr_rand": [
+    4548796,
+    74728292
+   ],
+   "median_rand": 9792468,
+   "publication_behavior": "unknown",
+   "publication_rate_pct": null,
+   "zero_amount_share_pct": 18.84
+  }
+ },
+ "category": {
+  "goods": {
+   "iqr_rand": [
+    840000,
+    46508645
+   ],
+   "median_rand": 4997500,
+   "n": 3849
+  },
+  "services": {
+   "iqr_rand": [
+    1656002,
+    165305197
+   ],
+   "median_rand": 14400000,
+   "n": 9266
+  },
+  "works": {
+   "iqr_rand": [
+    5036579,
+    363806226
+   ],
+   "median_rand": 45057566,
+   "n": 4323
+  }
+ },
+ "category_province": {
+  "goods|eastern cape": {
+   "iqr_rand": [
+    960736,
+    24854784
+   ],
+   "median_rand": 3734170,
+   "n": 401
+  },
+  "goods|free state": {
+   "iqr_rand": [
+    3444865,
+    179956684
+   ],
+   "median_rand": 31367267,
+   "n": 54
+  },
+  "goods|gauteng": {
+   "iqr_rand": [
+    858688,
+    26259298
+   ],
+   "median_rand": 4047042,
+   "n": 1018
+  },
+  "goods|kwazulu-natal": {
+   "iqr_rand": [
+    523025,
+    40652708
+   ],
+   "median_rand": 3907750,
+   "n": 426
+  },
+  "goods|limpopo": {
+   "iqr_rand": [
+    514388,
+    85747716
+   ],
+   "median_rand": 8822510,
+   "n": 210
+  },
+  "goods|mpumalanga": {
+   "iqr_rand": [
+    1362875,
+    491610680
+   ],
+   "median_rand": 11370394,
+   "n": 106
+  },
+  "goods|national": {
+   "iqr_rand": [
+    3954891,
+    315070752
+   ],
+   "median_rand": 40209624,
+   "n": 359
+  },
+  "goods|north west": {
+   "iqr_rand": [
+    198194,
+    84016240
+   ],
+   "median_rand": 3750150,
+   "n": 37
+  },
+  "goods|northern cape": {
+   "iqr_rand": [
+    273499,
+    12057975
+   ],
+   "median_rand": 1698775,
+   "n": 132
+  },
+  "goods|western cape": {
+   "iqr_rand": [
+    715868,
+    37683288
+   ],
+   "median_rand": 4038336,
+   "n": 1106
+  },
+  "services|eastern cape": {
+   "iqr_rand": [
+    1561638,
+    75786395
+   ],
+   "median_rand": 8218064,
+   "n": 1117
+  },
+  "services|free state": {
+   "iqr_rand": [
+    2368170,
+    282648619
+   ],
+   "median_rand": 36017262,
+   "n": 302
+  },
+  "services|gauteng": {
+   "iqr_rand": [
+    1786641,
+    138537284
+   ],
+   "median_rand": 14004990,
+   "n": 1980
+  },
+  "services|kwazulu-natal": {
+   "iqr_rand": [
+    1389300,
+    132548636
+   ],
+   "median_rand": 13075421,
+   "n": 1347
+  },
+  "services|limpopo": {
+   "iqr_rand": [
+    1927587,
+    313027470
+   ],
+   "median_rand": 21611094,
+   "n": 498
+  },
+  "services|mpumalanga": {
+   "iqr_rand": [
+    1499795,
+    342656436
+   ],
+   "median_rand": 22001550,
+   "n": 468
+  },
+  "services|national": {
+   "iqr_rand": [
+    2442960,
+    196003059
+   ],
+   "median_rand": 21056506,
+   "n": 1217
+  },
+  "services|north west": {
+   "iqr_rand": [
+    5300299,
+    546840014
+   ],
+   "median_rand": 113009334,
+   "n": 225
+  },
+  "services|northern cape": {
+   "iqr_rand": [
+    1018545,
+    121655872
+   ],
+   "median_rand": 6374265,
+   "n": 264
+  },
+  "services|western cape": {
+   "iqr_rand": [
+    1321047,
+    124466955
+   ],
+   "median_rand": 11375255,
+   "n": 1848
+  },
+  "works|eastern cape": {
+   "iqr_rand": [
+    11845449,
+    463853940
+   ],
+   "median_rand": 173864610,
+   "n": 918
+  },
+  "works|free state": {
+   "iqr_rand": [
+    6257223,
+    834528034
+   ],
+   "median_rand": 69701247,
+   "n": 75
+  },
+  "works|gauteng": {
+   "iqr_rand": [
+    1522799,
+    96290668
+   ],
+   "median_rand": 8512530,
+   "n": 542
+  },
+  "works|kwazulu-natal": {
+   "iqr_rand": [
+    4731302,
+    308376477
+   ],
+   "median_rand": 37476044,
+   "n": 1068
+  },
+  "works|limpopo": {
+   "iqr_rand": [
+    7081806,
+    467750890
+   ],
+   "median_rand": 49959440,
+   "n": 323
+  },
+  "works|mpumalanga": {
+   "iqr_rand": [
+    3653160,
+    358458255
+   ],
+   "median_rand": 45124258,
+   "n": 149
+  },
+  "works|national": {
+   "iqr_rand": [
+    9074477,
+    392625590
+   ],
+   "median_rand": 56902381,
+   "n": 204
+  },
+  "works|north west": {
+   "iqr_rand": [
+    11979284,
+    308785376
+   ],
+   "median_rand": 54363791,
+   "n": 166
+  },
+  "works|northern cape": {
+   "iqr_rand": [
+    7597818,
+    286997824
+   ],
+   "median_rand": 59335745,
+   "n": 159
+  },
+  "works|western cape": {
+   "iqr_rand": [
+    4550996,
+    350634534
+   ],
+   "median_rand": 31235632,
+   "n": 719
+  }
+ },
+ "default_buyer": {
+  "award_count": 32589,
+  "benchmark_count": 22311,
+  "buyer": null,
+  "entrant_share_pct": 55.54,
+  "incumbency_share_pct": null,
+  "iqr_rand": null,
+  "median_rand": null,
+  "publication_behavior": "unknown",
+  "publication_rate_pct": null,
+  "zero_amount_share_pct": 27.99
+ },
+ "meta": {
+  "awards": 32589,
+  "benchmark_rows": 22311,
+  "entrant_definition": "supplier with <= 2 lifetime wins corpus-wide (conservative name normalisation, no fuzzy merging - shares are upper bounds)",
+  "generator": "tender/frappe/tools/build_market_context.py",
+  "incumbency_definition": "share of a buyer's awards to suppliers with >= 3 wins at that buyer",
+  "min_cell_n": 30,
+  "overall": {
+   "iqr_rand": [
+    1737133,
+    150000000
+   ],
+   "median_rand": 13885686,
+   "n": 22311
+  },
+  "publication_rates_source": "Award-Outcomes-Research.md section 2 (curated transcription - the releases-without-awards denominator is not in the awards-only CSV)",
+  "snapshot_date": "2026-08-20",
+  "source": "tender/awards-dataset/awards_only.csv",
+  "source_sha256": "5e57844559671e18a103853019f665018b1f5219f59574c8bc50fed718f8a0d5",
+  "top_buyers": 200
+ },
+ "province": {
+  "eastern cape": {
+   "iqr_rand": [
+    2306798,
+    231603858
+   ],
+   "median_rand": 18402530,
+   "n": 2763
+  },
+  "free state": {
+   "iqr_rand": [
+    2817682,
+    273894483
+   ],
+   "median_rand": 32117382,
+   "n": 483
+  },
+  "gauteng": {
+   "iqr_rand": [
+    1381716,
+    88710849
+   ],
+   "median_rand": 9730250,
+   "n": 5014
+  },
+  "kwazulu-natal": {
+   "iqr_rand": [
+    2000000,
+    157768894
+   ],
+   "median_rand": 14200000,
+   "n": 3333
+  },
+  "limpopo": {
+   "iqr_rand": [
+    2123590,
+    236033172
+   ],
+   "median_rand": 18420780,
+   "n": 1254
+  },
+  "mpumalanga": {
+   "iqr_rand": [
+    1566804,
+    325726689
+   ],
+   "median_rand": 22865726,
+   "n": 810
+  },
+  "national": {
+   "iqr_rand": [
+    2761529,
+    179580000
+   ],
+   "median_rand": 21259920,
+   "n": 2989
+  },
+  "north west": {
+   "iqr_rand": [
+    6283432,
+    348079062
+   ],
+   "median_rand": 49939320,
+   "n": 530
+  },
+  "northern cape": {
+   "iqr_rand": [
+    1068893,
+    84182032
+   ],
+   "median_rand": 6506536,
+   "n": 687
+  },
+  "western cape": {
+   "iqr_rand": [
+    1189885,
+    100000000
+   ],
+   "median_rand": 9743690,
+   "n": 4448
+  }
+ }
+}

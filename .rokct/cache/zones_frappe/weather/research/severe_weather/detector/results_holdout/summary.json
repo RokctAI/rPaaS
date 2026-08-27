@@ -1,0 +1,86 @@
+{
+  "partial": false,
+  "results_digest": "a142605795ed3c3fc80052774849d77387857f12f51781aece6dc033474dda28",
+  "classes": {
+    "flash_flood": {
+      "n_events": 528,
+      "hits": 70,
+      "pod": 0.13257575757575757,
+      "far": 0.2862903225806452,
+      "budget_per_loc_year": 1.4473015961602858,
+      "n_false_alarms": 71,
+      "n_event_alarms": 177,
+      "control_loc_years": 49.057,
+      "median_lead_h": 33.5,
+      "lead_p25_h": 15.25,
+      "lead_p75_h": 88.0,
+      "lead_min_h": 6.0,
+      "lead_max_h": 173.0,
+      "miss_reasons": {
+        "no_alarm": 366,
+        "insufficient_lead": 36,
+        "alarm_outside_window": 56
+      }
+    },
+    "flood": {
+      "n_events": 269,
+      "hits": 7,
+      "pod": 0.026022304832713755,
+      "far": 0.33783783783783783,
+      "budget_per_loc_year": 0.9983872731248633,
+      "n_false_alarms": 25,
+      "n_event_alarms": 49,
+      "control_loc_years": 25.04,
+      "median_lead_h": 83.0,
+      "lead_p25_h": 55.0,
+      "lead_p75_h": 129.5,
+      "lead_min_h": 32.0,
+      "lead_max_h": 172.0,
+      "miss_reasons": {
+        "no_alarm": 228,
+        "insufficient_lead": 5,
+        "alarm_outside_window": 29
+      }
+    },
+    "destructive_wind": {
+      "n_events": 412,
+      "hits": 67,
+      "pod": 0.16262135922330098,
+      "far": 0.14596273291925466,
+      "budget_per_loc_year": 1.228477887505367,
+      "n_false_alarms": 47,
+      "n_event_alarms": 275,
+      "control_loc_years": 38.259,
+      "median_lead_h": 19.0,
+      "lead_p25_h": 14.0,
+      "lead_p75_h": 28.5,
+      "lead_min_h": 12.0,
+      "lead_max_h": 162.0,
+      "miss_reasons": {
+        "no_alarm": 144,
+        "insufficient_lead": 102,
+        "alarm_outside_window": 99
+      }
+    },
+    "tornado": {
+      "n_events": 520,
+      "hits": 61,
+      "pod": 0.11730769230769231,
+      "far": 0.30434782608695654,
+      "budget_per_loc_year": 0.8676753393665159,
+      "n_false_alarms": 42,
+      "n_event_alarms": 96,
+      "control_loc_years": 48.405,
+      "median_lead_h": 7.0,
+      "lead_p25_h": 5.0,
+      "lead_p75_h": 11.0,
+      "lead_min_h": 3.0,
+      "lead_max_h": 158.0,
+      "miss_reasons": {
+        "no_alarm": 429,
+        "insufficient_lead": 17,
+        "alarm_outside_window": 13
+      }
+    }
+  }
+}

@@ -1,0 +1,3622 @@
+{
+  "timestamp": "2026-07-11T04:03:24.509480+00:00Z",
+  "control_id": "SOC2-CC7.1-COMPLIANCE",
+  "status": "FAIL",
+  "system": "compliance-scanner",
+  "target_dir": "[WORKSPACE_ROOT]/commerce/orders/dart",
+  "detail": "Architectural compliance scan failed with 602 violations across source code checks.",
+  "violations": [
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 33,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 34,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 35,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 36,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 46,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 47,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 48,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 58,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\order_notifier_dependencies.dart",
+      "line": 120,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier_dependencies.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\coupon_data.dart",
+      "line": 78,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'coupon_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\coupon_data.dart",
+      "line": 79,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'coupon_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\get_calculate_data.dart",
+      "line": 27,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'get_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\get_calculate_data.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'get_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\get_calculate_data.dart",
+      "line": 45,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'get_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\links.dart",
+      "line": 2,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'links.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\links.dart",
+      "line": 18,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'links.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\links.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'links.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\links.dart",
+      "line": 33,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'links.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\links.dart",
+      "line": 37,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'links.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\links.dart",
+      "line": 38,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'links.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 54,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 60,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 61,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 76,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 77,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 80,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 91,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 99,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 107,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 127,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 143,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 155,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 173,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 188,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 234,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 235,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 275,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 276,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 371,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 404,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 430,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 437,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 438,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 465,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 466,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 535,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_active_model.dart",
+      "line": 536,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 47,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 49,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 57,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 126,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 127,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 166,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 234,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 253,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 300,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 307,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 308,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 429,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 430,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 542,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\order_data.dart",
+      "line": 543,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 34,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 88,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 91,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 122,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 167,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 211,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 217,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 269,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\parcel_order.dart",
+      "line": 285,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\refund_data.dart",
+      "line": 8,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\refund_data.dart",
+      "line": 17,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\refund_data.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\refund_data.dart",
+      "line": 43,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\refund_data.dart",
+      "line": 53,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\refund_data.dart",
+      "line": 70,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\refund_data.dart",
+      "line": 75,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'refund_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\repeat_data.dart",
+      "line": 41,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'repeat_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\repeat_data.dart",
+      "line": 50,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'repeat_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\review_data.dart",
+      "line": 40,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\review_data.dart",
+      "line": 93,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\review_data.dart",
+      "line": 94,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\review_data.dart",
+      "line": 173,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\data\\review_data.dart",
+      "line": 174,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 2,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 3,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 25,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 26,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 38,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 39,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 50,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 51,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\request\\cart_request.dart",
+      "line": 53,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\branches_response.dart",
+      "line": 25,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'branches_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\branches_response.dart",
+      "line": 35,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'branches_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\branches_response.dart",
+      "line": 36,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'branches_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\branches_response.dart",
+      "line": 83,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'branches_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\branches_response.dart",
+      "line": 103,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'branches_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\branches_response.dart",
+      "line": 111,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'branches_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 33,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 112,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 137,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 155,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 179,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\customer\\models\\response\\parcel_response.dart",
+      "line": 192,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\customer\\cart.dart",
+      "line": 14,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\customer\\cart.dart",
+      "line": 16,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\customer\\cart.dart",
+      "line": 23,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\driver\\orders.dart",
+      "line": 9,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\driver\\orders.dart",
+      "line": 24,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\driver\\orders.dart",
+      "line": 26,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\driver\\parcel.dart",
+      "line": 7,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\domain\\interface\\driver\\parcel.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\order_notifier.dart",
+      "line": 13,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\order_notifier.dart",
+      "line": 144,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\order_notifier.dart",
+      "line": 194,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\order_notifier.dart",
+      "line": 271,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\addon_data.dart",
+      "line": 86,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'addon_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\addon_data.dart",
+      "line": 87,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'addon_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\cart_product_data.dart",
+      "line": 56,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\cart_product_data.dart",
+      "line": 57,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\merchant_delivery.dart",
+      "line": 98,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'merchant_delivery.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\merchant_delivery.dart",
+      "line": 99,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'merchant_delivery.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\meta.dart",
+      "line": 16,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'meta.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\meta.dart",
+      "line": 17,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'meta.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 26,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 110,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 117,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 121,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 136,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 143,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 147,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 196,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 210,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 218,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 224,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 225,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 396,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 397,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 423,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 464,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 477,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 507,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 519,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 520,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 583,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_data.dart",
+      "line": 584,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 10,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 14,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 15,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 40,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 51,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 54,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 90,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 141,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 142,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 193,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 198,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 199,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 253,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 285,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 286,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 325,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 331,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 332,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 355,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 363,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 364,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 382,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 389,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 390,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 430,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 448,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 449,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 498,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 514,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 515,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 558,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 576,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 577,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 603,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 611,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 612,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 633,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 642,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 643,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 697,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 720,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 721,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 774,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 789,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 790,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 814,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 822,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_detail.dart",
+      "line": 823,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_paginate_response.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\order_paginate_response.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 29,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 84,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 86,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 87,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 117,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 159,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 203,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 209,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 261,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\parcel_order.dart",
+      "line": 277,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 129,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 157,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 225,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 247,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 248,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 358,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 359,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 398,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 399,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 449,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 450,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 646,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 647,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 769,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 770,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 841,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 842,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 896,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 897,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 938,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\product_data.dart",
+      "line": 939,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 11,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 49,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 60,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 89,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 91,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 92,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 171,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\data\\review_data.dart",
+      "line": 172,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'review_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 111,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 136,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 154,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 178,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 191,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 202,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 203,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 207,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 214,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 221,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 270,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 283,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 287,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 308,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\driver\\models\\response\\parcel_response.dart",
+      "line": 311,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\cart_repository.dart",
+      "line": 161,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\cart_repository.dart",
+      "line": 182,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\cart_repository.dart",
+      "line": 204,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\cart_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'cart_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\orders_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'orders_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\customer\\parcel_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'parcel_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\orders_repository.dart",
+      "line": 169,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\orders_repository.dart",
+      "line": 205,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\orders_repository.dart",
+      "line": 223,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\orders_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'orders_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\parcel_repository.dart",
+      "line": 127,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\parcel_repository.dart",
+      "line": 144,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\driver\\parcel_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'parcel_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\manager\\orders_repository.dart",
+      "line": 68,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\manager\\orders_repository.dart",
+      "line": 70,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_repository.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\infrastructure\\repositories\\manager\\orders_repository.dart",
+      "line": 1,
+      "what": "Layer 12 (Observability - Flutter Trace ID)",
+      "why": "Flutter file 'orders_repository.dart' makes outgoing HTTP calls but fails to propagate a structured Trace/Request ID in outgoing network headers. Add 'x-trace-id' to request headers or ensure a Dio Interceptor in this project injects it centrally (extends Interceptor + sets x-trace-id)."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\order_details_notifier.dart",
+      "line": 9,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\order_details_notifier.dart",
+      "line": 37,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\kitchen_data.dart",
+      "line": 23,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'kitchen_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\kitchen_data.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'kitchen_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\location_data.dart",
+      "line": 26,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'location_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\location_data.dart",
+      "line": 27,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'location_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\merchant_delivery.dart",
+      "line": 82,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'merchant_delivery.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\merchant_delivery.dart",
+      "line": 83,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'merchant_delivery.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_calculate_data.dart",
+      "line": 10,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_calculate_data.dart",
+      "line": 18,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_calculate_data.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_calculate_data.dart",
+      "line": 54,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_calculate_data.dart",
+      "line": 69,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_calculate_data.dart",
+      "line": 70,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 33,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 41,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 45,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 147,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 154,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 158,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 176,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 183,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 187,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 254,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 268,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 276,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 282,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 283,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 492,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 493,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 522,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 563,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 576,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 606,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 618,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 619,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 682,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\order_data.dart",
+      "line": 683,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 15,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 16,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 17,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 88,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 89,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 90,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 94,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 109,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 110,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 111,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 116,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 161,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 163,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 165,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 173,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 179,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 180,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 215,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 245,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 256,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 284,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 288,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\stock.dart",
+      "line": 289,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'stock.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\table_data.dart",
+      "line": 26,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\table_data.dart",
+      "line": 40,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\table_data.dart",
+      "line": 41,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\table_data.dart",
+      "line": 76,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\table_data.dart",
+      "line": 88,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\manager\\models\\data\\table_data.dart",
+      "line": 89,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'table_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 39,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 106,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 128,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 139,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 180,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 198,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 205,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 248,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\cart_data.dart",
+      "line": 270,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 78,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 79,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 82,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 145,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 236,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 237,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 277,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 278,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 373,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 406,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 432,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 439,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 440,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 467,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 468,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 537,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_active_model.dart",
+      "line": 538,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_active_model.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 127,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 128,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 167,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 235,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 254,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 301,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 308,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 309,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 430,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 431,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 543,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\order_data.dart",
+      "line": 544,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 34,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 88,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 91,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 122,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 167,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 211,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 217,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 269,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\data\\parcel_order.dart",
+      "line": 285,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\cart_request.dart",
+      "line": 22,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\cart_request.dart",
+      "line": 23,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\cart_request.dart",
+      "line": 35,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\cart_request.dart",
+      "line": 36,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\cart_request.dart",
+      "line": 47,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\cart_request.dart",
+      "line": 48,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\cart_request.dart",
+      "line": 50,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'cart_request.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\get_calculate_data.dart",
+      "line": 27,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'get_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\get_calculate_data.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'get_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\request\\get_calculate_data.dart",
+      "line": 45,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'get_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\create_order_response.dart",
+      "line": 46,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\create_order_response.dart",
+      "line": 47,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\create_order_response.dart",
+      "line": 127,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\create_order_response.dart",
+      "line": 128,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_calculate_response.dart",
+      "line": 28,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_calculate_response.dart",
+      "line": 38,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_calculate_response.dart",
+      "line": 55,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_calculate_response.dart",
+      "line": 58,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_paginate_response.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_paginate_response.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 22,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 33,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 34,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 113,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 138,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 156,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 180,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\parcel_response.dart",
+      "line": 193,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\product_calculate_response.dart",
+      "line": 46,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\product_calculate_response.dart",
+      "line": 47,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\product_calculate_response.dart",
+      "line": 116,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\product_calculate_response.dart",
+      "line": 117,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\product_calculate_response.dart",
+      "line": 206,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\product_calculate_response.dart",
+      "line": 207,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'product_calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\single_order_response.dart",
+      "line": 48,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'single_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\single_order_response.dart",
+      "line": 49,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'single_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\transactions_response.dart",
+      "line": 48,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\transactions_response.dart",
+      "line": 49,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\transactions_response.dart",
+      "line": 158,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\transactions_response.dart",
+      "line": 159,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\transactions_response.dart",
+      "line": 267,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\customer\\response\\transactions_response.dart",
+      "line": 268,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 111,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 122,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 137,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 148,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 197,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 219,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 225,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 226,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 397,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 398,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 424,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 465,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 478,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 508,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 520,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 521,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 584,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_data.dart",
+      "line": 585,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 10,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 14,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 15,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 40,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 54,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 90,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 141,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 142,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 193,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 198,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 199,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 253,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 285,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 286,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 325,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 331,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 332,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 355,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 363,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 364,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 382,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 389,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 390,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 430,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 448,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 449,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 498,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 514,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 515,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 558,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 576,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 577,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 603,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 611,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 612,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 633,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 642,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 643,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 697,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 720,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 721,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 774,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 789,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 790,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 814,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 822,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\order_detail.dart",
+      "line": 823,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_detail.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 29,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 84,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 87,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 117,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 159,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 203,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 209,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 261,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\data\\parcel_order.dart",
+      "line": 277,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_order.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\order_paginate_response.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\order_paginate_response.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_paginate_response.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_paginate_response.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 31,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 32,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 111,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 136,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 154,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 178,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 191,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 202,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 203,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 207,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 214,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 221,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 270,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 283,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 287,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 308,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\driver\\response\\parcel_response.dart",
+      "line": 311,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'parcel_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_calculate_data.dart",
+      "line": 10,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_calculate_data.dart",
+      "line": 18,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_calculate_data.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_calculate_data.dart",
+      "line": 54,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_calculate_data.dart",
+      "line": 69,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_calculate_data.dart",
+      "line": 70,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_calculate_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 30,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 42,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 144,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 155,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 173,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 184,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 251,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 273,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 279,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 280,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 489,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 490,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 519,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 560,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 573,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 603,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 615,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 616,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 679,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\data\\order_data.dart",
+      "line": 680,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_data.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\calculate_response.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\calculate_response.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\calculate_response.dart",
+      "line": 44,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\calculate_response.dart",
+      "line": 45,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\calculate_response.dart",
+      "line": 143,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\calculate_response.dart",
+      "line": 144,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'calculate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\create_order_response.dart",
+      "line": 17,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\create_order_response.dart",
+      "line": 18,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\create_order_response.dart",
+      "line": 79,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\create_order_response.dart",
+      "line": 80,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'create_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\orders_paginate_response.dart",
+      "line": 21,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\orders_paginate_response.dart",
+      "line": 22,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\orders_paginate_response.dart",
+      "line": 63,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\orders_paginate_response.dart",
+      "line": 64,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\orders_paginate_response.dart",
+      "line": 176,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\orders_paginate_response.dart",
+      "line": 177,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'orders_paginate_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\order_status_response.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_status_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\order_status_response.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_status_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\order_status_response.dart",
+      "line": 105,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_status_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\order_status_response.dart",
+      "line": 106,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_status_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\single_order_response.dart",
+      "line": 19,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'single_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\single_order_response.dart",
+      "line": 20,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'single_order_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\transactions_response.dart",
+      "line": 48,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\transactions_response.dart",
+      "line": 49,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\transactions_response.dart",
+      "line": 142,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\transactions_response.dart",
+      "line": 143,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\transactions_response.dart",
+      "line": 251,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\models\\manager\\response\\transactions_response.dart",
+      "line": 252,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'transactions_response.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\pos\\order_details_notifier.dart",
+      "line": 11,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\pos\\order_details_notifier.dart",
+      "line": 12,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\pos\\order_details_notifier.dart",
+      "line": 64,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\pos\\order_details_notifier.dart",
+      "line": 68,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\pos\\order_details_notifier.dart",
+      "line": 113,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_notifier.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\pos\\order_details_state.dart",
+      "line": 14,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_state.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\lib\\src\\pos\\order_details_state.dart",
+      "line": 15,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_details_state.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\templates\\pages\\customer\\order\\order_screen\\widgets\\order_status.dart",
+      "line": 160,
+      "what": "Layer 2 (Type Safety - Flutter)",
+      "why": "Avoid using raw 'dynamic' types in Flutter 'order_status.dart'. Define concrete Dart models or strong types."
+    },
+    {
+      "file": ".\\templates\\pages\\manager\\main\\create_order\\create_order_page.dart",
+      "line": 78,
+      "what": "Layer 12 (Usability - Keyboard Avoidance)",
+      "why": "Input field 'SearchTextField' found in 'create_order_page.dart' line 78 but layout does not handle keyboard avoidance. Since local override 'resizeToAvoidBottomInset: false', you must wrap the parent container with a margin/padding using 'MediaQuery.of(context).viewInsets' or add a compliance override comment: '// compliance: ignore-keyboard-avoidance'."
+    },
+    {
+      "file": ".\\templates\\pages\\manager\\main\\create_order\\shipping\\address\\select_address_page.dart",
+      "line": 141,
+      "what": "Layer 12 (Usability - Keyboard Avoidance)",
+      "why": "Input field 'TextFormField' found in 'select_address_page.dart' line 141 but layout does not handle keyboard avoidance. Since local override 'resizeToAvoidBottomInset: false', you must wrap the parent container with a margin/padding using 'MediaQuery.of(context).viewInsets' or add a compliance override comment: '// compliance: ignore-keyboard-avoidance'."
+    }
+  ]
+}

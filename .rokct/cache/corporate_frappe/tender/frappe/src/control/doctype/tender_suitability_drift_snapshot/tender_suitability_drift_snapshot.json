@@ -1,0 +1,96 @@
+{
+    "actions": [],
+    "creation": "2026-08-24 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-24 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Suitability Drift Snapshot",
+    "owner": "Administrator",
+    "sort_field": "run_on",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 0,
+    "autoname": "format:TSDS-{#####}",
+    "field_order": [
+        "run_on",
+        "catalog_total",
+        "full_records",
+        "advert_only_records",
+        "profiles_scored",
+        "payload",
+        "semantics"
+    ],
+    "fields": [
+        {
+            "fieldname": "run_on",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Run On",
+            "reqd": 1,
+            "read_only": 1,
+            "description": "The catalog date this drift run measured - one snapshot per run date (the weekly scheduler is idempotent per day)"
+        },
+        {
+            "fieldname": "catalog_total",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "Catalog Total",
+            "read_only": 1,
+            "description": "Cached published tender cards measured on this run"
+        },
+        {
+            "fieldname": "full_records",
+            "fieldtype": "Int",
+            "label": "Full Records",
+            "read_only": 1
+        },
+        {
+            "fieldname": "advert_only_records",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "Advert-Only Records",
+            "read_only": 1
+        },
+        {
+            "fieldname": "profiles_scored",
+            "fieldtype": "Int",
+            "label": "Reference Profiles Scored",
+            "read_only": 1,
+            "description": "Fixed SYNTHETIC reference personas (the calibration run's P1/P2/P3) - never user profiles: a constant yardstick so a drifted histogram means the catalog moved"
+        },
+        {
+            "fieldname": "payload",
+            "fieldtype": "Code",
+            "options": "JSON",
+            "label": "Snapshot Payload",
+            "read_only": 1,
+            "description": "The full deterministic drift report (per-profile band distribution, gates fired, confidence mix, enrichment coverage, drift vs the previous snapshot) as computed by compliance/suitability_drift.py"
+        },
+        {
+            "fieldname": "semantics",
+            "fieldtype": "Small Text",
+            "label": "Semantics",
+            "read_only": 1,
+            "description": "Carried on every snapshot: deterministic counts and medians over fixed reference personas - measures catalog drift only, never a win probability, never a user's fit"
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ]
+}

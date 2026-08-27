@@ -1,0 +1,54 @@
+{
+  "name": "marketplace_sdk",
+  "version": "1.4.0",
+  "_comment_requires": "marketplace_sdk >= 1.4.0 requires base_sdk >= 1.23.0 (the generic profile host: GenericProfilePage + ProfileSectionRegistry). The composer manifest schema has no machine-readable minimum-version field, so this is the declaration.",
+  "di_hooks": [
+    {
+      "id": "marketplace-profile-sections",
+      "order": 10,
+      "body": "registerMarketplaceProfileSections();",
+      "imports": [
+        "import 'package:${package}/presentation/routes/marketplace_route_pages.dart';"
+      ],
+      "_comment": "Registers every marketplace profile section (header badge actions, membership card, wallet card, icon-tile grid, footer) with base_sdk's ProfileSectionRegistry, plus the registry's onEditProfile (MyAccount settings hub) and onLogout callbacks - the sections base_sdk's GenericProfilePage renders on the customer profile route. Declared top-level, NOT in an app_type flavor block, mirroring lms_sdk: this SDK's manifest has no flavor blocks and marketplace_sdk only composes into customer-family apps. Requires base_sdk >= 1.23.0 (the profile host)."
+    }
+  ],
+  "installs": [
+    {
+      "from": "templates/assets",
+      "to": "assets"
+    },
+    {
+      "from": "templates/routes/marketplace_route_pages.dart",
+      "to": "lib/presentation/routes/marketplace_route_pages.dart"
+    }
+  ],
+  "app_assets": [
+    "assets/images/splash.png",
+    "assets/images/splash1.png",
+    "assets/images/splash2.png",
+    "assets/images/",
+    "assets/images/intro/",
+    "assets/images/poi/",
+    "assets/images/water/",
+    "assets/lottie/",
+    "assets/svgs/",
+    "assets/temp/"
+  ],
+  "_comment_app_assets": "Home SDKs ship the splash/login background images (base_sdk's splash_page and auth_sdk's login_page reference assets/images/splash*.png). Each home SDK provides its own copies so every composed app can brand them independently; app_assets gets them into the host pubspec's sdk-app-assets block so they are actually bundled. If base_sdk also installed identical files first, the file copy is skipped (already-present guard) and only the pubspec declaration matters.",
+  "routes": [
+    {
+      "path": "/profile",
+      "page": "ProfileRoute.page",
+      "type": "MaterialRoute",
+      "import": "package:${package}/presentation/routes/marketplace_route_pages.dart",
+      "_comment": "First manifest-declared customer route (the rest of the customer route table is still host-owned; rule #59 follow-up in templates/tour/marketplace.tour.yaml). The installed shell carries @RoutePage(name: 'ProfileRoute') rendering base_sdk's GenericProfilePage, keeping the route name and the deprecated ProfilePage's constructor params so host navigation call-sites keep working - the same migration-window convention as merchants_sdk's /main: a host that still tracks its own ProfileRoute shell must delete that manual entry + shell when it recomposes, or auto_route sees the route name twice."
+    }
+  ],
+  "integrations": [],
+  "asset_keys": {
+    "pngMotto": "assets/images/motto.png",
+    "pngLogo2": "assets/images/water/logo.png",
+    "lottiePin": "assets/lottie/pin.json"
+  }
+}

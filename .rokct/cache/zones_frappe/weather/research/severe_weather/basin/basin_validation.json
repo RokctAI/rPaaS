@@ -1,0 +1,373 @@
+{
+ "baseline": {
+  "advisory": {
+   "episodes": 53,
+   "median_duration_h": 44.0,
+   "per_year": 2.3,
+   "starts": [
+    "1995-03-25T16:00:00",
+    "1995-03-26T14:00:00",
+    "1995-04-29T02:00:00",
+    "1996-01-18T06:00:00",
+    "1996-01-26T00:00:00",
+    "1996-02-10T18:00:00",
+    "1997-01-12T09:00:00",
+    "1998-01-30T15:00:00",
+    "1998-11-20T06:00:00",
+    "1998-12-02T12:00:00",
+    "1998-12-31T10:00:00",
+    "1999-01-01T00:00:00",
+    "1999-02-06T02:00:00",
+    "1999-11-21T12:00:00",
+    "2000-01-03T07:00:00",
+    "2000-01-16T18:00:00",
+    "2000-02-06T20:00:00",
+    "2000-02-14T06:00:00",
+    "2000-02-24T16:00:00",
+    "2000-03-19T08:00:00",
+    "2001-02-26T05:00:00",
+    "2001-03-01T16:00:00",
+    "2001-11-09T05:00:00",
+    "2001-11-16T23:00:00",
+    "2003-03-06T01:00:00",
+    "2003-10-20T19:00:00",
+    "2004-01-22T11:00:00",
+    "2004-03-06T12:00:00",
+    "2004-12-09T13:00:00",
+    "2006-01-09T15:00:00",
+    "2006-02-11T04:00:00",
+    "2006-03-01T07:00:00",
+    "2006-03-01T13:00:00",
+    "2006-03-01T18:00:00",
+    "2007-11-25T13:00:00",
+    "2007-12-18T02:00:00",
+    "2008-01-10T13:00:00",
+    "2009-11-20T14:00:00",
+    "2010-02-18T09:00:00",
+    "2010-12-15T07:00:00",
+    "2012-01-18T04:00:00",
+    "2012-09-07T08:00:00",
+    "2013-01-15T23:00:00",
+    "2013-01-20T02:00:00",
+    "2013-12-30T20:00:00",
+    "2014-01-28T04:00:00",
+    "2014-03-03T17:00:00",
+    "2014-12-28T04:00:00",
+    "2016-03-11T11:00:00",
+    "2016-12-16T19:00:00",
+    "2017-01-08T09:00:00",
+    "2017-02-17T23:00:00",
+    "2017-02-22T02:00:00"
+   ]
+  },
+  "heads_up": {
+   "episodes": 7,
+   "median_duration_h": 29.0,
+   "per_year": 0.3,
+   "starts": [
+    "1996-01-27T22:00:00",
+    "1996-02-12T01:00:00",
+    "1996-02-14T02:00:00",
+    "1996-02-14T22:00:00",
+    "2000-01-17T13:00:00",
+    "2000-02-09T15:00:00",
+    "2013-01-20T14:00:00"
+   ]
+  },
+  "warning": {
+   "episodes": 4,
+   "median_duration_h": 53.0,
+   "per_year": 0.17,
+   "starts": [
+    "1996-02-14T02:00:00",
+    "1996-02-14T22:00:00",
+    "2000-02-10T03:00:00",
+    "2013-01-20T14:00:00"
+   ]
+  }
+ },
+ "cases": {
+  "laingsburg_1981": {
+   "blind_demo": false,
+   "milestone": "1981-01-25T06:00:00",
+   "milestone_desc": "Buffels River flood through Laingsburg 25 Jan 1981",
+   "targets": {
+    "laingsburg": {
+     "covered": true,
+     "n_points": 4,
+     "tiers": {
+      "advisory": {
+       "first": "1981-01-25T04:00:00",
+       "lag_hours": 12.2,
+       "lead_hours": 2.0,
+       "local_rain_72h_mm": 45.8,
+       "upstream_rain_72h_mm": 40.0
+      },
+      "heads_up": {
+       "first": "1981-01-25T13:00:00",
+       "lag_hours": 12.6,
+       "lead_hours": -7.0,
+       "local_rain_72h_mm": 72.4,
+       "upstream_rain_72h_mm": 74.4
+      },
+      "warning": null
+     },
+     "upstream_area_km2": 2264.5
+    }
+   }
+  },
+  "limpopo_1977": {
+   "blind_demo": false,
+   "milestone": "1977-02-12T00:00:00",
+   "milestone_desc": "Chokwe/Xai-Xai inundation 12 Feb 1977",
+   "targets": {
+    "chokwe": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "1977-01-31T14:00:00",
+       "lag_hours": 157.0,
+       "lead_hours": 274.0,
+       "local_rain_72h_mm": 40.5,
+       "upstream_rain_72h_mm": 40.2
+      },
+      "heads_up": {
+       "first": "1977-02-07T23:00:00",
+       "lag_hours": 129.5,
+       "lead_hours": 97.0,
+       "local_rain_72h_mm": 58.5,
+       "upstream_rain_72h_mm": 70.8
+      },
+      "warning": {
+       "first": "1977-02-09T02:00:00",
+       "lag_hours": 127.2,
+       "lead_hours": 70.0,
+       "local_rain_72h_mm": 94.6,
+       "upstream_rain_72h_mm": 86.3
+      }
+     },
+     "upstream_area_km2": 342946.9
+    },
+    "xai_xai": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "1977-01-31T22:00:00",
+       "lag_hours": 138.9,
+       "lead_hours": 266.0,
+       "local_rain_72h_mm": 41.0,
+       "upstream_rain_72h_mm": 40.5
+      },
+      "heads_up": {
+       "first": "1977-02-07T07:00:00",
+       "lag_hours": 126.5,
+       "lead_hours": 113.0,
+       "local_rain_72h_mm": 43.1,
+       "upstream_rain_72h_mm": 71.6
+      },
+      "warning": {
+       "first": "1977-02-08T10:00:00",
+       "lag_hours": 121.6,
+       "lead_hours": 86.0,
+       "local_rain_72h_mm": 68.2,
+       "upstream_rain_72h_mm": 98.1
+      }
+     },
+     "upstream_area_km2": 409914.3
+    }
+   }
+  },
+  "limpopo_2000": {
+   "blind_demo": false,
+   "milestone": "2000-02-11T00:00:00",
+   "milestone_desc": "Limpopo overflow at Chokwe/Xai-Xai 11-13 Feb 2000",
+   "targets": {
+    "chokwe": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "2000-01-03T07:00:00",
+       "lag_hours": 165.6,
+       "lead_hours": 929.0,
+       "local_rain_72h_mm": 37.0,
+       "upstream_rain_72h_mm": 42.0
+      },
+      "heads_up": {
+       "first": "2000-01-17T13:00:00",
+       "lag_hours": 165.8,
+       "lead_hours": 587.0,
+       "local_rain_72h_mm": 37.5,
+       "upstream_rain_72h_mm": 71.1
+      },
+      "warning": {
+       "first": "2000-02-10T03:00:00",
+       "lag_hours": 253.7,
+       "lead_hours": 21.0,
+       "local_rain_72h_mm": 2.8,
+       "upstream_rain_72h_mm": 70.6
+      }
+     },
+     "upstream_area_km2": 342946.9
+    },
+    "xai_xai": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "2000-01-03T07:00:00",
+       "lag_hours": 148.2,
+       "lead_hours": 929.0,
+       "local_rain_72h_mm": 36.5,
+       "upstream_rain_72h_mm": 41.6
+      },
+      "heads_up": null,
+      "warning": null
+     },
+     "upstream_area_km2": 409914.3
+    }
+   }
+  },
+  "limpopo_2013": {
+   "blind_demo": false,
+   "milestone": "2013-01-22T00:00:00",
+   "milestone_desc": "Chokwe evacuation from 22 Jan 2013",
+   "targets": {
+    "chokwe": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "2013-01-15T23:00:00",
+       "lag_hours": 114.1,
+       "lead_hours": 145.0,
+       "local_rain_72h_mm": 59.8,
+       "upstream_rain_72h_mm": 40.6
+      },
+      "heads_up": {
+       "first": "2013-01-20T14:00:00",
+       "lag_hours": 149.3,
+       "lead_hours": 34.0,
+       "local_rain_72h_mm": 15.9,
+       "upstream_rain_72h_mm": 61.2
+      },
+      "warning": {
+       "first": "2013-01-20T14:00:00",
+       "lag_hours": 149.3,
+       "lead_hours": 34.0,
+       "local_rain_72h_mm": 15.9,
+       "upstream_rain_72h_mm": 61.2
+      }
+     },
+     "upstream_area_km2": 342946.9
+    },
+    "xai_xai": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "2013-01-12T16:00:00",
+       "lag_hours": 87.3,
+       "lead_hours": 224.0,
+       "local_rain_72h_mm": 63.8,
+       "upstream_rain_72h_mm": 40.4
+      },
+      "heads_up": {
+       "first": "2013-01-21T01:00:00",
+       "lag_hours": 145.1,
+       "lead_hours": 23.0,
+       "local_rain_72h_mm": 26.1,
+       "upstream_rain_72h_mm": 61.7
+      },
+      "warning": {
+       "first": "2013-01-21T01:00:00",
+       "lag_hours": 145.1,
+       "lead_hours": 23.0,
+       "local_rain_72h_mm": 26.1,
+       "upstream_rain_72h_mm": 61.7
+      }
+     },
+     "upstream_area_km2": 409914.3
+    }
+   }
+  },
+  "limpopo_2026": {
+   "blind_demo": true,
+   "milestone": "2026-01-20T00:00:00",
+   "milestone_desc": "Xai-Xai area evacuation order 20 Jan 2026 (BLIND DEMO)",
+   "targets": {
+    "chokwe": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "2025-12-22T10:00:00",
+       "lag_hours": 162.2,
+       "lead_hours": 686.0,
+       "local_rain_72h_mm": 15.9,
+       "upstream_rain_72h_mm": 40.1
+      },
+      "heads_up": {
+       "first": "2026-01-12T03:00:00",
+       "lag_hours": 91.1,
+       "lead_hours": 189.0,
+       "local_rain_72h_mm": 228.1,
+       "upstream_rain_72h_mm": 73.0
+      },
+      "warning": {
+       "first": "2026-01-12T15:00:00",
+       "lag_hours": 94.9,
+       "lead_hours": 177.0,
+       "local_rain_72h_mm": 213.8,
+       "upstream_rain_72h_mm": 110.7
+      }
+     },
+     "upstream_area_km2": 342946.9
+    },
+    "xai_xai": {
+     "covered": true,
+     "n_points": 12,
+     "tiers": {
+      "advisory": {
+       "first": "2025-12-22T11:00:00",
+       "lag_hours": 138.3,
+       "lead_hours": 685.0,
+       "local_rain_72h_mm": 8.7,
+       "upstream_rain_72h_mm": 40.4
+      },
+      "heads_up": {
+       "first": "2026-01-10T14:00:00",
+       "lag_hours": 67.5,
+       "lead_hours": 226.0,
+       "local_rain_72h_mm": 82.3,
+       "upstream_rain_72h_mm": 71.7
+      },
+      "warning": {
+       "first": "2026-01-11T08:00:00",
+       "lag_hours": 66.4,
+       "lead_hours": 208.0,
+       "local_rain_72h_mm": 113.4,
+       "upstream_rain_72h_mm": 110.5
+      }
+     },
+     "upstream_area_km2": 409914.3
+    }
+   }
+  }
+ },
+ "config": {
+  "advisory_mm_72h": 40.0,
+  "celerity_kmh": 4.0,
+  "heads_up_mm_72h": 70.0,
+  "long_mm_168h": 100.0,
+  "long_short_mm_72h": 30.0,
+  "max_dist_km": 1500.0,
+  "max_points": 12,
+  "min_upstream_area_km2": 2000.0,
+  "warning_combo_mm_168h": 120.0,
+  "warning_combo_mm_72h": 60.0,
+  "warning_mm_72h": 110.0
+ }
+}

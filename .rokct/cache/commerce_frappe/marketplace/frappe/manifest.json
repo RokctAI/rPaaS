@@ -1,0 +1,9 @@
+{
+  "name": "marketplace",
+  "description": "Modular backend package for the marketplace (juvo food-delivery PaaS) vertical",
+  "_comment": "First frappe half of this module (dart-only before). Carries the tenant-side juvo seeder SCRIPTS extracted from control/control/seeds/scripts/ (RokctAI/control). They declare no hooks: seeders are invoked manually (bench execute) or by the tenant shell's installer, never wired into scheduler/doc_events. The ~380k-line Laravel-era juvo seed DUMPS (control/control/seeds/*.json) deliberately REMAIN in the control repo untouched, pending Ray's archive/delete decision - the scripts here do not read them. The empty control block declares control-persona presence so persona stripping composes correctly (fleet convention).",
+  "app_type": {
+    "tenant": {},
+    "control": {}
+  }
+}

@@ -1,0 +1,138 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "autoname": "field:user",
+ "creation": "2026-06-04 22:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "partner_id",
+  "partner_user_id",
+  "username",
+  "password",
+  "email",
+  "age",
+  "id_number",
+  "local_favorite_team",
+  "intl_favorite_team",
+  "monthly_budget",
+  "remaining_budget",
+  "budget_lock"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Data",
+   "label": "Unique User Hash ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "partner_id",
+   "fieldtype": "Data",
+   "label": "Partner ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "partner_user_id",
+   "fieldtype": "Data",
+   "label": "Partner User ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "label": "Username"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email Address"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "id_number",
+   "fieldtype": "Data",
+   "label": "Identity Number (FICA)"
+  },
+  {
+   "fieldname": "local_favorite_team",
+   "fieldtype": "Link",
+   "label": "Local Favorite Team (PSL)",
+   "options": "Team"
+  },
+  {
+   "fieldname": "intl_favorite_team",
+   "fieldtype": "Link",
+   "label": "International Favorite Team",
+   "options": "Team"
+  },
+  {
+   "fieldname": "monthly_budget",
+   "fieldtype": "Currency",
+   "label": "Monthly Budget (ZAR)",
+   "default": "0.00"
+  },
+  {
+   "fieldname": "remaining_budget",
+   "fieldtype": "Currency",
+   "label": "Remaining Budget (ZAR)",
+   "default": "0.00"
+  },
+  {
+   "fieldname": "budget_lock",
+   "fieldtype": "Check",
+   "label": "Budget Locked",
+   "default": 0
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-04 22:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "betassist",
+ "name": "User Profile",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "import": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

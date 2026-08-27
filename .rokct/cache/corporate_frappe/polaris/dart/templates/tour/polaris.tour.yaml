@@ -1,0 +1,128 @@
+# Copyright (c) 2026 RokctAI
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# Guided-tour fragment for polaris_sdk.
+#
+# Brand-neutral by rule: app names, taglines and any per-app wording live in
+# the app shell's tour/app.tour.yaml ({app_name}/{app_tagline} placeholders
+# are substituted at merge time). This fragment owns only the screens
+# polaris_sdk owns and its always-on mock backs: the six-step loan
+# application wizard (PolarisApplicationPage). The DI registers
+# MockPolarisRepositoryImpl unconditionally, so the wizard's eligibility
+# check, submission and outcome run on this SDK's own demo data in every
+# build.
+#
+# Why dart actions instead of routes: polaris_sdk declares no routes in
+# manifest.json; hosts open the wizard from the embeddable PolarisApplyCard
+# ("Need a loan?"). The first step below pushes the same page that card's
+# onApply opens. Every step is guarded on PolarisSDK.instance.isInitialized
+# - initializing the SDK (config, session, wallet bridge, user prefill) is
+# the host shell's job at session start, exactly as the SDK's own widget
+# tests do - so on a host that has not initialized Polaris the steps
+# degrade to no-ops instead of crashing the tour.
+#
+# Finders are the literal strings of the step widgets
+# (step_1_affordability.dart, step_2_personal_details.dart), the same
+# finders test/polaris_application_flow_test.dart drives; the affordability
+# figures are that test's own passing figures.
+#
+# NOT toured: LoanScreen (loan history/status) constructs a concrete
+# LoansRepository over HTTP rather than the mocked facade, so it has no
+# demo data behind it - flagged in the PR as a follow-up.
+#
+# Format: RokctAI/shared-workflows scripts/tour/README.md
+sdk: polaris
+imports:
+  - "import 'package:polaris_sdk/polaris_sdk.dart';"
+steps:
+  - key: polaris_wizard
+    title: "Apply in minutes"
+    caption: "Need a loan? {app_name} walks you through *six clear steps* - no branch, no paperwork."
+    action: dart
+    screenshot: true
+    settle: 6
+    dart: |
+      // Push the wizard the way a host's "Need a loan?" apply card does.
+      // Tolerant: without host-side PolarisSDK.initialize(...) the wizard
+      // cannot render, so the step performs nothing.
+      if (PolarisSDK.instance.isInitialized) {
+        final NavigatorState navigator =
+            tester.state(find.byType(Navigator).first);
+        navigator.push(MaterialPageRoute<void>(
+          builder: (_) => const PolarisApplicationPage(),
+        ));
+      }
+  - key: polaris_affordability
+    title: "Affordability first"
+    caption: "An honest *affordability check* comes before anything else - income in, answer out."
+    action: dart
+    screenshot: true
+    settle: 4
+    dart: |
+      // Fill the affordability form; finders are the literal labelText
+      // strings of step_1_affordability.dart, and the figures are the ones
+      // the SDK's own widget test passes with.
+      final Finder income =
+          find.widgetWithText(TextField, 'Monthly Income (Net)');
+      if (income.evaluate().isNotEmpty) {
+        await tester.enterText(income.first, '20000');
+        await tester.enterText(
+          find.widgetWithText(TextField, 'Monthly Living Expenses').first,
+          '5000',
+        );
+        await tester.enterText(
+          find
+              .widgetWithText(TextField, 'Other Monthly Debt Obligations')
+              .first,
+          '1500',
+        );
+        // Drop the keyboard so the still shows the whole form.
+        FocusManager.instance.primaryFocus?.unfocus();
+      }
+  - key: polaris_details
+    title: "Confirm your details"
+    caption: "Pass the check and your details arrive *prefilled* - confirm and continue."
+    action: dart
+    screenshot: true
+    settle: 5
+    dart: |
+      // Advance to step 2 (personal details, prefilled from the host's
+      // PolarisUserPrefill). Tolerant: no-op when the wizard is not open.
+      final Finder cta = find.text('Check Affordability');
+      if (cta.evaluate().isNotEmpty) {
+        await tester.tap(cta.first, warnIfMissed: false);
+      }
+  # Action-only step: closes the wizard so the tour resumes on the screen
+  # it came from. No still is captured here.
+  - key: polaris_close
+    title: "Close the wizard"
+    action: dart
+    screenshot: false
+    settle: 3
+    dart: |
+      // Tolerant: pop only when the wizard from the steps above is
+      // actually on screen, so this can never pop a real app route.
+      if (find.byType(PolarisApplicationPage).evaluate().isNotEmpty) {
+        final NavigatorState navigator =
+            tester.state(find.byType(Navigator).first);
+        if (navigator.canPop()) {
+          navigator.pop();
+        }
+      }

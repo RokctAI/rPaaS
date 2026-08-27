@@ -1,0 +1,626 @@
+{
+  "dependencies": [],
+  "doctype_count": 159,
+  "doctypes": [
+    "additional_salary",
+    "appointment_letter",
+    "appointment_letter_content",
+    "appointment_letter_template",
+    "appraisal",
+    "appraisal_cycle",
+    "appraisal_goal",
+    "appraisal_kra",
+    "appraisal_template",
+    "appraisal_template_goal",
+    "appraisee",
+    "arrear",
+    "attendance",
+    "attendance_request",
+    "bulk_salary_structure_assignment",
+    "compensatory_leave_request",
+    "daily_work_summary",
+    "daily_work_summary_group",
+    "daily_work_summary_group_user",
+    "department_approver",
+    "designation_skill",
+    "earned_leave_schedule",
+    "employee_advance",
+    "employee_attendance_tool",
+    "employee_benefit_application",
+    "employee_benefit_application_detail",
+    "employee_benefit_claim",
+    "employee_benefit_detail",
+    "employee_benefit_ledger",
+    "employee_boarding_activity",
+    "employee_checkin",
+    "employee_cost_center",
+    "employee_feedback_criteria",
+    "employee_feedback_rating",
+    "employee_grade",
+    "employee_grievance",
+    "employee_health_insurance",
+    "employee_incentive",
+    "employee_onboarding",
+    "employee_onboarding_template",
+    "employee_other_income",
+    "employee_performance_feedback",
+    "employee_promotion",
+    "employee_property_history",
+    "employee_referral",
+    "employee_separation",
+    "employee_separation_template",
+    "employee_skill",
+    "employee_skill_map",
+    "employee_tax_exemption_category",
+    "employee_tax_exemption_declaration",
+    "employee_tax_exemption_declaration_category",
+    "employee_tax_exemption_proof_submission",
+    "employee_tax_exemption_proof_submission_detail",
+    "employee_tax_exemption_sub_category",
+    "employee_training",
+    "employee_transfer",
+    "employment_type",
+    "exit_interview",
+    "expected_skill_set",
+    "expense_claim",
+    "expense_claim_account",
+    "expense_claim_advance",
+    "expense_claim_detail",
+    "expense_claim_type",
+    "expense_taxes_and_charges",
+    "full_and_final_asset",
+    "full_and_final_outstanding_statement",
+    "full_and_final_statement",
+    "goal",
+    "gratuity",
+    "gratuity_applicable_component",
+    "gratuity_rule",
+    "gratuity_rule_slab",
+    "grievance_type",
+    "holiday_list_assignment",
+    "hr_settings",
+    "identification_document_type",
+    "income_tax_slab",
+    "income_tax_slab_other_charges",
+    "interest",
+    "interview",
+    "interview_detail",
+    "interview_feedback",
+    "interview_type",
+    "interviewer",
+    "job_applicant",
+    "job_applicant_source",
+    "job_offer",
+    "job_offer_term",
+    "job_offer_term_template",
+    "job_opening",
+    "job_opening_template",
+    "job_requisition",
+    "kra",
+    "leave_adjustment",
+    "leave_allocation",
+    "leave_application",
+    "leave_block_list",
+    "leave_block_list_allow",
+    "leave_block_list_date",
+    "leave_control_panel",
+    "leave_encashment",
+    "leave_ledger_entry",
+    "leave_period",
+    "leave_policy",
+    "leave_policy_assignment",
+    "leave_policy_detail",
+    "leave_type",
+    "offer_term",
+    "overtime_details",
+    "overtime_salary_component",
+    "overtime_slip",
+    "overtime_type",
+    "payroll_correction",
+    "payroll_correction_child",
+    "payroll_employee_detail",
+    "payroll_entry",
+    "payroll_period",
+    "payroll_period_date",
+    "payroll_settings",
+    "purpose_of_travel",
+    "pwa_notification",
+    "retention_bonus",
+    "salary_component",
+    "salary_component_account",
+    "salary_detail",
+    "salary_slip",
+    "salary_slip_leave",
+    "salary_slip_loan",
+    "salary_slip_timesheet",
+    "salary_structure",
+    "salary_structure_assignment",
+    "salary_withholding",
+    "salary_withholding_cycle",
+    "shift_assignment",
+    "shift_assignment_tool",
+    "shift_location",
+    "shift_request",
+    "shift_schedule",
+    "shift_schedule_assignment",
+    "shift_type",
+    "skill",
+    "skill_assessment",
+    "staffing_plan",
+    "staffing_plan_detail",
+    "taxable_salary_slab",
+    "training_event",
+    "training_event_employee",
+    "training_feedback",
+    "training_program",
+    "training_result",
+    "training_result_employee",
+    "travel_itinerary",
+    "travel_request",
+    "travel_request_costing",
+    "vehicle_log",
+    "vehicle_service",
+    "vehicle_service_item"
+  ],
+  "erp_tree": "/tmp/claude-0/-home-user/ed41d43a-eb60-5121-a06d-666f3ed271e7/scratchpad/erp-breakup/wave67/pay/erp/frappe",
+  "erp_tree_repo_commit": "251637e4f3294acb6db98826d7b3e2e846226fa6",
+  "excluded": [
+    "hooks.py",
+    "locale",
+    "modules.txt",
+    "patches",
+    "patches.txt",
+    "www"
+  ],
+  "frappe_dependencies": {
+    "erpnext": ">=16.0.0,<17.0.0",
+    "frappe": ">=16.0.0,<17.0.0"
+  },
+  "hooks_supported": {
+    "doc_events": "24 doctype keys",
+    "scheduler_events": {
+      "all": 1,
+      "daily": 7,
+      "daily_long": 3,
+      "hourly": 1,
+      "hourly_long": 3,
+      "monthly": 1,
+      "weekly": 1
+    },
+    "whitelisted_methods": []
+  },
+  "hooks_unsupported": {
+    "accounting_dimension_doctypes": [
+      "Expense Claim",
+      "Expense Claim Detail",
+      "Expense Taxes and Charges",
+      "Payroll Entry",
+      "Leave Encashment"
+    ],
+    "add_to_apps_screen": [
+      {
+        "has_permission": "{app_name}.hrms.hr.utils.check_app_permission",
+        "logo": "/assets/hrms/images/frappe-hr-logo.svg",
+        "name": "hrms",
+        "route": "/desk/people",
+        "title": "Frappe HR"
+      }
+    ],
+    "advance_payment_payable_doctypes": [
+      "Leave Encashment",
+      "Gratuity",
+      "Employee Advance"
+    ],
+    "app_description": "Modern HR and Payroll Software",
+    "app_email": "contact@frappe.io",
+    "app_home": "/desk/people",
+    "app_include_css": "hrms.bundle.css",
+    "app_include_js": [
+      "hrms.bundle.js"
+    ],
+    "app_license": "GNU General Public License (v3)",
+    "app_logo_url": "/assets/hrms/images/frappe-hr-logo.svg",
+    "app_name": "hrms",
+    "app_publisher": "Frappe Technologies Pvt. Ltd.",
+    "app_title": "Frappe HR",
+    "bank_reconciliation_doctypes": [
+      "Expense Claim"
+    ],
+    "before_tests": "{app_name}.hrms.tests.test_utils.before_tests",
+    "calendars": [
+      "Leave Application"
+    ],
+    "company_data_to_be_ignored": [
+      "Salary Component Account",
+      "Salary Structure",
+      "Salary Structure Assignment",
+      "Payroll Period",
+      "Income Tax Slab",
+      "Leave Period",
+      "Leave Policy Assignment",
+      "Employee Onboarding Template",
+      "Employee Separation Template"
+    ],
+    "doctype_js": {
+      "Bank Transaction": "public/js/erpnext/bank_transaction.js",
+      "Company": "public/js/erpnext/company.js",
+      "Delivery Trip": "public/js/erpnext/delivery_trip.js",
+      "Department": "public/js/erpnext/department.js",
+      "Employee": "public/js/erpnext/employee.js",
+      "Journal Entry": "public/js/erpnext/journal_entry.js",
+      "Payment Entry": "public/js/erpnext/payment_entry.js",
+      "Timesheet": "public/js/erpnext/timesheet.js"
+    },
+    "employee_holiday_list": [
+      "{app_name}.hrms.utils.holiday_list.get_holiday_list_for_employee"
+    ],
+    "export_python_type_annotations": "True",
+    "get_matching_queries": "{app_name}.hrms.hr.utils.get_matching_queries",
+    "global_search_doctypes": {
+      "Default": [
+        {
+          "doctype": "Salary Slip",
+          "index": 19
+        },
+        {
+          "doctype": "Leave Application",
+          "index": 20
+        },
+        {
+          "doctype": "Expense Claim",
+          "index": 21
+        },
+        {
+          "doctype": "Employee Grade",
+          "index": 37
+        },
+        {
+          "doctype": "Job Opening",
+          "index": 39
+        },
+        {
+          "doctype": "Job Applicant",
+          "index": 40
+        },
+        {
+          "doctype": "Job Offer",
+          "index": 41
+        },
+        {
+          "doctype": "Salary Structure Assignment",
+          "index": 42
+        },
+        {
+          "doctype": "Appraisal",
+          "index": 43
+        }
+      ]
+    },
+    "has_upload_permission": {
+      "Employee": "{app_name}.erp.doctype.employee.employee.has_upload_permission"
+    },
+    "ignore_links_on_delete": [
+      "PWA Notification"
+    ],
+    "ignore_translatable_strings_from": [
+      "frappe",
+      "erpnext"
+    ],
+    "invoice_doctypes": [
+      "Expense Claim"
+    ],
+    "jinja": {
+      "methods": [
+        "{app_name}.hrms.utils.get_country"
+      ]
+    },
+    "override_doctype_class": {
+      "Employee": "{app_name}.hrms.overrides.employee_master.EmployeeMaster",
+      "Payment Entry": "{app_name}.hrms.overrides.employee_payment_entry.EmployeePaymentEntry",
+      "Project": "{app_name}.hrms.overrides.employee_project.EmployeeProject",
+      "Timesheet": "{app_name}.hrms.overrides.employee_timesheet.EmployeeTimesheet"
+    },
+    "override_doctype_dashboards": {
+      "Bank Account": "{app_name}.hrms.overrides.dashboard_overrides.get_dashboard_for_bank_account",
+      "Employee": "{app_name}.hrms.overrides.dashboard_overrides.get_dashboard_for_employee",
+      "Holiday List": "{app_name}.hrms.overrides.dashboard_overrides.get_dashboard_for_holiday_list",
+      "Project": "{app_name}.hrms.overrides.dashboard_overrides.get_dashboard_for_project",
+      "Task": "{app_name}.hrms.overrides.dashboard_overrides.get_dashboard_for_project",
+      "Timesheet": "{app_name}.hrms.overrides.dashboard_overrides.get_dashboard_for_timesheet"
+    },
+    "period_closing_doctypes": [
+      "Payroll Entry"
+    ],
+    "regional_overrides": {
+      "India": {
+        "hrms.hr.utils.calculate_annual_eligible_hra_exemption": "{app_name}.hrms.regional.india.utils.calculate_annual_eligible_hra_exemption",
+        "hrms.hr.utils.calculate_hra_exemption_for_period": "{app_name}.hrms.regional.india.utils.calculate_hra_exemption_for_period",
+        "hrms.hr.utils.calculate_tax_with_marginal_relief": "{app_name}.hrms.regional.india.utils.calculate_tax_with_marginal_relief"
+      }
+    },
+    "repost_allowed_doctypes": [
+      "Expense Claim"
+    ],
+    "require_type_annotated_api_methods": "True",
+    "required_apps": [
+      "frappe/erpnext"
+    ],
+    "source_link": "http://github.com/frappe/hrms",
+    "website_generators": [
+      "Job Opening"
+    ],
+    "website_route_rules": [
+      {
+        "from_route": "/hrms/<path:app_path>",
+        "to_route": "hrms"
+      },
+      {
+        "from_route": "/hr/<path:app_path>",
+        "to_route": "roster"
+      }
+    ]
+  },
+  "install_hooks_not_declared": {
+    "after_app_install": "{app_name}.hrms.setup.after_app_install",
+    "after_install": "{app_name}.hrms.install.after_install",
+    "after_migrate": "{app_name}.hrms.setup.update_select_perm_after_install",
+    "before_app_uninstall": "{app_name}.hrms.setup.before_app_uninstall",
+    "before_uninstall": "{app_name}.hrms.uninstall.before_uninstall",
+    "setup_wizard_complete": "{app_name}.hrms.subscription_utils.update_erpnext_access"
+  },
+  "module_count": 2,
+  "notes": [
+    "patches_post_install: hrms/patches/post_install/* ported as src/patches_post_install/ (the composer redirects src/patches app-level, flat) because after_install runs them on every install; setup.py's f-string patch runner is re-pointed by SETUP_REMAPS. patches/v*/ and patches.txt (migration history for pre-existing Frappe HR DBs) are excluded, erp-precedent.",
+    "install/lifecycle hooks NOT declared in manifest (composer merge_hooks() after_install string-append bug, erp precedent). Run `bench --site <site> execute {app}.hrms.install.after_install` once per fresh site \u2014 it creates the HR custom fields on erp doctypes, fixtures, role profiles and runs the ported post-install patches; {app}.hrms.uninstall.before_uninstall removes the customizations. after_migrate ({app}.hrms.setup.update_select_perm_after_install) and the lending-app integration hooks (after_app_install/before_app_uninstall) are likewise manual until the composer supports them.",
+    "hooks_unsupported keys are NOT wired by the composer; a shell can hand-write any of them above its hooks.py fence. Their dotted values are pre-mapped to composed paths here for that purpose. LOAD-BEARING ones for HR correctness: override_doctype_class (EmployeeMaster/EmployeeTimesheet/EmployeePaymentEntry/EmployeeProject extend erp doctype classes), doctype_js (HR buttons on Employee/Company/... forms), regional_overrides (India payroll), has_upload_permission, override_doctype_dashboards, jinja methods, period_closing/accounting_dimension/bank_reconciliation/advance_payment_payable/invoice doctype registrations consumed by erp, and website_route_rules/website_generators for the excluded www/portal surfaces.",
+    "unmapped erpnext.patches.* entries are EXPECTED: setup.py's get_post_install_patches() lists historical patch NAMES whose basenames alone are resolved (against the ported patches_post_install package) \u2014 the erpnext-rooted spellings are inert site-history labels, kept verbatim.",
+    "hrms composes only alongside erp: upstream requires the erpnext app (required_apps) and imports it unguarded, so there is no graceful no-erp degradation to port. The 'lending' app checks stay verbatim upstream behavior (graceful skip \u2014 no lending SDK module exists in the fleet).",
+    "js string literals that spell a mappable dotted path are rewritten even when they name a CLIENT-side JS namespace (e.g. frappe.provide(\"erpnext.accounts.dimensions\") -> frappe.provide(\"{app_name}.erp.accounts.dimensions\")) \u2014 byte-for-byte the erp port's own behavior (see the erp tree's doctype/asset/asset.js). Unquoted client-namespace js refs (hrms.HierarchyChart, erpnext.utils.*, ...) are left alone and appear in unmapped_dotted_paths; they resolve against the bundled JS assets, which compose inert for now (same erp-port limitation).",
+    "src/templates/, src/public/ and the workspace_sidebar/, desktop_icon/ data dirs compose under the module dir, but frappe serves web templates, portal pages and public assets from app-level paths only \u2014 like the erp port they are carried python-importable/data-complete but inert as web pages/assets until the composer grows an app-level channel. The hrms/roster PWA (repo-root frontend/ + roster/ Vue apps, served via the excluded www/ pages) is NOT part of the python package and is not ported."
+  ],
+  "patches_post_install": [
+    "create_country_fixtures.py",
+    "delete_employee_transfer_property_doctype.py",
+    "move_doctype_reports_and_notification_from_hr_to_payroll.py",
+    "move_payroll_setting_separately_from_hr_settings.py",
+    "move_tax_slabs_from_payroll_period_to_income_tax_slab.py",
+    "rename_stop_to_send_birthday_reminders.py",
+    "set_company_in_leave_ledger_entry.py",
+    "set_department_for_doctypes.py",
+    "set_payroll_cost_centers.py",
+    "set_payroll_entry_status.py",
+    "set_training_event_attendance.py",
+    "update_allocate_on_in_leave_type.py",
+    "update_employee_advance_status.py",
+    "update_expense_claim_status_for_paid_advances.py",
+    "update_performance_module_changes.py",
+    "update_reason_for_resignation_in_employee.py",
+    "update_start_end_date_for_old_shift_assignment.py",
+    "updates_for_multi_currency_payroll.py"
+  ],
+  "rokct_fixes": {
+    "patches/post_install/update_employee_advance_status.py": {
+      "origin": "Frappenize/hrms@rokct commit 74d81739875f3c6fec9368a77ff1ce50cf720067 (fix(postgres): properly cast return_amount bounds to boolean), archived on branch rokct-archive-2026-03",
+      "rules": 2
+    }
+  },
+  "setup_remaps": {
+    "setup.py": 1
+  },
+  "skipped_doctype_stubs": [
+    "hr/doctype/interview_round"
+  ],
+  "source": "/tmp/claude-0/-home-user/ed41d43a-eb60-5121-a06d-666f3ed271e7/scratchpad/upstream/hrms",
+  "source_branch": "rokct-hotfix",
+  "source_commit": "6985c687d2633bac58f98fa430e0c2d314fcad07",
+  "unmapped_detail": {
+    "erpnext.get_currency": [
+      "hr/doctype/employee_advance/employee_advance.js",
+      "hr/doctype/expense_claim/expense_claim.js",
+      "hr/doctype/leave_encashment/leave_encashment.js",
+      "payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js",
+      "payroll/doctype/payroll_entry/payroll_entry.js"
+    ],
+    "erpnext.job_offer": [
+      "hr/doctype/job_offer/job_offer.js"
+    ],
+    "erpnext.job_offer.make_employee": [
+      "hr/doctype/job_offer/job_offer.js"
+    ],
+    "erpnext.patches.v13_0.move_doctype_reports_and_notification_from_hr_to_payroll": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.move_payroll_setting_separately_from_hr_settings": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.move_tax_slabs_from_payroll_period_to_income_tax_slab": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.rename_stop_to_send_birthday_reminders": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.set_company_in_leave_ledger_entry": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.set_payroll_entry_status": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.set_training_event_attendance": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.update_employee_advance_status": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.update_expense_claim_status_for_paid_advances": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.update_reason_for_resignation_in_employee": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.update_start_end_date_for_old_shift_assignment": [
+      "setup.py"
+    ],
+    "erpnext.patches.v13_0.updates_for_multi_currency_payroll": [
+      "setup.py"
+    ],
+    "erpnext.patches.v14_0.delete_employee_transfer_property_doctype": [
+      "setup.py"
+    ],
+    "erpnext.patches.v14_0.set_payroll_cost_centers": [
+      "setup.py"
+    ],
+    "erpnext.queries.employee": [
+      "hr/doctype/leave_application/leave_application.js",
+      "hr/doctype/shift_request/shift_request.js"
+    ],
+    "erpnext.utils.copy_value_in_all_rows": [
+      "hr/doctype/expense_claim/expense_claim.js"
+    ],
+    "erpnext.utils.get_fiscal_year": [
+      "hr/report/employee_advance_summary/employee_advance_summary.js"
+    ],
+    "erpnext.utils.get_terms": [
+      "hr/doctype/job_offer/job_offer.js"
+    ],
+    "erpnext.utils.get_tree_default": [
+      "hr/doctype/goal/goal_tree.js"
+    ],
+    "erpnext.utils.get_tree_options": [
+      "hr/doctype/goal/goal_tree.js"
+    ],
+    "erpnext.utils.map_current_doc": [
+      "payroll/doctype/employee_tax_exemption_proof_submission/employee_tax_exemption_proof_submission.js"
+    ],
+    "hrms.HierarchyChart": [
+      "hr/page/organizational_chart/organizational_chart.js",
+      "public/js/hierarchy_chart/hierarchy_chart_desktop.js"
+    ],
+    "hrms.HierarchyChartMobile": [
+      "hr/page/organizational_chart/organizational_chart.js",
+      "public/js/hierarchy_chart/hierarchy_chart_mobile.js"
+    ],
+    "hrms.PerformanceFeedback": [
+      "hr/doctype/appraisal/appraisal.js",
+      "public/js/performance/performance_feedback.js"
+    ],
+    "hrms.add_shift_tools_button_to_form": [
+      "hr/doctype/shift_location/shift_location.js",
+      "hr/doctype/shift_schedule/shift_schedule.js",
+      "hr/doctype/shift_type/shift_type.js"
+    ],
+    "hrms.add_shift_tools_button_to_list": [
+      "hr/doctype/shift_assignment/shift_assignment_list.js",
+      "hr/doctype/shift_location/shift_location_list.js",
+      "hr/doctype/shift_request/shift_request_list.js",
+      "hr/doctype/shift_schedule/shift_schedule_list.js",
+      "hr/doctype/shift_schedule_assignment/shift_schedule_assignment_list.js"
+    ],
+    "hrms.fetch_geolocation": [
+      "hr/doctype/employee_checkin/employee_checkin.js",
+      "hr/doctype/shift_location/shift_location.js"
+    ],
+    "hrms.get_current_employee": [
+      "hr/doctype/expense_claim/expense_claim.js",
+      "hr/doctype/leave_application/leave_application.js",
+      "hr/report/employee_leave_balance/employee_leave_balance.js",
+      "payroll/report/employee_ctc_break_up/employee_ctc_break_up.js"
+    ],
+    "hrms.handle_realtime_bulk_action_notification": [
+      "hr/doctype/leave_control_panel/leave_control_panel.js",
+      "hr/doctype/shift_assignment_tool/shift_assignment_tool.js",
+      "payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js"
+    ],
+    "hrms.leave_utils": [
+      "public/js/utils/leave_utils.js"
+    ],
+    "hrms.leave_utils.add_view_ledger_button": [
+      "hr/doctype/leave_adjustment/leave_adjustment.js",
+      "hr/doctype/leave_allocation/leave_allocation.js",
+      "hr/doctype/leave_application/leave_application.js",
+      "hr/doctype/leave_encashment/leave_encashment.js"
+    ],
+    "hrms.min.js": [
+      "public/build.json"
+    ],
+    "hrms.notify_bulk_action_status": [
+      "public/js/utils/index.js"
+    ],
+    "hrms.payroll_utils": [
+      "public/js/utils/payroll_utils.js"
+    ],
+    "hrms.payroll_utils.set_autocompletions_for_condition_and_formula": [
+      "payroll/doctype/salary_component/salary_component.js",
+      "payroll/doctype/salary_structure/salary_structure.js"
+    ],
+    "hrms.proceed_save_with_reminders_frequency_change": [
+      "hr/doctype/hr_settings/hr_settings.py"
+    ],
+    "hrms.render_employees_datatable": [
+      "hr/doctype/leave_control_panel/leave_control_panel.js",
+      "hr/doctype/shift_assignment_tool/shift_assignment_tool.js",
+      "payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js"
+    ],
+    "hrms.salary_slip_deductions_report_filters": [
+      "payroll/report/income_tax_deductions/income_tax_deductions.js",
+      "payroll/report/professional_tax_deductions/professional_tax_deductions.js",
+      "payroll/report/provident_fund_deductions/provident_fund_deductions.js",
+      "payroll/report/salary_payments_based_on_payment_mode/salary_payments_based_on_payment_mode.js",
+      "payroll/report/salary_payments_via_ecs/salary_payments_via_ecs.js"
+    ],
+    "hrms.setup_employee_filter_group": [
+      "hr/doctype/leave_control_panel/leave_control_panel.js",
+      "hr/doctype/shift_assignment_tool/shift_assignment_tool.js",
+      "payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js"
+    ],
+    "hrms.validate_mandatory_fields": [
+      "hr/doctype/leave_control_panel/leave_control_panel.js",
+      "hr/doctype/shift_assignment_tool/shift_assignment_tool.js",
+      "payroll/doctype/bulk_salary_structure_assignment/bulk_salary_structure_assignment.js"
+    ]
+  },
+  "unmapped_dotted_paths": [
+    "erpnext.get_currency",
+    "erpnext.job_offer",
+    "erpnext.job_offer.make_employee",
+    "erpnext.patches.v13_0.move_doctype_reports_and_notification_from_hr_to_payroll",
+    "erpnext.patches.v13_0.move_payroll_setting_separately_from_hr_settings",
+    "erpnext.patches.v13_0.move_tax_slabs_from_payroll_period_to_income_tax_slab",
+    "erpnext.patches.v13_0.rename_stop_to_send_birthday_reminders",
+    "erpnext.patches.v13_0.set_company_in_leave_ledger_entry",
+    "erpnext.patches.v13_0.set_payroll_entry_status",
+    "erpnext.patches.v13_0.set_training_event_attendance",
+    "erpnext.patches.v13_0.update_employee_advance_status",
+    "erpnext.patches.v13_0.update_expense_claim_status_for_paid_advances",
+    "erpnext.patches.v13_0.update_reason_for_resignation_in_employee",
+    "erpnext.patches.v13_0.update_start_end_date_for_old_shift_assignment",
+    "erpnext.patches.v13_0.updates_for_multi_currency_payroll",
+    "erpnext.patches.v14_0.delete_employee_transfer_property_doctype",
+    "erpnext.patches.v14_0.set_payroll_cost_centers",
+    "erpnext.queries.employee",
+    "erpnext.utils.copy_value_in_all_rows",
+    "erpnext.utils.get_fiscal_year",
+    "erpnext.utils.get_terms",
+    "erpnext.utils.get_tree_default",
+    "erpnext.utils.get_tree_options",
+    "erpnext.utils.map_current_doc",
+    "hrms.HierarchyChart",
+    "hrms.HierarchyChartMobile",
+    "hrms.PerformanceFeedback",
+    "hrms.add_shift_tools_button_to_form",
+    "hrms.add_shift_tools_button_to_list",
+    "hrms.fetch_geolocation",
+    "hrms.get_current_employee",
+    "hrms.handle_realtime_bulk_action_notification",
+    "hrms.leave_utils",
+    "hrms.leave_utils.add_view_ledger_button",
+    "hrms.min.js",
+    "hrms.notify_bulk_action_status",
+    "hrms.payroll_utils",
+    "hrms.payroll_utils.set_autocompletions_for_condition_and_formula",
+    "hrms.proceed_save_with_reminders_frequency_change",
+    "hrms.render_employees_datatable",
+    "hrms.salary_slip_deductions_report_filters",
+    "hrms.setup_employee_filter_group",
+    "hrms.validate_mandatory_fields"
+  ]
+}

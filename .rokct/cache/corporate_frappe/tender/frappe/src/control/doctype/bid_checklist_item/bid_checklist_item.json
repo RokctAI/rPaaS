@@ -1,0 +1,79 @@
+{
+    "actions": [],
+    "creation": "2026-07-26 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "task_text",
+        "weight",
+        "severity",
+        "rule_code",
+        "status",
+        "completed_by",
+        "completed_on"
+    ],
+    "fields": [
+        {
+            "fieldname": "task_text",
+            "fieldtype": "Small Text",
+            "in_list_view": 1,
+            "label": "Task",
+            "reqd": 1
+        },
+        {
+            "default": "0",
+            "description": "Relative effort/priority weight carried over from the enrichment task string (\"text | N\")",
+            "fieldname": "weight",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "Weight"
+        },
+        {
+            "fieldname": "severity",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Severity",
+            "options": "\nFatal\nCurable\nPoints-only",
+            "description": "Compliance severity carried from the generating Tender Compliance Rule; blank for enrichment/workflow tasks"
+        },
+        {
+            "fieldname": "rule_code",
+            "fieldtype": "Data",
+            "label": "Rule Code",
+            "read_only": 1,
+            "description": "Tender Compliance Rule that generated this row (blank for enrichment tasks). Used for idempotent checklist sync."
+        },
+        {
+            "default": "Open",
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Status",
+            "options": "Open\nDone"
+        },
+        {
+            "fieldname": "completed_by",
+            "fieldtype": "Link",
+            "label": "Completed By",
+            "options": "User"
+        },
+        {
+            "fieldname": "completed_on",
+            "fieldtype": "Datetime",
+            "label": "Completed On"
+        }
+    ],
+    "index_web_pages_for_search": 0,
+    "istable": 1,
+    "links": [],
+    "modified": "2026-07-26 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Bid Checklist Item",
+    "owner": "Administrator",
+    "permissions": [],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1
+}

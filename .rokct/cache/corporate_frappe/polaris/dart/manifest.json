@@ -1,0 +1,31 @@
+{
+  "name": "polaris_sdk",
+  "version": "1.1.1",
+  "home_page": "templates/pages/polaris/app_page.dart",
+  "installs": [
+    {
+      "from": "templates/assets",
+      "to": "assets"
+    }
+  ],
+  "app_assets": [
+    "assets/images/splash.png",
+    "assets/images/splash1.png",
+    "assets/images/splash2.png"
+  ],
+  "_comment_app_assets": "Home SDKs ship the splash/login background images (base_sdk's splash_page and auth_sdk's login_page reference assets/images/splash*.png). Each home SDK provides its own copies so every composed app can brand them independently; app_assets gets them into the host pubspec's sdk-app-assets block so they are actually bundled. If base_sdk also installed identical files first, the file copy is skipped (already-present guard) and only the pubspec declaration matters.",
+  "database": {
+    "tables": [
+      {
+        "class": "PolarisDraftTable",
+        "import": "package:polaris_sdk/polaris_sdk.dart"
+      }
+    ],
+    "migration": {
+      "version": 13,
+      "step": "if (from < 13) { await m.createTable(polarisDraftTable); }"
+    }
+  },
+  "routes": [],
+  "integrations": []
+}

@@ -1,0 +1,80 @@
+[
+    {
+        "doctype": "Tender Workflow Template",
+        "name": "Default",
+        "template_name": "Default",
+        "tasks": [
+            {"subject": "Day-one triage: identify pack type (bid/RFQ/RFI/EOI - judge by content) and regime (SBD/MBD/SOE/CIDB/RFQ), closing date, briefing date; diarise the bidder-question and addenda cut-offs SEPARATELY; sweep for contradictions including the submission channel itself", "due_date_offset_days": 1},
+            {"subject": "Build the page-by-page master checklist of returnables from the pack - sweep by title for POPIA, DPIP/FPPO, Integrity Pact, litigation-history, single-submission certificate, lot tick-boxes and method-of-pricing forms", "due_date_offset_days": 1},
+            {"subject": "Check the Tender Data's functionality clause (some packs score none); extract the matrix, threshold (corpus range 40-83%) and any zero-anywhere rule; go/no-go against a realistic self-score", "due_date_offset_days": 2},
+            {"subject": "Check where B-BBEE sits: preference-points table (soft gate - still submit without it) vs pass/fail pre-qualification table (hard gate - proof at closing or dead)", "due_date_offset_days": 2},
+            {"subject": "Flag objective-criteria (PPPFA s2(1)(f)) and security-vetting exposure at go/no-go: track record with this buyer, litigation, financial ratios, clearance-ready personnel", "due_date_offset_days": 2},
+            {"subject": "Refresh the universal gate evidence: CSD report, TCS PIN, defaulters check, CIPC certified set, B-BBEE evidence", "due_date_offset_days": 3},
+            {"subject": "Complete all mandatory forms on the official issued copies (SBD/MBD 1, 4, 6.1 and the rest of the pack's spread)", "due_date_offset_days": 7},
+            {"subject": "Complete the pricing schedule: every line priced, arithmetic self-audit, totals reconciled to the cover form", "due_date_offset_days": 10},
+            {"subject": "Commissioner of Oaths session: affidavits and certified copies (under 3 months, from originals)", "due_date_offset_days": 12},
+            {"subject": "Final pre-submission checklist with a second person independently re-verifying every line", "due_date_offset_days": 13},
+            {"subject": "Deliver / upload at least 24 hours before closing; keep the lodgement receipt and a complete copy", "due_date_offset_days": 14}
+        ]
+    },
+    {
+        "doctype": "Tender Workflow Template",
+        "name": "SBD Formal Bid",
+        "template_name": "SBD Formal Bid",
+        "tasks": [
+            {"subject": "Confirm the preference system from the tender-specific clause (80/20 vs 90/10) - the tender-specific text governs over boilerplate", "due_date_offset_days": 1},
+            {"subject": "SBD 4: answer every question individually; disclose all CSD-linked director companies", "due_date_offset_days": 5},
+            {"subject": "SBD 6.1: write points per goal and attach the exact proof per goal", "due_date_offset_days": 7},
+            {"subject": "SBD 1: fill every field, total price on the face of the form, signed with capacity and proof of authority", "due_date_offset_days": 10},
+            {"subject": "Final checklist, second-person verification, submit 24 hours early", "due_date_offset_days": 13}
+        ]
+    },
+    {
+        "doctype": "Tender Workflow Template",
+        "name": "MBD Municipal Bid",
+        "template_name": "MBD Municipal Bid",
+        "tasks": [
+            {"subject": "Start collecting municipal rates clearances for the company AND every director on day one - arrears threshold is buyer-specific (1-3 months; check when it bites)", "due_date_offset_days": 1},
+            {"subject": "Check whether the procurement exceeds R10m: MBD 5 plus three years' audited AFS required", "due_date_offset_days": 2},
+            {"subject": "Complete MBD 8 and MBD 9 as separate signed returnables", "due_date_offset_days": 7},
+            {"subject": "MBD 1: total price on the face of the form; MBD 4 and 6.1 complete with proofs", "due_date_offset_days": 10},
+            {"subject": "Assume single-shot (no cure window): everything in the box at closing; deliver 24 hours early", "due_date_offset_days": 13}
+        ]
+    },
+    {
+        "doctype": "Tender Workflow Template",
+        "name": "CIDB Construction Bid",
+        "template_name": "CIDB Construction Bid",
+        "tasks": [
+            {"subject": "Verify CIDB grading: exact class and designation, ACTIVE status, valid through the validity period - if not held, check the eligibility clause for a 21-working-day registration grace period (proof of application at closing) before self-eliminating", "due_date_offset_days": 1},
+            {"subject": "Read the eligibility/qualifying-criteria clause (F.2.1) IN FULL and register every criterion as a hard gate - keyword extraction alone misses grading, JV formalities, personnel qualifications and financial capacity", "due_date_offset_days": 1},
+            {"subject": "JV route: signed JV agreement before submission; book the notary where the pack demands an authenticated formation document", "due_date_offset_days": 3},
+            {"subject": "COIDA Letter of Good Standing current; H&S Plan and Quality Control Plan drafted per the pack's specifications", "due_date_offset_days": 7},
+            {"subject": "C1.1 Form of Offer: total price in words AND figures, signed and witnessed; price carried over from the pricing/activity schedule", "due_date_offset_days": 10},
+            {"subject": "Confirm performance-guarantee and retention capacity with the bank/insurer before committing", "due_date_offset_days": 5},
+            {"subject": "ORIGINAL + COPY sealed packages per the pack's packaging clause; deliver 24 hours early", "due_date_offset_days": 13}
+        ]
+    },
+    {
+        "doctype": "Tender Workflow Template",
+        "name": "Panel / Framework Entry",
+        "template_name": "Panel / Framework Entry",
+        "tasks": [
+            {"subject": "Confirm the two-stage mechanics: functionality-only gate to join the panel (price may not be submitted at panel stage at all), then per-order RFQ mini-competitions among panelists", "due_date_offset_days": 1},
+            {"subject": "Go/no-go on panel economics: entry buys the right to compete, not revenue - estimated quantities are NOT guaranteed volume; price each unit to be viable at any volume", "due_date_offset_days": 2},
+            {"subject": "Check panel-regime traps: one-area/lot caps, leased-equipment cross-checks against other bidders' fleets, performance-penalty/greylisting regimes", "due_date_offset_days": 3},
+            {"subject": "Build the functionality evidence pack to the panel threshold (municipal panels regularly sit at 50-55%)", "due_date_offset_days": 7},
+            {"subject": "Post-award: answer every per-order RFQ invitation - repeatedly ignoring invitations is a removal ground at some buyers", "due_date_offset_days": 14}
+        ]
+    },
+    {
+        "doctype": "Tender Workflow Template",
+        "name": "RFQ Quick Response",
+        "template_name": "RFQ Quick Response",
+        "tasks": [
+            {"subject": "Judge by content, not the cover page: check whether this 'RFQ' is actually a formal bid", "due_date_offset_days": 1},
+            {"subject": "Complete SBD 4 and SBD 6.1 with the same care as a formal bid - the core kill-rules apply in full", "due_date_offset_days": 2},
+            {"subject": "Price every line, attach the universal gate evidence, submit on the exact prescribed channel", "due_date_offset_days": 3}
+        ]
+    }
+]

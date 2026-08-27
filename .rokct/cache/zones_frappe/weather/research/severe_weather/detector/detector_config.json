@@ -1,0 +1,67 @@
+{
+  "version": "0.1-placeholder",
+  "notes": "PLACEHOLDER config drawn from the physics seen in the partial mining run (mining/SIGNATURES.md, dev cohort, destructive_wind only had enough events) and the anchor-window checks. Every threshold here is a starting point for tune.py, not a tuned value. The tornado rule in particular is a provisional favorable-conditions proxy (ERA5 has no CAPE); signature mining will refine which features and thresholds carry signal.",
+  "classes": {
+    "destructive_wind": {
+      "notes": "Cyclone approach physics from partial mining: 24 h MSLP falls (event median -3 hPa at -24 h vs -0.1 for controls), low absolute MSLP, elevated/rising gusts, and a moist plume (tcwv_anom_7d median +7.8 at -24 h). Weighted score, no hard gates.",
+      "conditions": [
+        {"name": "mslp_fall_24h", "feature": "mslp_tend_24h", "direction": "below", "on": -3.0, "off": -1.5, "weight": 0.25, "persistence_h": 2},
+        {"name": "low_mslp", "feature": "mslp_hpa", "direction": "below", "on": 1005.0, "off": 1008.0, "weight": 0.15, "persistence_h": 2},
+        {"name": "gust_high", "feature": "gust_max_24h", "direction": "above", "on": 13.0, "off": 11.0, "weight": 0.25, "persistence_h": 1},
+        {"name": "gust_rising", "feature": "gust_delta_6h", "direction": "above", "on": 3.0, "off": 1.0, "weight": 0.10, "persistence_h": 1},
+        {"name": "moist_plume", "feature": "tcwv_anom_7d", "direction": "above", "on": 5.0, "off": 2.0, "weight": 0.25, "persistence_h": 2}
+      ],
+      "required": [],
+      "groups": [],
+      "severity_on": {"watch": 0.35, "warning": 0.55, "severe": 0.80},
+      "severity_off_margin": 0.10,
+      "cooldown_h": 24,
+      "nan_tolerance_h": 6
+    },
+    "flash_flood": {
+      "notes": "Short-fuse rain physics: heavy 6 h rain, rain falling on already-wet soil, moisture plume. The any-of group makes an actual rain signal mandatory - moisture alone can never fire a flash-flood alarm.",
+      "conditions": [
+        {"name": "heavy_rain_6h", "feature": "precip_sum_6h", "direction": "above", "on": 8.0, "off": 4.0, "weight": 0.35, "persistence_h": 1},
+        {"name": "rain_on_sat_6h", "feature": "rain_on_sat_6h", "direction": "above", "on": 5.0, "off": 2.5, "weight": 0.25, "persistence_h": 1},
+        {"name": "moist_plume", "feature": "tcwv_anom_7d", "direction": "above", "on": 6.0, "off": 3.0, "weight": 0.20, "persistence_h": 2},
+        {"name": "rain_24h", "feature": "precip_sum_24h", "direction": "above", "on": 20.0, "off": 10.0, "weight": 0.20, "persistence_h": 1}
+      ],
+      "required": [],
+      "groups": [["heavy_rain_6h", "rain_on_sat_6h"]],
+      "severity_on": {"watch": 0.35, "warning": 0.55, "severe": 0.80},
+      "severity_off_margin": 0.10,
+      "cooldown_h": 12,
+      "nan_tolerance_h": 6
+    },
+    "flood": {
+      "notes": "Slow accumulation physics: multi-day rainfall on saturated soil, high antecedent precipitation index, soil-moisture percentile near its running max. The any-of group makes a multi-day rain accumulation mandatory.",
+      "conditions": [
+        {"name": "rain_72h", "feature": "precip_sum_72h", "direction": "above", "on": 40.0, "off": 25.0, "weight": 0.30, "persistence_h": 3},
+        {"name": "rain_on_sat_72h", "feature": "rain_on_sat_72h", "direction": "above", "on": 30.0, "off": 18.0, "weight": 0.30, "persistence_h": 3},
+        {"name": "soil_wet", "feature": "sm_pct", "direction": "above", "on": 0.85, "off": 0.70, "weight": 0.20, "persistence_h": 6},
+        {"name": "api_high", "feature": "api_96h", "direction": "above", "on": 30.0, "off": 20.0, "weight": 0.20, "persistence_h": 6}
+      ],
+      "required": [],
+      "groups": [["rain_72h", "rain_on_sat_72h"]],
+      "severity_on": {"watch": 0.40, "warning": 0.60, "severe": 0.85},
+      "severity_off_margin": 0.10,
+      "cooldown_h": 48,
+      "nan_tolerance_h": 6
+    },
+    "tornado": {
+      "notes": "PROVISIONAL favorable-conditions proxy (ERA5 has no CAPE): rapidly rising gusts + theta-e surge + low-level directional veer + moisture anomaly. Mining will refine both the feature set (a 100 m shear top-up extraction is a known follow-up) and thresholds; this rule exists so the harness runs end to end.",
+      "conditions": [
+        {"name": "gust_rising", "feature": "gust_delta_6h", "direction": "above", "on": 4.0, "off": 2.0, "weight": 0.30, "persistence_h": 1},
+        {"name": "theta_e_surge", "feature": "theta_e_delta_24h", "direction": "above", "on": 6.0, "off": 3.0, "weight": 0.25, "persistence_h": 1},
+        {"name": "veer_6h", "feature": "dir_veer_6h", "direction": "above", "on": 30.0, "off": 15.0, "weight": 0.20, "persistence_h": 1},
+        {"name": "moist_plume", "feature": "tcwv_anom_7d", "direction": "above", "on": 5.0, "off": 2.0, "weight": 0.25, "persistence_h": 2}
+      ],
+      "required": [],
+      "groups": [["gust_rising", "theta_e_surge"]],
+      "severity_on": {"watch": 0.30, "warning": 0.50, "severe": 0.75},
+      "severity_off_margin": 0.10,
+      "cooldown_h": 12,
+      "nan_tolerance_h": 6
+    }
+  }
+}

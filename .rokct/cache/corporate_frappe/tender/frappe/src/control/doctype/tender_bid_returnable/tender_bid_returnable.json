@@ -1,0 +1,120 @@
+{
+    "actions": [],
+    "creation": "2026-08-20 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-20 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Bid Returnable",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "istable": 1,
+    "field_order": [
+        "ref_code",
+        "title",
+        "mandatory",
+        "category",
+        "kill_note",
+        "template_code",
+        "guidance",
+        "studio_scope",
+        "generated_artifact",
+        "artifact_attested",
+        "artifact_attached_on",
+        "artifact_sha256"
+    ],
+    "fields": [
+        {
+            "fieldname": "ref_code",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Ref Code",
+            "reqd": 1,
+            "description": "The pack's own reference for this returnable, e.g. 'A4', 'Annexure B', 'Form C', '5.1(i)' — it becomes the form code on the rendered page and in the pack index"
+        },
+        {
+            "fieldname": "title",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Title",
+            "reqd": 1,
+            "description": "The returnable's title as issued in the pack (hand-captured by the desk — no pack parsing, no AI)"
+        },
+        {
+            "default": "1",
+            "fieldname": "mandatory",
+            "fieldtype": "Check",
+            "in_list_view": 1,
+            "label": "Mandatory",
+            "description": "Whether the pack marks this returnable mandatory (unticked = 'where the pack includes it')"
+        },
+        {
+            "fieldname": "category",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Category",
+            "options": "Buyer Form\nTechnical Returnable\nAttachment\nLegacy Preference Form",
+            "description": "'Legacy Preference Form' marks pre-2011 HDI / 1939-Ordinance style buyer forms (e.g. Musina Forms C/D) — capturing their issued titles lets the WARN-PREF-CONFLICT lint fire on the generated pack (findings F-12)"
+        },
+        {
+            "fieldname": "kill_note",
+            "fieldtype": "Small Text",
+            "label": "Kill Note",
+            "description": "The pack's own disqualification language for this returnable, quoted — renders as the red KILL NOTE on the worksheet page"
+        },
+        {
+            "fieldname": "template_code",
+            "fieldtype": "Data",
+            "label": "Template Code (optional)",
+            "description": "When this names an existing Tender Form Template code (e.g. MBD4, MBD6.1, ICT-CAPABILITY), that template's pre-filled worksheet renders for this row instead of the template-less placeholder page"
+        },
+        {
+            "fieldname": "guidance",
+            "fieldtype": "Small Text",
+            "label": "Guidance",
+            "description": "Desk guidance for completing this returnable — renders as the page's instruction notice when no template is linked"
+        },
+        {
+            "fieldname": "studio_scope",
+            "fieldtype": "Data",
+            "label": "Studio Document Scope (optional)",
+            "description": "Names the studio document that satisfies this returnable (e.g. 'Business Profile' — StartupOS's business_profile template, requested via a studio Document Request). Marks the row generate-via-studio (findings F-15): the worksheet page renders a pointer to generate the document instead of only the blank hand-fill placeholder"
+        },
+        {
+            "fieldname": "generated_artifact",
+            "fieldtype": "Attach",
+            "label": "Generated Artifact (optional)",
+            "description": "The studio-generated file that satisfies this returnable, attached once produced (findings F-15). When set, the worksheet page renders SATISFIED-BY-GENERATED-ARTIFACT provenance instead of the blank hand-fill placeholder. Deliberately NOT part of per-buyer seeding (seed_bid_returnables) — each bid attaches its own artifact. Gated like the F-13 dispatch outputs: it counts only generated-AND-attested — until artifact_attested is ticked, validate_submission_readiness fails with [RETURNABLE-ARTIFACT-UNATTESTED] and the pack never dispatches"
+        },
+        {
+            "default": "0",
+            "fieldname": "artifact_attested",
+            "fieldtype": "Check",
+            "label": "Artifact Attested",
+            "read_only": 1,
+            "description": "Explicit desk attestation that the generated artifact was reviewed (generated-and-attested discipline, F-15/F-13): until ticked, validate_submission_readiness fails and the pack never dispatches — set via attach_returnable_artifact attest=1"
+        },
+        {
+            "fieldname": "artifact_attached_on",
+            "fieldtype": "Datetime",
+            "label": "Artifact Attached On",
+            "read_only": 1,
+            "description": "Audit timestamp written by attach_returnable_artifact"
+        },
+        {
+            "fieldname": "artifact_sha256",
+            "fieldtype": "Data",
+            "length": 64,
+            "label": "Artifact SHA-256",
+            "read_only": 1,
+            "description": "Hex sha256 of the artifact's bytes, written on attach and RE-written at attest time (plan #11 immutability ledger): the digest fingerprints the document as the desk reviewed it, so a later edit to the file is detectable (compliance.dispatch_ledger.artifact_unaltered). Empty when hashing failed - never a fabricated digest"
+        }
+    ],
+    "permissions": []
+}

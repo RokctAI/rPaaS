@@ -1,0 +1,40 @@
+{
+  "name": "builder",
+  "version": "1.0.0",
+  "description": "Flutter app build pipeline (build orchestration, source project management). Control flavor (src/control/) carries the hub-side PaaS source fetcher (paas_source_versions.json + git clone into the builder source_code dir; requires host git/SSH access to the private RokctAI paas_* repos) and the Flutter/Android build-tools installer for the control VPS.",
+  "doctypes": [
+    "flutter_app_configuration",
+    "flutter_build_settings"
+  ],
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "before_uninstall": [
+          "{app_name}.builder.tenant.utils.prevent_uninstall_if_build_active"
+        ],
+        "whitelisted_methods": {
+          "{app_name}.api.builder.get_project_version": "{app_name}.builder.tenant.tasks.get_project_version",
+          "{app_name}.api.builder.generate_flutter_app": "{app_name}.builder.tenant.tasks.generate_flutter_app"
+        }
+      }
+    },
+    "control": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.fetch_paas_sources": "{app_name}.builder.control.fetch_paas_sources.fetch_paas_sources",
+          "control.api.fetch_paas_sources": "{app_name}.builder.control.fetch_paas_sources.fetch_paas_sources",
+          "control.control.api.fetch_paas_sources": "{app_name}.builder.control.fetch_paas_sources.fetch_paas_sources"
+        },
+        "scheduler_events": {
+          "weekly": [
+            "{app_name}.builder.control.fetch_paas_sources.fetch_paas_sources"
+          ]
+        },
+        "after_install": [
+          "{app_name}.builder.control.setup_flutter_build_tools.setup_flutter_build_tools",
+          "{app_name}.builder.control.fetch_paas_sources.fetch_paas_sources"
+        ]
+      }
+    }
+  }
+}

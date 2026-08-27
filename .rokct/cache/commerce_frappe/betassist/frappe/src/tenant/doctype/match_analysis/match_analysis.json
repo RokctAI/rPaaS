@@ -1,0 +1,103 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "autoname": "hash",
+ "creation": "2026-06-04 22:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "match",
+  "confidence_score",
+  "prediction",
+  "why_win_text",
+  "why_lose_text",
+  "bias_warning_type",
+  "generated_at"
+ ],
+ "fields": [
+  {
+   "fieldname": "match",
+   "fieldtype": "Link",
+   "label": "Match",
+   "options": "Match",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "confidence_score",
+   "fieldtype": "Percent",
+   "label": "Confidence Score",
+   "reqd": 1
+  },
+  {
+   "fieldname": "prediction",
+   "fieldtype": "Select",
+   "label": "Prediction",
+   "options": "Team A Win\nTeam B Win\nDraw",
+   "reqd": 1
+  },
+  {
+   "fieldname": "why_win_text",
+   "fieldtype": "Text",
+   "label": "Why the predicted team will win",
+   "reqd": 1
+  },
+  {
+   "fieldname": "why_lose_text",
+   "fieldtype": "Text",
+   "label": "Why the predicted team could lose / Risks",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bias_warning_type",
+   "fieldtype": "Select",
+   "label": "Bias Warning Type",
+   "options": "None\nFavorite Win\nFavorite Lose",
+   "default": "None"
+  },
+  {
+   "fieldname": "generated_at",
+   "fieldtype": "Datetime",
+   "label": "Generated At"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-04 22:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "betassist",
+ "name": "Match Analysis",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "import": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "All",
+   "share": 1,
+   "write": 0
+  }
+ ],
+ "sort_field": "generated_at",
+ "sort_order": "DESC",
+ "states": []
+}

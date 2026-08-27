@@ -1,0 +1,12 @@
+[
+    {
+        "doctype": "Custom Field",
+        "name": "Subscription Plan-enable_tenders",
+        "dt": "Subscription Plan",
+        "fieldname": "enable_tenders",
+        "fieldtype": "Check",
+        "label": "Enable Tenders",
+        "default": "0",
+        "description": "Grants the plan's subscribers access to TenderAssist (tender detail enrichment, bid claiming and checklists)"
+    }
+]

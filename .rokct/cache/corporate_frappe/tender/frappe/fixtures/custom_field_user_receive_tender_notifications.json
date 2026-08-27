@@ -1,0 +1,12 @@
+[
+    {
+        "doctype": "Custom Field",
+        "name": "User-receive_tender_notifications",
+        "dt": "User",
+        "fieldname": "receive_tender_notifications",
+        "fieldtype": "Check",
+        "label": "Receive Tender Notifications",
+        "default": "0",
+        "description": "Opt-in for tender compliance notifications (used by the weekly Compliance Artifact expiry sweep)"
+    }
+]

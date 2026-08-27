@@ -1,0 +1,38 @@
+{
+    "allow_self_subscription":  1,
+    "billing_cycle":  "Yearly",
+    "billing_interval":  1,
+    "cost":  200.0,
+    "currency":  "USD",
+    "doctype":  "Subscription Plan",
+    "is_ai":  0,
+    "item":  "Lending Plan",
+    "plan_name":  "Lending (Yearly)",
+    "price_determination":  "Fixed Rate",
+    "trial_period_days":  14,
+    "plan_category":  "lending",
+    "modules":  [
+                    {
+                        "module":  "rokct"
+                    },
+                    {
+                        "module":  "Memory"
+                    },
+                    {
+                        "module":  "Synaptic Network"
+                    },
+                    {
+                        "module":  "lending"
+                    }
+                ],
+    "is_free_plan":  0,
+    "features":  [
+                     "End-to-end Loan Lifecycle",
+                     "Advanced Scoredcard Metrics",
+                     "Full Audit Trail \u0026 Compliance",
+                     "Priority Repayment Processing",
+                     "NCR Compliant"
+                 ],
+    "plan_type":  "Tenant",
+    "storage_quota_gb":  1
+}

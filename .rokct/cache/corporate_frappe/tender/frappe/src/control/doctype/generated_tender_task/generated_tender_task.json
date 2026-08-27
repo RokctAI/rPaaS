@@ -1,0 +1,30 @@
+{
+    "name": "Generated Tender Task",
+    "engine": "InnoDB",
+    "creation": "2025-11-03 11:26:25.918725",
+    "doctype": "DocType",
+    "module": "tender",
+    "owner": "Administrator",
+    "permissions": [],
+    "fields": [
+        {
+            "fieldname": "subject",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Subject",
+            "reqd": 1
+        },
+        {
+            "fieldname": "due_date_offset_days",
+            "fieldtype": "Int",
+            "in_list_view": 1,
+            "label": "Due Date Offset (Days)",
+            "reqd": 1
+        }
+    ],
+    "track_changes": 1,
+    "issingle": 0,
+    "istable": 1,
+    "sort_field": "creation",
+    "sort_order": "ASC"
+}

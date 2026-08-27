@@ -1,1 +1,17 @@
 paas
+base
+comms
+wallet
+delivery
+map
+zones
+hardware
+booking
+kitchen
+loyalty
+merchants
+orders
+products
+promotions
+dev
+telemetry

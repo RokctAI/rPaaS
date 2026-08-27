@@ -1,0 +1,41 @@
+{
+  "name": "kitchen",
+  "description": "Modular backend package for kitchen",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.cook.get_cook_order_report": "{app_name}.kitchen.tenant.api.cook.get_cook_order_report",
+          "{app_name}.api.cook.get_cook_orders": "{app_name}.kitchen.tenant.api.cook.get_cook_orders",
+          "{app_name}.api.receipt.get_receipt": "{app_name}.kitchen.tenant.api.receipt.get_receipt",
+          "{app_name}.api.receipt.get_receipts": "{app_name}.kitchen.tenant.api.receipt.get_receipts",
+          "{app_name}.api.waiter.get_waiter_order_report": "{app_name}.kitchen.tenant.api.waiter.get_waiter_order_report",
+          "{app_name}.api.waiter.get_waiter_orders": "{app_name}.kitchen.tenant.api.waiter.get_waiter_orders"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Kitchen"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Receipt"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "control": {}
+  }
+}

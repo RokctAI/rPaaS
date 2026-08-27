@@ -1,0 +1,108 @@
+{
+  "name": "products",
+  "description": "Modular backend package for products",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.product.get_product_calculations": "{app_name}.products.tenant.api.product.get_product_calculations",
+          "{app_name}.api.product.get_suggest_price": "{app_name}.products.tenant.api.product.get_suggest_price",
+          "{app_name}.api.tag.get_tags": "{app_name}.products.tenant.api.tag.get_tags",
+          "{app_name}.api.brand.create_brand": "{app_name}.products.tenant.api.brand.create_brand",
+          "{app_name}.api.brand.delete_brand": "{app_name}.products.tenant.api.brand.delete_brand",
+          "{app_name}.api.brand.get_brand_by_uuid": "{app_name}.products.tenant.api.brand.get_brand_by_uuid",
+          "{app_name}.api.brand.get_brands": "{app_name}.products.tenant.api.brand.get_brands",
+          "{app_name}.api.brand.update_brand": "{app_name}.products.tenant.api.brand.update_brand",
+          "{app_name}.api.category.create_category": "{app_name}.products.tenant.api.category.create_category",
+          "{app_name}.api.category.delete_category": "{app_name}.products.tenant.api.category.delete_category",
+          "{app_name}.api.category.get_categories": "{app_name}.products.tenant.api.category.get_categories",
+          "{app_name}.api.category.get_category_by_uuid": "{app_name}.products.tenant.api.category.get_category_by_uuid",
+          "{app_name}.api.category.get_category_types": "{app_name}.products.tenant.api.category.get_category_types",
+          "{app_name}.api.category.get_children_categories": "{app_name}.products.tenant.api.category.get_children_categories",
+          "{app_name}.api.category.search_categories": "{app_name}.products.tenant.api.category.search_categories",
+          "{app_name}.api.category.update_category": "{app_name}.products.tenant.api.category.update_category",
+          "{app_name}.api.product.add_product_review": "{app_name}.products.tenant.api.product.add_product_review",
+          "{app_name}.api.product.calculate_product_price": "{app_name}.products.tenant.api.product.calculate_product_price",
+          "{app_name}.api.product.get_discounted_products": "{app_name}.products.tenant.api.product.get_discounted_products",
+          "{app_name}.api.product.get_product_by_slug": "{app_name}.products.tenant.api.product.get_product_by_slug",
+          "{app_name}.api.product.get_product_by_uuid": "{app_name}.products.tenant.api.product.get_product_by_uuid",
+          "{app_name}.api.product.get_product_history": "{app_name}.products.tenant.api.product.get_product_history",
+          "{app_name}.api.product.get_product_reviews": "{app_name}.products.tenant.api.product.get_product_reviews",
+          "{app_name}.api.product.get_products": "{app_name}.products.tenant.api.product.get_products",
+          "{app_name}.api.product.get_products_by_brand": "{app_name}.products.tenant.api.product.get_products_by_brand",
+          "{app_name}.api.product.get_products_by_category": "{app_name}.products.tenant.api.product.get_products_by_category",
+          "{app_name}.api.product.get_products_by_ids": "{app_name}.products.tenant.api.product.get_products_by_ids",
+          "{app_name}.api.product.get_products_by_shop": "{app_name}.products.tenant.api.product.get_products_by_shop",
+          "{app_name}.api.product.most_sold_products": "{app_name}.products.tenant.api.product.most_sold_products",
+          "{app_name}.api.product.order_products_calculate": "{app_name}.products.tenant.api.product.order_products_calculate",
+          "{app_name}.api.product.products_search": "{app_name}.products.tenant.api.product.products_search",
+          "{app_name}.api.product.read_product_file": "{app_name}.products.tenant.api.product.read_product_file",
+          "{app_name}.api.product_extra.create_extra_group": "{app_name}.products.tenant.api.product_extra.create_extra_group",
+          "{app_name}.api.product_extra.create_extra_value": "{app_name}.products.tenant.api.product_extra.create_extra_value",
+          "{app_name}.api.product_extra.delete_extra_group": "{app_name}.products.tenant.api.product_extra.delete_extra_group",
+          "{app_name}.api.product_extra.delete_extra_value": "{app_name}.products.tenant.api.product_extra.delete_extra_value",
+          "{app_name}.api.product_extra.get_extra_groups": "{app_name}.products.tenant.api.product_extra.get_extra_groups",
+          "{app_name}.api.product_extra.get_extra_values": "{app_name}.products.tenant.api.product_extra.get_extra_values",
+          "{app_name}.api.product_extra.update_extra_group": "{app_name}.products.tenant.api.product_extra.update_extra_group",
+          "{app_name}.api.product_extra.update_extra_value": "{app_name}.products.tenant.api.product_extra.update_extra_value",
+          "{app_name}.api.stock.create_stock": "{app_name}.products.tenant.api.stock.create_stock",
+          "{app_name}.api.stock.delete_stock": "{app_name}.products.tenant.api.stock.delete_stock",
+          "{app_name}.api.stock.get_product_stocks": "{app_name}.products.tenant.api.stock.get_product_stocks",
+          "{app_name}.api.stock.update_stock": "{app_name}.products.tenant.api.stock.update_stock"
+        },
+        "doc_events": {
+          "Item": {
+            "on_update": "{app_name}.products.doctype.product.product.auto_vectorize_product",
+            "after_insert": "{app_name}.products.doctype.product.product.auto_vectorize_product"
+          }
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Brand"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Combo"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Category"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Review"
+              ]
+            ]
+          }
+        ]
+      },
+      "dependencies": [
+        "sentence-transformers"
+      ]
+    },
+    "control": {}
+  }
+}

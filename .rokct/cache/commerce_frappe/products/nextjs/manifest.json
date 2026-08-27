@@ -1,0 +1,62 @@
+{
+  "name": "products_sdk",
+  "version": "1.0.0",
+  "installs": [
+    {
+      "from": "templates/app/paas/admin/products",
+      "to": "app/paas/admin/products"
+    },
+    {
+      "from": "templates/app/paas/dashboard/products",
+      "to": "app/paas/dashboard/products"
+    },
+    {
+      "from": "templates/app/actions/paas/products.ts",
+      "to": "app/actions/paas/products.ts"
+    },
+    {
+      "from": "templates/app/actions/paas/admin/products.ts",
+      "to": "app/actions/paas/admin/products.ts"
+    },
+    {
+      "from": "templates/app/actions/paas/operations.ts",
+      "to": "app/actions/paas/operations.ts"
+    },
+    {
+      "from": "templates/app/actions/paas/receipts.ts",
+      "to": "app/actions/paas/receipts.ts"
+    },
+    {
+      "from": "templates/app/actions/paas/extras.ts",
+      "to": "app/actions/paas/extras.ts"
+    },
+    {
+      "from": "templates/app/actions/paas/categories.ts",
+      "to": "app/actions/paas/categories.ts"
+    },
+    {
+      "from": "templates/app/actions/paas/upload.ts",
+      "to": "app/actions/paas/upload.ts"
+    },
+    {
+      "from": "templates/components/custom/image-upload.tsx",
+      "to": "components/custom/image-upload.tsx"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "integrations": [],
+  "requires": [
+    "app/lib/paas-gateway.ts",
+    "app/lib/i18n/index.ts",
+    "components/ui/badge.tsx",
+    "components/ui/button.tsx",
+    "components/ui/card.tsx",
+    "components/ui/collapsible.tsx",
+    "components/ui/dialog.tsx",
+    "components/ui/input.tsx",
+    "components/ui/label.tsx",
+    "components/ui/table.tsx",
+    "components/ui/textarea.tsx"
+  ]
+}

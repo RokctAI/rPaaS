@@ -1,0 +1,37 @@
+import frappe
+
+# Set department value based on employee value
+
+
+def execute():
+	doctypes_to_update = {
+		"hr": [
+			"Appraisal",
+			"Leave Allocation",
+			"Expense Claim",
+			"Salary Slip",
+			"Attendance",
+			"Training Feedback",
+			"Training Result Employee",
+			"Leave Application",
+			"Employee Advance",
+			"Training Event Employee",
+			"Payroll Employee Detail",
+		],
+		"education": ["Instructor"],
+		"projects": ["Activity Cost", "Timesheet"],
+		"setup": ["Sales Person"],
+	}
+
+	for module, doctypes in doctypes_to_update.items():
+		for doctype in doctypes:
+			if frappe.db.table_exists(doctype):
+				frappe.reload_doc(module, "doctype", frappe.scrub(doctype))
+				# compliance-ignore: sql-injection (offline migration patch; interpolated identifiers come from hardcoded internal lists, values are %s-parameterized)
+				frappe.db.sql(
+					f"""
+					update `tab{doctype}` dt
+					set department=(select department from `tabEmployee` where name=dt.employee)
+					where coalesce(dt.`department`, '') = ''
+					"""
+				)

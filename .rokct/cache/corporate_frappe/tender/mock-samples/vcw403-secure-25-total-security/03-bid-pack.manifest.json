@@ -1,0 +1,183 @@
+{
+  "bid": "TB-2026-00043",
+  "regime": "SBD",
+  "regime_name": "National / Provincial (SBD forms)",
+  "generated_on": "2026-08-20",
+  "form_count": 9,
+  "forms": [
+    {
+      "form_code": "SBD1",
+      "form_name": "Invitation to Bid (cover form)",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 18,
+      "auto_filled": 16,
+      "user_input": [
+        "Proof of signing authority attached (board/members' resolution)",
+        "Part B questionnaire (foreign suppliers only)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": [
+        "Postal address",
+        "TOTAL BID PRICE (on the face of the form)"
+      ]
+    },
+    {
+      "form_code": "SBD4",
+      "form_name": "Declaration of Interest / Bidder's Disclosure",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 6,
+      "auto_filled": 6,
+      "user_input": [
+        "Question block: interests, relationships with the institution, state employment",
+        "State-employed persons: Persal numbers and executive-authority approval",
+        "ALL CSD-registered companies linked to any director",
+        "Anti-collusion / independent-bid declaration (post-2022 versions)",
+        "Intended subcontractors and value of subcontracted work",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "SBD6.1",
+      "form_name": "Preference Points Claim Form",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 9,
+      "auto_filled": 8,
+      "user_input": [
+        "Points claimed per specific goal (write the NUMBER against each goal)",
+        "Proof attached per claimed goal",
+        "Subcontracting declaration (25%/30% cap to lower-scoring enterprises)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": [
+        "B-BBEE evidence expiry"
+      ]
+    },
+    {
+      "form_code": "SBD6.2",
+      "form_name": "Declaration of Local Production and Content",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 5,
+      "auto_filled": 5,
+      "user_input": [
+        "Is this tender in a DTIC-designated sector?",
+        "Local content declaration certificate + Annexes C/D/E (per SATS 1286)",
+        "Or: N/A marking confirmed",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "SBD3.x",
+      "form_name": "Pricing Schedules",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 6,
+      "auto_filled": 4,
+      "user_input": [
+        "Every line item priced (no blanks, dashes or N/A)",
+        "Firm prices confirmed (or the pack's escalation formula applied)",
+        "VAT treatment stated (inclusive/exclusive per the pack)",
+        "Total carried over to the cover form (SBD1/MBD1) and Form of Offer",
+        "Total in words AND figures where the form demands both",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": [
+        "Priced line items (from the linked erp Quotation where available)",
+        "Quotation total (carried to the cover form)"
+      ]
+    },
+    {
+      "form_code": "SBD3.2",
+      "form_name": "Method-of-Pricing / Non-Firm Prices form",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 4,
+      "auto_filled": 4,
+      "user_input": [
+        "Firm / non-firm prices option selected (tick ONE)",
+        "Escalation / rate-of-exchange formula submitted (non-firm only)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "SBD7",
+      "form_name": "Contract Form",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 5,
+      "auto_filled": 5,
+      "user_input": [
+        "Part 1 completed in duplicate, both copies signed in the original",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "POPIA",
+      "form_name": "POPIA consent / processing form",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 4,
+      "auto_filled": 4,
+      "user_input": [
+        "Consent/processing declarations completed per the pack's form",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "CST",
+      "form_name": "Certificate of Single Tender Submission",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 4,
+      "auto_filled": 4,
+      "user_input": [
+        "Single-submission certification completed",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    }
+  ],
+  "fill": {
+    "auto_total": 61,
+    "auto_filled": 56,
+    "coverage_pct": 91.8,
+    "user_input_total": 41,
+    "missing_auto": [
+      "B-BBEE evidence expiry",
+      "Postal address",
+      "Priced line items (from the linked erp Quotation where available)",
+      "Quotation total (carried to the cover form)",
+      "TOTAL BID PRICE (on the face of the form)"
+    ]
+  },
+  "open_fatal_gates": [
+    "Fatal checklist item still open: Obtain valid Grade B PSIRA registration certificates (certified) for ALL directors - only 1 of 3 directors currently holds Grade B (VCW Pre-Qualifier 7; the GATE-SECTOR fixture rule did not auto-attach for this buyer). [manual]",
+    "Fatal checklist item still open: Proof of PSSPF payment for the last 3 months - the security division holds only 1 month of PSSPF payment history and cannot cure this before closing on 2026-09-03 (VCW Pre-Qualifier 9). [manual]",
+    "Fatal checklist item still open: Increase Public Liability Insurance cover from R10 million to the required minimum of R15 million and file the certificate (VCW Pre-Qualifier 11; GATE-INSURANCE did not auto-attach for this buyer). [manual]",
+    "Fatal checklist item still open: Section 2 requires a CIDB contractor grading designation of 4 SQ PE OR HIGHER - current registration is 6CE (Civil Engineering class, not SQ/PE); register the SQ class or bid Section 1 only (VCW Pre-Qualifier 10; GATE-CIDB does not auto-attach under the SBD regime). [manual]",
+    "Fatal checklist item still open: Original or certified municipal rates clearance certificate, or certified lease with the lessor's rates certificate, not older than 3 months (VCW Pre-Qualifier 4; GATE-RATES is modelled MBD-only and did not auto-attach for this SBD-regime water board). [manual]",
+    "Functionality self-score is below the pack's threshold - functionality is an elimination gate before price and preference."
+  ],
+  "signed": false,
+  "warnings": [
+    "Complete the OFFICIAL forms issued in the tender pack - never retype or substitute them (an explicit disqualifier at about a third of buyers). This pack mirrors each form field-for-field so you can transcribe values onto, and check them against, the official forms.",
+    "6 FATAL compliance gate(s) still open on this bid - submitting now risks disqualification. See the warning page."
+  ]
+}

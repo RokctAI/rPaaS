@@ -1,0 +1,116 @@
+{
+    "actions": [],
+    "creation": "2026-08-18 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-18 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Compliance Artifact",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "autoname": "format:CART-{#####}",
+    "field_order": [
+        "user",
+        "company",
+        "artifact_type",
+        "reference",
+        "issued_on",
+        "valid_until",
+        "renewal_window_days",
+        "status",
+        "attachment",
+        "notes"
+    ],
+    "fields": [
+        {
+            "fieldname": "user",
+            "fieldtype": "Link",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "User",
+            "options": "User",
+            "reqd": 1,
+            "description": "The bidder this standing document belongs to"
+        },
+        {
+            "fieldname": "company",
+            "fieldtype": "Data",
+            "label": "Company"
+        },
+        {
+            "fieldname": "artifact_type",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Artifact Type",
+            "reqd": 1,
+            "options": "CSD Full Report\nTax Compliance Status PIN\nB-BBEE Affidavit\nB-BBEE Certificate\nCIPC Certified Set\nBoard Resolution\nCOIDA Letter of Good Standing\nMunicipal Rates Clearance\nCIDB Grading\nPSIRA Registration\nNHBRC Registration\nProfessional Registration\nInsurance Cover\nBank Letter\nAudited Financial Statements\nJV Agreement\nOther",
+            "description": "CSD has no supplier API (see tender/CSD-API-Findings.md), so this inventory is user-maintained with the report PDF attached"
+        },
+        {
+            "fieldname": "reference",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Reference",
+            "description": "e.g. the CSD MAAA number, TCS PIN, CIDB grading designation"
+        },
+        {
+            "fieldname": "issued_on",
+            "fieldtype": "Date",
+            "label": "Issued On"
+        },
+        {
+            "fieldname": "valid_until",
+            "fieldtype": "Date",
+            "in_list_view": 1,
+            "label": "Expiry Date",
+            "mandatory_depends_on": "eval:doc.artifact_type && !['Board Resolution','JV Agreement','Other'].includes(doc.artifact_type)",
+            "description": "User-entered, read off the certificate itself - uploads are scans and an expiry date cannot be read from an image deterministically. Required for every artifact type that expires; the expiry sweep and bid gather-lists run off this field"
+        },
+        {
+            "fieldname": "renewal_window_days",
+            "fieldtype": "Int",
+            "label": "Renewal Window (days)",
+            "description": "Days before expiry at which the artifact turns Amber (default 30)"
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "in_list_view": 1,
+            "label": "Status",
+            "read_only": 1,
+            "options": "Green\nAmber\nExpired",
+            "description": "Computed from valid_until - Green (valid), Amber (inside the renewal window), Expired"
+        },
+        {
+            "fieldname": "attachment",
+            "fieldtype": "Attach",
+            "label": "Attachment"
+        },
+        {
+            "fieldname": "notes",
+            "fieldtype": "Small Text",
+            "label": "Notes"
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        }
+    ]
+}

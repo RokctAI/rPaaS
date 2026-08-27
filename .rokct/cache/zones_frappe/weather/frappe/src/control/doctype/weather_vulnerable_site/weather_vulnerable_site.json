@@ -1,0 +1,106 @@
+{
+ "doctype": "DocType",
+ "name": "Weather Vulnerable Site",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "autoname": "WVS-.#####",
+ "description": "One named physical asset (school, clinic, low-water bridge, river crossing) registered for site-specific severe-weather notices. Administered by standard desk CRUD, the watch-location house pattern. Saving a row auto-registers its 0.25 degree grid cell as a Weather Watch Location (warnings_engine/sites.py), so the hourly evaluator covers every registered asset; the hourly pass keeps the cell fresh so the stale sweep never drops it. Disabled rows generate no notices. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "site_name,site_type,route_label",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "site_name",
+   "fieldtype": "Data",
+   "label": "Site Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "The name used in end-user copy, e.g. \"Tshakhuma Primary School\" or \"Mutale low-water bridge\""
+  },
+  {
+   "fieldname": "site_type",
+   "fieldtype": "Select",
+   "label": "Site Type",
+   "options": "School\nClinic\nBridge\nRiver Crossing\nOther",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Drives the notice phrasing: bridges/river crossings get passability copy, everything else access/planning copy"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "8",
+   "reqd": 1
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "8",
+   "reqd": 1
+  },
+  {
+   "fieldname": "route_label",
+   "fieldtype": "Data",
+   "label": "Route / Road Label",
+   "description": "Optional route or road, e.g. \"R523\" - shown in brackets after the site name in notices"
+  },
+  {
+   "fieldname": "tenant_site",
+   "fieldtype": "Data",
+   "label": "Tenant Site",
+   "description": "Optional owning tenant site name (the X-Rokct-Tenant identity tenant proxies send) - control-side registries carry no hard tenant link, per the role-split convention"
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Data",
+   "label": "Contact",
+   "description": "Optional site contact (name/phone) - admin reference only, never sent to clients"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes",
+   "description": "Admin reference only, never sent to clients"
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled",
+   "default": "1",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Disabled sites are silent: no notices are generated or served for them"
+  },
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Link",
+   "label": "Watch Location",
+   "options": "Weather Watch Location",
+   "read_only": 1,
+   "in_list_view": 1,
+   "description": "The grid cell covering this site - maintained automatically from latitude/longitude (warnings_engine/sites.py)"
+  }
+ ]
+}

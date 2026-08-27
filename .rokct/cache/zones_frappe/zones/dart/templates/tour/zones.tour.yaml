@@ -1,0 +1,31 @@
+# Guided-tour fragment for zones_sdk (driver-role screens).
+#
+# Brand-neutral by rule: app names, taglines and any per-app wording live in
+# the app shell's tour/app.tour.yaml ({app_name}/{app_tagline} placeholders
+# are substituted at merge time). This fragment owns the one driver-visible
+# surface zones_sdk installs into a driver compose (manifest.json
+# app_type.driver): the /delivery-zone editor
+# (DriverDeliveryZoneRoute, reached from the courier profile in normal use).
+# zones_sdk's manager flavour ships a merchant catchment editor too, but no
+# manager shell tours it yet — this fragment stays driver-only until one does.
+#
+# Assumes a signed-in deliveryman session: the app manifest signs in through
+# auth_sdk's fragment and runs delivery_sdk's fragment first (its last step
+# lands on /profile, the screen this editor is normally opened from). In demo
+# builds (--dart-define=IS_DEMO=true) DemoDriverDeliveryZonesRepository draws
+# the same fictional zone square the courier home map shows, so the editor
+# opens on a visible polygon.
+#
+# Map TILES need network in the capture emulator; the zone polygon and the
+# save/back controls render from demo data either way, and a grey tile
+# background is an acceptable still (same note as delivery_sdk's home step).
+#
+# Format: RokctAI/shared-workflows scripts/tour/README.md
+sdk: zones
+steps:
+  - key: driver_delivery_zone
+    title: "Draw where you deliver"
+    caption: "Your delivery zone on the map - *redraw the outline* whenever your patch changes, and dispatch follows."
+    action: route
+    route: /delivery-zone
+    settle: 8

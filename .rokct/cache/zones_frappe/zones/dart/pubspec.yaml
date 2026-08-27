@@ -1,0 +1,33 @@
+name: zones_sdk
+description: "zones_sdk - delivery-zone geometry for the driver (ported from paas_driver, refork 2026-07) and manager (ported from paas_manager, refork 2026-08) flavours."
+version: 1.1.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  base_sdk:
+    path: ../base
+  flutter_riverpod: ^2.5.1
+  flutter_screenutil: ^5.9.0
+  freezed_annotation: ^3.1.0
+  get_it: ^8.0.0
+  google_maps_flutter: ^2.9.0
+  http: ^1.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.10.4
+  freezed: ^3.2.3
+  json_serializable: ^6.8.0
+
+# Workspace-relative override so this package resolves standalone for
+# codegen/analysis. Ignored when a host app is the resolution root.
+dependency_overrides:
+  http: ^1.2.0
+  base_sdk:
+    path: ../../../core/base/dart

@@ -1,0 +1,99 @@
+{
+  "dependencies": [
+    "paytmchecksum~=1.7.0",
+    "razorpay~=2.0.0",
+    "stripe~=10.12.0",
+    "braintree~=4.20.0",
+    "pycryptodome>=3.18.0,<4.0.0",
+    "gocardless-pro~=1.22.0",
+    "setuptools==80.9.0"
+  ],
+  "doctype_count": 10,
+  "doctypes": [
+    "braintree_settings",
+    "gocardless_mandate",
+    "gocardless_settings",
+    "mpesa_settings",
+    "payment_gateway",
+    "paymob_settings",
+    "paypal_settings",
+    "paytm_settings",
+    "razorpay_settings",
+    "stripe_settings"
+  ],
+  "erp_remaps": {
+    "payment_gateways/doctype/mpesa_settings/mpesa_settings.py": 3,
+    "payment_gateways/doctype/mpesa_settings/test_mpesa_settings.py": 1,
+    "tests/utils.py": 1,
+    "utils/__init__.py": 1,
+    "utils/utils.py": 3
+  },
+  "erpnext_references": [
+    "doctype/mpesa_settings/mpesa_settings.py",
+    "doctype/mpesa_settings/test_mpesa_settings.py",
+    "doctype/paytm_settings/paytm_settings.js",
+    "src/templates/pages/gocardless_confirmation.py",
+    "src/tests/utils.py",
+    "src/utils/__init__.py",
+    "src/utils/utils.py"
+  ],
+  "excluded": [
+    "hooks.py",
+    "modules.txt",
+    "patches.txt"
+  ],
+  "hooks_supported": {
+    "doc_events": "0 doctype keys",
+    "scheduler_events": {
+      "all": 1
+    },
+    "whitelisted_methods": [
+      "frappe.website.doctype.web_form.web_form.accept"
+    ]
+  },
+  "hooks_unsupported": {
+    "app_description": "Payments app for frappe",
+    "app_email": "hello@frappe.io",
+    "app_license": "MIT",
+    "app_name": "payments",
+    "app_publisher": "Frappe Technologies",
+    "app_title": "Payments",
+    "app_version": "0.0.1",
+    "extend_doctype_class": {
+      "Web Form": "{app_name}.gateways.overrides.payment_webform.PaymentWebForm"
+    }
+  },
+  "install_hooks_not_declared": {
+    "after_install": "{app_name}.gateways.utils.make_custom_fields",
+    "before_install": "{app_name}.gateways.utils.before_install",
+    "before_uninstall": "{app_name}.gateways.utils.delete_custom_fields"
+  },
+  "local_additions": [
+    "doctype/payfast_settings/__init__.py",
+    "doctype/payfast_settings/payfast_settings.js",
+    "doctype/payfast_settings/payfast_settings.json",
+    "doctype/payfast_settings/payfast_settings.py",
+    "doctype/paystack_settings/__init__.py",
+    "doctype/paystack_settings/paystack_settings.json",
+    "doctype/paystack_settings/paystack_settings.py",
+    "manifest_hooks.json:fixtures",
+    "src/templates/pages/paystack_checkout.html",
+    "src/templates/pages/paystack_checkout.py",
+    "src/tests/test_payfast_settings.py"
+  ],
+  "module_count": 2,
+  "notes": [
+    "local_additions: Rokct-authored files overlaid from gateways/local/ (the source of truth \u2014 PayFast/Paystack settings doctypes, the paystack_checkout page and their test, moved from the retired payments/frappe `pay` module) plus the manifest hook keys merged from local/manifest_hooks.json. Byte-copied after the upstream port; collisions with ported paths are hard errors. Edit gateways/local/ and re-run this script \u2014 never the copies under gateways/frappe/.",
+    "install/uninstall hooks NOT declared in manifest (composer merge_hooks() after_install string-append bug, erp precedent). Run `bench --site <site> execute {app}.gateways.utils.make_custom_fields` once per fresh site to create the Web Form payment custom fields; {app}.gateways.utils.delete_custom_fields removes them.",
+    "hooks_unsupported keys are NOT wired by the composer; a shell can hand-write any of them above its hooks.py fence. Their dotted values are pre-mapped to composed paths here for that purpose. Notably extend_doctype_class (the Web Form PaymentWebForm extension) is a different frappe hook from the composer-supported override_doctype_class and is carried here rather than silently converted.",
+    "src/templates/ (checkout pages + includes) and src/public/ compose under the module dir, but frappe serves templates/pages, jinja includes and public assets from app-level paths only \u2014 like the erp port, they are carried python-importable but inert as web pages/assets until the composer grows an app-level channel. The whitelisted methods inside the checkout page modules remain fully callable.",
+    "upstream_fix_remaps: targeted fixes for upstream frappe/payments bugs not yet merged upstream \u2014 currently the dead Paytm staging host (issue #181): securegw-stage.paytm.in -> securestage.paytmpayments.com for the test-mode order-process and order-status endpoints. Drop each rule once upstream ships its own fix (the exactly-once anchor check will flag it loudly).",
+    "erpnext_references: files whose text still mentions `erpnext` AFTER the ERP_REMAPS pass re-pointed every runtime import and installed-app check at the composed erp module ({app_name}.erp). What remains is inert: docs URLs (erpnext.com), comments, and the retained erpnext_app_import_guard/ERPNextTestSuite names (kept so ported call sites stay byte-stable). No composed site needs a real `erpnext` app; gateways composed WITHOUT erp degrades exactly as upstream did without erpnext (guarded frappe.throw / skipped custom fields)."
+  ],
+  "source": "/tmp/claude-0/-home-user/ad836d3b-2880-5879-ac1a-fe35a030103c/scratchpad/upstream/payments",
+  "unmapped_detail": {},
+  "unmapped_dotted_paths": [],
+  "upstream_fix_remaps": {
+    "payment_gateways/doctype/paytm_settings/paytm_settings.py": 1
+  }
+}

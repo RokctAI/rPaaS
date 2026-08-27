@@ -1,0 +1,63 @@
+{
+    "name": "telephony_sdk",
+    "version": "1.0.0",
+    "installs": [],
+    "dependencies": {},
+    "devDependencies": {},
+    "app_type": {
+        "control": {
+            "installs": [
+                {
+                    "from": "templates/control/app/services/control",
+                    "to": "app/services/control"
+                },
+                {
+                    "from": "templates/control/app/services/portal",
+                    "to": "app/services/portal"
+                },
+                {
+                    "from": "templates/control/app/actions/handson/control/telephony",
+                    "to": "app/actions/handson/control/telephony"
+                },
+                {
+                    "from": "templates/control/app/actions/portal",
+                    "to": "app/actions/portal"
+                },
+                {
+                    "from": "templates/control/app/handson/control/telephony",
+                    "to": "app/handson/control/telephony"
+                },
+                {
+                    "from": "templates/control/app/portal/telephony",
+                    "to": "app/portal/telephony"
+                }
+            ],
+            "dependencies": {
+                "date-fns": "^4.1.0",
+                "lucide-react": "^0.563.0",
+                "sonner": "^2.0.7"
+            },
+            "integrations": [
+                {
+                    "target": "app/handson/sidebar-client.tsx",
+                    "placeholder": "// @rokct-sdk-nav-start",
+                    "replacement": "  { href: \"/handson/control/telephony\", label: \"Telephony\" },"
+                }
+            ],
+            "requires": [
+                "app/lib/client.ts",
+                "app/lib/gateway-rpc.ts",
+                "app/services/base/platform-gateway.ts",
+                "app/services/control/base.ts",
+                "components/ui/badge.tsx",
+                "components/ui/button.tsx",
+                "components/ui/card.tsx",
+                "components/ui/input.tsx",
+                "components/ui/label.tsx",
+                "components/ui/table.tsx",
+                "components/ui/tabs.tsx"
+            ]
+        },
+        "tenant": {}
+    }
+}

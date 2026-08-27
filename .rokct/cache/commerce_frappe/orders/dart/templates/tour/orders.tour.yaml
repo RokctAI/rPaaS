@@ -1,0 +1,54 @@
+# Guided-tour fragment for orders_sdk (manager role).
+#
+# Brand-neutral by rule: app names, taglines and any per-app wording live in
+# the app shell's tour/app.tour.yaml ({app_name}/{app_tagline} placeholders
+# are substituted at merge time). This fragment owns only the screens
+# orders_sdk itself installs for app_type=manager composes: the order queue
+# (OrdersHomePage, tab-hosted at index 0 of merchants_sdk's home shell per
+# its install contract, so it declares no route) and the order-history
+# screen (/order-history, manifest.json app_type.manager). Include it only
+# in manager-family app manifests.
+#
+# Demo grounding (--dart-define=IS_DEMO=true): orders_di.dart swaps in
+# MockOrdersRepository + MockCartRepository for the customer-facing
+# facades. The manager-side SellerOrdersRepositoryFacade is NOT demo-gated
+# yet, so in demo builds both screens render their own real empty states
+# (NoOrders on the queue, "there are 0 orders" on history) - truthful for a
+# brand-new shop, and the captions below own that framing. Follow-up (rule
+# #59): demo-gate SellerOrdersRepositoryFacade so the queue shows a live
+# demo rush. The POS create-order flow (/order-products and its pickers) is
+# deliberately NOT toured yet: its product grid comes from the un-gated
+# PosProductsRepositoryFacade and the flow needs cart state, so there is no
+# honest still until those get demo data.
+#
+# The cross-SDK import below is the established shell contract: the queue
+# tab is selected through merchants_sdk's mainProvider, the same state the
+# shell's bottom-navigation buttons drive.
+#
+# Format: RokctAI/shared-workflows scripts/tour/README.md
+sdk: orders
+imports:
+  - "import 'package:flutter_riverpod/flutter_riverpod.dart';"
+  - "import 'package:merchants_sdk/src/manager/application/main/main_provider.dart';"
+steps:
+  - key: order_queue
+    title: "Every order, one queue"
+    caption: "New, accepted, ready, on the way - *every order* moves through one queue the moment it lands."
+    action: dart
+    settle: 8
+    dart: |
+      // Land the manager home shell and select the order-queue tab
+      // (index 0) explicitly - an earlier fragment may have left another
+      // tab selected, and mainProvider's selection persists across routes.
+      router.replaceNamed('/main');
+      await Future<void>.delayed(const Duration(seconds: 3));
+      final Element element = tester.element(find.byType(Navigator).first);
+      final ProviderContainer container =
+          ProviderScope.containerOf(element, listen: false);
+      container.read(mainProvider.notifier).selectIndex(0);
+  - key: order_history
+    title: "The paper trail, kept"
+    caption: "Every completed sale stays on record - scroll back through *your full history* any time."
+    action: route
+    route: /order-history
+    settle: 6

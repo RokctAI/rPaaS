@@ -1,0 +1,28 @@
+{
+  "default": true,
+  "MD013": false,
+  "MD041": false,
+  "MD036": false,
+  "MD040": false,
+  "MD009": {
+    "strict": true,
+    "ultra_violation": true
+  },
+  "MD026": {
+    "style": "none",
+    "punctuation": "_-."
+  },
+  "MD022": {
+    "lines_above": 1,
+    "lines_below": 1
+  },
+  "MD031": {
+    "blanks_around_fences": true,
+    "blanks_around_indentations": true
+  },
+  "MD032": {
+    "list_marker": "*",
+    "start_list_items_on_new_line": false
+  },
+  "MD051": false
+}

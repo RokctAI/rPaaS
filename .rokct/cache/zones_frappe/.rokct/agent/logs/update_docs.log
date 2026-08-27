@@ -1,0 +1,5 @@
+2026-07-11 05:47:20,493 - INFO - Detected project type: flutter for C:\Users\sinya\Desktop\RokctAI\zones\weather\dart
+2026-07-11 05:47:20,493 - INFO - Auto-creating missing documentation for: lib\src\di\weather_sdk_di.dart
+2026-07-11 05:47:20,497 - INFO - Auto-created missing doc: ..\..\docs\api\weather_dart_lib_src_di_weather_sdk_di.md <- lib\src\di\weather_sdk_di.dart
+2026-07-11 06:03:38,526 - INFO - Detected project type: flutter for C:\Users\sinya\Desktop\RokctAI\zones\weather\dart
+2026-07-11 06:13:04,019 - INFO - Detected project type: flutter for C:\Users\sinya\Desktop\RokctAI\zones\weather\dart

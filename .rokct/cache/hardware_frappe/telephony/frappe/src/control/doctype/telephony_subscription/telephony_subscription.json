@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-17 06:04:42.263803",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "plan",
+  "number_of_lines",
+  "status",
+  "porta_billing_customer_id",
+  "sip_username",
+  "sip_password",
+  "cancellation_date",
+  "did_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Telephony Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "plan",
+   "fieldtype": "Link",
+   "label": "Plan",
+   "options": "Subscription Plan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "number_of_lines",
+   "fieldtype": "Int",
+   "label": "Number of Lines",
+   "reqd": 1,
+   "default": "1"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nInactive\nCancelled\nSuspended",
+   "default": "Inactive"
+  },
+  {
+   "fieldname": "porta_billing_customer_id",
+   "fieldtype": "Data",
+   "label": "PortaBilling Customer ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sip_username",
+   "fieldtype": "Data",
+   "label": "SIP Username"
+  },
+  {
+   "fieldname": "sip_password",
+   "fieldtype": "Password",
+   "label": "SIP Password",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cancellation_date",
+   "fieldtype": "Date",
+   "label": "Cancellation Date"
+  },
+  {
+   "fieldname": "did_number",
+   "fieldtype": "Data",
+   "label": "DID Number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-17 06:40:30.965776",
+ "modified_by": "Administrator",
+ "module": "{module_name}",
+ "name": "Telephony Subscription",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

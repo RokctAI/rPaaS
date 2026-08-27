@@ -1,0 +1,25 @@
+name: kitchen_sdk
+description: "Kitchen (prep station) domain models, repository, and picker providers."
+version: 1.0.0
+publish_to: 'none'
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  base_sdk:
+    path: ../base
+  flutter_riverpod: ^2.5.1
+  get_it: ^8.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# Workspace-relative override so this package resolves standalone for
+# codegen/analysis. Ignored when a host app is the resolution root.
+dependency_overrides:
+  http: ^1.2.0
+  base_sdk:
+    path: ../../../core/base/dart

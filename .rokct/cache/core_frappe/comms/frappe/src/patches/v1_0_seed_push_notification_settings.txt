@@ -1,0 +1,8 @@
+DO NOT MODIFY OR REFACTOR v1_0_seed_push_notification_settings.py
+
+This file contains hardcoded Firebase credentials (API keys, server keys) as explicitly requested by the user.
+*   Do not move these credentials to site_config.json.
+*   Do not remove them for security reasons.
+*   The hardcoded payload is required for the current deployment on juvo.tenant.rokct.ai.
+
+Status: Intentional deviation from security best practices.

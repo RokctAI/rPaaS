@@ -1,0 +1,3589 @@
+[
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD1",
+        "template_code": "SBD1",
+        "form_title": "Invitation to Bid (cover form)",
+        "guide_ref": "Guide 4.1",
+        "initial_every_page": 1,
+        "instructions": "Fill EVERY field on the official cover form. The form's own warning is real: 'FAILURE TO PROVIDE / OR COMPLY WITH ANY OF THE ABOVE PARTICULARS MAY RENDER THE BID INVALID.'",
+        "fields_table": [
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Tender description / title",
+                "source_type": "Bid Field",
+                "source_field": "tender_title",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Name of institution (purchaser)",
+                "source_type": "Bid Field",
+                "source_field": "institution",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Closing date",
+                "source_type": "Bid Field",
+                "source_field": "closing_date",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "The deadline is absolute - late is dead, whatever the reason."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "VAT registration number",
+                "source_type": "Profile Field",
+                "source_field": "vat_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "If not VAT-registered, write 'Not registered' - never leave the line blank."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "CSD supplier number (MAAA)",
+                "source_type": "Profile Field",
+                "source_field": "csd_maaa_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Registration must be active AT CLOSING TIME; attach the CSD report the pack demands (several buyers reject the summary report and require the FULL report)."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "SARS Tax Compliance Status PIN",
+                "source_type": "Profile Field",
+                "source_field": "tcs_pin",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Generate a CURRENT PIN on eFiling per bid - stale PINs fail verification."
+            },
+            {
+                "section": "Preference",
+                "field_label": "B-BBEE status level (tick-box)",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_level",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Tick the level box AND attach the certificate or sworn affidavit; the claim itself is made on the 6.1 form."
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Physical address",
+                "source_type": "Profile Field",
+                "source_field": "physical_address",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Postal address",
+                "source_type": "Profile Field",
+                "source_field": "postal_address",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Contact person",
+                "source_type": "Profile Field",
+                "source_field": "contact_person",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Telephone",
+                "source_type": "Profile Field",
+                "source_field": "contact_phone",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "E-mail address",
+                "source_type": "Profile Field",
+                "source_field": "contact_email",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Monitor this inbox DAILY after submission - clarification and cure windows run from the buyer's email timestamp."
+            },
+            {
+                "section": "Total Bid Price",
+                "field_label": "TOTAL BID PRICE (on the face of the form)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_total",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Carry the total over EXACTLY from the pricing schedule and write it on the face of this form. Fills automatically when an erp Quotation is linked on the bid; verify it matches the schedule to the cent."
+            },
+            {
+                "section": "Authority",
+                "field_label": "Proof of signing authority attached (board/members' resolution)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Some buyers require the resolution signed by ALL directors."
+            },
+            {
+                "section": "Foreign Suppliers",
+                "field_label": "Part B questionnaire (foreign suppliers only)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Complete only if the bidder is a foreign supplier; otherwise mark N/A - never remove pages."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD1",
+        "template_code": "MBD1",
+        "form_title": "Invitation to Bid (cover form)",
+        "guide_ref": "Guide 4.1",
+        "initial_every_page": 1,
+        "instructions": "Fill EVERY field on the official cover form. The form's own warning is real: 'FAILURE TO PROVIDE / OR COMPLY WITH ANY OF THE ABOVE PARTICULARS MAY RENDER THE BID INVALID.'",
+        "fields_table": [
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Tender description / title",
+                "source_type": "Bid Field",
+                "source_field": "tender_title",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Name of institution (purchaser)",
+                "source_type": "Bid Field",
+                "source_field": "institution",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Closing date",
+                "source_type": "Bid Field",
+                "source_field": "closing_date",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "The deadline is absolute - late is dead, whatever the reason."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "VAT registration number",
+                "source_type": "Profile Field",
+                "source_field": "vat_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "If not VAT-registered, write 'Not registered' - never leave the line blank."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "CSD supplier number (MAAA)",
+                "source_type": "Profile Field",
+                "source_field": "csd_maaa_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Registration must be active AT CLOSING TIME; attach the CSD report the pack demands (several buyers reject the summary report and require the FULL report)."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "SARS Tax Compliance Status PIN",
+                "source_type": "Profile Field",
+                "source_field": "tcs_pin",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Generate a CURRENT PIN on eFiling per bid - stale PINs fail verification."
+            },
+            {
+                "section": "Preference",
+                "field_label": "B-BBEE status level (tick-box)",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_level",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Tick the level box AND attach the certificate or sworn affidavit; the claim itself is made on the 6.1 form."
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Physical address",
+                "source_type": "Profile Field",
+                "source_field": "physical_address",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Postal address",
+                "source_type": "Profile Field",
+                "source_field": "postal_address",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Contact person",
+                "source_type": "Profile Field",
+                "source_field": "contact_person",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "Telephone",
+                "source_type": "Profile Field",
+                "source_field": "contact_phone",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Contact Details",
+                "field_label": "E-mail address",
+                "source_type": "Profile Field",
+                "source_field": "contact_email",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Monitor this inbox DAILY after submission - clarification and cure windows run from the buyer's email timestamp."
+            },
+            {
+                "section": "Total Bid Price",
+                "field_label": "TOTAL BID PRICE (on the face of the form)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_total",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "'Bidders who do not put prices on MBD 1 will be eliminated' - carry the total over EXACTLY from the pricing schedule. Fills automatically when an erp Quotation is linked on the bid; verify it matches the schedule to the cent."
+            },
+            {
+                "section": "Authority",
+                "field_label": "Proof of signing authority attached (board/members' resolution)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Some buyers require the resolution signed by ALL directors."
+            },
+            {
+                "section": "Foreign Suppliers",
+                "field_label": "Part B questionnaire (foreign suppliers only)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Complete only if the bidder is a foreign supplier; otherwise mark N/A - never remove pages."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD4",
+        "template_code": "SBD4",
+        "form_title": "Declaration of Interest / Bidder's Disclosure",
+        "guide_ref": "Guide 4.2",
+        "initial_every_page": 1,
+        "instructions": "The deadliest form in the pack: answer EVERY question individually, yes or no, plus particulars for any yes - a blank is a kill. JVs: one form per partner unless the buyer expressly allows a combined form.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Directors / Members / Trustees",
+                "field_label": "All directors / members / trustees / shareholders",
+                "source_type": "Profile Field",
+                "source_field": "directors",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "List ALL of them with ID and tax reference numbers; state-employed persons disclosed with Persal numbers. Omission invalidates the bid."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Question block: interests, relationships with the institution, state employment",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Answer every question individually - 'Failure to do so will invalidate your tender/bid'. Furnish particulars for every yes."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "State-employed persons: Persal numbers and executive-authority approval",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "About half of packs bar companies with state-employed directors outright; where allowed, file the approval for outside remunerative work."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "ALL CSD-registered companies linked to any director",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Newer SBD 4 versions demand disclosure of every CSD-registered company linked to any director - EVEN companies unrelated to this bid. 'Failure to disclose... will lead to disqualification.'"
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Anti-collusion / independent-bid declaration (post-2022 versions)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "The post-2022 SBD 4 absorbs the old SBD 8/9 declarations - treat that section with the same care."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Intended subcontractors and value of subcontracted work",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Non-disclosure of intended subcontractors is treated as a false declaration."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "The bid is disqualified if the disclosure is later found 'not true and complete in every respect' - understatement risks blacklisting. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD4",
+        "template_code": "MBD4",
+        "form_title": "Declaration of Interest",
+        "guide_ref": "Guide 4.2",
+        "initial_every_page": 1,
+        "instructions": "The deadliest form in the pack: answer EVERY question individually, yes or no, plus particulars for any yes - a blank is a kill. JVs: one form per partner unless the buyer expressly allows a combined form.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Directors / Members / Trustees",
+                "field_label": "All directors / members / trustees / shareholders",
+                "source_type": "Profile Field",
+                "source_field": "directors",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "List ALL of them with ID and tax reference numbers; state-employed persons disclosed with Persal numbers. Omission invalidates the bid."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Question block: interests, relationships with the institution, state employment",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Answer every question individually - 'Failure to do so will invalidate your tender/bid'. Furnish particulars for every yes."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "State-employed persons: Persal numbers and executive-authority approval",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "About half of packs bar companies with state-employed directors outright; where allowed, file the approval for outside remunerative work."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "ALL CSD-registered companies linked to any director",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Newer SBD 4 versions demand disclosure of every CSD-registered company linked to any director - EVEN companies unrelated to this bid. 'Failure to disclose... will lead to disqualification.'"
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Anti-collusion / independent-bid declaration (post-2022 versions)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "The post-2022 SBD 4 absorbs the old SBD 8/9 declarations - treat that section with the same care."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Intended subcontractors and value of subcontracted work",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Non-disclosure of intended subcontractors is treated as a false declaration."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "The bid is disqualified if the disclosure is later found 'not true and complete in every respect' - understatement risks blacklisting. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Commissioner of Oaths",
+                "field_label": "Commissioner of Oaths - signature and stamp (where the pack requires commissioning)",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Commissioner of Oaths",
+                "multiline": 0,
+                "guidance": "Some buyers require this declaration commissioned - stamp plus witnesses at some colleges; check the pack. The commissioner signs IN PERSON: this slot is never stamped from a scan. Book the commissioning session in the final week."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD4-W",
+        "template_code": "SBD4-W",
+        "form_title": "Declaration of Interest (buyer-branded wrapper)",
+        "guide_ref": "Guide 1.2, 4.2",
+        "initial_every_page": 1,
+        "instructions": "SOE packs wrap SBD 4 content in buyer-branded forms - identify the form by TITLE inside the buyer's own form set. Same content, same traps. The deadliest form in the pack: answer EVERY question individually, yes or no, plus particulars for any yes - a blank is a kill. JVs: one form per partner unless the buyer expressly allows a combined form.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Directors / Members / Trustees",
+                "field_label": "All directors / members / trustees / shareholders",
+                "source_type": "Profile Field",
+                "source_field": "directors",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "List ALL of them with ID and tax reference numbers; state-employed persons disclosed with Persal numbers. Omission invalidates the bid."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Question block: interests, relationships with the institution, state employment",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Answer every question individually - 'Failure to do so will invalidate your tender/bid'. Furnish particulars for every yes."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "State-employed persons: Persal numbers and executive-authority approval",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "About half of packs bar companies with state-employed directors outright; where allowed, file the approval for outside remunerative work."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "ALL CSD-registered companies linked to any director",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Newer SBD 4 versions demand disclosure of every CSD-registered company linked to any director - EVEN companies unrelated to this bid. 'Failure to disclose... will lead to disqualification.'"
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Anti-collusion / independent-bid declaration (post-2022 versions)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "The post-2022 SBD 4 absorbs the old SBD 8/9 declarations - treat that section with the same care."
+            },
+            {
+                "section": "Declarations",
+                "field_label": "Intended subcontractors and value of subcontracted work",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Non-disclosure of intended subcontractors is treated as a false declaration."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "The bid is disqualified if the disclosure is later found 'not true and complete in every respect' - understatement risks blacklisting. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD6.1",
+        "template_code": "SBD6.1",
+        "form_title": "Preference Points Claim Form",
+        "guide_ref": "Guide 4.3",
+        "initial_every_page": 1,
+        "instructions": "Confirm the points system from the TENDER-SPECIFIC clause, not the boilerplate: 80/20 up to and including R50 million (all taxes included), 90/10 above. Read the buyer's OWN specific-goals table - never assume the standard B-BBEE scale.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Preference System",
+                "field_label": "Applicable preference system (80/20 or 90/10)",
+                "source_type": "Bid Field",
+                "source_field": "preference_system",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Computed from your estimated value against the R50m threshold. 'Straddling' means your price could fall either side - build a points strategy that works under BOTH systems and ask the SCM contact in writing which applies."
+            },
+            {
+                "section": "Claim",
+                "field_label": "B-BBEE status level of contributor",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_level",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Claim",
+                "field_label": "Enterprise size class (EME / QSE / Generic)",
+                "source_type": "Profile Field",
+                "source_field": "enterprise_type",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Determines the evidence: sworn affidavit on the DTIC template (EME/QSE, valid 12 months) or SANAS-accredited certificate."
+            },
+            {
+                "section": "Claim",
+                "field_label": "B-BBEE evidence expiry",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_certificate_expiry",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Evidence must be valid at closing. If it is not ready at deadline and B-BBEE is not a pre-qualification gate in this pack, STILL SUBMIT - missing proof only zeroes the points."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Points claimed per specific goal (write the NUMBER against each goal)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Write the number of points claimed against EACH goal - some buyers reject ticks, and 'non-claiming of points on this form will lead to zero even if means of verification is attached'."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Proof attached per claimed goal",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "A claim without the exact proof scores zero. Ownership goals often ALSO need shareholding certificates, certified shareholder IDs, CIPC documents and a current CSD report; locality needs a municipal account/lease matching CSD/CIPC exactly."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Subcontracting declaration (25%/30% cap to lower-scoring enterprises)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "You may not subcontract more than the stated cap to an enterprise without equal-or-better points unless declared - read the pack's number."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "NEVER inflate a claim: fraudulent preference claims carry disqualification, contract cancellation, up to 10-year restriction from all public-sector business, and criminal referral. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD6.1",
+        "template_code": "MBD6.1",
+        "form_title": "Preference Points Claim Form",
+        "guide_ref": "Guide 4.3",
+        "initial_every_page": 1,
+        "instructions": "Confirm the points system from the TENDER-SPECIFIC clause, not the boilerplate: 80/20 up to and including R50 million (all taxes included), 90/10 above. Read the buyer's OWN specific-goals table - never assume the standard B-BBEE scale. Claims must match CIPC/CSD/B-BBEE records exactly.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Preference System",
+                "field_label": "Applicable preference system (80/20 or 90/10)",
+                "source_type": "Bid Field",
+                "source_field": "preference_system",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Computed from your estimated value against the R50m threshold. 'Straddling' means your price could fall either side - build a points strategy that works under BOTH systems and ask the SCM contact in writing which applies."
+            },
+            {
+                "section": "Claim",
+                "field_label": "B-BBEE status level of contributor",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_level",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Claim",
+                "field_label": "Enterprise size class (EME / QSE / Generic)",
+                "source_type": "Profile Field",
+                "source_field": "enterprise_type",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Determines the evidence: sworn affidavit on the DTIC template (EME/QSE, valid 12 months) or SANAS-accredited certificate."
+            },
+            {
+                "section": "Claim",
+                "field_label": "B-BBEE evidence expiry",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_certificate_expiry",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Evidence must be valid at closing. If it is not ready at deadline and B-BBEE is not a pre-qualification gate in this pack, STILL SUBMIT - missing proof only zeroes the points."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Points claimed per specific goal (write the NUMBER against each goal)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Write the number of points claimed against EACH goal - some buyers reject ticks, and 'non-claiming of points on this form will lead to zero even if means of verification is attached'."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Proof attached per claimed goal",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "A claim without the exact proof scores zero. Ownership goals often ALSO need shareholding certificates, certified shareholder IDs, CIPC documents and a current CSD report; locality needs a municipal account/lease matching CSD/CIPC exactly."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Subcontracting declaration (25%/30% cap to lower-scoring enterprises)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "You may not subcontract more than the stated cap to an enterprise without equal-or-better points unless declared - read the pack's number."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "NEVER inflate a claim: fraudulent preference claims carry disqualification, contract cancellation, up to 10-year restriction from all public-sector business, and criminal referral. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD6.1-W",
+        "template_code": "SBD6.1-W",
+        "form_title": "Preference Points Claim (buyer-branded wrapper)",
+        "guide_ref": "Guide 1.2, 4.3",
+        "initial_every_page": 1,
+        "instructions": "SOE point maps are often NON-STANDARD: one SOE gives Level 1 only 5 of 20 points, another gives Level 1 all 20. Read the buyer's actual specific-goals table before claiming. Confirm the points system from the TENDER-SPECIFIC clause, not the boilerplate: 80/20 up to and including R50 million (all taxes included), 90/10 above. Read the buyer's OWN specific-goals table - never assume the standard B-BBEE scale.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Preference System",
+                "field_label": "Applicable preference system (80/20 or 90/10)",
+                "source_type": "Bid Field",
+                "source_field": "preference_system",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Computed from your estimated value against the R50m threshold. 'Straddling' means your price could fall either side - build a points strategy that works under BOTH systems and ask the SCM contact in writing which applies."
+            },
+            {
+                "section": "Claim",
+                "field_label": "B-BBEE status level of contributor",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_level",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Claim",
+                "field_label": "Enterprise size class (EME / QSE / Generic)",
+                "source_type": "Profile Field",
+                "source_field": "enterprise_type",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Determines the evidence: sworn affidavit on the DTIC template (EME/QSE, valid 12 months) or SANAS-accredited certificate."
+            },
+            {
+                "section": "Claim",
+                "field_label": "B-BBEE evidence expiry",
+                "source_type": "Profile Field",
+                "source_field": "bbbee_certificate_expiry",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Evidence must be valid at closing. If it is not ready at deadline and B-BBEE is not a pre-qualification gate in this pack, STILL SUBMIT - missing proof only zeroes the points."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Points claimed per specific goal (write the NUMBER against each goal)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Write the number of points claimed against EACH goal - some buyers reject ticks, and 'non-claiming of points on this form will lead to zero even if means of verification is attached'."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Proof attached per claimed goal",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "A claim without the exact proof scores zero. Ownership goals often ALSO need shareholding certificates, certified shareholder IDs, CIPC documents and a current CSD report; locality needs a municipal account/lease matching CSD/CIPC exactly."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Subcontracting declaration (25%/30% cap to lower-scoring enterprises)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "You may not subcontract more than the stated cap to an enterprise without equal-or-better points unless declared - read the pack's number."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "NEVER inflate a claim: fraudulent preference claims carry disqualification, contract cancellation, up to 10-year restriction from all public-sector business, and criminal referral. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD6.2",
+        "template_code": "SBD6.2",
+        "form_title": "Declaration of Local Production and Content",
+        "guide_ref": "Guide 4.3.1",
+        "initial_every_page": 1,
+        "instructions": "Designated sectors only (steel, textiles, furniture and other DTIC-designated categories), but PASS/FAIL where it applies: the Declaration Certificate plus Annex C (per SATS 1286) missing by the deadline can disqualify the bid. Most packs mark local content N/A - confirm the marking and move on.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Determination",
+                "field_label": "Is this tender in a DTIC-designated sector?",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "If the pack's checklist demands the 6.2 form but the pack does not contain it, request it in writing from the SCM contact before the clarification cut-off and keep proof."
+            },
+            {
+                "section": "Declaration",
+                "field_label": "Local content declaration certificate + Annexes C/D/E (per SATS 1286)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Calculated per SATS 1286; missing annexes by the deadline can disqualify."
+            },
+            {
+                "section": "Declaration",
+                "field_label": "Or: N/A marking confirmed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD6.2",
+        "template_code": "MBD6.2",
+        "form_title": "Declaration of Local Production and Content",
+        "guide_ref": "Guide 4.3.1",
+        "initial_every_page": 1,
+        "instructions": "Designated sectors only (steel, textiles, furniture and other DTIC-designated categories), but PASS/FAIL where it applies: the Declaration Certificate plus Annex C (per SATS 1286) missing by the deadline can disqualify the bid. Most packs mark local content N/A - confirm the marking and move on.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Determination",
+                "field_label": "Is this tender in a DTIC-designated sector?",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "If the pack's checklist demands the 6.2 form but the pack does not contain it, request it in writing from the SCM contact before the clarification cut-off and keep proof."
+            },
+            {
+                "section": "Declaration",
+                "field_label": "Local content declaration certificate + Annexes C/D/E (per SATS 1286)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Calculated per SATS 1286; missing annexes by the deadline can disqualify."
+            },
+            {
+                "section": "Declaration",
+                "field_label": "Or: N/A marking confirmed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD3.x",
+        "template_code": "SBD3.x",
+        "form_title": "Pricing Schedules",
+        "guide_ref": "Guide 4.5, 6",
+        "initial_every_page": 1,
+        "instructions": "Price EVERY line - blanks, dashes and N/A count as unpriced and can invalidate the whole tender. Keep the printed format; never retype the schedule. Self-audit the arithmetic before sealing.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Priced line items (from the linked erp Quotation where available)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_lines",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Lines fill automatically when an erp Quotation is linked on the bid; otherwise price every line by hand on the official schedule."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Quotation total (carried to the cover form)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_total",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Every line item priced (no blanks, dashes or N/A)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Where a line genuinely cannot apply, ask the SCM contact in writing before the clarification cut-off - do not improvise a marking."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Firm prices confirmed (or the pack's escalation formula applied)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Firm Rand prices UNLESS the pack issues a non-firm schedule with a mandatory escalation/rate-of-exchange formula."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "VAT treatment stated (inclusive/exclusive per the pack)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "RFQs often default to VAT-EXCLUSIVE if silent - state the basis the pack demands."
+            },
+            {
+                "section": "Reconciliation",
+                "field_label": "Total carried over to the cover form (SBD1/MBD1) and Form of Offer",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "The totals must reconcile EXACTLY across the pricing schedule, the cover form and any Form of Offer."
+            },
+            {
+                "section": "Reconciliation",
+                "field_label": "Total in words AND figures where the form demands both",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Never use correction fluid - Tippex on the price schedule is a per-se disqualifier at some buyers; correct with a single line-through, rewrite, and ALL signatories initial. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD3.2",
+        "template_code": "SBD3.2",
+        "form_title": "Method-of-Pricing / Non-Firm Prices form",
+        "guide_ref": "Guide 4.8, 6.1",
+        "initial_every_page": 1,
+        "instructions": "Where issued, the firm/non-firm option selection is MANDATORY - a blank selection means the bid is not considered.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Selection",
+                "field_label": "Firm / non-firm prices option selected (tick ONE)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Blank = not considered."
+            },
+            {
+                "section": "Selection",
+                "field_label": "Escalation / rate-of-exchange formula submitted (non-firm only)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Non-firm schedules carry mandatory formulas - submit the formula or be locked into fixed prices."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD3.2",
+        "template_code": "MBD3.2",
+        "form_title": "Method-of-Pricing / Non-Firm Prices form",
+        "guide_ref": "Guide 4.8, 6.1",
+        "initial_every_page": 1,
+        "instructions": "Where issued, the firm/non-firm option selection is MANDATORY - a blank selection means the bid is not considered.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Selection",
+                "field_label": "Firm / non-firm prices option selected (tick ONE)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Blank = not considered."
+            },
+            {
+                "section": "Selection",
+                "field_label": "Escalation / rate-of-exchange formula submitted (non-firm only)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Non-firm schedules carry mandatory formulas - submit the formula or be locked into fixed prices."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD3.x",
+        "template_code": "MBD3.x",
+        "form_title": "Pricing Schedules",
+        "guide_ref": "Guide 4.5, 6",
+        "initial_every_page": 1,
+        "instructions": "Price EVERY line - blanks, dashes and N/A count as unpriced and can invalidate the whole tender. Keep the printed format; never retype the schedule. Self-audit the arithmetic before sealing, and carry the total to the face of MBD 1 - 'bidders who do not put prices on MBD 1 will be eliminated'.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Priced line items (from the linked erp Quotation where available)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_lines",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Lines fill automatically when an erp Quotation is linked on the bid; otherwise price every line by hand on the official schedule."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Quotation total (carried to the face of MBD 1)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_total",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Every line item priced (no blanks, dashes or N/A)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Where a line genuinely cannot apply, ask the SCM contact in writing before the clarification cut-off - do not improvise a marking."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Firm prices confirmed (or the pack's escalation formula applied)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Firm Rand prices UNLESS the pack issues a non-firm schedule with a mandatory escalation/rate-of-exchange formula (see MBD 3.2)."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "VAT treatment stated (inclusive/exclusive per the pack)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Several buyers deem prices above a threshold VAT-INCLUSIVE regardless of what was written - state the basis the pack demands."
+            },
+            {
+                "section": "Reconciliation",
+                "field_label": "Total carried over to the face of MBD 1",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "The totals must reconcile EXACTLY across the pricing schedule and the MBD 1 cover form - 'bidders who do not put prices on MBD 1 will be eliminated'."
+            },
+            {
+                "section": "Reconciliation",
+                "field_label": "Total in words AND figures where the form demands both",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Never use correction fluid - Tippex on the price schedule is a per-se disqualifier at some buyers; correct with a single line-through, rewrite, and ALL signatories initial. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "SBD7",
+        "template_code": "SBD7",
+        "form_title": "Contract Form",
+        "guide_ref": "Guide 4.6",
+        "initial_every_page": 1,
+        "instructions": "Where included as a returnable: the bidder completes and signs Part 1 at bid stage; the buyer countersigns after award. Filled IN DUPLICATE, both signed in the original.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Completion",
+                "field_label": "Part 1 completed in duplicate, both copies signed in the original",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Witnesses (two per party where required)",
+                "field_label": "Witness 1 - signature",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Witness 1",
+                "multiline": 0,
+                "guidance": "Witness name, ID and capacity written next to the signature."
+            },
+            {
+                "section": "Witnesses (two per party where required)",
+                "field_label": "Witness 2 - signature",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Witness 2",
+                "multiline": 0,
+                "guidance": "Witness name, ID and capacity written next to the signature."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "POPIA",
+        "template_code": "POPIA",
+        "form_title": "POPIA consent / processing form",
+        "guide_ref": "Guide 4.8",
+        "initial_every_page": 1,
+        "instructions": "Near-cross-sector returnable, mandatory at multiple buyers - sign it wherever the pack includes one; skipping it is a missing-returnable kill.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Consent",
+                "field_label": "Consent/processing declarations completed per the pack's form",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "CST",
+        "template_code": "CST",
+        "form_title": "Certificate of Single Tender Submission",
+        "guide_ref": "Guide 4.8",
+        "initial_every_page": 1,
+        "instructions": "Certifies ONE bid per entity - more than one submission (solo or via a JV) voids ALL your submissions.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Certification",
+                "field_label": "Single-submission certification completed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Check every JV and consortium you participate in before certifying."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD2",
+        "template_code": "MBD2",
+        "form_title": "Original Tax Clearance Certificate",
+        "guide_ref": "Guide 3.1, 4.8",
+        "initial_every_page": 0,
+        "instructions": "Where the pack demands the MBD 2 route, the tax clearance certificate must be an ORIGINAL - certified copies are rejected (a recurring older-template trait, not a one-off).",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tax Clearance",
+                "field_label": "SARS Tax Compliance Status PIN",
+                "source_type": "Profile Field",
+                "source_field": "tcs_pin",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tax Clearance",
+                "field_label": "ORIGINAL tax clearance certificate obtained and enclosed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Order the original from SARS early - it cannot be produced on closing day."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD5",
+        "template_code": "MBD5",
+        "form_title": "Declaration for Procurement above R10 million",
+        "guide_ref": "Guide 3.4",
+        "initial_every_page": 1,
+        "instructions": "Mandatory above R10m: this declaration plus THREE years of audited annual financial statements (or AFS since incorporation). Unaudited AFS cannot be fixed inside a bid window - resolve months ahead.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Financials",
+                "field_label": "Three years' audited AFS (or since incorporation) attached",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Disclosures",
+                "field_label": "Municipal debt position disclosed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Municipal-debt and prior-contract-performance disclosures are part of the declaration."
+            },
+            {
+                "section": "Disclosures",
+                "field_label": "Prior contract performance disclosed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD8",
+        "template_code": "MBD8",
+        "form_title": "Declaration of Bidder's Past SCM Practices",
+        "guide_ref": "Guide 4.4",
+        "initial_every_page": 1,
+        "instructions": "Separate returnable in EVERY municipal pack: yes/no questionnaire - furnish particulars for any yes; sign.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Questionnaire",
+                "field_label": "Listed on the National Treasury Register for Tender Defaulters / List of Restricted Suppliers? (yes/no + particulars)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Listing - of the entity OR any director - is an automatic, no-cure disqualification; check Treasury's lists before bidding."
+            },
+            {
+                "section": "Questionnaire",
+                "field_label": "Convictions for fraud or corruption? (yes/no + particulars)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Questionnaire",
+                "field_label": "Prior government contract terminations? (yes/no + particulars)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Questionnaire",
+                "field_label": "Municipal rates and taxes in arrears (company and directors)? (yes/no + particulars)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "The signature municipal gate: clearance for the company AND every director; arrears windows are buyer-specific (one month to 90 days)."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Commissioner of Oaths",
+                "field_label": "Commissioner of Oaths - signature and stamp (where the pack requires commissioning)",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Commissioner of Oaths",
+                "multiline": 0,
+                "guidance": "Some buyers require this declaration commissioned - stamp plus witnesses at some colleges; check the pack. The commissioner signs IN PERSON: this slot is never stamped from a scan. Book the commissioning session in the final week."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD9",
+        "template_code": "MBD9",
+        "form_title": "Certificate of Independent Bid Determination",
+        "guide_ref": "Guide 4.4",
+        "initial_every_page": 1,
+        "instructions": "Certificate that the bid was arrived at independently - no communication with competitors on prices, markets, or intent to bid. Omission of the authorised signature makes the bid non-responsive.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Certification",
+                "field_label": "Independence declarations completed (each question answered)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "MUST be signed by an authorised signatory - omission makes the bid non-responsive. Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Commissioner of Oaths",
+                "field_label": "Commissioner of Oaths - signature and stamp (where the pack requires commissioning)",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Commissioner of Oaths",
+                "multiline": 0,
+                "guidance": "Some buyers require this declaration commissioned - stamp plus witnesses at some colleges; check the pack. The commissioner signs IN PERSON: this slot is never stamped from a scan. Book the commissioning session in the final week."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD10",
+        "template_code": "MBD10",
+        "form_title": "Buyer-specific municipal declarations",
+        "guide_ref": "Guide 4.0, regime notes",
+        "initial_every_page": 1,
+        "instructions": "Buyer-specific: sign EVERY declaration form the pack includes - skipping a form because it looks like legal furniture is a missing-returnable kill.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Sweep",
+                "field_label": "Every buyer-specific declaration in the pack identified and completed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Sweep the pack's returnables checklist by TITLE and complete each one."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "MBD6.4",
+        "template_code": "MBD6.4",
+        "form_title": "Local Content Bonus Points form",
+        "guide_ref": "Guide 4.8",
+        "initial_every_page": 1,
+        "instructions": "Where the pack scores local-content bonus points: claim explicitly with the named proof, exactly as with MBD 6.1 - an unclaimed or unproven bonus scores zero.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Claim",
+                "field_label": "Bonus points claimed (write the number) + named proof attached",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "NDA",
+        "template_code": "NDA",
+        "form_title": "Confidentiality / Non-disclosure undertaking",
+        "guide_ref": "Guide 4.0, regime notes",
+        "initial_every_page": 1,
+        "instructions": "Where the pack includes an NDA as a returnable, it is part of the bid - skipping it is a missing-returnable kill (some carry a penalty clause).",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Undertaking",
+                "field_label": "NDA terms reviewed and form completed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Witnesses",
+                "field_label": "Witness 1 - signature",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Witness 1",
+                "multiline": 0,
+                "guidance": "Witness name, ID and capacity written next to the signature."
+            },
+            {
+                "section": "Witnesses",
+                "field_label": "Witness 2 - signature",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Witness 2",
+                "multiline": 0,
+                "guidance": "Witness name, ID and capacity written next to the signature."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "DPIP-FPPO",
+        "template_code": "DPIP-FPPO",
+        "form_title": "DPIP / FPPO politically-exposed-persons declaration",
+        "guide_ref": "Guide 4.8",
+        "initial_every_page": 1,
+        "instructions": "SANRAL Form A5, Transnet and others: 'tender may be rendered invalid' if omitted - sweep for it by title and complete it wherever the pack includes one.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Directors / Members / Trustees",
+                "field_label": "All directors / members / trustees / shareholders",
+                "source_type": "Profile Field",
+                "source_field": "directors",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "List ALL of them with ID and tax reference numbers; state-employed persons disclosed with Persal numbers. Omission invalidates the bid."
+            },
+            {
+                "section": "Declaration",
+                "field_label": "Domestic Prominent Influential Persons / Foreign Prominent Public Officials determination per director",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Declare for every director/member - understatement risks the whole bid."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "INTEGRITY-PACT",
+        "template_code": "INTEGRITY-PACT",
+        "form_title": "Buyer-branded Integrity Pact",
+        "guide_ref": "Guide 4.8",
+        "initial_every_page": 1,
+        "instructions": "Signed IN ADDITION to SBD/MBD 9, not instead of it (Gauteng Treasury, Eskom, Transnet) - sign both where both appear.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Pact",
+                "field_label": "Integrity pact terms reviewed and form completed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "LIT-HISTORY",
+        "template_code": "LIT-HISTORY",
+        "form_title": "Litigation-history disclosure",
+        "guide_ref": "Guide 4.8",
+        "initial_every_page": 1,
+        "instructions": "SANRAL Form A8-style returnable; feeds the buyer's PPPFA s2(1)(f) objective-criteria review.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Disclosure",
+                "field_label": "All current and past litigation disclosed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Disclose fully - understatement risks the whole bid, not just points."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "LOT-TABLE",
+        "template_code": "LOT-TABLE",
+        "form_title": "Lot / field tick-box tables",
+        "guide_ref": "Guide 4.8",
+        "initial_every_page": 0,
+        "instructions": "An unticked lot = disqualified for that lot - tick every lot/field you intend to bid.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Lots",
+                "field_label": "Every lot/field you intend to bid ticked in the pack's table",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Cross-check against your pricing schedule: a priced lot with an unticked box is a wasted bid."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "C1.1",
+        "template_code": "C1.1",
+        "form_title": "Form of Offer and Acceptance",
+        "guide_ref": "Guide 4.6",
+        "initial_every_page": 0,
+        "instructions": "Sign the Offer with the total price in words AND figures, witnessed. Failure to sign, or to carry the price over from the pricing/activity schedule, renders the tender invalid.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Company / CC registration number",
+                "source_type": "Profile Field",
+                "source_field": "company_registration_no",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Bid / tender number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Offer",
+                "field_label": "Total offered amount in FIGURES",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Carried over exactly from the pricing/activity schedule."
+            },
+            {
+                "section": "Offer",
+                "field_label": "Total offered amount in WORDS",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Witnesses",
+                "field_label": "Witness 1 - signature",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Witness 1",
+                "multiline": 0,
+                "guidance": "Witness name, ID and capacity written next to the signature."
+            },
+            {
+                "section": "Witnesses",
+                "field_label": "Witness 2 - signature",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Witness 2",
+                "multiline": 0,
+                "guidance": "Witness name, ID and capacity written next to the signature."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "T2.x",
+        "template_code": "T2.x",
+        "form_title": "Returnable Schedules (T/A-series)",
+        "guide_ref": "Guide regime notes",
+        "initial_every_page": 1,
+        "instructions": "Every schedule in the pack's returnables list must be present, completed and signed. Locate the pack's filing clause (F.2.13.x) - a pack-level filing rule overrides per-form attachment instructions.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Schedules",
+                "field_label": "Every returnable schedule completed and signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Work from the pack's own returnables list - include schedules even where the pack's checklist omits them."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "T2.x-PRICE",
+        "template_code": "T2.x-PRICE",
+        "form_title": "Priced Schedule / Bill of Quantities (C2.2 pricing worksheet)",
+        "guide_ref": "Guide 4.5, 4.6, 6",
+        "initial_every_page": 1,
+        "instructions": "Price EVERY item of the pricing data / bill of quantities including rate-only items - 'items against which N/A, left blank or - (dash) is entered' invalidate the tender at about half of buyers. Keep the issued format; never retype the schedule. Carry the total over to the C1.1 Form of Offer in words AND figures.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of tenderer",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Tender Reference",
+                "field_label": "Tender / contract number",
+                "source_type": "Bid Field",
+                "source_field": "tender_number",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Priced line items (from the linked erp Quotation where available)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_lines",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Lines fill automatically when an erp Quotation is linked on the bid; otherwise price every BoQ item by hand on the official schedule."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Quotation total (carried to the C1.1 Form of Offer)",
+                "source_type": "Bid Field",
+                "source_field": "pricing_total",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Every BoQ item priced, including rate-only items (no blanks, dashes or N/A)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": "Unpriced lines are an explicit kill at about half of buyers; write R0.00 deliberately where an item is genuinely free."
+            },
+            {
+                "section": "Pricing",
+                "field_label": "Preliminary & general, contingencies and provisional sums entered as instructed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Follow the pricing instructions in the pack's C2.1 Pricing Data - a pack-level pricing rule overrides per-item assumptions."
+            },
+            {
+                "section": "Reconciliation",
+                "field_label": "Total carried over to the C1.1 Form of Offer in words AND figures",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "A missing or mismatched carry-over to the Form of Offer renders the tender invalid."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of tenderer / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Never use correction fluid - correct with a single line-through, rewrite, and ALL signatories initial. Attach proof of signing authority."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "HS-PLAN",
+        "template_code": "HS-PLAN",
+        "form_title": "Health & Safety Plan (bid-stage)",
+        "guide_ref": "Guide regime notes",
+        "initial_every_page": 0,
+        "instructions": "Per the pack's H&S Specification - include it even if the pack's own checklist omits it.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Plan",
+                "field_label": "Bid-stage H&S plan prepared per the pack's H&S Specification and attached",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "QC-PLAN",
+        "template_code": "QC-PLAN",
+        "form_title": "Quality Control Plan",
+        "guide_ref": "Guide regime notes",
+        "initial_every_page": 0,
+        "instructions": "Include where scored or demanded (with ISO certification where it scores).",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Bidder Identity",
+                "field_label": "Registered name (as per CIPC)",
+                "source_type": "Profile Field",
+                "source_field": "registered_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Names must match CIPC, CSD and the B-BBEE evidence EXACTLY - a mismatch is treated as misrepresentation at some buyers."
+            },
+            {
+                "section": "Plan",
+                "field_label": "Quality control plan attached (with ISO certification where it scores)",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 1,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Signature of bidder / authorised signatory",
+                "source_type": "Signature",
+                "source_field": "",
+                "signature_role": "Signatory",
+                "multiline": 0,
+                "guidance": "Signed by the authorised signatory named in the board/members' resolution. Attach proof of signing authority - failure renders the tender non-responsive."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Capacity in which signed",
+                "source_type": "Profile Field",
+                "source_field": "authorized_signatory_capacity",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Signature",
+                "field_label": "Date signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": "Date on the day of actual signature."
+            },
+            {
+                "section": "Signature",
+                "field_label": "Place signed",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    },
+    {
+        "doctype": "Tender Form Template",
+        "name": "GCC-ACCEPT",
+        "template_code": "GCC-ACCEPT",
+        "form_title": "GCC/SCC 'ACCEPT ALL' tick-box",
+        "guide_ref": "Guide regime notes",
+        "initial_every_page": 0,
+        "instructions": "An independent kill where present: failure to tick the ACCEPT ALL box on the contract conditions = disqualification - check for it as its own returnable, not part of the contract form.",
+        "fields_table": [
+            {
+                "section": "Bidder Identity",
+                "field_label": "Name of bidder",
+                "source_type": "Profile Field",
+                "source_field": "trading_name",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            },
+            {
+                "section": "Acceptance",
+                "field_label": "ACCEPT ALL box on the GCC/SCC contract conditions ticked",
+                "source_type": "User Input",
+                "source_field": "",
+                "signature_role": "",
+                "multiline": 0,
+                "guidance": ""
+            }
+        ]
+    }
+]

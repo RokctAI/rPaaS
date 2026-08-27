@@ -1,0 +1,182 @@
+{
+  "name": "merchants",
+  "description": "Modular backend package for merchants",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.shop.check_cashback": "{app_name}.merchants.tenant.api.shop.check_cashback",
+          "{app_name}.api.shop.create_shop": "{app_name}.merchants.tenant.api.shop.create_shop",
+          "{app_name}.api.shop.get_nearby_shops": "{app_name}.merchants.tenant.api.shop.get_nearby_shops",
+          "{app_name}.api.shop.get_shops": "{app_name}.merchants.tenant.api.shop.get_shops",
+          "{app_name}.api.shop.get_shops_by_ids": "{app_name}.merchants.tenant.api.shop.get_shops_by_ids",
+          "{app_name}.api.shop.get_shops_recommend": "{app_name}.merchants.tenant.api.shop.get_shops_recommend",
+          "{app_name}.api.seller_bonus.get_seller_bonuses": "{app_name}.merchants.tenant.api.seller_bonus.get_seller_bonuses",
+          "{app_name}.api.seller_customer_management.get_seller_customer_addresses": "{app_name}.merchants.tenant.api.seller_customer_management.get_seller_customer_addresses",
+          "{app_name}.api.seller_customer_management.get_seller_request_models": "{app_name}.merchants.tenant.api.seller_customer_management.get_seller_request_models",
+          "{app_name}.api.seller_delivery_zone.check_delivery_fee": "{app_name}.merchants.tenant.api.seller_delivery_zone.check_delivery_fee",
+          "{app_name}.api.seller_delivery_zone.create_seller_delivery_zone": "{app_name}.merchants.tenant.api.seller_delivery_zone.create_seller_delivery_zone",
+          "{app_name}.api.seller_delivery_zone.delete_seller_delivery_zone": "{app_name}.merchants.tenant.api.seller_delivery_zone.delete_seller_delivery_zone",
+          "{app_name}.api.seller_delivery_zone.get_seller_delivery_zone": "{app_name}.merchants.tenant.api.seller_delivery_zone.get_seller_delivery_zone",
+          "{app_name}.api.seller_delivery_zone.get_seller_delivery_zones": "{app_name}.merchants.tenant.api.seller_delivery_zone.get_seller_delivery_zones",
+          "{app_name}.api.seller_delivery_zone.update_seller_delivery_zone": "{app_name}.merchants.tenant.api.seller_delivery_zone.update_seller_delivery_zone",
+          "{app_name}.api.seller_invites.get_seller_invites": "{app_name}.merchants.tenant.api.seller_invites.get_seller_invites",
+          "{app_name}.api.seller_logistics.adjust_seller_inventory": "{app_name}.merchants.tenant.api.seller_logistics.adjust_seller_inventory",
+          "{app_name}.api.seller_logistics.get_seller_delivery_man_delivery_zones": "{app_name}.merchants.tenant.api.seller_logistics.get_seller_delivery_man_delivery_zones",
+          "{app_name}.api.seller_marketing.create_seller_banner": "{app_name}.merchants.tenant.api.seller_marketing.create_seller_banner",
+          "{app_name}.api.seller_marketing.create_seller_coupon": "{app_name}.merchants.tenant.api.seller_marketing.create_seller_coupon",
+          "{app_name}.api.seller_marketing.create_seller_discount": "{app_name}.merchants.tenant.api.seller_marketing.create_seller_discount",
+          "{app_name}.api.seller_marketing.delete_seller_banner": "{app_name}.merchants.tenant.api.seller_marketing.delete_seller_banner",
+          "{app_name}.api.seller_marketing.delete_seller_coupon": "{app_name}.merchants.tenant.api.seller_marketing.delete_seller_coupon",
+          "{app_name}.api.seller_marketing.delete_seller_discount": "{app_name}.merchants.tenant.api.seller_marketing.delete_seller_discount",
+          "{app_name}.api.seller_marketing.get_ads_packages": "{app_name}.merchants.tenant.api.seller_marketing.get_ads_packages",
+          "{app_name}.api.seller_marketing.get_seller_banners": "{app_name}.merchants.tenant.api.seller_marketing.get_seller_banners",
+          "{app_name}.api.seller_marketing.get_seller_coupons": "{app_name}.merchants.tenant.api.seller_marketing.get_seller_coupons",
+          "{app_name}.api.seller_marketing.get_seller_discounts": "{app_name}.merchants.tenant.api.seller_marketing.get_seller_discounts",
+          "{app_name}.api.seller_marketing.get_seller_shop_ads_packages": "{app_name}.merchants.tenant.api.seller_marketing.get_seller_shop_ads_packages",
+          "{app_name}.api.seller_marketing.purchase_shop_ads_package": "{app_name}.merchants.tenant.api.seller_marketing.purchase_shop_ads_package",
+          "{app_name}.api.seller_marketing.update_seller_banner": "{app_name}.merchants.tenant.api.seller_marketing.update_seller_banner",
+          "{app_name}.api.seller_marketing.update_seller_coupon": "{app_name}.merchants.tenant.api.seller_marketing.update_seller_coupon",
+          "{app_name}.api.seller_marketing.update_seller_discount": "{app_name}.merchants.tenant.api.seller_marketing.update_seller_discount",
+          "{app_name}.api.seller_operations.adjust_seller_inventory": "{app_name}.merchants.tenant.api.seller_operations.adjust_seller_inventory",
+          "{app_name}.api.seller_operations.create_seller_combo": "{app_name}.merchants.tenant.api.seller_operations.create_seller_combo",
+          "{app_name}.api.seller_operations.create_seller_kitchen": "{app_name}.merchants.tenant.api.seller_operations.create_seller_kitchen",
+          "{app_name}.api.seller_operations.create_seller_menu": "{app_name}.merchants.tenant.api.seller_operations.create_seller_menu",
+          "{app_name}.api.seller_operations.create_seller_receipt": "{app_name}.merchants.tenant.api.seller_operations.create_seller_receipt",
+          "{app_name}.api.seller_operations.delete_seller_combo": "{app_name}.merchants.tenant.api.seller_operations.delete_seller_combo",
+          "{app_name}.api.seller_operations.delete_seller_kitchen": "{app_name}.merchants.tenant.api.seller_operations.delete_seller_kitchen",
+          "{app_name}.api.seller_operations.delete_seller_menu": "{app_name}.merchants.tenant.api.seller_operations.delete_seller_menu",
+          "{app_name}.api.seller_operations.delete_seller_receipt": "{app_name}.merchants.tenant.api.seller_operations.delete_seller_receipt",
+          "{app_name}.api.seller_operations.get_seller_combo": "{app_name}.merchants.tenant.api.seller_operations.get_seller_combo",
+          "{app_name}.api.seller_operations.get_seller_combos": "{app_name}.merchants.tenant.api.seller_operations.get_seller_combos",
+          "{app_name}.api.seller_operations.get_seller_inventory_items": "{app_name}.merchants.tenant.api.seller_operations.get_seller_inventory_items",
+          "{app_name}.api.seller_operations.get_seller_kitchens": "{app_name}.merchants.tenant.api.seller_operations.get_seller_kitchens",
+          "{app_name}.api.seller_operations.get_seller_menu": "{app_name}.merchants.tenant.api.seller_operations.get_seller_menu",
+          "{app_name}.api.seller_operations.get_seller_menus": "{app_name}.merchants.tenant.api.seller_operations.get_seller_menus",
+          "{app_name}.api.seller_operations.get_seller_sections": "{app_name}.merchants.tenant.api.seller_operations.get_seller_sections",
+          "{app_name}.api.seller_operations.get_seller_tables": "{app_name}.merchants.tenant.api.seller_operations.get_seller_tables",
+          "{app_name}.api.seller_operations.get_seller_receipts": "{app_name}.merchants.tenant.api.seller_operations.get_seller_receipts",
+          "{app_name}.api.seller_operations.update_seller_combo": "{app_name}.merchants.tenant.api.seller_operations.update_seller_combo",
+          "{app_name}.api.seller_operations.update_seller_kitchen": "{app_name}.merchants.tenant.api.seller_operations.update_seller_kitchen",
+          "{app_name}.api.seller_operations.update_seller_menu": "{app_name}.merchants.tenant.api.seller_operations.update_seller_menu",
+          "{app_name}.api.seller_operations.update_seller_receipt": "{app_name}.merchants.tenant.api.seller_operations.update_seller_receipt",
+          "{app_name}.api.seller_order.get_seller_order_details": "{app_name}.merchants.tenant.api.seller_order.get_seller_order_details",
+          "{app_name}.api.seller_order.get_seller_order_refunds": "{app_name}.merchants.tenant.api.seller_order.get_seller_order_refunds",
+          "{app_name}.api.seller_order.get_seller_orders": "{app_name}.merchants.tenant.api.seller_order.get_seller_orders",
+          "{app_name}.api.seller_order.get_seller_reviews": "{app_name}.merchants.tenant.api.seller_order.get_seller_reviews",
+          "{app_name}.api.seller_order.update_seller_order_refund": "{app_name}.merchants.tenant.api.seller_order.update_seller_order_refund",
+          "{app_name}.api.seller_order.update_seller_order_status": "{app_name}.merchants.tenant.api.seller_order.update_seller_order_status",
+          "{app_name}.api.seller_payout.get_seller_payouts": "{app_name}.merchants.tenant.api.seller_payout.get_seller_payouts",
+          "{app_name}.api.seller_product.create_seller_brand": "{app_name}.merchants.tenant.api.seller_product.create_seller_brand",
+          "{app_name}.api.seller_product.create_seller_category": "{app_name}.merchants.tenant.api.seller_product.create_seller_category",
+          "{app_name}.api.seller_product.create_seller_extra_group": "{app_name}.merchants.tenant.api.seller_product.create_seller_extra_group",
+          "{app_name}.api.seller_product.create_seller_extra_value": "{app_name}.merchants.tenant.api.seller_product.create_seller_extra_value",
+          "{app_name}.api.seller_product.create_seller_product": "{app_name}.merchants.tenant.api.seller_product.create_seller_product",
+          "{app_name}.api.seller_product.create_seller_tag": "{app_name}.merchants.tenant.api.seller_product.create_seller_tag",
+          "{app_name}.api.seller_product.create_seller_unit": "{app_name}.merchants.tenant.api.seller_product.create_seller_unit",
+          "{app_name}.api.seller_product.create_product": "{app_name}.merchants.tenant.api.seller_product.create_product",
+          "{app_name}.api.seller_product.delete_seller_brand": "{app_name}.merchants.tenant.api.seller_product.delete_seller_brand",
+          "{app_name}.api.seller_product.delete_seller_category": "{app_name}.merchants.tenant.api.seller_product.delete_seller_category",
+          "{app_name}.api.seller_product.delete_seller_extra_group": "{app_name}.merchants.tenant.api.seller_product.delete_seller_extra_group",
+          "{app_name}.api.seller_product.delete_seller_extra_value": "{app_name}.merchants.tenant.api.seller_product.delete_seller_extra_value",
+          "{app_name}.api.seller_product.delete_seller_product": "{app_name}.merchants.tenant.api.seller_product.delete_seller_product",
+          "{app_name}.api.seller_product.delete_seller_tag": "{app_name}.merchants.tenant.api.seller_product.delete_seller_tag",
+          "{app_name}.api.seller_product.delete_seller_unit": "{app_name}.merchants.tenant.api.seller_product.delete_seller_unit",
+          "{app_name}.api.seller_product.get_product_details": "{app_name}.merchants.tenant.api.seller_product.get_product_details",
+          "{app_name}.api.seller_product.get_seller_brands": "{app_name}.merchants.tenant.api.seller_product.get_seller_brands",
+          "{app_name}.api.seller_product.get_seller_categories": "{app_name}.merchants.tenant.api.seller_product.get_seller_categories",
+          "{app_name}.api.seller_product.get_seller_extra_groups": "{app_name}.merchants.tenant.api.seller_product.get_seller_extra_groups",
+          "{app_name}.api.seller_product.get_seller_extra_values": "{app_name}.merchants.tenant.api.seller_product.get_seller_extra_values",
+          "{app_name}.api.seller_product.get_seller_products": "{app_name}.merchants.tenant.api.seller_product.get_seller_products",
+          "{app_name}.api.seller_product.get_seller_tags": "{app_name}.merchants.tenant.api.seller_product.get_seller_tags",
+          "{app_name}.api.seller_product.get_seller_units": "{app_name}.merchants.tenant.api.seller_product.get_seller_units",
+          "{app_name}.api.seller_product.update_seller_brand": "{app_name}.merchants.tenant.api.seller_product.update_seller_brand",
+          "{app_name}.api.seller_product.update_seller_category": "{app_name}.merchants.tenant.api.seller_product.update_seller_category",
+          "{app_name}.api.seller_product.update_seller_extra_group": "{app_name}.merchants.tenant.api.seller_product.update_seller_extra_group",
+          "{app_name}.api.seller_product.update_seller_extra_value": "{app_name}.merchants.tenant.api.seller_product.update_seller_extra_value",
+          "{app_name}.api.seller_product.update_seller_product": "{app_name}.merchants.tenant.api.seller_product.update_seller_product",
+          "{app_name}.api.seller_product.update_seller_tag": "{app_name}.merchants.tenant.api.seller_product.update_seller_tag",
+          "{app_name}.api.seller_product.update_seller_unit": "{app_name}.merchants.tenant.api.seller_product.update_seller_unit",
+          "{app_name}.api.seller_report.get_order_report": "{app_name}.merchants.tenant.api.seller_report.seller_report.get_order_report",
+          "{app_name}.api.seller_report.get_order_report_paginate": "{app_name}.merchants.tenant.api.seller_report.seller_report.get_order_report_paginate",
+          "{app_name}.api.seller_reports.get_seller_sales_report": "{app_name}.merchants.tenant.api.seller_reports.get_seller_sales_report",
+          "{app_name}.api.seller_reports.get_seller_statistics": "{app_name}.merchants.tenant.api.seller_reports.get_seller_statistics",
+          "{app_name}.api.seller_shop.get_shop": "{app_name}.merchants.tenant.api.seller_shop.get_shop",
+          "{app_name}.api.seller_shop.set_working_status": "{app_name}.merchants.tenant.api.seller_shop.set_working_status",
+          "{app_name}.api.seller_shop.update_shop": "{app_name}.merchants.tenant.api.seller_shop.update_shop",
+          "{app_name}.api.seller_shop_gallery.create_seller_shop_gallery": "{app_name}.merchants.tenant.api.seller_shop_gallery.create_seller_shop_gallery",
+          "{app_name}.api.seller_shop_gallery.delete_seller_shop_gallery": "{app_name}.merchants.tenant.api.seller_shop_gallery.delete_seller_shop_gallery",
+          "{app_name}.api.seller_shop_gallery.get_seller_shop_galleries": "{app_name}.merchants.tenant.api.seller_shop_gallery.get_seller_shop_galleries",
+          "{app_name}.api.seller_shop_settings.add_seller_shop_closed_day": "{app_name}.merchants.tenant.api.seller_shop_settings.add_seller_shop_closed_day",
+          "{app_name}.api.seller_shop_settings.add_shop_user": "{app_name}.merchants.tenant.api.seller_shop_settings.add_shop_user",
+          "{app_name}.api.seller_shop_settings.create_seller_branch": "{app_name}.merchants.tenant.api.seller_shop_settings.create_seller_branch",
+          "{app_name}.api.seller_shop_settings.delete_seller_branch": "{app_name}.merchants.tenant.api.seller_shop_settings.delete_seller_branch",
+          "{app_name}.api.seller_shop_settings.delete_seller_shop_closed_day": "{app_name}.merchants.tenant.api.seller_shop_settings.delete_seller_shop_closed_day",
+          "{app_name}.api.seller_shop_settings.get_seller_branches": "{app_name}.merchants.tenant.api.seller_shop_settings.get_seller_branches",
+          "{app_name}.api.seller_shop_settings.get_seller_deliveryman_settings": "{app_name}.merchants.tenant.api.seller_shop_settings.get_seller_deliveryman_settings",
+          "{app_name}.api.seller_shop_settings.get_seller_shop_closed_days": "{app_name}.merchants.tenant.api.seller_shop_settings.get_seller_shop_closed_days",
+          "{app_name}.api.seller_shop_settings.get_seller_shop_working_days": "{app_name}.merchants.tenant.api.seller_shop_settings.get_seller_shop_working_days",
+          "{app_name}.api.seller_shop_settings.get_shop_users": "{app_name}.merchants.tenant.api.seller_shop_settings.get_shop_users",
+          "{app_name}.api.seller_shop_settings.remove_shop_user": "{app_name}.merchants.tenant.api.seller_shop_settings.remove_shop_user",
+          "{app_name}.api.seller_shop_settings.update_seller_branch": "{app_name}.merchants.tenant.api.seller_shop_settings.update_seller_branch",
+          "{app_name}.api.seller_shop_settings.update_seller_deliveryman_settings": "{app_name}.merchants.tenant.api.seller_shop_settings.update_seller_deliveryman_settings",
+          "{app_name}.api.seller_shop_settings.update_seller_shop_working_days": "{app_name}.merchants.tenant.api.seller_shop_settings.update_seller_shop_working_days",
+          "{app_name}.api.seller_story.create_seller_story": "{app_name}.merchants.tenant.api.seller_story.create_seller_story",
+          "{app_name}.api.seller_story.delete_seller_story": "{app_name}.merchants.tenant.api.seller_story.delete_seller_story",
+          "{app_name}.api.seller_story.get_seller_stories": "{app_name}.merchants.tenant.api.seller_story.get_seller_stories",
+          "{app_name}.api.seller_story.update_seller_story": "{app_name}.merchants.tenant.api.seller_story.update_seller_story",
+          "{app_name}.api.seller_transactions.get_seller_payment_to_partners": "{app_name}.merchants.tenant.api.seller_transactions.get_seller_payment_to_partners",
+          "{app_name}.api.seller_transactions.get_seller_shop_payments": "{app_name}.merchants.tenant.api.seller_transactions.get_seller_shop_payments",
+          "{app_name}.api.seller_transactions.get_seller_transactions": "{app_name}.merchants.tenant.api.seller_transactions.get_seller_transactions",
+          "{app_name}.api.shop.check_driver_zone": "{app_name}.merchants.tenant.api.shop.check_driver_zone",
+          "{app_name}.api.shop.get_shop_details": "{app_name}.merchants.tenant.api.shop.get_shop_details",
+          "{app_name}.api.shop.get_shop_types": "{app_name}.merchants.tenant.api.shop.get_shop_types",
+          "{app_name}.api.shop.search_shops": "{app_name}.merchants.tenant.api.shop.search_shops"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Menu"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Seller"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Payout"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Shop"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "control": {}
+  }
+}

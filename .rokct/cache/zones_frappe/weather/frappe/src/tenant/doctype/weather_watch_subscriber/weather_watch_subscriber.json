@@ -1,0 +1,52 @@
+{
+ "doctype": "DocType",
+ "name": "Weather Watch Subscriber",
+ "engine": "InnoDB",
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "module": "{module_name}",
+ "description": "One (grid cell, user) subscription for severe-weather push notifications. TENANT-side doctype: rows are self-registered by the tenant get_weather_warnings proxy (frappe.session.user of the requester) and consumed by the hourly tenant push-sync job. watch_location stores the shared 0.25 degree grid key string (the Weather Watch Location doctype lives control-side, where grid keys are the location names), so many users may subscribe to one cell. Subscribers whose last_requested_at is older than 30 days are not pushed to. All datetimes are UTC.",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "fields": [
+  {
+   "fieldname": "watch_location",
+   "fieldtype": "Data",
+   "label": "Watch Location (Grid Key)",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "last_requested_at",
+   "fieldtype": "Datetime",
+   "label": "Last Requested At (UTC)",
+   "read_only": 1,
+   "in_list_view": 1
+  }
+ ]
+}

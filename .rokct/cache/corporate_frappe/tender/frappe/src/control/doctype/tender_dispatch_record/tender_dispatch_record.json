@@ -1,0 +1,146 @@
+{
+    "actions": [],
+    "creation": "2026-08-24 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-24 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Dispatch Record",
+    "owner": "Administrator",
+    "sort_field": "creation",
+    "sort_order": "DESC",
+    "states": [],
+    "autoname": "format:TDR-{#####}",
+    "field_order": [
+        "bid",
+        "mode",
+        "recipient",
+        "subject",
+        "dispatched_on",
+        "dispatched_by",
+        "pack_signed",
+        "pack_sha256",
+        "manifest_sha256",
+        "message_sha256",
+        "attachment_count",
+        "attachments_json"
+    ],
+    "fields": [
+        {
+            "fieldname": "bid",
+            "fieldtype": "Link",
+            "options": "Tender Bid",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Tender Bid",
+            "read_only": 1,
+            "reqd": 1,
+            "description": "The bid this send belongs to - the ledger outlives the audit fields on the bid (dispatched_on/to hold only the LAST send; every send appends a record here)"
+        },
+        {
+            "fieldname": "mode",
+            "fieldtype": "Select",
+            "options": "pack\ncorrespondence",
+            "in_list_view": 1,
+            "in_standard_filter": 1,
+            "label": "Mode",
+            "read_only": 1,
+            "reqd": 1,
+            "description": "Which F-13 dispatch tier sent: 'pack' (full bid pack attached) or 'correspondence' (written message, never attaches the pack)"
+        },
+        {
+            "fieldname": "recipient",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Recipient",
+            "read_only": 1,
+            "reqd": 1,
+            "description": "The confirmed buyer contact address the send actually went to (post retype-to-confirm)"
+        },
+        {
+            "fieldname": "subject",
+            "fieldtype": "Data",
+            "label": "Subject",
+            "read_only": 1,
+            "description": "The email subject as sent"
+        },
+        {
+            "fieldname": "dispatched_on",
+            "fieldtype": "Datetime",
+            "in_list_view": 1,
+            "label": "Dispatched On",
+            "read_only": 1,
+            "reqd": 1,
+            "description": "When the send was accepted by the mail system - same instant the bid's dispatched_on audit field was written"
+        },
+        {
+            "fieldname": "dispatched_by",
+            "fieldtype": "Data",
+            "label": "Dispatched By",
+            "read_only": 1,
+            "description": "The session user who confirmed and triggered the send"
+        },
+        {
+            "fieldname": "pack_signed",
+            "fieldtype": "Check",
+            "default": "0",
+            "label": "Pack Signed",
+            "read_only": 1,
+            "description": "Whether the dispatched pack was the SIGNED regeneration (profile carried a signature image) - mirrors the endpoint's pack_signed result"
+        },
+        {
+            "fieldname": "pack_sha256",
+            "fieldtype": "Data",
+            "length": 64,
+            "label": "Pack SHA-256",
+            "read_only": 1,
+            "description": "Hex sha256 of the dispatched pack HTML EXACTLY as attached to the send (plan #11: dispatch regenerates the pack at send time, so this digest - not any later regeneration - is what the buyer received). Empty for correspondence sends"
+        },
+        {
+            "fieldname": "manifest_sha256",
+            "fieldtype": "Data",
+            "length": 64,
+            "label": "Manifest SHA-256",
+            "read_only": 1,
+            "description": "Hex sha256 of the dispatched manifest JSON string as attached. Empty for correspondence sends"
+        },
+        {
+            "fieldname": "message_sha256",
+            "fieldtype": "Data",
+            "length": 64,
+            "label": "Message SHA-256",
+            "read_only": 1,
+            "description": "Hex sha256 of the email body as sent (both tiers); empty when no body was sent"
+        },
+        {
+            "fieldname": "attachment_count",
+            "fieldtype": "Int",
+            "label": "Attachment Count",
+            "read_only": 1,
+            "description": "How many files were attached to the send (2 for pack mode: pack HTML + manifest JSON; 0 for correspondence)"
+        },
+        {
+            "fieldname": "attachments_json",
+            "fieldtype": "Code",
+            "options": "JSON",
+            "label": "Attachments (JSON)",
+            "read_only": 1,
+            "description": "Per-attachment entries [{fname, sha256, size_bytes, file_url}] in send order - file_url points at the private File on the bid holding the ACTUAL sent bytes (empty when the File store write failed; the digest still stands)"
+        }
+    ],
+    "permissions": [
+        {
+            "create": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1
+        }
+    ]
+}

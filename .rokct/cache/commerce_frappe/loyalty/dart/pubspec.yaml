@@ -1,0 +1,23 @@
+name: loyalty_sdk
+description: "Generic loyalty engine: account balances plus an append-only points/cashback transaction ledger."
+version: 1.0.0
+publish_to: 'none'
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  base_sdk:
+    path: ../base
+  flutter_riverpod: ^2.5.1
+  get_it: ^8.0.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# Workspace-relative override so this package resolves standalone for
+# codegen/analysis. Ignored when a host app is the resolution root.
+dependency_overrides:
+  base_sdk:
+    path: ../../../core/base/dart

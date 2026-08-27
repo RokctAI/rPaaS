@@ -1,0 +1,61 @@
+{
+    "actions": [],
+    "creation": "2026-08-19 12:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "index_web_pages_for_search": 0,
+    "links": [],
+    "modified": "2026-08-19 12:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "tender",
+    "name": "Tender Profile Witness",
+    "owner": "Administrator",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": [],
+    "track_changes": 1,
+    "istable": 1,
+    "field_order": [
+        "full_name",
+        "id_number",
+        "capacity",
+        "signature_image",
+        "signature_image_processed"
+    ],
+    "fields": [
+        {
+            "fieldname": "full_name",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Full Name",
+            "reqd": 1
+        },
+        {
+            "fieldname": "id_number",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "ID Number"
+        },
+        {
+            "fieldname": "capacity",
+            "fieldtype": "Data",
+            "in_list_view": 1,
+            "label": "Capacity",
+            "description": "e.g. Employee, Co-director - the capacity written next to the witness signature"
+        },
+        {
+            "fieldname": "signature_image",
+            "fieldtype": "Attach Image",
+            "label": "Signature Image",
+            "description": "Sign in dark ink on plain WHITE paper and photograph/scan squarely - the background is stripped automatically. Stamped into witness slots only in an explicitly signed pack; a witness row without an image renders as a marked blank"
+        },
+        {
+            "fieldname": "signature_image_processed",
+            "fieldtype": "Attach",
+            "label": "Processed Signature (transparent)",
+            "read_only": 1,
+            "description": "Background-stripped transparent PNG working copy, regenerated whenever the source image changes"
+        }
+    ],
+    "permissions": []
+}

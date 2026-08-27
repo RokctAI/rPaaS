@@ -1,0 +1,38 @@
+name: merchants_sdk
+description: "merchants_sdk - extracted from paas_customer (refork 2026-07-11)."
+version: 1.2.0
+publish_to: 'none'
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+  flutter: '>=3.38.5'
+dependencies:
+  flutter:
+    sdk: flutter
+  base_sdk:
+    path: ../base
+  auto_route: ^9.2.0
+  # Direct dep: shop_create_sync_handler.dart sends the idempotency-key
+  # header via dio's Options (same version rail as base_sdk).
+  dio: ^5.7.0
+  flutter_riverpod: ^2.5.1
+  flutter_screenutil: ^5.9.0
+  flutter_staggered_animations: ^1.1.1
+  flutter_svg: ^2.0.9
+  get_it: ^8.0.0
+  google_maps_flutter: ^2.9.0
+  lottie: ^3.0.0
+  remixicon: ^1.2.0
+  share_plus: ^10.1.1
+  visibility_detector: ^0.4.0+2
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.10.4
+  freezed: ^3.2.3
+  json_serializable: ^6.8.0
+
+# Workspace-relative override so this package resolves standalone for
+# codegen/analysis. Ignored when a host app is the resolution root.
+dependency_overrides:
+  base_sdk:
+    path: ../../../core/base/dart

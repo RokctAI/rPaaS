@@ -1,0 +1,56 @@
+{
+  "doctype": "DocType",
+  "name": "Wallet Ledger",
+  "module": "wallet",
+  "engine": "InnoDB",
+  "is_submittable": 1,
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 0,
+      "submit": 1
+    }
+  ],
+  "fields": [
+    {
+      "fieldname": "wallet",
+      "fieldtype": "Link",
+      "label": "Wallet",
+      "options": "Customer Wallet",
+      "reqd": 1
+    },
+    {
+      "fieldname": "amount",
+      "fieldtype": "Currency",
+      "label": "Amount",
+      "reqd": 1
+    },
+    {
+      "fieldname": "transaction_type",
+      "fieldtype": "Select",
+      "label": "Transaction Type",
+      "options": "Credit\nDebit",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reference_doctype",
+      "fieldtype": "Link",
+      "label": "Reference DocType",
+      "options": "DocType"
+    },
+    {
+      "fieldname": "reference_name",
+      "fieldtype": "Dynamic Link",
+      "label": "Reference Name",
+      "options": "reference_doctype"
+    }
+  ]
+}

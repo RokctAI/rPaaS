@@ -1,0 +1,63 @@
+== page cover: score 89.5/100
+Design system : Umzansi Infrastructure Group (FICTIONAL)
+Target        : /tmp/claude-0/-home-user/056330bd-f353-56ad-9669-39370988ee2b/scratchpad/company-profile-out/templates/cover.svg
+Compliance    : 89.5/100  (0 auto-fixed, 6 open)
+
+  WARNING layout.grid [shape 0]: <rect> off the 8px grid: width=794, height=1123
+  WARNING layout.grid [shape 1]: <rect> off the 8px grid: width=794
+  INFO    layout.rhythm [shape 3]: 8 of 19 vertical gaps are off the 8px spacing scale (e.g. 11.4px) — inconsistent rhythm
+  WARNING engine.capability: unsafe attribute 'href' stripped from <image>
+  WARNING print.bleed [shape 0]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+  WARNING print.bleed [shape 1]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+== page divisions: score 91.5/100
+Design system : Umzansi Infrastructure Group (FICTIONAL)
+Target        : /tmp/claude-0/-home-user/056330bd-f353-56ad-9669-39370988ee2b/scratchpad/company-profile-out/templates/divisions.svg
+Compliance    : 91.5/100  (0 auto-fixed, 5 open)
+
+  WARNING layout.grid [shape 0]: <rect> off the 8px grid: width=794, height=1123
+  WARNING layout.grid [shape 1]: <rect> off the 8px grid: width=794
+  INFO    layout.rhythm [shape 5]: 9 of 22 vertical gaps are off the 8px spacing scale (e.g. 50.0px) — inconsistent rhythm
+  WARNING print.bleed [shape 0]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+  WARNING print.bleed [shape 1]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+== page compliance: score 91.0/100
+Design system : Umzansi Infrastructure Group (FICTIONAL)
+Target        : /tmp/claude-0/-home-user/056330bd-f353-56ad-9669-39370988ee2b/scratchpad/company-profile-out/templates/compliance.svg
+Compliance    : 91.0/100  (0 auto-fixed, 6 open)
+
+  WARNING layout.grid [shape 0]: <rect> off the 8px grid: width=794, height=1123
+  WARNING layout.grid [shape 1]: <rect> off the 8px grid: width=794
+  INFO    layout.rhythm [shape 23]: 2 of 16 vertical gaps are off the 8px spacing scale (e.g. 29.8px) — inconsistent rhythm
+  INFO    layout.balance: visual weight sits 27% off-center toward the top; consider rebalancing or committing to an intentional asymmetric layout
+  WARNING print.bleed [shape 0]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+  WARNING print.bleed [shape 1]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+== page track: score 91.5/100
+Design system : Umzansi Infrastructure Group (FICTIONAL)
+Target        : /tmp/claude-0/-home-user/056330bd-f353-56ad-9669-39370988ee2b/scratchpad/company-profile-out/templates/track.svg
+Compliance    : 91.5/100  (0 auto-fixed, 5 open)
+
+  WARNING layout.grid [shape 0]: <rect> off the 8px grid: width=794, height=1123
+  WARNING layout.grid [shape 1]: <rect> off the 8px grid: width=794
+  INFO    layout.rhythm [shape 5]: 9 of 21 vertical gaps are off the 8px spacing scale (e.g. 50.0px) — inconsistent rhythm
+  WARNING print.bleed [shape 0]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+  WARNING print.bleed [shape 1]: <rect> reaches the trim edge but does not extend 35.4px into the bleed
+== z-fold brochure: score 69.5/100
+Design system : Umzansi Infrastructure Group (FICTIONAL) — press
+Target        : /home/user/rokctai/designer/examples/templates/agency/z-fold-a4.svg
+Compliance    : 69.5/100  (0 auto-fixed, 16 open)
+
+  WARNING layout.grid [shape 0]: <rect> off the 8px grid: x=-35.4, y=-35.4, width=3578.7, height=2551.1
+  WARNING layout.grid [shape 1]: <rect> off the 8px grid: x=-35.4, y=-35.4, width=1216.5, height=2551.1
+  WARNING layout.grid [shape 2]: <image> off the 8px grid: x=340, width=500, height=500
+  WARNING layout.grid [shape 3]: <text> off the 8px grid: x=590.5, y=1420
+  WARNING layout.grid [shape 4]: <rect> off the 8px grid: x=440.5, y=1500, width=300
+  WARNING layout.grid [shape 5]: <text> off the 8px grid: x=1301, y=1060
+  WARNING layout.grid [shape 6]: <rect> off the 8px grid: x=1301, y=1140, width=420
+  WARNING layout.grid [shape 7]: <rect> off the 8px grid: x=2350.4, y=-35.4, width=1192.9, height=2551.1
+  WARNING layout.grid [shape 8]: <rect> off the 8px grid: x=2350.4, y=-35.4, height=2551.1
+  WARNING layout.grid [shape 9]: <text> off the 8px grid: x=2474.4
+  WARNING layout.grid [shape 10]: <text> off the 8px grid: x=2474.4, y=1130
+  WARNING layout.grid [shape 11]: <text> off the 8px grid: x=2474.4, y=1250
+  INFO    layout.rhythm [shape 5]: 3 of 5 vertical gaps are off the 8px spacing scale (e.g. 14.9px) — inconsistent rhythm
+  WARNING engine.capability: unsafe attribute 'href' stripped from <image>
+  WARNING format.margin [shape 11]: text at (2474.4, 1250) is inside the 148.818px safe margin of format 'z-fold-a4'
+  WARNING format.min-text [shape 11]: font-size 24 is below the 29.5px legibility floor of format 'z-fold-a4'

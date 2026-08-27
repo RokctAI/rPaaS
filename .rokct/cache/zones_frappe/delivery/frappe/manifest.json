@@ -1,0 +1,124 @@
+{
+  "name": "delivery",
+  "description": "Modular backend package for delivery",
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "whitelisted_methods": {
+          "{app_name}.api.parcel.add_parcel_review": "{app_name}.delivery.tenant.api.parcel.parcel.add_parcel_review",
+          "{app_name}.api.parcel.create_parcel_order": "{app_name}.delivery.tenant.api.parcel.parcel.create_parcel_order",
+          "{app_name}.api.delivery.get_driver_location": "{app_name}.delivery.tenant.api.delivery.delivery.get_driver_location",
+          "{app_name}.api.parcel.calculate_price": "{app_name}.delivery.tenant.api.parcel.parcel.calculate_price",
+          "{app_name}.api.parcel.get_types": "{app_name}.delivery.tenant.api.parcel.parcel.get_types",
+          "{app_name}.api.delivery.check_delivery_zone": "{app_name}.delivery.tenant.api.delivery.delivery.check_delivery_zone",
+          "{app_name}.api.delivery.get_delivery_point": "{app_name}.delivery.tenant.api.delivery.delivery.get_delivery_point",
+          "{app_name}.api.delivery.get_delivery_points": "{app_name}.delivery.tenant.api.delivery.delivery.get_delivery_points",
+          "{app_name}.api.delivery.get_delivery_zone_by_shop": "{app_name}.delivery.tenant.api.delivery.delivery.get_delivery_zone_by_shop",
+          "{app_name}.api.delivery_man.get_banned_shops": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_banned_shops",
+          "{app_name}.api.delivery_man.get_deliveryman_delivery_zones": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_deliveryman_delivery_zones",
+          "{app_name}.api.delivery_man.get_deliveryman_order_report": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_deliveryman_order_report",
+          "{app_name}.api.delivery_man.get_deliveryman_orders": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_deliveryman_orders",
+          "{app_name}.api.delivery_man.get_deliveryman_parcel_orders": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_deliveryman_parcel_orders",
+          "{app_name}.api.delivery_man.get_deliveryman_settings": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_deliveryman_settings",
+          "{app_name}.api.delivery_man.get_deliveryman_statistics": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_deliveryman_statistics",
+          "{app_name}.api.delivery_man.get_payment_to_partners": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.get_payment_to_partners",
+          "{app_name}.api.delivery_man.update_deliveryman_settings": "{app_name}.delivery.tenant.api.delivery_man.delivery_man.update_deliveryman_settings",
+          "{app_name}.api.parcel.get_parcel_orders": "{app_name}.delivery.tenant.api.parcel.parcel.get_parcel_orders",
+          "{app_name}.api.parcel.get_user_parcel_order": "{app_name}.delivery.tenant.api.parcel.parcel.get_user_parcel_order",
+          "{app_name}.api.parcel.update_parcel_status": "{app_name}.delivery.tenant.api.parcel.parcel.update_parcel_status",
+          "{app_name}.api.parcel_option.create_parcel_option": "{app_name}.delivery.tenant.api.parcel_option.parcel_option.create_parcel_option",
+          "{app_name}.api.parcel_option.delete_parcel_option": "{app_name}.delivery.tenant.api.parcel_option.parcel_option.delete_parcel_option",
+          "{app_name}.api.parcel_option.get_parcel_options": "{app_name}.delivery.tenant.api.parcel_option.parcel_option.get_parcel_options",
+          "{app_name}.api.parcel_option.update_parcel_option": "{app_name}.delivery.tenant.api.parcel_option.parcel_option.update_parcel_option",
+          "{app_name}.api.parcel_order_setting.create_parcel_order_setting": "{app_name}.delivery.tenant.api.parcel_order_setting.parcel_order_setting.create_parcel_order_setting",
+          "{app_name}.api.parcel_order_setting.delete_parcel_order_setting": "{app_name}.delivery.tenant.api.parcel_order_setting.parcel_order_setting.delete_parcel_order_setting",
+          "{app_name}.api.parcel_order_setting.get_parcel_order_settings": "{app_name}.delivery.tenant.api.parcel_order_setting.parcel_order_setting.get_parcel_order_settings",
+          "{app_name}.api.parcel_order_setting.update_parcel_order_setting": "{app_name}.delivery.tenant.api.parcel_order_setting.parcel_order_setting.update_parcel_order_setting",
+          "{app_name}.api.intercity.get_intercity_quote": "{app_name}.delivery.tenant.api.intercity.intercity.get_intercity_quote",
+          "{app_name}.api.intercity.cancel_intercity_shipment": "{app_name}.delivery.tenant.api.intercity.intercity.cancel_intercity_shipment",
+          "{app_name}.api.intercity.get_intercity_tracking": "{app_name}.delivery.tenant.api.intercity.intercity.get_intercity_tracking",
+          "{app_name}.api.intercity.intercity_webhook": "{app_name}.delivery.tenant.api.intercity.intercity.intercity_webhook",
+          "{app_name}.api.driver_parcel.add_parcel_order_review": "{app_name}.delivery.tenant.api.driver_parcel.driver_parcel.add_parcel_order_review",
+          "{app_name}.api.driver_parcel.attach_parcel_order_to_me": "{app_name}.delivery.tenant.api.driver_parcel.driver_parcel.attach_parcel_order_to_me",
+          "{app_name}.api.driver_parcel.confirm_parcel_cod_collection": "{app_name}.delivery.tenant.api.driver_parcel.driver_parcel.confirm_parcel_cod_collection",
+          "{app_name}.api.driver_parcel.set_current_parcel_order": "{app_name}.delivery.tenant.api.driver_parcel.driver_parcel.set_current_parcel_order",
+          "{app_name}.api.driver_parcel.update_driver_parcel_order_status": "{app_name}.delivery.tenant.api.driver_parcel.driver_parcel.update_driver_parcel_order_status",
+          "{app_name}.api.dispatch_route.get_my_dispatch_route": "{app_name}.delivery.tenant.api.dispatch_route.dispatch_route.get_my_dispatch_route",
+          "{app_name}.api.dispatch_route.complete_dispatch_stop": "{app_name}.delivery.tenant.api.dispatch_route.dispatch_route.complete_dispatch_stop"
+        },
+        "fixtures": [
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Parcel Order"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Deliveryman Profile"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Tip"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Dispatch Route"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Dispatch Route Stop"
+              ]
+            ]
+          },
+          {
+            "dt": "DocType",
+            "filters": [
+              [
+                "name",
+                "=",
+                "Weather Order Notice"
+              ]
+            ]
+          }
+        ],
+        "scheduler_events": {
+          "hourly": [
+            "{app_name}.delivery.tenant.providers.lifecycle.process_due_pickup_releases",
+            "{app_name}.delivery.tenant.weather_notice.order_notices.run_order_weather_notices"
+          ],
+          "daily": [
+            "{app_name}.delivery.tenant.providers.lifecycle.sweep_orphan_pickup_locations"
+          ]
+        }
+      }
+    },
+    "control": {}
+  }
+}

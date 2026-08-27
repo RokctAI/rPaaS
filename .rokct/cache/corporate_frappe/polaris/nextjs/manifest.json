@@ -1,0 +1,48 @@
+{
+  "name": "polaris_sdk",
+  "version": "1.0.0",
+  "installs": [
+    {
+      "from": "templates/app/handson/all/lending",
+      "to": "app/handson/all/lending"
+    },
+    {
+      "from": "templates/app/actions/handson/all/lending",
+      "to": "app/actions/handson/all/lending"
+    },
+    {
+      "from": "templates/app/services/all/lending",
+      "to": "app/services/all/lending"
+    },
+    {
+      "from": "templates/app/templates/lending",
+      "to": "app/templates/lending"
+    }
+  ],
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.563.0",
+    "sonner": "^2.0.7",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {},
+  "integrations": [
+    {
+      "target": "app/handson/sidebar-client.tsx",
+      "placeholder": "// @rokct-sdk-nav-start",
+      "replacement": "  { href: \"/handson/all/lending\", label: \"Lending\" },"
+    }
+  ],
+  "requires": [
+    "app/(auth)/auth.ts",
+    "app/actions/handson/all/accounting/selling/sales_order.ts",
+    "app/actions/handson/all/hrms/companies.ts",
+    "app/config/platform.ts",
+    "app/lib/i18n/index.ts",
+    "app/lib/ncr_calculator.ts",
+    "app/lib/reports_config.ts",
+    "app/lib/roles.ts",
+    "app/services/common/base.ts",
+    "components/ui/badge.tsx"
+  ]
+}

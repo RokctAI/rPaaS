@@ -1,0 +1,214 @@
+{
+  "bid": "TB-2026-00045",
+  "regime": "MBD",
+  "regime_name": "Municipal (MBD forms)",
+  "generated_on": "2026-08-20",
+  "form_count": 12,
+  "forms": [
+    {
+      "form_code": "MBD1",
+      "form_name": "Invitation to Bid (cover form)",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 18,
+      "auto_filled": 17,
+      "user_input": [
+        "Proof of signing authority attached (board/members' resolution)",
+        "Part B questionnaire (foreign suppliers only)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": [
+        "Postal address"
+      ]
+    },
+    {
+      "form_code": "MBD4",
+      "form_name": "Declaration of Interest",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 6,
+      "auto_filled": 6,
+      "user_input": [
+        "Question block: interests, relationships with the institution, state employment",
+        "State-employed persons: Persal numbers and executive-authority approval",
+        "ALL CSD-registered companies linked to any director",
+        "Anti-collusion / independent-bid declaration (post-2022 versions)",
+        "Intended subcontractors and value of subcontracted work",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD5",
+      "form_name": "Declaration for Procurement above R10 million",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 5,
+      "auto_filled": 5,
+      "user_input": [
+        "Three years' audited AFS (or since incorporation) attached",
+        "Municipal debt position disclosed",
+        "Prior contract performance disclosed",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD6.1",
+      "form_name": "Preference Points Claim Form",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 9,
+      "auto_filled": 8,
+      "user_input": [
+        "Points claimed per specific goal (write the NUMBER against each goal)",
+        "Proof attached per claimed goal",
+        "Subcontracting declaration (25%/30% cap to lower-scoring enterprises)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": [
+        "B-BBEE evidence expiry"
+      ]
+    },
+    {
+      "form_code": "MBD6.2",
+      "form_name": "Declaration of Local Production and Content",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 5,
+      "auto_filled": 5,
+      "user_input": [
+        "Is this tender in a DTIC-designated sector?",
+        "Local content declaration certificate + Annexes C/D/E (per SATS 1286)",
+        "Or: N/A marking confirmed",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD8",
+      "form_name": "Declaration of Bidder's Past SCM Practices",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 4,
+      "auto_filled": 4,
+      "user_input": [
+        "Listed on the National Treasury Register for Tender Defaulters / List of Restricted Suppliers? (yes/no + particulars)",
+        "Convictions for fraud or corruption? (yes/no + particulars)",
+        "Prior government contract terminations? (yes/no + particulars)",
+        "Municipal rates and taxes in arrears (company and directors)? (yes/no + particulars)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD9",
+      "form_name": "Certificate of Independent Bid Determination",
+      "mandatory": true,
+      "has_template": true,
+      "auto_total": 4,
+      "auto_filled": 4,
+      "user_input": [
+        "Independence declarations completed (each question answered)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD10",
+      "form_name": "Buyer-specific municipal declarations",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 3,
+      "auto_filled": 3,
+      "user_input": [
+        "Every buyer-specific declaration in the pack identified and completed",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD2",
+      "form_name": "Original Tax Clearance Certificate",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 3,
+      "auto_filled": 3,
+      "user_input": [
+        "ORIGINAL tax clearance certificate obtained and enclosed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD3.2",
+      "form_name": "Method-of-Pricing / Non-Firm Prices form",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 4,
+      "auto_filled": 4,
+      "user_input": [
+        "Firm / non-firm prices option selected (tick ONE)",
+        "Escalation / rate-of-exchange formula submitted (non-firm only)",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "MBD6.4",
+      "form_name": "Local Content Bonus Points form",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 3,
+      "auto_filled": 3,
+      "user_input": [
+        "Bonus points claimed (write the number) + named proof attached",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    },
+    {
+      "form_code": "POPIA",
+      "form_name": "POPIA consent / processing form",
+      "mandatory": false,
+      "has_template": true,
+      "auto_total": 4,
+      "auto_filled": 4,
+      "user_input": [
+        "Consent/processing declarations completed per the pack's form",
+        "Date signed",
+        "Place signed"
+      ],
+      "missing_auto": []
+    }
+  ],
+  "fill": {
+    "auto_total": 68,
+    "auto_filled": 66,
+    "coverage_pct": 97.1,
+    "user_input_total": 49,
+    "missing_auto": [
+      "B-BBEE evidence expiry",
+      "Postal address"
+    ]
+  },
+  "open_fatal_gates": [
+    "Fatal checklist item still open: Tender 18-2025/26 CLOSED on 11 May 2026 at 11:00 - this pack was generated retrospectively on 2026-08-20 for demonstration against the full official pack; a late submission is an absolute disqualifier and no submission against this advert is possible. [manual]",
+    "Fatal checklist item still open: Municipal rates and taxes clearance for the COMPANY and EVERY DIRECTOR - the arrears threshold is BUYER-SPECIFIC (90 days at some, ONE month at others, including arrears with any other municipality) and a settlement arrangement can save you; renters use a certified lease (plus affidavit at some buyers); start collecting director proofs on day one [GATE-RATES]",
+    "Fatal checklist item still open: Obtain a Service Provider Banking Rating letter [A to C] not older than 3 months (pack mandatory requirement 5.1(j)) - no fixture rule models a bank-rating returnable and it is not on the business profile. [manual]"
+  ],
+  "signed": false,
+  "warnings": [
+    "Complete the OFFICIAL forms issued in the tender pack - never retype or substitute them (an explicit disqualifier at about a third of buyers). This pack mirrors each form field-for-field so you can transcribe values onto, and check them against, the official forms.",
+    "3 FATAL compliance gate(s) still open on this bid - submitting now risks disqualification. See the warning page."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "corporate_sdk",
+  "version": "1.1.2",
+  "installs": [],
+  "routes": [],
+  "embedded_widgets": [
+    {
+      "method": "policyPage",
+      "params": "",
+      "body": "return const PolicyPage();"
+    },
+    {
+      "method": "termPage",
+      "params": "",
+      "body": "return const TermPage();"
+    }
+  ],
+  "_comment_embedded_widgets": "corporate_sdk owns policy/terms, so any composition with auth_sdk includes it: auth's login footer links call EmbeddedWidgets.I.policyPage()/termPage() (ADR-005 indirection \u2014 auth never imports corporate_sdk directly). PolicyPage/TermPage are this SDK's own pages, exported from the corporate_sdk barrel. No 'imports' are declared here: every installed SDK's barrel is already auto-imported into the @generated-sdk-imports block, so repeating it in the wiring block produced a duplicate_import lint.",
+  "integrations": []
+}

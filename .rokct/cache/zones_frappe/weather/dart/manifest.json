@@ -1,0 +1,72 @@
+{
+  "name": "weather_sdk",
+  "version": "1.6.0",
+  "boot_hooks": [
+    {
+      "id": "weather-af-bundled-translations",
+      "order": 64,
+      "body": "BundledTranslations.register('af', kWeatherAfTranslations);",
+      "imports": [
+        "import 'package:base_sdk/src/services/bundled_translations.dart';",
+        "import 'package:weather_sdk/src/translations/weather_af_translations.dart';"
+      ],
+      "_comment": "Registers this SDK's bundled Afrikaans map for its manifest tr_keys into base_sdk's BundledTranslations registry at boot. Top-level (not app_type-gated) because translations are role-agnostic. Backend-served translation rows still win; the map is only the offline/unseeded fallback consulted before the humanized-key fallback. Requires a base_sdk with bundled_translations.dart."
+    }
+  ],
+  "installs": [
+    {
+      "from": "templates/components/weather/weather_widget.dart",
+      "to": "lib/presentation/components/weather/weather_widget.dart",
+      "_comment": "Host wiring template: configureWeatherSdk() startup hook (shop-location resolver + remote-config key hydration point) and the AppWeatherWidget shell widget. Top-level (not app_type-gated) because the weather suite is role-agnostic - the whole library lives in src/common/. Hosts that don't render it pay only an unused file."
+    }
+  ],
+  "routes": [],
+  "_comment_routes": "Deliberately empty: the weather suite has no routed page on pos main - it is a header widget plus (large screens only) a dialog. If a standalone weather page is ever wanted, it becomes a template with @RoutePage here.",
+  "integrations": [],
+  "embedded_widgets": [
+    {
+      "method": "weatherHeaderWidget",
+      "body": "return const AppWeatherWidget(inlineExpansion: false);",
+      "imports": [
+        "import 'package:${package}/presentation/components/weather/weather_widget.dart';"
+      ],
+      "_comment": "Header slot (ADR-005): shells embed the compact adaptive widget without importing weather_sdk directly. inlineExpansion=false because headers are height-constrained; on small screens that leaves just the minimal icon+temp chip, and the popup-free WeatherInlineForecast card is placed in body flow via the weather_sdk barrel (it takes a WeatherState argument, so it cannot ride the zero-arg embedded-widget seam)."
+    },
+    {
+      "method": "weatherWarningsBanner",
+      "body": "return const SevereWeatherBanner();",
+      "imports": [
+        "import 'package:weather_sdk/weather_sdk.dart';"
+      ],
+      "_comment": "Severe-weather heads-up banner (zero-arg seam, ADR-005): hosts place it in body flow; it renders SizedBox.shrink() whenever there are no active warnings, the warnings cmd fails, or the composed backend does not expose tenant.api.get_weather_warnings yet - so embedding it is always safe, in any merge order with the backend rollout. Location comes from the same WeatherSdkConfig.locationResolver the header widget's install template wires."
+    }
+  ],
+  "app_type": {
+    "driver": {
+      "installs": [
+        {
+          "from": "templates/components/weather/weather_widget_driver.dart",
+          "to": "lib/presentation/components/weather/weather_widget.dart",
+          "_comment": "Courier-aware host wiring for driver composes: same destination as the top-level generic install, and flavor installs run AFTER top-level ones (sdk_installer_base.py merges installs as top-level + flavor, syncing in list order), so on driver hosts this file deterministically wins while every other host keeps the generic shop-location template. Its configureWeatherSdk() wires WeatherSdkConfig.locationResolver to the courier's live position in base_sdk's selected-address slot (the slot delivery_sdk's CourierStorage.saveSelectedLocation persists the courier map position through). Host edits still win: the installer's hash guard skips both entries once a developer modifies the installed file."
+        }
+      ],
+      "boot_hooks": [
+        {
+          "id": "weather-driver-configure-location",
+          "order": 20,
+          "body": "configureWeatherSdk();",
+          "imports": [
+            "import 'package:${package}/presentation/components/weather/weather_widget.dart';"
+          ],
+          "_comment": "Driver shells render no weather header widget (whose build is what lazily runs configureWeatherSdk() on pos/manager), so without this hook nothing would set the courier locationResolver before the severe-weather banner's first warnings fetch. One idempotent call at startup; cheap no-op if the host later renders AppWeatherWidget too."
+        }
+      ]
+    }
+  },
+  "_comment_app_type": "Only the driver flavor carries extra wiring: courier composes consume exactly one weather surface (the severe-weather banner on the courier home, embedded through the weatherWarningsBanner seam), located by the courier's own position rather than a shop's.",
+  "tr_keys": {
+    "asOf": "as.of"
+  },
+  "_comment_tr_keys": "asOf backs the severe-weather banner's offline freshness marker ('As of 14:30' when cached notices are shown); the SDK looks the key up via AppHelpers.getTranslation('as.of') (raw key, because the injected TrKeys constant only exists in composed hosts' cached base copy), which humanizes the key gracefully until the translation store carries a value. The ported suite's remaining strings still ship pos main's hardcoded English verbatim (pos never translated this surface) - translating them is a recorded follow-up, not smuggled in here.",
+  "_comment_secrets": "No secret is committed anywhere in this SDK. The OpenWeatherMap key (extended forecast only) resolves from the OPEN_WEATHER_API_KEY dart-define and/or the host's remote-config bootstrap (pos main's get_remote_config pattern); the primary feed uses the tenant Frappe proxy with the user's bearer token."
+}

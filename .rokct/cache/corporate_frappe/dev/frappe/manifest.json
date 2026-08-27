@@ -1,0 +1,19 @@
+{
+  "name": "dev",
+  "version": "1.0.0",
+  "doctypes": [
+    "flutter_app_configuration",
+    "flutter_build_settings"
+  ],
+  "app_type": {
+    "tenant": {
+      "hooks": {
+        "before_uninstall": [
+          "{app_name}.dev.tenant.utils.prevent_uninstall_if_build_active"
+        ],
+        "whitelisted_methods": {}
+      }
+    },
+    "control": {}
+  }
+}

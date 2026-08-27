@@ -1,0 +1,223 @@
+{
+  "name": "orders_sdk",
+  "version": "1.9.0",
+  "_comment_requires": "orders_sdk >= 1.9.0 carries the int->String docname id migration for the manager/POS slice (Frappe hash docnames; fleet-wide sweep). orders_sdk >= 1.6.0 requires base_sdk >= 1.11.0 (AdaptiveShell/SplitPane/window-size classes from core PR #35 — the wide-screen order board and split create-order layouts import them; >= 1.4.0 required base_sdk >= 1.6.0: CustomerCartStore/kCartSyncOpType and SyncEngine.enqueueOrReplace from the offline-first Phase 3 customer cart, core PR #16; 1.3.0 needed only base_sdk >= 1.5.0's SyncEngine/SyncHandler APIs from Phase 0, core PR #15); the composer manifest schema has no machine-readable minimum-version field, so this is the declaration.",
+  "installs": [],
+  "integrations": [],
+  "routes": [],
+  "app_type": {
+    "manager": {
+      "installs": [
+        {
+          "from": "templates/pages/manager/orders",
+          "to": "lib/presentation/pages/orders"
+        },
+        {
+          "from": "templates/pages/manager/create_order",
+          "to": "lib/presentation/pages/create_order"
+        },
+        {
+          "from": "templates/pages/manager/order_history",
+          "to": "lib/presentation/pages/order_history"
+        },
+        {
+          "from": "templates/components/manager/orders_item.dart",
+          "to": "lib/presentation/components/orders/orders_item.dart"
+        },
+        {
+          "from": "templates/components/manager/order_item.dart",
+          "to": "lib/presentation/components/orders/order_item.dart"
+        },
+        {
+          "from": "templates/components/manager/order_food_item.dart",
+          "to": "lib/presentation/components/orders/order_food_item.dart"
+        },
+        {
+          "from": "templates/components/manager/order_product_item.dart",
+          "to": "lib/presentation/components/orders/order_product_item.dart"
+        },
+        {
+          "from": "templates/components/manager/driver_avatar.dart",
+          "to": "lib/presentation/components/orders/driver_avatar.dart"
+        },
+        {
+          "from": "templates/components/manager/products_body.dart",
+          "to": "lib/presentation/components/orders/products_body.dart"
+        },
+        {
+          "from": "templates/components/manager/food_item.dart",
+          "to": "lib/presentation/components/orders/food_item.dart"
+        },
+        {
+          "from": "templates/components/manager/food_stock_item.dart",
+          "to": "lib/presentation/components/orders/food_stock_item.dart"
+        },
+        {
+          "from": "templates/components/manager/custom_icon_button.dart",
+          "to": "lib/presentation/component/buttons/custom_icon_button.dart"
+        },
+        {
+          "from": "templates/components/manager/text_loading.dart",
+          "to": "lib/presentation/component/loading/text_loading.dart"
+        },
+        {
+          "from": "templates/components/manager/select_date_modal.dart",
+          "to": "lib/presentation/component/select_date_modal.dart"
+        },
+        {
+          "from": "templates/adapters/manager/orders_adapters.dart",
+          "to": "lib/presentation/routes/orders_adapters.dart"
+        },
+        {
+          "from": "templates/assets/images/no_orders.png",
+          "to": "assets/images/no_orders.png"
+        },
+        {
+          "from": "templates/assets/lottie/pin.json",
+          "to": "assets/lottie/pin.json"
+        }
+      ],
+      "routes": [
+        {
+          "path": "/order-products",
+          "page": "ManagerCreateOrderRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/create_order/create_order_page.dart",
+          "_comment": "Route names carry a Manager prefix (revenue_sdk's ManagerIncomeRoute convention) but keep paas_manager's exact legacy paths and CupertinoRoute/MaterialRoute types, so host navigation call-sites swap class names only. merchants_sdk's main_page.dart FAB pushes ManagerCreateOrderRoute - that name is this manifest's contract. The installed pages carry @RoutePage(name: 'Manager...Route'), so auto_route generates the classes in the host's own app_router.gr.dart."
+        },
+        {
+          "path": "/order",
+          "page": "ManagerOrderRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/create_order/order/order_page.dart"
+        },
+        {
+          "path": "/order-history",
+          "page": "ManagerOrderHistoryRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/order_history/order_history.dart"
+        },
+        {
+          "path": "/shipping-address",
+          "page": "ManagerShippingAddressRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/create_order/shipping/shipping_address_page.dart"
+        },
+        {
+          "path": "/select-address",
+          "page": "ManagerSelectAddressRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/create_order/shipping/address/select_address_page.dart"
+        },
+        {
+          "path": "/select-user",
+          "page": "ManagerSelectUserRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/create_order/shipping/select_user/select_user_page.dart"
+        },
+        {
+          "path": "/delivery-time",
+          "page": "ManagerDeliveryTimeRoute.page",
+          "type": "CupertinoRoute",
+          "import": "package:${package}/presentation/pages/create_order/shipping/details/delivery_time_page.dart"
+        },
+        {
+          "path": "/select-section",
+          "page": "ManagerSelectSectionRoute.page",
+          "type": "MaterialRoute",
+          "import": "package:${package}/presentation/pages/create_order/shipping/select_section/select_section_page.dart"
+        },
+        {
+          "path": "/select-table",
+          "page": "ManagerSelectTableRoute.page",
+          "type": "MaterialRoute",
+          "import": "package:${package}/presentation/pages/create_order/shipping/select_table/select_table_page.dart"
+        }
+      ],
+      "tr_keys": {
+        "addUser": "add.user",
+        "juvoBenefit": "juvo_benefit",
+        "approximateTime": "spproximate_preparation_time: ",
+        "canceled": "canceled",
+        "clearAllOrders": "clear_all_orders",
+        "delivered": "delivered",
+        "customerInformation": "customer.information",
+        "deliveryService": "delivery_service",
+        "deliveryType": "delivery.type",
+        "dineIn": "dine_in",
+        "entrance": "entrance",
+        "estimatedTime": "estimated_delivery_time:",
+        "failed": "failed",
+        "noName": "no_name",
+        "noOrders": "no_orders",
+        "noTransaction": "no_transaction",
+        "onAWayOrders": "on_a_way_orders",
+        "otpCode": "otp.code",
+        "outOfStock": "out_of_stock",
+        "payment": "payment",
+        "pending": "pending",
+        "pleaseSelectASection": "please_select_a_section",
+        "pleaseSelectATable": "please_select_a_table",
+        "pleaseSelectAUser": "please_select_a_user",
+        "priceInformation": "price.information",
+        "published": "published",
+        "readyOrders": "ready_orders",
+        "searchLocation": "search_location",
+        "selectTable": "select.table",
+        "selectedAddress": "selected_address",
+        "selectedSection": "selected.section",
+        "selectedTable": "selected.table",
+        "selectedTimeAndDay": "selected_time_and_day",
+        "selectedUser": "selected_user",
+        "shippingAddress": "shipping_address",
+        "swipeToAccept": "swipe_to_accept",
+        "swipeToDelivered": "swipe_to_delivered",
+        "swipeToReady": "swipe_to_ready",
+        "swipeToWay": "swipe_to_way",
+        "table": "table",
+        "takeAway": "take_away",
+        "thereAre": "there_are"
+      },
+      "asset_keys": {
+        "pngNoOrders": "assets/images/no_orders.png",
+        "lottiePin": "assets/lottie/pin.json"
+      },
+      "di_hooks": [
+        {
+          "id": "orders-manager-role-di",
+          "order": 10,
+          "body": "ManagerOrdersDependencies.register(GetIt.instance);",
+          "imports": [
+            "import 'package:orders_sdk/src/manager/di/manager_orders_di.dart';"
+          ]
+        },
+        {
+          "id": "orders-manager-pos-facades",
+          "order": 20,
+          "body": "if (!GetIt.instance.isRegistered<PosSectionsTablesFacade>()) {\n  GetIt.instance.registerLazySingleton<PosSectionsTablesFacade>(() => ManagerPosSectionsTablesAdapter());\n}\nif (!GetIt.instance.isRegistered<PosCustomersFacade>()) {\n  GetIt.instance.registerLazySingleton<PosCustomersFacade>(() => ManagerPosCustomersAdapter());\n}",
+          "imports": [
+            "import 'package:orders_sdk/src/manager/domain/interface/pos_sections_tables.dart';",
+            "import 'package:orders_sdk/src/manager/domain/interface/pos_customers.dart';",
+            "import 'package:${package}/presentation/routes/orders_adapters.dart';"
+          ]
+        }
+      ],
+      "_comment_di_hooks": "The manager role DI + ADR-005 POS facade adapters, moved out of paas_manager's tracked main.dart into the #160 di_hooks mechanism (manager migration M5, scratchpad/di-hooks-declarations.md). The facade registrations are isRegistered-guarded so a host whose tracked main.dart still registers them by hand (its own migration window) double-boots safely; after the host untracks lib/, the hook is the only registration. ManagerOrdersDependencies.register is internally guarded already."
+    },
+    "customer": {
+      "tr_keys": {
+        "ageVerification": "age_verification",
+        "ageVerificationRequiredForAdultsOnly": "age_verification_is_required_to_order_adults_only_items",
+        "adultsOnlyBirthDateNeeded": "this_order_includes_an_adults_only_item_please_confirm_your_date_of_birth",
+        "cashToCollectFromRecipient": "cash_to_collect_from_recipient",
+        "driverCollectsCashFromRecipient": "driver_collects_cash_from_recipient",
+        "enterCashAmountGreaterThanZero": "enter_cash_amount_greater_than_zero",
+        "underagePurchaseBlocked": "you_must_be_18_or_older_to_order_adults_only_items"
+      },
+      "_comment_tr_keys": "Parcel COD (1.7.0): the sender-side 'driver collects cash from the recipient' toggle in the parcel creation flow. 18+ checkout (1.8.0): the age-verification DOB sheet and the two friendly create_order failure messages (AGE_VERIFICATION_REQUIRED / UNDERAGE_PURCHASE_BLOCKED). lib/src/common/ code references these by wire key string via AppHelpers.getTranslation (products_sdk's seller_form_helpers precedent) because lib/ analyzes against raw base_sdk where composer-injected constants don't exist; getTranslation prettifies the snake_case keys into readable English until the translation store carries them. Declared under a customer block (booking_sdk precedent for the app_type name) since the parcel flow ships in customer composes; no installs/routes - tr_keys only, like delivery_sdk's driver block."
+    }
+  },
+  "_comment_app_type": "manager: paas_manager's orders + POS vertical (order queues, order details, POS create-order flow with shipping/section/table/customer pickers, order history). Application layer, models, facades and the seller orders / POS products repositories live in lib/src/manager/ - declaring this manager block also keeps that folder alive through sdk_composer.py's strip_unused_role_folders. The manager host must call ManagerOrdersDependencies.register (direct src/ import) and register the two ADR-005 seam adapters installed at lib/presentation/routes/orders_adapters.dart (owners: merchants_sdk for sections/tables, users_sdk for customers); unwired seams degrade to visible 501 failures, not crashes. OrdersHomePage installs to lib/presentation/pages/orders/orders_home_page.dart - the exact path merchants_sdk's main_page.dart shell imports; it is tab-hosted, so it declares no route. Cross-vertical widgets the POS pages reference via ${package} host paths (custom_app_bar, filter_screen, loading list/shimmers, modal helpers, categories_tab_bar, shop_bordered_avatar, buttons_bouncing_effect from merchants' install) stay host-owned until the dedup workstream settles them. Requires .rokct/config/app_type = manager. Version bumped 1.0.0 -> 1.1.0 so version-aware cache reconciliation re-extracts composed copies, then 1.1.0 -> 1.2.0 (adopted custom_icon_button, text_loading and select_date_modal from base_sdk per the component triage - each is used by this SDK's templates only; installed to the host's lib/presentation/component/ SINGULAR paths deliberately, because those are the exact paths the existing manager templates import, so no template rewrites are needed).",
+  "_comment_tr_keys": "Declared here rather than hand-written into base_sdk because only this SDK uses them (kitchen_sdk's mechanism/comment). Checked against base_sdk's hand-written keys (the original 39 were exactly the manager orders/POS keys absent there; 1.6.0 adds delivered/canceled for the wide-screen board's two history columns) and against kitchen_sdk's two keys - no collision. Values are paas_manager's legacy wire keys verbatim, including the 'spproximate' typo the translation store already contains.",
+  "_comment_asset_keys": "Injected into base's AppAssets between the @sdk-asset-keys markers; the files themselves arrive via the installs above. lottiePin is also declared by marketplace_sdk (customer compose) - flavor-gating keeps the two from ever meeting in one app; if they do someday, the installer keeps whichever it sees first, and both point at assets/lottie/pin.json anyway."
+}

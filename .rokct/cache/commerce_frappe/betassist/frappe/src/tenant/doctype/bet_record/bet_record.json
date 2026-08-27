@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_import": 0,
+ "autoname": "hash",
+ "creation": "2026-06-04 22:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "partner_id",
+  "match",
+  "amount",
+  "selection",
+  "outcome",
+  "commission_earned",
+  "bookmaker"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Data",
+   "label": "User Hash ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "partner_id",
+   "fieldtype": "Data",
+   "label": "Partner ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "match",
+   "fieldtype": "Link",
+   "label": "Match",
+   "options": "Match",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Bet Amount (ZAR)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "selection",
+   "fieldtype": "Select",
+   "label": "Selection",
+   "options": "Team A Win\nTeam B Win\nDraw",
+   "reqd": 1
+  },
+  {
+   "fieldname": "outcome",
+   "fieldtype": "Select",
+   "label": "Outcome",
+   "options": "Pending\nWon\nLost",
+   "default": "Pending",
+   "reqd": 1
+  },
+  {
+   "fieldname": "commission_earned",
+   "fieldtype": "Currency",
+   "label": "Commission Earned (ZAR)",
+   "default": "0.00"
+  },
+  {
+   "fieldname": "bookmaker",
+   "fieldtype": "Data",
+   "label": "Bookmaker",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-04 22:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "betassist",
+ "name": "Bet Record",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "import": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
