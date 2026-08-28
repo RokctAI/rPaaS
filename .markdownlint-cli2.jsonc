@@ -35,6 +35,8 @@
     "out-bash",
     "out-ps",
     ".kilo",
-    "**/.kilo/**"
+    "**/.kilo/**",
+    ".rokct/cache",
+    ".rokct/cache/**"
   ]
 }
