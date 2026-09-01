@@ -25,7 +25,7 @@ from ..utils import api_response
 
 
 @frappe.whitelist()
-def upload_file(file: Any, filename: Any=None, is_private: Any=0) -> Any:
+def upload_file(file: Any, filename: Any = None, is_private: Any = 0) -> Any:
     """
     Uploads a file and returns the file URL.
     """
@@ -50,7 +50,9 @@ def upload_file(file: Any, filename: Any=None, is_private: Any=0) -> Any:
 
 
 @frappe.whitelist()
-def upload_multi_image(files: list=None, upload_type: str=None, doc_name: str=None, lang: str='en') -> Any:
+def upload_multi_image(
+    files: list = None, upload_type: str = None, doc_name: str = None, lang: str = "en"
+) -> Any:
     """
     Uploads multiple images and attaches them to a specific document.
     """

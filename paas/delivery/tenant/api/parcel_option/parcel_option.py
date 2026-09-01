@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 
@@ -28,7 +29,14 @@ def get_parcel_options() -> Any:
     """
     Retrieves a list of all active Parcel Options.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     try:
         options = frappe.get_list(
             "Parcel Option",
@@ -47,7 +55,14 @@ def create_parcel_option(option_data: Any) -> Any:
     """
     Creates a new Parcel Option.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     try:
         if isinstance(option_data, str):
             option_data = frappe.parse_json(option_data)
@@ -65,7 +80,14 @@ def update_parcel_option(name: Any, option_data: Any) -> Any:
     """
     Updates an existing Parcel Option.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     try:
         if isinstance(option_data, str):
             option_data = frappe.parse_json(option_data)
@@ -86,7 +108,14 @@ def delete_parcel_option(name: Any) -> Any:
     """
     Deletes a Parcel Option.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     try:
         frappe.delete_doc("Parcel Option", name)
         return {

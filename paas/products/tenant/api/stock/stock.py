@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -29,7 +30,14 @@ def create_stock(data: Any) -> Any:
     """
     Creates a new Stock (Variant) for a Product.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -51,10 +59,15 @@ def get_product_stocks(product_id: Any) -> Any:
     """
     Retrieves all Stock variants for a Product.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
-    return frappe.get_list(
-        "Stock", filters={"product": product_id}, fields=["*"]
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
     )
+    return frappe.get_list("Stock", filters={"product": product_id}, fields=["*"])
 
 
 @frappe.whitelist()
@@ -62,7 +75,14 @@ def update_stock(name: Any, data: Any) -> Any:
     """
     Updates a Stock item.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if isinstance(data, str):
         data = json.loads(data)
 
@@ -85,6 +105,13 @@ def delete_stock(name: Any) -> Any:
     """
     Deletes a Stock item.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     frappe.delete_doc("Stock", name)
     return {"status": "success"}

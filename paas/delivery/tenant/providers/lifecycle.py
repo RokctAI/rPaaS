@@ -54,9 +54,7 @@ def normalize_address(address):
 
 def pickup_reference(user_id, address):
     """Deterministic provider-side reference for a collection address."""
-    digest = hashlib.sha1(
-        normalize_address(address).encode("utf-8")
-    ).hexdigest()[:8]
+    digest = hashlib.sha1(normalize_address(address).encode("utf-8")).hexdigest()[:8]
     return f"{REFERENCE_PREFIX}{user_id}-{digest}"
 
 
@@ -85,16 +83,18 @@ def ensure_pickup_location(provider, user_id, address):
         return {"reference": reference, "provider_ref": existing.provider_ref}
 
     provider_ref = provider.register_pickup_location(address, reference)
-    frappe.get_doc({
-        "doctype": PICKUP_LOCATION_DOCTYPE,
-        "provider": provider.name,
-        "reference": reference,
-        "provider_ref": provider_ref,
-        "user": user_id,
-        "normalized_address": normalize_address(address),
-        "refcount": 1,
-        "status": "Active",
-    }).insert(ignore_permissions=True)
+    frappe.get_doc(
+        {
+            "doctype": PICKUP_LOCATION_DOCTYPE,
+            "provider": provider.name,
+            "reference": reference,
+            "provider_ref": provider_ref,
+            "user": user_id,
+            "normalized_address": normalize_address(address),
+            "refcount": 1,
+            "status": "Active",
+        }
+    ).insert(ignore_permissions=True)
     return {"reference": reference, "provider_ref": provider_ref}
 
 
@@ -110,14 +110,10 @@ def release_pickup_location(provider, reference):
         return
     refcount = max(cint(row.refcount) - 1, 0)
     if refcount > 0:
-        frappe.db.set_value(
-            PICKUP_LOCATION_DOCTYPE, row.name, {"refcount": refcount}
-        )
+        frappe.db.set_value(PICKUP_LOCATION_DOCTYPE, row.name, {"refcount": refcount})
         return
 
-    grace_hours = cint(
-        provider.settings.get("pickup_location_grace_hours") or 0
-    )
+    grace_hours = cint(provider.settings.get("pickup_location_grace_hours") or 0)
     if grace_hours > 0:
         # Delay deletion so a client shipping daily from the same address
         # doesn't churn create/delete calls.
@@ -168,9 +164,7 @@ def process_due_pickup_releases():
             provider = registry.get_provider(row.provider, settings)
             _deactivate(provider, row)
         except Exception:
-            frappe.log_error(
-                frappe.get_traceback(), "Intercity pickup release failed"
-            )
+            frappe.log_error(frappe.get_traceback(), "Intercity pickup release failed")
 
 
 def sweep_orphan_pickup_locations():

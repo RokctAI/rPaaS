@@ -32,7 +32,12 @@ from paas.comms.tenant.tenant_utils import send_tenant_email
 from paas.tenant.api.helpers import *
 
 
-def create_sales_invoice(invoice_data: Any, recurring: Any=False, frequency: Any=None, end_date: Any=None) -> Any:
+def create_sales_invoice(
+    invoice_data: Any,
+    recurring: Any = False,
+    frequency: Any = None,
+    end_date: Any = None,
+) -> Any:
     """
     Creates a new Sales Invoice and, optionally, sets up a recurring schedule for it.
     """
@@ -92,7 +97,9 @@ def create_sales_invoice(invoice_data: Any, recurring: Any=False, frequency: Any
             ).insert(ignore_permissions=False)
             auto_repeat.submit()
             response_data["auto_repeat_name"] = auto_repeat.name
-            response_data["message"] = f"Sales Invoice {invoice_doc.name} created and scheduled for recurring generation."
+            response_data["message"] = (
+                f"Sales Invoice {invoice_doc.name} created and scheduled for recurring generation."
+            )
         else:
             response_data["message"] = (
                 f"Sales Invoice {invoice_doc.name} created successfully."

@@ -39,9 +39,7 @@ def execute():
         if legacy <= 0:
             continue
 
-        wallet_name = frappe.db.get_value(
-            "Wallet", {"user": row.name}, "name"
-        )
+        wallet_name = frappe.db.get_value("Wallet", {"user": row.name}, "name")
         if wallet_name:
             wallet = frappe.get_doc("Wallet", wallet_name)
         else:

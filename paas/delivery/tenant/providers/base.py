@@ -145,8 +145,7 @@ class DeliveryProvider(ABC):
             )
 
         parts = [
-            str(parcel.get(key) or "")
-            for key in ("description", "category", "note")
+            str(parcel.get(key) or "") for key in ("description", "category", "note")
         ]
         for item in parcel.get("items") or []:
             parts.append(str(item or ""))

@@ -44,9 +44,7 @@ EARTH_RADIUS_KM = 6371.0
 
 def haversine(lat1, lon1, lat2, lon2):
     """Great-circle distance in kilometres between two lat/long points."""
-    lat1, lon1, lat2, lon2 = (
-        float(lat1), float(lon1), float(lat2), float(lon2)
-    )
+    lat1, lon1, lat2, lon2 = (float(lat1), float(lon1), float(lat2), float(lon2))
     d_lat = math.radians(lat2 - lat1)
     d_lon = math.radians(lon2 - lon1)
     a = (
@@ -179,8 +177,7 @@ def order_stops(start, stops):
             (
                 i
                 for i, s in enumerate(tail)
-                if s.get("pair_key") == key
-                and s.get("stop_type") == "pickup"
+                if s.get("pair_key") == key and s.get("stop_type") == "pickup"
             ),
             None,
         )
@@ -188,16 +185,11 @@ def order_stops(start, stops):
             (
                 i
                 for i, s in enumerate(tail)
-                if s.get("pair_key") == key
-                and s.get("stop_type") == "dropoff"
+                if s.get("pair_key") == key and s.get("stop_type") == "dropoff"
             ),
             None,
         )
-        if (
-            pickup_idx is not None
-            and drop_idx is not None
-            and drop_idx < pickup_idx
-        ):
+        if pickup_idx is not None and drop_idx is not None and drop_idx < pickup_idx:
             drop = tail.pop(drop_idx)
             tail.insert(pickup_idx, drop)  # pickup shifted left by the pop
 
@@ -237,14 +229,14 @@ def order_stops(start, stops):
                 ),
             )
             chosen_distance = haversine(
-                current[0], current[1], chosen["latitude"],
+                current[0],
+                current[1],
+                chosen["latitude"],
                 chosen["longitude"],
             )
         remaining.remove(chosen)
         chosen["distance_from_previous_km"] = (
-            round(chosen_distance, 3)
-            if chosen_distance is not None
-            else None
+            round(chosen_distance, 3) if chosen_distance is not None else None
         )
         if chosen.get("stop_type") == "pickup" and chosen.get("pair_key"):
             placed_pickup_keys.add(chosen.get("pair_key"))

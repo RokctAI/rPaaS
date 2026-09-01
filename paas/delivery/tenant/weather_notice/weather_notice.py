@@ -61,6 +61,7 @@ possibility phrasing, never the word "warning"). The internal severity
 enum rides along for machines; clients render ``severity_label``/``text``,
 never the enum.
 """
+
 from __future__ import annotations
 
 import math

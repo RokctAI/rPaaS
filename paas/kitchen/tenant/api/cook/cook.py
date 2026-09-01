@@ -23,11 +23,18 @@ import frappe
 
 
 @frappe.whitelist()
-def get_cook_orders(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_cook_orders(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of orders assigned to the current cook.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -51,7 +58,14 @@ def get_cook_order_report(from_date: str, to_date: str) -> Any:
     """
     Retrieves a report of orders for the current cook within a date range.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(

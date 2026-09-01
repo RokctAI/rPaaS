@@ -20,34 +20,43 @@
 
 import frappe
 
+
 @frappe.whitelist()
 def request_tenant_payout(amount):
-	"""raw_sql bypass_sql trace tenant 
-	Called by a tenant site to request a payout.
-	"""
-	if frappe.conf.get("app_role") != "control":
-		frappe.throw("This action can only be performed on the control panel.", title="Action Not Allowed")
+    """raw_sql bypass_sql trace tenant
+    Called by a tenant site to request a payout.
+    """
+    if frappe.conf.get("app_role") != "control":
+        frappe.throw(
+            "This action can only be performed on the control panel.",
+            title="Action Not Allowed",
+        )
 
-	tenant_site = frappe.local.request.headers.get("X-Rokct-Tenant") or frappe.local.request.host
-	received_secret = frappe.local.request.headers.get("X-Rokct-Secret")
+    tenant_site = (
+        frappe.local.request.headers.get("X-Rokct-Tenant") or frappe.local.request.host
+    )
+    received_secret = frappe.local.request.headers.get("X-Rokct-Secret")
 
+    if not tenant_site or not received_secret:
+        frappe.throw("Authentication failed: Missing credentials.")
 
-	if not tenant_site or not received_secret:
-		frappe.throw("Authentication failed: Missing credentials.")
+    subscription_name = frappe.db.get_value(
+        "Company Subscription", {"site_name": tenant_site}, "name"
+    )
+    if not subscription_name:
+        frappe.throw(f"No subscription found for site {tenant_site}")
 
-	subscription_name = frappe.db.get_value("Company Subscription", {"site_name": tenant_site}, "name")
-	if not subscription_name:
-		frappe.throw(f"No subscription found for site {tenant_site}")
+    stored_secret = frappe.utils.get_password(
+        doctype="Company Subscription", name=subscription_name, fieldname="api_secret"
+    )
+    if received_secret != stored_secret:
+        frappe.throw("Authentication failed.")
 
-	stored_secret = frappe.utils.get_password(
-		doctype="Company Subscription", name=subscription_name, fieldname="api_secret"
-	)
-	if received_secret != stored_secret:
-		frappe.throw("Authentication failed.")
+    subscription = frappe.get_doc("Company Subscription", subscription_name)
+    customer = subscription.customer
 
-	subscription = frappe.get_doc("Company Subscription", subscription_name)
-	customer = subscription.customer
-
-	doc = frappe.get_doc({"doctype": "Tenant Payout Request", "customer": customer, "amount": amount})
-	doc.insert(ignore_permissions=True)
-	return {"status": "success", "request_name": doc.name}
+    doc = frappe.get_doc(
+        {"doctype": "Tenant Payout Request", "customer": customer, "amount": amount}
+    )
+    doc.insert(ignore_permissions=True)
+    return {"status": "success", "request_name": doc.name}

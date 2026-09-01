@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -46,7 +47,7 @@ def _api_error(message="", status_code=500):
 
 
 @frappe.whitelist(allow_guest=True)
-def get_mobile_translations(lang: Any=None) -> Any:
+def get_mobile_translations(lang: Any = None) -> Any:
     """
     The get_mobile_translations function retrieves translations for a specified language, defaulting to English if no language is provided. It takes one optional parameter, lang, which represents the target language for the translations. The function returns a dictionary containing the translation keys and their corresponding values, along with a success message.
     """
@@ -64,7 +65,14 @@ def get_mobile_translations(lang: Any=None) -> Any:
 
 
 @frappe.whitelist()
-def get_translations_paginate(search: Any=None, group: Any=None, locale: Any=None, perPage: Any=10, page: Any=1, **kwargs) -> Any:
+def get_translations_paginate(
+    search: Any = None,
+    group: Any = None,
+    locale: Any = None,
+    perPage: Any = 10,
+    page: Any = 1,
+    **kwargs,
+) -> Any:
     """
     The get_translations_paginate function retrieves a paginated list of translations based on the provided parameters. It accepts several arguments: search, group, locale, perPage, and page. The search parameter is used to filter translations by key or value, the group parameter filters by translation group, and the locale parameter filters by language locale. The perPage argument determines the number of translations to return per page, and the page argument specifies the current page number. The function returns a dictionary containing the total number of translations, the number of translations per page, and a dictionary of translations where each key is a unique translation key and the value is a list of translation details.
     """
@@ -96,9 +104,7 @@ def get_translations_paginate(search: Any=None, group: Any=None, locale: Any=Non
     total_keys = count_query.run()[0][0]
 
     if total_keys == 0:
-        return _api_success(
-            {"total": 0, "perPage": per_page, "translations": {}}
-        )
+        return _api_success({"total": 0, "perPage": per_page, "translations": {}})
 
     # Get paginated distinct keys
     keys_query = base_query.select(frappe.qb.fn.Distinct(t_translation.key))
@@ -135,9 +141,7 @@ def get_translations_paginate(search: Any=None, group: Any=None, locale: Any=Non
     if locale:
         details_query = details_query.where(t_translation.locale == locale)
 
-    details_query = details_query.orderby(
-        t_translation.key, order=frappe.qb.asc
-    )
+    details_query = details_query.orderby(t_translation.key, order=frappe.qb.asc)
     details = details_query.run(as_dict=True)
 
     grouped = {}
@@ -205,7 +209,7 @@ def create_translation() -> Any:
 
 
 @frappe.whitelist()
-def update_translation(key: Any=None) -> Any:
+def update_translation(key: Any = None) -> Any:
     """
     The update_translation function is used to update translations for a specific key in the system. It takes an optional key parameter, which defaults to None. If not provided, the function will attempt to retrieve the key from the form data. The function requires administrative privileges and expects the form data to contain a group and a dictionary of values, where each key represents a locale and the corresponding value is the translated text. If the provided values are in string format, the function will attempt to parse them as JSON. The function will delete any existing translations for the target key and then insert new translations based on the provided values. If any required parameters are missing or invalid, the function will return an error response. Otherwise, it will return a success message indicating that the translations have been updated successfully.
     """
@@ -265,9 +269,7 @@ def delete_translation() -> Any:
         return _api_error("Invalid parameters", 400)
 
     for k in ids:
-        docs = frappe.get_all(
-            "PaaS Translation", filters={"key": k}, pluck="name"
-        )
+        docs = frappe.get_all("PaaS Translation", filters={"key": k}, pluck="name")
         for d in docs:
             frappe.delete_doc("PaaS Translation", d, ignore_permissions=True)
 
@@ -279,9 +281,7 @@ def delete_translation_single(key):
     if not key:
         return _api_error("Key is required", 400)
 
-    docs = frappe.get_all(
-        "PaaS Translation", filters={"key": key}, pluck="name"
-    )
+    docs = frappe.get_all("PaaS Translation", filters={"key": key}, pluck="name")
     for d in docs:
         frappe.delete_doc("PaaS Translation", d, ignore_permissions=True)
 
@@ -447,9 +447,7 @@ def export_translations() -> Any:
             output = io.StringIO()
             df.to_csv(output, index=False)
             fname = "translations_export.csv"
-            saved = save_file(
-                fname, output.getvalue().encode("utf-8"), is_private=0
-            )
+            saved = save_file(fname, output.getvalue().encode("utf-8"), is_private=0)
             return _api_success(
                 {"path": saved.file_url, "file_name": fname},
                 "Successfully exported (CSV)",
@@ -482,9 +480,7 @@ def get_ai_translations() -> Any:
 
         groq_api_key = data.get("api_key")
         if not groq_api_key:
-            return _api_error(
-                "API key is not configured in the application.", 401
-            )
+            return _api_error("API key is not configured in the application.", 401)
 
         headers = {
             "Authorization": f"Bearer {groq_api_key}",
@@ -508,9 +504,7 @@ def get_ai_translations() -> Any:
 
         if response.status_code == 200:
             res_json = response.json()
-            translated_content = res_json["choices"][0]["message"][
-                "content"
-            ].strip()
+            translated_content = res_json["choices"][0]["message"]["content"].strip()
 
             # Log the translation transaction
             log_doc = frappe.get_doc(

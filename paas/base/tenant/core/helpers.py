@@ -30,6 +30,7 @@ from frappe.utils.data import add_days, getdate
 from frappe.utils.install import complete_setup_wizard
 from paas.comms.tenant.tenant_utils import send_tenant_email
 
+
 def _ensure_custom_fields_exist():
     """
     Explicitly creates custom fields that are required by this script,
@@ -129,10 +130,13 @@ def _ensure_custom_fields_exist():
                     "fieldname": "trace_id",
                     "label": "Trace ID",
                     "fieldtype": "Data",
-                    "insert_after": "status" if doctype != "Company" else "company_name",
+                    "insert_after": "status"
+                    if doctype != "Company"
+                    else "company_name",
                     "read_only": 1,
                 },
             )
+
 
 def _notify_control_of_verification():
     """Makes a secure backend call to the control panel to mark the subscription as verified."""

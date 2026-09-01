@@ -27,11 +27,18 @@ from paas.base.tenant.api.idempotency import idempotent
 
 
 @frappe.whitelist()
-def get_seller_products(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_products(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of products for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -62,7 +69,14 @@ def create_seller_product(product_data: Any) -> Any:
     """
     Creates a new product for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -92,7 +106,14 @@ def update_seller_product(product_name: Any, product_data: Any) -> Any:
     """
     Updates a product for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -117,7 +138,14 @@ def delete_seller_product(product_name: Any) -> Any:
     """
     Deletes a product for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -134,11 +162,18 @@ def delete_seller_product(product_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_categories(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_categories(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of categories for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -158,7 +193,14 @@ def create_seller_category(category_data: Any) -> Any:
     """
     Creates a new category for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -184,7 +226,14 @@ def update_seller_category(uuid: Any, category_data: Any) -> Any:
     """
     Updates a category for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -225,7 +274,14 @@ def delete_seller_category(uuid: Any) -> Any:
     """
     Deletes a category for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -245,11 +301,18 @@ def delete_seller_category(uuid: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_brands(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_brands(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of brands for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -269,7 +332,14 @@ def create_seller_brand(brand_data: Any) -> Any:
     """
     Creates a new brand for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -295,7 +365,14 @@ def update_seller_brand(uuid: Any, brand_data: Any) -> Any:
     """
     Updates a brand for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -327,7 +404,14 @@ def delete_seller_brand(uuid: Any) -> Any:
     """
     Deletes a brand for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -347,11 +431,18 @@ def delete_seller_brand(uuid: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_extra_groups(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_extra_groups(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of product extra groups for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -371,7 +462,14 @@ def create_seller_extra_group(group_data: Any) -> Any:
     """
     Creates a new product extra group for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -380,9 +478,7 @@ def create_seller_extra_group(group_data: Any) -> Any:
 
     group_data["shop"] = shop
 
-    new_group = frappe.get_doc(
-        {"doctype": "Product Extra Group", **group_data}
-    )
+    new_group = frappe.get_doc({"doctype": "Product Extra Group", **group_data})
     new_group.insert(ignore_permissions=True)
     return new_group.as_dict()
 
@@ -392,7 +488,14 @@ def update_seller_extra_group(group_name: Any, group_data: Any) -> Any:
     """
     Updates a product extra group for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -417,7 +520,14 @@ def delete_seller_extra_group(group_name: Any) -> Any:
     """
     Deletes a product extra group for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -429,18 +539,25 @@ def delete_seller_extra_group(group_name: Any) -> Any:
             frappe.PermissionError,
         )
 
-    frappe.delete_doc(
-        "Product Extra Group", group_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Product Extra Group", group_name, ignore_permissions=True)
     return {"status": "success", "message": "Group deleted successfully."}
 
 
 @frappe.whitelist()
-def get_seller_extra_values(group_name: Any, limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_extra_values(
+    group_name: Any, limit_start: int = 0, limit_page_length: int = 20
+) -> Any:
     """
     Retrieves a list of product extra values for a given group.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     extra_values = frappe.get_list(
         "Product Extra Value",
         filters={"product_extra_group": group_name},
@@ -457,25 +574,28 @@ def create_seller_extra_value(value_data: Any) -> Any:
     """
     Creates a new product extra value.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
     if isinstance(value_data, str):
         value_data = json.loads(value_data)
 
-    group = frappe.get_doc(
-        "Product Extra Group", value_data["product_extra_group"]
-    )
+    group = frappe.get_doc("Product Extra Group", value_data["product_extra_group"])
     if group.shop != shop:
         frappe.throw(
             "You are not authorized to add a value to this group.",
             frappe.PermissionError,
         )
 
-    new_value = frappe.get_doc(
-        {"doctype": "Product Extra Value", **value_data}
-    )
+    new_value = frappe.get_doc({"doctype": "Product Extra Value", **value_data})
     new_value.insert(ignore_permissions=True)
     return new_value.as_dict()
 
@@ -485,7 +605,14 @@ def update_seller_extra_value(value_name: Any, value_data: Any) -> Any:
     """
     Updates a product extra value.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -511,7 +638,14 @@ def delete_seller_extra_value(value_name: Any) -> Any:
     """
     Deletes a product extra value.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -524,18 +658,23 @@ def delete_seller_extra_value(value_name: Any) -> Any:
             frappe.PermissionError,
         )
 
-    frappe.delete_doc(
-        "Product Extra Value", value_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Product Extra Value", value_name, ignore_permissions=True)
     return {"status": "success", "message": "Value deleted successfully."}
 
 
 @frappe.whitelist()
-def get_seller_units(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_units(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of units for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -555,7 +694,14 @@ def create_seller_unit(unit_data: Any) -> Any:
     """
     Creates a new unit for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -574,7 +720,14 @@ def update_seller_unit(unit_name: Any, unit_data: Any) -> Any:
     """
     Updates a unit for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -599,7 +752,14 @@ def delete_seller_unit(unit_name: Any) -> Any:
     """
     Deletes a unit for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -616,11 +776,18 @@ def delete_seller_unit(unit_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_tags(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_tags(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of tags for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -640,7 +807,14 @@ def create_seller_tag(tag_data: Any) -> Any:
     """
     Creates a new tag for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -659,7 +833,14 @@ def update_seller_tag(tag_name: Any, tag_data: Any) -> Any:
     """
     Updates a tag for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -684,7 +865,14 @@ def delete_seller_tag(tag_name: Any) -> Any:
     """
     Deletes a tag for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -705,92 +893,164 @@ def delete_seller_tag(tag_name: Any) -> Any:
 
 @frappe.whitelist()
 @idempotent
-def create_product(product_data: Any=None) -> Any:
+def create_product(product_data: Any = None) -> Any:
     """
     Create product API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return create_seller_product(product_data)
 
 
 @frappe.whitelist()
-def get_seller_products_paginate(limit_start: Any=0, limit_page_length: Any=20) -> Any:
+def get_seller_products_paginate(
+    limit_start: Any = 0, limit_page_length: Any = 20
+) -> Any:
     """
     Get seller products paginate API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return get_seller_products(limit_start, limit_page_length)
 
 
 @frappe.whitelist()
-def get_extras_groups(limit_start: Any=0, limit_page_length: Any=20) -> Any:
+def get_extras_groups(limit_start: Any = 0, limit_page_length: Any = 20) -> Any:
     """
     Get extras groups API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return get_seller_extra_groups(limit_start, limit_page_length)
 
 
 @frappe.whitelist()
-def create_extras_group(group_data: Any=None) -> Any:
+def create_extras_group(group_data: Any = None) -> Any:
     """
     Create extras group API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return create_seller_extra_group(group_data)
 
 
 @frappe.whitelist()
-def delete_extras_group(group_name: Any=None) -> Any:
+def delete_extras_group(group_name: Any = None) -> Any:
     """
     Delete extras group API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return delete_seller_extra_group(group_name)
 
 
 @frappe.whitelist()
-def create_extras_value(value_data: Any=None) -> Any:
+def create_extras_value(value_data: Any = None) -> Any:
     """
     Create extras value API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return create_seller_extra_value(value_data)
 
 
 @frappe.whitelist()
-def delete_extras_value(value_name: Any=None) -> Any:
+def delete_extras_value(value_name: Any = None) -> Any:
     """
     Delete extras value API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return delete_seller_extra_value(value_name)
 
 
 @frappe.whitelist()
-def get_product_details(product_name: Any=None) -> Any:
+def get_product_details(product_name: Any = None) -> Any:
     """
     Get product details API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if product_name and frappe.db.exists("Product", product_name):
         return {"data": frappe.get_doc("Product", product_name).as_dict()}
     return {"data": {}}
 
 
 @frappe.whitelist()
-def update_product_extras(product_name: Any=None, extras_data: Any=None) -> Any:
+def update_product_extras(product_name: Any = None, extras_data: Any = None) -> Any:
     """
     Update product extras API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return {"status": True}
 
 
 @frappe.whitelist()
-def update_product_stocks(product_name: Any=None, stocks_data: Any=None) -> Any:
+def update_product_stocks(product_name: Any = None, stocks_data: Any = None) -> Any:
     """
     Update product stocks API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return {"status": True}

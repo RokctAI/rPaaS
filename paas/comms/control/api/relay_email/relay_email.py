@@ -22,43 +22,58 @@ import frappe
 import json
 import subprocess
 
+
 @frappe.whitelist()
 def relay_email(recipients, subject, message):
-	"""raw_sql bypass_sql trace tenant 
-	Securely relays an email from a tenant site through the control panel.
-	Authenticates the tenant using their site name and API secret.
-	"""
-	# This API should only ever run on the control panel.
-	if frappe.conf.get("app_role") != "control":
-		frappe.throw("This action can only be performed on the control panel.", title="Action Not Allowed")
+    """raw_sql bypass_sql trace tenant
+    Securely relays an email from a tenant site through the control panel.
+    Authenticates the tenant using their site name and API secret.
+    """
+    # This API should only ever run on the control panel.
+    if frappe.conf.get("app_role") != "control":
+        frappe.throw(
+            "This action can only be performed on the control panel.",
+            title="Action Not Allowed",
+        )
 
-	# 1. Get tenant identity and secret from request
-	tenant_site = frappe.local.request.headers.get("X-Rokct-Tenant") or frappe.local.request.host
-	received_secret = frappe.local.request.headers.get("X-Rokct-Secret")
+    # 1. Get tenant identity and secret from request
+    tenant_site = (
+        frappe.local.request.headers.get("X-Rokct-Tenant") or frappe.local.request.host
+    )
+    received_secret = frappe.local.request.headers.get("X-Rokct-Secret")
 
+    if not tenant_site or not received_secret:
+        frappe.throw(
+            "Authentication failed: Missing credentials.", frappe.AuthenticationError
+        )
 
-	if not tenant_site or not received_secret:
-		frappe.throw("Authentication failed: Missing credentials.", frappe.AuthenticationError)
+    # 2. Find the subscription and validate the secret
+    subscription_name = frappe.db.get_value(
+        "Company Subscription", {"site_name": tenant_site}, "name"
+    )
+    if not subscription_name:
+        frappe.throw(
+            f"No subscription found for site {tenant_site}", frappe.AuthenticationError
+        )
 
-	# 2. Find the subscription and validate the secret
-	subscription_name = frappe.db.get_value("Company Subscription", {"site_name": tenant_site}, "name")
-	if not subscription_name:
-		frappe.throw(f"No subscription found for site {tenant_site}", frappe.AuthenticationError)
+    stored_secret = frappe.utils.get_password(
+        doctype="Company Subscription", name=subscription_name, fieldname="api_secret"
+    )
+    if received_secret != stored_secret:
+        frappe.throw(
+            "Authentication failed: Invalid credentials.", frappe.AuthenticationError
+        )
 
-	stored_secret = frappe.utils.get_password(
-		doctype="Company Subscription", name=subscription_name, fieldname="api_secret"
-	)
-	if received_secret != stored_secret:
-		frappe.throw("Authentication failed: Invalid credentials.", frappe.AuthenticationError)
-
-	# 3. If authenticated, send the email
-	try:
-		# Set a flag to prevent this from being logged by the Brain module
-		frappe.flags.is_email_relay = True
-		frappe.sendmail(recipients=recipients, subject=subject, message=message, now=True)
-		return {"status": "success", "message": "Email relayed successfully."}
-	except Exception as e:
-		frappe.log_error(frappe.get_traceback(), "Email Relay Failed")
-		# Do not throw here, as we don't want to break the tenant's UI.
-		# Just return an error status.
-		return {"status": "error", "message": str(e)}
+    # 3. If authenticated, send the email
+    try:
+        # Set a flag to prevent this from being logged by the Brain module
+        frappe.flags.is_email_relay = True
+        frappe.sendmail(
+            recipients=recipients, subject=subject, message=message, now=True
+        )
+        return {"status": "success", "message": "Email relayed successfully."}
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "Email Relay Failed")
+        # Do not throw here, as we don't want to break the tenant's UI.
+        # Just return an error status.
+        return {"status": "error", "message": str(e)}

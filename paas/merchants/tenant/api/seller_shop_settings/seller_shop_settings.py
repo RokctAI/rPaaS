@@ -29,7 +29,14 @@ def get_seller_shop_working_days() -> Any:
     """
     Retrieves the working days for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -46,7 +53,14 @@ def update_seller_shop_working_days(working_days_data: Any) -> Any:
     """
     Updates the working days for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -72,7 +86,14 @@ def get_seller_shop_closed_days() -> Any:
     """
     Retrieves the closed days for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -87,13 +108,20 @@ def add_seller_shop_closed_day(date: Any) -> Any:
     """
     Adds a closed day for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
-    frappe.get_doc(
-        {"doctype": "Shop Closed Day", "shop": shop, "date": date}
-    ).insert(ignore_permissions=True)
+    frappe.get_doc({"doctype": "Shop Closed Day", "shop": shop, "date": date}).insert(
+        ignore_permissions=True
+    )
 
     return {"status": "success", "message": "Closed day added successfully."}
 
@@ -103,7 +131,14 @@ def delete_seller_shop_closed_day(date: Any) -> Any:
     """
     Deletes a closed day for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -113,11 +148,18 @@ def delete_seller_shop_closed_day(date: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_shop_users(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_shop_users(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of users for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -136,7 +178,14 @@ def add_shop_user(user_email: str, role: str) -> Any:
     """
     The add_shop_user function is used to add a user to the current seller's shop with a specific role. It takes two parameters: user_email, which is the email address of the user to be added, and role, which defines the user's role within the shop. The function first checks if the user exists and if they are not already a member of the shop, then adds the user to the shop with the specified role. If the operation is successful, it returns a success status with a corresponding message.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Adds a user to the current seller's shop with a specific role.
@@ -168,7 +217,14 @@ def remove_shop_user(user_to_remove: str) -> Any:
     """
     Removes a user from the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     owner = frappe.session.user
     shop = _get_seller_shop(owner)
 
@@ -181,11 +237,18 @@ def remove_shop_user(user_to_remove: str) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_branches(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_branches(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of branches for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -205,7 +268,14 @@ def create_seller_branch(branch_data: Any) -> Any:
     """
     Creates a new branch for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -225,7 +295,14 @@ def update_seller_branch(branch_name: Any, branch_data: Any) -> Any:
     """
     Updates a branch for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -250,7 +327,14 @@ def delete_seller_branch(branch_name: Any) -> Any:
     """
     Deletes a branch for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -271,16 +355,21 @@ def get_seller_deliveryman_settings() -> Any:
     """
     Retrieves the deliveryman settings for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
     if not frappe.db.exists("Shop Deliveryman Settings", {"shop": shop}):
         return {}
 
-    return frappe.get_doc(
-        "Shop Deliveryman Settings", {"shop": shop}
-    ).as_dict()
+    return frappe.get_doc("Shop Deliveryman Settings", {"shop": shop}).as_dict()
 
 
 @frappe.whitelist()
@@ -288,7 +377,14 @@ def update_seller_deliveryman_settings(settings_data: Any) -> Any:
     """
     Updates the deliveryman settings for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -310,9 +406,16 @@ def update_seller_deliveryman_settings(settings_data: Any) -> Any:
 
 
 @frappe.whitelist()
-def update_shop_working_days(working_days_data: Any=None) -> Any:
+def update_shop_working_days(working_days_data: Any = None) -> Any:
     """
     Update shop working days API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return update_seller_shop_working_days(working_days_data)

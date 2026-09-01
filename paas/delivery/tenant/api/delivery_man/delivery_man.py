@@ -173,9 +173,7 @@ def serialize_deliveryman_order(order, shop_cache=None):
                 "uuid": shop_name,
                 "translation": {"title": shop_name},
                 "logo_img": shop_value.get("logo"),
-                "location": _parse_location_dict(
-                    shop_value.get("location")
-                ),
+                "location": _parse_location_dict(shop_value.get("location")),
             }
             if shop_cache is not None:
                 shop_cache[shop_name] = shop_row
@@ -192,8 +190,7 @@ def serialize_deliveryman_order(order, shop_cache=None):
     location = row.get("location")
     if stop_weather_notice is not None and location:
         try:
-            notice = stop_weather_notice(
-                location["latitude"], location["longitude"])
+            notice = stop_weather_notice(location["latitude"], location["longitude"])
         except Exception:
             notice = None
         if notice:
@@ -209,9 +206,7 @@ def serialize_deliveryman_order(order, shop_cache=None):
     if flagged is None and name:
         try:
             if frappe.get_meta("Order").has_field("contains_adult_items"):
-                flagged = frappe.db.get_value(
-                    "Order", name, "contains_adult_items"
-                )
+                flagged = frappe.db.get_value("Order", name, "contains_adult_items")
         except Exception:
             flagged = None
     if flagged:
@@ -221,7 +216,7 @@ def serialize_deliveryman_order(order, shop_cache=None):
 
 @frappe.whitelist()
 def get_deliveryman_orders(
-    limit_start: int=0, limit_page_length: int=20, statuses: Any=None
+    limit_start: int = 0, limit_page_length: int = 20, statuses: Any = None
 ) -> Any:
     """
     Retrieves a list of orders assigned to the current deliveryman.
@@ -231,7 +226,14 @@ def get_deliveryman_orders(
     tag, shaped for the driver app's OrderDetailData model. An optional
     `statuses` filter accepts canonical or legacy-lowercase statuses.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -248,8 +250,14 @@ def get_deliveryman_orders(
         "Order",
         filters=filters,
         fields=[
-            "name", "shop", "total_price", "delivery_fee", "status",
-            "creation", "location", "address",
+            "name",
+            "shop",
+            "total_price",
+            "delivery_fee",
+            "status",
+            "creation",
+            "location",
+            "address",
         ],
         offset=limit_start,
         limit=limit_page_length,
@@ -257,17 +265,25 @@ def get_deliveryman_orders(
     )
     shop_cache = {}
     return [
-        serialize_deliveryman_order(order, shop_cache=shop_cache)
-        for order in orders
+        serialize_deliveryman_order(order, shop_cache=shop_cache) for order in orders
     ]
 
 
 @frappe.whitelist()
-def get_deliveryman_parcel_orders(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_deliveryman_parcel_orders(
+    limit_start: int = 0, limit_page_length: int = 20
+) -> Any:
     """
     Retrieves a list of parcel orders assigned to the current deliveryman.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -291,7 +307,14 @@ def get_deliveryman_settings() -> Any:
     """
     Retrieves the settings for the current deliveryman.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -315,7 +338,14 @@ def update_deliveryman_settings(settings_data: Any) -> Any:
     """
     Updates the settings for the current deliveryman.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -347,7 +377,14 @@ def get_deliveryman_statistics() -> Any:
     """
     Retrieves statistics for the current deliveryman.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -398,7 +435,14 @@ def get_banned_shops() -> Any:
     """
     Retrieves a list of shops from which the current deliveryman is banned.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -413,11 +457,18 @@ def get_banned_shops() -> Any:
 
 
 @frappe.whitelist()
-def get_payment_to_partners(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_payment_to_partners(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of payments to partners (deliverymen) for the current user.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -441,7 +492,14 @@ def get_deliveryman_order_report(from_date: str, to_date: str) -> Any:
     """
     Retrieves a report of orders and parcel orders for the current deliveryman within a date range.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -479,7 +537,14 @@ def get_deliveryman_delivery_zones() -> Any:
     """
     Retrieves a list of delivery zones assigned to the current deliveryman.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(

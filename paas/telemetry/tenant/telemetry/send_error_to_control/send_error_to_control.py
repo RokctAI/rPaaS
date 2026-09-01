@@ -48,8 +48,16 @@ def send_error_to_control(doc):
         scheme = frappe.conf.get("control_plane_scheme", "https")
         api_url = f"{scheme}://{control_plane_url}/api/method/control.control.api.report_tenant_error"
 
-        trace_id = frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else "error-report-trace"
-        headers = {"X-Rokct-Secret": api_secret, "X-Rokct-Tenant": frappe.local.site, "x-trace-id": trace_id or ""}
+        trace_id = (
+            frappe.request.headers.get("x-trace-id")
+            if (hasattr(frappe, "request") and frappe.request)
+            else "error-report-trace"
+        )
+        headers = {
+            "X-Rokct-Secret": api_secret,
+            "X-Rokct-Tenant": frappe.local.site,
+            "x-trace-id": trace_id or "",
+        }
         data = {"error_details": doc.as_json()}
 
         requests.post(api_url, headers=headers, json=data, timeout=30)

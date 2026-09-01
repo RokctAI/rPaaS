@@ -73,7 +73,8 @@ def get_weather(location: str) -> Any:
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Weather Proxy API Error")
         frappe.throw(
-            f"An error occurred while fetching weather data from the control plane: {e}")
+            f"An error occurred while fetching weather data from the control plane: {e}"
+        )
 
 
 @frappe.whitelist(allow_guest=True)
@@ -153,17 +154,13 @@ def get_global_settings() -> Any:
         # mapping schema fields to generic keys
 
         if settings.project_title:
-            settings_data.append(
-                {"key": "app_name", "value": settings.project_title}
-            )
+            settings_data.append({"key": "app_name", "value": settings.project_title})
             # The Flutter client (AppHelpers.getAppName) reads the app name
             # from the 'title' key, not 'app_name' — emit it under both keys
             # so a backend-set name actually reaches the apps. Kept inside
             # the non-empty guard: an empty 'title' would render an empty
             # name instead of falling back to the compose-time constant.
-            settings_data.append(
-                {"key": "title", "value": settings.project_title}
-            )
+            settings_data.append({"key": "title", "value": settings.project_title})
 
         # Trademark symbol shown after the app name.
         # Registered -> "®", Trademark -> "™", None -> "" (no symbol).
@@ -172,9 +169,7 @@ def get_global_settings() -> Any:
         settings_data.append(
             {
                 "key": "trademark_symbol",
-                "value": trademark_symbols.get(
-                    settings.get("trademark_symbol"), "®"
-                ),
+                "value": trademark_symbols.get(settings.get("trademark_symbol"), "®"),
             }
         )
 
@@ -202,23 +197,18 @@ def get_global_settings() -> Any:
             )
 
         # Add default language
-        lang = (
-            frappe.db.get_single_value("System Settings", "language") or "en"
-        )
+        lang = frappe.db.get_single_value("System Settings", "language") or "en"
         settings_data.append({"key": "default_language", "value": lang})
 
         # Add default currency
         currency = frappe.db.get_value("Currency", {"enabled": 1}, "name")
         if currency:
-            settings_data.append(
-                {"key": "default_currency", "value": currency}
-            )
+            settings_data.append({"key": "default_currency", "value": currency})
 
         # Add distance unit
         # Check if defined in any relevant settings, otherwise default to km
         distance_unit = (
-            frappe.db.get_single_value("System Settings", "distance_unit")
-            or "km"
+            frappe.db.get_single_value("System Settings", "distance_unit") or "km"
         )
         settings_data.append({"key": "distance_unit", "value": distance_unit})
 
@@ -229,7 +219,7 @@ def get_global_settings() -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def get_policy(lang: str='en') -> Any:
+def get_policy(lang: str = "en") -> Any:
     """
     Returns the privacy policy.
     """
@@ -237,7 +227,7 @@ def get_policy(lang: str='en') -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def get_terms(lang: str='en') -> Any:
+def get_terms(lang: str = "en") -> Any:
     """
     Returns the terms and conditions.
     """

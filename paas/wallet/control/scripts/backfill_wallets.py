@@ -24,21 +24,21 @@ import frappe
 
 
 def execute():
-	"""raw_sql bypass_sql trace tenant"""
-	frappe.db.auto_commit_on_many_writes = 1
-	customers = frappe.get_all("Customer", fields=["name"])
+    """raw_sql bypass_sql trace tenant"""
+    frappe.db.auto_commit_on_many_writes = 1
+    customers = frappe.get_all("Customer", fields=["name"])
 
-	count = 0
-	for cust in customers:
-		if not frappe.db.exists("Customer Wallet", {"customer": cust.name}):
-			frappe.get_doc({"doctype": "Customer Wallet", "customer": cust.name, "balance": 0}).insert(
-				ignore_permissions=True
-			)
-			count += 1
+    count = 0
+    for cust in customers:
+        if not frappe.db.exists("Customer Wallet", {"customer": cust.name}):
+            frappe.get_doc(
+                {"doctype": "Customer Wallet", "customer": cust.name, "balance": 0}
+            ).insert(ignore_permissions=True)
+            count += 1
 
-			if count % 100 == 0:
-				frappe.db.commit()
-				print(f"Created {count} wallets...")
+            if count % 100 == 0:
+                frappe.db.commit()
+                print(f"Created {count} wallets...")
 
-	frappe.db.commit()
-	print(f"Backfill complete. Created {count} Customer Wallets.")
+    frappe.db.commit()
+    print(f"Backfill complete. Created {count} Customer Wallets.")

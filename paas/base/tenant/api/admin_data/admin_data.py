@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -26,7 +27,7 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_units(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_units(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all shop units on the platform (for admins).
     """
@@ -40,7 +41,7 @@ def get_all_units(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_all_tags(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_tags(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all shop tags on the platform (for admins).
     """
@@ -54,7 +55,7 @@ def get_all_tags(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_all_points(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_points(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all points on the platform (for admins).
     """
@@ -110,7 +111,7 @@ def delete_point(point_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_translations(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_translations(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all translations on the platform (for admins).
     """
@@ -124,7 +125,7 @@ def get_all_translations(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_all_referrals(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_referrals(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all referrals on the platform (for admins).
     """
@@ -162,7 +163,7 @@ def delete_referral(referral_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_shop_tags(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_shop_tags(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all shop tags on the platform (for admins).
     """
@@ -176,7 +177,9 @@ def get_all_shop_tags(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_all_product_extra_groups(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_product_extra_groups(
+    limit_start: int = 0, limit_page_length: int = 20
+) -> Any:
     """
     Retrieves a list of all product extra groups on the platform (for admins).
     """
@@ -190,7 +193,9 @@ def get_all_product_extra_groups(limit_start: int=0, limit_page_length: int=20) 
 
 
 @frappe.whitelist()
-def get_all_product_extra_values(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_product_extra_values(
+    limit_start: int = 0, limit_page_length: int = 20
+) -> Any:
     """
     Retrieves a list of all product extra values on the platform (for admins).
     """

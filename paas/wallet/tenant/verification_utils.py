@@ -30,9 +30,7 @@ def generate_verification_code(order_id, amount, shop_id):
     # Fetch shop-specific secret from DB, fallback to legacy if not set
     shared_secret = frappe.db.get_value("Shop", shop_id, "shared_secret")
     if not shared_secret:
-        frappe.throw(
-            f"Shop {shop_id} does not have a secure secret configured."
-        )
+        frappe.throw(f"Shop {shop_id} does not have a secure secret configured.")
 
     # Normalize amount to 2 decimal places as string
     normalized_amount = "{:.2f}".format(float(amount))

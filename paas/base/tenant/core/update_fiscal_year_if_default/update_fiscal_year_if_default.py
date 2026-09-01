@@ -72,7 +72,9 @@ def update_fiscal_year_if_default(start_date: Any) -> Any:
 
         # 2. Check the start date of the current fiscal year.
         current_fy_doc = frappe.get_doc("Fiscal Year", current_fiscal_year_name)
-        print(f"DEBUG: Current fiscal year is '{current_fiscal_year_name}' with start date {current_fy_doc.year_start_date}")
+        print(
+            f"DEBUG: Current fiscal year is '{current_fiscal_year_name}' with start date {current_fy_doc.year_start_date}"
+        )
 
         # We identify the old, incorrect default by checking if the start date
         # is January 1st.

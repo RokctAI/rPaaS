@@ -31,7 +31,7 @@ class DeliveryPoint(Document):
 
 
 @frappe.whitelist()
-def get_nearest_delivery_points(latitude: Any, longitude: Any, radius: Any=20) -> Any:
+def get_nearest_delivery_points(latitude: Any, longitude: Any, radius: Any = 20) -> Any:
     """
     Get nearest delivery points based on latitude and longitude.
     :param latitude: User's latitude
@@ -39,7 +39,14 @@ def get_nearest_delivery_points(latitude: Any, longitude: Any, radius: Any=20) -
     :param radius: Search radius in kilometers (default: 20)
     :return: List of nearest delivery points
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if not latitude or not longitude:
         frappe.throw("Latitude and Longitude are required.")
 
@@ -56,6 +63,7 @@ def get_nearest_delivery_points(latitude: Any, longitude: Any, radius: Any=20) -
 
     # We can use CustomFunction for the math parts
     from frappe.query_builder.functions import CustomFunction
+
     radians = CustomFunction("RADIANS", ["x"])
     sin = CustomFunction("SIN", ["x"])
     cos = CustomFunction("COS", ["x"])
@@ -70,16 +78,21 @@ def get_nearest_delivery_points(latitude: Any, longitude: Any, radius: Any=20) -
     d_lat = radians(t_dp.latitude - latitude)
     d_lon = radians(t_dp.longitude - longitude)
 
-    a = power(sin(d_lat / 2), 2) + cos(radians(latitude)) * \
-        cos(radians(t_dp.latitude)) * power(sin(d_lon / 2), 2)
+    a = power(sin(d_lat / 2), 2) + cos(radians(latitude)) * cos(
+        radians(t_dp.latitude)
+    ) * power(sin(d_lon / 2), 2)
     c = 2 * asin(sqrt(a))
     distance = 6371 * c
 
     query = (
         frappe.qb.from_(t_dp)
         .select(
-            t_dp.name, t_dp.address, t_dp.latitude, t_dp.longitude, t_dp.img,
-            distance.as_("distance")
+            t_dp.name,
+            t_dp.address,
+            t_dp.latitude,
+            t_dp.longitude,
+            t_dp.img,
+            distance.as_("distance"),
         )
         .where(t_dp.active == 1)
         .where(distance < radius)

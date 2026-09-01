@@ -26,4 +26,4 @@ from frappe.model.document import Document
 
 
 class TenantErrorLog(Document):
-	pass
+    pass

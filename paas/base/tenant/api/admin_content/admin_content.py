@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -26,7 +27,7 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_admin_stories(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_admin_stories(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all stories on the platform (for admins).
     """
@@ -40,7 +41,7 @@ def get_admin_stories(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_admin_banners(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_admin_banners(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of platform-wide banners (for admins).
     """
@@ -96,7 +97,7 @@ def delete_admin_banner(banner_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_admin_faqs(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_admin_faqs(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all FAQs (for admins).
     """
@@ -149,7 +150,7 @@ def delete_admin_faq(faq_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_admin_faq_categories(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_admin_faq_categories(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all FAQ categories (for admins).
     """

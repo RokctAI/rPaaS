@@ -38,14 +38,14 @@ class LocationSettings(Document):
                 geo_data = json.loads(self.location)
 
                 # Handle FeatureCollection
-                if geo_data.get(
-                        "type") == "FeatureCollection" and geo_data.get("features"):
+                if geo_data.get("type") == "FeatureCollection" and geo_data.get(
+                    "features"
+                ):
                     geometry = geo_data["features"][0].get("geometry", {})
                 else:
                     geometry = geo_data
 
-                if geometry.get("type") == "Point" and geometry.get(
-                        "coordinates"):
+                if geometry.get("type") == "Point" and geometry.get("coordinates"):
                     # coordinates are [longitude, latitude]
                     self.location_longitude = geometry["coordinates"][0]
                     self.location_latitude = geometry["coordinates"][1]
@@ -53,19 +53,21 @@ class LocationSettings(Document):
                 frappe.log_error("Error parsing location in Location Settings")
         elif self.location_latitude and self.location_longitude:
             # Construct GeoJSON if location is missing but lat/long exist
-            self.location = json.dumps({
-                "type": "FeatureCollection",
-                "features": [
-                    {
-                        "type": "Feature",
-                        "properties": {},
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [
-                                self.location_longitude,
-                                self.location_latitude
-                            ]
+            self.location = json.dumps(
+                {
+                    "type": "FeatureCollection",
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "properties": {},
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [
+                                    self.location_longitude,
+                                    self.location_latitude,
+                                ],
+                            },
                         }
-                    }
-                ]
-            })
+                    ],
+                }
+            )

@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -34,7 +35,7 @@ def _require_admin():
 
 
 @frappe.whitelist(allow_guest=True)
-def get_careers(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_careers(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of active careers, formatted for frontend compatibility.
     """
@@ -88,7 +89,7 @@ def get_career(id: str) -> Any:
 
 
 @frappe.whitelist()
-def get_admin_careers(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_admin_careers(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all careers on the platform (for admins).
     """

@@ -52,7 +52,14 @@ def get_delivery_zone_by_shop(shop_id: str) -> Any:
     """
     The get_delivery_zone_by_shop function retrieves the delivery zone associated with a specific shop. It takes one parameter, shop_id, which is a string representing the unique identifier of the shop. The function first checks if the provided shop_id exists in the database, throwing an error if it does not. If the shop exists, it retrieves the corresponding delivery zone document and returns it as a dictionary.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Retrieves the delivery zone for a given shop.
@@ -70,7 +77,14 @@ def check_delivery_zone(shop_id: str, latitude: float, longitude: float) -> Any:
     """
     The check_delivery_zone function determines whether a specific geographic location falls within the designated delivery area of a particular shop. It takes three parameters: shop_id, which is a unique string identifier for the shop, and latitude and longitude, which are floating-point values representing the coordinates of the location to be checked. The function returns a dictionary containing a status indicator and a corresponding message, indicating whether the location is within the delivery zone of the specified shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Checks if a given coordinate is within the delivery zone of a shop.
@@ -100,7 +114,14 @@ def get_delivery_points() -> Any:
     """
     Retrieves a list of all active delivery points.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     delivery_points = frappe.get_list(
         "Delivery Point",
         filters={"active": 1},
@@ -114,7 +135,14 @@ def get_delivery_point(name: Any) -> Any:
     """
     Retrieves a single delivery point by its name.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return frappe.get_doc("Delivery Point", name).as_dict()
 
 
@@ -123,7 +151,14 @@ def get_driver_location(driver_id: str) -> Any:
     """
     Retrieves the current location of a driver.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     location = frappe.db.get_value(
         "Driver Location",
         {"driver": driver_id},
@@ -139,11 +174,20 @@ def get_driver_location(driver_id: str) -> Any:
 
 
 @frappe.whitelist()
-def update_driver_location(latitude: Any, longitude: Any, order_id: Any=None, parcel_order_id: Any=None) -> Any:
+def update_driver_location(
+    latitude: Any, longitude: Any, order_id: Any = None, parcel_order_id: Any = None
+) -> Any:
     """
     Endpoint for the Driver App to send real-time coordinates.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Authentication required to update location.")

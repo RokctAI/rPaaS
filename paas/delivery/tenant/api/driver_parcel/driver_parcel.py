@@ -76,27 +76,43 @@ def _get_or_create_wallet(user):
     """
     wallet_name = frappe.db.get_value("Wallet", {"user": user}, "name")
     if not wallet_name:
-        return frappe.get_doc(
-            {"doctype": "Wallet", "user": user, "balance": 0}
-        ).insert(ignore_permissions=True)
+        return frappe.get_doc({"doctype": "Wallet", "user": user, "balance": 0}).insert(
+            ignore_permissions=True
+        )
     return frappe.get_doc("Wallet", wallet_name)
 
 
 @frappe.whitelist()
-def get_driver_parcel_orders_paginate(limit_start: Any=0, limit_page_length: Any=20) -> Any:
+def get_driver_parcel_orders_paginate(
+    limit_start: Any = 0, limit_page_length: Any = 20
+) -> Any:
     """
     Get driver parcel orders paginate API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _get_parcel_orders(limit_start, limit_page_length)
 
 
 @frappe.whitelist()
-def add_parcel_order_review(order_id: Any, rating: Any, comment: Any=None) -> Any:
+def add_parcel_order_review(order_id: Any, rating: Any, comment: Any = None) -> Any:
     """
     Add parcel order review API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if frappe.db.exists("Parcel Order", order_id):
         doc = frappe.new_doc("Review")
         doc.reference_doctype = "Parcel Order"
@@ -114,7 +130,14 @@ def attach_parcel_order_to_me(order_id: Any) -> Any:
     """
     Attach parcel order to me API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if frappe.db.exists("Parcel Order", order_id):
         doc = frappe.get_doc("Parcel Order", order_id)
@@ -131,7 +154,14 @@ def set_current_parcel_order(order_id: Any) -> Any:
     """
     Set current parcel order API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if frappe.db.exists("Parcel Order", order_id):
         doc = frappe.get_doc("Parcel Order", order_id)
@@ -147,7 +177,14 @@ def update_driver_parcel_order_status(order_id: Any, status: Any) -> Any:
     """
     Update driver parcel order status API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     normalized = normalize_parcel_status(status)
     if not normalized:
         frappe.throw(
@@ -176,7 +213,14 @@ def confirm_parcel_cod_collection(parcel_id: Any, amount_received: Any) -> Any:
     Settlement" for the sender leg). The cod_settled flag makes the whole
     operation strictly once-only.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Unauthorized", frappe.AuthenticationError)
@@ -193,16 +237,15 @@ def confirm_parcel_cod_collection(parcel_id: Any, amount_received: Any) -> Any:
 
     cod_amount = float(doc.get("cod_amount") or 0)
     if cod_amount <= 0:
-        frappe.throw(
-            "Parcel Order {0} has no cash amount to collect.".format(doc.name)
-        )
+        frappe.throw("Parcel Order {0} has no cash amount to collect.".format(doc.name))
 
     # THE idempotency guard: without it a retried request would move the
     # wallet balances twice.
     if int(doc.get("cod_settled") or 0):
         frappe.throw(
-            "Cash collection for parcel order {0} has already been "
-            "settled.".format(doc.name)
+            "Cash collection for parcel order {0} has already been settled.".format(
+                doc.name
+            )
         )
 
     try:
@@ -213,13 +256,13 @@ def confirm_parcel_cod_collection(parcel_id: Any, amount_received: Any) -> Any:
     sender = doc.get("user")
     if not sender:
         frappe.throw(
-            "Parcel Order {0} has no sender to settle the collected "
-            "cash to.".format(doc.name)
+            "Parcel Order {0} has no sender to settle the collected cash to.".format(
+                doc.name
+            )
         )
     if sender == user:
         frappe.throw(
-            "Sender and deliveryman are the same user; there is nothing "
-            "to settle."
+            "Sender and deliveryman are the same user; there is nothing to settle."
         )
 
     doc.cod_collected_amount = amount
@@ -234,9 +277,7 @@ def confirm_parcel_cod_collection(parcel_id: Any, amount_received: Any) -> Any:
     # request's DB transaction: any throw rolls back the doc save and both
     # balance writes together. No explicit frappe.db.commit on purpose.
     if amount > 0:
-        deliveryman_wallet.balance = (
-            float(deliveryman_wallet.balance or 0) - amount
-        )
+        deliveryman_wallet.balance = float(deliveryman_wallet.balance or 0) - amount
         deliveryman_wallet.save(ignore_permissions=True)
 
         sender_wallet.balance = float(sender_wallet.balance or 0) + amount
@@ -250,8 +291,7 @@ def confirm_parcel_cod_collection(parcel_id: Any, amount_received: Any) -> Any:
                 "amount": -amount,
                 "status": "Paid",
                 "description": (
-                    "Cash collected from recipient of Parcel Order "
-                    "{0}".format(doc.name)
+                    "Cash collected from recipient of Parcel Order {0}".format(doc.name)
                 ),
             }
         ).insert(ignore_permissions=True)
@@ -264,8 +304,7 @@ def confirm_parcel_cod_collection(parcel_id: Any, amount_received: Any) -> Any:
                 "amount": amount,
                 "status": "Paid",
                 "description": (
-                    "Cash collection settled for Parcel Order "
-                    "{0}".format(doc.name)
+                    "Cash collection settled for Parcel Order {0}".format(doc.name)
                 ),
             }
         ).insert(ignore_permissions=True)

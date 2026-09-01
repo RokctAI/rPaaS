@@ -20,6 +20,7 @@
 
 from typing import Any, Optional
 import sys
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -27,7 +28,7 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_shops(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_shops(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all shops on the platform (for admins).
     """
@@ -41,7 +42,7 @@ def get_all_shops(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_all_roles(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_roles(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all roles on the platform (for admins).
     """
@@ -94,7 +95,7 @@ def delete_shop(shop_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_users(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_users(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     The get_all_users function retrieves a list of all users on the platform, intended for administrative use. It accepts two parameters: limit_start, which specifies the starting point of the result set, defaulting to 0, and limit_page_length, which determines the number of users to return, defaulting to 20. The function returns a list of user objects, each containing the user's name, full name, email, and enabled status.
     """
@@ -103,7 +104,11 @@ def get_all_users(limit_start: int=0, limit_page_length: int=20) -> Any:
     trace context
     """
     _require_admin()
-    trace_id = frappe.get_request_header("X-Trace-Id") if getattr(frappe.local, "request", None) else None
+    trace_id = (
+        frappe.get_request_header("X-Trace-Id")
+        if getattr(frappe.local, "request", None)
+        else None
+    )
     print(f"[base.api] get_all_users trace_id={trace_id}", file=sys.stderr)
     return frappe.get_list(
         "User",

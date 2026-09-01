@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -36,13 +37,11 @@ def create_blog(data: Any) -> Any:
 
     doc = frappe.get_doc({"doctype": "Blog", **data})
     doc.insert()
-    return api_response(
-        data=doc.as_dict(), message="Blog created successfully."
-    )
+    return api_response(data=doc.as_dict(), message="Blog created successfully.")
 
 
 @frappe.whitelist(allow_guest=True)
-def get_blogs(type: Any=None, limit: Any=10, start: Any=0) -> Any:
+def get_blogs(type: Any = None, limit: Any = 10, start: Any = 0) -> Any:
     """
     Retrieves Blogs, optionally filtered by type.
     """
@@ -88,9 +87,7 @@ def update_blog(name: Any, data: Any) -> Any:
     doc = frappe.get_doc("Blog", name)
     doc.update(data)
     doc.save()
-    return api_response(
-        data=doc.as_dict(), message="Blog updated successfully."
-    )
+    return api_response(data=doc.as_dict(), message="Blog updated successfully.")
 
 
 @frappe.whitelist()
@@ -103,7 +100,7 @@ def delete_blog(name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_admin_blogs(page: int=1, limit: int=10, lang: str='en') -> Any:
+def get_admin_blogs(page: int = 1, limit: int = 10, lang: str = "en") -> Any:
     """
     Retrieves all Blogs for Admin (including inactive).
     """

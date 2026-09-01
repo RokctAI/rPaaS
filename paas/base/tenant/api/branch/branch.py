@@ -32,7 +32,11 @@ def get_branches(shop_id: str) -> Any:
     """
     Retrieves a list of branches for a given shop.
     """
-    trace_id = frappe.get_request_header("X-Trace-Id") if getattr(frappe.local, "request", None) else None
+    trace_id = (
+        frappe.get_request_header("X-Trace-Id")
+        if getattr(frappe.local, "request", None)
+        else None
+    )
     print(f"[base.api] get_branches trace_id={trace_id}", file=sys.stderr)
     if not frappe.db.exists("Company", shop_id):
         frappe.throw("Shop not found.")
@@ -85,9 +89,8 @@ def update_branch(branch_id: Any, branch_data: Any) -> Any:
         branch_data = json.loads(branch_data)
 
     branch = frappe.get_doc("Branch", branch_id)
-    if (
-        branch.owner != frappe.session.user
-        and "System Manager" not in frappe.get_roles(frappe.session.user)
+    if branch.owner != frappe.session.user and "System Manager" not in frappe.get_roles(
+        frappe.session.user
     ):
         frappe.throw(
             "You are not authorized to update this branch.",
@@ -109,9 +112,8 @@ def delete_branch(branch_id: Any) -> Any:
     Deletes a branch.
     """
     branch = frappe.get_doc("Branch", branch_id)
-    if (
-        branch.owner != frappe.session.user
-        and "System Manager" not in frappe.get_roles(frappe.session.user)
+    if branch.owner != frappe.session.user and "System Manager" not in frappe.get_roles(
+        frappe.session.user
     ):
         frappe.throw(
             "You are not authorized to delete this branch.",

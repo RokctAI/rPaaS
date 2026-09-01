@@ -40,28 +40,43 @@ def announce_ready_to_control():
     """
     import os
     import requests
+
     token = os.environ.get("ROKCT_BOOTSTRAP_TOKEN")
-    control_plane_url = os.environ.get("ROKCT_CONTROL_PLANE_URL") or frappe.conf.get("control_plane_url")
-    
+    control_plane_url = os.environ.get("ROKCT_CONTROL_PLANE_URL") or frappe.conf.get(
+        "control_plane_url"
+    )
+
     if not token or not control_plane_url:
         return
 
-    scheme = os.environ.get("ROKCT_CONTROL_PLANE_SCHEME") or frappe.conf.get("control_plane_scheme") or "https"
+    scheme = (
+        os.environ.get("ROKCT_CONTROL_PLANE_SCHEME")
+        or frappe.conf.get("control_plane_scheme")
+        or "https"
+    )
     api_url = f"{scheme}://{control_plane_url}/api/method/control.control.api.subscription.announce_tenant_ready"
 
-    trace_id = frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else "announce-ready-trace"
+    trace_id = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else "announce-ready-trace"
+    )
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
         "x-trace-id": trace_id or "",
     }
-    data = {
-        "site_name": frappe.local.site
-    }
+    data = {"site_name": frappe.local.site}
 
     try:
         response = requests.post(api_url, headers=headers, json=data, timeout=30)
         response.raise_for_status()
-        frappe.log_error(f"Tenant '{frappe.local.site}' successfully announced readiness to Control Hub.", "Tenant Bootstrap")
+        frappe.log_error(
+            f"Tenant '{frappe.local.site}' successfully announced readiness to Control Hub.",
+            "Tenant Bootstrap",
+        )
     except Exception as e:
-        frappe.log_error(f"Tenant '{frappe.local.site}' failed to announce readiness: {e}\n{frappe.get_traceback()}", "Tenant Bootstrap Error")
+        frappe.log_error(
+            f"Tenant '{frappe.local.site}' failed to announce readiness: {e}\n{frappe.get_traceback()}",
+            "Tenant Bootstrap Error",
+        )

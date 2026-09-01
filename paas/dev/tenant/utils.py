@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 # Copyright (c) 2025 ROKCT INTELLIGENCE (PTY) LTD
 # For license information, please see license.txt
@@ -35,15 +36,16 @@ def prevent_uninstall_if_build_active():
         "RQ Job",
         filters={
             "status": ["in", ["queued", "started"]],
-            "method": "paas.builder.tenant.tasks._generate_flutter_app"
+            "method": "paas.builder.tenant.tasks._generate_flutter_app",
         },
-        limit=1
+        limit=1,
     )
 
     if active_builds:
         frappe.throw(
             "Cannot uninstall the Rokct app while one or more app builds are in progress. "
-            "Please wait for the builds to complete or cancel them from the 'RQ Job' list.")
+            "Please wait for the builds to complete or cancel them from the 'RQ Job' list."
+        )
 
     print("No active builds found. Proceeding with uninstallation.")
 
@@ -51,7 +53,14 @@ def prevent_uninstall_if_build_active():
 @frappe.whitelist()
 def get_available_source_projects() -> Any:
     """Returns a list of available source project folders."""
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if hasattr(frappe, "request") else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if hasattr(frappe, "request")
+        else None,
+        sys.stderr,
+    )
     try:
         source_path = frappe.get_app_path("paas", "builder", "tenant", "source_code")
         if not os.path.exists(source_path):
@@ -60,7 +69,7 @@ def get_available_source_projects() -> Any:
         projects = []
         for item in os.listdir(source_path):
             item_path = os.path.join(source_path, item)
-            if os.path.isdir(item_path) and not item.startswith('.'):
+            if os.path.isdir(item_path) and not item.startswith("."):
                 # Format label: paas_customer -> Customer
                 label = item.replace("paas_", "").replace("_", " ").title()
                 projects.append({"label": label, "value": item})

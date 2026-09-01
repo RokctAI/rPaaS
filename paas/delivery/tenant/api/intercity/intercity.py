@@ -120,8 +120,7 @@ def _get_own_intercity_order(parcel_order_id):
     parcel_order = frappe.get_doc("Parcel Order", parcel_order_id)
     user = frappe.session.user
     is_admin = (
-        "System Manager" in frappe.get_roles()
-        or "Administrator" in frappe.get_roles()
+        "System Manager" in frappe.get_roles() or "Administrator" in frappe.get_roles()
     )
     if parcel_order.user != user and not is_admin:
         frappe.throw(
@@ -149,9 +148,7 @@ def cancel_intercity_shipment(parcel_order_id: Any) -> Any:
     parcel_order.save(ignore_permissions=True)
     lifecycle.release_pickup_location(
         provider,
-        lifecycle.pickup_reference(
-            parcel_order.user, parcel_order.address_from
-        ),
+        lifecycle.pickup_reference(parcel_order.user, parcel_order.address_from),
     )
     return api_response(
         data=parcel_order.as_dict(), message="Intercity shipment canceled"
@@ -184,9 +181,7 @@ def intercity_webhook(**kwargs: Any) -> Any:
     if not registry.is_intercity_enabled(settings):
         frappe.throw("Intercity delivery is disabled.")
 
-    secret = settings.get_password(
-        "shiprazor_webhook_secret", raise_exception=False
-    )
+    secret = settings.get_password("shiprazor_webhook_secret", raise_exception=False)
     if not secret:
         frappe.throw("Intercity webhook secret is not configured.")
     provided = frappe.get_request_header("X-Webhook-Token") or ""
@@ -212,8 +207,7 @@ def intercity_webhook(**kwargs: Any) -> Any:
     )
     if not name:
         frappe.log_error(
-            f"Intercity webhook for unknown shipment "
-            f"{event['provider_shipment_ref']}",
+            f"Intercity webhook for unknown shipment {event['provider_shipment_ref']}",
             "Intercity Webhook",
         )
         return api_response(message="No matching parcel order")
@@ -225,8 +219,6 @@ def intercity_webhook(**kwargs: Any) -> Any:
     if lifecycle.should_release_refcount(event["status"]):
         lifecycle.release_pickup_location(
             provider,
-            lifecycle.pickup_reference(
-                parcel_order.user, parcel_order.address_from
-            ),
+            lifecycle.pickup_reference(parcel_order.user, parcel_order.address_from),
         )
     return api_response(message="ok")

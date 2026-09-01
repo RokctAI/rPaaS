@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import sys
 
@@ -28,7 +29,13 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_orders(limit_start: int=0, limit_page_length: int=20, status: str=None, from_date: str=None, to_date: str=None) -> Any:
+def get_all_orders(
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+    status: str = None,
+    from_date: str = None,
+    to_date: str = None,
+) -> Any:
     """
     Retrieves a list of all orders on the platform (for admins).
     """
@@ -52,7 +59,13 @@ def get_all_orders(limit_start: int=0, limit_page_length: int=20, status: str=No
 
 
 @frappe.whitelist()
-def get_all_parcel_orders(limit_start: int=0, limit_page_length: int=20, status: str=None, from_date: str=None, to_date: str=None) -> Any:
+def get_all_parcel_orders(
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+    status: str = None,
+    from_date: str = None,
+    to_date: str = None,
+) -> Any:
     """
     Retrieves a list of all parcel orders on the platform (for admins).
     """
@@ -104,8 +117,14 @@ def assign_deliveryman_to_parcel(parcel_order_id: Any, deliveryman_id: Any) -> A
     Assigns a deliveryman to a parcel order (for admins).
     """
     _require_admin()
-    trace_id = frappe.get_request_header("X-Trace-Id") if getattr(frappe.local, "request", None) else None
-    print(f"[base.api] assign_deliveryman_to_parcel trace_id={trace_id}", file=sys.stderr)
+    trace_id = (
+        frappe.get_request_header("X-Trace-Id")
+        if getattr(frappe.local, "request", None)
+        else None
+    )
+    print(
+        f"[base.api] assign_deliveryman_to_parcel trace_id={trace_id}", file=sys.stderr
+    )
     parcel_order = frappe.get_doc("Parcel Order", parcel_order_id)
 
     # Validate deliveryman exists and has role?
@@ -123,7 +142,7 @@ def assign_deliveryman_to_parcel(parcel_order_id: Any, deliveryman_id: Any) -> A
 
 
 @frappe.whitelist()
-def get_all_reviews(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_reviews(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all reviews on the platform (for admins).
     """
@@ -172,7 +191,7 @@ def delete_admin_review(review_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_tickets(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_tickets(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all tickets on the platform (for admins).
     """
@@ -202,7 +221,7 @@ def update_admin_ticket(ticket_name: Any, ticket_data: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_order_refunds(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_order_refunds(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all order refunds on the platform (for admins).
     """
@@ -217,7 +236,7 @@ def get_all_order_refunds(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def update_admin_order_refund(refund_name: Any, status: Any, answer: Any=None) -> Any:
+def update_admin_order_refund(refund_name: Any, status: Any, answer: Any = None) -> Any:
     """
     Updates the status and answer of an order refund (for admins).
     """
@@ -237,7 +256,7 @@ def update_admin_order_refund(refund_name: Any, status: Any, answer: Any=None) -
 
 
 @frappe.whitelist()
-def get_all_notifications(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_notifications(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all notifications on the platform (for admins).
     """
@@ -259,7 +278,7 @@ def get_all_notifications(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_all_bookings(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_bookings(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all bookings on the platform (for admins).
     """
@@ -320,7 +339,7 @@ def delete_booking(booking_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_order_statuses(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_order_statuses(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all order statuses on the platform (for admins).
     """
@@ -335,7 +354,7 @@ def get_all_order_statuses(limit_start: int=0, limit_page_length: int=20) -> Any
 
 
 @frappe.whitelist()
-def get_all_request_models(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_request_models(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all request models on the platform (for admins).
     """

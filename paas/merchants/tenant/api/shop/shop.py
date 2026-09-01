@@ -74,14 +74,19 @@ def create_shop(shop_data: Any) -> Any:
     Creates a new Shop document.
     Only users with 'System Manager' or 'Seller' roles can create a shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if (
         "System Manager" not in frappe.get_roles()
         and "Seller" not in frappe.get_roles()
     ):
-        frappe.throw(
-            "You are not authorized to create a shop.", frappe.PermissionError
-        )
+        frappe.throw("You are not authorized to create a shop.", frappe.PermissionError)
 
     if not isinstance(shop_data, dict):
         frappe.throw("shop_data must be a dictionary.", frappe.ValidationError)
@@ -98,9 +103,7 @@ def create_shop(shop_data: Any) -> Any:
         shop = frappe.get_doc({"doctype": "Shop", **shop_data})
         shop.insert(ignore_permissions=True)
         frappe.db.commit()
-        return api_response(
-            data=shop.as_dict(), message="Shop created successfully"
-        )
+        return api_response(data=shop.as_dict(), message="Shop created successfully")
     except Exception as e:
         frappe.db.rollback()
         frappe.log_error(frappe.get_traceback(), "Shop Creation Failed")
@@ -108,11 +111,26 @@ def create_shop(shop_data: Any) -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def get_shops(limit_start: int=0, limit_page_length: int=20, order_by: str='name', order: str='desc', latitude: float=None, longitude: float=None, **kwargs) -> Any:
+def get_shops(
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+    order_by: str = "name",
+    order: str = "desc",
+    latitude: float = None,
+    longitude: float = None,
+    **kwargs,
+) -> Any:
     """
     Retrieves a list of shops with pagination and filters. Supports geo-sorting.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     from paas.base.tenant.api.utils import haversine
     import json
 
@@ -191,12 +209,10 @@ def get_shops(limit_start: int=0, limit_page_length: int=20, order_by: str='name
     else:
         # Standard sorting
         rev = True if order.lower() == "desc" else False
-        shops.sort(
-            key=lambda x: str(x.get(order_by or "name")).lower(), reverse=rev
-        )
+        shops.sort(key=lambda x: str(x.get(order_by or "name")).lower(), reverse=rev)
 
     # Paginate
-    shops_slice = shops[limit_start: limit_start + limit_page_length]
+    shops_slice = shops[limit_start : limit_start + limit_page_length]
 
     # Global COD Check
     cash_gateway = frappe.db.get_value(
@@ -264,13 +280,18 @@ def get_shop_details(uuid: str) -> Any:
     """
     Retrieves a single shop by its UUID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     shop = frappe.get_doc("Shop", {"uuid": uuid})
 
     if not shop:
-        frappe.throw(
-            f"Shop with UUID {uuid} not found.", frappe.DoesNotExistError
-        )
+        frappe.throw(f"Shop with UUID {uuid} not found.", frappe.DoesNotExistError)
 
     # Global COD Check
     cash_gateway = frappe.db.get_value(
@@ -323,11 +344,23 @@ def get_shop_details(uuid: str) -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def search_shops(search: str, category_id: int=None, limit_start: int=0, limit_page_length: int=20) -> Any:
+def search_shops(
+    search: str,
+    category_id: int = None,
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+) -> Any:
     """
     Searches for shops by name, optionally filtered by category.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     t_shop = frappe.qb.DocType("Shop")
     query = (
         frappe.qb.from_(t_shop)
@@ -439,7 +472,14 @@ def get_shop_types() -> Any:
     """
     Retrieves all available Shop Types.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     types = frappe.get_all(
         "Shop Type",
         fields=["name", "title", "description", "icon"],
@@ -449,12 +489,21 @@ def get_shop_types() -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def get_nearby_shops(latitude: float, longitude: float, radius_km: float=10, lang: str='en') -> Any:
+def get_nearby_shops(
+    latitude: float, longitude: float, radius_km: float = 10, lang: str = "en"
+) -> Any:
     """
     Retrieves a list of shops within a given radius.
     bypass_sql
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if latitude is None or longitude is None:
         return get_shops()
 
@@ -484,9 +533,7 @@ def get_nearby_shops(latitude: float, longitude: float, radius_km: float=10, lan
             nearby_shop_ids.append(candidate.name)
 
     # Include Ecommerce shops (global reach)
-    ecommerce_shops = frappe.get_all(
-        "Shop", filters={"is_ecommerce": 1}, pluck="name"
-    )
+    ecommerce_shops = frappe.get_all("Shop", filters={"is_ecommerce": 1}, pluck="name")
     nearby_shop_ids.extend(ecommerce_shops)
 
     # Unique IDs
@@ -497,23 +544,37 @@ def get_nearby_shops(latitude: float, longitude: float, radius_km: float=10, lan
 
 
 @frappe.whitelist()
-def get_shops_recommend(latitude: float, longitude: float, lang: str='en') -> Any:
+def get_shops_recommend(latitude: float, longitude: float, lang: str = "en") -> Any:
     """
     Returns recommended shops based on location and rating.
     Currently aliases to get_nearby_shops as we lack a rating field.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return get_nearby_shops(latitude, longitude, radius_km=20, lang=lang)
 
 
 @frappe.whitelist(allow_guest=True)
-def check_driver_zone(shop_id: Any=None, address: Any=None) -> Any:
+def check_driver_zone(shop_id: Any = None, address: Any = None) -> Any:
     """
     Checks if the address is within the shop's delivery zone.
     Expects address as dict/json with latitude/longitude.
     bypass_sql
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     import json
 
     if isinstance(address, str):
@@ -522,11 +583,7 @@ def check_driver_zone(shop_id: Any=None, address: Any=None) -> Any:
         except ValueError:
             frappe.throw("Invalid address format", frappe.ValidationError)
 
-    if (
-        not address
-        or not address.get("latitude")
-        or not address.get("longitude")
-    ):
+    if not address or not address.get("latitude") or not address.get("longitude"):
         frappe.throw(
             "Address must contain latitude and longitude",
             frappe.ValidationError,
@@ -565,11 +622,18 @@ def check_driver_zone(shop_id: Any=None, address: Any=None) -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def get_shops_by_ids(shop_ids: list=None, **kwargs) -> Any:
+def get_shops_by_ids(shop_ids: list = None, **kwargs) -> Any:
     """
     Retrieves shops by a list of IDs.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     _filters = {}  # noqa: F841
     ids_to_filter = shop_ids
 
@@ -641,11 +705,18 @@ def get_shops_by_ids(shop_ids: list=None, **kwargs) -> Any:
 
 
 @frappe.whitelist()
-def check_cashback(shop_id: str, amount: float, lang: str='en') -> Any:
+def check_cashback(shop_id: str, amount: float, lang: str = "en") -> Any:
     """
     Checks the cashback for a given shop and amount based on defined rules.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     cashback_rule = frappe.db.get_value(
         "Cashback Rule",
         filters={"shop": shop_id, "min_amount": ["<=", amount]},
@@ -661,25 +732,30 @@ def check_cashback(shop_id: str, amount: float, lang: str='en') -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def get_nearest_delivery_points(latitude: float, longitude: float, radius_km: float=50) -> Any:
+def get_nearest_delivery_points(
+    latitude: float, longitude: float, radius_km: float = 50
+) -> Any:
     """
     Retrieves a list of active Delivery Points within a given radius.
     bypass_sql
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if latitude is None or longitude is None:
-        frappe.throw(
-            "Latitude and Longitude are required.", frappe.ValidationError
-        )
+        frappe.throw("Latitude and Longitude are required.", frappe.ValidationError)
 
     try:
         lat = float(latitude)
         lon = float(longitude)
         radius = float(radius_km) * 1000  # meters
     except ValueError:
-        frappe.throw(
-            "Invalid Latitude or Longitude format.", frappe.ValidationError
-        )
+        frappe.throw("Invalid Latitude or Longitude format.", frappe.ValidationError)
 
     # Calculate distance in SQL: earth_distance(ll_to_earth(lat, lon), ll_to_earth(db_lat, db_lon))
     # We select fields matchng the original response

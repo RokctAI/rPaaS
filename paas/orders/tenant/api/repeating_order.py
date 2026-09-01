@@ -19,15 +19,14 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Repeating Order API
 import frappe
 from croniter import croniter
 from datetime import datetime
 
 
-def calculate_ringfence_amount(
-    cron_pattern, start_date_str, end_date_str, unit_price
-):
+def calculate_ringfence_amount(cron_pattern, start_date_str, end_date_str, unit_price):
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     if end_date_str:
         end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
@@ -49,11 +48,26 @@ def calculate_ringfence_amount(
 
 
 @frappe.whitelist()
-def create_repeating_order(original_order: str, start_date: str, cron_pattern: str, end_date: str=None, payment_method: str='Wallet', saved_card: str=None, lang: str='en') -> Any:
+def create_repeating_order(
+    original_order: str,
+    start_date: str,
+    cron_pattern: str,
+    end_date: str = None,
+    payment_method: str = "Wallet",
+    saved_card: str = None,
+    lang: str = "en",
+) -> Any:
     """
     The create_repeating_order function creates a new repeating order based on an existing order, with specified payment preferences and ringfencing. It takes several parameters: original_order, the identifier of the original order; start_date, the date when the repeating order starts; cron_pattern, a cron expression defining the repetition schedule; end_date, an optional date when the repeating order ends; payment_method, the payment method to use, defaulting to 'Wallet'; saved_card, an optional saved card identifier; and lang, the language, defaulting to 'en'. The function enforces the use of the 'Wallet' payment method for auto-orders and handles ringfencing of the order amount in the user's wallet balance. It returns the newly created repeating order as a dictionary.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Creates a new repeating order with payment preferences and ringfencing.
@@ -77,7 +91,8 @@ def create_repeating_order(original_order: str, start_date: str, cron_pattern: s
         if balance < ringfenced_amount:
             # Specific error message for frontend interception
             frappe.throw(
-                f"Insufficient Wallet Balance. Required: {ringfenced_amount}, Available: {balance}. Suggest Topup")
+                f"Insufficient Wallet Balance. Required: {ringfenced_amount}, Available: {balance}. Suggest Topup"
+            )
 
         # Ringfence
         user_doc.set("wallet_balance", balance - ringfenced_amount)
@@ -120,28 +135,31 @@ def create_repeating_order(original_order: str, start_date: str, cron_pattern: s
 
 
 @frappe.whitelist()
-def pause_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
+def pause_repeating_order(repeating_order_id: str, lang: str = "en") -> Any:
     """
-    pause_repeating_order pauses a specific repeating order and, if applicable, releases any funds that were ring‑fenced for that order back to the user’s wallet.  
-    
-    Parameters  
-    - repeating_order_id (str): The unique identifier of the Repeating Order document to be paused.  
-    - lang (str, optional): Language code for any localized messages; defaults to 'en'.  
-    
+    pause_repeating_order pauses a specific repeating order and, if applicable, releases any funds that were ring‑fenced for that order back to the user’s wallet.
+
+    Parameters
+    - repeating_order_id (str): The unique identifier of the Repeating Order document to be paused.
+    - lang (str, optional): Language code for any localized messages; defaults to 'en'.
+
     The function checks that the order is active, uses the wallet payment method, and has a positive ring‑fenced amount. When those conditions are met it transfers the ring‑fenced amount from the user’s ring‑fenced balance to their wallet balance, records a “Wallet Release” transaction, clears the ring‑fenced amount, deactivates the order, and returns a success response indicating the order has been paused and funds released.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Pauses a repeating order and releases ringfenced funds.
     trace context
     """
     ro = frappe.get_doc("Repeating Order", repeating_order_id)
-    if (
-        ro.is_active
-        and ro.payment_method == "Wallet"
-        and ro.ringfenced_amount > 0
-    ):
+    if ro.is_active and ro.payment_method == "Wallet" and ro.ringfenced_amount > 0:
         user_doc = frappe.get_doc("User", ro.user)
         user_doc.set(
             "wallet_balance",
@@ -175,11 +193,18 @@ def pause_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
 
 
 @frappe.whitelist()
-def resume_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
+def resume_repeating_order(repeating_order_id: str, lang: str = "en") -> Any:
     """
     The resume_repeating_order function resumes a previously paused repeating order and re-ringfences the necessary funds. It takes two parameters: repeating_order_id, which is the unique identifier of the repeating order to be resumed, and lang, which specifies the language to be used and defaults to English if not provided. The function checks if the order has expired, and if the payment method is Wallet, it recalculates the ringfence amount based on the remaining schedule and updates the user's wallet balance accordingly. If the user's balance is insufficient, it throws an error. Otherwise, it resumes the order, saves the changes, and returns a success message.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Resumes a repeating order and re-ringfences funds.
@@ -205,9 +230,7 @@ def resume_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
         balance = user_doc.get("wallet_balance") or 0.0
 
         if balance < new_ringfence:
-            frappe.throw(
-                "Insufficient Wallet Balance to resume this schedule."
-            )
+            frappe.throw("Insufficient Wallet Balance to resume this schedule.")
 
         user_doc.set("wallet_balance", balance - new_ringfence)
         user_doc.set(
@@ -224,11 +247,18 @@ def resume_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
 
 
 @frappe.whitelist()
-def delete_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
+def delete_repeating_order(repeating_order_id: str, lang: str = "en") -> Any:
     """
     The delete_repeating_order function is used to delete a repeating order and release any remaining ringfenced funds associated with it. It takes two parameters: repeating_order_id, which is a string representing the ID of the repeating order to be deleted, and lang, which is an optional string parameter that specifies the language, defaulting to 'en' if not provided. The function retrieves the repeating order document, checks if there are any ringfenced funds, and if so, updates the user's wallet balance and ringfenced balance accordingly before deleting the repeating order document.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Deletes a repeating order and releases any remaining ringfenced funds.
@@ -247,7 +277,5 @@ def delete_repeating_order(repeating_order_id: str, lang: str='en') -> Any:
         )
         user_doc.save(ignore_permissions=True)
 
-    frappe.delete_doc(
-        "Repeating Order", repeating_order_id, ignore_permissions=True
-    )
+    frappe.delete_doc("Repeating Order", repeating_order_id, ignore_permissions=True)
     return {"status": "success"}
