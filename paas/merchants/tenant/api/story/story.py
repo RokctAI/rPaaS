@@ -19,16 +19,24 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 
 
 @frappe.whitelist()
-def get_story(page: int=1, lang: str='en') -> Any:
+def get_story(page: int = 1, lang: str = "en") -> Any:
     """
     Retrieves a list of stories grouped by shop for Flutter.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     stories = frappe.get_list(
         "Story",
         fields=[

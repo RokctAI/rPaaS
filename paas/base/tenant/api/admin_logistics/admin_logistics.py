@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -50,7 +51,7 @@ def update_deliveryman_global_settings(settings_data: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_parcel_order_settings(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_parcel_order_settings(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all parcel order settings (for admins).
     """
@@ -72,9 +73,7 @@ def create_parcel_order_setting(setting_data: Any) -> Any:
     if isinstance(setting_data, str):
         setting_data = json.loads(setting_data)
 
-    new_setting = frappe.get_doc(
-        {"doctype": "Parcel Order Setting", **setting_data}
-    )
+    new_setting = frappe.get_doc({"doctype": "Parcel Order Setting", **setting_data})
     new_setting.insert(ignore_permissions=True)
     return new_setting.as_dict()
 
@@ -100,9 +99,7 @@ def delete_parcel_order_setting(setting_name: Any) -> Any:
     Deletes a parcel order setting (for admins).
     """
     _require_admin()
-    frappe.delete_doc(
-        "Parcel Order Setting", setting_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Parcel Order Setting", setting_name, ignore_permissions=True)
     return {
         "status": "success",
         "message": "Parcel order setting deleted successfully.",
@@ -110,7 +107,7 @@ def delete_parcel_order_setting(setting_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_delivery_zones(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_delivery_zones(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all delivery zones on the platform (for admins).
     """
@@ -124,7 +121,9 @@ def get_all_delivery_zones(limit_start: int=0, limit_page_length: int=20) -> Any
 
 
 @frappe.whitelist()
-def get_delivery_vehicle_types(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_delivery_vehicle_types(
+    limit_start: int = 0, limit_page_length: int = 20
+) -> Any:
     """
     Retrieves a list of all delivery vehicle types on the platform (for admins).
     """
@@ -146,9 +145,7 @@ def create_delivery_vehicle_type(type_data: Any) -> Any:
     if isinstance(type_data, str):
         type_data = json.loads(type_data)
 
-    new_type = frappe.get_doc(
-        {"doctype": "Delivery Vehicle Type", **type_data}
-    )
+    new_type = frappe.get_doc({"doctype": "Delivery Vehicle Type", **type_data})
     new_type.insert(ignore_permissions=True)
     return new_type.as_dict()
 
@@ -174,9 +171,7 @@ def delete_delivery_vehicle_type(type_name: Any) -> Any:
     Deletes a delivery vehicle type (for admins).
     """
     _require_admin()
-    frappe.delete_doc(
-        "Delivery Vehicle Type", type_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Delivery Vehicle Type", type_name, ignore_permissions=True)
     return {
         "status": "success",
         "message": "Delivery vehicle type deleted successfully.",
@@ -184,7 +179,9 @@ def delete_delivery_vehicle_type(type_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_delivery_man_delivery_zones(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_delivery_man_delivery_zones(
+    limit_start: int = 0, limit_page_length: int = 20
+) -> Any:
     """
     Retrieves a list of all delivery man delivery zones on the platform (for admins).
     """
@@ -198,7 +195,7 @@ def get_all_delivery_man_delivery_zones(limit_start: int=0, limit_page_length: i
 
 
 @frappe.whitelist()
-def get_all_shop_working_days(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_shop_working_days(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all shop working days on the platform (for admins).
     """
@@ -219,7 +216,7 @@ def get_all_shop_working_days(limit_start: int=0, limit_page_length: int=20) -> 
 
 
 @frappe.whitelist()
-def get_all_shop_closed_days(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_shop_closed_days(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all shop closed days on the platform (for admins).
     """

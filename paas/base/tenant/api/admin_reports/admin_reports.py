@@ -20,6 +20,7 @@
 
 from typing import Any, Optional
 import sys
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -35,7 +36,11 @@ def get_admin_statistics() -> Any:
     Retrieves detailed statistics for the admin dashboard including cards and charts.
     """
     _require_admin()
-    trace_id = frappe.get_request_header("X-Trace-Id") if getattr(frappe.local, "request", None) else None
+    trace_id = (
+        frappe.get_request_header("X-Trace-Id")
+        if getattr(frappe.local, "request", None)
+        else None
+    )
     print(f"[base.api] get_admin_statistics trace_id={trace_id}", file=sys.stderr)
 
     # Cards
@@ -134,7 +139,9 @@ def get_admin_statistics() -> Any:
 
 
 @frappe.whitelist()
-def get_multi_company_sales_report(from_date: str, to_date: str, company: str=None) -> Any:
+def get_multi_company_sales_report(
+    from_date: str, to_date: str, company: str = None
+) -> Any:
     """
     The get_multi_company_sales_report function generates a sales report for a specified date range, allowing administrators to retrieve data for a single company or all companies. The function takes three parameters: from_date and to_date, which define the date range for the report, and an optional company parameter, which filters the results to a specific company if provided. If the company parameter is not specified, the function returns data for all companies. The report includes order details such as name, shop, user, grand total, status, and creation date, as well as calculated commission amounts based on the sales commission rate for each company.
     """
@@ -142,8 +149,15 @@ def get_multi_company_sales_report(from_date: str, to_date: str, company: str=No
     Retrieves a sales report for a specific company or all companies within a date range (for admins).
     """
     _require_admin()
-    trace_id = frappe.get_request_header("X-Trace-Id") if getattr(frappe.local, "request", None) else None
-    print(f"[base.api] get_multi_company_sales_report trace_id={trace_id}", file=sys.stderr)
+    trace_id = (
+        frappe.get_request_header("X-Trace-Id")
+        if getattr(frappe.local, "request", None)
+        else None
+    )
+    print(
+        f"[base.api] get_multi_company_sales_report trace_id={trace_id}",
+        file=sys.stderr,
+    )
 
     filters = {"creation": ["between", [from_date, to_date]]}
     if company:
@@ -162,9 +176,7 @@ def get_multi_company_sales_report(from_date: str, to_date: str, company: str=No
         fields=["name", "sales_commission_rate"],
         filters={"sales_commission_rate": [">", 0]},
     )
-    commission_map = {
-        c["name"]: c["sales_commission_rate"] for c in commission_rates
-    }
+    commission_map = {c["name"]: c["sales_commission_rate"] for c in commission_rates}
 
     for order in sales_report:
         commission_rate = commission_map.get(order.shop, 0)
@@ -174,7 +186,13 @@ def get_multi_company_sales_report(from_date: str, to_date: str, company: str=No
 
 
 @frappe.whitelist()
-def get_admin_report(doctype: str, fields: str, filters: str=None, limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_admin_report(
+    doctype: str,
+    fields: str,
+    filters: str = None,
+    limit_start: int = 0,
+    limit_page_length: int = 20,
+) -> Any:
     """
     Retrieves a report for a specified doctype with given fields and filters (for admins).
     """
@@ -196,7 +214,7 @@ def get_admin_report(doctype: str, fields: str, filters: str=None, limit_start: 
 
 
 @frappe.whitelist()
-def get_all_wallet_histories(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_wallet_histories(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all wallet histories on the platform (for admins).
     """
@@ -211,7 +229,7 @@ def get_all_wallet_histories(limit_start: int=0, limit_page_length: int=20) -> A
 
 
 @frappe.whitelist()
-def get_all_transactions(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_transactions(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all transactions on the platform (for admins).
     """
@@ -234,7 +252,7 @@ def get_all_transactions(limit_start: int=0, limit_page_length: int=20) -> Any:
 
 
 @frappe.whitelist()
-def get_all_seller_payouts(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_seller_payouts(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all seller payouts on the platform (for admins).
     """
@@ -249,7 +267,7 @@ def get_all_seller_payouts(limit_start: int=0, limit_page_length: int=20) -> Any
 
 
 @frappe.whitelist()
-def get_all_shop_bonuses(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_shop_bonuses(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all shop bonuses on the platform (for admins).
     """

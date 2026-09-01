@@ -29,7 +29,7 @@ MAX_CONTEXT_LENGTH = 10000
 
 
 @frappe.whitelist()
-def track_event(event: Any, context: Any=None) -> Any:
+def track_event(event: Any, context: Any = None) -> Any:
     """
     Records a client usage event from the frontend as a Client Usage Event
     document. Usage lane only — events are NOT routed into the Brain/error

@@ -26,15 +26,15 @@ import frappe
 
 
 class WalletLedger(Document):
-	def on_submit(self):
-		self.update_wallet()
+    def on_submit(self):
+        self.update_wallet()
 
-	def on_cancel(self):
-		self.update_wallet()
+    def on_cancel(self):
+        self.update_wallet()
 
-	def update_wallet(self):
-		"""raw_sql bypass_sql trace tenant"""
-		if self.wallet:
-			wallet_doc = frappe.get_doc("Customer Wallet", self.wallet)
-			wallet_doc.update_balance()
-			wallet_doc.save()
+    def update_wallet(self):
+        """raw_sql bypass_sql trace tenant"""
+        if self.wallet:
+            wallet_doc = frappe.get_doc("Customer Wallet", self.wallet)
+            wallet_doc.update_balance()
+            wallet_doc.save()

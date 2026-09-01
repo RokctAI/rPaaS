@@ -42,7 +42,14 @@ def get_payment_gateways() -> Any:
     """
     Retrieves a list of active payment gateways, formatted for frontend compatibility.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     gateways = frappe.get_list(
         "PaaS Payment Gateway",
         filters={"enabled": 1},
@@ -76,7 +83,14 @@ def initiate_flutterwave_payment(order_id: str) -> Any:
     """
     The initiate_flutterwave_payment function initiates a payment transaction through Flutterwave for a specified order. It takes one parameter, order_id, which is a string representing the unique identifier of the order for which the payment is being initiated. This function serves as a wrapper around the core payment logic, providing a simplified interface for triggering payments.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _initiate_flutterwave_logic("Order", order_id)
 
 
@@ -85,7 +99,14 @@ def initiate_flutterwave_parcel_payment(order_id: str) -> Any:
     """
     Initiate flutterwave parcel payment API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _initiate_flutterwave_logic("Parcel Order", order_id)
 
 
@@ -129,9 +150,8 @@ def _initiate_flutterwave_logic(doctype: str, docname: str):  # noqa: C901
         payload = {
             "tx_ref": tx_ref,
             "amount": amount,
-            "currency": doc.get("currency") or frappe.db.get_single_value(
-                "System Settings",
-                "currency"),
+            "currency": doc.get("currency")
+            or frappe.db.get_single_value("System Settings", "currency"),
             # "paas" is a template placeholder substituted at compose
             # time; keep it in a plain (non-f) string so this file stays
             # runnable before composition.
@@ -191,25 +211,26 @@ def flutterwave_callback() -> Any:
     """
     Handles the callback from Flutterwave after a payment attempt.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     args = frappe.request.args
     status = args.get("status")
     tx_ref = args.get("tx_ref")
     transaction_id = args.get("transaction_id")
 
     flutterwave_settings = frappe.get_doc("Flutterwave Settings")
-    success_url = (
-        flutterwave_settings.success_redirect_url or "/payment-success"
-    )
-    failure_url = (
-        flutterwave_settings.failure_redirect_url or "/payment-failed"
-    )
+    success_url = flutterwave_settings.success_redirect_url or "/payment-success"
+    failure_url = flutterwave_settings.failure_redirect_url or "/payment-failed"
 
     if not tx_ref:
         frappe.local.response["type"] = "redirect"
-        frappe.local.response["location"] = (
-            failure_url + "?reason=tx_ref_missing"
-        )
+        frappe.local.response["location"] = failure_url + "?reason=tx_ref_missing"
         return
 
     try:
@@ -217,8 +238,12 @@ def flutterwave_callback() -> Any:
         order = frappe.get_doc("Order", order_id)
 
         if status == "successful":
-            headers = {"Authorization": f"Bearer {flutterwave_settings.get_password('secret_key')}"}
-            verify_url = f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"
+            headers = {
+                "Authorization": f"Bearer {flutterwave_settings.get_password('secret_key')}"
+            }
+            verify_url = (
+                f"https://api.flutterwave.com/v3/transactions/{transaction_id}/verify"
+            )
             response = requests.get(verify_url, headers=headers, timeout=10)
             response.raise_for_status()
             verification_data = response.json()
@@ -228,7 +253,6 @@ def flutterwave_callback() -> Any:
                 and verification_data["data"]["tx_ref"] == tx_ref
                 and verification_data["data"]["amount"] >= order.grand_total
             ):
-
                 order.payment_status = "Paid"
                 order.custom_payment_transaction_id = transaction_id
                 order.save(ignore_permissions=True)
@@ -257,18 +281,14 @@ def flutterwave_callback() -> Any:
             order.save(ignore_permissions=True)
             frappe.db.commit()
             frappe.local.response["type"] = "redirect"
-            frappe.local.response["location"] = (
-                failure_url + f"?reason={status}"
-            )
+            frappe.local.response["location"] = failure_url + f"?reason={status}"
             return
 
     except Exception:
         frappe.db.rollback()
         frappe.log_error(frappe.get_traceback(), "Flutterwave Callback Failed")
         frappe.local.response["type"] = "redirect"
-        frappe.local.response["location"] = (
-            failure_url + "?reason=internal_error"
-        )
+        frappe.local.response["location"] = failure_url + "?reason=internal_error"
 
 
 @frappe.whitelist()
@@ -276,7 +296,14 @@ def get_payfast_settings() -> Any:
     """
     Returns the PayFast settings.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     payfast_settings = frappe.get_doc("PaaS Payment Gateway", "PayFast")
     settings = {s.key: s.value for s in payfast_settings.settings}
     return {
@@ -296,19 +323,22 @@ def handle_payfast_callback() -> Any:
     """
     Handles the PayFast payment callback.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     data = frappe.form_dict
 
     transaction_id = data.get("m_payment_id")
     if not transaction_id:
-        frappe.log_error(
-            "PayFast callback received without m_payment_id", data
-        )
+        frappe.log_error("PayFast callback received without m_payment_id", data)
         return
 
-    transaction = frappe.get_doc(
-        "Transaction", {"payment_reference": transaction_id}
-    )
+    transaction = frappe.get_doc("Transaction", {"payment_reference": transaction_id})
 
     payfast_settings = frappe.get_doc("PaaS Payment Gateway", "PayFast")
     settings = {s.key: s.value for s in payfast_settings.settings}
@@ -351,7 +381,14 @@ def process_payfast_token_payment(order_id: str, token: str) -> Any:
     """
     Processes a payment using a saved PayFast token.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     frappe.throw(
         f"PayFast token payments are not implemented yet. No charge was "
         f"attempted for order {order_id}. Use process_token_payment for "
@@ -364,7 +401,14 @@ def save_payfast_card(token: str, card_details: str) -> Any:
     """
     Saves a PayFast card token.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to save a card.")
@@ -391,7 +435,14 @@ def get_saved_payfast_cards() -> Any:
     """
     Retrieves a list of saved cards for the current user.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to view your saved cards.")
@@ -408,7 +459,14 @@ def delete_payfast_card(card_name: str) -> Any:
     """
     Deletes a saved card.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to delete a card.")
@@ -429,7 +487,14 @@ def handle_paypal_callback() -> Any:
     """
     Handles the PayPal payment callback.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     data = frappe.form_dict
 
     token = data.get("token")
@@ -441,9 +506,7 @@ def handle_paypal_callback() -> Any:
 
     paypal_settings_doc = frappe.get_doc("PaaS Payment Gateway", "PayPal")
     settings = {s.key: s.value for s in paypal_settings_doc.settings}
-    success_url = (
-        paypal_settings_doc.success_redirect_url or "/payment-success"
-    )
+    success_url = paypal_settings_doc.success_redirect_url or "/payment-success"
     failure_url = paypal_settings_doc.failure_redirect_url or "/payment-failed"
 
     auth_url = (
@@ -508,7 +571,14 @@ def initiate_paypal_payment(order_id: str) -> Any:
     """
     The initiate_paypal_payment function initiates a PayPal payment for a specific order. It takes one parameter, order_id, which is a string representing the unique identifier of the order for which the payment is being initiated. This function serves as a wrapper around the core PayPal payment logic, providing a simple and straightforward way to start the payment process for a given order.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _initiate_paypal_logic("Order", order_id)
 
 
@@ -517,7 +587,14 @@ def initiate_paypal_parcel_payment(order_id: str) -> Any:
     """
     Initiate paypal parcel payment API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _initiate_paypal_logic("Parcel Order", order_id)
 
 
@@ -532,17 +609,11 @@ def _initiate_paypal_logic(doctype: str, docname: str):
     # "paas" is a template placeholder substituted at compose time;
     # keep it in plain (non-f) strings so this file stays runnable before
     # composition.
-    success_url = (
-        paypal_settings_doc.success_redirect_url
-        or frappe.utils.get_url(
-            "/api/v1/method/paas.api.payment.handle_paypal_callback"
-        )
+    success_url = paypal_settings_doc.success_redirect_url or frappe.utils.get_url(
+        "/api/v1/method/paas.api.payment.handle_paypal_callback"
     )
-    failure_url = (
-        paypal_settings_doc.failure_redirect_url
-        or frappe.utils.get_url(
-            "/api/v1/method/paas.api.payment.handle_paypal_callback"
-        )
+    failure_url = paypal_settings_doc.failure_redirect_url or frappe.utils.get_url(
+        "/api/v1/method/paas.api.payment.handle_paypal_callback"
     )
 
     auth_url = (
@@ -610,11 +681,7 @@ def _initiate_paypal_logic(doctype: str, docname: str):
     )
 
     approval_link = next(
-        (
-            link["href"]
-            for link in paypal_order["links"]
-            if link["rel"] == "approve"
-        ),
+        (link["href"] for link in paypal_order["links"] if link["rel"] == "approve"),
         None,
     )
 
@@ -629,7 +696,14 @@ def initiate_paystack_payment(order_id: str) -> Any:
     """
     The initiate_paystack_payment function initiates a payment process through Paystack for a specific order. It takes one parameter, order_id, which is a string representing the unique identifier of the order for which the payment is being initiated. This function serves as a gateway to trigger the underlying payment logic, passing the order type as "Order" and the provided order_id to the _initiate_paystack_logic function for further processing.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _initiate_paystack_logic("Order", order_id)
 
 
@@ -638,7 +712,14 @@ def initiate_paystack_parcel_payment(order_id: str) -> Any:
     """
     Initiate paystack parcel payment API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _initiate_paystack_logic("Parcel Order", order_id)
 
 
@@ -660,8 +741,7 @@ def _initiate_paystack_logic(doctype: str, docname: str):
 
     body = {
         "email": frappe.session.user,
-        "amount": int(
-            amount * 100),
+        "amount": int(amount * 100),
         "currency": doc.get("currency") or "ZAR",
         # "paas" is a template placeholder substituted at compose time;
         # keep it in a plain (non-f) string so this file stays runnable
@@ -696,7 +776,14 @@ def handle_paystack_callback() -> Any:
     """
     Handles the PayStack payment callback.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     data = frappe.form_dict
     reference = data.get("reference")
 
@@ -720,9 +807,7 @@ def handle_paystack_callback() -> Any:
     paystack_data = response.json()
 
     if paystack_data["data"]["status"] == "success":
-        transaction = frappe.get_doc(
-            "Transaction", {"payment_reference": reference}
-        )
+        transaction = frappe.get_doc("Transaction", {"payment_reference": reference})
         transaction.status = "Paid"
         transaction.save(ignore_permissions=True)
 
@@ -730,9 +815,7 @@ def handle_paystack_callback() -> Any:
         order.status = "Paid"
         order.save(ignore_permissions=True)
     else:
-        transaction = frappe.get_doc(
-            "Transaction", {"payment_reference": reference}
-        )
+        transaction = frappe.get_doc("Transaction", {"payment_reference": reference})
         transaction.status = "Failed"
         transaction.save(ignore_permissions=True)
 
@@ -742,7 +825,14 @@ def log_payment_payload(payload: Any) -> Any:
     """
     Logs a payment payload.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     frappe.get_doc({"doctype": "Payment Payload", "payload": payload}).insert(
         ignore_permissions=True
     )
@@ -802,9 +892,7 @@ def _verify_stripe_signature(
         return False, "Stripe-Signature timestamp outside tolerance."
 
     signed_payload = timestamp.encode("utf-8") + b"." + payload
-    expected = hmac.new(
-        secret.encode("utf-8"), signed_payload, hashlib.sha256
-    ).digest()
+    expected = hmac.new(secret.encode("utf-8"), signed_payload, hashlib.sha256).digest()
 
     # Compare as bytes: hmac.compare_digest raises TypeError on non-ASCII
     # str input, and this header is attacker-controlled. A candidate that
@@ -837,7 +925,14 @@ def handle_stripe_webhook() -> Any:
     deliveries we deliberately do not act on). Processing failures are
     allowed to propagate as HTTP 500 so Stripe retries them.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     payload = frappe.request.get_data() or b""
     signature_header = frappe.request.headers.get("Stripe-Signature")
 
@@ -856,9 +951,7 @@ def handle_stripe_webhook() -> Any:
             "message": "Stripe webhook signing secret is not configured.",
         }
 
-    verified, reason = _verify_stripe_signature(
-        payload, signature_header, secret
-    )
+    verified, reason = _verify_stripe_signature(payload, signature_header, secret)
     if not verified:
         frappe.log_error(
             f"Stripe webhook signature verification failed: {reason}",
@@ -898,7 +991,14 @@ def get_saved_cards() -> Any:
     """
     The get_saved_cards function retrieves a list of saved credit cards associated with the currently logged-in user. It first checks if the user is logged in, throwing an error if they are a guest. If the user is authenticated, it queries the system for a list of saved cards linked to the user's account, returning a list of card objects containing details such as the card name, payment gateway, token, last four digits, card type, expiry date, and card holder's name.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to view your saved cards.")
@@ -920,11 +1020,20 @@ def get_saved_cards() -> Any:
 
 
 @frappe.whitelist()
-def tokenize_card(card_number: Any, card_holder: Any, expiry_date: Any, cvc: Any) -> Any:
+def tokenize_card(
+    card_number: Any, card_holder: Any, expiry_date: Any, cvc: Any
+) -> Any:
     """
     The tokenize_card function is used to securely store a user's credit card information. It takes four parameters: card_number, card_holder, expiry_date, and cvc, which represent the credit card number, card holder's name, expiration date, and card verification code, respectively. The function generates a unique token for the saved card and returns a dictionary containing the token, saved card name, last four digits of the card number, card type, and expiration date. The function requires the user to be logged in and automatically detects the card type based on the card number.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to save a card.")
@@ -973,7 +1082,14 @@ def delete_card(card_name: Any) -> Any:
     """
     The delete_card function is used to remove a saved card from the system. It takes one parameter, card_name, which specifies the name of the card to be deleted. The function first checks if the current user is logged in, throwing an error if they are a guest. It then verifies that the user attempting to delete the card is the same user who saved it, throwing a permission error if they are not authorized. If both checks pass, the function deletes the specified card and returns a success status.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to delete a card.")
@@ -990,20 +1106,32 @@ def delete_card(card_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def process_direct_card_payment(order_id: Any, card_number: Any, card_holder: Any, expiry_date: Any, cvc: Any, save_card: Any=False) -> Any:
+def process_direct_card_payment(
+    order_id: Any,
+    card_number: Any,
+    card_holder: Any,
+    expiry_date: Any,
+    cvc: Any,
+    save_card: Any = False,
+) -> Any:
     """
     The process_direct_card_payment function facilitates direct card payments for a specific order. It takes in several parameters: order_id, which identifies the order being paid for, card_number, card_holder, expiry_date, and cvc, which are the card details used for payment. The save_card parameter is optional and defaults to False, indicating whether the card should be saved for future transactions. The function first verifies the user's login status and order ownership, then creates a new transaction record, updates the order status to Paid, and optionally tokenizes the card for future use. It returns a dictionary containing the status of the payment and the transaction ID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to make a payment.")
 
     order = frappe.get_doc("Order", order_id)
     if order.user != user:
-        frappe.throw(
-            "You can only pay for your own orders.", frappe.PermissionError
-        )
+        frappe.throw("You can only pay for your own orders.", frappe.PermissionError)
 
     # This endpoint previously recorded a "Paid" Transaction and marked
     # the order Paid without ever charging a payment gateway. That is a
@@ -1020,21 +1148,15 @@ def _charge_card_token(token, amount, currency, description, user):
     """
     Internal helper to charge a saved card token via the appropriate gateway.
     """
-    saved_card_name = frappe.db.get_value(
-        "Saved Card", {"token": token, "user": user}
-    )
+    saved_card_name = frappe.db.get_value("Saved Card", {"token": token, "user": user})
     if not saved_card_name:
         frappe.throw("Invalid or unauthorized token.", frappe.PermissionError)
 
     saved_card = frappe.get_doc("Saved Card", saved_card_name)
-    gateway_name = (
-        saved_card.gateway or "PayFast"
-    )  # Default to PayFast for legacy
+    gateway_name = saved_card.gateway or "PayFast"  # Default to PayFast for legacy
 
     if gateway_name == "Flutterwave":
-        return _charge_flutterwave_token(
-            token, amount, currency, description, user
-        )
+        return _charge_flutterwave_token(token, amount, currency, description, user)
     elif gateway_name == "PayFast":
         return _charge_payfast_token(token, amount, currency, description)
     else:
@@ -1079,9 +1201,7 @@ def _charge_flutterwave_token(token, amount, currency, description, user):
     }
 
     try:
-        response = requests.post(
-            url, json=payload, headers=headers, timeout=30
-        )
+        response = requests.post(url, json=payload, headers=headers, timeout=30)
         response.raise_for_status()
         res_data = response.json()
         if res_data.get("status") == "success":
@@ -1089,9 +1209,7 @@ def _charge_flutterwave_token(token, amount, currency, description, user):
         else:
             frappe.throw(f"Flutterwave Error: {res_data.get('message')}")
     except Exception:
-        frappe.log_error(
-            frappe.get_traceback(), "Flutterwave Token Charge Failed"
-        )
+        frappe.log_error(frappe.get_traceback(), "Flutterwave Token Charge Failed")
         frappe.throw(
             "Card payment failed. Please check your card balance or try another card."
         )
@@ -1104,9 +1222,7 @@ def _charge_payfast_token(token, amount, currency, description):
     """
     settings = get_payfast_settings()
     is_sandbox = settings.get("is_sandbox", True)
-    base_url = (
-        "api.payfast.co.za" if not is_sandbox else "sandbox.payfast.co.za"
-    )
+    base_url = "api.payfast.co.za" if not is_sandbox else "sandbox.payfast.co.za"
 
     merchant_id = settings.get("merchant_id")
     _merchant_key = settings.get("merchant_key")  # noqa: F841
@@ -1114,9 +1230,7 @@ def _charge_payfast_token(token, amount, currency, description):
 
     # Ad-hoc charge endpoint
     url = f"https://{base_url}/subscriptions/{token}/adhoc"
-    if is_sandbox and not url.endswith(
-        "/api"
-    ):  # Sandbox API is usually under /api
+    if is_sandbox and not url.endswith("/api"):  # Sandbox API is usually under /api
         url = f"https://sandbox.payfast.co.za/api/subscriptions/{token}/adhoc"
 
     # PayFast API requires amount in cents for adhoc charges
@@ -1155,10 +1269,7 @@ def _charge_payfast_token(token, amount, currency, description):
 
     # PayFast expects standard urlencoding for the signature string
     signature_string = "&".join(
-        [
-            f"{k}={urlencode(str(signature_params[k]))}"
-            for k in final_sorted_keys
-        ]
+        [f"{k}={urlencode(str(signature_params[k]))}" for k in final_sorted_keys]
     )
 
     import hashlib
@@ -1180,10 +1291,7 @@ def _charge_payfast_token(token, amount, currency, description):
         response = requests.post(url, json=body, headers=headers, timeout=30)
         res_data = response.json() if response.text else {}
 
-        if (
-            response.status_code in [200, 202]
-            and res_data.get("status") == "success"
-        ):
+        if response.status_code in [200, 202] and res_data.get("status") == "success":
             return res_data
         else:
             error_msg = res_data.get("data", {}).get(
@@ -1196,9 +1304,7 @@ def _charge_payfast_token(token, amount, currency, description):
             frappe.throw(f"Payment failed: {error_msg}")
 
     except Exception:
-        frappe.log_error(
-            frappe.get_traceback(), "PayFast Token Charge Exception"
-        )
+        frappe.log_error(frappe.get_traceback(), "PayFast Token Charge Exception")
         frappe.throw("Error connecting to payment gateway.")
 
 
@@ -1207,20 +1313,23 @@ def process_token_payment(order_id: Any, token: Any) -> Any:
     """
     The process_token_payment function facilitates payment processing for a specific order using a provided token. It takes two parameters: order_id, which identifies the order being paid for, and token, which represents the payment method. The function first verifies that the user is logged in and has permission to pay for the specified order. It then initiates a payment charge using the provided token and updates the order status to "Paid" if the payment is successful. The function returns the result of the payment processing operation.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to make a payment.")
 
     order = frappe.get_doc("Order", order_id)
     if order.user != user:
-        frappe.throw(
-            "You can only pay for your own orders.", frappe.PermissionError
-        )
+        frappe.throw("You can only pay for your own orders.", frappe.PermissionError)
 
-    currency = (
-        frappe.db.get_single_value("System Settings", "currency") or "ZAR"
-    )
+    currency = frappe.db.get_single_value("System Settings", "currency") or "ZAR"
     description = f"Payment for Order {order_id}"
 
     # Call the internal helper to process the charge
@@ -1246,7 +1355,14 @@ def tip_process(order_id: str, tip_amount: float) -> Any:
     """
     Processes a tip for an order.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to leave a tip.")
@@ -1258,9 +1374,7 @@ def tip_process(order_id: str, tip_amount: float) -> Any:
             frappe.PermissionError,
         )
 
-    if (
-        order.status == "Delivered"
-    ):  # Tipping usually AFTER delivery or during rating
+    if order.status == "Delivered":  # Tipping usually AFTER delivery or during rating
         # Logic to add tip to order or create a separate transaction
         # For now, we update the order's tip field
         order.tip_amount = tip_amount
@@ -1274,9 +1388,7 @@ def tip_process(order_id: str, tip_amount: float) -> Any:
 
         return {"status": "success", "message": "Tip added successfully."}
     else:
-        frappe.throw(
-            "Tips can only be added to delivered orders (conceptually)."
-        )
+        frappe.throw("Tips can only be added to delivered orders (conceptually).")
 
     transaction = frappe.get_doc(
         {
@@ -1355,11 +1467,18 @@ def _shift_legacy_user_balance(user, delta):
 
 
 @frappe.whitelist()
-def process_wallet_top_up(amount: Any, token: Any=None) -> Any:
+def process_wallet_top_up(amount: Any, token: Any = None) -> Any:
     """
     The process_wallet_top_up function is used to top up a user's wallet with a specified amount. It takes two parameters: amount, which is the amount to be added to the wallet, and token, which is the payment token used for the transaction. The token parameter is optional but required to complete the top-up process. If the token is not provided, the function will throw an error. The function first checks if the user is logged in and then executes the charge via a payment gateway. After a successful charge, it creates a new transaction record and updates the user's wallet balance. The function returns a dictionary with a status of 'success' and the transaction ID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     user = frappe.session.user
     if user == "Guest":
@@ -1372,8 +1491,7 @@ def process_wallet_top_up(amount: Any, token: Any=None) -> Any:
     _charge_card_token(
         token=token,
         amount=amount,
-        currency=frappe.db.get_single_value("System Settings", "currency")
-        or "ZAR",
+        currency=frappe.db.get_single_value("System Settings", "currency") or "ZAR",
         description=f"Wallet Top-up for {user}",
         user=user,
     )
@@ -1416,7 +1534,14 @@ def process_wallet_payment(order_id: Any) -> Any:
     """
     The process_wallet_payment function is used to deduct payment from a user's wallet for a specific order. It takes one parameter, order_id, which is the unique identifier of the order being paid for. The function first checks if the user is logged in and has permission to pay for the order, then verifies if the user's wallet balance is sufficient to cover the order's grand total. If the balance is sufficient, it deducts the payment amount from the user's wallet, creates a new transaction record, and updates the order's payment status to "Paid".
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Deducts payment from User's wallet.
@@ -1488,8 +1613,7 @@ def get_wallet_balance() -> Any:
     balance = frappe.db.get_value("Wallet", {"user": user}, "balance") or 0.0
     return {
         "balance": float(balance),
-        "currency": frappe.db.get_single_value("System Settings", "currency")
-        or "ZAR",
+        "currency": frappe.db.get_single_value("System Settings", "currency") or "ZAR",
     }
 
 
@@ -1529,7 +1653,14 @@ def create_transaction(order_id: Any, payment_id: Any) -> Any:
     """
     The create_transaction function records a Pending transaction for an order against a chosen payment gateway. It takes two parameters: order_id, which identifies the order being paid for, and payment_id, which is the name of the PaaS Payment Gateway selected by the client. The function verifies that the user is logged in and owns the order, validates that the selected gateway exists and is enabled, creates a Transaction record whose amount is derived from the order's grand total, and returns the created transaction's details.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to create a transaction.")
@@ -1593,11 +1724,18 @@ def create_transaction(order_id: Any, payment_id: Any) -> Any:
 
 @frappe.whitelist()
 @idempotent
-def create_order_transaction(order_id: Any, payment_sys_id: Any=None) -> Any:
+def create_order_transaction(order_id: Any, payment_sys_id: Any = None) -> Any:
     """
     The create_order_transaction function records a payment transaction against an existing Order. It takes two parameters: order_id, the identifier of the Order the payment belongs to, and payment_sys_id, the PaaS Payment Gateway the payment was taken through. It is the Frappe counterpart of the legacy POST /api/v1/payments/order/{id}/transactions call and is what the POS clients (online checkout and the offline-sale sync handler) POST after a sale. The amount and user are read from the Order itself, never from the client. The call is replay-safe twice over: the X-Idempotency-Key header dedupes retried sync uploads, and a Transaction that already exists for the same order and gateway is returned instead of inserted again.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("You must be logged in to record a payment.")

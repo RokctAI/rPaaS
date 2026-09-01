@@ -60,6 +60,7 @@ user sees (the weather module's legal constraint - messages.py). E.g.
 "Your delivery may be delayed - heavy rain is expected near the delivery
 area."
 """
+
 from __future__ import annotations
 
 import datetime as dt
@@ -146,7 +147,7 @@ def _as_datetime(value):
     text = str(value).strip().replace("T", " ").rstrip("Z")
     for fmt in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y-%m-%d"):
         try:
-            return dt.datetime.strptime(text[:len(fmt) + 2].strip(), fmt)
+            return dt.datetime.strptime(text[: len(fmt) + 2].strip(), fmt)
         except ValueError:
             continue
     return None
@@ -216,25 +217,29 @@ def _reason(entry) -> str:
 
 def _already_sent(order_name, notice_id, audience) -> bool:
     try:
-        return bool(frappe.db.get_value(
-            NOTICE_DOCTYPE,
-            {"order": order_name, "notice": notice_id, "audience": audience},
-            "name",
-        ))
+        return bool(
+            frappe.db.get_value(
+                NOTICE_DOCTYPE,
+                {"order": order_name, "notice": notice_id, "audience": audience},
+                "name",
+            )
+        )
     except Exception:
         return True  # can't prove it's new: silence beats repeat spam
 
 
 def _record_sent(order_name, notice_id, audience, user, now) -> None:
     try:
-        frappe.get_doc({
-            "doctype": NOTICE_DOCTYPE,
-            "order": order_name,
-            "notice": notice_id,
-            "audience": audience,
-            "user": user,
-            "sent_at": now,
-        }).insert(ignore_permissions=True)
+        frappe.get_doc(
+            {
+                "doctype": NOTICE_DOCTYPE,
+                "order": order_name,
+                "notice": notice_id,
+                "audience": audience,
+                "user": user,
+                "sent_at": now,
+            }
+        ).insert(ignore_permissions=True)
     except Exception:
         pass  # the ledger must never break the run
 
@@ -243,6 +248,7 @@ def _order_coords(order):
     """Drop-off (lat, lng) from Order.location JSON, or None."""
     try:
         from ..api.delivery_man.delivery_man import _parse_location_dict
+
         parsed = _parse_location_dict(order.get("location"))
         if parsed:
             return parsed["latitude"], parsed["longitude"]
@@ -260,8 +266,10 @@ def _shop_row(shop_name, cache):
     row = {"user": None, "coords": None}
     try:
         from ..api.delivery_man.delivery_man import _parse_location_dict
+
         value = frappe.db.get_value(
-            "Shop", shop_name, ["user", "location"], as_dict=True)
+            "Shop", shop_name, ["user", "location"], as_dict=True
+        )
         if value:
             row["user"] = value.get("user")
             parsed = _parse_location_dict(value.get("location"))
@@ -279,14 +287,16 @@ def _cell_warning_notices(coords, cache):
     if not coords:
         return []
     try:
-        key = (weather_notice._grid_round(coords[0]),
-               weather_notice._grid_round(coords[1]))
+        key = (
+            weather_notice._grid_round(coords[0]),
+            weather_notice._grid_round(coords[1]),
+        )
     except Exception:
         return []
     if key not in cache:
         cache[key] = [
-            entry for entry in
-            weather_notice.active_cell_warnings(coords[0], coords[1])
+            entry
+            for entry in weather_notice.active_cell_warnings(coords[0], coords[1])
             if entry.get("severity") == NOTIFY_SEVERITY
         ]
     return cache[key]
@@ -298,8 +308,7 @@ def run_order_weather_notices():
         return _run()
     except Exception:
         try:
-            frappe.log_error(
-                frappe.get_traceback(), "Weather Order Notices")
+            frappe.log_error(frappe.get_traceback(), "Weather Order Notices")
         except Exception:
             pass
         return "error"
@@ -320,11 +329,18 @@ def _run(now=None):
             "Order",
             filters={
                 "status": ["in", list(ACTIVE_ORDER_STATUSES)],
-                "creation": [
-                    ">=", now - dt.timedelta(days=MAX_ORDER_AGE_DAYS)],
+                "creation": [">=", now - dt.timedelta(days=MAX_ORDER_AGE_DAYS)],
             },
-            fields=["name", "user", "shop", "status", "location",
-                    "delivery_date", "delivery_time", "creation"],
+            fields=[
+                "name",
+                "user",
+                "shop",
+                "status",
+                "location",
+                "delivery_date",
+                "delivery_time",
+                "creation",
+            ],
         )
     except Exception:
         return "no_orders"  # Order doctype absent on this shell
@@ -336,8 +352,7 @@ def _run(now=None):
     sent = 0
     for order in orders:
         try:
-            sent += _process_order(
-                order, now, sender, cell_cache, shop_cache)
+            sent += _process_order(order, now, sender, cell_cache, shop_cache)
         except Exception:
             continue  # one bad order must not starve the rest
     return f"sent:{sent}"
@@ -373,8 +388,7 @@ def _process_order(order, now, sender, cell_cache, shop_cache) -> int:
                 continue
             if _already_sent(order_name, notice_id, audience):
                 continue
-            body = body_tpl.format(
-                reason=_reason(entry), order=order_name)
+            body = body_tpl.format(reason=_reason(entry), order=order_name)
             data = {
                 "type": "weather_order_notice",
                 "order_id": str(order_name),

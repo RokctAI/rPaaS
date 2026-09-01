@@ -156,14 +156,17 @@ class ShipRazorProvider(DeliveryProvider):
     def _post(self, path, payload):
         self.validate_configured()
         return frappe.make_post_request(
-            self._url(path), headers=self._headers(),
+            self._url(path),
+            headers=self._headers(),
             data=json.dumps(payload or {}),
         )
 
     def _get(self, path, params=None):
         self.validate_configured()
         return frappe.make_get_request(
-            self._url(path), headers=self._headers(), params=params or {},
+            self._url(path),
+            headers=self._headers(),
+            params=params or {},
         )
 
     # -- provider operations -------------------------------------------
@@ -227,9 +230,7 @@ class ShipRazorProvider(DeliveryProvider):
         payload = payload or {}
         shipment_ref = payload.get("shipment_id") or payload.get("id")
         if not shipment_ref:
-            raise ProviderError(
-                "ShipRazor webhook payload has no shipment reference."
-            )
+            raise ProviderError("ShipRazor webhook payload has no shipment reference.")
         raw_status = str(payload.get("status") or "").strip().lower()
         normalized = SHIPRAZOR_STATUS_MAP.get(raw_status)
         if not normalized:
@@ -243,10 +244,13 @@ class ShipRazorProvider(DeliveryProvider):
         }
 
     def register_pickup_location(self, address, reference):
-        response = self._post(
-            "/api/v1/warehouses",
-            {"name": reference, "address": address},
-        ) or {}
+        response = (
+            self._post(
+                "/api/v1/warehouses",
+                {"name": reference, "address": address},
+            )
+            or {}
+        )
         provider_ref = response.get("warehouse_id") or response.get("id")
         if not provider_ref:
             raise ProviderError(

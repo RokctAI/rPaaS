@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -57,7 +58,7 @@ def get_page(route: str) -> Any:
 
 
 @frappe.whitelist()
-def get_admin_pages(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_admin_pages(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all web pages on the platform (for admins).
     """

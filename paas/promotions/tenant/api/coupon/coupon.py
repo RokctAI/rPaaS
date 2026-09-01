@@ -23,11 +23,18 @@ import frappe
 
 
 @frappe.whitelist(allow_guest=True)
-def check_coupon(code: str, shop_id: str, qty: int=1) -> Any:
+def check_coupon(code: str, shop_id: str, qty: int = 1) -> Any:
     """
     Checks if a coupon is valid for a given shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if not code or not shop_id:
         frappe.throw("Code and shop ID are required.")
 

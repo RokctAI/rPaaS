@@ -26,17 +26,17 @@ import frappe
 
 
 class CustomerWallet(Document):
-	def update_balance(self):
-		"""raw_sql bypass_sql trace tenant Recalculates balance from Wallet Ledger."""
-		balance = (
-			frappe.db.sql(
-				"""
+    def update_balance(self):
+        """raw_sql bypass_sql trace tenant Recalculates balance from Wallet Ledger."""
+        balance = (
+            frappe.db.sql(
+                """
             SELECT SUM(amount) FROM `tabWallet Ledger`
             WHERE wallet = %s AND docstatus = 1
         """,
-				self.name,
-			)[0][0]
-			or 0.0
-		)
+                self.name,
+            )[0][0]
+            or 0.0
+        )
 
-		self.db_set("balance", balance)
+        self.db_set("balance", balance)

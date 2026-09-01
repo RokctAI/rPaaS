@@ -35,9 +35,7 @@ class PlatformWallet(Document):
             pass
 
     def get_balance(self):
-        if not frappe.db.get_single_value(
-            "Permission Settings",
-                "enable_paas_lending"):
+        if not frappe.db.get_single_value("Permission Settings", "enable_paas_lending"):
             return
 
         control_plane_url = frappe.conf.get("control_plane_url")
@@ -55,12 +53,8 @@ class PlatformWallet(Document):
             if response.status_code == 200:
                 data = response.json()
                 self.set_onload(
-                    "current_balance",
-                    data.get(
-                        "message",
-                        {}).get(
-                        "balance",
-                        0))
+                    "current_balance", data.get("message", {}).get("balance", 0)
+                )
         except Exception as e:
             frappe.log_error(f"Failed to fetch wallet balance: {e}")
 
@@ -69,10 +63,15 @@ class PlatformWallet(Document):
         """
         The request_payout function initiates a payout request for a specified amount. It takes two parameters: self, a reference to the instance of the class, and amount, the amount to be requested for payout. The function first checks if the lending feature is enabled in the system's Permission Settings. If enabled, it constructs an API request to the control plane URL with the provided amount and sends it using a POST request. The function returns the response from the API if the request is successful, or throws an error if the request fails.
         """
-        import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
-        if not frappe.db.get_single_value(
-            "Permission Settings",
-                "enable_paas_lending"):
+        import sys
+
+        _ = (
+            frappe.request.headers.get("x-trace-id")
+            if (hasattr(frappe, "request") and frappe.request)
+            else None,
+            sys.stderr,
+        )
+        if not frappe.db.get_single_value("Permission Settings", "enable_paas_lending"):
             frappe.throw("Lending feature is disabled.")
 
         control_plane_url = frappe.conf.get("control_plane_url")

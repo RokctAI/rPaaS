@@ -33,7 +33,7 @@ from paas.core.helpers import *
 
 
 @frappe.whitelist()
-def log_frontend_error(error_message: Any, context: Any=None) -> Any:
+def log_frontend_error(error_message: Any, context: Any = None) -> Any:
     """
     Logs an error from the frontend to the backend, now integrated with the Brain module.
     """

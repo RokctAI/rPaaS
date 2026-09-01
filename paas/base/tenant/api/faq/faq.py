@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -38,7 +39,7 @@ def create_faq(data: Any) -> Any:
 
 
 @frappe.whitelist(allow_guest=True)
-def get_faqs(type: Any=None) -> Any:
+def get_faqs(type: Any = None) -> Any:
     """
     Retrieves FAQs, optionally filtered by type.
     """

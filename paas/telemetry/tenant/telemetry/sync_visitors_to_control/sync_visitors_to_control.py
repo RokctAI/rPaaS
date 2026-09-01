@@ -46,34 +46,40 @@ def sync_visitors_to_control():
             pass
 
         from frappe.utils.data import add_days
+
         yesterday = add_days(nowdate(), -1)
         cache_key = f"unique_visitors:{yesterday}"
-        
+
         unique_count = frappe.cache().scard(cache_key) or 0
-        
+
         control_plane_url = frappe.conf.get("control_plane_url")
         api_secret = frappe.conf.get("api_secret")
-        
+
         if not control_plane_url or not api_secret:
             return
-            
+
         import requests
+
         scheme = frappe.conf.get("control_plane_scheme", "https")
         api_url = f"{scheme}://{control_plane_url}/api/method/control.control.api.tenant.report_tenant_visitors"
-        
-        trace_id = frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else "visitor-sync-trace"
+
+        trace_id = (
+            frappe.request.headers.get("x-trace-id")
+            if (hasattr(frappe, "request") and frappe.request)
+            else "visitor-sync-trace"
+        )
         headers = {
             "X-Rokct-Secret": api_secret,
             "X-Rokct-Tenant": frappe.local.site,
-            "x-trace-id": trace_id or ""
+            "x-trace-id": trace_id or "",
         }
-        data = {
-            "date": yesterday,
-            "unique_visitors": unique_count
-        }
-        
+        data = {"date": yesterday, "unique_visitors": unique_count}
+
         response = requests.post(api_url, headers=headers, json=data, timeout=30)
         response.raise_for_status()
-        
+
     except Exception as e:
-        frappe.log_error(f"Failed to sync visitor count to control panel: {e}\n{frappe.get_traceback()}", "Visitor Sync Failed")
+        frappe.log_error(
+            f"Failed to sync visitor count to control panel: {e}\n{frappe.get_traceback()}",
+            "Visitor Sync Failed",
+        )

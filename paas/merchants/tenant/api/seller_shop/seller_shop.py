@@ -29,7 +29,14 @@ def get_shop() -> Any:
     """
     Retrieves the current seller's shop details.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop_id = _get_seller_shop(user)
 
@@ -68,7 +75,14 @@ def update_shop(shop_data: Any) -> Any:
     """
     Updates the current seller's shop details.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop_id = _get_seller_shop(user)
 
@@ -114,7 +128,14 @@ def set_working_status(status: Any) -> Any:
     """
     Updates the shop's open status.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop_id = _get_seller_shop(user)
 
@@ -139,9 +160,16 @@ def set_working_status(status: Any) -> Any:
 
 
 @frappe.whitelist()
-def set_shop_working_status(status: Any=None) -> Any:
+def set_shop_working_status(status: Any = None) -> Any:
     """
     Set shop working status API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return set_working_status(status)

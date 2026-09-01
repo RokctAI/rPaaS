@@ -131,7 +131,8 @@ def _split_order_transactions(order_id):
         controller = None
         if row.get("payment_gateway"):
             controller = frappe.db.get_value(
-                "PaaS Payment Gateway", row.get("payment_gateway"),
+                "PaaS Payment Gateway",
+                row.get("payment_gateway"),
                 "gateway_controller",
             )
         if controller and str(controller).strip().lower() == "cash":
@@ -168,7 +169,7 @@ def _assert_cash_order(doc):
 
 @frappe.whitelist()
 def get_driver_orders_paginate(
-    limit_start: Any=0, limit_page_length: Any=20, statuses: Any=None
+    limit_start: Any = 0, limit_page_length: Any = 20, statuses: Any = None
 ) -> Any:
     """
     Get driver orders paginate API endpoint.
@@ -178,7 +179,14 @@ def get_driver_orders_paginate(
     get_deliveryman_orders (coordinates, shop, payment tag). `statuses`
     optionally filters (legacy lowercase or canonical values).
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     rows = _get_orders(limit_start, limit_page_length, statuses)
 
     total = len(rows) if isinstance(rows, list) else 0
@@ -186,7 +194,9 @@ def get_driver_orders_paginate(
         # Lazy: the composed delivery_man module provides the normalizer
         # (the module-level import above predates it; keeping this lazy
         # also keeps older stubs working).
-        from paas.delivery.tenant.api.delivery_man.delivery_man import normalize_statuses
+        from paas.delivery.tenant.api.delivery_man.delivery_man import (
+            normalize_statuses,
+        )
     except ImportError:
         normalize_statuses = None
     if normalize_statuses is not None:
@@ -205,7 +215,14 @@ def fetch_current_order() -> Any:
     """
     Fetch current order API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Unauthorized")
@@ -230,7 +247,14 @@ def set_current_order(order_id: Any) -> Any:
     """
     Set current order API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if frappe.db.exists("Order", order_id):
         doc = frappe.get_doc("Order", order_id)
@@ -246,7 +270,14 @@ def attach_order_to_me(order_id: Any) -> Any:
     """
     Attach order to me API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if frappe.db.exists("Order", order_id):
         doc = frappe.get_doc("Order", order_id)
@@ -260,7 +291,7 @@ def attach_order_to_me(order_id: Any) -> Any:
 
 @frappe.whitelist()
 def update_driver_order_status(
-    order_id: Any, status: Any, recipient_age_verified: Any=None
+    order_id: Any, status: Any, recipient_age_verified: Any = None
 ) -> Any:
     """
     Update driver order status API endpoint.
@@ -274,7 +305,14 @@ def update_driver_order_status(
     (hasattr-guarded, so orders modules predating those fields still
     work). Non-adult orders are entirely unaffected.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     normalized = normalize_order_status(status)
     if not normalized:
         frappe.throw(
@@ -303,7 +341,14 @@ def confirm_cod_collection(order_id: Any, amount_received: Any) -> Any:
     Transaction, when one exists) as Paid; partial collection is recorded
     without changing payment_status.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Unauthorized", frappe.AuthenticationError)
@@ -329,8 +374,9 @@ def confirm_cod_collection(order_id: Any, amount_received: Any) -> Any:
     already = doc.get("cod_collected_amount") or 0
     if float(already) > 0:
         frappe.throw(
-            "Cash collection for order {0} is already recorded "
-            "({1}).".format(doc.name, already)
+            "Cash collection for order {0} is already recorded ({1}).".format(
+                doc.name, already
+            )
         )
 
     expected_total = float(doc.total_price or 0)
@@ -339,9 +385,7 @@ def confirm_cod_collection(order_id: Any, amount_received: Any) -> Any:
     if amount + COD_AMOUNT_EPSILON >= expected_total:
         doc.payment_status = "Paid"
         for tx in cash_tx:
-            frappe.db.set_value(
-                "Transaction", tx.get("name"), "status", "Paid"
-            )
+            frappe.db.set_value("Transaction", tx.get("name"), "status", "Paid")
     doc.save(ignore_permissions=True)
 
     return {
@@ -370,7 +414,14 @@ def convert_cod_to_credit(order_id: Any) -> Any:
     treated as "All Orders" (back-compat with shops saved before the field
     existed).
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Unauthorized", frappe.AuthenticationError)
@@ -442,8 +493,9 @@ def convert_cod_to_credit(order_id: Any) -> Any:
 
     if doc.payment_status == "Paid":
         frappe.throw(
-            "Order {0} is already paid and cannot be converted to "
-            "credit.".format(doc.name)
+            "Order {0} is already paid and cannot be converted to credit.".format(
+                doc.name
+            )
         )
     if float(doc.get("cod_collected_amount") or 0) > 0:
         frappe.throw(
@@ -501,7 +553,7 @@ def _order_payment_tag(order_id):
 
 
 @frappe.whitelist()
-def get_driver_route(latitude: Any=None, longitude: Any=None) -> Any:
+def get_driver_route(latitude: Any = None, longitude: Any = None) -> Any:
     """
     The session driver's merged, server-ordered stop list: active Orders
     (shop pickup + customer drop-off from Order.location JSON), active
@@ -515,7 +567,14 @@ def get_driver_route(latitude: Any=None, longitude: Any=None) -> Any:
     drop-off. Stops without usable coordinates go last, flagged
     missing_coordinates. The returned `sequence` is the drive order.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     # Lazy imports: composed as paas.api.*; lazy so this module still
     # imports under older/partial test stubs.
     from paas.delivery.tenant.api.route.route_utils import order_stops, parse_location
@@ -544,7 +603,11 @@ def get_driver_route(latitude: Any=None, longitude: Any=None) -> Any:
             "status": ["in", list(ACTIVE_ORDER_STATUSES)],
         },
         fields=[
-            "name", "shop", "total_price", "status", "location",
+            "name",
+            "shop",
+            "total_price",
+            "status",
+            "location",
             "address",
         ],
         order_by="creation asc",
@@ -579,10 +642,7 @@ def get_driver_route(latitude: Any=None, longitude: Any=None) -> Any:
                 "ref_doctype": "Order",
                 "ref_name": order.get("name"),
                 "pair_key": "Order:{0}".format(order.get("name")),
-                "label": (
-                    _address_text(order.get("address"))
-                    or order.get("name")
-                ),
+                "label": (_address_text(order.get("address")) or order.get("name")),
                 "latitude": drop[0] if drop else None,
                 "longitude": drop[1] if drop else None,
                 "quantity": None,
@@ -598,8 +658,14 @@ def get_driver_route(latitude: Any=None, longitude: Any=None) -> Any:
             "status": ["in", list(ACTIVE_PARCEL_STATUSES)],
         },
         fields=[
-            "name", "status", "total_price", "address_from", "address_to",
-            "username_from", "username_to", "cod_amount",
+            "name",
+            "status",
+            "total_price",
+            "address_from",
+            "address_to",
+            "username_from",
+            "username_to",
+            "cod_amount",
         ],
         order_by="creation asc",
     )
@@ -618,9 +684,7 @@ def get_driver_route(latitude: Any=None, longitude: Any=None) -> Any:
                     "stop_type": "pickup",
                     "ref_doctype": "Parcel Order",
                     "ref_name": parcel.get("name"),
-                    "pair_key": "Parcel Order:{0}".format(
-                        parcel.get("name")
-                    ),
+                    "pair_key": "Parcel Order:{0}".format(parcel.get("name")),
                     "label": (
                         parcel.get("username_from")
                         or _address_text(parcel.get("address_from"))
@@ -693,11 +757,18 @@ def get_driver_route(latitude: Any=None, longitude: Any=None) -> Any:
 
 
 @frappe.whitelist()
-def upload_order_image(order_id: Any, image_url: Any=None) -> Any:
+def upload_order_image(order_id: Any, image_url: Any = None) -> Any:
     """
     Upload order image API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if not image_url:
         return {"status": False}
     if frappe.db.exists("Order", order_id):

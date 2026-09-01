@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -26,7 +27,7 @@ from ..utils import _require_admin
 
 
 @frappe.whitelist()
-def get_all_languages(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_languages(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all languages (for admins).
     """
@@ -55,7 +56,7 @@ def update_language(language_name: Any, language_data: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_currencies(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_currencies(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all currencies (for admins).
     """
@@ -108,7 +109,7 @@ def update_email_settings(settings_data: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_all_email_templates(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_all_email_templates(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all email templates on the platform (for admins).
     """
@@ -137,7 +138,7 @@ def update_email_template(template_name: Any, template_data: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_email_subscriptions(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_email_subscriptions(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of all email subscriptions on the platform (for admins).
     """
@@ -172,9 +173,7 @@ def delete_email_subscription(subscription_name: Any) -> Any:
     Deletes an email subscription (for admins).
     """
     _require_admin()
-    frappe.delete_doc(
-        "Email Subscription", subscription_name, ignore_permissions=True
-    )
+    frappe.delete_doc("Email Subscription", subscription_name, ignore_permissions=True)
     return {
         "status": "success",
         "message": "Email subscription deleted successfully.",

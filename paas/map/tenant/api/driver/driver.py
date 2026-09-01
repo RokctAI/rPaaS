@@ -31,13 +31,20 @@ def get_driver_statistics() -> Any:
     """
     Get driver statistics API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return _get_deliveryman_statistics()
 
 
 @frappe.whitelist()
 def update_location(
-    lat: Any=None, lng: Any=None, latitude: Any=None, longitude: Any=None
+    lat: Any = None, lng: Any = None, latitude: Any = None, longitude: Any = None
 ) -> Any:
     """
     Update location API endpoint.
@@ -45,7 +52,14 @@ def update_location(
     Accepts either lat/lng (legacy callers) or latitude/longitude (the
     driver app's background tracker).
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if lat is None:
         lat = latitude
     if lng is None:
@@ -73,7 +87,14 @@ def set_online_status() -> Any:
     """
     Set online status API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Unauthorized")
@@ -91,16 +112,32 @@ def get_car_requests() -> Any:
     """
     Get car requests API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return []
 
 
 @frappe.whitelist()
-def update_car_info(car_model: Any=None, car_number: Any=None, color: Any=None) -> Any:
+def update_car_info(
+    car_model: Any = None, car_number: Any = None, color: Any = None
+) -> Any:
     """
     Update car info API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if frappe.db.exists("Deliveryman Profile", {"user": user}):
         doc = frappe.get_doc("Deliveryman Profile", {"user": user})

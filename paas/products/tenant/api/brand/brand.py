@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -26,11 +27,18 @@ import uuid
 
 
 @frappe.whitelist()
-def get_brands(limit_start: int=0, limit_page_length: int=10) -> Any:
+def get_brands(limit_start: int = 0, limit_page_length: int = 10) -> Any:
     """
     Retrieves a list of brands.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     brands = frappe.get_list(
         "Brand",
         fields=["name", "uuid", "title", "slug", "active", "image", "shop"],
@@ -46,7 +54,14 @@ def get_brand_by_uuid(uuid: str) -> Any:
     """
     Retrieves a single brand by its UUID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     brand = frappe.get_doc("Brand", {"uuid": uuid})
     return brand.as_dict()
 
@@ -56,7 +71,14 @@ def create_brand(brand_data: Any) -> Any:
     """
     Creates a new brand.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if isinstance(brand_data, str):
         brand_data = json.loads(brand_data)
 
@@ -88,7 +110,14 @@ def update_brand(uuid: Any, brand_data: Any) -> Any:
     """
     Updates an existing brand by its UUID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if not uuid:
         frappe.throw("UUID is required to update a brand.")
 
@@ -116,7 +145,14 @@ def delete_brand(uuid: Any) -> Any:
     """
     Deletes a brand by its UUID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if not uuid:
         frappe.throw("UUID is required to delete a brand.")
 

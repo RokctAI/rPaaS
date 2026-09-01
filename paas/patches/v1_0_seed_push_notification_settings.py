@@ -20,6 +20,7 @@
 
 import frappe
 
+
 def execute():
     if frappe.local.site == "juvo.tenant.rokct.ai":
         settings = frappe.get_single("Push Notification Settings")

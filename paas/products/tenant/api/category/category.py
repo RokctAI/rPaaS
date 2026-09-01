@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 import json
@@ -26,11 +27,26 @@ import uuid
 
 
 @frappe.whitelist()
-def get_categories(limit_start: int=0, limit_page_length: int=10, order_by: str='name', order: str='desc', parent: bool=False, select: bool=False, **kwargs) -> Any:
+def get_categories(
+    limit_start: int = 0,
+    limit_page_length: int = 10,
+    order_by: str = "name",
+    order: str = "desc",
+    parent: bool = False,
+    select: bool = False,
+    **kwargs,
+) -> Any:
     """
     Retrieves a list of categories with pagination and filters.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     filters = {}
     if parent:
         filters["parent_category"] = ""
@@ -65,18 +81,34 @@ def get_category_types() -> Any:
     """
     Returns a list of all available category types.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     category_meta = frappe.get_meta("Category")
     type_field = category_meta.get_field("type")
     return type_field.options.split("\n")
 
 
 @frappe.whitelist()
-def get_children_categories(id: str, limit_start: int=0, limit_page_length: int=10) -> Any:
+def get_children_categories(
+    id: str, limit_start: int = 0, limit_page_length: int = 10
+) -> Any:
     """
     Retrieves the children of a given category.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     categories = frappe.get_list(
         "Category",
         fields=["name", "uuid", "type", "image", "active", "status", "shop"],
@@ -90,11 +122,20 @@ def get_children_categories(id: str, limit_start: int=0, limit_page_length: int=
 
 
 @frappe.whitelist()
-def search_categories(search: str, limit_start: int=0, limit_page_length: int=10) -> Any:
+def search_categories(
+    search: str, limit_start: int = 0, limit_page_length: int = 10
+) -> Any:
     """
     Searches for categories by a search term.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     t_category = frappe.qb.DocType("Category")
     query = frappe.qb.from_(t_category).select(
         t_category.name,
@@ -131,7 +172,14 @@ def get_category_by_uuid(uuid: str) -> Any:
     """
     Retrieves a single category by its UUID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     category = frappe.get_doc("Category", {"uuid": uuid})
     return category.as_dict()
 
@@ -141,7 +189,14 @@ def create_category(category_data: Any) -> Any:
     """
     Creates a new category.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if isinstance(category_data, str):
         category_data = json.loads(category_data)
 
@@ -154,9 +209,7 @@ def create_category(category_data: Any) -> Any:
         frappe.throw("Category with this UUID already exists.")
 
     paas_settings = frappe.get_single("Permission Settings")
-    initial_status = (
-        "Approved" if paas_settings.auto_approve_categories else "Pending"
-    )
+    initial_status = "Approved" if paas_settings.auto_approve_categories else "Pending"
 
     category = frappe.get_doc(
         {
@@ -182,7 +235,14 @@ def update_category(uuid: Any, category_data: Any) -> Any:
     """
     Updates an existing category by its UUID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if not uuid:
         frappe.throw("UUID is required to update a category.")
 
@@ -220,7 +280,14 @@ def delete_category(uuid: Any) -> Any:
     """
     Deletes a category by its UUID.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if not uuid:
         frappe.throw("UUID is required to delete a category.")
 

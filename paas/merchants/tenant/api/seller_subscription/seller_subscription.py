@@ -19,34 +19,56 @@
 # SOFTWARE.
 
 from typing import Any, Optional
+
 # Tenant context: session.user validation
 import frappe
 
 
 @frappe.whitelist()
-def attach_subscription(subscription_data: Any=None) -> Any:
+def attach_subscription(subscription_data: Any = None) -> Any:
     """
     Attach subscription API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return {"status": True}
 
 
 @frappe.whitelist()
-def get_subscriptions(limit_start: Any=0, limit_page_length: Any=20) -> Any:
+def get_subscriptions(limit_start: Any = 0, limit_page_length: Any = 20) -> Any:
     """
     Get subscriptions API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if frappe.db.exists("DocType", "Subscription"):
         return frappe.get_all("Subscription", fields=["*"])
     return []
 
 
 @frappe.whitelist()
-def create_subscription_transaction(transaction_data: Any=None) -> Any:
+def create_subscription_transaction(transaction_data: Any = None) -> Any:
     """
     Create subscription transaction API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return {"status": True}

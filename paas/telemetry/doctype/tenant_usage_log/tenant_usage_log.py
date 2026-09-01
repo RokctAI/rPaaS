@@ -24,5 +24,6 @@
 import frappe
 from frappe.model.document import Document
 
+
 class TenantUsageLog(Document):
-	pass
+    pass

@@ -23,11 +23,14 @@ import frappe
 
 @frappe.whitelist()
 def log_frontend_error(error_message, context=None):
-	"""
-	Logs an error from the frontend to the Control site database error log.
-	"""
-	try:
-		frappe.log_error(f"Frontend Error: {error_message} | Context: {context}", "Next.js Frontend Error")
-		return {"status": "success", "message": "Error logged successfully."}
-	except Exception as e:
-		return {"status": "error", "message": str(e)}
+    """
+    Logs an error from the frontend to the Control site database error log.
+    """
+    try:
+        frappe.log_error(
+            f"Frontend Error: {error_message} | Context: {context}",
+            "Next.js Frontend Error",
+        )
+        return {"status": "success", "message": "Error logged successfully."}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}

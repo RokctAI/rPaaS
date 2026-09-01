@@ -48,9 +48,7 @@ class SystemInformation(Document):
         self.flutter_sdk_version = "N/A"
         try:
             if "rcore" in frappe.get_installed_apps():
-                rcore_versions_file = frappe.get_app_path(
-                    "rcore", "versions.json"
-                )
+                rcore_versions_file = frappe.get_app_path("rcore", "versions.json")
                 if os.path.exists(rcore_versions_file):
                     with open(rcore_versions_file, "r") as f:
                         rcore_versions = json.load(f)
@@ -72,14 +70,16 @@ class SystemInformation(Document):
             import requests
 
             # Get the control platform URL from site config
-            control_url = frappe.conf.get(
-                "control_url", "https://platform.rokct.ai"
-            )
+            control_url = frappe.conf.get("control_url", "https://platform.rokct.ai")
 
             # Only try fetching if it looks like a real URL
             if control_url and "http" in control_url:
                 api_endpoint = f"{control_url}/api/method/control.control.api.versions.get_versions"
-                trace_id = frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else "system-information-trace"
+                trace_id = (
+                    frappe.request.headers.get("x-trace-id")
+                    if (hasattr(frappe, "request") and frappe.request)
+                    else "system-information-trace"
+                )
                 headers = {"x-trace-id": trace_id or ""}
                 response = requests.get(api_endpoint, headers=headers, timeout=3)
 

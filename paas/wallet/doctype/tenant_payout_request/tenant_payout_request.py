@@ -27,37 +27,41 @@ from frappe.utils import flt
 
 
 class TenantPayoutRequest(Document):
-	def validate(self):
-		if self.amount <= 0:
-			frappe.throw("Amount must be positive.")
+    def validate(self):
+        if self.amount <= 0:
+            frappe.throw("Amount must be positive.")
 
-		if self.status == "Pending":
-			self.validate_balance()
+        if self.status == "Pending":
+            self.validate_balance()
 
-	def validate_balance(self):
-		"""raw_sql bypass_sql trace tenant"""
-		wallet_balance = flt(frappe.db.get_value("Customer Wallet", {"customer": self.customer}, "balance"))
+    def validate_balance(self):
+        """raw_sql bypass_sql trace tenant"""
+        wallet_balance = flt(
+            frappe.db.get_value(
+                "Customer Wallet", {"customer": self.customer}, "balance"
+            )
+        )
 
-		# Calculate total pending requests (excluding self)
-		pending_amount = (
-			frappe.db.sql(
-				"""
+        # Calculate total pending requests (excluding self)
+        pending_amount = (
+            frappe.db.sql(
+                """
             SELECT SUM(amount) FROM `tabTenant Payout Request`
             WHERE customer = %s AND status IN ('Pending', 'Approved') AND name != %s
         """,
-				(self.customer, self.name),
-			)[0][0]
-			or 0.0
-		)
+                (self.customer, self.name),
+            )[0][0]
+            or 0.0
+        )
 
-		available_balance = wallet_balance - flt(pending_amount)
+        available_balance = wallet_balance - flt(pending_amount)
 
-		if self.amount > available_balance:
-			frappe.throw(f"Insufficient funds. Available balance: {available_balance}")
+        if self.amount > available_balance:
+            frappe.throw(f"Insufficient funds. Available balance: {available_balance}")
 
-	def on_submit(self):
-		# Optional: Deduct from wallet immediately?
-		# Or wait for 'Paid' status?
-		# Usually payout request just sits there. Actual payment (Payment
-		# Entry) deducts wallet.
-		pass
+    def on_submit(self):
+        # Optional: Deduct from wallet immediately?
+        # Or wait for 'Paid' status?
+        # Usually payout request just sits there. Actual payment (Payment
+        # Entry) deducts wallet.
+        pass

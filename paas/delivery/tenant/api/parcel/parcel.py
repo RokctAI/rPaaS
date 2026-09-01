@@ -29,7 +29,14 @@ def create_parcel_order(order_data: Any) -> Any:
     """
     The create_parcel_order function creates a new parcel order from a flexible payload. It takes one parameter, order_data, which is a JSON string or dictionary containing parcel details. The function checks for idempotency, handles different destination types, and links orders and parcel options if provided. It returns the newly created parcel order document. The order_data parameter should include relevant information such as total price, currency, parcel type, and destination details. If the user is not logged in, the function throws an authentication error.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     trace_id = None
     """
     Creates a new parcel order from a flexible payload.
@@ -59,9 +66,7 @@ def create_parcel_order(order_data: Any) -> Any:
 
     # Get Permission Settings for auto-approval
     paas_settings = frappe.get_single("Permission Settings")
-    initial_status = (
-        "Accepted" if paas_settings.auto_approve_parcel_orders else "New"
-    )
+    initial_status = "Accepted" if paas_settings.auto_approve_parcel_orders else "New"
 
     # Start building the new parcel document
     new_parcel_doc = {
@@ -100,9 +105,7 @@ def create_parcel_order(order_data: Any) -> Any:
         new_parcel_doc["phone_to"] = customer.get("phone")
         new_parcel_doc["address_to"] = f"Customer: {customer.get('full_name')}"
 
-    elif destination_type == "delivery_point" and order_data.get(
-        "delivery_point_id"
-    ):
+    elif destination_type == "delivery_point" and order_data.get("delivery_point_id"):
         delivery_point = frappe.get_doc(
             "Delivery Point", order_data.get("delivery_point_id")
         )
@@ -110,9 +113,7 @@ def create_parcel_order(order_data: Any) -> Any:
         new_parcel_doc["address_to"] = delivery_point.address
         new_parcel_doc["username_to"] = f"Pickup Point: {delivery_point.name}"
 
-    elif destination_type == "custom_location" and order_data.get(
-        "address_to"
-    ):
+    elif destination_type == "custom_location" and order_data.get("address_to"):
         new_parcel_doc["address_to"] = json.dumps(order_data.get("address_to"))
 
     # Link Order if provided
@@ -152,17 +153,22 @@ def create_parcel_order(order_data: Any) -> Any:
 
         book_intercity_parcel(parcel_order)
 
-    return api_response(
-        data=parcel_order.as_dict(), message="Parcel Order Created"
-    )
+    return api_response(data=parcel_order.as_dict(), message="Parcel Order Created")
 
 
 @frappe.whitelist()
-def get_parcel_orders(limit: Any=20, offset: Any=0, status: Any=None) -> Any:
+def get_parcel_orders(limit: Any = 20, offset: Any = 0, status: Any = None) -> Any:
     """
     Retrieves a paginated list of parcel orders for the current user.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -209,7 +215,14 @@ def get_user_parcel_order(name: Any) -> Any:
     """
     Retrieves a single parcel order for the current user.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -226,9 +239,7 @@ def get_user_parcel_order(name: Any) -> Any:
             )
         return api_response(data=parcel_order.as_dict())
     except frappe.DoesNotExistError:
-        frappe.throw(
-            f"Parcel Order {name} not found.", frappe.DoesNotExistError
-        )
+        frappe.throw(f"Parcel Order {name} not found.", frappe.DoesNotExistError)
 
 
 @frappe.whitelist()
@@ -236,7 +247,14 @@ def update_parcel_status(parcel_order_id: Any, status: Any) -> Any:
     """
     Updates the status of a specific parcel order with state machine validation and role checks.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw(
@@ -266,7 +284,8 @@ def update_parcel_status(parcel_order_id: Any, status: Any) -> Any:
         ):
             if status not in allowed_transitions.get(current_status, []):
                 frappe.throw(
-                    f"Invalid status transition from {current_status} to {status}.")
+                    f"Invalid status transition from {current_status} to {status}."
+                )
 
         # Role-Based Authorization
         if (
@@ -303,9 +322,7 @@ def update_parcel_status(parcel_order_id: Any, status: Any) -> Any:
         parcel_order.status = status
         parcel_order.save(ignore_permissions=True)
 
-        return api_response(
-            data=parcel_order.as_dict(), message="Status Updated"
-        )
+        return api_response(data=parcel_order.as_dict(), message="Status Updated")
     except frappe.DoesNotExistError:
         frappe.throw(
             f"Parcel Order {parcel_order_id} not found.",
@@ -320,7 +337,14 @@ def get_types() -> Any:
     """
     Retrieves all available Parcel Types (Parcel Order Settings).
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     types = frappe.get_all(
         "Parcel Order Setting",
         fields=["name", "type", "img", "price", "price_per_km"],
@@ -341,7 +365,14 @@ def calculate_price(type_id: Any, address_from: Any, address_to: Any) -> Any:
     Calculates the delivery price based on distance and parcel type settings.
     address_from/to: JSON strings or dicts with latitude/longitude.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if isinstance(address_from, str):
         address_from = json.loads(address_from)
     if isinstance(address_to, str):
@@ -383,11 +414,18 @@ def calculate_price(type_id: Any, address_from: Any, address_to: Any) -> Any:
 
 
 @frappe.whitelist()
-def add_parcel_review(parcel_id: str, rating: int, review: str=None) -> Any:
+def add_parcel_review(parcel_id: str, rating: int, review: str = None) -> Any:
     """
     Adds a review to a completed parcel order.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     parcel = frappe.get_doc("Parcel Order", parcel_id)
     if parcel.status != "Delivered":
         frappe.throw("Cannot review an undelivered parcel.")

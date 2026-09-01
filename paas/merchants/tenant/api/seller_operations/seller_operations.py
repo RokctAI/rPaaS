@@ -26,11 +26,18 @@ from paas.base.tenant.api.utils import _get_seller_shop
 
 
 @frappe.whitelist()
-def get_seller_kitchens(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_kitchens(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of kitchens for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -50,7 +57,14 @@ def create_seller_kitchen(kitchen_data: Any) -> Any:
     """
     Creates a new kitchen for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -69,7 +83,14 @@ def update_seller_kitchen(kitchen_name: Any, kitchen_data: Any) -> Any:
     """
     Updates a kitchen for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -94,7 +115,14 @@ def delete_seller_kitchen(kitchen_name: Any) -> Any:
     """
     Deletes a kitchen for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -111,12 +139,21 @@ def delete_seller_kitchen(kitchen_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_inventory_items(limit_start: int=0, limit_page_length: int=20, item_code: str=None) -> Any:
+def get_seller_inventory_items(
+    limit_start: int = 0, limit_page_length: int = 20, item_code: str = None
+) -> Any:
     """
     Retrieves inventory items (Bin entries) for the current seller's shop.
     Can be filtered by a specific item.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -144,7 +181,14 @@ def adjust_seller_inventory(item_code: str, warehouse: str, new_qty: int) -> Any
     """
     Adjusts the inventory for a specific item in a warehouse for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -193,11 +237,18 @@ def adjust_seller_inventory(item_code: str, warehouse: str, new_qty: int) -> Any
 
 
 @frappe.whitelist()
-def get_seller_menus(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_menus(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of menus for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -217,7 +268,14 @@ def get_seller_menu(menu_name: Any) -> Any:
     """
     Retrieves a single menu with its items for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -236,7 +294,14 @@ def create_seller_menu(menu_data: Any) -> Any:
     """
     Creates a new menu for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -255,7 +320,14 @@ def update_seller_menu(menu_name: Any, menu_data: Any) -> Any:
     """
     Updates a menu for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -280,7 +352,14 @@ def delete_seller_menu(menu_name: Any) -> Any:
     """
     Deletes a menu for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -297,11 +376,18 @@ def delete_seller_menu(menu_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_receipts(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_receipts(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of receipts for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -321,7 +407,14 @@ def create_seller_receipt(receipt_data: Any) -> Any:
     """
     Creates a new receipt for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -340,7 +433,14 @@ def update_seller_receipt(receipt_name: Any, receipt_data: Any) -> Any:
     """
     Updates a receipt for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -365,7 +465,14 @@ def delete_seller_receipt(receipt_name: Any) -> Any:
     """
     Deletes a receipt for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -382,11 +489,18 @@ def delete_seller_receipt(receipt_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_combos(limit_start: int=0, limit_page_length: int=20) -> Any:
+def get_seller_combos(limit_start: int = 0, limit_page_length: int = 20) -> Any:
     """
     Retrieves a list of combos for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -406,7 +520,14 @@ def get_seller_combo(combo_name: Any) -> Any:
     """
     Retrieves a single combo with its items for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -426,7 +547,14 @@ def create_seller_combo(combo_data: Any) -> Any:
     """
     Creates a new combo for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -445,7 +573,14 @@ def update_seller_combo(combo_name: Any, combo_data: Any) -> Any:
     """
     Updates a combo for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -470,7 +605,14 @@ def delete_seller_combo(combo_name: Any) -> Any:
     """
     Deletes a combo for the current seller's shop.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
 
@@ -490,11 +632,18 @@ def delete_seller_combo(combo_name: Any) -> Any:
 
 
 @frappe.whitelist()
-def get_seller_sections(limit_start: Any=0, limit_page_length: Any=20) -> Any:
+def get_seller_sections(limit_start: Any = 0, limit_page_length: Any = 20) -> Any:
     """
     Get seller sections API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Section"):
@@ -505,20 +654,34 @@ def get_seller_sections(limit_start: Any=0, limit_page_length: Any=20) -> Any:
 
 
 @frappe.whitelist()
-def create_seller_section(section_data: Any=None) -> Any:
+def create_seller_section(section_data: Any = None) -> Any:
     """
     Create seller section API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return {"status": True}
 
 
 @frappe.whitelist()
-def get_seller_tables(limit_start: Any=0, limit_page_length: Any=20) -> Any:
+def get_seller_tables(limit_start: Any = 0, limit_page_length: Any = 20) -> Any:
     """
     Get seller tables API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Table"):
@@ -531,11 +694,18 @@ def get_seller_tables(limit_start: Any=0, limit_page_length: Any=20) -> Any:
 
 
 @frappe.whitelist()
-def delete_seller_tables(table_id: Any=None) -> Any:
+def delete_seller_tables(table_id: Any = None) -> Any:
     """
     Delete seller tables API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if table_id and frappe.db.exists("Shop Table", table_id):
         frappe.delete_doc("Shop Table", table_id, ignore_permissions=True)
     return {"status": True}
@@ -546,7 +716,14 @@ def get_table_disable_dates() -> Any:
     """
     Get table disable dates API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return []
 
 
@@ -555,31 +732,50 @@ def get_booking_working_days() -> Any:
     """
     Get booking working days API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     shop = _get_seller_shop(user)
     if frappe.db.exists("DocType", "Shop Working Day"):
-        return frappe.get_all(
-            "Shop Working Day", filters={"shop": shop}, fields=["*"]
-        )
+        return frappe.get_all("Shop Working Day", filters={"shop": shop}, fields=["*"])
     return []
 
 
 @frappe.whitelist()
-def create_seller_booking(booking_data: Any=None) -> Any:
+def create_seller_booking(booking_data: Any = None) -> Any:
     """
     Create seller booking API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     return {"status": True}
 
 
 @frappe.whitelist()
-def update_booking_status(booking_id: Any=None, status: Any=None) -> Any:
+def update_booking_status(booking_id: Any = None, status: Any = None) -> Any:
     """
     Update booking status API endpoint.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     if booking_id and status and frappe.db.exists("Shop Booking", booking_id):
         doc = frappe.get_doc("Shop Booking", booking_id)
         doc.status = status

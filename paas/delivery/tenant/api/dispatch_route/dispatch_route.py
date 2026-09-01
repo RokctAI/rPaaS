@@ -82,8 +82,10 @@ def serialize_dispatch_stop(route, stop, shop_cache=None):
     """Serialize one Dispatch Route Stop child row to the shared stop
     shape, resolving coordinates from the linked Shop when the row has
     none of its own."""
-    get = stop.get if isinstance(stop, dict) else (
-        lambda key, default=None: getattr(stop, key, default)
+    get = (
+        stop.get
+        if isinstance(stop, dict)
+        else (lambda key, default=None: getattr(stop, key, default))
     )
     data = {
         "stop_type": "pickup" if route.mode == "Pickup" else "delivery",
@@ -101,9 +103,7 @@ def serialize_dispatch_stop(route, stop, shop_cache=None):
             "shop": get("shop"),
             "note": get("note"),
             "status": get("status") or "Pending",
-            "completed_at": (
-                str(get("completed_at")) if get("completed_at") else None
-            ),
+            "completed_at": (str(get("completed_at")) if get("completed_at") else None),
         },
     }
     if not stop_has_coordinates(data):
@@ -120,8 +120,7 @@ def serialize_dispatch_stop(route, stop, shop_cache=None):
     # master switch and quiet weather all leave the field ABSENT.
     if stop_weather_notice is not None and stop_has_coordinates(data):
         try:
-            notice = stop_weather_notice(
-                data["latitude"], data["longitude"])
+            notice = stop_weather_notice(data["latitude"], data["longitude"])
         except Exception:
             notice = None
         if notice:
@@ -179,9 +178,14 @@ def get_active_dispatch_stops(user, shop_cache=None):
         serialize_dispatch_stop(doc, stop, shop_cache=shop_cache)
         for stop in (doc.get("stops") or [])
         if (
-            (stop.get("status") if isinstance(stop, dict)
-             else getattr(stop, "status", None)) or "Pending"
-        ) == "Pending"
+            (
+                stop.get("status")
+                if isinstance(stop, dict)
+                else getattr(stop, "status", None)
+            )
+            or "Pending"
+        )
+        == "Pending"
     ]
     return doc, stops
 
@@ -196,7 +200,14 @@ def get_my_dispatch_route() -> Any:
     when the route has optimize_order set, otherwise in the admin's
     order. Sequence numbers are the server-authoritative drive order.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Unauthorized", frappe.AuthenticationError)
@@ -235,9 +246,7 @@ def get_my_dispatch_route() -> Any:
                     if previous
                     else None
                 )
-                previous = (
-                    float(stop["latitude"]), float(stop["longitude"])
-                )
+                previous = (float(stop["latitude"]), float(stop["longitude"]))
             else:
                 stop["missing_coordinates"] = True
                 stop["distance_from_previous_km"] = None
@@ -255,18 +264,14 @@ def get_my_dispatch_route() -> Any:
             "optimize_order": doc.get("optimize_order"),
             "notes": doc.get("notes"),
             "total_stops": len(stops),
-            "pending_stops": len(
-                [s for s in stops if s.get("status") == "Pending"]
-            ),
+            "pending_stops": len([s for s in stops if s.get("status") == "Pending"]),
         },
         "stops": stops,
     }
 
 
 @frappe.whitelist()
-def complete_dispatch_stop(
-    route_id: Any, stop_name: Any, status: Any = "Done"
-) -> Any:
+def complete_dispatch_stop(route_id: Any, stop_name: Any, status: Any = "Done") -> Any:
     """Driver marks one stop of his route Done or Skipped.
 
     Idempotent-safe: re-sending a completion for a stop that already left
@@ -274,7 +279,14 @@ def complete_dispatch_stop(
     route flips to In Progress on the first completed stop and to
     Completed once no stop is Pending.
     """
-    import sys; _ = (frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else None, sys.stderr)
+    import sys
+
+    _ = (
+        frappe.request.headers.get("x-trace-id")
+        if (hasattr(frappe, "request") and frappe.request)
+        else None,
+        sys.stderr,
+    )
     user = frappe.session.user
     if user == "Guest":
         frappe.throw("Unauthorized", frappe.AuthenticationError)
@@ -282,9 +294,7 @@ def complete_dispatch_stop(
     normalized = STOP_STATUS_MAP.get(str(status or "").strip().lower())
     if not normalized:
         frappe.throw(
-            "Unknown stop status '{0}'. Allowed: Done, Skipped.".format(
-                status
-            )
+            "Unknown stop status '{0}'. Allowed: Done, Skipped.".format(status)
         )
 
     if not frappe.db.exists("Dispatch Route", route_id):
@@ -303,9 +313,7 @@ def complete_dispatch_stop(
             target = stop
             break
     if target is None:
-        frappe.throw(
-            "Stop {0} not found on route {1}.".format(stop_name, route_id)
-        )
+        frappe.throw("Stop {0} not found on route {1}.".format(stop_name, route_id))
 
     if doc.status not in ACTIVE_ROUTE_STATUSES:
         # Idempotent replay: completing the LAST pending stop flips the

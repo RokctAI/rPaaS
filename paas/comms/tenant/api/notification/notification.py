@@ -26,7 +26,7 @@ from paas.base.tenant.api.utils import api_response
 
 
 @frappe.whitelist()
-def send_push_notification(user: str, title: str, body: str, data: dict=None) -> Any:
+def send_push_notification(user: str, title: str, body: str, data: dict = None) -> Any:
     """
     Sends a push notification to a specific user via FCM.
     """
@@ -48,7 +48,11 @@ def send_push_notification(user: str, title: str, body: str, data: dict=None) ->
                 "message": "No device tokens found for user.",
             }
 
-        trace_id = frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else "send-push-notification-trace"
+        trace_id = (
+            frappe.request.headers.get("x-trace-id")
+            if (hasattr(frappe, "request") and frappe.request)
+            else "send-push-notification-trace"
+        )
         headers = {
             "Authorization": f"key={settings.server_key}",
             "Content-Type": "application/json",
@@ -76,10 +80,15 @@ def send_push_notification(user: str, title: str, body: str, data: dict=None) ->
                     success_count += 1
                 else:
                     failure_count += 1
-                    frappe.log_error(f"FCM Error for {token}: {response.text}", "Push Notification Error")
+                    frappe.log_error(
+                        f"FCM Error for {token}: {response.text}",
+                        "Push Notification Error",
+                    )
             except Exception as e:
                 failure_count += 1
-                frappe.log_error(f"Request Error for {token}: {str(e)}", "Push Notification Error")
+                frappe.log_error(
+                    f"Request Error for {token}: {str(e)}", "Push Notification Error"
+                )
 
         return {
             "status": "success",
@@ -134,9 +143,7 @@ def get_notification_settings() -> Any:
     # Assuming 'Notification Type' doctype exists from confirmed check
     # If it doesn't exist in some envs, we handle gracefully
     try:
-        types = frappe.get_all(
-            "Notification Type", fields=["name", "type", "payload"]
-        )
+        types = frappe.get_all("Notification Type", fields=["name", "type", "payload"])
     except Exception:
         return api_response(data=[])
 
@@ -164,8 +171,7 @@ def get_notification_settings() -> Any:
                 # Flutter expects int, send 0 or valid int if available (Doctype
                 # doesn't have int id by default)
                 "id": 0,
-                "type": t.type
-                or t.name,  # Use 'type' field or fallback to name
+                "type": t.type or t.name,  # Use 'type' field or fallback to name
                 "active": is_active,
                 "created_at": None,
                 "updated_at": None,
@@ -231,7 +237,7 @@ def update_notification_settings(type: str, active: int) -> Any:
 
 
 @frappe.whitelist()
-def get_user_notifications(start: Any=0, limit: Any=20) -> Any:
+def get_user_notifications(start: Any = 0, limit: Any = 20) -> Any:
     """
     Retrieves the list of notifications for the currently logged-in user.
     """
@@ -273,7 +279,7 @@ def get_notification_count() -> Any:
 
 
 @frappe.whitelist()
-def mark_notification_logs_as_read(ids: Any=None) -> Any:
+def mark_notification_logs_as_read(ids: Any = None) -> Any:
     """
     Marks specific notification logs as read.
     """
@@ -291,9 +297,7 @@ def mark_notification_logs_as_read(ids: Any=None) -> Any:
         if frappe.db.exists("Notification Log", name):
             doc = frappe.get_doc("Notification Log", name)
             # Check ownership/for_user
-            if (
-                hasattr(doc, "for_user") and doc.for_user == user
-            ) or doc.owner == user:
+            if (hasattr(doc, "for_user") and doc.for_user == user) or doc.owner == user:
                 doc.read = 1
                 doc.save(ignore_permissions=True)
 
@@ -309,9 +313,7 @@ def read_all_notifications() -> Any:
     if user == "Guest":
         frappe.throw("You must be logged in.", frappe.AuthenticationError)
 
-    logs = frappe.get_all(
-        "Notification Log", filters={"for_user": user, "read": 0}
-    )
+    logs = frappe.get_all("Notification Log", filters={"for_user": user, "read": 0})
     # Also check owner if for_user is not used? Standard Frappe uses for_user
     for log in logs:
         frappe.db.set_value("Notification Log", log.name, "read", 1)
@@ -330,9 +332,7 @@ def read_one_notification(name: Any) -> Any:
 
     if frappe.db.exists("Notification Log", name):
         doc = frappe.get_doc("Notification Log", name)
-        if (
-            hasattr(doc, "for_user") and doc.for_user == user
-        ) or doc.owner == user:
+        if (hasattr(doc, "for_user") and doc.for_user == user) or doc.owner == user:
             doc.read = 1
             doc.save(ignore_permissions=True)
 

@@ -103,7 +103,9 @@ Certain functionality in PaaS (Lending, Billing, Verification) is designed to be
     * **Action**: Update the method reference in `paas/api/user/user.py`:
       ```python
       # Change this to point to your custom app's verification method
-      verification_url = frappe.utils.get_url_to_method("my_custom_app.api.verify_email", {"token": token})
+      verification_url = frappe.utils.get_url_to_method(
+          "my_custom_app.api.verify_email", {"token": token}
+      )
       ```
 
 ### 4. Seed Data

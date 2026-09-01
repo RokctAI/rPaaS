@@ -70,8 +70,7 @@ def get_idempotency_key() -> Optional[str]:
         return None
     if len(key) > MAX_KEY_LENGTH:
         frappe.throw(
-            f"{IDEMPOTENCY_HEADER} must be at most "
-            f"{MAX_KEY_LENGTH} characters.",
+            f"{IDEMPOTENCY_HEADER} must be at most {MAX_KEY_LENGTH} characters.",
             frappe.ValidationError,
         )
     return key
@@ -135,8 +134,7 @@ def _stored_response(key: str, endpoint: str) -> Any:
 
     if row.user != frappe.session.user or row.endpoint != endpoint:
         frappe.throw(
-            "This idempotency key was already used by a different "
-            "user or endpoint.",
+            "This idempotency key was already used by a different user or endpoint.",
             frappe.ValidationError,
         )
 

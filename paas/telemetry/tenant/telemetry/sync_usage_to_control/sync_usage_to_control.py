@@ -40,12 +40,16 @@ def sync_usage_to_control():
             pass
 
         from frappe.utils.data import add_days
+
         yesterday = add_days(nowdate(), -1)
 
         rows = frappe.get_all(
             "Client Usage Event",
             filters={
-                "timestamp": ["between", [f"{yesterday} 00:00:00", f"{yesterday} 23:59:59"]],
+                "timestamp": [
+                    "between",
+                    [f"{yesterday} 00:00:00", f"{yesterday} 23:59:59"],
+                ],
             },
             fields=["event"],
         )
@@ -63,22 +67,27 @@ def sync_usage_to_control():
             return
 
         import requests
+
         scheme = frappe.conf.get("control_plane_scheme", "https")
         api_url = f"{scheme}://{control_plane_url}/api/method/control.control.api.tenant.report_tenant_usage"
 
-        trace_id = frappe.request.headers.get("x-trace-id") if (hasattr(frappe, "request") and frappe.request) else "usage-sync-trace"
+        trace_id = (
+            frappe.request.headers.get("x-trace-id")
+            if (hasattr(frappe, "request") and frappe.request)
+            else "usage-sync-trace"
+        )
         headers = {
             "X-Rokct-Secret": api_secret,
             "X-Rokct-Tenant": frappe.local.site,
-            "x-trace-id": trace_id or ""
+            "x-trace-id": trace_id or "",
         }
-        data = {
-            "date": yesterday,
-            "usage_counts": json.dumps(usage_counts)
-        }
+        data = {"date": yesterday, "usage_counts": json.dumps(usage_counts)}
 
         response = requests.post(api_url, headers=headers, json=data, timeout=30)
         response.raise_for_status()
 
     except Exception as e:
-        frappe.log_error(f"Failed to sync usage counts to control panel: {e}\n{frappe.get_traceback()}", "Usage Sync Failed")
+        frappe.log_error(
+            f"Failed to sync usage counts to control panel: {e}\n{frappe.get_traceback()}",
+            "Usage Sync Failed",
+        )
